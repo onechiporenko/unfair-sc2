@@ -2,8 +2,26 @@
 
 ## v2.37
 
+* [CRITICAL STRIKE](./handicaps/critical-strike.md)
+    * [FEATURE] Добавлен визуальный эффект для цели критического удара.
+
 * [DOUBLE](./handicaps/double.md)
     * [BUGFIX] Больше не создается дубль Сферы Очищения.
+
+* [IMMORTALS](./handicaps/immortals.md)
+    * [NEW] Гандикап добавлен.
+
+* [NO SUPPLY](./handicaps/no-supply.md)
+    * [BUGFIX]  Владыки теперь снова не дают лимита.
+
+* [RANDOM RALLY POINTS](./handicaps/random-rally-points.md)
+    * [NEW] Гандикап добавлен.
+
+* [SOULS CATCHER](./handicaps/souls-catcher.md)
+    * [BUGFIX] В чате игры больше не выводится отладочное сообщение.
+
+* [WALKING DEAD](./handicaps/walking-dead.md)
+    * [BUGFIX] Зомби не создаются от теней адептов и сфер очищения.
 
 ## v2.36
 

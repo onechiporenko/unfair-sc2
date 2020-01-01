@@ -37,6 +37,7 @@ Unfair SC2 - это модификация для StarCraft2, которая с�
 * [FREE WORKERS](./handicaps/free-workers.md)
 * [GOLD RUSH](./handicaps/gold-rush.md)
 * [GRAPPLE](./handicaps/grapple.md)
+* [IMMORTALS](./handicaps/immortals.md)
 * [INSTANT PRODUCTION](./handicaps/instant-production.md)
 * [LAST WILL](./handicaps/last-will.md)
 * [LIMITED WORKERS](./handicaps/limited-workers.md)
