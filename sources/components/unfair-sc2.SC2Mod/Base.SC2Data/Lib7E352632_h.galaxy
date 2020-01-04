@@ -1,0 +1,21 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: EXTRA GAS
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+timer lib7E352632_gv_timer;
+int lib7E352632_gv_vespeneToAdd;
+
+// Function Declarations
+void lib7E352632_gf_AddActorToAllExisitingVespene (int lp_player);
+void lib7E352632_gf_AddActorToVespene (unit lp_unit);
+
+// Trigger Declarations
+trigger lib7E352632_gt_ExtraGasModStart;
+trigger lib7E352632_gt_AddActorToVespene;
+trigger lib7E352632_gt_GiveExtraVespene;
+
+// Library Initialization
+void lib7E352632_InitVariables ();
+

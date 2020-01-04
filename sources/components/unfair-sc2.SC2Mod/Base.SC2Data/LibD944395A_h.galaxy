@@ -1,0 +1,12 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ALIENS
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+int libD944395A_gf_GetAliensRateForPlayer (int lp_player);
+
+// Trigger Declarations
+trigger libD944395A_gt_AliensModStart;
+trigger libD944395A_gt_CreateBroodlings;
+

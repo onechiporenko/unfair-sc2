@@ -1,0 +1,139 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib16A22498_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: EXTRA CREEP
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib16A22498_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Extra Creep Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib16A22498_gt_ExtraCreepModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto82D9B3DA_g;
+    int auto82D9B3DA_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("61") == "0001")) {
+        auto82D9B3DA_g = PlayerGroupAll();
+        auto82D9B3DA_var = -1;
+        while (true) {
+            auto82D9B3DA_var = PlayerGroupNextPlayer(auto82D9B3DA_g, auto82D9B3DA_var);
+            if (auto82D9B3DA_var < 0) { break; }
+            if ((GameAttributePlayerValue("62", auto82D9B3DA_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto82D9B3DA_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_16A22498_DC30E694", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_16A22498_14A10AA4"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_16A22498_DC30E694"), StringExternal("Param/Value/lib_16A22498_B270BB40"), "Assets\\Textures\\btn-building-zerg-creeptumor.dds");
+        }
+        else {
+            TriggerEnable(lib16A22498_gt_ZergStructureIsBuilt, false);
+        }
+    }
+    else {
+        TriggerEnable(lib16A22498_gt_ZergStructureIsBuilt, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib16A22498_gt_ExtraCreepModStart_Init () {
+    lib16A22498_gt_ExtraCreepModStart = TriggerCreate("lib16A22498_gt_ExtraCreepModStart_Func");
+    TriggerAddEventMapInit(lib16A22498_gt_ExtraCreepModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zerg Structure Is Built
+//--------------------------------------------------------------------------------------------------
+bool lib16A22498_gt_ZergStructureIsBuilt_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((PlayerRace(EventPlayer()) == "Zerg"))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitProgressUnit()), c_unitAttributeStructure) == true))) {
+            return false;
+        }
+
+        if (!((GameAttributePlayerValue("62", EventPlayer()) == "0001"))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_TriggeringProgressUnitType() != "SpineCrawler"))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_TriggeringProgressUnitType() != "SpineCrawlerUprooted"))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_TriggeringProgressUnitType() != "SporeCrawler"))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_TriggeringProgressUnitType() != "SporeCrawlerUprooted"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(EventUnitProgressUnit(), "makeCreep8x6", EventUnitProgressUnit(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib16A22498_gt_ZergStructureIsBuilt_Init () {
+    lib16A22498_gt_ZergStructureIsBuilt = TriggerCreate("lib16A22498_gt_ZergStructureIsBuilt_Func");
+    TriggerAddEventUnitConstructProgress(lib16A22498_gt_ZergStructureIsBuilt, null, c_unitProgressStageComplete);
+}
+
+void lib16A22498_InitTriggers () {
+    lib16A22498_gt_ExtraCreepModStart_Init();
+    lib16A22498_gt_ZergStructureIsBuilt_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib16A22498_InitLib_completed = false;
+
+void lib16A22498_InitLib () {
+    if (lib16A22498_InitLib_completed) {
+        return;
+    }
+
+    lib16A22498_InitLib_completed = true;
+
+    lib16A22498_InitLibraries();
+    lib16A22498_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

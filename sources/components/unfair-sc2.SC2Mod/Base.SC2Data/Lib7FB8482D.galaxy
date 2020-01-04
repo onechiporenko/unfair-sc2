@@ -1,0 +1,164 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib7FB8482D_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO SHIELDS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib7FB8482D_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Shields Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib7FB8482D_gt_NoShieldsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto61FEC81C_g;
+    int auto61FEC81C_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("13") == "0001")) {
+        auto61FEC81C_g = PlayerGroupAll();
+        auto61FEC81C_var = -1;
+        while (true) {
+            auto61FEC81C_var = PlayerGroupNextPlayer(auto61FEC81C_g, auto61FEC81C_var);
+            if (auto61FEC81C_var < 0) { break; }
+            if ((GameAttributePlayerValue("14", auto61FEC81C_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto61FEC81C_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(lib7FB8482D_gt_RemoveShieldsFromInitialUnits, true, false);
+            TextExpressionSetToken("Param/Expression/lib_7FB8482D_DB830FDC", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_7FB8482D_B8671789"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7FB8482D_DB830FDC"), StringExternal("Param/Value/lib_7FB8482D_97759C82"), "Assets\\Textures\\btn-ability-protoss-arcshield.dds");
+        }
+        else {
+            TriggerEnable(lib7FB8482D_gt_UnitIsCreated, false);
+        }
+    }
+    else {
+        TriggerEnable(lib7FB8482D_gt_UnitIsCreated, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7FB8482D_gt_NoShieldsModStart_Init () {
+    lib7FB8482D_gt_NoShieldsModStart = TriggerCreate("lib7FB8482D_gt_NoShieldsModStart_Func");
+    TriggerAddEventMapInit(lib7FB8482D_gt_NoShieldsModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Shields From Initial Units
+//--------------------------------------------------------------------------------------------------
+bool lib7FB8482D_gt_RemoveShieldsFromInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto99D2DD3E_g;
+    int auto99D2DD3E_var;
+    unitgroup auto37254D6D_g;
+    int auto37254D6D_u;
+    unit auto37254D6D_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    auto99D2DD3E_g = PlayerGroupAll();
+    auto99D2DD3E_var = -1;
+    while (true) {
+        auto99D2DD3E_var = PlayerGroupNextPlayer(auto99D2DD3E_g, auto99D2DD3E_var);
+        if (auto99D2DD3E_var < 0) { break; }
+        if ((GameAttributePlayerValue("14", auto99D2DD3E_var) == "0001")) {
+            auto37254D6D_g = UnitGroup(null, auto99D2DD3E_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto37254D6D_u = UnitGroupCount(auto37254D6D_g, c_unitCountAll);
+            for (;; auto37254D6D_u -= 1) {
+                auto37254D6D_var = UnitGroupUnitFromEnd(auto37254D6D_g, auto37254D6D_u);
+                if (auto37254D6D_var == null) { break; }
+                UnitSetPropertyFixed(auto37254D6D_var, c_unitPropShields, 0.0);
+                UnitSetPropertyFixed(auto37254D6D_var, c_unitPropShieldsMax, 0.0);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7FB8482D_gt_RemoveShieldsFromInitialUnits_Init () {
+    lib7FB8482D_gt_RemoveShieldsFromInitialUnits = TriggerCreate("lib7FB8482D_gt_RemoveShieldsFromInitialUnits_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Is Created
+//--------------------------------------------------------------------------------------------------
+bool lib7FB8482D_gt_UnitIsCreated_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributeGameValue("13") == "0001"))) {
+            return false;
+        }
+
+        if (!((GameAttributePlayerValue("14", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetPropertyFixed(EventUnitCreatedUnit(), c_unitPropShields, 0.0);
+    UnitSetPropertyFixed(EventUnitCreatedUnit(), c_unitPropShieldsMax, 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7FB8482D_gt_UnitIsCreated_Init () {
+    lib7FB8482D_gt_UnitIsCreated = TriggerCreate("lib7FB8482D_gt_UnitIsCreated_Func");
+    TriggerAddEventUnitCreated(lib7FB8482D_gt_UnitIsCreated, null, null, null);
+}
+
+void lib7FB8482D_InitTriggers () {
+    lib7FB8482D_gt_NoShieldsModStart_Init();
+    lib7FB8482D_gt_RemoveShieldsFromInitialUnits_Init();
+    lib7FB8482D_gt_UnitIsCreated_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib7FB8482D_InitLib_completed = false;
+
+void lib7FB8482D_InitLib () {
+    if (lib7FB8482D_InitLib_completed) {
+        return;
+    }
+
+    lib7FB8482D_InitLib_completed = true;
+
+    lib7FB8482D_InitLibraries();
+    lib7FB8482D_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

@@ -1,0 +1,26 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MINES
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib00CAD167_gv_extraMinesCount;
+int lib00CAD167_gv_extraMinesDelay;
+timer lib00CAD167_gv_extraMinesTimer;
+int lib00CAD167_gv_minesLeaderboard;
+
+// Function Declarations
+void lib00CAD167_gf_CreateMines (int lp_minesCount);
+
+// Trigger Declarations
+trigger lib00CAD167_gt_MinesModStart;
+trigger lib00CAD167_gt_UgradeMines;
+trigger lib00CAD167_gt_StartCreatingExtraMines;
+trigger lib00CAD167_gt_CreateExtraMines;
+trigger lib00CAD167_gt_ShowLostResources;
+trigger lib00CAD167_gt_UpdateMinesLeaderboard;
+trigger lib00CAD167_gt_UnitIsKilledByMine;
+
+// Library Initialization
+void lib00CAD167_InitVariables ();
+

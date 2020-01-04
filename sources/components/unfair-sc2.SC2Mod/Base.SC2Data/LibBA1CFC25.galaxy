@@ -1,0 +1,165 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibBA1CFC25_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: REDUCE MINING
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libBA1CFC25_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Reduce Mining Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libBA1CFC25_gt_ReduceMiningModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto160B0511_g;
+    int auto160B0511_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("27") == "0001")) {
+        auto160B0511_g = PlayerGroupAll();
+        auto160B0511_var = -1;
+        while (true) {
+            auto160B0511_var = PlayerGroupNextPlayer(auto160B0511_g, auto160B0511_var);
+            if (auto160B0511_var < 0) { break; }
+            if ((GameAttributePlayerValue("28", auto160B0511_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto160B0511_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_BA1CFC25_D22176AE", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BA1CFC25_74F443A0"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BA1CFC25_D22176AE"), StringExternal("Param/Value/lib_BA1CFC25_68A5B7A0"), "Assets\\Textures\\economiccrisis_coop.dds");
+            TriggerExecute(libBA1CFC25_gt_PlayerCollectsMinerals, true, false);
+            TriggerExecute(libBA1CFC25_gt_PlayerCollectsVespene, true, false);
+        }
+        else {
+            TriggerEnable(libBA1CFC25_gt_PlayerCollectsMinerals, false);
+            TriggerEnable(libBA1CFC25_gt_PlayerCollectsVespene, false);
+        }
+    }
+    else {
+        TriggerEnable(libBA1CFC25_gt_PlayerCollectsMinerals, false);
+        TriggerEnable(libBA1CFC25_gt_PlayerCollectsVespene, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBA1CFC25_gt_ReduceMiningModStart_Init () {
+    libBA1CFC25_gt_ReduceMiningModStart = TriggerCreate("libBA1CFC25_gt_ReduceMiningModStart_Func");
+    TriggerAddEventMapInit(libBA1CFC25_gt_ReduceMiningModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Collects Minerals
+//--------------------------------------------------------------------------------------------------
+bool libBA1CFC25_gt_PlayerCollectsMinerals_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoC0272094_g;
+    int autoC0272094_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TriggerGetExecCount(TriggerGetCurrent()) == 0)) {
+        autoC0272094_g = PlayerGroupActive();
+        autoC0272094_var = -1;
+        while (true) {
+            autoC0272094_var = PlayerGroupNextPlayer(autoC0272094_g, autoC0272094_var);
+            if (autoC0272094_var < 0) { break; }
+            if (((PlayerType(autoC0272094_var) == c_playerTypeUser) && (GameAttributePlayerValue("28", autoC0272094_var) == "0001"))) {
+                TriggerAddEventPlayerPropChange(TriggerGetCurrent(), autoC0272094_var, c_playerPropMineralsCollected);
+            }
+
+        }
+    }
+    else {
+        PlayerModifyPropertyInt(EventPlayer(), c_playerPropMinerals, c_playerPropOperSubtract, 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBA1CFC25_gt_PlayerCollectsMinerals_Init () {
+    libBA1CFC25_gt_PlayerCollectsMinerals = TriggerCreate("libBA1CFC25_gt_PlayerCollectsMinerals_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Player Collects Vespene
+//--------------------------------------------------------------------------------------------------
+bool libBA1CFC25_gt_PlayerCollectsVespene_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto37CAC30F_g;
+    int auto37CAC30F_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((TriggerGetExecCount(TriggerGetCurrent()) == 0)) {
+        auto37CAC30F_g = PlayerGroupActive();
+        auto37CAC30F_var = -1;
+        while (true) {
+            auto37CAC30F_var = PlayerGroupNextPlayer(auto37CAC30F_g, auto37CAC30F_var);
+            if (auto37CAC30F_var < 0) { break; }
+            if (((PlayerType(auto37CAC30F_var) == c_playerTypeUser) && (GameAttributePlayerValue("28", auto37CAC30F_var) == "0001"))) {
+                TriggerAddEventPlayerPropChange(TriggerGetCurrent(), auto37CAC30F_var, c_playerPropVespeneCollected);
+            }
+
+        }
+    }
+    else {
+        PlayerModifyPropertyInt(EventPlayer(), c_playerPropVespene, c_playerPropOperSubtract, 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBA1CFC25_gt_PlayerCollectsVespene_Init () {
+    libBA1CFC25_gt_PlayerCollectsVespene = TriggerCreate("libBA1CFC25_gt_PlayerCollectsVespene_Func");
+}
+
+void libBA1CFC25_InitTriggers () {
+    libBA1CFC25_gt_ReduceMiningModStart_Init();
+    libBA1CFC25_gt_PlayerCollectsMinerals_Init();
+    libBA1CFC25_gt_PlayerCollectsVespene_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libBA1CFC25_InitLib_completed = false;
+
+void libBA1CFC25_InitLib () {
+    if (libBA1CFC25_InitLib_completed) {
+        return;
+    }
+
+    libBA1CFC25_InitLib_completed = true;
+
+    libBA1CFC25_InitLibraries();
+    libBA1CFC25_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

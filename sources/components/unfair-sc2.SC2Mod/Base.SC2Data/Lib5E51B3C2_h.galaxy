@@ -1,0 +1,11 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RESOURCES
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib5E51B3C2_gf_TakeMinerals (int lp_player, int lp_mineralsAmount);
+void lib5E51B3C2_gf_GiveMinerals (int lp_player, int lp_mineralsAmount);
+void lib5E51B3C2_gf_TakeVespene (int lp_player, int lp_vespeneAmount);
+void lib5E51B3C2_gf_GiveVespene (int lp_player, int lp_vespeneAmount);
+

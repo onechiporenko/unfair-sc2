@@ -1,0 +1,11 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO ARMY CONTROL
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libE899973B_gf_ToggleArmyControlPanels (int lp_player);
+
+// Trigger Declarations
+trigger libE899973B_gt_NoArmyControlModStart;
+

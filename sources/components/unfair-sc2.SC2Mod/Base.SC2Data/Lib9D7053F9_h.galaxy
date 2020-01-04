@@ -1,0 +1,22 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: REFEREE MOD
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib9D7053F9_gv_refereeUI;
+int lib9D7053F9_gv_refereeUIToggle;
+bool lib9D7053F9_gv_refereeUIShown;
+
+// Function Declarations
+int lib9D7053F9_gf_CreateRefereeUI (playergroup lp_players);
+int lib9D7053F9_gf_CreateRefereeUIToggle (playergroup lp_players);
+
+// Trigger Declarations
+trigger lib9D7053F9_gt_RefereeModStart;
+trigger lib9D7053F9_gt_RefereeUIItemClicked;
+trigger lib9D7053F9_gt_ToggleRefereeUI;
+
+// Library Initialization
+void lib9D7053F9_InitVariables ();
+

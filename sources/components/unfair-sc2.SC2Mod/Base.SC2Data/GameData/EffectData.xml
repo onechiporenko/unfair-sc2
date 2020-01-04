@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CEffectCreateUnit id="BuildCannon">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="SetFacing" value="1"/>
+        <SpawnUnit value="PhotonCannon"/>
+    </CEffectCreateUnit>
+    <CEffectCreatePersistent id="BuildMacroDefProtoss">
+        <EditorCategories value="Race:Protoss"/>
+        <PeriodCount value="12"/>
+        <PeriodicEffectArray value="BuildCannon"/>
+        <PeriodicEffectArray value="BuildCannon"/>
+        <PeriodicEffectArray value="BuildCannon"/>
+        <PeriodicEffectArray value="BuildCannon"/>
+        <PeriodicEffectArray value="BuildPylon"/>
+        <PeriodicEffectArray value="BuildPylon"/>
+        <PeriodicEffectArray value="BuildPylon"/>
+        <PeriodicEffectArray value="BuildPylon"/>
+        <PeriodicEffectArray value="BuildStasisTrap"/>
+        <PeriodicEffectArray value="BuildStasisTrap"/>
+        <PeriodicEffectArray value="BuildStasisTrap"/>
+        <PeriodicEffectArray value="BuildStasisTrap"/>
+        <PeriodicOffsetArray value="8,0,0"/>
+        <PeriodicOffsetArray value="-8,0,0"/>
+        <PeriodicOffsetArray value="0,8,0"/>
+        <PeriodicOffsetArray value="0,-8,0"/>
+        <PeriodicOffsetArray value="4.5,4.5,0"/>
+        <PeriodicOffsetArray value="4.5,-4.5,0"/>
+        <PeriodicOffsetArray value="-4.5,4.5,0"/>
+        <PeriodicOffsetArray value="-4.5,-4.5,0"/>
+        <PeriodicOffsetArray value="3,3,0"/>
+        <PeriodicOffsetArray value="3,-3,0"/>
+        <PeriodicOffsetArray value="-3,3,0"/>
+        <PeriodicOffsetArray value="-3,-3,0"/>
+        <PeriodicPeriodArray value="0.01"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="BuildMacroDefZerg">
+        <EditorCategories value="Race:Zerg"/>
+        <PeriodCount value="8"/>
+        <PeriodicPeriodArray value="0.01"/>
+        <PeriodicEffectArray value="BuildSporeCrawler"/>
+        <PeriodicEffectArray value="BuildSporeCrawler"/>
+        <PeriodicEffectArray value="BuildSporeCrawler"/>
+        <PeriodicEffectArray value="BuildSporeCrawler"/>
+        <PeriodicEffectArray value="BuildSpineCrawler"/>
+        <PeriodicEffectArray value="BuildSpineCrawler"/>
+        <PeriodicEffectArray value="BuildSpineCrawler"/>
+        <PeriodicEffectArray value="BuildSpineCrawler"/>
+        <PeriodicOffsetArray value="8,0,0"/>
+        <PeriodicOffsetArray value="-8,0,0"/>
+        <PeriodicOffsetArray value="0,8,0"/>
+        <PeriodicOffsetArray value="0,-8,0"/>
+        <PeriodicOffsetArray value="5,5,0"/>
+        <PeriodicOffsetArray value="5,-5,0"/>
+        <PeriodicOffsetArray value="-5,5,0"/>
+        <PeriodicOffsetArray value="-5,-5,0"/>
+    </CEffectCreatePersistent>
+    <CEffectCreateUnit id="BuildMine">
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="SetFacing" value="1"/>
+        <SpawnUnit value="WidowMineBurrowed"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="BuildPylon">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="SetFacing" value="1"/>
+        <SpawnUnit value="Pylon"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="BuildSensorTower">
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="SensorTower"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="BuildSpineCrawler">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="SetFacing" value="1"/>
+        <SpawnUnit value="SpineCrawler"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="BuildSporeCrawler">
+        <EditorCategories value="Race:Zerg"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="SetFacing" value="1"/>
+        <SpawnUnit value="SporeCrawler"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="BuildStasisTrap">
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="SetFacing" value="1"/>
+        <SpawnUnit value="OracleStasisTrap"/>
+    </CEffectCreateUnit>
+    <CEffectCreateUnit id="BuildTurret">
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetPoint"/>
+        <CreateFlags index="OffsetByRadius" value="0"/>
+        <CreateFlags index="Placement" value="0"/>
+        <CreateFlags index="PlacementIgnoreBlockers" value="1"/>
+        <CreateFlags index="PlacementIgnoreCliffTest" value="1"/>
+        <CreateFlags index="SetFacing" value="1"/>
+        <SpawnUnit value="MissileTurret"/>
+    </CEffectCreateUnit>
+    <CEffectModifyUnit id="UnfairSC2WaaaghInit">
+        <EditorCategories value=""/>
+    </CEffectModifyUnit>
+    <CEffectApplyBehavior id="UnfairSC2WaaaghSearchApply">
+        <ValidatorArray index="0" value="SelfTargetFilter"/>
+        <EditorCategories value=""/>
+        <Behavior value="UnfairSC2Waaagh"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="UnfairSC2WaaaghSearch">
+        <EditorCategories value=""/>
+        <AreaArray Radius="8" Effect="UnfairSC2WaaaghSearchApply"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="SlownessSearch">
+        <EditorCategories value=""/>
+        <AreaArray Radius="50" Effect="SlownessSearchApply"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="FairCannonSearch">
+        <EditorCategories value=""/>
+        <AreaArray Radius="15" Effect="FairCannonSearchApply"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="SlownessSearchApply">
+        <ValidatorArray index="0" value="EnemiesTargetFilter"/>
+        <ValidatorArray value="SlownessNotExist"/>
+        <EditorCategories value=""/>
+        <Behavior value="Slowness"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="FairCannonSearchApply">
+        <ValidatorArray index="0" value="SelfTargetFilter"/>
+        <ValidatorArray value="FairCannonNotExist"/>
+        <ValidatorArray value="IsPhotonCannon"/>
+        <EditorCategories value=""/>
+        <Behavior value="FairCannon"/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="ThermalLancesE">
+        <SearchFilters value="-;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CEffectEnumArea>
+    <CEffectEnumArea id="ThermalLancesEReverse">
+        <SearchFilters value="-;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="UnfairSC2VampiricReaction">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UnfairSC2WalkingDeadBirth">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <Behavior value="UnfairSC2WalkingDead"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UnfairSC2DamageReductionShieldReaction">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UnfairSC2CaughtSoulBirth">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+        <Behavior value="UnfairSC2CatchedSoul"/>
+    </CEffectApplyBehavior>
+    <CEffectDamage id="UnfairSc2CritDummy">
+        <EditorCategories value=""/>
+    </CEffectDamage>
+    <CEffectDamage id="UnfairSc2CritMissDummy">
+        <EditorCategories value=""/>
+        <Marker Link="Effect/UnfairSc2CritDummy"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="UnknownEffect">
+        <EditorCategories value="Race:Terran"/>
+        <PeriodCount value="9"/>
+        <PeriodicEffectArray value="BuildTurret"/>
+        <PeriodicEffectArray value="BuildTurret"/>
+        <PeriodicEffectArray value="BuildTurret"/>
+        <PeriodicEffectArray value="BuildTurret"/>
+        <PeriodicEffectArray value="BuildMine"/>
+        <PeriodicEffectArray value="BuildMine"/>
+        <PeriodicEffectArray value="BuildMine"/>
+        <PeriodicEffectArray value="BuildMine"/>
+        <PeriodicEffectArray value="BuildSensorTower"/>
+        <PeriodicOffsetArray value="8,0,0"/>
+        <PeriodicOffsetArray value="-8,0,0"/>
+        <PeriodicOffsetArray value="0,8,0"/>
+        <PeriodicOffsetArray value="0,-8,0"/>
+        <PeriodicOffsetArray value="4,4,0"/>
+        <PeriodicOffsetArray value="4,-4,0"/>
+        <PeriodicOffsetArray value="-4,4,0"/>
+        <PeriodicOffsetArray value="-4,-4,0"/>
+        <PeriodicOffsetArray value="0,0,0"/>
+        <PeriodicPeriodArray value="0.01"/>
+    </CEffectCreatePersistent>
+</Catalog>

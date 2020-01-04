@@ -1,0 +1,260 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibD7A170DA_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BOUNTY
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libD7A170DA_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool libD7A170DA_InitVariables_completed = false;
+
+void libD7A170DA_InitVariables () {
+    if (libD7A170DA_InitVariables_completed) {
+        return;
+    }
+
+    libD7A170DA_InitVariables_completed = true;
+
+    libD7A170DA_gv_bountyLeaderboard = c_boardNone;
+}
+
+// Functions
+void libD7A170DA_gf_SetUnitBounty (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((UnitGetOwner(lp_unit) != 0) && (UnitGetOwner(lp_unit) != 15))) {
+        UnitSetPropertyFixed(lp_unit, c_unitPropBountyMinerals, (UnitTypeGetCost(UnitGetType(lp_unit), c_unitCostMinerals) * libDBC4E2D2_gv_players[UnitGetOwner(lp_unit)].lv_bOUNTY.lv_percent));
+        UnitSetPropertyFixed(lp_unit, c_unitPropBountyVespene, (UnitTypeGetCost(UnitGetType(lp_unit), c_unitCostVespene) * libDBC4E2D2_gv_players[UnitGetOwner(lp_unit)].lv_bOUNTY.lv_percent));
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Bounty Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libD7A170DA_gt_BountyModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_defaultDescription;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup autoE553FE98_g;
+    int autoE553FE98_var;
+    string auto893AEF10_val;
+    unitgroup auto05E97EBA_g;
+    int auto05E97EBA_u;
+    unit auto05E97EBA_var;
+    playergroup autoFFC115CE_g;
+    int autoFFC115CE_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_defaultDescription = StringExternal("Param/Value/lib_D7A170DA_B7DA5770");
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("104") == "0001")) {
+        autoE553FE98_g = PlayerGroupActive();
+        autoE553FE98_var = -1;
+        while (true) {
+            autoE553FE98_var = PlayerGroupNextPlayer(autoE553FE98_g, autoE553FE98_var);
+            if (autoE553FE98_var < 0) { break; }
+            if ((GameAttributePlayerValue("105", autoE553FE98_var) != "0001")) {
+                PlayerGroupAdd(lv_players, autoE553FE98_var);
+                auto893AEF10_val = GameAttributePlayerValue("105", autoE553FE98_var);
+                if (auto893AEF10_val == "0002") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 0.1;
+                }
+                else if (auto893AEF10_val == "0003") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 0.2;
+                }
+                else if (auto893AEF10_val == "0004") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 0.3;
+                }
+                else if (auto893AEF10_val == "0005") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 0.4;
+                }
+                else if (auto893AEF10_val == "0006") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 0.5;
+                }
+                else if (auto893AEF10_val == "0007") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 0.6;
+                }
+                else if (auto893AEF10_val == "0008") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 1.0;
+                }
+                else if (auto893AEF10_val == "0009") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 1.5;
+                }
+                else if (auto893AEF10_val == "0010") {
+                    libDBC4E2D2_gv_players[autoE553FE98_var].lv_bOUNTY.lv_percent = 2.0;
+                }
+                else {
+                }
+                auto05E97EBA_g = UnitGroup(null, autoE553FE98_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto05E97EBA_u = UnitGroupCount(auto05E97EBA_g, c_unitCountAll);
+                for (;; auto05E97EBA_u -= 1) {
+                    auto05E97EBA_var = UnitGroupUnitFromEnd(auto05E97EBA_g, auto05E97EBA_u);
+                    if (auto05E97EBA_var == null) { break; }
+                    libD7A170DA_gf_SetUnitBounty(auto05E97EBA_var);
+                }
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) == 0)) {
+            TriggerEnable(libD7A170DA_gt_SetBountyForCreatedUnit, false);
+            TriggerEnable(libD7A170DA_gt_UnitIsKilled, false);
+            TriggerEnable(libD7A170DA_gt_UpdateBountyLeaderboard, false);
+        }
+        else {
+            libD7A170DA_gv_bountyLeaderboard = libDBC4E2D2_gf_CreateResourcesLeaderboard(StringExternal("Param/Value/lib_D7A170DA_C8A5EC90"));
+            libNtve_gf_ShowHideLeaderboard(libD7A170DA_gv_bountyLeaderboard, true, libDBC4E2D2_gv_observerGroup);
+            autoFFC115CE_g = lv_players;
+            autoFFC115CE_var = -1;
+            while (true) {
+                autoFFC115CE_var = PlayerGroupNextPlayer(autoFFC115CE_g, autoFFC115CE_var);
+                if (autoFFC115CE_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_D7A170DA_7F3A50B8", "A", TextWithColor(PlayerName(autoFFC115CE_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoFFC115CE_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D7A170DA_7F3A50B8"));
+                TextExpressionSetToken("Param/Expression/lib_D7A170DA_94B02081", "A", FixedToText((libDBC4E2D2_gv_players[autoFFC115CE_var].lv_bOUNTY.lv_percent * 100.0), 0));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D7A170DA_94B02081"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_D7A170DA_94225779", "Description", lv_defaultDescription);
+            TextExpressionSetToken("Param/Expression/lib_D7A170DA_94225779", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D7A170DA_F0DA8F1E"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D7A170DA_94225779"), StringExternal("Param/Value/lib_D7A170DA_637C78FF"), "Assets\\Textures\\btn-tips-resourcecaches.dds");
+        }
+    }
+    else {
+        TriggerEnable(libD7A170DA_gt_SetBountyForCreatedUnit, false);
+        TriggerEnable(libD7A170DA_gt_UnitIsKilled, false);
+        TriggerEnable(libD7A170DA_gt_UpdateBountyLeaderboard, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD7A170DA_gt_BountyModStart_Init () {
+    libD7A170DA_gt_BountyModStart = TriggerCreate("libD7A170DA_gt_BountyModStart_Func");
+    TriggerAddEventMapInit(libD7A170DA_gt_BountyModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Bounty For Created Unit
+//--------------------------------------------------------------------------------------------------
+bool libD7A170DA_gt_SetBountyForCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libD7A170DA_gf_SetUnitBounty(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD7A170DA_gt_SetBountyForCreatedUnit_Init () {
+    libD7A170DA_gt_SetBountyForCreatedUnit = TriggerCreate("libD7A170DA_gt_SetBountyForCreatedUnit_Func");
+    TriggerAddEventUnitCreated(libD7A170DA_gt_SetBountyForCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Is Killed
+//--------------------------------------------------------------------------------------------------
+bool libD7A170DA_gt_UnitIsKilled_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventUnitDamageSourcePlayer() != EventPlayer()))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libDBC4E2D2_gv_players[EventUnitDamageSourcePlayer()].lv_bOUNTY.lv_minerals += UnitGetPropertyFixed(EventUnit(), c_unitPropBountyMinerals, c_unitPropCurrent);
+    libDBC4E2D2_gv_players[EventUnitDamageSourcePlayer()].lv_bOUNTY.lv_gas += UnitGetPropertyFixed(EventUnit(), c_unitPropBountyVespene, c_unitPropCurrent);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD7A170DA_gt_UnitIsKilled_Init () {
+    libD7A170DA_gt_UnitIsKilled = TriggerCreate("libD7A170DA_gt_UnitIsKilled_Func");
+    TriggerAddEventUnitDamaged(libD7A170DA_gt_UnitIsKilled, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Bounty Leaderboard
+//--------------------------------------------------------------------------------------------------
+bool libD7A170DA_gt_UpdateBountyLeaderboard_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoB502BF4D_g;
+    int autoB502BF4D_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoB502BF4D_g = PlayerGroupAll();
+    autoB502BF4D_var = -1;
+    while (true) {
+        autoB502BF4D_var = PlayerGroupNextPlayer(autoB502BF4D_g, autoB502BF4D_var);
+        if (autoB502BF4D_var < 0) { break; }
+        if ((PlayerStatus(autoB502BF4D_var) == c_playerStatusActive)) {
+            BoardItemSetText(libD7A170DA_gv_bountyLeaderboard, 1, autoB502BF4D_var, TextWithColor(PlayerName(autoB502BF4D_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoB502BF4D_var, false))));
+            BoardItemSetText(libD7A170DA_gv_bountyLeaderboard, 2, autoB502BF4D_var, FixedToText(libDBC4E2D2_gv_players[autoB502BF4D_var].lv_bOUNTY.lv_minerals, c_fixedPrecisionAny));
+            BoardItemSetText(libD7A170DA_gv_bountyLeaderboard, 3, autoB502BF4D_var, FixedToText(libDBC4E2D2_gv_players[autoB502BF4D_var].lv_bOUNTY.lv_gas, c_fixedPrecisionAny));
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD7A170DA_gt_UpdateBountyLeaderboard_Init () {
+    libD7A170DA_gt_UpdateBountyLeaderboard = TriggerCreate("libD7A170DA_gt_UpdateBountyLeaderboard_Func");
+    TriggerAddEventTimePeriodic(libD7A170DA_gt_UpdateBountyLeaderboard, 1.0, c_timeReal);
+}
+
+void libD7A170DA_InitTriggers () {
+    libD7A170DA_gt_BountyModStart_Init();
+    libD7A170DA_gt_SetBountyForCreatedUnit_Init();
+    libD7A170DA_gt_UnitIsKilled_Init();
+    libD7A170DA_gt_UpdateBountyLeaderboard_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libD7A170DA_InitLib_completed = false;
+
+void libD7A170DA_InitLib () {
+    if (libD7A170DA_InitLib_completed) {
+        return;
+    }
+
+    libD7A170DA_InitLib_completed = true;
+
+    libD7A170DA_InitLibraries();
+    libD7A170DA_InitVariables();
+    libD7A170DA_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

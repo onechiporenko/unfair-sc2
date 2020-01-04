@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Preload>
+<Asset path="assets\textures\tip_terrazinefog.dds" Type="Image"/>
+<Asset path="assets\textures\btn-unit-collection-taldarim-mothershipcore.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-darkswarm.dds" Type="Image"/>
+<Asset path="assets\textures\walkingdead_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-soulabsorbtion.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-kerrigan-twindrones.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-tychus-herc-heavyimpact.dds" Type="Image"/>
+<Asset path="assets\textures\momentofsilence_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-terran-stimpack-color.dds" Type="Image"/>
+<Asset path="assets\textures\btn-unit-collection-scv-remastered.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-creepspread.dds" Type="Image"/>
+<Asset path="assets\textures\microtransactions_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-progression-hornerhan-14-nukefortelefrag.dds" Type="Image"/>
+<Asset path="assets\textures\btn-tips-starmap.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-doubleshieldrecharge.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-corruption-color.dds" Type="Image"/>
+<Asset path="assets\textures\talent-tychus-level13-additionalupgrades.dds" Type="Image"/>
+<Asset path="assets\textures\btn-progression-protoss-fenix-2-purifierconclave.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-arcshield.dds" Type="Image"/>
+<Asset path="assets\textures\ui_tipicon_story-evolution.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-timewarp.dds" Type="Image"/>
+<Asset path="assets\textures\btn-unit-terran-widowmine.dds" Type="Image"/>
+<Asset path="assets\textures\btn-building-zerg-creeptumor.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-protoss-fenix-fenixweapondamage.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-protoss-alarak-supplicantsacrifice.dds" Type="Image"/>
+<Asset path="assets\textures\decaltag_clanlogo_diff_playerproxy_00.dds" Type="Image"/>
+<Asset path="assets\textures\abilityicon_spawnbroodlings_square.dds" Type="Image"/>
+<Asset path="assets\textures\btn-doodad-minerals.dds" Type="Image"/>
+<Asset path="assets\textures\ui_loadingbar_bar_highlighted_zerg.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-blink-color.dds" Type="Image"/>
+<Asset path="assets\textures\btn-unit-collection-blizzcon17-drone.dds" Type="Image"/>
+<Asset path="assets\textures\btn-progression-hornerhan-6-mirabuildtime.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-shadow-charge.dds" Type="Image"/>
+<Asset path="assets\textures\btn-tips-resourcecaches.dds" Type="Image"/>
+<Asset path="assets\textures\btn-doodad-vespenegeyser.dds" Type="Image"/>
+<Asset path="assets\textures\economiccrisis_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-progression-hornerhan-8-supplydepot.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-tychus-herc-criticalsystem.dds" Type="Image"/>
+<Asset path="assets\textures\btn-doodad-korhollandinglocation.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-purifierstasisending.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-terran-snipe-color.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-genemutation-lifeleech.dds" Type="Image"/>
+<Asset path="assets\textures\mineralshields_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-building-protoss-nexus-forged.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-phasecannon.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-kerrigan-vespeneefficiency.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-dehaka-tyrannozor-barrageofspikes.dds" Type="Image"/>
+<Asset path="assets\textures\btn-building-terran-planetaryfortress.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-harvestcorpse.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-hornerhan-wraith-permanentcloak.dds" Type="Image"/>
+<Asset path="assets\textures\btn-tips-richminerals.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-stetmann-stetelliteoverloadspeed.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-terran-nova-snipeenergyrefund.dds" Type="Image"/>
+<Asset path="assets\textures\btn-unit-collection-defensivematrixdrone-covertops.dds" Type="Image"/>
+<Asset path="assets\textures\btn-unit-protoss-blizzcon17-probe.dds" Type="Image"/>
+<Asset path="assets\textures\decaltag_clanlogo_diff_playerproxy_00.lvl0" Type="Image"/>
+<Asset path="assets\textures\btn-unit-zerg-infestedcolonist.dds" Type="Image"/>
+<Asset path="assets\textures\speedfreaks_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-recallondeath.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-amoncloud.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-terran-setrallypoint.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-spearofadun-massrecall.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-protoss-phaseshift2.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-terran-reapercombatdrugs.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-protoss-khaydarinamulet.dds" Type="Image"/>
+<Asset path="assets\textures\darkness_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zeratul-topbar-directlegions.dds" Type="Image"/>
+<Asset path="assets\textures\btn-upgrade-terran-nova-defensivedrone.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zeratul-immortal-enternitybarrier.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-contaminate-color.dds" Type="Image"/>
+<Asset path="assets\textures\vertigo_coop.dds" Type="Image"/>
+<Actor id="SYSTEM_ActorConfig"/>
+<Actor id="SensorTowerRadar2"/>
+<Behavior id="PermanentlyCloaked"/>
+<Behavior id="DamageDealtMinimal"/>
+<Behavior id="CritterWander"/>
+<Behavior id="BroodlingFate"/>
+<Behavior id="Stimpack"/>
+<Behavior id="makeCreep8x6"/>
+<Behavior id="Detector10"/>
+<Behavior id="Contaminated"/>
+<Behavior id="Detector9"/>
+<Behavior id="ReaperRegen"/>
+<Behavior id="TimeStopStun"/>
+<Behavior id="SlownessAura"/>
+<Behavior id="FairCannonsAura"/>
+<Behavior id="UnfairSC2CatchedSoul"/>
+<Behavior id="UnfairSC2CritMiss"/>
+<Behavior id="UnfairSC2DamageReductionShield"/>
+<Behavior id="UnfairSC2WalkingDead"/>
+<Behavior id="UnfairSc2BerserkersBlood10"/>
+<Behavior id="UnfairSc2BerserkersBlood102"/>
+<Behavior id="UnfairSc2BerserkersBlood20"/>
+<Behavior id="UnfairSc2BerserkersBlood30"/>
+<Behavior id="UnfairSc2BerserkersBlood40"/>
+<Behavior id="UnfairSc2BerserkersBlood50"/>
+<Behavior id="UnfairSc2BerserkersBlood60"/>
+<Behavior id="UnfairSc2BerserkersBlood70"/>
+<Behavior id="UnfairSc2BerserkersBlood80"/>
+<Behavior id="UnfairSc2BerserkersBlood90"/>
+<Behavior id="UnfairSc2Darkness"/>
+<Behavior id="UnfairSc2MoveSpeed"/>
+<Behavior id="UnfairSc2Supply"/>
+<Behavior id="UnfairSC2CriticalStrike"/>
+<Behavior id="UnfairSC2WaaaghAura"/>
+<Effect id="PointDefenseDroneReleaseCreateUnit"/>
+<Effect id="SeekerMissileLaunchMissile"/>
+<Effect id="Yamato"/>
+<Effect id="PsiStormPersistent"/>
+<Effect id="InfestedTerransLayEggPersistant"/>
+<Effect id="VortexCreatePersistent"/>
+<Effect id="NukeDetonate"/>
+<Effect id="ParticleBeam"/>
+<Effect id="Spines"/>
+<Effect id="BlindingCloudCP"/>
+<Effect id="YoinkStartSwitch"/>
+<Effect id="FungalGrowthLaunchMissile"/>
+<Effect id="TemporalFieldCreatePersistent"/>
+<Effect id="CorsairMPDisruptionWebCreatePersistent"/>
+<Effect id="TemporalFieldAfterBubbleCreatePersistent"/>
+<Model id="PingNuke"/>
+<Model id="MinimapPing"/>
+<Model id="PingWarning"/>
+<Model id="Vespene_Pump_Small"/>
+<Model id="MedicHealModel"/>
+<Model id="GhostNukeIndicator"/>
+<Model id="BanelingCocoonDeath"/>
+<Model id="ZergBuildingBlood"/>
+<Model id="BlindingCloud"/>
+<Model id="CorruptionBombPersistent"/>
+<Model id="GrappleStun"/>
+<Model id="UnfairSC2DecimatioDeath"/>
+<Model id="UnfairSC2DoubleBirth"/>
+<Model id="UnfairSC2MineralsSpawn"/>
+<Model id="UnfairSC2GasSpawn"/>
+<Sound id="UI_PlayerCameraSelect"/>
+<Sound id="UI_TerranKlaxonAlert"/>
+<Sound id="TUIWarningPing"/>
+<Unit id="Colossus"/>
+<Unit id="Baneling"/>
+<Unit id="Mothership"/>
+<Unit id="PointDefenseDrone"/>
+<Unit id="CommandCenter"/>
+<Unit id="Barracks"/>
+<Unit id="EngineeringBay"/>
+<Unit id="GhostAcademy"/>
+<Unit id="Factory"/>
+<Unit id="Starport"/>
+<Unit id="Armory"/>
+<Unit id="FusionCore"/>
+<Unit id="SiegeTank"/>
+<Unit id="VikingFighter"/>
+<Unit id="SCV"/>
+<Unit id="Marine"/>
+<Unit id="Reaper"/>
+<Unit id="Ghost"/>
+<Unit id="Marauder"/>
+<Unit id="Thor"/>
+<Unit id="Hellion"/>
+<Unit id="Medivac"/>
+<Unit id="Banshee"/>
+<Unit id="Raven"/>
+<Unit id="Battlecruiser"/>
+<Unit id="Nexus"/>
+<Unit id="Pylon"/>
+<Unit id="Forge"/>
+<Unit id="FleetBeacon"/>
+<Unit id="TwilightCouncil"/>
+<Unit id="Stargate"/>
+<Unit id="TemplarArchive"/>
+<Unit id="DarkShrine"/>
+<Unit id="RoboticsBay"/>
+<Unit id="RoboticsFacility"/>
+<Unit id="CyberneticsCore"/>
+<Unit id="Zealot"/>
+<Unit id="Stalker"/>
+<Unit id="HighTemplar"/>
+<Unit id="DarkTemplar"/>
+<Unit id="Sentry"/>
+<Unit id="Phoenix"/>
+<Unit id="Carrier"/>
+<Unit id="VoidRay"/>
+<Unit id="WarpPrism"/>
+<Unit id="Observer"/>
+<Unit id="Immortal"/>
+<Unit id="Probe"/>
+<Unit id="Hatchery"/>
+<Unit id="SpawningPool"/>
+<Unit id="EvolutionChamber"/>
+<Unit id="HydraliskDen"/>
+<Unit id="Spire"/>
+<Unit id="UltraliskCavern"/>
+<Unit id="InfestationPit"/>
+<Unit id="BanelingNest"/>
+<Unit id="RoachWarren"/>
+<Unit id="Hive"/>
+<Unit id="GreaterSpire"/>
+<Unit id="Drone"/>
+<Unit id="Zergling"/>
+<Unit id="Overlord"/>
+<Unit id="Hydralisk"/>
+<Unit id="Mutalisk"/>
+<Unit id="Ultralisk"/>
+<Unit id="Roach"/>
+<Unit id="Infestor"/>
+<Unit id="Corruptor"/>
+<Unit id="BroodLord"/>
+<Unit id="InfestorTerranBurrowed"/>
+<Unit id="Queen"/>
+<Unit id="Overseer"/>
+<Unit id="PlanetaryFortress"/>
+<Unit id="WarpGate"/>
+<Unit id="Archon"/>
+<Unit id="RichMineralField"/>
+<Unit id="RichMineralField750"/>
+<Unit id="LurkerMP"/>
+<Unit id="LurkerDenMP"/>
+<Unit id="OverlordTransport"/>
+<Unit id="Ravager"/>
+<Unit id="Oracle"/>
+<Unit id="Tempest"/>
+<Unit id="Broodling"/>
+<Unit id="HellionTank"/>
+<Unit id="Cyclone"/>
+<Unit id="WidowMine"/>
+<Unit id="Liberator"/>
+<Unit id="Adept"/>
+<Unit id="Disruptor"/>
+<Unit id="SwarmHostMP"/>
+<Unit id="Viper"/>
+<Unit id="MothershipCore"/>
+<Unit id="RichVespeneGeyser"/>
+<Unit id="Rocks2x2NonConjoined"/>
+<Unit id="BraxisAlphaDestructible2x2"/>
+<Unit id="Debris2x2NonConjoined"/>
+<Unit id="Ice2x2NonConjoined"/>
+<Unit id="LabMineralField750"/>
+<Weapon id="UnfairSc2Wall"/>
+</Preload>

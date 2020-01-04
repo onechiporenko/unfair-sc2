@@ -1,0 +1,169 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib674063E3_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ZOOM
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib674063E3_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib674063E3_InitVariables_completed = false;
+
+void lib674063E3_InitVariables () {
+    if (lib674063E3_InitVariables_completed) {
+        return;
+    }
+
+    lib674063E3_InitVariables_completed = true;
+
+    lib674063E3_gv_zoomButton = c_invalidDialogControlId;
+    lib674063E3_gv_zoomButtonx2 = c_invalidDialogControlId;
+}
+
+// Functions
+void lib674063E3_gf_SetCameraHeightForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_SwooshCamera(lp_player, CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 16.0), CameraGetTarget(lp_player), 0.0);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zoom Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib674063E3_gt_ZoomModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto56CF38BB_g;
+    int auto56CF38BB_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("68") == "0001")) {
+        auto56CF38BB_g = PlayerGroupAll();
+        auto56CF38BB_var = -1;
+        while (true) {
+            auto56CF38BB_var = PlayerGroupNextPlayer(auto56CF38BB_g, auto56CF38BB_var);
+            if (auto56CF38BB_var < 0) { break; }
+            if ((GameAttributePlayerValue("69", auto56CF38BB_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto56CF38BB_var);
+                lib674063E3_gf_SetCameraHeightForPlayer(auto56CF38BB_var);
+            }
+
+        }
+    }
+
+    if ((PlayerGroupCount(lv_players) > 0)) {
+        TextExpressionSetToken("Param/Expression/lib_674063E3_8B8CE1FD", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_674063E3_F3620088"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_674063E3_8B8CE1FD"), StringExternal("Param/Value/lib_674063E3_0E8EAD99"), "Assets\\Textures\\btn-upgrade-terran-nova-snipeenergyrefund.dds");
+        DialogCreate(500, 400, c_anchorBottomRight, 10, 100, false);
+        DialogSetVisible(DialogLastCreated(), lv_players, true);
+        DialogSetImageVisible(DialogLastCreated(), false);
+        libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 150, 50, c_anchorTopRight, 0, 70, StringToText(""), StringExternal("Param/Value/lib_674063E3_101D461A"), "");
+        lib674063E3_gv_zoomButton = DialogControlLastCreated();
+        libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 150, 50, c_anchorTopRight, 0, 20, StringToText(""), StringExternal("Param/Value/lib_674063E3_FE66DC01"), "");
+        lib674063E3_gv_zoomButtonx2 = DialogControlLastCreated();
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib674063E3_gt_ZoomModStart_Init () {
+    lib674063E3_gt_ZoomModStart = TriggerCreate("lib674063E3_gt_ZoomModStart_Func");
+    TriggerAddEventMapInit(lib674063E3_gt_ZoomModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zoom Button Click
+//--------------------------------------------------------------------------------------------------
+bool lib674063E3_gt_ZoomButtonClick_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == lib674063E3_gv_zoomButton))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_SwooshCamera(EventPlayer(), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 16.0), CameraGetTarget(EventPlayer()), 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib674063E3_gt_ZoomButtonClick_Init () {
+    lib674063E3_gt_ZoomButtonClick = TriggerCreate("lib674063E3_gt_ZoomButtonClick_Func");
+    TriggerAddEventDialogControl(lib674063E3_gt_ZoomButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zoom Button x2 Click
+//--------------------------------------------------------------------------------------------------
+bool lib674063E3_gt_ZoomButtonx2Click_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((EventDialogControl() == lib674063E3_gv_zoomButtonx2))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_SwooshCamera(EventPlayer(), CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance), ((CameraInfoGetValue(CameraInfoDefault(), c_cameraValueDistance)) + 32.0), CameraGetTarget(EventPlayer()), 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib674063E3_gt_ZoomButtonx2Click_Init () {
+    lib674063E3_gt_ZoomButtonx2Click = TriggerCreate("lib674063E3_gt_ZoomButtonx2Click_Func");
+    TriggerAddEventDialogControl(lib674063E3_gt_ZoomButtonx2Click, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+void lib674063E3_InitTriggers () {
+    lib674063E3_gt_ZoomModStart_Init();
+    lib674063E3_gt_ZoomButtonClick_Init();
+    lib674063E3_gt_ZoomButtonx2Click_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib674063E3_InitLib_completed = false;
+
+void lib674063E3_InitLib () {
+    if (lib674063E3_InitLib_completed) {
+        return;
+    }
+
+    lib674063E3_InitLib_completed = true;
+
+    lib674063E3_InitLibraries();
+    lib674063E3_InitVariables();
+    lib674063E3_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

@@ -1,0 +1,154 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib4D46C701_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: STUN
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib4D46C701_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib4D46C701_InitVariables_completed = false;
+
+void lib4D46C701_InitVariables () {
+    if (lib4D46C701_InitVariables_completed) {
+        return;
+    }
+
+    lib4D46C701_InitVariables_completed = true;
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Stun Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib4D46C701_gt_StunModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto74AE3813_g;
+    int auto74AE3813_var;
+    string auto19E5C369_val;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("45") == "0001")) {
+        auto74AE3813_g = PlayerGroupAll();
+        auto74AE3813_var = -1;
+        while (true) {
+            auto74AE3813_var = PlayerGroupNextPlayer(auto74AE3813_g, auto74AE3813_var);
+            if (auto74AE3813_var < 0) { break; }
+            if ((GameAttributePlayerValue("46", auto74AE3813_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto74AE3813_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            auto19E5C369_val = GameAttributeGameValue("72");
+            if (auto19E5C369_val == "0001") {
+                lib4D46C701_gv_stunChance = 5.0;
+            }
+            else if (auto19E5C369_val == "0002") {
+                lib4D46C701_gv_stunChance = 10.0;
+            }
+            else if (auto19E5C369_val == "0003") {
+                lib4D46C701_gv_stunChance = 15.0;
+            }
+            else if (auto19E5C369_val == "0004") {
+                lib4D46C701_gv_stunChance = 20.0;
+            }
+            else if (auto19E5C369_val == "0005") {
+                lib4D46C701_gv_stunChance = 25.0;
+            }
+            else {
+            }
+            TextExpressionSetToken("Param/Expression/lib_4D46C701_E5799E15", "StunChance", FixedToText(lib4D46C701_gv_stunChance, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_4D46C701_E5799E15", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_4D46C701_4FF38885"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_4D46C701_E5799E15"), StringExternal("Param/Value/lib_4D46C701_6334EA9A"), "Assets\\Textures\\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds");
+        }
+        else {
+            TriggerEnable(lib4D46C701_gt_UnitDidDamage, false);
+        }
+    }
+    else {
+        TriggerEnable(lib4D46C701_gt_UnitDidDamage, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib4D46C701_gt_StunModStart_Init () {
+    lib4D46C701_gt_StunModStart = TriggerCreate("lib4D46C701_gt_StunModStart_Func");
+    TriggerAddEventMapInit(lib4D46C701_gt_StunModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Did Damage
+//--------------------------------------------------------------------------------------------------
+bool lib4D46C701_gt_UnitDidDamage_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("46", EventUnitDamageSourcePlayer()) == "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libNtve_gf_RandomPercent() <= lib4D46C701_gv_stunChance)) {
+        UnitBehaviorAdd(EventUnit(), "TimeStopStun", EventUnitDamageSourceUnit(), 1);
+        libNtve_gf_AttachModelToUnit(EventUnit(), "GrappleStun", "Ref_Head");
+        Wait(1.0, c_timeReal);
+        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib4D46C701_gt_UnitDidDamage_Init () {
+    lib4D46C701_gt_UnitDidDamage = TriggerCreate("lib4D46C701_gt_UnitDidDamage_Func");
+    TriggerAddEventUnitDamaged(lib4D46C701_gt_UnitDidDamage, null, c_unitDamageTypeAny, c_unitDamageNonFatal, null);
+}
+
+void lib4D46C701_InitTriggers () {
+    lib4D46C701_gt_StunModStart_Init();
+    lib4D46C701_gt_UnitDidDamage_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib4D46C701_InitLib_completed = false;
+
+void lib4D46C701_InitLib () {
+    if (lib4D46C701_InitLib_completed) {
+        return;
+    }
+
+    lib4D46C701_InitLib_completed = true;
+
+    lib4D46C701_InitLibraries();
+    lib4D46C701_InitVariables();
+    lib4D46C701_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

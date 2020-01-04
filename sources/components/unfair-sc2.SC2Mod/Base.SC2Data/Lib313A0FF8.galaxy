@@ -1,0 +1,184 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib313A0FF8_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: VAMPIRISM
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib313A0FF8_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+int lib313A0FF8_gf_GetVampirismRateForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    string autoD7D631FF_val;
+
+    // Implementation
+    autoD7D631FF_val = GameAttributePlayerValue("30", lp_player);
+    if (autoD7D631FF_val == "0001") {
+        return 10;
+    }
+    else if (autoD7D631FF_val == "0002") {
+        return 25;
+    }
+    else if (autoD7D631FF_val == "0003") {
+        return 50;
+    }
+    else if (autoD7D631FF_val == "0004") {
+        return 75;
+    }
+    else if (autoD7D631FF_val == "0005") {
+        return 100;
+    }
+    else if (autoD7D631FF_val == "0006") {
+        return 200;
+    }
+    else {
+        return 0;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Vampirism Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib313A0FF8_gt_VampirismModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup autoE434563B_g;
+    int autoE434563B_var;
+    playergroup auto7BBE3D27_g;
+    int auto7BBE3D27_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("29") == "0001")) {
+        autoE434563B_g = PlayerGroupAll();
+        autoE434563B_var = -1;
+        while (true) {
+            autoE434563B_var = PlayerGroupNextPlayer(autoE434563B_g, autoE434563B_var);
+            if (autoE434563B_var < 0) { break; }
+            libDBC4E2D2_gv_players[autoE434563B_var].lv_vAMPIRISM.lv_rate = lib313A0FF8_gf_GetVampirismRateForPlayer(autoE434563B_var);
+            if ((libDBC4E2D2_gv_players[autoE434563B_var].lv_vAMPIRISM.lv_rate != 0)) {
+                PlayerGroupAdd(lv_players, autoE434563B_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            auto7BBE3D27_g = lv_players;
+            auto7BBE3D27_var = -1;
+            while (true) {
+                auto7BBE3D27_var = PlayerGroupNextPlayer(auto7BBE3D27_g, auto7BBE3D27_var);
+                if (auto7BBE3D27_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_313A0FF8_D3AEFA6D", "A", TextWithColor(PlayerName(auto7BBE3D27_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto7BBE3D27_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_313A0FF8_D3AEFA6D"));
+                TextExpressionSetToken("Param/Expression/lib_313A0FF8_16DBA01D", "A", FixedToText(libDBC4E2D2_gv_players[auto7BBE3D27_var].lv_vAMPIRISM.lv_rate, c_fixedPrecisionAny));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_313A0FF8_16DBA01D"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_313A0FF8_A042AF73", "PlayerSettings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_313A0FF8_F388EF98"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_313A0FF8_A042AF73"), StringExternal("Param/Value/lib_313A0FF8_20ADAC22"), "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds");
+        }
+        else {
+            TriggerEnable(lib313A0FF8_gt_UnitTakesDamage, false);
+        }
+    }
+    else {
+        TriggerEnable(lib313A0FF8_gt_UnitTakesDamage, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib313A0FF8_gt_VampirismModStart_Init () {
+    lib313A0FF8_gt_VampirismModStart = TriggerCreate("lib313A0FF8_gt_VampirismModStart_Func");
+    TriggerAddEventMapInit(lib313A0FF8_gt_VampirismModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Takes Damage
+//--------------------------------------------------------------------------------------------------
+bool lib313A0FF8_gt_UnitTakesDamage_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_damageDone;
+    fixed lv_healing;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_damageDone = EventUnitDamageAmount();
+
+    // Conditions
+    if (testConds) {
+        if (!((PlayerGroupHasPlayer(PlayerGroupAlliance(c_playerGroupEnemy, UnitGetOwner(EventUnitDamageSourceUnit())), UnitGetOwner(EventUnit())) == true))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((libDBC4E2D2_gv_players[EventUnitDamageSourcePlayer()].lv_vAMPIRISM.lv_rate != 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_healing = (lv_damageDone / (100.0 / libDBC4E2D2_gv_players[EventUnitDamageSourcePlayer()].lv_vAMPIRISM.lv_rate));
+    libNtve_gf_AttachModelToUnit(EventUnitDamageSourceUnit(), "MedicHealModel", "Ref_Overhead");
+    if ((UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLifePercent, c_unitPropCurrent) < 100.0)) {
+        UnitSetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLife, (UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLife, c_unitPropCurrent) + lv_healing));
+    }
+    else {
+        if ((UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropShieldsPercent, c_unitPropCurrent) < 100.0) && (UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropShieldsMax, c_unitPropCurrent) > 0.0)) {
+            UnitSetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropShields, (UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropShields, c_unitPropCurrent) + lv_healing));
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib313A0FF8_gt_UnitTakesDamage_Init () {
+    lib313A0FF8_gt_UnitTakesDamage = TriggerCreate("lib313A0FF8_gt_UnitTakesDamage_Func");
+    TriggerAddEventUnitDamaged(lib313A0FF8_gt_UnitTakesDamage, null, c_unitDamageTypeAny, c_unitDamageEither, null);
+}
+
+void lib313A0FF8_InitTriggers () {
+    lib313A0FF8_gt_VampirismModStart_Init();
+    lib313A0FF8_gt_UnitTakesDamage_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib313A0FF8_InitLib_completed = false;
+
+void lib313A0FF8_InitLib () {
+    if (lib313A0FF8_InitLib_completed) {
+        return;
+    }
+
+    lib313A0FF8_InitLib_completed = true;
+
+    lib313A0FF8_InitLibraries();
+    lib313A0FF8_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

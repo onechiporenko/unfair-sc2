@@ -1,0 +1,8 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: TECH TREE RESTRICTIONS
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib3F2A1735_gt_TechTreeRestrictionsModStart;
+

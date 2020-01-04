@@ -1,0 +1,135 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibFCEF8E43_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: QUEEN
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libFCEF8E43_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool libFCEF8E43_InitVariables_completed = false;
+
+void libFCEF8E43_InitVariables () {
+    if (libFCEF8E43_InitVariables_completed) {
+        return;
+    }
+
+    libFCEF8E43_InitVariables_completed = true;
+
+    libFCEF8E43_gv_moveSpeed = "";
+    libFCEF8E43_gv_creepBonus = "";
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Queen Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libFCEF8E43_gt_QueenModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_defaultDescription;
+
+    // Automatic Variable Declarations
+    playergroup autoB487CC4C_g;
+    int autoB487CC4C_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_defaultDescription = StringExternal("Param/Value/lib_FCEF8E43_857108D0");
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("141") == "0001")) {
+        libFCEF8E43_gv_moveSpeed = CatalogFieldValueGet(c_gameCatalogUnit, "Queen", "Speed", c_playerAny);
+        libFCEF8E43_gv_creepBonus = CatalogFieldValueGet(c_gameCatalogUnit, "Queen", "SpeedMultiplierCreep", c_playerAny);
+        autoB487CC4C_g = PlayerGroupAll();
+        autoB487CC4C_var = -1;
+        while (true) {
+            autoB487CC4C_var = PlayerGroupNextPlayer(autoB487CC4C_g, autoB487CC4C_var);
+            if (autoB487CC4C_var < 0) { break; }
+            if ((GameAttributePlayerValue("142", autoB487CC4C_var) == "0001")) {
+                PlayerGroupAdd(lv_players, autoB487CC4C_var);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overlord", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overlord", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "OverlordTransport", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "OverlordTransport", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Zergling", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Zergling", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Roach", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Roach", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoachBurrowed", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoachBurrowed", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ravager", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ravager", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RavagerBurrowed", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RavagerBurrowed", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Hydralisk", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Hydralisk", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerMP", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerMP", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Mutalisk", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Mutalisk", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Corruptor", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Corruptor", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "BroodLord", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "BroodLord", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Infestor", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Infestor", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "InfestorBurrowed", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "InfestorBurrowed", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "SwarmHostMP", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "SwarmHostMP", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Viper", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Viper", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ultralisk", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ultralisk", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
+            }
+
+        }
+        TextExpressionSetToken("Param/Expression/lib_FCEF8E43_F6E5C387", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_FCEF8E43_8BE9E8C8"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_FCEF8E43_F6E5C387")), StringExternal("Param/Value/lib_FCEF8E43_C6CB88D7"), "Assets\\Textures\\btn-ability-zerg-creepspread.dds");
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFCEF8E43_gt_QueenModStart_Init () {
+    libFCEF8E43_gt_QueenModStart = TriggerCreate("libFCEF8E43_gt_QueenModStart_Func");
+    TriggerAddEventMapInit(libFCEF8E43_gt_QueenModStart);
+}
+
+void libFCEF8E43_InitTriggers () {
+    libFCEF8E43_gt_QueenModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libFCEF8E43_InitLib_completed = false;
+
+void libFCEF8E43_InitLib () {
+    if (libFCEF8E43_InitLib_completed) {
+        return;
+    }
+
+    libFCEF8E43_InitLib_completed = true;
+
+    libFCEF8E43_InitLibraries();
+    libFCEF8E43_InitVariables();
+    libFCEF8E43_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

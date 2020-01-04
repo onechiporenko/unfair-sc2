@@ -1,0 +1,286 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib77A838C7_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ZOMBIES
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib77A838C7_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib77A838C7_InitVariables_completed = false;
+
+void lib77A838C7_InitVariables () {
+    if (lib77A838C7_InitVariables_completed) {
+        return;
+    }
+
+    lib77A838C7_InitVariables_completed = true;
+
+    lib77A838C7_gv_zombiesTimer = TimerCreate();
+    lib77A838C7_gv_timerFromGameStarts = TimerCreate();
+}
+
+// Functions
+int lib77A838C7_gf_ParseZombiesStartDelay () {
+    // Automatic Variable Declarations
+    string auto0D484012_val;
+
+    // Implementation
+    auto0D484012_val = GameAttributeGameValue("76");
+    if (auto0D484012_val == "0001") {
+        return 0;
+    }
+    else if (auto0D484012_val == "0002") {
+        return 30;
+    }
+    else if (auto0D484012_val == "0003") {
+        return 60;
+    }
+    else if (auto0D484012_val == "0004") {
+        return 90;
+    }
+    else if (auto0D484012_val == "0005") {
+        return 120;
+    }
+    else {
+        return 0;
+    }
+}
+
+int lib77A838C7_gf_ParseZombiesWavesDelay () {
+    // Automatic Variable Declarations
+    string auto75600F83_val;
+
+    // Implementation
+    auto75600F83_val = GameAttributeGameValue("77");
+    if (auto75600F83_val == "0008") {
+        return 30;
+    }
+    else if (auto75600F83_val == "0006") {
+        return 35;
+    }
+    else if (auto75600F83_val == "0007") {
+        return 40;
+    }
+    else if (auto75600F83_val == "0002") {
+        return 45;
+    }
+    else if (auto75600F83_val == "0003") {
+        return 50;
+    }
+    else if (auto75600F83_val == "0004") {
+        return 55;
+    }
+    else if (auto75600F83_val == "0005") {
+        return 60;
+    }
+    else {
+        return 45;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Zombies Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib77A838C7_gt_ZombiesModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string auto2ACEC4D8_val;
+    playergroup autoA19DB31D_g;
+    int autoA19DB31D_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("5") == "0001")) {
+        auto2ACEC4D8_val = GameAttributeGameValue("95");
+        if (auto2ACEC4D8_val == "0001") {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 7;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 14;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 21;
+        }
+        else if (auto2ACEC4D8_val == "0002") {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 8;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 16;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 24;
+        }
+        else if (auto2ACEC4D8_val == "0003") {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 9;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 18;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 27;
+        }
+        else if (auto2ACEC4D8_val == "0004") {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 10;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 20;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 30;
+        }
+        else {
+        }
+        autoA19DB31D_g = PlayerGroupAll();
+        autoA19DB31D_var = -1;
+        while (true) {
+            autoA19DB31D_var = PlayerGroupNextPlayer(autoA19DB31D_g, autoA19DB31D_var);
+            if (autoA19DB31D_var < 0) { break; }
+            if ((GameAttributePlayerValue("6", autoA19DB31D_var) == "0001")) {
+                PlayerGroupAdd(lv_players, autoA19DB31D_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            lib77A838C7_gv_zombiesStartDelay = lib77A838C7_gf_ParseZombiesStartDelay();
+            lib77A838C7_gv_zombiesWavesDelay = lib77A838C7_gf_ParseZombiesWavesDelay();
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "ZombiesWavesDelay", IntToText(lib77A838C7_gv_zombiesWavesDelay));
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "ZombiesStartDelay", IntToText(lib77A838C7_gv_zombiesStartDelay));
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "GradesDelayWaves", IntToText(lib77A838C7_gv_zombiesGradesWaves[0]));
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_77A838C7_683E7F76"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_77A838C7_CBB36F4C"), StringExternal("Param/Value/lib_77A838C7_4C46187D"), "Assets\\Textures\\btn-unit-zerg-infestedcolonist.dds");
+            Wait(lib77A838C7_gv_zombiesStartDelay, c_timeReal);
+            TimerStart(lib77A838C7_gv_zombiesTimer, (lib77A838C7_gv_zombiesWavesDelay + 1), true, c_timeReal);
+            TimerStart(lib77A838C7_gv_timerFromGameStarts, lib77A838C7_gv_zombiesWavesDelay, true, c_timeReal);
+        }
+        else {
+            TriggerEnable(lib77A838C7_gt_CreateZombies, false);
+        }
+    }
+    else {
+        TriggerEnable(lib77A838C7_gt_CreateZombies, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib77A838C7_gt_ZombiesModStart_Init () {
+    lib77A838C7_gt_ZombiesModStart = TriggerCreate("lib77A838C7_gt_ZombiesModStart_Func");
+    TriggerAddEventMapInit(lib77A838C7_gt_ZombiesModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Create Zombies
+//--------------------------------------------------------------------------------------------------
+bool lib77A838C7_gt_CreateZombies_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_structure;
+    point lv_point;
+
+    // Automatic Variable Declarations
+    playergroup auto54D0554A_g;
+    int auto54D0554A_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto54D0554A_g = PlayerGroupAll();
+    auto54D0554A_var = -1;
+    while (true) {
+        auto54D0554A_var = PlayerGroupNextPlayer(auto54D0554A_g, auto54D0554A_var);
+        if (auto54D0554A_var < 0) { break; }
+        if ((GameAttributePlayerValue("6", auto54D0554A_var) == "0001")) {
+            lv_structure = libDBC4E2D2_gf_GetRandomStructure(auto54D0554A_var);
+            if ((lv_structure != null)) {
+                lv_point = UnitGetPosition(lv_structure);
+                libDBC4E2D2_gf_ShowCountDownProgressBar(550, 59, 3.0, PlayerGroupSingle(auto54D0554A_var));
+                PingCreate(PlayerGroupSingle(auto54D0554A_var), "PingWarning", lv_point, ColorWithAlpha(100.00, 0.00, 0.00, 0.78), 3.0);
+                libNtve_gf_AttachModelToUnit(lv_structure, "BlindingCloud", "Ref_Overhead");
+                Wait(3.0, c_timeReal);
+                libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+                libNtve_gf_CreateUnitsWithDefaultFacing(lib77A838C7_gv_zombiesCount, "InfestorTerranBurrowed", 0, 15, lv_point);
+                UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowInfestorTerranUp", 0)), c_orderQueueReplace);
+                UnitBehaviorAdd(UnitGroupRandomUnit(UnitLastCreatedGroup(), c_unitCountAlive), "Detector10", UnitGroupRandomUnit(UnitLastCreatedGroup(), c_unitCountAlive), 1);
+            }
+
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib77A838C7_gt_CreateZombies_Init () {
+    lib77A838C7_gt_CreateZombies = TriggerCreate("lib77A838C7_gt_CreateZombies_Func");
+    TriggerAddEventTimer(lib77A838C7_gt_CreateZombies, lib77A838C7_gv_zombiesTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: GameTimer Tick
+//--------------------------------------------------------------------------------------------------
+bool lib77A838C7_gt_GameTimerTick_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int autoD045E730_val;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib77A838C7_gv_zombiesCount <= 19)) {
+        lib77A838C7_gv_zombiesCount += 1;
+    }
+
+    lib77A838C7_gv_zombiesWavesCount += 1;
+    autoD045E730_val = lib77A838C7_gv_zombiesCount;
+    if (autoD045E730_val == lib77A838C7_gv_zombiesGradesWaves[0]) {
+        TechTreeUpgradeAddLevel(15, "ZergMissileWeaponsLevel1", 1);
+        TechTreeUpgradeAddLevel(15, "ZergGroundArmorsLevel1", 1);
+    }
+    else if (autoD045E730_val == lib77A838C7_gv_zombiesGradesWaves[1]) {
+        TechTreeUpgradeAddLevel(15, "ZergMissileWeaponsLevel2", 1);
+        TechTreeUpgradeAddLevel(15, "ZergGroundArmorsLevel2", 1);
+    }
+    else if (autoD045E730_val == lib77A838C7_gv_zombiesGradesWaves[2]) {
+        TechTreeUpgradeAddLevel(15, "ZergMissileWeaponsLevel3", 1);
+        TechTreeUpgradeAddLevel(15, "ZergGroundArmorsLevel3", 1);
+    }
+    else {
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib77A838C7_gt_GameTimerTick_Init () {
+    lib77A838C7_gt_GameTimerTick = TriggerCreate("lib77A838C7_gt_GameTimerTick_Func");
+    TriggerAddEventTimer(lib77A838C7_gt_GameTimerTick, lib77A838C7_gv_timerFromGameStarts);
+}
+
+void lib77A838C7_InitTriggers () {
+    lib77A838C7_gt_ZombiesModStart_Init();
+    lib77A838C7_gt_CreateZombies_Init();
+    lib77A838C7_gt_GameTimerTick_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib77A838C7_InitLib_completed = false;
+
+void lib77A838C7_InitLib () {
+    if (lib77A838C7_InitLib_completed) {
+        return;
+    }
+
+    lib77A838C7_InitLib_completed = true;
+
+    lib77A838C7_InitLibraries();
+    lib77A838C7_InitVariables();
+    lib77A838C7_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

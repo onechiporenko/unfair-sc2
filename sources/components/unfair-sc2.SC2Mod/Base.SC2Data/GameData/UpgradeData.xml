@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Catalog>
+    <CUpgrade default="1" id="ProtossShields">
+        <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,Pylon2,ShieldArmor" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="GameHeartActive">
+        <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
+        <LeaderAlias value=""/>
+    </CUpgrade>
+    <CUpgrade id="ProtossShieldsLevel1">
+        <EffectArray Reference="Unit,Pylon2,ShieldArmor" Value="1"/>
+        <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="ProtossShieldsLevel2">
+        <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,Pylon2,ShieldArmor" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="ProtossShieldsLevel3">
+        <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,Pylon2,ShieldArmor" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="TerranBuildingArmor"/>
+</Catalog>

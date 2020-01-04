@@ -1,0 +1,13 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: IMMORTALS
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib6D9F8D1C_gf_AddShield (unit lp_unit);
+
+// Trigger Declarations
+trigger lib6D9F8D1C_gt_ImmortalsModStart;
+trigger lib6D9F8D1C_gt_AddShieldToCreatedUnit;
+trigger lib6D9F8D1C_gt_AddShieldToInitialUnits;
+

@@ -1,0 +1,223 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib827A7D7F_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CONTAMINATION
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib827A7D7F_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib827A7D7F_InitVariables_completed = false;
+
+void lib827A7D7F_InitVariables () {
+    if (lib827A7D7F_InitVariables_completed) {
+        return;
+    }
+
+    lib827A7D7F_InitVariables_completed = true;
+
+    lib827A7D7F_gv_timerFromGameStarts = TimerCreate();
+    lib827A7D7F_gv_contaminationsCount = 1;
+    lib827A7D7F_gv_maxContaminationsCount = 1;
+    lib827A7D7F_gv_contaminationTimer = TimerCreate();
+}
+
+// Functions
+trigger auto_lib827A7D7F_gf_ContaminateUnit_Trigger = null;
+unit auto_lib827A7D7F_gf_ContaminateUnit_lp_unit;
+
+void lib827A7D7F_gf_ContaminateUnit (unit lp_unit) {
+    auto_lib827A7D7F_gf_ContaminateUnit_lp_unit = lp_unit;
+
+    if (auto_lib827A7D7F_gf_ContaminateUnit_Trigger == null) {
+        auto_lib827A7D7F_gf_ContaminateUnit_Trigger = TriggerCreate("auto_lib827A7D7F_gf_ContaminateUnit_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib827A7D7F_gf_ContaminateUnit_Trigger, false, false);
+}
+
+bool auto_lib827A7D7F_gf_ContaminateUnit_TriggerFunc (bool testConds, bool runActions) {
+    unit lp_unit = auto_lib827A7D7F_gf_ContaminateUnit_lp_unit;
+
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_unit != null)) {
+        UnitBehaviorAddPlayer(lp_unit, "Contaminated", 15, 1);
+        UnitBehaviorAddPlayer(lp_unit, "DamageDealtMinimal", 15, 1);
+        while (!((UnitHasBehavior2(lp_unit, "Contaminated") == false))) {
+            Wait(1.0, c_timeReal);
+        }
+        UnitBehaviorRemovePlayer(lp_unit, "DamageDealtMinimal", 15, 1);
+    }
+
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Contamination Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib827A7D7F_gt_ContaminationModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string auto4303C0BE_val;
+    playergroup auto33A4C62F_g;
+    int auto33A4C62F_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("3") == "0001")) {
+        auto4303C0BE_val = GameAttributeGameValue("168");
+        if (auto4303C0BE_val == "0001") {
+            lib827A7D7F_gv_maxContaminationsCount = 1;
+        }
+        else if (auto4303C0BE_val == "0002") {
+            lib827A7D7F_gv_maxContaminationsCount = 3;
+        }
+        else if (auto4303C0BE_val == "0003") {
+            lib827A7D7F_gv_maxContaminationsCount = 5;
+        }
+        else if (auto4303C0BE_val == "0004") {
+            lib827A7D7F_gv_maxContaminationsCount = 7;
+        }
+        else if (auto4303C0BE_val == "0005") {
+            lib827A7D7F_gv_maxContaminationsCount = 100500;
+        }
+        else {
+            lib827A7D7F_gv_maxContaminationsCount = 100500;
+        }
+        auto33A4C62F_g = PlayerGroupAll();
+        auto33A4C62F_var = -1;
+        while (true) {
+            auto33A4C62F_var = PlayerGroupNextPlayer(auto33A4C62F_g, auto33A4C62F_var);
+            if (auto33A4C62F_var < 0) { break; }
+            if ((GameAttributePlayerValue("4", auto33A4C62F_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto33A4C62F_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_827A7D7F_44E9295B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_827A7D7F_E6690D69"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_827A7D7F_44E9295B"), StringExternal("Param/Value/lib_827A7D7F_C3C4EA24"), "Assets\\Textures\\btn-ability-zerg-contaminate-color.dds");
+            TimerStart(lib827A7D7F_gv_contaminationTimer, 45.0, true, c_timeReal);
+            TriggerEnable(lib827A7D7F_gt_ContaminationTimerTick, false);
+            Wait(45.0, c_timeReal);
+            TriggerEnable(lib827A7D7F_gt_ContaminationTimerTick, true);
+            TimerStart(lib827A7D7F_gv_timerFromGameStarts, 240.0, true, c_timeReal);
+        }
+        else {
+            TriggerEnable(lib827A7D7F_gt_ContaminationTimerTick, false);
+        }
+    }
+    else {
+        TriggerEnable(lib827A7D7F_gt_ContaminationTimerTick, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib827A7D7F_gt_ContaminationModStart_Init () {
+    lib827A7D7F_gt_ContaminationModStart = TriggerCreate("lib827A7D7F_gt_ContaminationModStart_Func");
+    TriggerAddEventMapInit(lib827A7D7F_gt_ContaminationModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Contamination Timer Tick
+//--------------------------------------------------------------------------------------------------
+bool lib827A7D7F_gt_ContaminationTimerTick_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto9BDC65DF_g;
+    int auto9BDC65DF_var;
+    int autoB9F08BDE_ae;
+    int autoB9F08BDE_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto9BDC65DF_g = PlayerGroupAll();
+    auto9BDC65DF_var = -1;
+    while (true) {
+        auto9BDC65DF_var = PlayerGroupNextPlayer(auto9BDC65DF_g, auto9BDC65DF_var);
+        if (auto9BDC65DF_var < 0) { break; }
+        if ((GameAttributePlayerValue("4", auto9BDC65DF_var) == "0001")) {
+            autoB9F08BDE_ae = lib827A7D7F_gv_contaminationsCount;
+            autoB9F08BDE_var = 1;
+            for ( ; autoB9F08BDE_var <= autoB9F08BDE_ae; autoB9F08BDE_var += 1 ) {
+                lib827A7D7F_gf_ContaminateUnit(libDBC4E2D2_gf_GetRandomStructure(auto9BDC65DF_var));
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib827A7D7F_gt_ContaminationTimerTick_Init () {
+    lib827A7D7F_gt_ContaminationTimerTick = TriggerCreate("lib827A7D7F_gt_ContaminationTimerTick_Func");
+    TriggerAddEventTimer(lib827A7D7F_gt_ContaminationTimerTick, lib827A7D7F_gv_contaminationTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Inc Contaminations Count
+//--------------------------------------------------------------------------------------------------
+bool lib827A7D7F_gt_IncContaminationsCount_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib827A7D7F_gv_contaminationsCount < lib827A7D7F_gv_maxContaminationsCount)) {
+        lib827A7D7F_gv_contaminationsCount += 1;
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib827A7D7F_gt_IncContaminationsCount_Init () {
+    lib827A7D7F_gt_IncContaminationsCount = TriggerCreate("lib827A7D7F_gt_IncContaminationsCount_Func");
+    TriggerAddEventTimer(lib827A7D7F_gt_IncContaminationsCount, lib827A7D7F_gv_timerFromGameStarts);
+}
+
+void lib827A7D7F_InitTriggers () {
+    lib827A7D7F_gt_ContaminationModStart_Init();
+    lib827A7D7F_gt_ContaminationTimerTick_Init();
+    lib827A7D7F_gt_IncContaminationsCount_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib827A7D7F_InitLib_completed = false;
+
+void lib827A7D7F_InitLib () {
+    if (lib827A7D7F_InitLib_completed) {
+        return;
+    }
+
+    lib827A7D7F_InitLib_completed = true;
+
+    lib827A7D7F_InitLibraries();
+    lib827A7D7F_InitVariables();
+    lib827A7D7F_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

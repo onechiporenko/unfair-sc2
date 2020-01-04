@@ -1,0 +1,373 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibE840CECB_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: DECIMATIO
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libE840CECB_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool libE840CECB_InitVariables_completed = false;
+
+void libE840CECB_InitVariables () {
+    if (libE840CECB_InitVariables_completed) {
+        return;
+    }
+
+    libE840CECB_InitVariables_completed = true;
+
+    libE840CECB_gv_decimatioLeaderboard = c_boardNone;
+    libE840CECB_gv_decimatioTimer = TimerCreate();
+    libE840CECB_gv_decimatioWavesTimer = TimerCreate();
+    libE840CECB_gv_decimacioStartTime = 210.0;
+    libE840CECB_gv_decimatioTimerWindow = c_timerWindowNone;
+}
+
+// Functions
+void libE840CECB_gf_KillEvery10thUnitForPlayers () {
+    // Automatic Variable Declarations
+    playergroup autoAD63BE35_g;
+    int autoAD63BE35_var;
+
+    // Implementation
+    autoAD63BE35_g = PlayerGroupAll();
+    autoAD63BE35_var = -1;
+    while (true) {
+        autoAD63BE35_var = PlayerGroupNextPlayer(autoAD63BE35_g, autoAD63BE35_var);
+        if (autoAD63BE35_var < 0) { break; }
+        if ((GameAttributePlayerValue("74", autoAD63BE35_var) == "0001")) {
+            libE840CECB_gf_Decimatio(autoAD63BE35_var);
+        }
+
+    }
+}
+
+trigger auto_libE840CECB_gf_Decimatio_Trigger = null;
+int auto_libE840CECB_gf_Decimatio_lp_player;
+
+void libE840CECB_gf_Decimatio (int lp_player) {
+    auto_libE840CECB_gf_Decimatio_lp_player = lp_player;
+
+    if (auto_libE840CECB_gf_Decimatio_Trigger == null) {
+        auto_libE840CECB_gf_Decimatio_Trigger = TriggerCreate("auto_libE840CECB_gf_Decimatio_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libE840CECB_gf_Decimatio_Trigger, false, false);
+}
+
+bool auto_libE840CECB_gf_Decimatio_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_libE840CECB_gf_Decimatio_lp_player;
+
+    // Variable Declarations
+    int lv_index;
+    int lv_unitsCount;
+    int lv_unitsToKillCount;
+    unitgroup lv_allUnits;
+    unitgroup lv_unitsToKill;
+    unit lv_unitToKill;
+    text lv_msg;
+
+    // Automatic Variable Declarations
+    int autoF3717762_ae;
+    const int autoF3717762_ai = 1;
+    unitgroup autoDB440B2A_g;
+    int autoDB440B2A_u;
+    unit autoDB440B2A_var;
+
+    // Variable Initialization
+    lv_index = 1;
+    lv_allUnits = UnitGroupEmpty();
+    lv_unitsToKill = UnitGroupEmpty();
+    lv_msg = StringToText("");
+
+    // Implementation
+    lv_allUnits = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile), (1 << (c_targetFilterStasis - 32)) | (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHallucination - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0);
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Larva", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("InfestedTerransEgg", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Overseer", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Overseer", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("OverlordCocoon", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Overlord", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Interceptor", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("LocustMP", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("LocustMPFlying", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Broodling", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    lv_unitsCount = UnitGroupCount(lv_allUnits, c_unitCountAlive);
+    lv_unitsToKillCount = RoundI((lv_unitsCount / 10.0));
+    UnitGroupClear(lv_unitsToKill);
+    autoF3717762_ae = MaxI(lv_unitsToKillCount, 1);
+    lv_index = 1;
+    for ( ; ( (autoF3717762_ai >= 0 && lv_index <= autoF3717762_ae) || (autoF3717762_ai < 0 && lv_index >= autoF3717762_ae) ) ; lv_index += autoF3717762_ai ) {
+        lv_unitToKill = UnitGroupRandomUnit(lv_allUnits, c_unitCountAlive);
+        UnitGroupAdd(lv_unitsToKill, lv_unitToKill);
+        libNtve_gf_AttachModelToUnitInheritVisibility(lv_unitToKill, "UnfairSC2DecimatioDeath", "Ref_Head");
+        lv_msg = (lv_msg + StringExternal("Param/Value/lib_E840CECB_9EE05CA2") + UnitTypeGetName(UnitGetType(lv_unitToKill)));
+    }
+    Wait(1.0, c_timeReal);
+    autoDB440B2A_g = lv_unitsToKill;
+    autoDB440B2A_u = UnitGroupCount(autoDB440B2A_g, c_unitCountAll);
+    for (;; autoDB440B2A_u -= 1) {
+        autoDB440B2A_var = UnitGroupUnitFromEnd(autoDB440B2A_g, autoDB440B2A_u);
+        if (autoDB440B2A_var == null) { break; }
+        libDBC4E2D2_gv_players[lp_player].lv_dECIMATIO.lv_mineralslost += UnitTypeGetCost(UnitGetType(autoDB440B2A_var), c_unitCostMinerals);
+        libDBC4E2D2_gv_players[lp_player].lv_dECIMATIO.lv_gaslost += UnitTypeGetCost(UnitGetType(autoDB440B2A_var), c_unitCostVespene);
+        UnitKill(autoDB440B2A_var);
+    }
+    UIDisplayMessage(PlayerGroupSingle(lp_player), c_messageAreaChat, lv_msg);
+    SoundPlayForPlayer(SoundLink("TUIWarningPing", -1), c_maxPlayers, PlayerGroupSingle(lp_player), 100.0, 4.0);
+    lv_index = 1;
+    lv_msg = StringToText("");
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Decimatio Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libE840CECB_gt_DecimatioModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string auto2BE94F0A_val;
+    playergroup auto97BA074B_g;
+    int auto97BA074B_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("73") == "0001")) {
+        auto2BE94F0A_val = GameAttributeGameValue("75");
+        if (auto2BE94F0A_val == "0001") {
+            libE840CECB_gv_decimatioDelay = 10;
+        }
+        else if (auto2BE94F0A_val == "0002") {
+            libE840CECB_gv_decimatioDelay = 15;
+        }
+        else if (auto2BE94F0A_val == "0003") {
+            libE840CECB_gv_decimatioDelay = 20;
+        }
+        else if (auto2BE94F0A_val == "0004") {
+            libE840CECB_gv_decimatioDelay = 25;
+        }
+        else if (auto2BE94F0A_val == "0005") {
+            libE840CECB_gv_decimatioDelay = 30;
+        }
+        else if (auto2BE94F0A_val == "0006") {
+            libE840CECB_gv_decimatioDelay = 35;
+        }
+        else if (auto2BE94F0A_val == "0007") {
+            libE840CECB_gv_decimatioDelay = 40;
+        }
+        else if (auto2BE94F0A_val == "0008") {
+            libE840CECB_gv_decimatioDelay = 45;
+        }
+        else if (auto2BE94F0A_val == "0009") {
+            libE840CECB_gv_decimatioDelay = 50;
+        }
+        else if (auto2BE94F0A_val == "0010") {
+            libE840CECB_gv_decimatioDelay = 55;
+        }
+        else if (auto2BE94F0A_val == "0011") {
+            libE840CECB_gv_decimatioDelay = 60;
+        }
+        else {
+            libE840CECB_gv_decimatioDelay = 30;
+        }
+        auto97BA074B_g = PlayerGroupAll();
+        auto97BA074B_var = -1;
+        while (true) {
+            auto97BA074B_var = PlayerGroupNextPlayer(auto97BA074B_g, auto97BA074B_var);
+            if (auto97BA074B_var < 0) { break; }
+            if ((GameAttributePlayerValue("74", auto97BA074B_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto97BA074B_var);
+                libDBC4E2D2_gv_players[auto97BA074B_var].lv_dECIMATIO.lv_messageindex = libDBC4E2D2_gv_players[auto97BA074B_var].lv_uI.lv_numberofmessages;
+                libDBC4E2D2_gv_players[auto97BA074B_var].lv_uI.lv_numberofmessages += 1;
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TimerStart(libE840CECB_gv_decimatioTimer, libE840CECB_gv_decimacioStartTime, false, c_timeReal);
+            TextExpressionSetToken("Param/Expression/lib_E840CECB_B6B90D46", "Delay", IntToText(libE840CECB_gv_decimatioDelay));
+            TextExpressionSetToken("Param/Expression/lib_E840CECB_B6B90D46", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_E840CECB_756196DB"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_E840CECB_B6B90D46"), StringExternal("Param/Value/lib_E840CECB_8ED41A4B"), "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantsacrifice.dds");
+            TimerWindowCreate(libE840CECB_gv_decimatioTimer, StringExternal("Param/Value/lib_E840CECB_D37B7B93"), true, false);
+            libE840CECB_gv_decimatioTimerWindow = TimerWindowLastCreated();
+            TimerWindowShowBorder(libE840CECB_gv_decimatioTimerWindow, false);
+            TimerWindowShow(libE840CECB_gv_decimatioTimerWindow, PlayerGroupAll(), true);
+            libE840CECB_gv_decimatioLeaderboard = libDBC4E2D2_gf_CreateResourcesLeaderboard(StringExternal("Param/Value/lib_E840CECB_5020E2E6"));
+            libNtve_gf_ShowHideLeaderboard(libE840CECB_gv_decimatioLeaderboard, true, libDBC4E2D2_gv_observerGroup);
+        }
+        else {
+            TriggerEnable(libE840CECB_gt_DecimatioWave, false);
+            TriggerEnable(libE840CECB_gt_ShowLostResources, false);
+            TriggerEnable(libE840CECB_gt_UpdateDecimatioLeaderboard, false);
+        }
+    }
+    else {
+        TriggerEnable(libE840CECB_gt_UpdateDecimatioLeaderboard, false);
+        TriggerEnable(libE840CECB_gt_DecimatioWave, false);
+        TriggerEnable(libE840CECB_gt_ShowLostResources, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE840CECB_gt_DecimatioModStart_Init () {
+    libE840CECB_gt_DecimatioModStart = TriggerCreate("libE840CECB_gt_DecimatioModStart_Func");
+    TriggerAddEventMapInit(libE840CECB_gt_DecimatioModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Decimatio Start
+//--------------------------------------------------------------------------------------------------
+bool libE840CECB_gt_DecimatioStart_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TimerWindowShow(libE840CECB_gv_decimatioTimerWindow, PlayerGroupAll(), false);
+    TimerStart(libE840CECB_gv_decimatioWavesTimer, libE840CECB_gv_decimatioDelay, true, c_timeReal);
+    TimerWindowCreate(libE840CECB_gv_decimatioWavesTimer, StringExternal("Param/Value/lib_E840CECB_5F871B09"), true, false);
+    libE840CECB_gv_decimatioTimerWindow = TimerWindowLastCreated();
+    TimerWindowShowBorder(libE840CECB_gv_decimatioTimerWindow, false);
+    TimerWindowShow(libE840CECB_gv_decimatioTimerWindow, PlayerGroupAll(), true);
+    TriggerEnable(libE840CECB_gt_DecimatioWave, true);
+    TriggerExecute(libE840CECB_gt_DecimatioWave, false, false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE840CECB_gt_DecimatioStart_Init () {
+    libE840CECB_gt_DecimatioStart = TriggerCreate("libE840CECB_gt_DecimatioStart_Func");
+    TriggerAddEventTimer(libE840CECB_gt_DecimatioStart, libE840CECB_gv_decimatioTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Decimatio Wave
+//--------------------------------------------------------------------------------------------------
+bool libE840CECB_gt_DecimatioWave_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libE840CECB_gf_KillEvery10thUnitForPlayers();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE840CECB_gt_DecimatioWave_Init () {
+    libE840CECB_gt_DecimatioWave = TriggerCreate("libE840CECB_gt_DecimatioWave_Func");
+    TriggerAddEventTimer(libE840CECB_gt_DecimatioWave, libE840CECB_gv_decimatioWavesTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Show Lost Resources
+//--------------------------------------------------------------------------------------------------
+bool libE840CECB_gt_ShowLostResources_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoC3C65620_g;
+    int autoC3C65620_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoC3C65620_g = PlayerGroupActive();
+    autoC3C65620_var = -1;
+    while (true) {
+        autoC3C65620_var = PlayerGroupNextPlayer(autoC3C65620_g, autoC3C65620_var);
+        if (autoC3C65620_var < 0) { break; }
+        if ((GameAttributePlayerValue("74", autoC3C65620_var) == "0001")) {
+            TextExpressionSetToken("Param/Expression/lib_E840CECB_55B4B660", "minerals", FixedToText(libDBC4E2D2_gv_players[autoC3C65620_var].lv_dECIMATIO.lv_mineralslost, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_E840CECB_55B4B660", "gas", FixedToText(libDBC4E2D2_gv_players[autoC3C65620_var].lv_dECIMATIO.lv_gaslost, c_fixedPrecisionAny));
+            libDBC4E2D2_gv_players[autoC3C65620_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[autoC3C65620_var].lv_dECIMATIO.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_E840CECB_55B4B660");
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE840CECB_gt_ShowLostResources_Init () {
+    libE840CECB_gt_ShowLostResources = TriggerCreate("libE840CECB_gt_ShowLostResources_Func");
+    TriggerAddEventTimePeriodic(libE840CECB_gt_ShowLostResources, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Decimatio Leaderboard
+//--------------------------------------------------------------------------------------------------
+bool libE840CECB_gt_UpdateDecimatioLeaderboard_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto9BF6148E_g;
+    int auto9BF6148E_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto9BF6148E_g = PlayerGroupAll();
+    auto9BF6148E_var = -1;
+    while (true) {
+        auto9BF6148E_var = PlayerGroupNextPlayer(auto9BF6148E_g, auto9BF6148E_var);
+        if (auto9BF6148E_var < 0) { break; }
+        if ((PlayerStatus(auto9BF6148E_var) == c_playerStatusActive)) {
+            BoardItemSetText(libE840CECB_gv_decimatioLeaderboard, 1, auto9BF6148E_var, TextWithColor(PlayerName(auto9BF6148E_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto9BF6148E_var, false))));
+            BoardItemSetText(libE840CECB_gv_decimatioLeaderboard, 2, auto9BF6148E_var, FixedToText(libDBC4E2D2_gv_players[auto9BF6148E_var].lv_dECIMATIO.lv_mineralslost, c_fixedPrecisionAny));
+            BoardItemSetText(libE840CECB_gv_decimatioLeaderboard, 3, auto9BF6148E_var, FixedToText(libDBC4E2D2_gv_players[auto9BF6148E_var].lv_dECIMATIO.lv_gaslost, c_fixedPrecisionAny));
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE840CECB_gt_UpdateDecimatioLeaderboard_Init () {
+    libE840CECB_gt_UpdateDecimatioLeaderboard = TriggerCreate("libE840CECB_gt_UpdateDecimatioLeaderboard_Func");
+    TriggerAddEventTimePeriodic(libE840CECB_gt_UpdateDecimatioLeaderboard, 1.0, c_timeReal);
+}
+
+void libE840CECB_InitTriggers () {
+    libE840CECB_gt_DecimatioModStart_Init();
+    libE840CECB_gt_DecimatioStart_Init();
+    libE840CECB_gt_DecimatioWave_Init();
+    libE840CECB_gt_ShowLostResources_Init();
+    libE840CECB_gt_UpdateDecimatioLeaderboard_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libE840CECB_InitLib_completed = false;
+
+void libE840CECB_InitLib () {
+    if (libE840CECB_InitLib_completed) {
+        return;
+    }
+
+    libE840CECB_InitLib_completed = true;
+
+    libE840CECB_InitLibraries();
+    libE840CECB_InitVariables();
+    libE840CECB_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

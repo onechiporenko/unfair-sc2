@@ -1,0 +1,9 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: SOULS CATCHER
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libBFCD4496_gt_SoulsCatcherModStart;
+trigger libBFCD4496_gt_CreateSoul;
+

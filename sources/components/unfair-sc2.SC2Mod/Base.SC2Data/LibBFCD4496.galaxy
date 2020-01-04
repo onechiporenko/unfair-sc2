@@ -1,0 +1,145 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibBFCD4496_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: SOULS CATCHER
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libBFCD4496_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Souls Catcher Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libBFCD4496_gt_SoulsCatcherModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto4C623AAC_g;
+    int auto4C623AAC_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("70") == "0001")) {
+        auto4C623AAC_g = PlayerGroupAll();
+        auto4C623AAC_var = -1;
+        while (true) {
+            auto4C623AAC_var = PlayerGroupNextPlayer(auto4C623AAC_g, auto4C623AAC_var);
+            if (auto4C623AAC_var < 0) { break; }
+            if ((GameAttributePlayerValue("94", auto4C623AAC_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto4C623AAC_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) == 0)) {
+            TriggerEnable(libBFCD4496_gt_CreateSoul, false);
+        }
+        else {
+            TextExpressionSetToken("Param/Expression/lib_BFCD4496_5225D3ED", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BFCD4496_582A4DF9"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BFCD4496_5225D3ED"), StringExternal("Param/Value/lib_BFCD4496_9763161C"), "Assets\\Textures\\btn-ability-protoss-soulabsorbtion.dds");
+        }
+    }
+    else {
+        TriggerEnable(libBFCD4496_gt_CreateSoul, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBFCD4496_gt_SoulsCatcherModStart_Init () {
+    libBFCD4496_gt_SoulsCatcherModStart = TriggerCreate("libBFCD4496_gt_SoulsCatcherModStart_Func");
+    TriggerAddEventMapInit(libBFCD4496_gt_SoulsCatcherModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Create Soul
+//--------------------------------------------------------------------------------------------------
+bool libBFCD4496_gt_CreateSoul_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitTypeTestFlag(UnitGetType(EventUnit()), c_unitFlagWorker) == false))) {
+            return false;
+        }
+
+        if (!((GameAttributePlayerValue("94", EventUnitDamageSourcePlayer()) == "0001"))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((UnitHasBehavior2(EventUnit(), "UnfairSC2CatchedSoul") == false))) {
+            return false;
+        }
+
+        if (!((EventPlayer() != EventUnitDamageSourcePlayer()))) {
+            return false;
+        }
+
+        if (!((EventUnitDamageEffect() != "SuicideRemove"))) {
+            return false;
+        }
+
+        if (!(((UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesMade) > 0.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, UnitGetType(EventUnit()), 0, EventUnitDamageSourcePlayer(), EventUnitDamageSourcePoint());
+    UnitBehaviorAdd(UnitLastCreated(), "UnfairSC2CatchedSoul", UnitLastCreated(), 1);
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifePercent, 50.0);
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropShieldsPercent, 50.0);
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, (UnitGetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, c_unitPropNormal) / 2.0));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropShieldsMax, (UnitGetPropertyFixed(UnitLastCreated(), c_unitPropShieldsMax, c_unitPropNormal) / 2.0));
+    UnitSetScale(UnitLastCreated(), 85.0, 85.0, 85.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBFCD4496_gt_CreateSoul_Init () {
+    libBFCD4496_gt_CreateSoul = TriggerCreate("libBFCD4496_gt_CreateSoul_Func");
+    TriggerAddEventUnitDamaged(libBFCD4496_gt_CreateSoul, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
+}
+
+void libBFCD4496_InitTriggers () {
+    libBFCD4496_gt_SoulsCatcherModStart_Init();
+    libBFCD4496_gt_CreateSoul_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libBFCD4496_InitLib_completed = false;
+
+void libBFCD4496_InitLib () {
+    if (libBFCD4496_InitLib_completed) {
+        return;
+    }
+
+    libBFCD4496_InitLib_completed = true;
+
+    libBFCD4496_InitLibraries();
+    libBFCD4496_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

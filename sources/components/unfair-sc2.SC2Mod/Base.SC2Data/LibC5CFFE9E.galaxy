@@ -1,0 +1,84 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibC5CFFE9E_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: FOG OF WAR
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libC5CFFE9E_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Fog of War Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libC5CFFE9E_gt_FogofWarModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoC8EAB9EA_g;
+    int autoC8EAB9EA_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("9") == "0001")) {
+        autoC8EAB9EA_g = PlayerGroupAll();
+        autoC8EAB9EA_var = -1;
+        while (true) {
+            autoC8EAB9EA_var = PlayerGroupNextPlayer(autoC8EAB9EA_g, autoC8EAB9EA_var);
+            if (autoC8EAB9EA_var < 0) { break; }
+            if ((GameAttributePlayerValue("10", autoC8EAB9EA_var) == "0002")) {
+                PlayerGroupAdd(lv_players, autoC8EAB9EA_var);
+                VisRevealerCreate(autoC8EAB9EA_var, RegionEntireMap());
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_C5CFFE9E_D74D8190", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_C5CFFE9E_1EFAE59B"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_C5CFFE9E_D74D8190"), StringExternal("Param/Value/lib_C5CFFE9E_FA36A2E2"), "Assets\\Textures\\btn-ability-zerg-darkswarm.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC5CFFE9E_gt_FogofWarModStart_Init () {
+    libC5CFFE9E_gt_FogofWarModStart = TriggerCreate("libC5CFFE9E_gt_FogofWarModStart_Func");
+    TriggerAddEventMapInit(libC5CFFE9E_gt_FogofWarModStart);
+}
+
+void libC5CFFE9E_InitTriggers () {
+    libC5CFFE9E_gt_FogofWarModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libC5CFFE9E_InitLib_completed = false;
+
+void libC5CFFE9E_InitLib () {
+    if (libC5CFFE9E_InitLib_completed) {
+        return;
+    }
+
+    libC5CFFE9E_InitLib_completed = true;
+
+    libC5CFFE9E_InitLibraries();
+    libC5CFFE9E_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

@@ -1,0 +1,13 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MOVE SPEED
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib15E909D0_gf_AddMoveSpeedBehavior (unit lp_unit);
+
+// Trigger Declarations
+trigger lib15E909D0_gt_MoveSpeedModStart;
+trigger lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit;
+trigger lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits;
+

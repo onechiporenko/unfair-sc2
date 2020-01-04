@@ -1,0 +1,106 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibE899973B_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO ARMY CONTROL
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libE899973B_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void libE899973B_gf_ToggleArmyControlPanels (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libDBC4E2D2_gv_players[lp_player].lv_nOARMYCONTROLS.lv_armyButtonEnabled == true)) {
+        UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeArmyButton, false);
+        libDBC4E2D2_gv_players[lp_player].lv_nOARMYCONTROLS.lv_armyButtonEnabled = false;
+    }
+    else {
+        UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeArmyButton, true);
+        libDBC4E2D2_gv_players[lp_player].lv_nOARMYCONTROLS.lv_armyButtonEnabled = true;
+    }
+    if ((libDBC4E2D2_gv_players[lp_player].lv_nOARMYCONTROLS.lv_controlGroupsEnabled == true)) {
+        UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeControlGroupPanel, false);
+        libDBC4E2D2_gv_players[lp_player].lv_nOARMYCONTROLS.lv_controlGroupsEnabled = false;
+    }
+    else {
+        UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeControlGroupPanel, true);
+        libDBC4E2D2_gv_players[lp_player].lv_nOARMYCONTROLS.lv_controlGroupsEnabled = true;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Army Control Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libE899973B_gt_NoArmyControlModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto97CDF770_g;
+    int auto97CDF770_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("122") == "0001")) {
+        auto97CDF770_g = PlayerGroupAll();
+        auto97CDF770_var = -1;
+        while (true) {
+            auto97CDF770_var = PlayerGroupNextPlayer(auto97CDF770_g, auto97CDF770_var);
+            if (auto97CDF770_var < 0) { break; }
+            if ((GameAttributePlayerValue("123", auto97CDF770_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto97CDF770_var);
+                libE899973B_gf_ToggleArmyControlPanels(auto97CDF770_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_E899973B_3132504C", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_E899973B_10EE3790"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_E899973B_3132504C"), StringExternal("Param/Value/lib_E899973B_188B7156"), "Assets\\Textures\\btn-ability-spearofadun-massrecall.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE899973B_gt_NoArmyControlModStart_Init () {
+    libE899973B_gt_NoArmyControlModStart = TriggerCreate("libE899973B_gt_NoArmyControlModStart_Func");
+    TriggerAddEventMapInit(libE899973B_gt_NoArmyControlModStart);
+}
+
+void libE899973B_InitTriggers () {
+    libE899973B_gt_NoArmyControlModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libE899973B_InitLib_completed = false;
+
+void libE899973B_InitLib () {
+    if (libE899973B_InitLib_completed) {
+        return;
+    }
+
+    libE899973B_InitLib_completed = true;
+
+    libE899973B_InitLibraries();
+    libE899973B_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

@@ -1,0 +1,13 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: PERMA CLOAK
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libBDC569EF_gf_HideUnit (unit lp_unit);
+
+// Trigger Declarations
+trigger libBDC569EF_gt_PermaCloakModStart;
+trigger libBDC569EF_gt_HideInitialUnits;
+trigger libBDC569EF_gt_MakeUnitInvisible;
+

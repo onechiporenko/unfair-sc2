@@ -1,0 +1,177 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibD84472BA_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ALL UPGRADES
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libD84472BA_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: All Upgrades Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libD84472BA_gt_AllUpgradesModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_defaultDescription;
+
+    // Automatic Variable Declarations
+    playergroup auto245AA091_g;
+    int auto245AA091_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_defaultDescription = StringExternal("Param/Value/lib_D84472BA_4EA425B7");
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("35") == "0001")) {
+        auto245AA091_g = PlayerGroupAll();
+        auto245AA091_var = -1;
+        while (true) {
+            auto245AA091_var = PlayerGroupNextPlayer(auto245AA091_g, auto245AA091_var);
+            if (auto245AA091_var < 0) { break; }
+            if ((GameAttributePlayerValue("36", auto245AA091_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto245AA091_var);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossGroundWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossGroundWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossGroundWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossGroundArmorsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossGroundArmorsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossGroundArmorsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossAirWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossAirWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossAirWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossAirArmorsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossAirArmorsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossAirArmorsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossShieldsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossShieldsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ProtossShieldsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "PhoenixRangeUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "AdeptPiercingAttack", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "WarpGateResearch", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "PsiStormTech", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "BlinkTech", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "CarrierLaunchSpeedUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "Charge", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ExtendedThermalLance", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ObserverGraviticBooster", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "GraviticDrive", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "DarkTemplarBlinkUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "VoidRaySpeedUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergMeleeWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergMeleeWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergMeleeWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergFlyerWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergFlyerWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergFlyerWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergMissileWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergMissileWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergMissileWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergFlyerArmorsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergFlyerArmorsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergFlyerArmorsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergGroundArmorsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergGroundArmorsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ZergGroundArmorsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "CentrificalHooks", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "Burrow", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "InfestorEnergyUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "NeuralParasite", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "zerglingattackspeed", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "zerglingmovementspeed", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "overlordspeed", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "HydraliskSpeedUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "GlialReconstitution", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TunnelingClaws", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ChitinousPlating", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "EvolveMuscularAugments", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "EvolveGroovedSpines", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "DiggingClaws", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "AnabolicSynthesis", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "MicrobialShroud", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "LurkerRange", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranShipWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranShipWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranShipWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranVehicleWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranVehicleWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranVehicleWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranVehicleAndShipArmorsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranVehicleAndShipArmorsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranVehicleAndShipArmorsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranInfantryWeaponsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranInfantryWeaponsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranInfantryWeaponsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranInfantryArmorsLevel1", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranInfantryArmorsLevel2", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranInfantryArmorsLevel3", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "HiSecAutoTracking", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "TerranBuildingArmor", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "PersonalCloaking", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "BattlecruiserEnableSpecializations", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "ShieldWall", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "Stimpack", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "PunisherGrenades", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "HighCapacityBarrels", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "DrillClaws", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "BansheeCloak", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "RavenCorvidReactor", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "CycloneRapidFireLaunchers", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "SmartServos", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "MedivacIncreaseSpeedBoost", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "BansheeSpeed", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "LiberatorAGRangeUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "CycloneLockOnDamageUpgrade", 1);
+                libNtve_gf_SetUpgradeLevelForPlayer(auto245AA091_var, "EnhancedShockwaves", 1);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_D84472BA_D3B23C90", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D84472BA_02DEE76B"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_D84472BA_D3B23C90")), StringExternal("Param/Value/lib_D84472BA_F6D6EA69"), "Assets\\Textures\\talent-tychus-level13-additionalupgrades.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD84472BA_gt_AllUpgradesModStart_Init () {
+    libD84472BA_gt_AllUpgradesModStart = TriggerCreate("libD84472BA_gt_AllUpgradesModStart_Func");
+    TriggerAddEventMapInit(libD84472BA_gt_AllUpgradesModStart);
+}
+
+void libD84472BA_InitTriggers () {
+    libD84472BA_gt_AllUpgradesModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libD84472BA_InitLib_completed = false;
+
+void libD84472BA_InitLib () {
+    if (libD84472BA_InitLib_completed) {
+        return;
+    }
+
+    libD84472BA_InitLib_completed = true;
+
+    libD84472BA_InitLibraries();
+    libD84472BA_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

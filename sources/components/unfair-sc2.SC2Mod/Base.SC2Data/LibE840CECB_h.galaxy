@@ -1,0 +1,27 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: DECIMATIO
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int libE840CECB_gv_decimatioLeaderboard;
+timer libE840CECB_gv_decimatioTimer;
+int libE840CECB_gv_decimatioDelay;
+timer libE840CECB_gv_decimatioWavesTimer;
+fixed libE840CECB_gv_decimacioStartTime;
+int libE840CECB_gv_decimatioTimerWindow;
+
+// Function Declarations
+void libE840CECB_gf_KillEvery10thUnitForPlayers ();
+void libE840CECB_gf_Decimatio (int lp_player);
+
+// Trigger Declarations
+trigger libE840CECB_gt_DecimatioModStart;
+trigger libE840CECB_gt_DecimatioStart;
+trigger libE840CECB_gt_DecimatioWave;
+trigger libE840CECB_gt_ShowLostResources;
+trigger libE840CECB_gt_UpdateDecimatioLeaderboard;
+
+// Library Initialization
+void libE840CECB_InitVariables ();
+

@@ -1,0 +1,16 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MACRO DEF
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+timer libDCC7911A_gv_defTimer;
+int libDCC7911A_gv_defTimerWindow;
+
+// Trigger Declarations
+trigger libDCC7911A_gt_MacroDefModStart;
+trigger libDCC7911A_gt_DefTimerElapsed;
+
+// Library Initialization
+void libDCC7911A_InitVariables ();
+

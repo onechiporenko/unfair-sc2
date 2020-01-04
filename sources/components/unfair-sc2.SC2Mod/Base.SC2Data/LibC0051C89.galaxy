@@ -1,0 +1,136 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibC0051C89_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ALL RACES
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libC0051C89_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: All Races Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libC0051C89_gt_AllRacesModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    unitgroup lv_workers;
+
+    // Automatic Variable Declarations
+    playergroup autoA02AA01E_g;
+    int autoA02AA01E_var;
+    playergroup auto8DFAD738_g;
+    int auto8DFAD738_var;
+    unitgroup autoB3DFE054_g;
+    int autoB3DFE054_u;
+    unit autoB3DFE054_var;
+    string auto1AA4273C_val;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_workers = UnitGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("124") == "0001")) {
+        autoA02AA01E_g = PlayerGroupAll();
+        autoA02AA01E_var = -1;
+        while (true) {
+            autoA02AA01E_var = PlayerGroupNextPlayer(autoA02AA01E_g, autoA02AA01E_var);
+            if (autoA02AA01E_var < 0) { break; }
+            if ((GameAttributePlayerValue("125", autoA02AA01E_var) == "0002")) {
+                PlayerGroupAdd(lv_players, autoA02AA01E_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_C0051C89_7E6FD3AC", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_C0051C89_4A8735DF"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_C0051C89_7E6FD3AC"), StringExternal("Param/Value/lib_C0051C89_3B3491F4"), "Assets\\Textures\\btn-ability-protoss-amoncloud.dds");
+            Wait(0.1, c_timeGame);
+            auto8DFAD738_g = lv_players;
+            auto8DFAD738_var = -1;
+            while (true) {
+                auto8DFAD738_var = PlayerGroupNextPlayer(auto8DFAD738_g, auto8DFAD738_var);
+                if (auto8DFAD738_var < 0) { break; }
+                lv_workers = UnitGroup(null, auto8DFAD738_var, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                libNtve_gf_CreateUnitsWithDefaultFacing(5, "SCV", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
+                libNtve_gf_CreateUnitsWithDefaultFacing(5, "Drone", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
+                libNtve_gf_CreateUnitsWithDefaultFacing(5, "Probe", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
+                autoB3DFE054_g = lv_workers;
+                autoB3DFE054_u = UnitGroupCount(autoB3DFE054_g, c_unitCountAll);
+                for (;; autoB3DFE054_u -= 1) {
+                    autoB3DFE054_var = UnitGroupUnitFromEnd(autoB3DFE054_g, autoB3DFE054_u);
+                    if (autoB3DFE054_var == null) { break; }
+                    UnitKill(autoB3DFE054_var);
+                }
+                CatalogFieldValueSet(c_gameCatalogAbil, "ProtossBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", auto8DFAD738_var, "");
+                CatalogFieldValueSet(c_gameCatalogAbil, "ProtossBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", auto8DFAD738_var, "");
+                CatalogFieldValueSet(c_gameCatalogAbil, "ZergBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", auto8DFAD738_var, "");
+                CatalogFieldValueSet(c_gameCatalogAbil, "ZergBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", auto8DFAD738_var, "");
+                CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", auto8DFAD738_var, "");
+                CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", auto8DFAD738_var, "");
+                if ((GameAttributePlayerValue("160", auto8DFAD738_var) == "0002")) {
+                    auto1AA4273C_val = PlayerRace(auto8DFAD738_var);
+                    if (auto1AA4273C_val == "Zerg") {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                    }
+                    else if (auto1AA4273C_val == "Prot") {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                    }
+                    else if (auto1AA4273C_val == "Terr") {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
+                    }
+                    else {
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC0051C89_gt_AllRacesModStart_Init () {
+    libC0051C89_gt_AllRacesModStart = TriggerCreate("libC0051C89_gt_AllRacesModStart_Func");
+    TriggerAddEventMapInit(libC0051C89_gt_AllRacesModStart);
+}
+
+void libC0051C89_InitTriggers () {
+    libC0051C89_gt_AllRacesModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libC0051C89_InitLib_completed = false;
+
+void libC0051C89_InitLib () {
+    if (libC0051C89_InitLib_completed) {
+        return;
+    }
+
+    libC0051C89_InitLib_completed = true;
+
+    libC0051C89_InitLibraries();
+    libC0051C89_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

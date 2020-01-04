@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CActorModel id="ProtossBuildingBirthSmall2" parent="ModelConstruction">
+        <Aliases value="_ProtossBuildModel"/>
+        <On Terms="ActorCreation" Send="Create ProtossConstructionAttachedSmall"/>
+        <On Terms="UnitConstruction.Obelisk.Start" Send="Create"/>
+        <On Terms="UnitConstruction.DarkShrine.Start" Send="Create"/>
+        <On Terms="UnitConstruction.PhotonCannon.Start" Send="Create"/>
+        <On Terms="UnitConstruction.Pylon2.Start" Send="Create"/>
+        <Model value="ProtossBuildingBirthSmall"/>
+    </CActorModel>
+    <CActorStateMonitor id="ProtossFlamesSmallBuilding2">
+        <On Terms="UnitCreation.Pylon2" Send="Create"/>
+        <On Terms="UnitCreation.PhotonCannon" Send="Create"/>
+        <On Terms="UnitCreation.Obelisk" Send="Create"/>
+        <On Terms="UnitCreation.RoboticsBay" Send="Create"/>
+        <On Terms="UnitCreation.DarkShrine" Send="Create"/>
+        <On Terms="StateChange; StateValid ProtossFire" Send="Create ProtossFlameSetFireSmall"/>
+        <On Terms="StateChange; StateValid ProtossFire" Send="Create ProtossFlameSetFireTransitionSmall"/>
+        <On Terms="StateChange; !StateValid ProtossFire" Target="ProtossFlameSetFireSmall" Send="Destroy"/>
+        <On Terms="StateChange; !StateValid ProtossFire" Target="ProtossFlameSetFireTransitionSmall" Send="Destroy"/>
+        <On Terms="StateChange; StateValid ProtossFire" Send="Create ProtossFlameLoopSmall"/>
+        <On Terms="StateChange; !StateValid ProtossFire" Target="ProtossFlameLoopSmall" Send="Destroy"/>
+        <StateArray Name="ProtossNormal" Terms="ValidateUnit ProtossBurnDownNormal"/>
+        <StateArray Name="ProtossFire" Terms="ValidateUnit ProtossBurnDownFire"/>
+    </CActorStateMonitor>
+    <CActorUnit id="Pylon2" parent="GenericUnitStandard" unitName="Pylon2">
+        <Aliases value="_UnitLarge"/>
+        <AnimBlendTime value="0.750000"/>
+        <ModelFlags index="OutlineOccluder" value="1"/>
+        <EventDataSound Name="BuildingWarpIn" Actor="UnitSound" Sound="Protoss_BuildingWarpIn"/>
+        <BuildModel value="PylonBirth2"/>
+        <DeathArray index="Normal" ModelLink="PylonDeath2" SoundLink="Pylon_Explode"/>
+        <DeathArray index="UnderConstruction" ModelLink="ProtossWarpInDeath2" SoundLink="Pylon_Explode"/>
+        <DeathCustoms index="0" ModelLink="ZergSmallUnitDeathLow2" Name="AntiGravGeneric"/>
+        <DeathCustoms index="1" ModelLink="ProtossSmallUnitDeathLow2" Name="AntiGravProtoss"/>
+        <DeathCustoms index="2" ModelLink="TerranSmallUnitDeathLow2" Name="AntiGravTerran"/>
+        <DeathCustoms index="3" ModelLink="ZergSmallUnitDeathLow2" Name="AntiGravZerg"/>
+        <DeathCustoms index="4" ModelLink="Invisible2" Name="Vortex"/>
+        <PlacementModel value="PylonPlacement2"/>
+        <PlacementSound value="Protoss_BuildingPlacementSmall"/>
+        <PlacementActorModel value="PylonPlacementModel"/>
+        <PortraitModel value="ExecutorPortrait2"/>
+        <BarOffset value="90"/>
+        <BarWidth value="75"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Protoss-Pylon.dds"/>
+        </GroupIcon>
+        <HeroIcon value="Assets\Textures\btn-building-protoss-pylon.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-armor-protoss-buildingplating.dds"/>
+        <SoundArray index="Ready" value="Pylon_Ready"/>
+        <SoundArray index="Help" value="Alert_ProtossPylonUnderAttack"/>
+        <SoundArray index="What" value="Pylon_What"/>
+        <SoundArray index="Construction" value="Protoss_ConstructionWhat"/>
+        <UnitFlags index="StandAnimBirthVariation" value="0"/>
+        <UnitIcon value="Assets\Textures\btn-building-protoss-pylon.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Protoss-Pylon.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Assets\Textures\Wireframe-Protoss-Pylon-Shield01.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-Pylon-Shield02.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-Pylon-Shield03.dds"/>
+        </WireframeShield>
+    </CActorUnit>
+    <CActorSplat id="PylonSplat2" parent="GenericUnitSplat" unitName="Pylon2"/>
+    <CActorModel id="RestoreShieldsImpactModel2" parent="ModelAnimationStyleOneShot">
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <On Terms="Effect.UnfairSC2DamageReductionShieldReaction.Start; At Source" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="ShieldAbsorbImmortalViz"/>
+        <AutoScaleFactor value="0.800000"/>
+    </CActorModel>
+    <CActorModel id="UnfairSC2Waaagh" parent="ModelAnimationStyleContinuous">
+        <Flags index="SuppressSaveLoad" value="1"/>
+        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce"/>
+        <On index="1" Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
+        <On index="2" Terms="ActorOrphan" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.UnfairSC2WaaaghInit; At Caster" Send="Create"/>
+    </CActorModel>
+    <CActorModel id="UnfairSC2WalkingDeadBirth" parent="ModelAnimationStyleOneShot">
+        <Terms value="ValidateUnit IsBiological"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <On Terms="Effect.UnfairSC2WalkingDeadBirth; At Target" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="LurkerMPEggDeath"/>
+        <AutoScaleFactor value="1.000000"/>
+    </CActorModel>
+    <CActorModel id="UnfairSC2CritStrikeBio" parent="ModelAnimationStyleOneShot">
+        <Terms value="ValidateUnit IsBiological"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <On Terms="Effect.UnfairSc2CritDummy; At Target" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="ZergBuildingBloodHeavy"/>
+        <AutoScaleFactor value="1.500000"/>
+    </CActorModel>
+    <CActorRange id="SensorTowerRadar2">
+        <Inherits index="Visibility" value="0"/>
+        <FogVisibility value="Visible"/>
+        <Range value="50.000000"/>
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+        <IconArcLength value="3.250000"/>
+        <RangeFlags index="Minimap" value="1"/>
+    </CActorRange>
+    <CActorModel id="UnfairSC2CoughtSoulBirth" parent="ModelAnimationStyleOneShot">
+        <Terms value="ValidateUnit IsBiological"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <On Terms="Effect.UnfairSC2CaughtSoulBirth; At Target" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="HallucinationBirth"/>
+        <AutoScaleFactor value="0.500000"/>
+    </CActorModel>
+    <CActorModel id="UnfairSC2CritStrikeMech" parent="ModelAnimationStyleOneShot">
+        <Terms value="ValidateUnit IsMechanical"/>
+        <Inherits index="BaseModelScale" value="1"/>
+        <Inherits index="Scale" value="1"/>
+        <On Terms="Effect.UnfairSc2CritDummy; At Target" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+        <Model value="MineDroneExplodeModel"/>
+        <AutoScaleFactor value="0.250000"/>
+    </CActorModel>
+</Catalog>

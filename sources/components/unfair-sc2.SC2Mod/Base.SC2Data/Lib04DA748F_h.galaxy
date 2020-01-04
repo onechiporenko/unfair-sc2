@@ -1,0 +1,12 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CHAT
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib04DA748F_gt_ChatModStart;
+trigger lib04DA748F_gt_StartBuild;
+trigger lib04DA748F_gt_StartUpgrade;
+trigger lib04DA748F_gt_CancelBuild;
+trigger lib04DA748F_gt_CancelUpgrade;
+

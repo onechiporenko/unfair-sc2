@@ -1,0 +1,9 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BATTLE HUNGER
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib1A704C64_gt_BattleHungerModStart;
+trigger lib1A704C64_gt_UnitIsKilled;
+

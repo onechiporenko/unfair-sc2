@@ -1,0 +1,136 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibFCC56787_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CAMERA
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libFCC56787_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Camera Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libFCC56787_gt_CameraModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto011854B8_g;
+    int auto011854B8_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("78") == "0001")) {
+        auto011854B8_g = PlayerGroupAll();
+        auto011854B8_var = -1;
+        while (true) {
+            auto011854B8_var = PlayerGroupNextPlayer(auto011854B8_g, auto011854B8_var);
+            if (auto011854B8_var < 0) { break; }
+            if ((GameAttributePlayerValue("79", auto011854B8_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto011854B8_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_FCC56787_1FB0B5C2", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_FCC56787_CDE7EF93"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_FCC56787_1FB0B5C2"), StringExternal("Param/Value/lib_FCC56787_283B3FF7"), "Assets\\Textures\\vertigo_coop.dds");
+        }
+        else {
+            TriggerEnable(libFCC56787_gt_RotateCamera, false);
+        }
+    }
+    else {
+        TriggerEnable(libFCC56787_gt_RotateCamera, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFCC56787_gt_CameraModStart_Init () {
+    libFCC56787_gt_CameraModStart = TriggerCreate("libFCC56787_gt_CameraModStart_Func");
+    TriggerAddEventMapInit(libFCC56787_gt_CameraModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Rotate Camera
+//--------------------------------------------------------------------------------------------------
+bool libFCC56787_gt_RotateCamera_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_angle;
+
+    // Automatic Variable Declarations
+    playergroup auto447595FB_g;
+    int auto447595FB_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(10.0, c_timeReal);
+    while (true) {
+        auto447595FB_g = PlayerGroupAll();
+        auto447595FB_var = -1;
+        while (true) {
+            auto447595FB_var = PlayerGroupNextPlayer(auto447595FB_g, auto447595FB_var);
+            if (auto447595FB_var < 0) { break; }
+            if ((GameAttributePlayerValue("79", auto447595FB_var) == "0002")) {
+                SoundPlayForPlayer(SoundLink("UI_PlayerCameraSelect", -1), c_maxPlayers, PlayerGroupSingle(auto447595FB_var), 100.0, 0.0);
+                lv_angle = (RandomInt(0, 3) * 90.0);
+                if ((lv_angle == 360.0)) {
+                    lv_angle = 0.0;
+                }
+
+                lv_angle = (lv_angle + 90.0);
+                CameraSetValue(auto447595FB_var, c_cameraValueYaw, lv_angle, 0.0, -1, 0.0);
+            }
+
+        }
+        Wait(20.0, c_timeReal);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libFCC56787_gt_RotateCamera_Init () {
+    libFCC56787_gt_RotateCamera = TriggerCreate("libFCC56787_gt_RotateCamera_Func");
+    TriggerAddEventMapInit(libFCC56787_gt_RotateCamera);
+}
+
+void libFCC56787_InitTriggers () {
+    libFCC56787_gt_CameraModStart_Init();
+    libFCC56787_gt_RotateCamera_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libFCC56787_InitLib_completed = false;
+
+void libFCC56787_InitLib () {
+    if (libFCC56787_InitLib_completed) {
+        return;
+    }
+
+    libFCC56787_InitLib_completed = true;
+
+    libFCC56787_InitLibraries();
+    libFCC56787_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

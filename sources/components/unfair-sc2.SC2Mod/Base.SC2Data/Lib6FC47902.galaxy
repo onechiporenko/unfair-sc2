@@ -1,0 +1,126 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib6FC47902_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RANDOM RALLY POINTS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib6FC47902_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Random Rally Points Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib6FC47902_gt_RandomRallyPointsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto9113D3E9_g;
+    int auto9113D3E9_var;
+    playergroup auto02623EB4_g;
+    int auto02623EB4_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("164") == "0001")) {
+        auto9113D3E9_g = PlayerGroupAll();
+        auto9113D3E9_var = -1;
+        while (true) {
+            auto9113D3E9_var = PlayerGroupNextPlayer(auto9113D3E9_g, auto9113D3E9_var);
+            if (auto9113D3E9_var < 0) { break; }
+            if ((GameAttributePlayerValue("165", auto9113D3E9_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto9113D3E9_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            auto02623EB4_g = lv_players;
+            auto02623EB4_var = -1;
+            while (true) {
+                auto02623EB4_var = PlayerGroupNextPlayer(auto02623EB4_g, auto02623EB4_var);
+                if (auto02623EB4_var < 0) { break; }
+            }
+            TextExpressionSetToken("Param/Expression/lib_6FC47902_E46A60A1", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_6FC47902_31B3D829"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_6FC47902_E46A60A1"), StringExternal("Param/Value/lib_6FC47902_713C0D46"), "Assets\\Textures\\btn-ability-terran-setrallypoint.dds");
+        }
+        else {
+            TriggerEnable(lib6FC47902_gt_SetRandomRallyPointToCreatedUnit, false);
+        }
+    }
+    else {
+        TriggerEnable(lib6FC47902_gt_SetRandomRallyPointToCreatedUnit, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib6FC47902_gt_RandomRallyPointsModStart_Init () {
+    lib6FC47902_gt_RandomRallyPointsModStart = TriggerCreate("lib6FC47902_gt_RandomRallyPointsModStart_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Random Rally Point To Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("165", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitCreatedUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitIssueOrder(EventUnitCreatedUnit(), OrderTargetingPoint(AbilityCommand("move", 0), RegionRandomPoint(RegionPlayableMap())), c_orderQueueReplace);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Init () {
+    lib6FC47902_gt_SetRandomRallyPointToCreatedUnit = TriggerCreate("lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib6FC47902_gt_SetRandomRallyPointToCreatedUnit, null, null, null);
+}
+
+void lib6FC47902_InitTriggers () {
+    lib6FC47902_gt_RandomRallyPointsModStart_Init();
+    lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib6FC47902_InitLib_completed = false;
+
+void lib6FC47902_InitLib () {
+    if (lib6FC47902_InitLib_completed) {
+        return;
+    }
+
+    lib6FC47902_InitLib_completed = true;
+
+    lib6FC47902_InitLibraries();
+    lib6FC47902_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

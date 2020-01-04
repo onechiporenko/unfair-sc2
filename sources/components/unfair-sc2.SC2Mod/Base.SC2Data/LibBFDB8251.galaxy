@@ -1,0 +1,95 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibBFDB8251_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO FLY
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libBFDB8251_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Fly Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libBFDB8251_gt_NoFlyModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto033A8FC2_g;
+    int auto033A8FC2_var;
+    int auto07A7D2B0_ae;
+    int auto07A7D2B0_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("102") == "0001")) {
+        auto033A8FC2_g = PlayerGroupAll();
+        auto033A8FC2_var = -1;
+        while (true) {
+            auto033A8FC2_var = PlayerGroupNextPlayer(auto033A8FC2_g, auto033A8FC2_var);
+            if (auto033A8FC2_var < 0) { break; }
+            if ((GameAttributePlayerValue("103", auto033A8FC2_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto033A8FC2_var);
+                auto07A7D2B0_ae = libDBC4E2D2_gv_numberOfFlyingUnits;
+                auto07A7D2B0_var = 0;
+                for ( ; auto07A7D2B0_var <= auto07A7D2B0_ae; auto07A7D2B0_var += 1 ) {
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(5) + "]", auto033A8FC2_var, "1");
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(7) + "]", auto033A8FC2_var, "0");
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(28) + "]", auto033A8FC2_var, "1");
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(29) + "]", auto033A8FC2_var, "1");
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Mover", auto033A8FC2_var, "Ground");
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "VisionHeight", auto033A8FC2_var, "0");
+                }
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_BFDB8251_5E78C1DA", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BFDB8251_8D8C8325"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BFDB8251_5E78C1DA"), StringExternal("Param/Value/lib_BFDB8251_42E00026"), "Assets\\Textures\\btn-ability-zeratul-topbar-directlegions.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBFDB8251_gt_NoFlyModStart_Init () {
+    libBFDB8251_gt_NoFlyModStart = TriggerCreate("libBFDB8251_gt_NoFlyModStart_Func");
+    TriggerAddEventGeneric(libBFDB8251_gt_NoFlyModStart, "SETUP COMPLETE EVENT");
+}
+
+void libBFDB8251_InitTriggers () {
+    libBFDB8251_gt_NoFlyModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libBFDB8251_InitLib_completed = false;
+
+void libBFDB8251_InitLib () {
+    if (libBFDB8251_InitLib_completed) {
+        return;
+    }
+
+    libBFDB8251_InitLib_completed = true;
+
+    libBFDB8251_InitLibraries();
+    libBFDB8251_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

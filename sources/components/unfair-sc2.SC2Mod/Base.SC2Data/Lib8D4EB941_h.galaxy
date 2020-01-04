@@ -1,0 +1,21 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NUKED
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+region lib8D4EB941_gv_safeZone;
+int lib8D4EB941_gv_nukesDelay;
+int lib8D4EB941_gv_nukesPerWave;
+timer lib8D4EB941_gv_nukesTimer;
+
+// Function Declarations
+void lib8D4EB941_gf_SpawnNuke ();
+
+// Trigger Declarations
+trigger lib8D4EB941_gt_NukedModStart;
+trigger lib8D4EB941_gt_SpawnNukes;
+
+// Library Initialization
+void lib8D4EB941_InitVariables ();
+

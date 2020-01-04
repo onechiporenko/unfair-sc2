@@ -1,0 +1,22 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BLINK WARS
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+timer lib88BAA5D0_gv_blinkTimer;
+int lib88BAA5D0_gv_blinkTimerWindow;
+
+// Function Declarations
+void lib88BAA5D0_gf_RemoveBlink (unit lp_unit);
+
+// Trigger Declarations
+trigger lib88BAA5D0_gt_BlinkWarsModStart;
+trigger lib88BAA5D0_gt_RemoveBlinkFromInitialUnits;
+trigger lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit;
+trigger lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit;
+trigger lib88BAA5D0_gt_GiveBlink;
+
+// Library Initialization
+void lib88BAA5D0_InitVariables ();
+

@@ -1,0 +1,9 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CAMERA
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libFCC56787_gt_CameraModStart;
+trigger libFCC56787_gt_RotateCamera;
+

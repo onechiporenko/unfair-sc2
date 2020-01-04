@@ -1,0 +1,13 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: DARKNESS
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib60DF5275_gf_AddDarknessBehavior (unit lp_unit);
+
+// Trigger Declarations
+trigger lib60DF5275_gt_DarknessModStart;
+trigger lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit;
+trigger lib60DF5275_gt_AddDarknessBehaviorForInitialUnits;
+

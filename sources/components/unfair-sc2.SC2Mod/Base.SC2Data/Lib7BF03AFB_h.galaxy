@@ -1,0 +1,20 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: LAST WILL
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+fixed lib7BF03AFB_gv_lastWillCasteChance;
+bool lib7BF03AFB_gv_useLastWillCaste;
+
+// Function Declarations
+fixed lib7BF03AFB_gf_GetLastWillRateForPlayer (int lp_player);
+fixed lib7BF03AFB_gf_GetLastWillCasteChance ();
+
+// Trigger Declarations
+trigger lib7BF03AFB_gt_LastWillModStart;
+trigger lib7BF03AFB_gt_UnitTakesFatalDamage;
+
+// Library Initialization
+void lib7BF03AFB_InitVariables ();
+

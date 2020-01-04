@@ -1,0 +1,11 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO MINIMAP
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib14F77331_gf_ToggleMinimapPanel (int lp_player);
+
+// Trigger Declarations
+trigger lib14F77331_gt_NoMinimapModStart;
+

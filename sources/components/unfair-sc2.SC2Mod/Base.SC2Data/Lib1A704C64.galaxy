@@ -1,0 +1,145 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib1A704C64_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BATTLE HUNGER
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib1A704C64_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Battle Hunger Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib1A704C64_gt_BattleHungerModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_defaultDescription;
+
+    // Automatic Variable Declarations
+    playergroup auto1E79CEB3_g;
+    int auto1E79CEB3_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_defaultDescription = StringExternal("Param/Value/lib_1A704C64_278A2556");
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("48") == "0001")) {
+        auto1E79CEB3_g = PlayerGroupAll();
+        auto1E79CEB3_var = -1;
+        while (true) {
+            auto1E79CEB3_var = PlayerGroupNextPlayer(auto1E79CEB3_g, auto1E79CEB3_var);
+            if (auto1E79CEB3_var < 0) { break; }
+            if ((GameAttributePlayerValue("49", auto1E79CEB3_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto1E79CEB3_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_1A704C64_CFFB82CC", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_1A704C64_6AE20476"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_1A704C64_CFFB82CC")), StringExternal("Param/Value/lib_1A704C64_B3917A4E"), "Assets\\Textures\\btn-ability-terran-stimpack-color.dds");
+        }
+        else {
+            TriggerEnable(lib1A704C64_gt_UnitIsKilled, false);
+        }
+    }
+    else {
+        TriggerEnable(lib1A704C64_gt_UnitIsKilled, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1A704C64_gt_BattleHungerModStart_Init () {
+    lib1A704C64_gt_BattleHungerModStart = TriggerCreate("lib1A704C64_gt_BattleHungerModStart_Func");
+    TriggerAddEventMapInit(lib1A704C64_gt_BattleHungerModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Is Killed
+//--------------------------------------------------------------------------------------------------
+bool lib1A704C64_gt_UnitIsKilled_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("49", EventUnitDamageSourcePlayer()) == "0001"))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != ""))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != "LocustMP"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != "Broodling"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_unit = EventUnitDamageSourceUnit();
+    libNtve_gf_AttachModelToUnit(EventUnitDamageSourceUnit(), "ZergBuildingBlood", "Ref_Overhead");
+    UnitBehaviorAdd(EventUnitDamageSourceUnit(), "Stimpack", EventUnitDamageSourceUnit(), 1);
+    Wait(2.0, c_timeGame);
+    if ((UnitIsAlive(lv_unit) == true)) {
+        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib1A704C64_gt_UnitIsKilled_Init () {
+    lib1A704C64_gt_UnitIsKilled = TriggerCreate("lib1A704C64_gt_UnitIsKilled_Func");
+    TriggerAddEventUnitDamaged(lib1A704C64_gt_UnitIsKilled, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
+}
+
+void lib1A704C64_InitTriggers () {
+    lib1A704C64_gt_BattleHungerModStart_Init();
+    lib1A704C64_gt_UnitIsKilled_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib1A704C64_InitLib_completed = false;
+
+void lib1A704C64_InitLib () {
+    if (lib1A704C64_InitLib_completed) {
+        return;
+    }
+
+    lib1A704C64_InitLib_completed = true;
+
+    lib1A704C64_InitLibraries();
+    lib1A704C64_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

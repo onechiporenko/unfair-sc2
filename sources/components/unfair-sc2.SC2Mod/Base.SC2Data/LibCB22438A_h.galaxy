@@ -1,0 +1,23 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BERSERKER'S BLOOD
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libCB22438A_gf_AddBerserkersBloodBehaviors (unit lp_unit);
+
+// Trigger Declarations
+trigger libCB22438A_gt_ChangeUnitSize145;
+trigger libCB22438A_gt_ChangeUnitSize140;
+trigger libCB22438A_gt_ChangeUnitSize135;
+trigger libCB22438A_gt_ChangeUnitSize130;
+trigger libCB22438A_gt_ChangeUnitSize125;
+trigger libCB22438A_gt_ChangeUnitSize120;
+trigger libCB22438A_gt_ChangeUnitSize115;
+trigger libCB22438A_gt_ChangeUnitSize110;
+trigger libCB22438A_gt_ChangeUnitSize105;
+trigger libCB22438A_gt_ChangeUnitSize100;
+trigger libCB22438A_gt_BerserkersBloodModStart;
+trigger libCB22438A_gt_AddBuffForInitialUnits;
+trigger libCB22438A_gt_AddBuffForCreatedUnit;
+

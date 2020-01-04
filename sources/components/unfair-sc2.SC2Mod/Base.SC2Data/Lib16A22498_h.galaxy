@@ -1,0 +1,9 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: EXTRA CREEP
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib16A22498_gt_ExtraCreepModStart;
+trigger lib16A22498_gt_ZergStructureIsBuilt;
+

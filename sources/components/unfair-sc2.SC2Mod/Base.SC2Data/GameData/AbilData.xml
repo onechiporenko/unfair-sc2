@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CAbilEffectTarget id="Grapple">
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+    </CAbilEffectTarget>
+    <CAbilEffectTarget id="PsiStorm2">
+        <Alignment value="Negative"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <Effect index="0" value="PsiStormPersistent"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="75"/>
+            <Charge Link="Abil/PsiStorm"/>
+            <Cooldown Link="Abil/PsiStorm" TimeUse="2"/>
+        </Cost>
+        <Range value="9"/>
+        <CastOutroTime value="0.5"/>
+        <CursorEffect value="PsiStormSearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PsiStorm" Requirements="UsePsiStorm"/>
+    </CAbilEffectTarget>
+    <CAbilEffectInstant id="UnfairSC2MacroDefProtoss">
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirm_Void\WayPointConfirm_Void.m3"/>
+        <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
+        <Effect index="0" value="BuildMacroDefProtoss"/>
+        <Cost>
+            <Cooldown TimeUse="1800"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UnfSC2MacroDefProtoss"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="UnfairSC2MacroDefTerran">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Effect index="0" value="UnknownEffect"/>
+        <Cost>
+            <Cooldown TimeUse="1800"/>
+        </Cost>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UnfairSC2MacroDefTerran"/>
+    </CAbilEffectInstant>
+    <CAbilEffectInstant id="UnfairSC2MacroDefZerg">
+        <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
+        <Effect index="0" value="BuildMacroDefZerg"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UnfairSC2MacroDefZerg"/>
+        <Cost>
+            <Cooldown TimeUse="1800"/>
+        </Cost>
+    </CAbilEffectInstant>
+</Catalog>

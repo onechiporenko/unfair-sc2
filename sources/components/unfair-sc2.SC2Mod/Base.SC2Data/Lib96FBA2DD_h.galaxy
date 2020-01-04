@@ -1,0 +1,20 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RIOT WORKERS
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib96FBA2DD_gv_riotFreequency;
+fixed lib96FBA2DD_gv_riotWorkersPercent;
+timer lib96FBA2DD_gv_riotTimer;
+
+// Function Declarations
+void lib96FBA2DD_gf_Riot (int lp_player);
+
+// Trigger Declarations
+trigger lib96FBA2DD_gt_RiotWorkersModStart;
+trigger lib96FBA2DD_gt_DoRiot;
+
+// Library Initialization
+void lib96FBA2DD_InitVariables ();
+

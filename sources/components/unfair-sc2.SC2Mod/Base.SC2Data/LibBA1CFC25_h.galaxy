@@ -1,0 +1,10 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: REDUCE MINING
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libBA1CFC25_gt_ReduceMiningModStart;
+trigger libBA1CFC25_gt_PlayerCollectsMinerals;
+trigger libBA1CFC25_gt_PlayerCollectsVespene;
+

@@ -1,0 +1,10 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO SHIELDS
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib7FB8482D_gt_NoShieldsModStart;
+trigger lib7FB8482D_gt_RemoveShieldsFromInitialUnits;
+trigger lib7FB8482D_gt_UnitIsCreated;
+

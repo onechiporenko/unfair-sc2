@@ -1,0 +1,189 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib60DF5275_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: DARKNESS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib60DF5275_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void lib60DF5275_gf_AddDarknessBehavior (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((GameAttributePlayerValue("60", UnitGetOwner(lp_unit)) == "0004") || (GameAttributePlayerValue("60", UnitGetOwner(lp_unit)) == "0005"))) {
+        UnitBehaviorAdd(lp_unit, "UnfairSc2Darkness", lp_unit, 1);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Darkness Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib60DF5275_gt_DarknessModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup autoF10809D5_g;
+    int autoF10809D5_var;
+    playergroup auto06D1449C_g;
+    int auto06D1449C_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("59") == "0001")) {
+        autoF10809D5_g = PlayerGroupActive();
+        autoF10809D5_var = -1;
+        while (true) {
+            autoF10809D5_var = PlayerGroupNextPlayer(autoF10809D5_g, autoF10809D5_var);
+            if (autoF10809D5_var < 0) { break; }
+            if ((GameAttributePlayerValue("60", autoF10809D5_var) != "0002")) {
+                PlayerGroupAdd(lv_players, autoF10809D5_var);
+                if (((GameAttributePlayerValue("60", autoF10809D5_var) == "0003") || (GameAttributePlayerValue("60", autoF10809D5_var) == "0005"))) {
+                    libDBC4E2D2_gv_players[autoF10809D5_var].lv_dARKNESS.lv_hideMap = true;
+                    VisFillArea(autoF10809D5_var, RegionEntireMap(), c_fillTypeHidden, false);
+                }
+
+                if (((GameAttributePlayerValue("60", autoF10809D5_var) == "0004") || (GameAttributePlayerValue("60", autoF10809D5_var) == "0005"))) {
+                    libDBC4E2D2_gv_players[autoF10809D5_var].lv_dARKNESS.lv_reduceVisionRange = true;
+                }
+
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(lib60DF5275_gt_AddDarknessBehaviorForInitialUnits, true, false);
+            auto06D1449C_g = lv_players;
+            auto06D1449C_var = -1;
+            while (true) {
+                auto06D1449C_var = PlayerGroupNextPlayer(auto06D1449C_g, auto06D1449C_var);
+                if (auto06D1449C_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_60DF5275_885DBCEE", "A", TextWithColor(PlayerName(auto06D1449C_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto06D1449C_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_60DF5275_885DBCEE"));
+                TextExpressionSetToken("Param/Expression/lib_60DF5275_56CE1DEA", "A", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_players[auto06D1449C_var].lv_dARKNESS.lv_hideMap));
+                TextExpressionSetToken("Param/Expression/lib_60DF5275_56CE1DEA", "B", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_players[auto06D1449C_var].lv_dARKNESS.lv_reduceVisionRange));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_60DF5275_56CE1DEA"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_60DF5275_16F46C53", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_60DF5275_DA2097B8"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_60DF5275_16F46C53"), StringExternal("Param/Value/lib_60DF5275_FEA94984"), "Assets\\Textures\\darkness_coop.dds");
+        }
+        else {
+            TriggerEnable(lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit, false);
+            TriggerEnable(lib60DF5275_gt_AddDarknessBehaviorForInitialUnits, false);
+        }
+    }
+    else {
+        TriggerEnable(lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit, false);
+        TriggerEnable(lib60DF5275_gt_AddDarknessBehaviorForInitialUnits, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib60DF5275_gt_DarknessModStart_Init () {
+    lib60DF5275_gt_DarknessModStart = TriggerCreate("lib60DF5275_gt_DarknessModStart_Func");
+    TriggerAddEventMapInit(lib60DF5275_gt_DarknessModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Darkness Behavior For Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib60DF5275_gf_AddDarknessBehavior(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit_Init () {
+    lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit = TriggerCreate("lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Darkness Behavior For Initial Units
+//--------------------------------------------------------------------------------------------------
+bool lib60DF5275_gt_AddDarknessBehaviorForInitialUnits_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto294816DF_g;
+    int auto294816DF_var;
+    unitgroup auto6EA02DF1_g;
+    int auto6EA02DF1_u;
+    unit auto6EA02DF1_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    auto294816DF_g = PlayerGroupAll();
+    auto294816DF_var = -1;
+    while (true) {
+        auto294816DF_var = PlayerGroupNextPlayer(auto294816DF_g, auto294816DF_var);
+        if (auto294816DF_var < 0) { break; }
+        auto6EA02DF1_g = UnitGroup(null, auto294816DF_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto6EA02DF1_u = UnitGroupCount(auto6EA02DF1_g, c_unitCountAll);
+        for (;; auto6EA02DF1_u -= 1) {
+            auto6EA02DF1_var = UnitGroupUnitFromEnd(auto6EA02DF1_g, auto6EA02DF1_u);
+            if (auto6EA02DF1_var == null) { break; }
+            lib60DF5275_gf_AddDarknessBehavior(auto6EA02DF1_var);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib60DF5275_gt_AddDarknessBehaviorForInitialUnits_Init () {
+    lib60DF5275_gt_AddDarknessBehaviorForInitialUnits = TriggerCreate("lib60DF5275_gt_AddDarknessBehaviorForInitialUnits_Func");
+}
+
+void lib60DF5275_InitTriggers () {
+    lib60DF5275_gt_DarknessModStart_Init();
+    lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit_Init();
+    lib60DF5275_gt_AddDarknessBehaviorForInitialUnits_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib60DF5275_InitLib_completed = false;
+
+void lib60DF5275_InitLib () {
+    if (lib60DF5275_InitLib_completed) {
+        return;
+    }
+
+    lib60DF5275_InitLib_completed = true;
+
+    lib60DF5275_InitLibraries();
+    lib60DF5275_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

@@ -1,0 +1,17 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: DOUBLE
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib3BAA32A3_gv_doubleLeaderboard;
+
+// Trigger Declarations
+trigger lib3BAA32A3_gt_DoubleModStart;
+trigger lib3BAA32A3_gt_DuplicateCreatedUnit;
+trigger lib3BAA32A3_gt_UpdateDoubleLeaderboard;
+trigger lib3BAA32A3_gt_ShowSavedResources;
+
+// Library Initialization
+void lib3BAA32A3_InitVariables ();
+

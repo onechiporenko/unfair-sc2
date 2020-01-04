@@ -1,0 +1,163 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibB7A8BF05_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: FAIR PLAY
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libB7A8BF05_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Fair Play Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libB7A8BF05_gt_FairPlayModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoA972010C_g;
+    int autoA972010C_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("149") == "0001")) {
+        autoA972010C_g = PlayerGroupAll();
+        autoA972010C_var = -1;
+        while (true) {
+            autoA972010C_var = PlayerGroupNextPlayer(autoA972010C_g, autoA972010C_var);
+            if (autoA972010C_var < 0) { break; }
+            if ((GameAttributePlayerValue("150", autoA972010C_var) == "0001")) {
+                PlayerGroupAdd(lv_players, autoA972010C_var);
+                CatalogFieldValueSet(c_gameCatalogEffect, "PhotonCannonU", "Amount", autoA972010C_var, "0");
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(libB7A8BF05_gt_AddAuraToInitialNexuses, true, false);
+            TextExpressionSetToken("Param/Expression/lib_B7A8BF05_980EAA61", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_B7A8BF05_AD3357FC"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_B7A8BF05_980EAA61"), StringExternal("Param/Value/lib_B7A8BF05_9349B108"), "Assets\\Textures\\btn-ability-protoss-phasecannon.dds");
+        }
+        else {
+            TriggerEnable(libB7A8BF05_gt_AddAuraToNexus, false);
+        }
+    }
+    else {
+        TriggerEnable(libB7A8BF05_gt_AddAuraToNexus, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libB7A8BF05_gt_FairPlayModStart_Init () {
+    libB7A8BF05_gt_FairPlayModStart = TriggerCreate("libB7A8BF05_gt_FairPlayModStart_Func");
+    TriggerAddEventMapInit(libB7A8BF05_gt_FairPlayModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Aura To Initial Nexuses
+//--------------------------------------------------------------------------------------------------
+bool libB7A8BF05_gt_AddAuraToInitialNexuses_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoA7DF03A5_g;
+    int autoA7DF03A5_var;
+    unitgroup auto6508BA33_g;
+    int auto6508BA33_u;
+    unit auto6508BA33_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    autoA7DF03A5_g = PlayerGroupAll();
+    autoA7DF03A5_var = -1;
+    while (true) {
+        autoA7DF03A5_var = PlayerGroupNextPlayer(autoA7DF03A5_g, autoA7DF03A5_var);
+        if (autoA7DF03A5_var < 0) { break; }
+        if ((GameAttributePlayerValue("150", autoA7DF03A5_var) == "0001")) {
+            auto6508BA33_g = UnitGroup("Nexus", autoA7DF03A5_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto6508BA33_u = UnitGroupCount(auto6508BA33_g, c_unitCountAll);
+            for (;; auto6508BA33_u -= 1) {
+                auto6508BA33_var = UnitGroupUnitFromEnd(auto6508BA33_g, auto6508BA33_u);
+                if (auto6508BA33_var == null) { break; }
+                UnitBehaviorAdd(auto6508BA33_var, "FairCannonsAura", auto6508BA33_var, 1);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libB7A8BF05_gt_AddAuraToInitialNexuses_Init () {
+    libB7A8BF05_gt_AddAuraToInitialNexuses = TriggerCreate("libB7A8BF05_gt_AddAuraToInitialNexuses_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Aura To Nexus
+//--------------------------------------------------------------------------------------------------
+bool libB7A8BF05_gt_AddAuraToNexus_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libNtve_gf_TriggeringProgressUnitType() == "Nexus"))) {
+            return false;
+        }
+
+        if (!((GameAttributePlayerValue("150", UnitGetOwner(EventUnitProgressUnit())) == "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(EventUnitProgressUnit(), "FairCannonsAura", EventUnitProgressUnit(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libB7A8BF05_gt_AddAuraToNexus_Init () {
+    libB7A8BF05_gt_AddAuraToNexus = TriggerCreate("libB7A8BF05_gt_AddAuraToNexus_Func");
+    TriggerAddEventUnitConstructProgress(libB7A8BF05_gt_AddAuraToNexus, null, c_unitProgressStageComplete);
+}
+
+void libB7A8BF05_InitTriggers () {
+    libB7A8BF05_gt_FairPlayModStart_Init();
+    libB7A8BF05_gt_AddAuraToInitialNexuses_Init();
+    libB7A8BF05_gt_AddAuraToNexus_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libB7A8BF05_InitLib_completed = false;
+
+void libB7A8BF05_InitLib () {
+    if (libB7A8BF05_InitLib_completed) {
+        return;
+    }
+
+    libB7A8BF05_InitLib_completed = true;
+
+    libB7A8BF05_InitLibraries();
+    libB7A8BF05_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

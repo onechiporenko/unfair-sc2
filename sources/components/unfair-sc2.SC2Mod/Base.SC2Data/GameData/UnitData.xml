@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CUnit id="Adept">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Archon">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Baneling">
+        <AbilArray Link="Grapple"/>
+        <AbilArray Link="Blink"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Grapple" Type="AbilCmd" AbilCmd="Grapple,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Grapple" Type="AbilCmd" AbilCmd="Grapple,Execute" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="BanelingBurrowed">
+        <AbilArray Link="Grapple"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Grapple" Type="AbilCmd" AbilCmd="Grapple,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Grapple" Type="AbilCmd" AbilCmd="Grapple,Execute" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Banshee">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,255" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Battlecruiser">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="BroodLord">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Carrier">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="Blink"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="Blink,Execute"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="2"/>
+                <Column value="2"/>
+            </LayoutButtons>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Colossus">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="CommandCenter">
+        <AbilArray Link="UnfairSC2MacroDefTerran"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="UnfairSC2MacroDefTerran" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefTerran,Execute" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Corruptor">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Cyclone">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="DarkTemplar">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <!--                                                                                         -->
+    <!-- Defiler ............................................................................... -->
+    <!--                                                                                         -->
+    <CUnit id="DefilerMP">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Disruptor">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <!--AbilArray Link="Overcharge"/>
+        <AbilArray Link="PurificationNova"/>
+        <AbilArray Link="PurificationNovaMorph"/-->
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Drone"/>
+    <CUnit id="Ghost">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="4"/>
+            <LayoutButtons Face="Charge" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Hatchery">
+        <AbilArray Link="UnfairSC2MacroDefZerg"/>
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="UnfairSC2MacroDefZerg"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="UnfairSC2MacroDefZerg,Execute"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="1"/>
+                <Column value="1"/>
+            </LayoutButtons>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Hellion">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="HellionTank">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="HighTemplar">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Hive">
+        <AbilArray Link="UnfairSC2MacroDefZerg"/>
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="UnfairSC2MacroDefZerg"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="UnfairSC2MacroDefZerg,Execute"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="1"/>
+                <Column value="1"/>
+            </LayoutButtons>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Hydralisk">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Immortal">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Infestor">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Lair">
+        <AbilArray Link="UnfairSC2MacroDefZerg"/>
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="UnfairSC2MacroDefZerg"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="UnfairSC2MacroDefZerg,Execute"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="1"/>
+                <Column value="1"/>
+            </LayoutButtons>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Liberator">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="LurkerMP">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="MULE">
+        <AbilArray Link="Blink"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Marauder">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="5" AbilCmd="255,255"/>
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Marine">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Medivac">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Mothership">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="MothershipCore">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Mutalisk">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Nexus">
+        <AbilArray index="8" Link="UnfairSC2MacroDefProtoss"/>
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="UnfSC2MacroDefProtoss"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="UnfairSC2MacroDefProtoss,Execute"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="1"/>
+                <Column value="1"/>
+            </LayoutButtons>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Observer">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Oracle">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="OrbitalCommand">
+        <AbilArray Link="UnfairSC2MacroDefTerran"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="UnfairSC2MacroDefTerran" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefTerran,Execute" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Overlord">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="Blink"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="Blink,Execute"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="1"/>
+                <Column value="3"/>
+            </LayoutButtons>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Overseer">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <!--AbilArray Link="SpawnChangelingTarget"/-->
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Phoenix">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="PlanetaryFortress">
+        <AbilArray Link="UnfairSC2MacroDefTerran"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="UnfairSC2MacroDefTerran" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefTerran,Execute" Row="1" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Probe"/>
+    <CUnit id="Pylon2">
+        <Name value="Unfair Pylon"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Prot"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="PreventDefeat" value="1"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="PenaltyRevealed" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="TownAlert" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+        <FogVisibility value="Snapshot"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <Collide index="RoachBurrow" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Structure" value="1"/>
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+        <LifeArmor value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossBuildingPlating"/>
+        <ShieldsStart value="200"/>
+        <ShieldsMax value="200"/>
+        <ShieldRegenDelay value="10"/>
+        <ShieldRegenRate value="2"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <StationaryTurningRate value="719.4726"/>
+        <TurningRate value="719.4726"/>
+        <Sight value="9"/>
+        <CostCategory value="Economy"/>
+        <CostResource index="Minerals" value="100"/>
+        <AttackTargetPriority value="11"/>
+        <AbilArray Link="BuildInProgress"/>
+        <BehaviorArray Link="PowerSource"/>
+        <TurretArray value="PylonCrystalRotate"/>
+        <TurretArray value="PylonRingRotate"/>
+        <CardLayouts>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <Footprint value="Footprint2x2Contour"/>
+        <PlacementFootprint value="Footprint2x2"/>
+        <ScoreMake value="100"/>
+        <ScoreKill value="100"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="2"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:Melee"/>
+        <GlossaryPriority value="18"/>
+        <HotkeyCategory value="Unit/Category/ProtossUnits"/>
+    </CUnit>
+    <CUnit id="Queen">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Ravager">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Raven">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Reaper">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Roach">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="SCV">
+        <DeathRevealFilters value="-;Player,Ally,Neutral,Missile,Dead,Hidden"/>
+    </CUnit>
+    <CUnit id="Sentry">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="SiegeTank">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Stalker">
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="SwarmHostMP">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Tempest">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Thor">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="Blink"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="Blink,Execute"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="2"/>
+                <Column value="2"/>
+            </LayoutButtons>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="ThorAP">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Ultralisk">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="VikingAssault">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="VikingFighter">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Viper">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="VoidRay">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="WarpPrism">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="1" Column="3"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="WidowMine">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="4"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Zealot">
+        <AbilArray Link="Blink"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Zergling">
+        <AbilArray Link="Blink"/>
+        <AbilArray Link="Charge"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
+            <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+</Catalog>

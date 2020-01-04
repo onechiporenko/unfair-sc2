@@ -1,0 +1,11 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CRITICAL MISS
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libF7F71763_gt_CriticalMissModStart;
+trigger libF7F71763_gt_UnitTakesDamage;
+trigger libF7F71763_gt_AddCritMissForInitialUnits;
+trigger libF7F71763_gt_SetCritMissBehaviorForCreatedUnit;
+

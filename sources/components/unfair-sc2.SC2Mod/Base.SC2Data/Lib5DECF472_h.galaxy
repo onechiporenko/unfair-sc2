@@ -1,0 +1,25 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ON ORDER
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib5DECF472_gv_ordersLeaderboard;
+int lib5DECF472_gv_mineralsFee;
+int lib5DECF472_gv_vespeneFee;
+playergroup lib5DECF472_gv_playersWithTransactions;
+
+// Function Declarations
+int lib5DECF472_gf_GetMineralsFee ();
+int lib5DECF472_gf_GetVespeneFee ();
+playergroup lib5DECF472_gf_filterPlayersWithTransactions ();
+
+// Trigger Declarations
+trigger lib5DECF472_gt_OrderCostsModStart;
+trigger lib5DECF472_gt_onOrder;
+trigger lib5DECF472_gt_ShowLostResources;
+trigger lib5DECF472_gt_UpdateOrderCostsLeaderboard;
+
+// Library Initialization
+void lib5DECF472_InitVariables ();
+

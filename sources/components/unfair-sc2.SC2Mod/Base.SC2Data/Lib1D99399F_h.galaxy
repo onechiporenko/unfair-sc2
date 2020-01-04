@@ -1,0 +1,21 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: TEMPORAL FIELDS
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+region lib1D99399F_gv_safeZone;
+int lib1D99399F_gv_temporalFieldsDelay;
+int lib1D99399F_gv_temporalFieldsPerWave;
+timer lib1D99399F_gv_temporalFieldsTimer;
+
+// Function Declarations
+void lib1D99399F_gf_SpawnTemporalField ();
+
+// Trigger Declarations
+trigger lib1D99399F_gt_TemporalFieldsModStart;
+trigger lib1D99399F_gt_SpawnTemporalFields;
+
+// Library Initialization
+void lib1D99399F_InitVariables ();
+

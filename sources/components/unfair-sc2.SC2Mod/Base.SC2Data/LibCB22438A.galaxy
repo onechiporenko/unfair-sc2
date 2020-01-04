@@ -1,0 +1,385 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibCB22438A_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BERSERKER'S BLOOD
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libCB22438A_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void libCB22438A_gf_AddBerserkersBloodBehaviors (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood10", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood20", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood30", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood40", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood50", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood60", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood70", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood80", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood90", lp_unit, 1);
+    UnitBehaviorAdd(lp_unit, "UnfairSc2BerserkersBlood102", lp_unit, 1);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 145
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize145_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 145.0, 145.0, 145.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize145_Init () {
+    libCB22438A_gt_ChangeUnitSize145 = TriggerCreate("libCB22438A_gt_ChangeUnitSize145_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize145, null, "UnfairSc2BerserkersBlood10", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 140
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize140_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 140.0, 140.0, 140.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize140_Init () {
+    libCB22438A_gt_ChangeUnitSize140 = TriggerCreate("libCB22438A_gt_ChangeUnitSize140_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize140, null, "UnfairSc2BerserkersBlood20", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 135
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize135_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 135.0, 135.0, 135.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize135_Init () {
+    libCB22438A_gt_ChangeUnitSize135 = TriggerCreate("libCB22438A_gt_ChangeUnitSize135_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize135, null, "UnfairSc2BerserkersBlood30", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 130
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize130_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 130.0, 130.0, 130.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize130_Init () {
+    libCB22438A_gt_ChangeUnitSize130 = TriggerCreate("libCB22438A_gt_ChangeUnitSize130_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize130, null, "UnfairSc2BerserkersBlood40", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 125
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize125_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 125.0, 125.0, 125.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize125_Init () {
+    libCB22438A_gt_ChangeUnitSize125 = TriggerCreate("libCB22438A_gt_ChangeUnitSize125_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize125, null, "UnfairSc2BerserkersBlood50", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 120
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize120_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 120.0, 120.0, 120.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize120_Init () {
+    libCB22438A_gt_ChangeUnitSize120 = TriggerCreate("libCB22438A_gt_ChangeUnitSize120_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize120, null, "UnfairSc2BerserkersBlood60", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 115
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize115_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 115.0, 115.0, 115.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize115_Init () {
+    libCB22438A_gt_ChangeUnitSize115 = TriggerCreate("libCB22438A_gt_ChangeUnitSize115_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize115, null, "UnfairSc2BerserkersBlood70", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 110
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize110_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 110.0, 110.0, 110.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize110_Init () {
+    libCB22438A_gt_ChangeUnitSize110 = TriggerCreate("libCB22438A_gt_ChangeUnitSize110_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize110, null, "UnfairSc2BerserkersBlood80", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 105
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize105_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 105.0, 105.0, 105.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize105_Init () {
+    libCB22438A_gt_ChangeUnitSize105 = TriggerCreate("libCB22438A_gt_ChangeUnitSize105_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize105, null, "UnfairSc2BerserkersBlood90", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Unit Size 100
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_ChangeUnitSize100_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetScale(EventUnit(), 100.0, 100.0, 100.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_ChangeUnitSize100_Init () {
+    libCB22438A_gt_ChangeUnitSize100 = TriggerCreate("libCB22438A_gt_ChangeUnitSize100_Func");
+    TriggerAddEventUnitBehaviorChange(libCB22438A_gt_ChangeUnitSize100, null, "UnfairSc2BerserkersBlood102", c_unitBehaviorChangeActivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Berserker's Blood Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_BerserkersBloodModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_defaultDescription;
+
+    // Automatic Variable Declarations
+    playergroup auto5D8198C1_g;
+    int auto5D8198C1_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_defaultDescription = StringExternal("Param/Value/lib_CB22438A_021CA37A");
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("41") == "0001")) {
+        auto5D8198C1_g = PlayerGroupAll();
+        auto5D8198C1_var = -1;
+        while (true) {
+            auto5D8198C1_var = PlayerGroupNextPlayer(auto5D8198C1_g, auto5D8198C1_var);
+            if (auto5D8198C1_var < 0) { break; }
+            if ((GameAttributePlayerValue("42", auto5D8198C1_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto5D8198C1_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_CB22438A_310396C1", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_CB22438A_298195BA"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_CB22438A_310396C1")), StringExternal("Param/Value/lib_CB22438A_1009F291"), "Assets\\Textures\\btn-ability-zerg-dehaka-tyrannozor-barrageofspikes.dds");
+            TriggerExecute(libCB22438A_gt_AddBuffForInitialUnits, true, false);
+        }
+        else {
+            TriggerEnable(libCB22438A_gt_AddBuffForCreatedUnit, false);
+        }
+    }
+    else {
+        TriggerEnable(libCB22438A_gt_AddBuffForCreatedUnit, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_BerserkersBloodModStart_Init () {
+    libCB22438A_gt_BerserkersBloodModStart = TriggerCreate("libCB22438A_gt_BerserkersBloodModStart_Func");
+    TriggerAddEventMapInit(libCB22438A_gt_BerserkersBloodModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Buff For Initial Units
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_AddBuffForInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoA361336D_g;
+    int autoA361336D_var;
+    unitgroup auto1EF25595_g;
+    int auto1EF25595_u;
+    unit auto1EF25595_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoA361336D_g = PlayerGroupAll();
+    autoA361336D_var = -1;
+    while (true) {
+        autoA361336D_var = PlayerGroupNextPlayer(autoA361336D_g, autoA361336D_var);
+        if (autoA361336D_var < 0) { break; }
+        if ((GameAttributePlayerValue("42", autoA361336D_var) == "0001")) {
+            auto1EF25595_g = UnitGroup(null, autoA361336D_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto1EF25595_u = UnitGroupCount(auto1EF25595_g, c_unitCountAll);
+            for (;; auto1EF25595_u -= 1) {
+                auto1EF25595_var = UnitGroupUnitFromEnd(auto1EF25595_g, auto1EF25595_u);
+                if (auto1EF25595_var == null) { break; }
+                libCB22438A_gf_AddBerserkersBloodBehaviors(auto1EF25595_var);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_AddBuffForInitialUnits_Init () {
+    libCB22438A_gt_AddBuffForInitialUnits = TriggerCreate("libCB22438A_gt_AddBuffForInitialUnits_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Buff For Created Unit
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_AddBuffForCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("42", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libCB22438A_gf_AddBerserkersBloodBehaviors(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_AddBuffForCreatedUnit_Init () {
+    libCB22438A_gt_AddBuffForCreatedUnit = TriggerCreate("libCB22438A_gt_AddBuffForCreatedUnit_Func");
+    TriggerAddEventUnitCreated(libCB22438A_gt_AddBuffForCreatedUnit, null, null, null);
+}
+
+void libCB22438A_InitTriggers () {
+    libCB22438A_gt_ChangeUnitSize145_Init();
+    libCB22438A_gt_ChangeUnitSize140_Init();
+    libCB22438A_gt_ChangeUnitSize135_Init();
+    libCB22438A_gt_ChangeUnitSize130_Init();
+    libCB22438A_gt_ChangeUnitSize125_Init();
+    libCB22438A_gt_ChangeUnitSize120_Init();
+    libCB22438A_gt_ChangeUnitSize115_Init();
+    libCB22438A_gt_ChangeUnitSize110_Init();
+    libCB22438A_gt_ChangeUnitSize105_Init();
+    libCB22438A_gt_ChangeUnitSize100_Init();
+    libCB22438A_gt_BerserkersBloodModStart_Init();
+    libCB22438A_gt_AddBuffForInitialUnits_Init();
+    libCB22438A_gt_AddBuffForCreatedUnit_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_InitLib_completed = false;
+
+void libCB22438A_InitLib () {
+    if (libCB22438A_InitLib_completed) {
+        return;
+    }
+
+    libCB22438A_InitLib_completed = true;
+
+    libCB22438A_InitLibraries();
+    libCB22438A_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

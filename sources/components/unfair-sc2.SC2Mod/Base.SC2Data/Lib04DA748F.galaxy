@@ -1,0 +1,227 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib04DA748F_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CHAT
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib04DA748F_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Chat Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib04DA748F_gt_ChatModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoB1C80B2E_g;
+    int autoB1C80B2E_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("96") == "0001")) {
+        autoB1C80B2E_g = PlayerGroupAll();
+        autoB1C80B2E_var = -1;
+        while (true) {
+            autoB1C80B2E_var = PlayerGroupNextPlayer(autoB1C80B2E_g, autoB1C80B2E_var);
+            if (autoB1C80B2E_var < 0) { break; }
+            if ((GameAttributePlayerValue("97", autoB1C80B2E_var) == "0001")) {
+                PlayerGroupAdd(lv_players, autoB1C80B2E_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) == 0)) {
+            TriggerEnable(lib04DA748F_gt_StartBuild, false);
+            TriggerEnable(lib04DA748F_gt_CancelBuild, false);
+            TriggerEnable(lib04DA748F_gt_StartUpgrade, false);
+            TriggerEnable(lib04DA748F_gt_CancelUpgrade, false);
+        }
+        else {
+            TextExpressionSetToken("Param/Expression/lib_04DA748F_6266DBF4", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_04DA748F_5447DB8E"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_04DA748F_6266DBF4"), StringExternal("Param/Value/lib_04DA748F_98E7BB52"), "Assets\\Textures\\momentofsilence_coop.dds");
+        }
+    }
+    else {
+        TriggerEnable(lib04DA748F_gt_StartBuild, false);
+        TriggerEnable(lib04DA748F_gt_CancelBuild, false);
+        TriggerEnable(lib04DA748F_gt_StartUpgrade, false);
+        TriggerEnable(lib04DA748F_gt_CancelUpgrade, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib04DA748F_gt_ChatModStart_Init () {
+    lib04DA748F_gt_ChatModStart = TriggerCreate("lib04DA748F_gt_ChatModStart_Func");
+    TriggerAddEventMapInit(lib04DA748F_gt_ChatModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Start Build
+//--------------------------------------------------------------------------------------------------
+bool lib04DA748F_gt_StartBuild_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitProgressUnit()), c_unitAttributeStructure) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributePlayerValue("97", EventPlayer()) == "0001")) {
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_E2C86255", "Time", TextTimeFormat(StringToText("<hour2/>:<min2/>:<sec2/>"), libDBC4E2D2_gv_gAMETIME));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_E2C86255", "Player", TextWithColor(PlayerName(EventPlayer()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_E2C86255", "Building", TextWithColor(UnitTypeGetName(libNtve_gf_TriggeringProgressUnitType()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_04DA748F_E2C86255"));
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib04DA748F_gt_StartBuild_Init () {
+    lib04DA748F_gt_StartBuild = TriggerCreate("lib04DA748F_gt_StartBuild_Func");
+    TriggerAddEventUnitConstructProgress(lib04DA748F_gt_StartBuild, null, c_unitProgressStageStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Start Upgrade
+//--------------------------------------------------------------------------------------------------
+bool lib04DA748F_gt_StartUpgrade_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_iconPath;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_iconPath = StringToText(CatalogFieldValueGet(c_gameCatalogUpgrade, libNtve_gf_TriggeringProgressUpgrade(), "Icon", EventPlayer()));
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributePlayerValue("97", EventPlayer()) == "0001")) {
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_1670EBC4", "Time", TextTimeFormat(StringToText("<hour2/>:<min2/>:<sec2/>"), libDBC4E2D2_gv_gAMETIME));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_1670EBC4", "Player", TextWithColor(PlayerName(EventPlayer()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_1670EBC4", "Upgrade", TextWithColor(StringToText(StringSub(CatalogFieldValueGet(c_gameCatalogUpgrade, libNtve_gf_TriggeringProgressUpgrade(), "Name", EventPlayer()), 14, 100)), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_1670EBC4", "iconPath", lv_iconPath);
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_04DA748F_1670EBC4"));
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib04DA748F_gt_StartUpgrade_Init () {
+    lib04DA748F_gt_StartUpgrade = TriggerCreate("lib04DA748F_gt_StartUpgrade_Func");
+    TriggerAddEventUnitResearchProgress(lib04DA748F_gt_StartUpgrade, null, c_unitProgressStageStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Cancel Build
+//--------------------------------------------------------------------------------------------------
+bool lib04DA748F_gt_CancelBuild_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitProgressUnit()), c_unitAttributeStructure) == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributePlayerValue("97", UnitGetOwner(EventUnitProgressUnit())) == "0001")) {
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_E815A48E", "Player", TextWithColor(PlayerName(UnitGetOwner(EventUnitProgressUnit())), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(UnitGetOwner(EventUnitProgressUnit()), false))));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_E815A48E", "Building", TextWithColor(UnitTypeGetName(UnitGetType(EventUnitProgressUnit())), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(UnitGetOwner(EventUnitProgressUnit()), false))));
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_04DA748F_E815A48E"));
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib04DA748F_gt_CancelBuild_Init () {
+    lib04DA748F_gt_CancelBuild = TriggerCreate("lib04DA748F_gt_CancelBuild_Func");
+    TriggerAddEventUnitConstructProgress(lib04DA748F_gt_CancelBuild, null, c_unitProgressStageCancel);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Cancel Upgrade
+//--------------------------------------------------------------------------------------------------
+bool lib04DA748F_gt_CancelUpgrade_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    text lv_iconPath;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_iconPath = StringToText(CatalogFieldValueGet(c_gameCatalogUpgrade, libNtve_gf_TriggeringProgressUpgrade(), "Icon", EventPlayer()));
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributePlayerValue("97", EventPlayer()) == "0001")) {
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_D57EA528", "Player", TextWithColor(PlayerName(EventPlayer()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_D57EA528", "Upgrade", TextWithColor(StringToText(StringSub(CatalogFieldValueGet(c_gameCatalogUpgrade, libNtve_gf_TriggeringProgressUpgrade(), "Name", EventPlayer()), 14, 100)), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
+        TextExpressionSetToken("Param/Expression/lib_04DA748F_D57EA528", "iconPath", lv_iconPath);
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_04DA748F_D57EA528"));
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib04DA748F_gt_CancelUpgrade_Init () {
+    lib04DA748F_gt_CancelUpgrade = TriggerCreate("lib04DA748F_gt_CancelUpgrade_Func");
+    TriggerAddEventUnitResearchProgress(lib04DA748F_gt_CancelUpgrade, null, c_unitProgressStageCancel);
+}
+
+void lib04DA748F_InitTriggers () {
+    lib04DA748F_gt_ChatModStart_Init();
+    lib04DA748F_gt_StartBuild_Init();
+    lib04DA748F_gt_StartUpgrade_Init();
+    lib04DA748F_gt_CancelBuild_Init();
+    lib04DA748F_gt_CancelUpgrade_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib04DA748F_InitLib_completed = false;
+
+void lib04DA748F_InitLib () {
+    if (lib04DA748F_InitLib_completed) {
+        return;
+    }
+
+    lib04DA748F_InitLib_completed = true;
+
+    lib04DA748F_InitLibraries();
+    lib04DA748F_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

@@ -1,0 +1,15 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: STUN
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+fixed lib4D46C701_gv_stunChance;
+
+// Trigger Declarations
+trigger lib4D46C701_gt_StunModStart;
+trigger lib4D46C701_gt_UnitDidDamage;
+
+// Library Initialization
+void lib4D46C701_InitVariables ();
+

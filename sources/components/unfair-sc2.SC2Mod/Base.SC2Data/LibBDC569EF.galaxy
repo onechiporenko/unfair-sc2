@@ -1,0 +1,197 @@
+include "TriggerLibs/NativeLib"
+
+include "LibBDC569EF_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: PERMA CLOAK
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libBDC569EF_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Functions
+void libBDC569EF_gf_HideUnit (unit lp_unit) {
+    // Variable Declarations
+    int lv_unitOwner;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unitOwner = UnitGetOwner(lp_unit);
+
+    // Implementation
+    if ((GameAttributePlayerValue("16", lv_unitOwner) == "0002")) {
+        if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == false)) {
+            UnitBehaviorAdd(lp_unit, "PermanentlyCloaked", lp_unit, 1);
+        }
+
+    }
+    else {
+        if ((GameAttributePlayerValue("16", lv_unitOwner) == "0001")) {
+            UnitBehaviorAdd(lp_unit, "PermanentlyCloaked", lp_unit, 1);
+        }
+
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Perma Cloak Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libBDC569EF_gt_PermaCloakModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playerSettings;
+
+    // Automatic Variable Declarations
+    playergroup autoB0D5BA4B_g;
+    int autoB0D5BA4B_var;
+    playergroup autoBB5FBCD8_g;
+    int autoBB5FBCD8_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("15") == "0001")) {
+        autoB0D5BA4B_g = PlayerGroupAll();
+        autoB0D5BA4B_var = -1;
+        while (true) {
+            autoB0D5BA4B_var = PlayerGroupNextPlayer(autoB0D5BA4B_g, autoB0D5BA4B_var);
+            if (autoB0D5BA4B_var < 0) { break; }
+            if (((GameAttributePlayerValue("16", autoB0D5BA4B_var) == "0001") || (GameAttributePlayerValue("16", autoB0D5BA4B_var) == "0002"))) {
+                PlayerGroupAdd(lv_players, autoB0D5BA4B_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            autoBB5FBCD8_g = lv_players;
+            autoBB5FBCD8_var = -1;
+            while (true) {
+                autoBB5FBCD8_var = PlayerGroupNextPlayer(autoBB5FBCD8_g, autoBB5FBCD8_var);
+                if (autoBB5FBCD8_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_BDC569EF_87E8F72A", "A", TextWithColor(PlayerName(autoBB5FBCD8_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoBB5FBCD8_var, false))));
+                lv_playerSettings = (lv_playerSettings + TextExpressionAssemble("Param/Expression/lib_BDC569EF_87E8F72A"));
+                if ((GameAttributePlayerValue("16", autoBB5FBCD8_var) == "0001")) {
+                    lv_playerSettings = (lv_playerSettings + StringExternal("Param/Value/lib_BDC569EF_4FFF3F22"));
+                }
+                else {
+                    if ((GameAttributePlayerValue("16", autoBB5FBCD8_var) == "0002")) {
+                        lv_playerSettings = (lv_playerSettings + StringExternal("Param/Value/lib_BDC569EF_A807E584"));
+                    }
+
+                }
+            }
+            TextExpressionSetToken("Param/Expression/lib_BDC569EF_42037EAB", "PlayersSettings", lv_playerSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BDC569EF_DD619B4F"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BDC569EF_42037EAB"), StringExternal("Param/Value/lib_BDC569EF_11743BF0"), "Assets\\Textures\\btn-ability-hornerhan-wraith-permanentcloak.dds");
+            TriggerExecute(libBDC569EF_gt_HideInitialUnits, true, false);
+        }
+        else {
+            TriggerEnable(libBDC569EF_gt_MakeUnitInvisible, false);
+        }
+    }
+    else {
+        TriggerEnable(libBDC569EF_gt_MakeUnitInvisible, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBDC569EF_gt_PermaCloakModStart_Init () {
+    libBDC569EF_gt_PermaCloakModStart = TriggerCreate("libBDC569EF_gt_PermaCloakModStart_Func");
+    TriggerAddEventMapInit(libBDC569EF_gt_PermaCloakModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hide Initial Units
+//--------------------------------------------------------------------------------------------------
+bool libBDC569EF_gt_HideInitialUnits_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoF26205FC_g;
+    int autoF26205FC_var;
+    unitgroup autoD78200E1_g;
+    int autoD78200E1_u;
+    unit autoD78200E1_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    autoF26205FC_g = PlayerGroupAll();
+    autoF26205FC_var = -1;
+    while (true) {
+        autoF26205FC_var = PlayerGroupNextPlayer(autoF26205FC_g, autoF26205FC_var);
+        if (autoF26205FC_var < 0) { break; }
+        if (((GameAttributePlayerValue("16", autoF26205FC_var) == "0001") || (GameAttributePlayerValue("16", autoF26205FC_var) == "0002"))) {
+            autoD78200E1_g = UnitGroup(null, autoF26205FC_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoD78200E1_u = UnitGroupCount(autoD78200E1_g, c_unitCountAll);
+            for (;; autoD78200E1_u -= 1) {
+                autoD78200E1_var = UnitGroupUnitFromEnd(autoD78200E1_g, autoD78200E1_u);
+                if (autoD78200E1_var == null) { break; }
+                libBDC569EF_gf_HideUnit(autoD78200E1_var);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBDC569EF_gt_HideInitialUnits_Init () {
+    libBDC569EF_gt_HideInitialUnits = TriggerCreate("libBDC569EF_gt_HideInitialUnits_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Make Unit Invisible
+//--------------------------------------------------------------------------------------------------
+bool libBDC569EF_gt_MakeUnitInvisible_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libBDC569EF_gf_HideUnit(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBDC569EF_gt_MakeUnitInvisible_Init () {
+    libBDC569EF_gt_MakeUnitInvisible = TriggerCreate("libBDC569EF_gt_MakeUnitInvisible_Func");
+    TriggerAddEventUnitCreated(libBDC569EF_gt_MakeUnitInvisible, null, null, null);
+}
+
+void libBDC569EF_InitTriggers () {
+    libBDC569EF_gt_PermaCloakModStart_Init();
+    libBDC569EF_gt_HideInitialUnits_Init();
+    libBDC569EF_gt_MakeUnitInvisible_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libBDC569EF_InitLib_completed = false;
+
+void libBDC569EF_InitLib () {
+    if (libBDC569EF_InitLib_completed) {
+        return;
+    }
+
+    libBDC569EF_InitLib_completed = true;
+
+    libBDC569EF_InitLibraries();
+    libBDC569EF_InitTriggers();
+}
+

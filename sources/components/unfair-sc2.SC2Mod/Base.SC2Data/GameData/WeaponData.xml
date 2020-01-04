@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CWeaponLegacy id="UnfairSc2Wall">
+        <EditorCategories value=""/>
+        <Icon value="Assets\Textures\btn-building-protoss-photoncannon.dds"/>
+        <DisplayEffect value="PhotonCannonU"/>
+        <TargetFilters value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <MinScanRange value="1"/>
+        <Range value="10"/>
+        <RangeSlop value="0"/>
+        <Marker Link="Weapon/PhotonCannon"/>
+        <Cost>
+            <Cooldown Link="Weapon/PhotonCannon"/>
+        </Cost>
+        <Period value="0.1"/>
+        <Backswing value="0.1"/>
+        <Effect value="PhotonCannonLM"/>
+    </CWeaponLegacy>
+</Catalog>

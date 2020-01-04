@@ -1,0 +1,52 @@
+include "TriggerLibs/NativeLib"
+
+include "Lib5E51B3C2_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RESOURCES
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib5E51B3C2_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Functions
+void lib5E51B3C2_gf_TakeMinerals (int lp_player, int lp_mineralsAmount) {
+    // Automatic Variable Declarations
+    // Implementation
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSubtract, MinI(lp_mineralsAmount, PlayerGetPropertyInt(lp_player, c_playerPropMinerals)));
+}
+
+void lib5E51B3C2_gf_GiveMinerals (int lp_player, int lp_mineralsAmount) {
+    // Automatic Variable Declarations
+    // Implementation
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperAdd, lp_mineralsAmount);
+}
+
+void lib5E51B3C2_gf_TakeVespene (int lp_player, int lp_vespeneAmount) {
+    // Automatic Variable Declarations
+    // Implementation
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSubtract, MinI(lp_vespeneAmount, PlayerGetPropertyInt(lp_player, c_playerPropVespene)));
+}
+
+void lib5E51B3C2_gf_GiveVespene (int lp_player, int lp_vespeneAmount) {
+    // Automatic Variable Declarations
+    // Implementation
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperAdd, lp_vespeneAmount);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib5E51B3C2_InitLib_completed = false;
+
+void lib5E51B3C2_InitLib () {
+    if (lib5E51B3C2_InitLib_completed) {
+        return;
+    }
+
+    lib5E51B3C2_InitLib_completed = true;
+
+    lib5E51B3C2_InitLibraries();
+}
+

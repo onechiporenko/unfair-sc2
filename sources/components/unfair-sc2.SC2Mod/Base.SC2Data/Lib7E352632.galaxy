@@ -1,0 +1,301 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib7E352632_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: EXTRA GAS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib7E352632_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib7E352632_InitVariables_completed = false;
+
+void lib7E352632_InitVariables () {
+    if (lib7E352632_InitVariables_completed) {
+        return;
+    }
+
+    lib7E352632_InitVariables_completed = true;
+
+    lib7E352632_gv_timer = TimerCreate();
+    lib7E352632_gv_vespeneToAdd = 4;
+}
+
+// Functions
+void lib7E352632_gf_AddActorToAllExisitingVespene (int lp_player) {
+    // Automatic Variable Declarations
+    unitgroup auto9075A9D1_g;
+    int auto9075A9D1_u;
+    unit auto9075A9D1_var;
+    unitgroup auto16F8EC66_g;
+    int auto16F8EC66_u;
+    unit auto16F8EC66_var;
+    unitgroup auto6AE62658_g;
+    int auto6AE62658_u;
+    unit auto6AE62658_var;
+    unitgroup autoA6D81519_g;
+    int autoA6D81519_u;
+    unit autoA6D81519_var;
+    unitgroup auto5CE24E3B_g;
+    int auto5CE24E3B_u;
+    unit auto5CE24E3B_var;
+    unitgroup auto12B472E4_g;
+    int auto12B472E4_u;
+    unit auto12B472E4_var;
+
+    // Implementation
+    auto9075A9D1_g = UnitGroup("Assimilator", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto9075A9D1_u = UnitGroupCount(auto9075A9D1_g, c_unitCountAll);
+    for (;; auto9075A9D1_u -= 1) {
+        auto9075A9D1_var = UnitGroupUnitFromEnd(auto9075A9D1_g, auto9075A9D1_u);
+        if (auto9075A9D1_var == null) { break; }
+        lib7E352632_gf_AddActorToVespene(auto9075A9D1_var);
+    }
+    auto16F8EC66_g = UnitGroup("AssimilatorRich", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto16F8EC66_u = UnitGroupCount(auto16F8EC66_g, c_unitCountAll);
+    for (;; auto16F8EC66_u -= 1) {
+        auto16F8EC66_var = UnitGroupUnitFromEnd(auto16F8EC66_g, auto16F8EC66_u);
+        if (auto16F8EC66_var == null) { break; }
+        lib7E352632_gf_AddActorToVespene(auto16F8EC66_var);
+    }
+    auto6AE62658_g = UnitGroup("Extractor", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto6AE62658_u = UnitGroupCount(auto6AE62658_g, c_unitCountAll);
+    for (;; auto6AE62658_u -= 1) {
+        auto6AE62658_var = UnitGroupUnitFromEnd(auto6AE62658_g, auto6AE62658_u);
+        if (auto6AE62658_var == null) { break; }
+        lib7E352632_gf_AddActorToVespene(auto6AE62658_var);
+    }
+    autoA6D81519_g = UnitGroup("ExtractorRich", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoA6D81519_u = UnitGroupCount(autoA6D81519_g, c_unitCountAll);
+    for (;; autoA6D81519_u -= 1) {
+        autoA6D81519_var = UnitGroupUnitFromEnd(autoA6D81519_g, autoA6D81519_u);
+        if (autoA6D81519_var == null) { break; }
+        lib7E352632_gf_AddActorToVespene(autoA6D81519_var);
+    }
+    auto5CE24E3B_g = UnitGroup("Refinery", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto5CE24E3B_u = UnitGroupCount(auto5CE24E3B_g, c_unitCountAll);
+    for (;; auto5CE24E3B_u -= 1) {
+        auto5CE24E3B_var = UnitGroupUnitFromEnd(auto5CE24E3B_g, auto5CE24E3B_u);
+        if (auto5CE24E3B_var == null) { break; }
+        lib7E352632_gf_AddActorToVespene(auto5CE24E3B_var);
+    }
+    auto12B472E4_g = UnitGroup("RefineryRich", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto12B472E4_u = UnitGroupCount(auto12B472E4_g, c_unitCountAll);
+    for (;; auto12B472E4_u -= 1) {
+        auto12B472E4_var = UnitGroupUnitFromEnd(auto12B472E4_g, auto12B472E4_u);
+        if (auto12B472E4_var == null) { break; }
+        lib7E352632_gf_AddActorToVespene(auto12B472E4_var);
+    }
+}
+
+void lib7E352632_gf_AddActorToVespene (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((GameAttributePlayerValue("52", UnitGetOwner(lp_unit)) == "0001") && ((UnitGetType(lp_unit) == "Extractor") || (UnitGetType(lp_unit) == "ExtractorRich") || (UnitGetType(lp_unit) == "Refinery") || (UnitGetType(lp_unit) == "RefineryRich") || (UnitGetType(lp_unit) == "Assimilator") || (UnitGetType(lp_unit) == "AssimilatorRich"))) {
+        libNtve_gf_AttachModelToUnit(lp_unit, "Vespene_Pump_Small", "Ref_Head");
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Extra Gas Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib7E352632_gt_ExtraGasModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto7CB3D556_g;
+    int auto7CB3D556_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("51") == "0001")) {
+        auto7CB3D556_g = PlayerGroupAll();
+        auto7CB3D556_var = -1;
+        while (true) {
+            auto7CB3D556_var = PlayerGroupNextPlayer(auto7CB3D556_g, auto7CB3D556_var);
+            if (auto7CB3D556_var < 0) { break; }
+            if ((GameAttributePlayerValue("52", auto7CB3D556_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto7CB3D556_var);
+                lib7E352632_gf_AddActorToAllExisitingVespene(auto7CB3D556_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TimerStart(lib7E352632_gv_timer, 3.0, true, c_timeReal);
+            TextExpressionSetToken("Param/Expression/lib_7E352632_27314A4B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_7E352632_8FC0B403"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7E352632_27314A4B"), StringExternal("Param/Value/lib_7E352632_2351DB60"), "Assets\\Textures\\btn-ability-kerrigan-vespeneefficiency.dds");
+        }
+        else {
+            TriggerEnable(lib7E352632_gt_GiveExtraVespene, false);
+            TriggerEnable(lib7E352632_gt_AddActorToVespene, false);
+        }
+    }
+    else {
+        TriggerEnable(lib7E352632_gt_GiveExtraVespene, false);
+        TriggerEnable(lib7E352632_gt_AddActorToVespene, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7E352632_gt_ExtraGasModStart_Init () {
+    lib7E352632_gt_ExtraGasModStart = TriggerCreate("lib7E352632_gt_ExtraGasModStart_Func");
+    TriggerAddEventMapInit(lib7E352632_gt_ExtraGasModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Actor To Vespene
+//--------------------------------------------------------------------------------------------------
+bool lib7E352632_gt_AddActorToVespene_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib7E352632_gf_AddActorToVespene(EventUnitProgressUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7E352632_gt_AddActorToVespene_Init () {
+    lib7E352632_gt_AddActorToVespene = TriggerCreate("lib7E352632_gt_AddActorToVespene_Func");
+    TriggerAddEventUnitConstructProgress(lib7E352632_gt_AddActorToVespene, null, c_unitProgressStageComplete);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Give Extra Vespene
+//--------------------------------------------------------------------------------------------------
+bool lib7E352632_gt_GiveExtraVespene_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoF40EBC39_g;
+    int autoF40EBC39_var;
+    unitgroup auto7646E298_g;
+    int auto7646E298_u;
+    unit auto7646E298_var;
+    unitgroup auto86BAAF35_g;
+    int auto86BAAF35_u;
+    unit auto86BAAF35_var;
+    unitgroup auto091B414E_g;
+    int auto091B414E_u;
+    unit auto091B414E_var;
+    unitgroup autoEF8E95B9_g;
+    int autoEF8E95B9_u;
+    unit autoEF8E95B9_var;
+    unitgroup auto3A6A57C3_g;
+    int auto3A6A57C3_u;
+    unit auto3A6A57C3_var;
+    unitgroup auto3222C396_g;
+    int auto3222C396_u;
+    unit auto3222C396_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoF40EBC39_g = PlayerGroupAll();
+    autoF40EBC39_var = -1;
+    while (true) {
+        autoF40EBC39_var = PlayerGroupNextPlayer(autoF40EBC39_g, autoF40EBC39_var);
+        if (autoF40EBC39_var < 0) { break; }
+        if ((GameAttributePlayerValue("52", autoF40EBC39_var) == "0001")) {
+            auto7646E298_g = UnitGroup("Assimilator", autoF40EBC39_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto7646E298_u = UnitGroupCount(auto7646E298_g, c_unitCountAll);
+            for (;; auto7646E298_u -= 1) {
+                auto7646E298_var = UnitGroupUnitFromEnd(auto7646E298_g, auto7646E298_u);
+                if (auto7646E298_var == null) { break; }
+                PlayerModifyPropertyInt(autoF40EBC39_var, c_playerPropVespene, c_playerPropOperAdd, lib7E352632_gv_vespeneToAdd);
+                libDBC4E2D2_gf_ShowResourcesBaloonForUnit(auto7646E298_var, lib7E352632_gv_vespeneToAdd, false);
+            }
+            auto86BAAF35_g = UnitGroup("AssimilatorRich", autoF40EBC39_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto86BAAF35_u = UnitGroupCount(auto86BAAF35_g, c_unitCountAll);
+            for (;; auto86BAAF35_u -= 1) {
+                auto86BAAF35_var = UnitGroupUnitFromEnd(auto86BAAF35_g, auto86BAAF35_u);
+                if (auto86BAAF35_var == null) { break; }
+                PlayerModifyPropertyInt(autoF40EBC39_var, c_playerPropVespene, c_playerPropOperAdd, lib7E352632_gv_vespeneToAdd);
+                libDBC4E2D2_gf_ShowResourcesBaloonForUnit(auto86BAAF35_var, lib7E352632_gv_vespeneToAdd, false);
+            }
+            auto091B414E_g = UnitGroup("Extractor", autoF40EBC39_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto091B414E_u = UnitGroupCount(auto091B414E_g, c_unitCountAll);
+            for (;; auto091B414E_u -= 1) {
+                auto091B414E_var = UnitGroupUnitFromEnd(auto091B414E_g, auto091B414E_u);
+                if (auto091B414E_var == null) { break; }
+                PlayerModifyPropertyInt(autoF40EBC39_var, c_playerPropVespene, c_playerPropOperAdd, lib7E352632_gv_vespeneToAdd);
+                libDBC4E2D2_gf_ShowResourcesBaloonForUnit(auto091B414E_var, lib7E352632_gv_vespeneToAdd, false);
+            }
+            autoEF8E95B9_g = UnitGroup("ExtractorRich", autoF40EBC39_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoEF8E95B9_u = UnitGroupCount(autoEF8E95B9_g, c_unitCountAll);
+            for (;; autoEF8E95B9_u -= 1) {
+                autoEF8E95B9_var = UnitGroupUnitFromEnd(autoEF8E95B9_g, autoEF8E95B9_u);
+                if (autoEF8E95B9_var == null) { break; }
+                PlayerModifyPropertyInt(autoF40EBC39_var, c_playerPropVespene, c_playerPropOperAdd, lib7E352632_gv_vespeneToAdd);
+                libDBC4E2D2_gf_ShowResourcesBaloonForUnit(autoEF8E95B9_var, lib7E352632_gv_vespeneToAdd, false);
+            }
+            auto3A6A57C3_g = UnitGroup("Refinery", autoF40EBC39_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto3A6A57C3_u = UnitGroupCount(auto3A6A57C3_g, c_unitCountAll);
+            for (;; auto3A6A57C3_u -= 1) {
+                auto3A6A57C3_var = UnitGroupUnitFromEnd(auto3A6A57C3_g, auto3A6A57C3_u);
+                if (auto3A6A57C3_var == null) { break; }
+                PlayerModifyPropertyInt(autoF40EBC39_var, c_playerPropVespene, c_playerPropOperAdd, lib7E352632_gv_vespeneToAdd);
+                libDBC4E2D2_gf_ShowResourcesBaloonForUnit(auto3A6A57C3_var, lib7E352632_gv_vespeneToAdd, false);
+            }
+            auto3222C396_g = UnitGroup("RefineryRich", autoF40EBC39_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto3222C396_u = UnitGroupCount(auto3222C396_g, c_unitCountAll);
+            for (;; auto3222C396_u -= 1) {
+                auto3222C396_var = UnitGroupUnitFromEnd(auto3222C396_g, auto3222C396_u);
+                if (auto3222C396_var == null) { break; }
+                PlayerModifyPropertyInt(autoF40EBC39_var, c_playerPropVespene, c_playerPropOperAdd, lib7E352632_gv_vespeneToAdd);
+                libDBC4E2D2_gf_ShowResourcesBaloonForUnit(auto3222C396_var, lib7E352632_gv_vespeneToAdd, false);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7E352632_gt_GiveExtraVespene_Init () {
+    lib7E352632_gt_GiveExtraVespene = TriggerCreate("lib7E352632_gt_GiveExtraVespene_Func");
+    TriggerAddEventTimer(lib7E352632_gt_GiveExtraVespene, lib7E352632_gv_timer);
+}
+
+void lib7E352632_InitTriggers () {
+    lib7E352632_gt_ExtraGasModStart_Init();
+    lib7E352632_gt_AddActorToVespene_Init();
+    lib7E352632_gt_GiveExtraVespene_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib7E352632_InitLib_completed = false;
+
+void lib7E352632_InitLib () {
+    if (lib7E352632_InitLib_completed) {
+        return;
+    }
+
+    lib7E352632_InitLib_completed = true;
+
+    lib7E352632_InitLibraries();
+    lib7E352632_InitVariables();
+    lib7E352632_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CButton id="UnfSC2MacroDefProtoss">
+        <Name value="Unfair SC2 Macro Def Protoss"/>
+        <Tooltip value="Unfair SC2 Macro Def Protoss"/>
+        <Icon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
+        <AlertName value="Unfair SC2 Macro Def Protoss"/>
+        <AlertTooltip value="Unfair SC2 Macro Def Protoss"/>
+        <EditorCategories value="Race:Protoss"/>
+        <SimpleDisplayText value="Unfair SC2 Macro Def Protoss"/>
+    </CButton>
+    <CButton id="UnfairSC2MacroDefTerran">
+        <Icon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
+        <AlertIcon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+    <CButton id="UnfairSC2MacroDefZerg">
+        <Name value="Unfair SC2 Macro Def Zerg"/>
+        <Tooltip value="Unfair SC2 Macro Def Zerg"/>
+        <AlertName value="Unfair SC2 Macro Def Zerg"/>
+        <AlertTooltip value="Unfair SC2 Macro Def Zerg"/>
+        <AlertIcon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <SimpleDisplayText value="Unfair SC2 Macro Def Zerg"/>
+        <Icon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
+    </CButton>
+    <CButton id="UnfairSc2MacroDefProtoss">
+        <Name value="UnfairSc2MacroDefProtoss"/>
+        <Tooltip value="UnfairSc2MacroDefProtoss"/>
+        <TooltipTimeOverrideAbilCmd AbilCmd="UnfairSc2MacroDefProtoss,On"/>
+        <Icon value="Assets\Textures\btn-ability-protoss-hardenedshields-color.dds"/>
+        <AlertName value="UnfairSc2MacroDefProtoss"/>
+        <AlertTooltip value="UnfairSc2MacroDefProtoss"/>
+        <AlertIcon value="Assets\Textures\btn-ability-protoss-hardenedshields-color.dds"/>
+        <SimpleDisplayText value="UnfairSc2MacroDefProtoss"/>
+    </CButton>
+    <CButton id="UnfairSc2MacroDefTerran">
+        <Name value="Unfair SC2 Macro Def Terran"/>
+        <Tooltip value="Unfair SC2 Macro Def Terran"/>
+        <Icon value="Assets\Textures\talent-swann-level03-improvedturrets.dds"/>
+        <AlertName value="Unfair SC2 Macro Def Terran"/>
+        <AlertTooltip value="Unfair SC2 Macro Def Terran"/>
+        <AlertIcon value="Assets\Textures\talent-swann-level03-improvedturrets.dds"/>
+    </CButton>
+    <CButton id="UnfairSc2MacroDefZerg">
+        <Name value="UnfairSc2MacroDefZerg"/>
+        <Tooltip value="UnfairSc2MacroDefZerg"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
+        <AlertName value="UnfairSc2MacroDefZerg"/>
+        <AlertTooltip value="UnfairSc2MacroDefZerg"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
+    </CButton>
+</Catalog>

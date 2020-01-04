@@ -1,0 +1,10 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: INSTANT PRODUCTION
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libD31C8AFA_gt_InstantProductionModStart;
+trigger libD31C8AFA_gt_ConstructionStarted;
+trigger libD31C8AFA_gt_UpgradeStarted;
+

@@ -1,0 +1,200 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib15E909D0_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MOVE SPEED
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib15E909D0_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void lib15E909D0_gf_AddMoveSpeedBehavior (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((UnitTypeTestFlag(UnitGetType(lp_unit), c_unitFlagWorker) == false) && (GameAttributePlayerValue("58", UnitGetOwner(lp_unit)) != "0003")) {
+        UnitBehaviorAdd(lp_unit, "UnfairSc2MoveSpeed", lp_unit, 1);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Move Speed Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib15E909D0_gt_MoveSpeedModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup auto6100C8BA_g;
+    int auto6100C8BA_var;
+    string auto35D08CC8_val;
+    playergroup auto89045E94_g;
+    int auto89045E94_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("50") == "0001")) {
+        auto6100C8BA_g = PlayerGroupActive();
+        auto6100C8BA_var = -1;
+        while (true) {
+            auto6100C8BA_var = PlayerGroupNextPlayer(auto6100C8BA_g, auto6100C8BA_var);
+            if (auto6100C8BA_var < 0) { break; }
+            if ((GameAttributePlayerValue("58", auto6100C8BA_var) != "0003")) {
+                auto35D08CC8_val = GameAttributePlayerValue("58", auto6100C8BA_var);
+                if (auto35D08CC8_val == "0001") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "0.5");
+                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 0.5;
+                }
+                else if (auto35D08CC8_val == "0002") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "0.75");
+                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 0.75;
+                }
+                else if (auto35D08CC8_val == "0004") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "1.25");
+                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 1.25;
+                }
+                else if (auto35D08CC8_val == "0005") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "1.5");
+                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 1.5;
+                }
+                else if (auto35D08CC8_val == "0006") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "2");
+                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 2.0;
+                }
+                else {
+                }
+                PlayerGroupAdd(lv_players, auto6100C8BA_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits, true, false);
+            auto89045E94_g = lv_players;
+            auto89045E94_var = -1;
+            while (true) {
+                auto89045E94_var = PlayerGroupNextPlayer(auto89045E94_g, auto89045E94_var);
+                if (auto89045E94_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_15E909D0_3A5A221A", "A", TextWithColor(PlayerName(auto89045E94_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto89045E94_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_15E909D0_3A5A221A"));
+                TextExpressionSetToken("Param/Expression/lib_15E909D0_1AAC6909", "A", FixedToText(libDBC4E2D2_gv_players[auto89045E94_var].lv_mOVESPEED.lv_rate, 2));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_15E909D0_1AAC6909"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_15E909D0_E670CA02", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_15E909D0_19C77BB5"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_15E909D0_E670CA02"), StringExternal("Param/Value/lib_15E909D0_455ACC0A"), "Assets\\Textures\\speedfreaks_coop.dds");
+        }
+        else {
+            TriggerEnable(lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit, false);
+            TriggerEnable(lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits, false);
+        }
+    }
+    else {
+        TriggerEnable(lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit, false);
+        TriggerEnable(lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15E909D0_gt_MoveSpeedModStart_Init () {
+    lib15E909D0_gt_MoveSpeedModStart = TriggerCreate("lib15E909D0_gt_MoveSpeedModStart_Func");
+    TriggerAddEventMapInit(lib15E909D0_gt_MoveSpeedModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Move Speed Behavior For Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15E909D0_gf_AddMoveSpeedBehavior(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit_Init () {
+    lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit = TriggerCreate("lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Move Speed Behavior For Initial Units
+//--------------------------------------------------------------------------------------------------
+bool lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto2314812B_g;
+    int auto2314812B_var;
+    unitgroup autoC5C447AC_g;
+    int autoC5C447AC_u;
+    unit autoC5C447AC_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    auto2314812B_g = PlayerGroupAll();
+    auto2314812B_var = -1;
+    while (true) {
+        auto2314812B_var = PlayerGroupNextPlayer(auto2314812B_g, auto2314812B_var);
+        if (auto2314812B_var < 0) { break; }
+        if ((GameAttributePlayerValue("58", auto2314812B_var) != "0003")) {
+            autoC5C447AC_g = UnitGroup(null, auto2314812B_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoC5C447AC_u = UnitGroupCount(autoC5C447AC_g, c_unitCountAll);
+            for (;; autoC5C447AC_u -= 1) {
+                autoC5C447AC_var = UnitGroupUnitFromEnd(autoC5C447AC_g, autoC5C447AC_u);
+                if (autoC5C447AC_var == null) { break; }
+                lib15E909D0_gf_AddMoveSpeedBehavior(autoC5C447AC_var);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits_Init () {
+    lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits = TriggerCreate("lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits_Func");
+}
+
+void lib15E909D0_InitTriggers () {
+    lib15E909D0_gt_MoveSpeedModStart_Init();
+    lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit_Init();
+    lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib15E909D0_InitLib_completed = false;
+
+void lib15E909D0_InitLib () {
+    if (lib15E909D0_InitLib_completed) {
+        return;
+    }
+
+    lib15E909D0_InitLib_completed = true;
+
+    lib15E909D0_InitLibraries();
+    lib15E909D0_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

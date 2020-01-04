@@ -1,0 +1,270 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib56A96906_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CHARGE WARS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib56A96906_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib56A96906_InitVariables_completed = false;
+
+void lib56A96906_InitVariables () {
+    if (lib56A96906_InitVariables_completed) {
+        return;
+    }
+
+    lib56A96906_InitVariables_completed = true;
+
+    lib56A96906_gv_chargeTimer = TimerCreate();
+    lib56A96906_gv_chargeTimerWindow = c_timerWindowNone;
+}
+
+// Functions
+void lib56A96906_gf_RemoveCharge (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((UnitGetType(lp_unit) != "Zealot")) {
+        if ((GameAttributeGameValue("143") == "0002")) {
+            UnitAbilityShow(lp_unit, "Charge", false);
+        }
+        else {
+            if ((GameAttributePlayerValue("144", UnitGetOwner(lp_unit)) != "0001")) {
+                UnitAbilityShow(lp_unit, "Charge", false);
+            }
+
+        }
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Charge Wars Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib56A96906_gt_ChargeWarsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_defaultDescription;
+
+    // Automatic Variable Declarations
+    playergroup auto4071F5BD_g;
+    int auto4071F5BD_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_defaultDescription = StringExternal("Param/Value/lib_56A96906_E71A4441");
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("143") == "0001")) {
+        auto4071F5BD_g = PlayerGroupAll();
+        auto4071F5BD_var = -1;
+        while (true) {
+            auto4071F5BD_var = PlayerGroupNextPlayer(auto4071F5BD_g, auto4071F5BD_var);
+            if (auto4071F5BD_var < 0) { break; }
+            if ((GameAttributePlayerValue("144", auto4071F5BD_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto4071F5BD_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_56A96906_46AA1217", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_56A96906_119A7697"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_56A96906_46AA1217")), StringExternal("Param/Value/lib_56A96906_55AF9C7F"), "Assets\\Textures\\btn-ability-protoss-shadow-charge.dds");
+            TimerStart(lib56A96906_gv_chargeTimer, 300.0, false, c_timeReal);
+            TimerWindowCreate(lib56A96906_gv_chargeTimer, StringExternal("Param/Value/lib_56A96906_C0743462"), true, false);
+            lib56A96906_gv_chargeTimerWindow = TimerWindowLastCreated();
+            TimerWindowShowBorder(lib56A96906_gv_chargeTimerWindow, false);
+            TimerWindowShow(lib56A96906_gv_chargeTimerWindow, PlayerGroupAll(), true);
+        }
+        else {
+            TriggerEnable(lib56A96906_gt_GiveCharge, false);
+        }
+    }
+    else {
+        TriggerEnable(lib56A96906_gt_GiveCharge, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib56A96906_gt_ChargeWarsModStart_Init () {
+    lib56A96906_gt_ChargeWarsModStart = TriggerCreate("lib56A96906_gt_ChargeWarsModStart_Func");
+    TriggerAddEventMapInit(lib56A96906_gt_ChargeWarsModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Charge From Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib56A96906_gt_RemoveChargeFromCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib56A96906_gf_RemoveCharge(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib56A96906_gt_RemoveChargeFromCreatedUnit_Init () {
+    lib56A96906_gt_RemoveChargeFromCreatedUnit = TriggerCreate("lib56A96906_gt_RemoveChargeFromCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib56A96906_gt_RemoveChargeFromCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Charge From Constructed Unit
+//--------------------------------------------------------------------------------------------------
+bool lib56A96906_gt_RemoveChargeFromConstructedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib56A96906_gf_RemoveCharge(EventUnitProgressUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib56A96906_gt_RemoveChargeFromConstructedUnit_Init () {
+    lib56A96906_gt_RemoveChargeFromConstructedUnit = TriggerCreate("lib56A96906_gt_RemoveChargeFromConstructedUnit_Func");
+    TriggerAddEventUnitConstructProgress(lib56A96906_gt_RemoveChargeFromConstructedUnit, null, c_unitProgressStageComplete);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Charge From Initial Units
+//--------------------------------------------------------------------------------------------------
+bool lib56A96906_gt_RemoveChargeFromInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto2209D972_g;
+    int auto2209D972_var;
+    unitgroup autoB43CD375_g;
+    int autoB43CD375_u;
+    unit autoB43CD375_var;
+    playergroup auto23DCF167_g;
+    int auto23DCF167_var;
+    unitgroup auto9575C7AC_g;
+    int auto9575C7AC_u;
+    unit auto9575C7AC_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("143") == "0001")) {
+        auto23DCF167_g = PlayerGroupAll();
+        auto23DCF167_var = -1;
+        while (true) {
+            auto23DCF167_var = PlayerGroupNextPlayer(auto23DCF167_g, auto23DCF167_var);
+            if (auto23DCF167_var < 0) { break; }
+            if ((GameAttributePlayerValue("144", auto23DCF167_var) != "0001")) {
+                auto9575C7AC_g = UnitGroup(null, auto23DCF167_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto9575C7AC_u = UnitGroupCount(auto9575C7AC_g, c_unitCountAll);
+                for (;; auto9575C7AC_u -= 1) {
+                    auto9575C7AC_var = UnitGroupUnitFromEnd(auto9575C7AC_g, auto9575C7AC_u);
+                    if (auto9575C7AC_var == null) { break; }
+                    lib56A96906_gf_RemoveCharge(auto9575C7AC_var);
+                }
+            }
+
+        }
+    }
+    else {
+        auto2209D972_g = PlayerGroupAll();
+        auto2209D972_var = -1;
+        while (true) {
+            auto2209D972_var = PlayerGroupNextPlayer(auto2209D972_g, auto2209D972_var);
+            if (auto2209D972_var < 0) { break; }
+            autoB43CD375_g = UnitGroup(null, auto2209D972_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoB43CD375_u = UnitGroupCount(autoB43CD375_g, c_unitCountAll);
+            for (;; autoB43CD375_u -= 1) {
+                autoB43CD375_var = UnitGroupUnitFromEnd(autoB43CD375_g, autoB43CD375_u);
+                if (autoB43CD375_var == null) { break; }
+                lib56A96906_gf_RemoveCharge(autoB43CD375_var);
+            }
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib56A96906_gt_RemoveChargeFromInitialUnits_Init () {
+    lib56A96906_gt_RemoveChargeFromInitialUnits = TriggerCreate("lib56A96906_gt_RemoveChargeFromInitialUnits_Func");
+    TriggerAddEventTimeElapsed(lib56A96906_gt_RemoveChargeFromInitialUnits, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Give Charge
+//--------------------------------------------------------------------------------------------------
+bool lib56A96906_gt_GiveCharge_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto3E323D65_g;
+    int auto3E323D65_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("143") == "0001")) {
+        auto3E323D65_g = PlayerGroupAll();
+        auto3E323D65_var = -1;
+        while (true) {
+            auto3E323D65_var = PlayerGroupNextPlayer(auto3E323D65_g, auto3E323D65_var);
+            if (auto3E323D65_var < 0) { break; }
+            if ((GameAttributePlayerValue("144", auto3E323D65_var) == "0001")) {
+                libNtve_gf_SetUpgradeLevelForPlayer(auto3E323D65_var, "Charge", 1);
+            }
+
+        }
+        TimerWindowShow(lib56A96906_gv_chargeTimerWindow, PlayerGroupAll(), false);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib56A96906_gt_GiveCharge_Init () {
+    lib56A96906_gt_GiveCharge = TriggerCreate("lib56A96906_gt_GiveCharge_Func");
+    TriggerAddEventTimeElapsed(lib56A96906_gt_GiveCharge, 300.0, c_timeReal);
+}
+
+void lib56A96906_InitTriggers () {
+    lib56A96906_gt_ChargeWarsModStart_Init();
+    lib56A96906_gt_RemoveChargeFromCreatedUnit_Init();
+    lib56A96906_gt_RemoveChargeFromConstructedUnit_Init();
+    lib56A96906_gt_RemoveChargeFromInitialUnits_Init();
+    lib56A96906_gt_GiveCharge_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib56A96906_InitLib_completed = false;
+
+void lib56A96906_InitLib () {
+    if (lib56A96906_InitLib_completed) {
+        return;
+    }
+
+    lib56A96906_InitLib_completed = true;
+
+    lib56A96906_InitLibraries();
+    lib56A96906_InitVariables();
+    lib56A96906_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

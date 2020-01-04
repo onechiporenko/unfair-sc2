@@ -1,0 +1,200 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibD944395A_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ALIENS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libD944395A_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+int libD944395A_gf_GetAliensRateForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    string auto9E862CE6_val;
+
+    // Implementation
+    auto9E862CE6_val = GameAttributePlayerValue("2", lp_player);
+    if (auto9E862CE6_val == "0002") {
+        return 1;
+    }
+    else if (auto9E862CE6_val == "0003") {
+        return 2;
+    }
+    else if (auto9E862CE6_val == "0004") {
+        return 3;
+    }
+    else if (auto9E862CE6_val == "0005") {
+        return 4;
+    }
+    else if (auto9E862CE6_val == "0006") {
+        return 5;
+    }
+    else if (auto9E862CE6_val == "0007") {
+        return 6;
+    }
+    else if (auto9E862CE6_val == "0008") {
+        return 7;
+    }
+    else if (auto9E862CE6_val == "0009") {
+        return 8;
+    }
+    else if (auto9E862CE6_val == "0010") {
+        return 9;
+    }
+    else if (auto9E862CE6_val == "0011") {
+        return 10;
+    }
+    else if (auto9E862CE6_val == "0012") {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Aliens Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libD944395A_gt_AliensModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+    text lv_defaultDescription;
+
+    // Automatic Variable Declarations
+    playergroup autoB622556B_g;
+    int autoB622556B_var;
+    playergroup autoD8967C87_g;
+    int autoD8967C87_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_defaultDescription = StringExternal("Param/Value/lib_D944395A_09B6706D");
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("1") == "0001")) {
+        autoB622556B_g = PlayerGroupAll();
+        autoB622556B_var = -1;
+        while (true) {
+            autoB622556B_var = PlayerGroupNextPlayer(autoB622556B_g, autoB622556B_var);
+            if (autoB622556B_var < 0) { break; }
+            libDBC4E2D2_gv_players[autoB622556B_var].lv_aLIENS.lv_broodlingsrate = libD944395A_gf_GetAliensRateForPlayer(autoB622556B_var);
+            if ((libDBC4E2D2_gv_players[autoB622556B_var].lv_aLIENS.lv_broodlingsrate != 0)) {
+                PlayerGroupAdd(lv_players, autoB622556B_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            autoD8967C87_g = lv_players;
+            autoD8967C87_var = -1;
+            while (true) {
+                autoD8967C87_var = PlayerGroupNextPlayer(autoD8967C87_g, autoD8967C87_var);
+                if (autoD8967C87_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_D944395A_610951D9", "A", TextWithColor(PlayerName(autoD8967C87_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoD8967C87_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D944395A_610951D9"));
+                TextExpressionSetToken("Param/Expression/lib_D944395A_EAA94110", "A", IntToText(libDBC4E2D2_gv_players[autoD8967C87_var].lv_aLIENS.lv_broodlingsrate));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D944395A_EAA94110"));
+            }
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D944395A_21E35C94"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + lv_playersSettings), StringExternal("Param/Value/lib_D944395A_3FE00000"), "Assets\\Textures\\abilityicon_spawnbroodlings_square.dds");
+        }
+        else {
+            TriggerEnable(libD944395A_gt_CreateBroodlings, false);
+        }
+    }
+    else {
+        TriggerEnable(libD944395A_gt_CreateBroodlings, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD944395A_gt_AliensModStart_Init () {
+    libD944395A_gt_AliensModStart = TriggerCreate("libD944395A_gt_AliensModStart_Func");
+    TriggerAddEventMapInit(libD944395A_gt_AliensModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Create Broodlings
+//--------------------------------------------------------------------------------------------------
+bool libD944395A_gt_CreateBroodlings_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup autoE2B8BEEC_g;
+    int autoE2B8BEEC_u;
+    unit autoE2B8BEEC_var;
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((EventPlayer() != EventUnitDamageSourcePlayer()))) {
+            return false;
+        }
+
+        if (!(((UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesMade) > 0.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libDBC4E2D2_gv_players[EventPlayer()].lv_aLIENS.lv_broodlingsrate == -1)) {
+        libNtve_gf_CreateUnitsAtPoint2(MaxI(FixedToInt(UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesUsed)), 1), "Broodling", 0, EventUnitDamageSourcePlayer(), UnitGetPosition(EventUnit()));
+    }
+    else {
+        libNtve_gf_CreateUnitsAtPoint2(libDBC4E2D2_gv_players[EventPlayer()].lv_aLIENS.lv_broodlingsrate, "Broodling", 0, EventPlayer(), UnitGetPosition(EventUnit()));
+    }
+    UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingPoint(AbilityCommand("attack", 0), EventUnitDamageSourcePoint()), c_orderQueueReplace);
+    autoE2B8BEEC_g = UnitLastCreatedGroup();
+    autoE2B8BEEC_u = UnitGroupCount(autoE2B8BEEC_g, c_unitCountAll);
+    for (;; autoE2B8BEEC_u -= 1) {
+        autoE2B8BEEC_var = UnitGroupUnitFromEnd(autoE2B8BEEC_g, autoE2B8BEEC_u);
+        if (autoE2B8BEEC_var == null) { break; }
+        UnitBehaviorAdd(autoE2B8BEEC_var, "BroodlingFate", autoE2B8BEEC_var, 1);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD944395A_gt_CreateBroodlings_Init () {
+    libD944395A_gt_CreateBroodlings = TriggerCreate("libD944395A_gt_CreateBroodlings_Func");
+    TriggerAddEventUnitDamaged(libD944395A_gt_CreateBroodlings, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
+}
+
+void libD944395A_InitTriggers () {
+    libD944395A_gt_AliensModStart_Init();
+    libD944395A_gt_CreateBroodlings_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libD944395A_InitLib_completed = false;
+
+void libD944395A_InitLib () {
+    if (libD944395A_InitLib_completed) {
+        return;
+    }
+
+    libD944395A_InitLib_completed = true;
+
+    libD944395A_InitLibraries();
+    libD944395A_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

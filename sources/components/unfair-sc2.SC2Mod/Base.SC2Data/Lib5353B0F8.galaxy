@@ -1,0 +1,339 @@
+include "TriggerLibs/NativeLib"
+
+include "Lib5353B0F8_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: WALL
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib5353B0F8_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool lib5353B0F8_InitVariables_completed = false;
+
+void lib5353B0F8_InitVariables () {
+    if (lib5353B0F8_InitVariables_completed) {
+        return;
+    }
+
+    lib5353B0F8_InitVariables_completed = true;
+
+    lib5353B0F8_gv_wallTimer = TimerCreate();
+    lib5353B0F8_gv_wallTimerWindow = c_timerWindowNone;
+}
+
+// Functions
+void lib5353B0F8_gf_CreateMainDiagonalWall () {
+    // Variable Declarations
+    point lv_point;
+    fixed lv_x;
+    fixed lv_y;
+    fixed lv_xOffset;
+    fixed lv_yOffset;
+    fixed lv_width;
+    fixed lv_heigth;
+    fixed lv_xStep;
+    fixed lv_yStep;
+
+    // Automatic Variable Declarations
+    fixed autoCCE197D5_ae;
+    fixed autoCCE197D5_ai;
+
+    // Variable Initialization
+    lv_point = RegionGetBoundsMin(RegionPlayableMap());
+    lv_xOffset = PointGetX(lv_point);
+    lv_yOffset = PointGetY(lv_point);
+    lv_width = libNtve_gf_WidthOfRegion(RegionPlayableMap());
+    lv_heigth = libNtve_gf_HeightOfRegion(RegionPlayableMap());
+    lv_xStep = 3.0;
+    lv_yStep = 3.0;
+
+    // Implementation
+    if ((lv_width < lv_heigth)) {
+        lv_yStep = (lv_yStep * (lv_heigth / lv_width));
+    }
+    else {
+        lv_xStep = (lv_xStep * (lv_width / lv_heigth));
+    }
+    lv_y = lv_yOffset;
+    autoCCE197D5_ae = (lv_width + lv_xOffset);
+    autoCCE197D5_ai = lv_xStep;
+    lv_x = lv_xOffset;
+    for ( ; ( (autoCCE197D5_ai >= 0 && lv_x <= autoCCE197D5_ae) || (autoCCE197D5_ai < 0 && lv_x >= autoCCE197D5_ae) ) ; lv_x += autoCCE197D5_ai ) {
+        lib5353B0F8_gf_CreateWallItem(lv_x, lv_y);
+        lv_y = (lv_y + lv_yStep);
+    }
+}
+
+void lib5353B0F8_gf_CreateAddDiagonalWall () {
+    // Variable Declarations
+    point lv_point;
+    fixed lv_x;
+    fixed lv_y;
+    fixed lv_xOffset;
+    fixed lv_yOffset;
+    fixed lv_width;
+    fixed lv_heigth;
+    fixed lv_xStep;
+    fixed lv_yStep;
+
+    // Automatic Variable Declarations
+    fixed auto519FEE65_ae;
+    fixed auto519FEE65_ai;
+
+    // Variable Initialization
+    lv_point = RegionGetBoundsMin(RegionPlayableMap());
+    lv_xOffset = PointGetX(lv_point);
+    lv_yOffset = PointGetY(lv_point);
+    lv_width = libNtve_gf_WidthOfRegion(RegionPlayableMap());
+    lv_heigth = libNtve_gf_HeightOfRegion(RegionPlayableMap());
+    lv_xStep = 3.0;
+    lv_yStep = 3.0;
+
+    // Implementation
+    if ((lv_width < lv_heigth)) {
+        lv_yStep = (lv_yStep * (lv_heigth / lv_width));
+    }
+    else {
+        lv_xStep = (lv_xStep * (lv_width / lv_heigth));
+    }
+    lv_y = lv_heigth;
+    auto519FEE65_ae = (lv_width + lv_xOffset);
+    auto519FEE65_ai = lv_xStep;
+    lv_x = lv_xOffset;
+    for ( ; ( (auto519FEE65_ai >= 0 && lv_x <= auto519FEE65_ae) || (auto519FEE65_ai < 0 && lv_x >= auto519FEE65_ae) ) ; lv_x += auto519FEE65_ai ) {
+        lib5353B0F8_gf_CreateWallItem(lv_x, lv_y);
+        lv_y = (lv_y - lv_yStep);
+    }
+}
+
+void lib5353B0F8_gf_CreateVerticalWall () {
+    // Variable Declarations
+    point lv_point;
+    fixed lv_x;
+    fixed lv_y;
+    fixed lv_xOffset;
+    fixed lv_yOffset;
+    fixed lv_width;
+    fixed lv_heigth;
+    fixed lv_xStep;
+    fixed lv_yStep;
+
+    // Automatic Variable Declarations
+    fixed auto1A032C7E_ae;
+    fixed auto1A032C7E_ai;
+
+    // Variable Initialization
+    lv_point = RegionGetBoundsMin(RegionPlayableMap());
+    lv_xOffset = PointGetX(lv_point);
+    lv_yOffset = PointGetY(lv_point);
+    lv_width = libNtve_gf_WidthOfRegion(RegionPlayableMap());
+    lv_heigth = libNtve_gf_HeightOfRegion(RegionPlayableMap());
+    lv_xStep = 3.0;
+    lv_yStep = 3.0;
+
+    // Implementation
+    auto1A032C7E_ae = (lv_heigth + lv_yOffset);
+    auto1A032C7E_ai = lv_yStep;
+    lv_y = lv_yOffset;
+    for ( ; ( (auto1A032C7E_ai >= 0 && lv_y <= auto1A032C7E_ae) || (auto1A032C7E_ai < 0 && lv_y >= auto1A032C7E_ae) ) ; lv_y += auto1A032C7E_ai ) {
+        lib5353B0F8_gf_CreateWallItem(((lv_width / 2.0) + lv_xOffset), lv_y);
+    }
+}
+
+void lib5353B0F8_gf_CreateHorizontalWall () {
+    // Variable Declarations
+    point lv_point;
+    fixed lv_x;
+    fixed lv_y;
+    fixed lv_xOffset;
+    fixed lv_yOffset;
+    fixed lv_width;
+    fixed lv_heigth;
+    fixed lv_xStep;
+    fixed lv_yStep;
+
+    // Automatic Variable Declarations
+    fixed auto509E8A75_ae;
+    fixed auto509E8A75_ai;
+
+    // Variable Initialization
+    lv_point = RegionGetBoundsMin(RegionPlayableMap());
+    lv_xOffset = PointGetX(lv_point);
+    lv_yOffset = PointGetY(lv_point);
+    lv_width = libNtve_gf_WidthOfRegion(RegionPlayableMap());
+    lv_heigth = libNtve_gf_HeightOfRegion(RegionPlayableMap());
+    lv_xStep = 3.0;
+    lv_yStep = 3.0;
+
+    // Implementation
+    auto509E8A75_ae = (lv_width + lv_xOffset);
+    auto509E8A75_ai = lv_xStep;
+    lv_x = lv_xOffset;
+    for ( ; ( (auto509E8A75_ai >= 0 && lv_x <= auto509E8A75_ae) || (auto509E8A75_ai < 0 && lv_x >= auto509E8A75_ae) ) ; lv_x += auto509E8A75_ai ) {
+        lib5353B0F8_gf_CreateWallItem(lv_x, ((lv_heigth / 2.0) + lv_yOffset));
+    }
+}
+
+void lib5353B0F8_gf_CreateWallItem (fixed lp_x, fixed lp_y) {
+    // Automatic Variable Declarations
+    playergroup auto36192505_g;
+    int auto36192505_var;
+
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "PlanetaryFortress", c_unitCreateIgnorePlacement, 15, Point(lp_x, lp_y));
+    UnitBehaviorAdd(UnitLastCreated(), "Detector9", UnitLastCreated(), 1);
+    UnitWeaponAdd(UnitLastCreated(), "UnfairSc2Wall", "PlanetaryFortress");
+    libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+    auto36192505_g = PlayerGroupAll();
+    auto36192505_var = -1;
+    while (true) {
+        auto36192505_var = PlayerGroupNextPlayer(auto36192505_g, auto36192505_var);
+        if (auto36192505_var < 0) { break; }
+        VisRevealArea(auto36192505_var, RegionCircle(Point(lp_x, lp_y), 3.0), ((lib5353B0F8_gv_wallTimeout + 5.0) / 0.72), false);
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Wall Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib5353B0F8_gt_WallModStart_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    string autoFF5A15EE_val;
+    string auto855FE996_val;
+
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributeGameValue("53") == "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoFF5A15EE_val = GameAttributeGameValue("55");
+    if (autoFF5A15EE_val == "0001") {
+        lib5353B0F8_gv_wallTimeout = 60.0;
+    }
+    else if (autoFF5A15EE_val == "0002") {
+        lib5353B0F8_gv_wallTimeout = 120.0;
+    }
+    else if (autoFF5A15EE_val == "0003") {
+        lib5353B0F8_gv_wallTimeout = 180.0;
+    }
+    else if (autoFF5A15EE_val == "0004") {
+        lib5353B0F8_gv_wallTimeout = 240.0;
+    }
+    else if (autoFF5A15EE_val == "0005") {
+        lib5353B0F8_gv_wallTimeout = 300.0;
+    }
+    else {
+    }
+    auto855FE996_val = GameAttributeGameValue("54");
+    if (auto855FE996_val == "0002") {
+        lib5353B0F8_gf_CreateVerticalWall();
+    }
+    else if (auto855FE996_val == "0001") {
+        lib5353B0F8_gf_CreateHorizontalWall();
+    }
+    else if (auto855FE996_val == "0003") {
+        lib5353B0F8_gf_CreateMainDiagonalWall();
+    }
+    else if (auto855FE996_val == "0004") {
+        lib5353B0F8_gf_CreateAddDiagonalWall();
+    }
+    else if (auto855FE996_val == "0005") {
+        lib5353B0F8_gf_CreateMainDiagonalWall();
+        lib5353B0F8_gf_CreateAddDiagonalWall();
+    }
+    else if (auto855FE996_val == "0006") {
+        lib5353B0F8_gf_CreateVerticalWall();
+        lib5353B0F8_gf_CreateHorizontalWall();
+    }
+    else {
+    }
+    TimerStart(lib5353B0F8_gv_wallTimer, lib5353B0F8_gv_wallTimeout, false, c_timeReal);
+    TextExpressionSetToken("Param/Expression/lib_5353B0F8_804B1A46", "WallLifeTime", FixedToText(lib5353B0F8_gv_wallTimeout, c_fixedPrecisionAny));
+    HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_5353B0F8_50930A31"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_5353B0F8_804B1A46"), StringExternal("Param/Value/lib_5353B0F8_96178536"), "Assets\\Textures\\btn-building-terran-planetaryfortress.dds");
+    TimerWindowCreate(lib5353B0F8_gv_wallTimer, StringExternal("Param/Value/lib_5353B0F8_A71954DA"), true, false);
+    lib5353B0F8_gv_wallTimerWindow = TimerWindowLastCreated();
+    TimerWindowShowBorder(lib5353B0F8_gv_wallTimerWindow, false);
+    TimerWindowShow(lib5353B0F8_gv_wallTimerWindow, PlayerGroupAll(), true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib5353B0F8_gt_WallModStart_Init () {
+    lib5353B0F8_gt_WallModStart = TriggerCreate("lib5353B0F8_gt_WallModStart_Func");
+    TriggerAddEventMapInit(lib5353B0F8_gt_WallModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Wall Timer Elapsed
+//--------------------------------------------------------------------------------------------------
+bool lib5353B0F8_gt_WallTimerElapsed_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup autoF2CB05D8_g;
+    int autoF2CB05D8_u;
+    unit autoF2CB05D8_var;
+    unitgroup auto57CACC9B_g;
+    int auto57CACC9B_u;
+    unit auto57CACC9B_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoF2CB05D8_g = UnitGroup("DestructibleRock6x6", 15, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterInvulnerable - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoF2CB05D8_u = UnitGroupCount(autoF2CB05D8_g, c_unitCountAll);
+    for (;; autoF2CB05D8_u -= 1) {
+        autoF2CB05D8_var = UnitGroupUnitFromEnd(autoF2CB05D8_g, autoF2CB05D8_u);
+        if (autoF2CB05D8_var == null) { break; }
+        UnitKill(autoF2CB05D8_var);
+    }
+    auto57CACC9B_g = UnitGroup("PlanetaryFortress", 15, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterInvulnerable - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto57CACC9B_u = UnitGroupCount(auto57CACC9B_g, c_unitCountAll);
+    for (;; auto57CACC9B_u -= 1) {
+        auto57CACC9B_var = UnitGroupUnitFromEnd(auto57CACC9B_g, auto57CACC9B_u);
+        if (auto57CACC9B_var == null) { break; }
+        UnitKill(auto57CACC9B_var);
+    }
+    TimerWindowShow(lib5353B0F8_gv_wallTimerWindow, PlayerGroupAll(), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib5353B0F8_gt_WallTimerElapsed_Init () {
+    lib5353B0F8_gt_WallTimerElapsed = TriggerCreate("lib5353B0F8_gt_WallTimerElapsed_Func");
+    TriggerAddEventTimer(lib5353B0F8_gt_WallTimerElapsed, lib5353B0F8_gv_wallTimer);
+}
+
+void lib5353B0F8_InitTriggers () {
+    lib5353B0F8_gt_WallModStart_Init();
+    lib5353B0F8_gt_WallTimerElapsed_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib5353B0F8_InitLib_completed = false;
+
+void lib5353B0F8_InitLib () {
+    if (lib5353B0F8_InitLib_completed) {
+        return;
+    }
+
+    lib5353B0F8_InitLib_completed = true;
+
+    lib5353B0F8_InitLibraries();
+    lib5353B0F8_InitVariables();
+    lib5353B0F8_InitTriggers();
+}
+

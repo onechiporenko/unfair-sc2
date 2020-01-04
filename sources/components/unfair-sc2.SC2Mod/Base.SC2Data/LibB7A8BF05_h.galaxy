@@ -1,0 +1,10 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: FAIR PLAY
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libB7A8BF05_gt_FairPlayModStart;
+trigger libB7A8BF05_gt_AddAuraToInitialNexuses;
+trigger libB7A8BF05_gt_AddAuraToNexus;
+

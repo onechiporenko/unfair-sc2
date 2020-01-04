@@ -1,0 +1,295 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib3BAA32A3_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: DOUBLE
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib3BAA32A3_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib3BAA32A3_InitVariables_completed = false;
+
+void lib3BAA32A3_InitVariables () {
+    if (lib3BAA32A3_InitVariables_completed) {
+        return;
+    }
+
+    lib3BAA32A3_InitVariables_completed = true;
+
+    lib3BAA32A3_gv_doubleLeaderboard = c_boardNone;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Double Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib3BAA32A3_gt_DoubleModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoCA49BE1F_g;
+    int autoCA49BE1F_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("7") == "0001")) {
+        autoCA49BE1F_g = PlayerGroupAll();
+        autoCA49BE1F_var = -1;
+        while (true) {
+            autoCA49BE1F_var = PlayerGroupNextPlayer(autoCA49BE1F_g, autoCA49BE1F_var);
+            if (autoCA49BE1F_var < 0) { break; }
+            if ((GameAttributePlayerValue("8", autoCA49BE1F_var) == "0001")) {
+                libDBC4E2D2_gv_players[autoCA49BE1F_var].lv_dOUBLE.lv_messageindex = libDBC4E2D2_gv_players[autoCA49BE1F_var].lv_uI.lv_numberofmessages;
+                PlayerGroupAdd(lv_players, autoCA49BE1F_var);
+                libDBC4E2D2_gv_players[autoCA49BE1F_var].lv_uI.lv_numberofmessages += 1;
+                PlayerModifyPropertyInt(autoCA49BE1F_var, c_playerPropSuppliesMade, c_playerPropOperSetTo, 200);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            lib3BAA32A3_gv_doubleLeaderboard = libDBC4E2D2_gf_CreateResourcesLeaderboard(StringExternal("Param/Value/lib_3BAA32A3_77935902"));
+            libNtve_gf_ShowHideLeaderboard(lib3BAA32A3_gv_doubleLeaderboard, true, libDBC4E2D2_gv_observerGroup);
+            TextExpressionSetToken("Param/Expression/lib_3BAA32A3_4871B116", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_3BAA32A3_686D39F7"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_3BAA32A3_4871B116"), StringExternal("Param/Value/lib_3BAA32A3_949D0148"), "Assets\\Textures\\btn-ability-protoss-doubleshieldrecharge.dds");
+        }
+        else {
+            TriggerEnable(lib3BAA32A3_gt_DuplicateCreatedUnit, false);
+            TriggerEnable(lib3BAA32A3_gt_UpdateDoubleLeaderboard, false);
+        }
+    }
+    else {
+        TriggerEnable(lib3BAA32A3_gt_DuplicateCreatedUnit, false);
+        TriggerEnable(lib3BAA32A3_gt_UpdateDoubleLeaderboard, false);
+        TriggerEnable(lib3BAA32A3_gt_ShowSavedResources, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib3BAA32A3_gt_DoubleModStart_Init () {
+    lib3BAA32A3_gt_DoubleModStart = TriggerCreate("lib3BAA32A3_gt_DoubleModStart_Func");
+    TriggerAddEventMapInit(lib3BAA32A3_gt_DoubleModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Duplicate Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib3BAA32A3_gt_DuplicateCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("8", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitCreatedUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "AdeptPhaseShift"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "Archon"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "Baneling"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "DisruptorPhased"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationArchon"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationColossus"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationHighTemplar"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationImmortal"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationPhoenix"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationProbe"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationStalker"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationVoidRay"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationWarpPrism"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationZealot"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationAdept"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationDisruptor"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "Hyperjump"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "Yoink"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != ""))) {
+            return false;
+        }
+
+        if (!(((UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesMade) > 0.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitCreate(1, UnitGetType(EventUnitCreatedUnit()), 0, UnitGetOwner(EventUnitCreatedUnit()), UnitGetPosition(EventUnitCreatedUnit()), 270.0);
+    UnitIssueOrder(UnitLastCreated(), UnitOrder(EventUnitCreatedUnit(), 0), c_orderQueueReplace);
+    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2DoubleBirth", "Ref_Head");
+    libDBC4E2D2_gv_players[UnitGetOwner(EventUnitCreatedUnit())].lv_dOUBLE.lv_minerals += UnitTypeGetCost(UnitGetType(EventUnitCreatedUnit()), c_unitCostMinerals);
+    libDBC4E2D2_gv_players[UnitGetOwner(EventUnitCreatedUnit())].lv_dOUBLE.lv_gas += UnitTypeGetCost(UnitGetType(EventUnitCreatedUnit()), c_unitCostVespene);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib3BAA32A3_gt_DuplicateCreatedUnit_Init () {
+    lib3BAA32A3_gt_DuplicateCreatedUnit = TriggerCreate("lib3BAA32A3_gt_DuplicateCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib3BAA32A3_gt_DuplicateCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Double Leaderboard
+//--------------------------------------------------------------------------------------------------
+bool lib3BAA32A3_gt_UpdateDoubleLeaderboard_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto7241B309_g;
+    int auto7241B309_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto7241B309_g = PlayerGroupAll();
+    auto7241B309_var = -1;
+    while (true) {
+        auto7241B309_var = PlayerGroupNextPlayer(auto7241B309_g, auto7241B309_var);
+        if (auto7241B309_var < 0) { break; }
+        if ((PlayerStatus(auto7241B309_var) == c_playerStatusActive)) {
+            BoardItemSetText(lib3BAA32A3_gv_doubleLeaderboard, 1, auto7241B309_var, TextWithColor(PlayerName(auto7241B309_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto7241B309_var, false))));
+            BoardItemSetText(lib3BAA32A3_gv_doubleLeaderboard, 2, auto7241B309_var, FixedToText(libDBC4E2D2_gv_players[auto7241B309_var].lv_dOUBLE.lv_minerals, c_fixedPrecisionAny));
+            BoardItemSetText(lib3BAA32A3_gv_doubleLeaderboard, 3, auto7241B309_var, FixedToText(libDBC4E2D2_gv_players[auto7241B309_var].lv_dOUBLE.lv_gas, c_fixedPrecisionAny));
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib3BAA32A3_gt_UpdateDoubleLeaderboard_Init () {
+    lib3BAA32A3_gt_UpdateDoubleLeaderboard = TriggerCreate("lib3BAA32A3_gt_UpdateDoubleLeaderboard_Func");
+    TriggerAddEventTimePeriodic(lib3BAA32A3_gt_UpdateDoubleLeaderboard, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Show "Saved" Resources
+//--------------------------------------------------------------------------------------------------
+bool lib3BAA32A3_gt_ShowSavedResources_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoC9498252_g;
+    int autoC9498252_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoC9498252_g = PlayerGroupActive();
+    autoC9498252_var = -1;
+    while (true) {
+        autoC9498252_var = PlayerGroupNextPlayer(autoC9498252_g, autoC9498252_var);
+        if (autoC9498252_var < 0) { break; }
+        if ((GameAttributePlayerValue("20", autoC9498252_var) == "0001")) {
+            TextExpressionSetToken("Param/Expression/lib_3BAA32A3_2C951AA8", "minerals", FixedToText(libDBC4E2D2_gv_players[autoC9498252_var].lv_dOUBLE.lv_minerals, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_3BAA32A3_2C951AA8", "gas", FixedToText(libDBC4E2D2_gv_players[autoC9498252_var].lv_dOUBLE.lv_gas, c_fixedPrecisionAny));
+            libDBC4E2D2_gv_players[autoC9498252_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[autoC9498252_var].lv_dOUBLE.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_3BAA32A3_2C951AA8");
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib3BAA32A3_gt_ShowSavedResources_Init () {
+    lib3BAA32A3_gt_ShowSavedResources = TriggerCreate("lib3BAA32A3_gt_ShowSavedResources_Func");
+    TriggerAddEventTimePeriodic(lib3BAA32A3_gt_ShowSavedResources, 1.0, c_timeReal);
+}
+
+void lib3BAA32A3_InitTriggers () {
+    lib3BAA32A3_gt_DoubleModStart_Init();
+    lib3BAA32A3_gt_DuplicateCreatedUnit_Init();
+    lib3BAA32A3_gt_UpdateDoubleLeaderboard_Init();
+    lib3BAA32A3_gt_ShowSavedResources_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib3BAA32A3_InitLib_completed = false;
+
+void lib3BAA32A3_InitLib () {
+    if (lib3BAA32A3_InitLib_completed) {
+        return;
+    }
+
+    lib3BAA32A3_InitLib_completed = true;
+
+    lib3BAA32A3_InitLibraries();
+    lib3BAA32A3_InitVariables();
+    lib3BAA32A3_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

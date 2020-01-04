@@ -1,0 +1,221 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: COMMON
+//--------------------------------------------------------------------------------------------------
+// Preset Declarations
+const int libDBC4E2D2_ge_APMKingAffectedUnits_ALL = 0;
+const int libDBC4E2D2_ge_APMKingAffectedUnits_ONLYWORKERS = 1;
+const int libDBC4E2D2_ge_APMKingAffectedUnits_ONLYARMY = 2;
+const int libDBC4E2D2_ge_APMKingAffectedUnits_ONLYBUILDINGS = 3;
+const int libDBC4E2D2_ge_APMKingAffectedUnits_BUILDINGSARMY = 4;
+const int libDBC4E2D2_ge_APMKingAffectedUnits_BUILDINGSWORKERS = 5;
+const int libDBC4E2D2_ge_APMKingAffectedUnits_ARMYWORKERS = 6;
+
+// Structures
+struct libDBC4E2D2_gs_MinesPlayerOptions {
+    int lv_savezoneradius;
+    int lv_mineralslost;
+    int lv_gaslost;
+    int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_EnergyPlayerOptions {
+    fixed lv_initial;
+    fixed lv_max;
+};
+
+struct libDBC4E2D2_gs_ImmportalsPlayerOptions {
+    fixed lv_maxdamage;
+};
+
+struct libDBC4E2D2_gs_InstantProductionPlayerOptions {
+    bool lv_upgrades;
+    bool lv_buildings;
+};
+
+struct libDBC4E2D2_gs_MoveSpeedPlayerOptions {
+    fixed lv_rate;
+};
+
+struct libDBC4E2D2_gs_DarknessPlayerOptions {
+    bool lv_reduceVisionRange;
+    bool lv_hideMap;
+};
+
+struct libDBC4E2D2_gs_NoMinimapOptions {
+    bool lv_minimapEnabled;
+    int lv_toggleForReferee;
+};
+
+struct libDBC4E2D2_gs_MotherCoreOptions {
+    timer lv_restoreMotherCoreTimer;
+    int lv_restoreMotherCoreTimerWindow;
+};
+
+struct libDBC4E2D2_gs_NoArmyControlsOptions {
+    bool lv_armyButtonEnabled;
+    bool lv_controlGroupsEnabled;
+    int lv_toggleForReferee;
+};
+
+struct libDBC4E2D2_gs_RiotOptions {
+    int lv_toggleForReferee;
+};
+
+struct libDBC4E2D2_gs_ResourcesOptions {
+    int lv_giveMineralsToggleForReferee;
+    int lv_takeMineralsToggleForReferee;
+    int lv_giveVespeneToggleForReferee;
+    int lv_takeVespeneToggleForReferee;
+};
+
+struct libDBC4E2D2_gs_VampirismPlayerOptions {
+    fixed lv_rate;
+};
+
+struct libDBC4E2D2_gs_LastWillPlayerOptions {
+    fixed lv_rate;
+};
+
+struct libDBC4E2D2_gs_FreeWorkersPlayerOptions {
+    int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_AliensPlayerOptions {
+    int lv_broodlingsrate;
+};
+
+struct libDBC4E2D2_gs_DoublePlayerOptions {
+    int lv_minerals;
+    int lv_gas;
+    int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_BountyPlayerOptions {
+    fixed lv_minerals;
+    fixed lv_gas;
+    fixed lv_percent;
+};
+
+struct libDBC4E2D2_gs_NukedPlayerOptions {
+    int lv_savezoneradius;
+};
+
+struct libDBC4E2D2_gs_TemporalFieldsPlayerOptions {
+    int lv_savezoneradius;
+};
+
+struct libDBC4E2D2_gs_LimitedWorkersPlayerOptions {
+    int lv_workerslimit;
+};
+
+struct libDBC4E2D2_gs_OrderCostsPlayerOptions {
+    int lv_mineralslost;
+    int lv_gaslost;
+    int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_DecimatioPlayerOptions {
+    int lv_mineralslost;
+    int lv_gaslost;
+    int lv_messageindex;
+    int lv_toggleForReferee;
+};
+
+struct libDBC4E2D2_gs_CriticalMissPlayerOptions {
+    fixed lv_chance;
+};
+
+struct libDBC4E2D2_gs_CriticalStrikePlayerOptions {
+    fixed lv_chance;
+    fixed lv_ammount;
+};
+
+struct libDBC4E2D2_gs_APMKingPlayerOptions {
+    int lv_maxAPM;
+    int lv_minAPM;
+    int lv_affectedUnits;
+    int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_PlayerUI {
+    text[21] lv_messages;
+    int[21] lv_dialogMessages;
+    int lv_numberofmessages;
+    int lv_messagesmodaldialog;
+};
+
+struct libDBC4E2D2_gs_PlayerOptions {
+    libDBC4E2D2_gs_AliensPlayerOptions lv_aLIENS;
+    libDBC4E2D2_gs_APMKingPlayerOptions lv_aPMKING;
+    libDBC4E2D2_gs_BountyPlayerOptions lv_bOUNTY;
+    libDBC4E2D2_gs_CriticalMissPlayerOptions lv_cRITICALMISS;
+    libDBC4E2D2_gs_CriticalStrikePlayerOptions lv_cRITICALSTRIKE;
+    libDBC4E2D2_gs_DarknessPlayerOptions lv_dARKNESS;
+    libDBC4E2D2_gs_DecimatioPlayerOptions lv_dECIMATIO;
+    libDBC4E2D2_gs_DoublePlayerOptions lv_dOUBLE;
+    libDBC4E2D2_gs_EnergyPlayerOptions lv_eNERGY;
+    libDBC4E2D2_gs_FreeWorkersPlayerOptions lv_fREEWORKERS;
+    libDBC4E2D2_gs_ImmportalsPlayerOptions lv_iMMORTALS;
+    libDBC4E2D2_gs_InstantProductionPlayerOptions lv_iNSTANTPRODUCTION;
+    libDBC4E2D2_gs_LastWillPlayerOptions lv_lASTWILL;
+    libDBC4E2D2_gs_LimitedWorkersPlayerOptions lv_lIMITEDWORKERS;
+    libDBC4E2D2_gs_MinesPlayerOptions lv_mINES;
+    libDBC4E2D2_gs_MotherCoreOptions lv_mOTHERCORE;
+    libDBC4E2D2_gs_NoMinimapOptions lv_nOMINIMAP;
+    libDBC4E2D2_gs_NoArmyControlsOptions lv_nOARMYCONTROLS;
+    libDBC4E2D2_gs_MoveSpeedPlayerOptions lv_mOVESPEED;
+    libDBC4E2D2_gs_NukedPlayerOptions lv_nUKED;
+    libDBC4E2D2_gs_OrderCostsPlayerOptions lv_oRDERCOSTS;
+    libDBC4E2D2_gs_RiotOptions lv_rIOTWORKERS;
+    libDBC4E2D2_gs_ResourcesOptions lv_rESOURCES;
+    libDBC4E2D2_gs_TemporalFieldsPlayerOptions lv_tEMPORALFIELDS;
+    libDBC4E2D2_gs_PlayerUI lv_uI;
+    libDBC4E2D2_gs_VampirismPlayerOptions lv_vAMPIRISM;
+};
+
+// Variable Declarations
+libDBC4E2D2_gs_PlayerOptions[18] libDBC4E2D2_gv_players;
+int libDBC4E2D2_gv_gAMETIME;
+string libDBC4E2D2_gv_sETUPCOMPLETEEVENT;
+int libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+int libDBC4E2D2_gv_numberOfUnitTypesGiveSupply;
+int libDBC4E2D2_gv_numberOfFlyingUnits;
+string[23] libDBC4E2D2_gv_unitTypesWithEnergy;
+string[32] libDBC4E2D2_gv_flyingUnits;
+string[101] libDBC4E2D2_gv_unitTypesGiveSupply;
+int libDBC4E2D2_gv_observer;
+playergroup libDBC4E2D2_gv_observerGroup;
+
+// Function Declarations
+text libDBC4E2D2_gf_GetPlayerNamesColored (playergroup lp_players);
+int libDBC4E2D2_gf_GetWorkersCount (int lp_player);
+int libDBC4E2D2_gf_GetBuiltWorkersCount (int lp_player);
+bool libDBC4E2D2_gf_UnitIsWorker (unit lp_unit);
+bool libDBC4E2D2_gf_UnitisBuiltWorker (unit lp_unit);
+unit libDBC4E2D2_gf_GetRandomStructure (int lp_player);
+unit libDBC4E2D2_gf_GetRandomWorkersProdStructure (int lp_player);
+unit libDBC4E2D2_gf_GetRandomBuiltWorker (int lp_player);
+void libDBC4E2D2_gf_CreateProtossInfrastructure (int lp_player);
+void libDBC4E2D2_gf_CreateTerranInfrastructure (int lp_player);
+void libDBC4E2D2_gf_CreateZergInfrastructure (int lp_player);
+int libDBC4E2D2_gf_CreateResourcesLeaderboard (text lp_title);
+int libDBC4E2D2_gf_GetRandomPlayer (int lp_playerToSkip);
+void libDBC4E2D2_gf_SetupUnitTypesWithEnergy ();
+void libDBC4E2D2_gf_SetupUnitTypesGiveSupply ();
+void libDBC4E2D2_gf_SetupFlyingUnits ();
+void libDBC4E2D2_gf_ShowCountDownProgressBar (int lp_width, int lp_height, fixed lp_duration, playergroup lp_playersToShow);
+void libDBC4E2D2_gf_ShowResourcesBaloonForUnit (unit lp_unit, int lp_amount, bool lp_type);
+void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, fixed lp_showTime, point lp_point);
+
+// Trigger Declarations
+trigger libDBC4E2D2_gt_SETUP;
+trigger libDBC4E2D2_gt_SETUPCOMPLETE;
+trigger libDBC4E2D2_gt_UpdateGameTime;
+trigger libDBC4E2D2_gt_UpdatePlayerInfoModals;
+trigger libDBC4E2D2_gt_GameHeartInitialization;
+
+// Library Initialization
+void libDBC4E2D2_InitVariables ();
+

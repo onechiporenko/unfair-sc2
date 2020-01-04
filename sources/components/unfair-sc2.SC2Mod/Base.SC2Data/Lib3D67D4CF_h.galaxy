@@ -1,0 +1,10 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: APM KING
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib3D67D4CF_gt_APMKingModStart;
+trigger lib3D67D4CF_gt_CheckAPM;
+trigger lib3D67D4CF_gt_UpdateAPMmessage;
+

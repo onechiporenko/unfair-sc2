@@ -1,0 +1,12 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: VAMPIRISM
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+int lib313A0FF8_gf_GetVampirismRateForPlayer (int lp_player);
+
+// Trigger Declarations
+trigger lib313A0FF8_gt_VampirismModStart;
+trigger lib313A0FF8_gt_UnitTakesDamage;
+

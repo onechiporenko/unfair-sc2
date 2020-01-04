@@ -1,0 +1,230 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib02E93650_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CRITICAL STRIKE
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib02E93650_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Critical Strike Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib02E93650_gt_CriticalStrikeModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup auto3C476481_g;
+    int auto3C476481_var;
+    string autoDA28FBEF_val;
+    string auto06E2E8CF_val;
+    playergroup auto927857B6_g;
+    int auto927857B6_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("80") == "0001")) {
+        auto3C476481_g = PlayerGroupActive();
+        auto3C476481_var = -1;
+        while (true) {
+            auto3C476481_var = PlayerGroupNextPlayer(auto3C476481_g, auto3C476481_var);
+            if (auto3C476481_var < 0) { break; }
+            if ((GameAttributePlayerValue("83", auto3C476481_var) != "0005")) {
+                autoDA28FBEF_val = GameAttributePlayerValue("82", auto3C476481_var);
+                if (autoDA28FBEF_val == "0001") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CriticalStrike", "DamageResponse.ModifyFraction", auto3C476481_var, "2");
+                    libDBC4E2D2_gv_players[auto3C476481_var].lv_cRITICALSTRIKE.lv_ammount = 2.0;
+                }
+                else if (autoDA28FBEF_val == "0002") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CriticalStrike", "DamageResponse.ModifyFraction", auto3C476481_var, "3");
+                    libDBC4E2D2_gv_players[auto3C476481_var].lv_cRITICALSTRIKE.lv_ammount = 3.0;
+                }
+                else if (autoDA28FBEF_val == "0003") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CriticalStrike", "DamageResponse.ModifyFraction", auto3C476481_var, "4");
+                    libDBC4E2D2_gv_players[auto3C476481_var].lv_cRITICALSTRIKE.lv_ammount = 4.0;
+                }
+                else {
+                }
+                auto06E2E8CF_val = GameAttributePlayerValue("83", auto3C476481_var);
+                if (auto06E2E8CF_val == "0004") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CriticalStrike", "DamageResponse.Chance", auto3C476481_var, "0.1");
+                    libDBC4E2D2_gv_players[auto3C476481_var].lv_cRITICALSTRIKE.lv_chance = 0.1;
+                }
+                else if (auto06E2E8CF_val == "0001") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CriticalStrike", "DamageResponse.Chance", auto3C476481_var, "0.2");
+                    libDBC4E2D2_gv_players[auto3C476481_var].lv_cRITICALSTRIKE.lv_chance = 0.2;
+                }
+                else if (auto06E2E8CF_val == "0002") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CriticalStrike", "DamageResponse.Chance", auto3C476481_var, "0.3");
+                    libDBC4E2D2_gv_players[auto3C476481_var].lv_cRITICALSTRIKE.lv_chance = 0.3;
+                }
+                else if (auto06E2E8CF_val == "0003") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CriticalStrike", "DamageResponse.Chance", auto3C476481_var, "0.4");
+                    libDBC4E2D2_gv_players[auto3C476481_var].lv_cRITICALSTRIKE.lv_chance = 0.4;
+                }
+                else {
+                }
+                PlayerGroupAdd(lv_players, auto3C476481_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(lib02E93650_gt_AddCritForInitialUnits, true, false);
+            auto927857B6_g = lv_players;
+            auto927857B6_var = -1;
+            while (true) {
+                auto927857B6_var = PlayerGroupNextPlayer(auto927857B6_g, auto927857B6_var);
+                if (auto927857B6_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_02E93650_1D295F72", "A", TextWithColor(PlayerName(auto927857B6_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto927857B6_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_02E93650_1D295F72"));
+                TextExpressionSetToken("Param/Expression/lib_02E93650_ED4FB16D", "A", FixedToText((libDBC4E2D2_gv_players[auto927857B6_var].lv_cRITICALSTRIKE.lv_chance * 100.0), 0));
+                TextExpressionSetToken("Param/Expression/lib_02E93650_ED4FB16D", "B", FixedToText((libDBC4E2D2_gv_players[auto927857B6_var].lv_cRITICALSTRIKE.lv_ammount * 100.0), 0));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_02E93650_ED4FB16D"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_02E93650_B3BB06EC", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_02E93650_0FC0BE2F"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_02E93650_B3BB06EC"), StringExternal("Param/Value/lib_02E93650_14D3A8C5"), "Assets\\Textures\\btn-upgrade-tychus-herc-criticalsystem.dds");
+        }
+        else {
+            TriggerEnable(lib02E93650_gt_AddCritForInitialUnits, false);
+            TriggerEnable(lib02E93650_gt_AddCritBehaviorForCreatedUnit, false);
+        }
+    }
+    else {
+        TriggerEnable(lib02E93650_gt_AddCritForInitialUnits, false);
+        TriggerEnable(lib02E93650_gt_AddCritBehaviorForCreatedUnit, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib02E93650_gt_CriticalStrikeModStart_Init () {
+    lib02E93650_gt_CriticalStrikeModStart = TriggerCreate("lib02E93650_gt_CriticalStrikeModStart_Func");
+    TriggerAddEventMapInit(lib02E93650_gt_CriticalStrikeModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Takes Damage
+//--------------------------------------------------------------------------------------------------
+bool lib02E93650_gt_UnitTakesDamage_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libDBC4E2D2_gf_ShowTextBaloonForUnit(TextWithColor(StringExternal("Param/Value/lib_02E93650_6A9605CB"), Color(50.20, 0.00, 0.00)), 30, 1.0, EventUnitDamageSourcePoint());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib02E93650_gt_UnitTakesDamage_Init () {
+    lib02E93650_gt_UnitTakesDamage = TriggerCreate("lib02E93650_gt_UnitTakesDamage_Func");
+    TriggerAddEventUnitDamaged(lib02E93650_gt_UnitTakesDamage, null, c_unitDamageTypeAny, c_unitDamageEither, "UnfairSc2CritDummy");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Crit For Initial Units
+//--------------------------------------------------------------------------------------------------
+bool lib02E93650_gt_AddCritForInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoBE3993AA_g;
+    int autoBE3993AA_var;
+    unitgroup auto380E0D45_g;
+    int auto380E0D45_u;
+    unit auto380E0D45_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoBE3993AA_g = PlayerGroupAll();
+    autoBE3993AA_var = -1;
+    while (true) {
+        autoBE3993AA_var = PlayerGroupNextPlayer(autoBE3993AA_g, autoBE3993AA_var);
+        if (autoBE3993AA_var < 0) { break; }
+        if ((GameAttributePlayerValue("83", autoBE3993AA_var) != "0005")) {
+            auto380E0D45_g = UnitGroup(null, autoBE3993AA_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto380E0D45_u = UnitGroupCount(auto380E0D45_g, c_unitCountAll);
+            for (;; auto380E0D45_u -= 1) {
+                auto380E0D45_var = UnitGroupUnitFromEnd(auto380E0D45_g, auto380E0D45_u);
+                if (auto380E0D45_var == null) { break; }
+                UnitBehaviorAdd(auto380E0D45_var, "UnfairSC2CriticalStrike", auto380E0D45_var, 1);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib02E93650_gt_AddCritForInitialUnits_Init () {
+    lib02E93650_gt_AddCritForInitialUnits = TriggerCreate("lib02E93650_gt_AddCritForInitialUnits_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Crit Behavior For Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib02E93650_gt_AddCritBehaviorForCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("83", UnitGetOwner(EventUnitCreatedUnit())) != "0005"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(EventUnitCreatedUnit(), "UnfairSC2CriticalStrike", EventUnitCreatedUnit(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib02E93650_gt_AddCritBehaviorForCreatedUnit_Init () {
+    lib02E93650_gt_AddCritBehaviorForCreatedUnit = TriggerCreate("lib02E93650_gt_AddCritBehaviorForCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib02E93650_gt_AddCritBehaviorForCreatedUnit, null, null, null);
+}
+
+void lib02E93650_InitTriggers () {
+    lib02E93650_gt_CriticalStrikeModStart_Init();
+    lib02E93650_gt_UnitTakesDamage_Init();
+    lib02E93650_gt_AddCritForInitialUnits_Init();
+    lib02E93650_gt_AddCritBehaviorForCreatedUnit_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib02E93650_InitLib_completed = false;
+
+void lib02E93650_InitLib () {
+    if (lib02E93650_InitLib_completed) {
+        return;
+    }
+
+    lib02E93650_InitLib_completed = true;
+
+    lib02E93650_InitLibraries();
+    lib02E93650_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

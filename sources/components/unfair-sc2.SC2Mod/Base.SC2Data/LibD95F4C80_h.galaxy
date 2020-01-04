@@ -1,0 +1,15 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: FREE WORKERS
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+playergroup libD95F4C80_gv_playersWithFreeWorkers;
+
+// Trigger Declarations
+trigger libD95F4C80_gt_FreeWorkersModStart;
+trigger libD95F4C80_gt_UpdateShownWorkersCount;
+
+// Library Initialization
+void libD95F4C80_InitVariables ();
+

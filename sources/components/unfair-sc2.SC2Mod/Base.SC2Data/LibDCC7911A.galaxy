@@ -1,0 +1,154 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibDCC7911A_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MACRO DEF
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libDCC7911A_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool libDCC7911A_InitVariables_completed = false;
+
+void libDCC7911A_InitVariables () {
+    if (libDCC7911A_InitVariables_completed) {
+        return;
+    }
+
+    libDCC7911A_InitVariables_completed = true;
+
+    libDCC7911A_gv_defTimer = TimerCreate();
+    libDCC7911A_gv_defTimerWindow = c_timerWindowNone;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Macro Def Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libDCC7911A_gt_MacroDefModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoDE5AAC69_g;
+    int autoDE5AAC69_var;
+    playergroup autoE8EC3C06_g;
+    int autoE8EC3C06_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoDE5AAC69_g = PlayerGroupAll();
+    autoDE5AAC69_var = -1;
+    while (true) {
+        autoDE5AAC69_var = PlayerGroupNextPlayer(autoDE5AAC69_g, autoDE5AAC69_var);
+        if (autoDE5AAC69_var < 0) { break; }
+        TechTreeAbilityAllow(autoDE5AAC69_var, AbilityCommand("UnfairSC2MacroDefTerran", 0), false);
+        TechTreeAbilityAllow(autoDE5AAC69_var, AbilityCommand("UnfairSC2MacroDefProtoss", 0), false);
+        TechTreeAbilityAllow(autoDE5AAC69_var, AbilityCommand("UnfairSC2MacroDefZerg", 0), false);
+    }
+    if ((GameAttributeGameValue("33") == "0001")) {
+        autoE8EC3C06_g = PlayerGroupAll();
+        autoE8EC3C06_var = -1;
+        while (true) {
+            autoE8EC3C06_var = PlayerGroupNextPlayer(autoE8EC3C06_g, autoE8EC3C06_var);
+            if (autoE8EC3C06_var < 0) { break; }
+            if ((GameAttributePlayerValue("34", autoE8EC3C06_var) == "0001")) {
+                PlayerGroupAdd(lv_players, autoE8EC3C06_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_DCC7911A_600C461B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_DCC7911A_43638D16"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_DCC7911A_600C461B"), StringExternal("Param/Value/lib_DCC7911A_9A090CC8"), "Assets\\Textures\\btn-upgrade-terran-nova-defensivedrone.dds");
+            TimerStart(libDCC7911A_gv_defTimer, 210.0, false, c_timeReal);
+            TimerWindowCreate(libDCC7911A_gv_defTimer, StringExternal("Param/Value/lib_DCC7911A_98CC036E"), true, false);
+            libDCC7911A_gv_defTimerWindow = TimerWindowLastCreated();
+            TimerWindowShowBorder(libDCC7911A_gv_defTimerWindow, false);
+            TimerWindowShow(libDCC7911A_gv_defTimerWindow, PlayerGroupAll(), true);
+        }
+        else {
+            TriggerEnable(libDCC7911A_gt_DefTimerElapsed, false);
+        }
+    }
+    else {
+        TriggerEnable(libDCC7911A_gt_DefTimerElapsed, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libDCC7911A_gt_MacroDefModStart_Init () {
+    libDCC7911A_gt_MacroDefModStart = TriggerCreate("libDCC7911A_gt_MacroDefModStart_Func");
+    TriggerAddEventMapInit(libDCC7911A_gt_MacroDefModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Def Timer Elapsed
+//--------------------------------------------------------------------------------------------------
+bool libDCC7911A_gt_DefTimerElapsed_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto7FB877DC_g;
+    int auto7FB877DC_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto7FB877DC_g = PlayerGroupAll();
+    auto7FB877DC_var = -1;
+    while (true) {
+        auto7FB877DC_var = PlayerGroupNextPlayer(auto7FB877DC_g, auto7FB877DC_var);
+        if (auto7FB877DC_var < 0) { break; }
+        if ((GameAttributePlayerValue("34", auto7FB877DC_var) == "0001")) {
+            TechTreeAbilityAllow(auto7FB877DC_var, AbilityCommand("UnfairSC2MacroDefProtoss", 0), true);
+            TechTreeAbilityAllow(auto7FB877DC_var, AbilityCommand("UnfairSC2MacroDefTerran", 0), true);
+            TechTreeAbilityAllow(auto7FB877DC_var, AbilityCommand("UnfairSC2MacroDefZerg", 0), true);
+        }
+
+    }
+    TimerWindowShow(libDCC7911A_gv_defTimerWindow, PlayerGroupAll(), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libDCC7911A_gt_DefTimerElapsed_Init () {
+    libDCC7911A_gt_DefTimerElapsed = TriggerCreate("libDCC7911A_gt_DefTimerElapsed_Func");
+    TriggerAddEventTimer(libDCC7911A_gt_DefTimerElapsed, libDCC7911A_gv_defTimer);
+}
+
+void libDCC7911A_InitTriggers () {
+    libDCC7911A_gt_MacroDefModStart_Init();
+    libDCC7911A_gt_DefTimerElapsed_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libDCC7911A_InitLib_completed = false;
+
+void libDCC7911A_InitLib () {
+    if (libDCC7911A_InitLib_completed) {
+        return;
+    }
+
+    libDCC7911A_InitLib_completed = true;
+
+    libDCC7911A_InitLibraries();
+    libDCC7911A_InitVariables();
+    libDCC7911A_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

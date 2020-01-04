@@ -1,0 +1,20 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ZOOM
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib674063E3_gv_zoomButton;
+int lib674063E3_gv_zoomButtonx2;
+
+// Function Declarations
+void lib674063E3_gf_SetCameraHeightForPlayer (int lp_player);
+
+// Trigger Declarations
+trigger lib674063E3_gt_ZoomModStart;
+trigger lib674063E3_gt_ZoomButtonClick;
+trigger lib674063E3_gt_ZoomButtonx2Click;
+
+// Library Initialization
+void lib674063E3_InitVariables ();
+

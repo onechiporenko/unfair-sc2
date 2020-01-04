@@ -1,0 +1,201 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibF005740E_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MOTHER CORE
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libF005740E_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool libF005740E_InitVariables_completed = false;
+
+void libF005740E_InitVariables () {
+    if (libF005740E_InitVariables_completed) {
+        return;
+    }
+
+    libF005740E_InitVariables_completed = true;
+
+    libF005740E_gv_motherCoreTimer = TimerCreate();
+    libF005740E_gv_motherCoreDelay = 10.0;
+    libF005740E_gv_motherCoreInitialDelay = 150.0;
+    libF005740E_gv_motherCoreTimerWindow = c_timerWindowNone;
+}
+
+// Functions
+void libF005740E_gf_CreateMotherCore (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((GameAttributePlayerValue("38", lp_player) == "0001")) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "MothershipCore", 0, lp_player, PlayerStartLocation(lp_player));
+        UnitAbilityEnable(UnitLastCreated(), "MorphToMothership", false);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2DoubleBirth", "Ref_Head");
+        PingCreate(PlayerGroupSingle(lp_player), "MinimapPing", PlayerStartLocation(lp_player), ColorWithAlpha(0.00, 50.20, 0.00, 0.39), 3.0);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mother Core Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libF005740E_gt_MotherCoreModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto564EF1CB_g;
+    int auto564EF1CB_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("37") == "0001")) {
+        auto564EF1CB_g = PlayerGroupAll();
+        auto564EF1CB_var = -1;
+        while (true) {
+            auto564EF1CB_var = PlayerGroupNextPlayer(auto564EF1CB_g, auto564EF1CB_var);
+            if (auto564EF1CB_var < 0) { break; }
+            if ((GameAttributePlayerValue("38", auto564EF1CB_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto564EF1CB_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_F005740E_6F98492A", "InitialDelay", FixedToText(libF005740E_gv_motherCoreInitialDelay, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_F005740E_6F98492A", "Delay", FixedToText(libF005740E_gv_motherCoreDelay, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_F005740E_6F98492A", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_F005740E_23B6BF16"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F005740E_6F98492A"), StringExternal("Param/Value/lib_F005740E_6A9CC936"), "Assets\\Textures\\btn-unit-collection-taldarim-mothershipcore.dds");
+            TimerStart(libF005740E_gv_motherCoreTimer, libF005740E_gv_motherCoreInitialDelay, false, c_timeReal);
+            TimerWindowCreate(libF005740E_gv_motherCoreTimer, StringExternal("Param/Value/lib_F005740E_BBC90F07"), true, false);
+            libF005740E_gv_motherCoreTimerWindow = TimerWindowLastCreated();
+            TimerWindowShowBorder(libF005740E_gv_motherCoreTimerWindow, false);
+            TimerWindowShow(libF005740E_gv_motherCoreTimerWindow, PlayerGroupAll(), true);
+        }
+        else {
+            TriggerEnable(libF005740E_gt_MotherCoreIsDestroyed, false);
+            TriggerEnable(libF005740E_gt_MotherCoreTimerElapsed, false);
+        }
+    }
+    else {
+        TriggerEnable(libF005740E_gt_MotherCoreIsDestroyed, false);
+        TriggerEnable(libF005740E_gt_MotherCoreTimerElapsed, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF005740E_gt_MotherCoreModStart_Init () {
+    libF005740E_gt_MotherCoreModStart = TriggerCreate("libF005740E_gt_MotherCoreModStart_Func");
+    TriggerAddEventMapInit(libF005740E_gt_MotherCoreModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mother Core Is Destroyed
+//--------------------------------------------------------------------------------------------------
+bool libF005740E_gt_MotherCoreIsDestroyed_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = EventPlayer();
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitGetType(EventUnit()) == "MothershipCore"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TimerStart(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimer, libF005740E_gv_motherCoreDelay, false, c_timeReal);
+    TimerWindowCreate(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimer, StringExternal("Param/Value/lib_F005740E_D1152615"), true, false);
+    libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow = TimerWindowLastCreated();
+    TimerWindowShowBorder(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, false);
+    TimerWindowShow(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, PlayerGroupAll(), false);
+    TimerWindowShow(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, PlayerGroupSingle(lv_player), true);
+    Wait(libF005740E_gv_motherCoreDelay, c_timeReal);
+    libF005740E_gf_CreateMotherCore(lv_player);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF005740E_gt_MotherCoreIsDestroyed_Init () {
+    libF005740E_gt_MotherCoreIsDestroyed = TriggerCreate("libF005740E_gt_MotherCoreIsDestroyed_Func");
+    TriggerAddEventUnitDied(libF005740E_gt_MotherCoreIsDestroyed, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mother Core Timer Elapsed
+//--------------------------------------------------------------------------------------------------
+bool libF005740E_gt_MotherCoreTimerElapsed_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto3ABF7AC0_g;
+    int auto3ABF7AC0_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto3ABF7AC0_g = PlayerGroupAll();
+    auto3ABF7AC0_var = -1;
+    while (true) {
+        auto3ABF7AC0_var = PlayerGroupNextPlayer(auto3ABF7AC0_g, auto3ABF7AC0_var);
+        if (auto3ABF7AC0_var < 0) { break; }
+        if ((GameAttributePlayerValue("38", auto3ABF7AC0_var) == "0001")) {
+            libF005740E_gf_CreateMotherCore(auto3ABF7AC0_var);
+        }
+
+    }
+    TimerWindowShow(libF005740E_gv_motherCoreTimerWindow, PlayerGroupAll(), false);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF005740E_gt_MotherCoreTimerElapsed_Init () {
+    libF005740E_gt_MotherCoreTimerElapsed = TriggerCreate("libF005740E_gt_MotherCoreTimerElapsed_Func");
+    TriggerAddEventTimer(libF005740E_gt_MotherCoreTimerElapsed, libF005740E_gv_motherCoreTimer);
+}
+
+void libF005740E_InitTriggers () {
+    libF005740E_gt_MotherCoreModStart_Init();
+    libF005740E_gt_MotherCoreIsDestroyed_Init();
+    libF005740E_gt_MotherCoreTimerElapsed_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libF005740E_InitLib_completed = false;
+
+void libF005740E_InitLib () {
+    if (libF005740E_InitLib_completed) {
+        return;
+    }
+
+    libF005740E_InitLib_completed = true;
+
+    libF005740E_InitLibraries();
+    libF005740E_InitVariables();
+    libF005740E_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

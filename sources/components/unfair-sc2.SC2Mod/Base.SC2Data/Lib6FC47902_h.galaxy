@@ -1,0 +1,9 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RANDOM RALLY POINTS
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib6FC47902_gt_RandomRallyPointsModStart;
+trigger lib6FC47902_gt_SetRandomRallyPointToCreatedUnit;
+

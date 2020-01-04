@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CValidatorUnitFilters id="EnemiesTargetFilter">
+        <Filters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
+    </CValidatorUnitFilters>
+    <CValidatorLocationCompareRange id="UnfairSC2WaaaghRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="8"/>
+        <Value Value="SourceUnit"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitFilters id="SelfTargetFilter">
+        <Filters value="-;Ally,Neutral,Enemy,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitCompareBehaviorCount id="SlownessAuraCheck">
+        <WhichUnit Value="Source"/>
+        <Compare value="GT"/>
+        <Behavior value="SlownessAura"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="FairCannonAuraCheck">
+        <WhichUnit Value="Source"/>
+        <Compare value="GT"/>
+        <Behavior value="FairCannonsAura"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="SlownessNotExist">
+        <Behavior value="Slowness"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareBehaviorCount id="FairCannonNotExist">
+        <Behavior value="FairCannon"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorLocationCompareRange id="SlownessRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="50"/>
+        <Value Value="SourceUnit"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorLocationCompareRange id="FairCannonsRange">
+        <WhichLocation Value="TargetUnit"/>
+        <Compare value="LE"/>
+        <Range value="15"/>
+        <Value Value="SourceUnit"/>
+    </CValidatorLocationCompareRange>
+    <CValidatorUnitFilters id="SourceAlive">
+        <WhichUnit Value="Source"/>
+        <Filters value="-;Dead"/>
+    </CValidatorUnitFilters>
+    <CValidatorUnitCompareBehaviorCount id="UnfairSC2HasVampiric">
+        <Compare value="GE"/>
+        <Value value="1"/>
+        <Behavior value="UnfairSC2Vampiric"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT10">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.1"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT102">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.2"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT1022">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.3"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT10222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.4"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT102222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.5"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT1022222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.6"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT10222222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.7"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT102222222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.8"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT1022222222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LE"/>
+        <Type value="Fraction"/>
+        <Value value="0.9"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT103">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.1"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT1032">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.2"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT10322">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.3"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT103222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.4"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT1032222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.5"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT10322222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.6"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT103222222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.7"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT1032222222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.8"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="UnfairSC2HealthLT10322222222">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="GT"/>
+        <Type value="Fraction"/>
+        <Value value="0.9"/>
+    </CValidatorUnitCompareVital>
+</Catalog>

@@ -1,0 +1,20 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: FIGHT CLUB
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int libC7F2089F_gv_fightFreequency;
+fixed libC7F2089F_gv_fightUnitsPercent;
+timer libC7F2089F_gv_fightTimer;
+
+// Function Declarations
+void libC7F2089F_gf_Fight (int lp_player);
+
+// Trigger Declarations
+trigger libC7F2089F_gt_FightClubModStart;
+trigger libC7F2089F_gt_DoFight;
+
+// Library Initialization
+void libC7F2089F_InitVariables ();
+

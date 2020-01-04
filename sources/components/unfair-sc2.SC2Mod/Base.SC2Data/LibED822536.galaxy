@@ -1,0 +1,113 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibED822536_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: TALANDAR
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libED822536_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Talandar Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libED822536_gt_TalandarModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto1C2CBF91_g;
+    int auto1C2CBF91_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("128") == "0001")) {
+        auto1C2CBF91_g = PlayerGroupAll();
+        auto1C2CBF91_var = -1;
+        while (true) {
+            auto1C2CBF91_var = PlayerGroupNextPlayer(auto1C2CBF91_g, auto1C2CBF91_var);
+            if (auto1C2CBF91_var < 0) { break; }
+            if ((GameAttributePlayerValue("129", auto1C2CBF91_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto1C2CBF91_var);
+                TechTreeRequirementsEnable(auto1C2CBF91_var, false);
+                CatalogFieldValueSet(c_gameCatalogUnit, "BanelingNest", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "HydraliskDen", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "InfestationPit", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerDenMP", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Spire", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "GreaterSpire", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "NydusNetwork", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "UltraliskCavern", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "TwilightCouncil", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoboticsFacility", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Stargate", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "TemplarArchive", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FleetBeacon", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoboticsBay", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "DarkShrine", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "GhostAcademy", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Factory", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Armory", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Starport", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FusionCore", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "PlanetaryFortress", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "TechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FactoryTechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "BarracksTechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "StarportTechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Reactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FactoryReactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "BarracksReactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "StarportReactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_ED822536_6FAC3629", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_ED822536_F0D064B0"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_ED822536_6FAC3629"), StringExternal("Param/Value/lib_ED822536_42E6F4CF"), "Assets\\Textures\\btn-progression-protoss-fenix-2-purifierconclave.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libED822536_gt_TalandarModStart_Init () {
+    libED822536_gt_TalandarModStart = TriggerCreate("libED822536_gt_TalandarModStart_Func");
+    TriggerAddEventMapInit(libED822536_gt_TalandarModStart);
+}
+
+void libED822536_InitTriggers () {
+    libED822536_gt_TalandarModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libED822536_InitLib_completed = false;
+
+void libED822536_InitLib () {
+    if (libED822536_InitLib_completed) {
+        return;
+    }
+
+    libED822536_InitLib_completed = true;
+
+    libED822536_InitLibraries();
+    libED822536_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

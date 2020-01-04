@@ -1,0 +1,8 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: AIR/GROUND WEAPON
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger libCA473C97_gt_AirGroundWeaponModStart;
+

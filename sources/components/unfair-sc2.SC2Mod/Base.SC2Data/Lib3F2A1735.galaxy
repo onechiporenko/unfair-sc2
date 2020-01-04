@@ -1,0 +1,220 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib3F2A1735_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: TECH TREE RESTRICTIONS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib3F2A1735_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Tech Tree Restrictions Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib3F2A1735_gt_TechTreeRestrictionsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto4B8E55BA_g;
+    int auto4B8E55BA_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("157") == "0001")) {
+        auto4B8E55BA_g = PlayerGroupActive();
+        auto4B8E55BA_var = -1;
+        while (true) {
+            auto4B8E55BA_var = PlayerGroupNextPlayer(auto4B8E55BA_g, auto4B8E55BA_var);
+            if (auto4B8E55BA_var < 0) { break; }
+            if ((GameAttributePlayerValue("158", auto4B8E55BA_var) != "0001")) {
+                PlayerGroupAdd(lv_players, auto4B8E55BA_var);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergMeleeWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergFlyerWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergMissileWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranShipWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossAirWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleAndShipWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossGroundWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranInfantryWeaponsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossAirArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossGroundArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranInfantryArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranShipArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleAndShipArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergFlyerArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergGroundArmorsLevel3", false);
+                TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossShieldsLevel3", false);
+                if (((GameAttributePlayerValue("158", auto4B8E55BA_var) == "0002") || (GameAttributePlayerValue("158", auto4B8E55BA_var) == "0004"))) {
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergMeleeWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergFlyerWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergMissileWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranShipWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossAirWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleAndShipWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossGroundWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranInfantryWeaponsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossAirArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossGroundArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranInfantryArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranShipArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleAndShipArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergFlyerArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergGroundArmorsLevel2", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossShieldsLevel2", false);
+                }
+
+                if ((GameAttributePlayerValue("158", auto4B8E55BA_var) == "0004")) {
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergMeleeWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergFlyerWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergMissileWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranShipWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossAirWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleAndShipWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossGroundWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranInfantryWeaponsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossAirArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossGroundArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranInfantryArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranShipArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleAndShipArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "TerranVehicleArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergFlyerArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ZergGroundArmorsLevel1", false);
+                    TechTreeUpgradeAllow(auto4B8E55BA_var, "ProtossShieldsLevel1", false);
+                }
+
+            }
+
+            if ((GameAttributePlayerValue("159", auto4B8E55BA_var) != "0005")) {
+                PlayerGroupAdd(lv_players, auto4B8E55BA_var);
+                if (((GameAttributePlayerValue("159", auto4B8E55BA_var) == "0006") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0003") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0004") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0007"))) {
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Zealot", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Stalker", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Adept", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Sentry", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Marine", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Marauder", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Reaper", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Zergling", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Baneling", false);
+                    TechTreeAbilityAllow(auto4B8E55BA_var, AbilityCommand("MorphZerglingToBaneling", 0), false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Roach", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Ravager", false);
+                    TechTreeAbilityAllow(auto4B8E55BA_var, AbilityCommand("MorphToRavager", 0), false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Queen", false);
+                }
+
+                if (((GameAttributePlayerValue("159", auto4B8E55BA_var) == "0006") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0001") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0008") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0007"))) {
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Observer", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "ObserverSiegeMode", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Immortal", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "WarpPrism", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Phoenix", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "VoidRay", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Oracle", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Ghost", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Hellion", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "HellionTank", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Cyclone", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "SiegeTank", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Banshee", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Raven", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "VikingFighter", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Medivac", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Liberator", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "LiberatorAG", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "HHWidowMineACGluescreenDummy", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "WidowMine", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Hydralisk", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "LurkerMP", false);
+                    TechTreeAbilityAllow(auto4B8E55BA_var, AbilityCommand("MorphToLurker", 0), false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Mutalisk", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Corruptor", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Overseer", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "OverseerSiegeMode", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "SwarmHostMP", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Infestor", false);
+                    TechTreeAbilityAllow(auto4B8E55BA_var, AbilityCommand("MorphToOverseer", 0), false);
+                }
+
+                if (((GameAttributePlayerValue("159", auto4B8E55BA_var) == "0006") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0001") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0002") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0003"))) {
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Colossus", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Disruptor", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Carrier", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Tempest", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Mothership", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "DarkTemplar", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "HighTemplar", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Archon", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Battlecruiser", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Thor", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "ThorAP", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "BroodLord", false);
+                    TechTreeAbilityAllow(auto4B8E55BA_var, AbilityCommand("MorphToBroodLord", 0), false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Ultralisk", false);
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Viper", false);
+                }
+
+                if (((GameAttributePlayerValue("159", auto4B8E55BA_var) == "0007") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0004") || (GameAttributePlayerValue("159", auto4B8E55BA_var) == "0008"))) {
+                    TechTreeUnitAllow(auto4B8E55BA_var, "Corruptor", true);
+                    TechTreeAbilityAllow(auto4B8E55BA_var, AbilityCommand("MorphToBroodLord", 0), true);
+                }
+
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_3F2A1735_D13F6B41", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_3F2A1735_092267B4"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_3F2A1735_D13F6B41"), StringExternal("Param/Value/lib_3F2A1735_98320A12"), "Assets\\Textures\\btn-ability-protoss-purifierstasisending.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib3F2A1735_gt_TechTreeRestrictionsModStart_Init () {
+    lib3F2A1735_gt_TechTreeRestrictionsModStart = TriggerCreate("lib3F2A1735_gt_TechTreeRestrictionsModStart_Func");
+    TriggerAddEventMapInit(lib3F2A1735_gt_TechTreeRestrictionsModStart);
+}
+
+void lib3F2A1735_InitTriggers () {
+    lib3F2A1735_gt_TechTreeRestrictionsModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib3F2A1735_InitLib_completed = false;
+
+void lib3F2A1735_InitLib () {
+    if (lib3F2A1735_InitLib_completed) {
+        return;
+    }
+
+    lib3F2A1735_InitLib_completed = true;
+
+    lib3F2A1735_InitLibraries();
+    lib3F2A1735_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

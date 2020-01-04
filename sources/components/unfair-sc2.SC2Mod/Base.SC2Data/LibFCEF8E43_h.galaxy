@@ -1,0 +1,15 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: QUEEN
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+string libFCEF8E43_gv_moveSpeed;
+string libFCEF8E43_gv_creepBonus;
+
+// Trigger Declarations
+trigger libFCEF8E43_gt_QueenModStart;
+
+// Library Initialization
+void libFCEF8E43_InitVariables ();
+

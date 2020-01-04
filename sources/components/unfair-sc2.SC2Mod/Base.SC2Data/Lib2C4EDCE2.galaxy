@@ -1,0 +1,197 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib2C4EDCE2_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: LIMITED WORKERS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib2C4EDCE2_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void lib2C4EDCE2_gf_DisableWorkersForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    TechTreeUnitAllow(lp_player, "SCV", false);
+    TechTreeUnitAllow(lp_player, "Drone", false);
+    TechTreeUnitAllow(lp_player, "Probe", false);
+}
+
+void lib2C4EDCE2_gf_EnableWorkersForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    TechTreeUnitAllow(lp_player, "SCV", true);
+    TechTreeUnitAllow(lp_player, "Drone", true);
+    TechTreeUnitAllow(lp_player, "Probe", true);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Limited Workers Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib2C4EDCE2_gt_LimitedWorkersModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup autoBE42C617_g;
+    int autoBE42C617_var;
+    string auto812E5253_val;
+    playergroup auto611358C3_g;
+    int auto611358C3_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("100") == "0001")) {
+        autoBE42C617_g = PlayerGroupActive();
+        autoBE42C617_var = -1;
+        while (true) {
+            autoBE42C617_var = PlayerGroupNextPlayer(autoBE42C617_g, autoBE42C617_var);
+            if (autoBE42C617_var < 0) { break; }
+            if ((GameAttributePlayerValue("101", autoBE42C617_var) != "0009")) {
+                PlayerGroupAdd(lv_players, autoBE42C617_var);
+            }
+
+            auto812E5253_val = GameAttributePlayerValue("101", autoBE42C617_var);
+            if (auto812E5253_val == "0001") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 12;
+            }
+            else if (auto812E5253_val == "0002") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 16;
+            }
+            else if (auto812E5253_val == "0003") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 22;
+            }
+            else if (auto812E5253_val == "0010") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 30;
+            }
+            else if (auto812E5253_val == "0004") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 38;
+            }
+            else if (auto812E5253_val == "0005") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 44;
+            }
+            else if (auto812E5253_val == "0006") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 60;
+            }
+            else if (auto812E5253_val == "0007") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 66;
+            }
+            else if (auto812E5253_val == "0008") {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 72;
+            }
+            else {
+                libDBC4E2D2_gv_players[autoBE42C617_var].lv_lIMITEDWORKERS.lv_workerslimit = 10000;
+            }
+        }
+        if ((PlayerGroupCount(lv_players) == 0)) {
+            TriggerEnable(lib2C4EDCE2_gt_CheckWorkersCount, false);
+        }
+        else {
+            auto611358C3_g = lv_players;
+            auto611358C3_var = -1;
+            while (true) {
+                auto611358C3_var = PlayerGroupNextPlayer(auto611358C3_g, auto611358C3_var);
+                if (auto611358C3_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_2C4EDCE2_C0FF7AF6", "A", TextWithColor(PlayerName(auto611358C3_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto611358C3_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_2C4EDCE2_C0FF7AF6"));
+                TextExpressionSetToken("Param/Expression/lib_2C4EDCE2_B47A0719", "A", FixedToText(libDBC4E2D2_gv_players[auto611358C3_var].lv_lIMITEDWORKERS.lv_workerslimit, 0));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_2C4EDCE2_B47A0719"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_2C4EDCE2_A470DD92", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_2C4EDCE2_3905FAF8"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_2C4EDCE2_A470DD92"), StringExternal("Param/Value/lib_2C4EDCE2_E51A3412"), "Assets\\Textures\\btn-unit-collection-blizzcon17-drone.dds");
+        }
+    }
+    else {
+        TriggerEnable(lib2C4EDCE2_gt_CheckWorkersCount, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib2C4EDCE2_gt_LimitedWorkersModStart_Init () {
+    lib2C4EDCE2_gt_LimitedWorkersModStart = TriggerCreate("lib2C4EDCE2_gt_LimitedWorkersModStart_Func");
+    TriggerAddEventMapInit(lib2C4EDCE2_gt_LimitedWorkersModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Check Workers Count
+//--------------------------------------------------------------------------------------------------
+bool lib2C4EDCE2_gt_CheckWorkersCount_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_workersCount;
+
+    // Automatic Variable Declarations
+    playergroup auto1D56D17E_g;
+    int auto1D56D17E_var;
+    int auto9280B865_ae;
+    int auto9280B865_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto1D56D17E_g = PlayerGroupAll();
+    auto1D56D17E_var = -1;
+    while (true) {
+        auto1D56D17E_var = PlayerGroupNextPlayer(auto1D56D17E_g, auto1D56D17E_var);
+        if (auto1D56D17E_var < 0) { break; }
+        lv_workersCount = libDBC4E2D2_gf_GetBuiltWorkersCount(auto1D56D17E_var);
+        if ((lv_workersCount >= libDBC4E2D2_gv_players[auto1D56D17E_var].lv_lIMITEDWORKERS.lv_workerslimit)) {
+            auto9280B865_ae = (lv_workersCount - 1);
+            auto9280B865_var = libDBC4E2D2_gv_players[auto1D56D17E_var].lv_lIMITEDWORKERS.lv_workerslimit;
+            for ( ; auto9280B865_var <= auto9280B865_ae; auto9280B865_var += 1 ) {
+                UnitKill(libDBC4E2D2_gf_GetRandomBuiltWorker(auto1D56D17E_var));
+            }
+            lib2C4EDCE2_gf_DisableWorkersForPlayer(auto1D56D17E_var);
+        }
+        else {
+            lib2C4EDCE2_gf_EnableWorkersForPlayer(auto1D56D17E_var);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib2C4EDCE2_gt_CheckWorkersCount_Init () {
+    lib2C4EDCE2_gt_CheckWorkersCount = TriggerCreate("lib2C4EDCE2_gt_CheckWorkersCount_Func");
+    TriggerAddEventTimePeriodic(lib2C4EDCE2_gt_CheckWorkersCount, 1.0, c_timeGame);
+}
+
+void lib2C4EDCE2_InitTriggers () {
+    lib2C4EDCE2_gt_LimitedWorkersModStart_Init();
+    lib2C4EDCE2_gt_CheckWorkersCount_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib2C4EDCE2_InitLib_completed = false;
+
+void lib2C4EDCE2_InitLib () {
+    if (lib2C4EDCE2_InitLib_completed) {
+        return;
+    }
+
+    lib2C4EDCE2_InitLib_completed = true;
+
+    lib2C4EDCE2_InitLibraries();
+    lib2C4EDCE2_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

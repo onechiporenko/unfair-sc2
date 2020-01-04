@@ -1,0 +1,22 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MOTHER CORE
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+timer libF005740E_gv_motherCoreTimer;
+fixed libF005740E_gv_motherCoreDelay;
+fixed libF005740E_gv_motherCoreInitialDelay;
+int libF005740E_gv_motherCoreTimerWindow;
+
+// Function Declarations
+void libF005740E_gf_CreateMotherCore (int lp_player);
+
+// Trigger Declarations
+trigger libF005740E_gt_MotherCoreModStart;
+trigger libF005740E_gt_MotherCoreIsDestroyed;
+trigger libF005740E_gt_MotherCoreTimerElapsed;
+
+// Library Initialization
+void libF005740E_InitVariables ();
+

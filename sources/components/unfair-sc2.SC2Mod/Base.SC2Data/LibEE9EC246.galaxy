@@ -1,0 +1,84 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibEE9EC246_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO LIMITS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libEE9EC246_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Limits Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libEE9EC246_gt_NoLimitsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto456BE1A9_g;
+    int auto456BE1A9_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("84") == "0001")) {
+        auto456BE1A9_g = PlayerGroupAll();
+        auto456BE1A9_var = -1;
+        while (true) {
+            auto456BE1A9_var = PlayerGroupNextPlayer(auto456BE1A9_g, auto456BE1A9_var);
+            if (auto456BE1A9_var < 0) { break; }
+            if ((GameAttributePlayerValue("85", auto456BE1A9_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto456BE1A9_var);
+                PlayerModifyPropertyInt(auto456BE1A9_var, c_playerPropSuppliesLimit, c_playerPropOperSetTo, 10000);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_EE9EC246_6A6E05F6", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_EE9EC246_C6018C2D"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_EE9EC246_6A6E05F6"), StringExternal("Param/Value/lib_EE9EC246_C95EE38B"), "Assets\\Textures\\btn-progression-hornerhan-8-supplydepot.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libEE9EC246_gt_NoLimitsModStart_Init () {
+    libEE9EC246_gt_NoLimitsModStart = TriggerCreate("libEE9EC246_gt_NoLimitsModStart_Func");
+    TriggerAddEventMapInit(libEE9EC246_gt_NoLimitsModStart);
+}
+
+void libEE9EC246_InitTriggers () {
+    libEE9EC246_gt_NoLimitsModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libEE9EC246_InitLib_completed = false;
+
+void libEE9EC246_InitLib () {
+    if (libEE9EC246_InitLib_completed) {
+        return;
+    }
+
+    libEE9EC246_InitLib_completed = true;
+
+    libEE9EC246_InitLibraries();
+    libEE9EC246_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

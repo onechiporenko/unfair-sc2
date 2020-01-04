@@ -1,0 +1,298 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib7BF03AFB_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: LAST WILL
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib7BF03AFB_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib7BF03AFB_InitVariables_completed = false;
+
+void lib7BF03AFB_InitVariables () {
+    if (lib7BF03AFB_InitVariables_completed) {
+        return;
+    }
+
+    lib7BF03AFB_InitVariables_completed = true;
+
+}
+
+// Functions
+fixed lib7BF03AFB_gf_GetLastWillRateForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    string autoFF3F12EA_val;
+
+    // Implementation
+    autoFF3F12EA_val = GameAttributePlayerValue("26", lp_player);
+    if (autoFF3F12EA_val == "0002") {
+        return 0.5;
+    }
+    else if (autoFF3F12EA_val == "0003") {
+        return 1.0;
+    }
+    else if (autoFF3F12EA_val == "0004") {
+        return 2.0;
+    }
+    else {
+        return 0;
+    }
+}
+
+fixed lib7BF03AFB_gf_GetLastWillCasteChance () {
+    // Automatic Variable Declarations
+    string autoD02BB364_val;
+
+    // Implementation
+    autoD02BB364_val = GameAttributeGameValue("71");
+    if (autoD02BB364_val == "0001") {
+        return 5.0;
+    }
+    else if (autoD02BB364_val == "0002") {
+        return 10.0;
+    }
+    else if (autoD02BB364_val == "0003") {
+        return 15.0;
+    }
+    else if (autoD02BB364_val == "0004") {
+        return 20.0;
+    }
+    else if (autoD02BB364_val == "0005") {
+        return 25.0;
+    }
+    else {
+        return 0;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Last Will Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib7BF03AFB_gt_LastWillModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_msgAboutExtraCasts;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup auto589976D3_g;
+    int auto589976D3_var;
+    playergroup auto4E625F35_g;
+    int auto4E625F35_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("25") == "0001")) {
+        if ((GameAttributeGameValue("47") == "0001")) {
+            lib7BF03AFB_gv_useLastWillCaste = true;
+        }
+        else {
+            lib7BF03AFB_gv_useLastWillCaste = false;
+        }
+        lib7BF03AFB_gv_lastWillCasteChance = lib7BF03AFB_gf_GetLastWillCasteChance();
+        auto589976D3_g = PlayerGroupAll();
+        auto589976D3_var = -1;
+        while (true) {
+            auto589976D3_var = PlayerGroupNextPlayer(auto589976D3_g, auto589976D3_var);
+            if (auto589976D3_var < 0) { break; }
+            libDBC4E2D2_gv_players[auto589976D3_var].lv_lASTWILL.lv_rate = lib7BF03AFB_gf_GetLastWillRateForPlayer(auto589976D3_var);
+            if ((libDBC4E2D2_gv_players[auto589976D3_var].lv_lASTWILL.lv_rate != 0)) {
+                PlayerGroupAdd(lv_players, auto589976D3_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            if ((lib7BF03AFB_gv_useLastWillCaste == true)) {
+                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_DEED7A01", "Chance", FixedToText(lib7BF03AFB_gv_lastWillCasteChance, 0));
+                lv_msgAboutExtraCasts = TextExpressionAssemble("Param/Expression/lib_7BF03AFB_DEED7A01");
+            }
+
+            auto4E625F35_g = lv_players;
+            auto4E625F35_var = -1;
+            while (true) {
+                auto4E625F35_var = PlayerGroupNextPlayer(auto4E625F35_g, auto4E625F35_var);
+                if (auto4E625F35_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_EF399DDD", "A", TextWithColor(PlayerName(auto4E625F35_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto4E625F35_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_7BF03AFB_EF399DDD"));
+                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_034E6995", "A", FixedToText((libDBC4E2D2_gv_players[auto4E625F35_var].lv_lASTWILL.lv_rate * 100.0), 0));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_7BF03AFB_034E6995"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_7BF03AFB_269F603C", "Chance", lv_msgAboutExtraCasts);
+            TextExpressionSetToken("Param/Expression/lib_7BF03AFB_269F603C", "Settings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_7BF03AFB_D1584704"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7BF03AFB_269F603C"), StringExternal("Param/Value/lib_7BF03AFB_87863E0B"), "Assets\\Textures\\btn-ability-protoss-recallondeath.dds");
+        }
+        else {
+            TriggerEnable(lib7BF03AFB_gt_UnitTakesFatalDamage, false);
+        }
+    }
+    else {
+        TriggerEnable(lib7BF03AFB_gt_UnitTakesFatalDamage, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7BF03AFB_gt_LastWillModStart_Init () {
+    lib7BF03AFB_gt_LastWillModStart = TriggerCreate("lib7BF03AFB_gt_LastWillModStart_Func");
+    TriggerAddEventMapInit(lib7BF03AFB_gt_LastWillModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Takes Fatal Damage
+//--------------------------------------------------------------------------------------------------
+bool lib7BF03AFB_gt_UnitTakesFatalDamage_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+
+    // Automatic Variable Declarations
+    int auto36BF7055_val;
+
+    // Variable Initialization
+
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("26", EventPlayer()) != "0001"))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != ""))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != "LocustMP"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != "Broodling"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != "InfestorTerran"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitDamageSourceUnit()) != "InfestorTerranBurrowed"))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnitDamageSourceUnit()) != 15))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnitDamageSourceUnit()) != UnitGetOwner(EventUnit())))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_AttachModelToUnit(EventUnitDamageSourceUnit(), "BanelingCocoonDeath", "Ref_Overhead");
+    libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+    UnitDamage(EventUnit(), "Spines", EventUnitDamageSourceUnit(), (UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropLifeMax) * libDBC4E2D2_gv_players[EventPlayer()].lv_lASTWILL.lv_rate));
+    if ((libNtve_gf_RandomPercent() <= lib7BF03AFB_gv_lastWillCasteChance)) {
+        if ((GameAttributeGameValue("47") == "0001")) {
+            auto36BF7055_val = RandomInt(0, 15);
+            if (auto36BF7055_val == 0) {
+                UnitCreateEffectPoint(EventUnit(), "PsiStormPersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 1) {
+                PlayerCreateEffectPoint(EventPlayer(), "InfestedTerransLayEggPersistant", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 2) {
+                PlayerCreateEffectPoint(EventPlayer(), "VortexCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 3) {
+                PlayerCreateEffectPoint(EventPlayer(), "BlindingCloudCP", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 4) {
+                UnitCreateEffectPoint(EventUnit(), "CorsairMPDisruptionWebCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 5) {
+                UnitCreateEffectPoint(EventUnit(), "PointDefenseDroneReleaseCreateUnit", libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(EventUnit()), 1.5, UnitGetPosition(EventUnitDamageSourceUnit())));
+            }
+            else if (auto36BF7055_val == 6) {
+                UnitCreateEffectUnit(EventUnit(), "DefensiveMatrixSet", EventUnitDamageSourceUnit());
+            }
+            else if (auto36BF7055_val == 7) {
+                UnitCreateEffectPoint(EventUnit(), "TemporalFieldCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 8) {
+                UnitCreateEffectPoint(EventUnit(), "VoidHighTemplarPsiOrbInitialPersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 9) {
+                UnitCreateEffectUnit(EventUnit(), "GravitonBeamUrun", EventUnitDamageSourceUnit());
+            }
+            else if (auto36BF7055_val == 10) {
+                UnitCreateEffectUnit(EventUnit(), "Yamato", EventUnitDamageSourceUnit());
+            }
+            else if (auto36BF7055_val == 11) {
+                UnitCreateEffectUnit(EventUnit(), "YoinkStartSwitch", EventUnitDamageSourceUnit());
+            }
+            else if (auto36BF7055_val == 12) {
+                UnitCreateEffectUnit(EventUnit(), "IrradiateSet", EventUnitDamageSourceUnit());
+            }
+            else if (auto36BF7055_val == 13) {
+                UnitCreateEffectPoint(EventUnit(), "FungalGrowthLaunchMissile", UnitGetPosition(EventUnitDamageSourceUnit()));
+            }
+            else if (auto36BF7055_val == 14) {
+                UnitCreateEffectUnit(EventUnit(), "SeekerMissileLaunchMissile", EventUnitDamageSourceUnit());
+            }
+            else {
+            }
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7BF03AFB_gt_UnitTakesFatalDamage_Init () {
+    lib7BF03AFB_gt_UnitTakesFatalDamage = TriggerCreate("lib7BF03AFB_gt_UnitTakesFatalDamage_Func");
+    TriggerAddEventUnitDamaged(lib7BF03AFB_gt_UnitTakesFatalDamage, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
+}
+
+void lib7BF03AFB_InitTriggers () {
+    lib7BF03AFB_gt_LastWillModStart_Init();
+    lib7BF03AFB_gt_UnitTakesFatalDamage_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib7BF03AFB_InitLib_completed = false;
+
+void lib7BF03AFB_InitLib () {
+    if (lib7BF03AFB_InitLib_completed) {
+        return;
+    }
+
+    lib7BF03AFB_InitLib_completed = true;
+
+    lib7BF03AFB_InitLibraries();
+    lib7BF03AFB_InitVariables();
+    lib7BF03AFB_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

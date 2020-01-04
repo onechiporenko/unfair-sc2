@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CModel id="AdjutantPortrait2" parent="FXAPortrait" Race="Terran">
+        <Model value="Assets\Portraits\Terran\AdjutantPortrait\AdjutantPortrait.m3"/>
+        <FacialController value="LocalizedData\Facial\AdjutantPortrait.fxa"/>
+        <Image value="Assets\Textures\AdjutantPortrait_Static.dds"/>
+        <Lighting value="AdjutantPortrait"/>
+    </CModel>
+    <CModel id="ExecutorPortrait2" parent="Portrait" Race="Protoss">
+        <Model value="Assets\Portraits\Protoss\ExecutorPortrait\ExecutorPortrait.m3"/>
+        <Flags index="Download" value="1"/>
+        <Image value="Assets\Textures\ExecutorPortrait_Static.dds"/>
+        <Lighting value="ExecutorPortrait"/>
+    </CModel>
+    <CModel id="Invisible2">
+        <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="TeenSafe" value="1"/>
+        <SelectionRadius value="0.000000"/>
+        <ShadowRadius value="0.000000"/>
+    </CModel>
+    <CModel id="ProtossBuildingBirthSmall2" parent="Building" Race="Protoss">
+        <Model value="Assets\Buildings\Protoss\ProtossBuild\ProtossBuild.m3"/>
+        <LowQualityModel value="ProtossBuildingBirthLowSmall"/>
+        <Radius value="1.000000"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionLayer value="2"/>
+        <SelectionRadius value="1.250000"/>
+        <ShadowRadius value="1.250000"/>
+    </CModel>
+    <CModel id="ProtossSmallUnitDeathLow2" parent="UnitDeath" Race="Protoss">
+        <Model value="Assets\Effects\Protoss\ProtossUnitDeath\ProtossUnitDeath_Low.m3"/>
+        <Flags index="TeenSafe" value="1"/>
+        <ScaleMax value="1.250000,1.250000,1.250000"/>
+        <ScaleMin value="1.250000,1.250000,1.250000"/>
+        <SelectionRadius value="0.400000"/>
+        <ShadowRadius value="0.400000"/>
+    </CModel>
+    <CModel id="ProtossWarpInDeath2" parent="BuildingDeath" Race="Protoss">
+        <Model value="Assets\Buildings\Protoss\WarpInDeath\WarpIndeath.m3"/>
+        <LowQualityModel value="ProtossBuildingDeathLow"/>
+    </CModel>
+    <CModel id="Pylon2" parent="Building" Race="Protoss">
+        <Model value="Assets\Buildings\Protoss\PylonEx2\PylonEx2.m3"/>
+        <Radius value="1.000000"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <SelectionLayer value="2"/>
+        <SelectionRadius value="1.176200"/>
+        <ShadowRadius value="1.176200"/>
+        <SquibTypeDefault value="Metal"/>
+    </CModel>
+    <CModel id="PylonBirth2" parent="Pylon">
+        <Model value="Assets\Buildings\Protoss\PylonWarpIn\PylonWarpIn.m3"/>
+        <Events>
+            <Anim value="Stand,Build,End"/>
+            <Name value="BuildingWarpIn"/>
+            <Type value="Sound"/>
+            <Time value="1.200000"/>
+        </Events>
+    </CModel>
+    <CModel id="PylonDeath2" parent="UnitDeath">
+        <Model value="Assets\Buildings\Protoss\PylonEx2Death\PylonEx2Death.m3"/>
+        <LowQualityModel value="ProtossSmallBuildingDeathLow"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="PylonPlacement2" parent="Placement" Race="Protoss">
+        <Model value="Assets\Buildings\Protoss\PylonPlacement\PylonPlacement.m3"/>
+        <LowQualityModel value="Pylon"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <SelectionRadius value="0.588100"/>
+        <ShadowRadius value="0.588100"/>
+    </CModel>
+    <CModel id="PylonSplat2" parent="Splat">
+        <Model value="Assets\Splats\Splat_Pylon\Splat_Pylon.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CModel>
+    <CModel id="TerranBuildingDeath2" parent="BuildingDeath" Race="Terran">
+        <Model value="Assets\Buildings\Terran\TerranBuildingDeathEx1\TerranBuildingDeathEx1.m3"/>
+        <LowQualityModel value="TerranBuildingDeathLow"/>
+    </CModel>
+    <CModel id="TerranSmallUnitDeathLow2" parent="UnitDeath" Race="Terran">
+        <Model value="Assets\Effects\Terran\TerranSmallUnitDeath\TerranSmallUnitDeath_Low.m3"/>
+        <Flags index="TeenSafe" value="1"/>
+        <ScaleMax value="1.100000,1.100000,1.100000"/>
+        <ScaleMin value="1.100000,1.100000,1.100000"/>
+        <SelectionRadius value="0.454300"/>
+        <ShadowRadius value="0.454300"/>
+    </CModel>
+    <CModel id="UnfairSC2DecimatioDeath">
+        <Model value="Assets\Effects\Neutral\Fear_Coop\Fear_Coop.m3"/>
+    </CModel>
+    <CModel id="UnfairSC2DoubleBirth">
+        <Model value="Assets\Effects\Zerg\Dehaka_Coop_LevelUp\Dehaka_Coop_LevelUp.m3"/>
+    </CModel>
+    <CModel id="UnfairSC2GasSpawn">
+        <Model value="Assets\Effects\Neutral\GasSpawn\GasSpawn.m3"/>
+        <ScaleMax value="3.000000,3.000000,3.000000"/>
+        <ScaleMin value="3.000000,3.000000,3.000000"/>
+    </CModel>
+    <CModel id="UnfairSC2MineralsSpawn">
+        <Model value="Assets\Effects\Neutral\MineralSpawn\MineralSpawn.m3"/>
+    </CModel>
+    <CModel id="UnfairSC2Waaagh">
+        <Model value="Assets\Effects\Protoss\Alarak_COOP_Empower_PowerUp\Alarak_COOP_Empower_PowerUp.m3"/>
+    </CModel>
+    <CModel id="ZergSmallUnitDeathLow2" parent="UnitDeath" Race="Zerg">
+        <Model value="Assets\Effects\Zerg\ZergSmallUnitDeath\ZergSmallUnitDeath_low.m3"/>
+        <Flags index="TeenSafe" value="1"/>
+        <Occlusion value="Show"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionRadius value="0.625000"/>
+        <ShadowRadius value="0.625000"/>
+    </CModel>
+</Catalog>

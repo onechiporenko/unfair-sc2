@@ -1,0 +1,195 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibF713A77C_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ENERGY
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libF713A77C_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Energy Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libF713A77C_gt_EnergyModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    int lv_maxEnergy;
+    fixed lv_initialEnergy;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup autoB1BE1D38_g;
+    int autoB1BE1D38_var;
+    string auto9322A412_val;
+    int autoB9B7169B_ae;
+    int autoB9B7169B_var;
+    unitgroup autoA96CA6DC_g;
+    int autoA96CA6DC_u;
+    unit autoA96CA6DC_var;
+    int auto85D97B95_ae;
+    int auto85D97B95_var;
+    unitgroup auto52A13246_g;
+    int auto52A13246_u;
+    unit auto52A13246_var;
+    string auto04E05093_val;
+    int auto04B771B2_ae;
+    int auto04B771B2_var;
+    unitgroup auto9DFC835E_g;
+    int auto9DFC835E_u;
+    unit auto9DFC835E_var;
+    int auto63CDBA45_ae;
+    int auto63CDBA45_var;
+    unitgroup auto93303689_g;
+    int auto93303689_u;
+    unit auto93303689_var;
+    int auto4A2C5F05_ae;
+    int auto4A2C5F05_var;
+    unitgroup autoE04A363D_g;
+    int autoE04A363D_u;
+    unit autoE04A363D_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("91") == "0001")) {
+        autoB1BE1D38_g = PlayerGroupActive();
+        autoB1BE1D38_var = -1;
+        while (true) {
+            autoB1BE1D38_var = PlayerGroupNextPlayer(autoB1BE1D38_g, autoB1BE1D38_var);
+            if (autoB1BE1D38_var < 0) { break; }
+            TextExpressionSetToken("Param/Expression/lib_F713A77C_5C278618", "A", TextWithColor(PlayerName(autoB1BE1D38_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoB1BE1D38_var, false))));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_F713A77C_5C278618"));
+            auto9322A412_val = GameAttributePlayerValue("93", autoB1BE1D38_var);
+            if (auto9322A412_val == "0003") {
+                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_0363C42C"));
+                autoB9B7169B_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                autoB9B7169B_var = 0;
+                for ( ; autoB9B7169B_var <= autoB9B7169B_ae; autoB9B7169B_var += 1 ) {
+                    lv_maxEnergy = (StringToInt(CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[autoB9B7169B_var], "EnergyMax", autoB1BE1D38_var)) * 2);
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[autoB9B7169B_var], "EnergyMax", autoB1BE1D38_var, IntToString(lv_maxEnergy));
+                    autoA96CA6DC_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                    autoA96CA6DC_u = UnitGroupCount(autoA96CA6DC_g, c_unitCountAll);
+                    for (;; autoA96CA6DC_u -= 1) {
+                        autoA96CA6DC_var = UnitGroupUnitFromEnd(autoA96CA6DC_g, autoA96CA6DC_u);
+                        if (autoA96CA6DC_var == null) { break; }
+                        UnitSetPropertyFixed(autoA96CA6DC_var, c_unitPropEnergyMax, (UnitGetPropertyFixed(autoA96CA6DC_var, c_unitPropEnergyMax, c_unitPropNormal) * 2.0));
+                    }
+                }
+            }
+            else if (auto9322A412_val == "0002") {
+                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_9567E334"));
+                auto85D97B95_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                auto85D97B95_var = 0;
+                for ( ; auto85D97B95_var <= auto85D97B95_ae; auto85D97B95_var += 1 ) {
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto85D97B95_var], "EnergyMax", autoB1BE1D38_var, "0");
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto85D97B95_var], "EnergyStart", autoB1BE1D38_var, "0");
+                    auto52A13246_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                    auto52A13246_u = UnitGroupCount(auto52A13246_g, c_unitCountAll);
+                    for (;; auto52A13246_u -= 1) {
+                        auto52A13246_var = UnitGroupUnitFromEnd(auto52A13246_g, auto52A13246_u);
+                        if (auto52A13246_var == null) { break; }
+                        UnitSetPropertyFixed(auto52A13246_var, c_unitPropEnergyMax, 0.0);
+                        UnitSetPropertyFixed(auto52A13246_var, c_unitPropEnergyPercent, 0.0);
+                    }
+                }
+            }
+            else {
+                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_E0E0B095"));
+            }
+            auto04E05093_val = GameAttributePlayerValue("92", autoB1BE1D38_var);
+            if (auto04E05093_val == "0003") {
+                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_27716E74"));
+                auto04B771B2_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                auto04B771B2_var = 0;
+                for ( ; auto04B771B2_var <= auto04B771B2_ae; auto04B771B2_var += 1 ) {
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto04B771B2_var], "EnergyStart", autoB1BE1D38_var, CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto04B771B2_var], "EnergyMax", autoB1BE1D38_var));
+                    auto9DFC835E_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                    auto9DFC835E_u = UnitGroupCount(auto9DFC835E_g, c_unitCountAll);
+                    for (;; auto9DFC835E_u -= 1) {
+                        auto9DFC835E_var = UnitGroupUnitFromEnd(auto9DFC835E_g, auto9DFC835E_u);
+                        if (auto9DFC835E_var == null) { break; }
+                        UnitSetPropertyFixed(auto9DFC835E_var, c_unitPropEnergyPercent, 100.0);
+                    }
+                }
+            }
+            else if (auto04E05093_val == "0002") {
+                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_BF58F008"));
+                auto63CDBA45_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                auto63CDBA45_var = 0;
+                for ( ; auto63CDBA45_var <= auto63CDBA45_ae; auto63CDBA45_var += 1 ) {
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto63CDBA45_var], "EnergyStart", autoB1BE1D38_var, "0");
+                    auto93303689_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                    auto93303689_u = UnitGroupCount(auto93303689_g, c_unitCountAll);
+                    for (;; auto93303689_u -= 1) {
+                        auto93303689_var = UnitGroupUnitFromEnd(auto93303689_g, auto93303689_u);
+                        if (auto93303689_var == null) { break; }
+                        UnitSetPropertyFixed(auto93303689_var, c_unitPropEnergyPercent, 0.0);
+                    }
+                }
+            }
+            else if (auto04E05093_val == "0004") {
+                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_DAEE5975"));
+                auto4A2C5F05_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                auto4A2C5F05_var = 0;
+                for ( ; auto4A2C5F05_var <= auto4A2C5F05_ae; auto4A2C5F05_var += 1 ) {
+                    lv_initialEnergy = (StringToInt(CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto4A2C5F05_var], "EnergyMax", autoB1BE1D38_var)) / 2);
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto4A2C5F05_var], "EnergyStart", autoB1BE1D38_var, FixedToString(lv_initialEnergy, 0));
+                    autoE04A363D_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                    autoE04A363D_u = UnitGroupCount(autoE04A363D_g, c_unitCountAll);
+                    for (;; autoE04A363D_u -= 1) {
+                        autoE04A363D_var = UnitGroupUnitFromEnd(autoE04A363D_g, autoE04A363D_u);
+                        if (autoE04A363D_var == null) { break; }
+                        UnitSetPropertyFixed(autoE04A363D_var, c_unitPropEnergyPercent, 50.0);
+                    }
+                }
+            }
+            else {
+                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_81DD8B35"));
+            }
+        }
+        TextExpressionSetToken("Param/Expression/lib_F713A77C_DD3CB6F2", "PlayerSettings", lv_playersSettings);
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_F713A77C_DCF5F3A2"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F713A77C_DD3CB6F2"), StringExternal("Param/Value/lib_F713A77C_58C41DE3"), "Assets\\Textures\\btn-upgrade-protoss-khaydarinamulet.dds");
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libF713A77C_gt_EnergyModStart_Init () {
+    libF713A77C_gt_EnergyModStart = TriggerCreate("libF713A77C_gt_EnergyModStart_Func");
+    TriggerAddEventGeneric(libF713A77C_gt_EnergyModStart, "SETUP COMPLETE EVENT");
+}
+
+void libF713A77C_InitTriggers () {
+    libF713A77C_gt_EnergyModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libF713A77C_InitLib_completed = false;
+
+void libF713A77C_InitLib () {
+    if (libF713A77C_InitLib_completed) {
+        return;
+    }
+
+    libF713A77C_InitLib_completed = true;
+
+    libF713A77C_InitLibraries();
+    libF713A77C_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

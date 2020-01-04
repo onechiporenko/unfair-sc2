@@ -1,0 +1,13 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: LIMITED WORKERS
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib2C4EDCE2_gf_DisableWorkersForPlayer (int lp_player);
+void lib2C4EDCE2_gf_EnableWorkersForPlayer (int lp_player);
+
+// Trigger Declarations
+trigger lib2C4EDCE2_gt_LimitedWorkersModStart;
+trigger lib2C4EDCE2_gt_CheckWorkersCount;
+

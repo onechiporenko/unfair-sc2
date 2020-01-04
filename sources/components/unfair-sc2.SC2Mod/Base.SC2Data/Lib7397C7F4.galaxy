@@ -1,0 +1,326 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib7397C7F4_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: WALKING DEAD
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib7397C7F4_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib7397C7F4_InitVariables_completed = false;
+
+void lib7397C7F4_InitVariables () {
+    if (lib7397C7F4_InitVariables_completed) {
+        return;
+    }
+
+    lib7397C7F4_InitVariables_completed = true;
+
+    lib7397C7F4_gv_armorMultiplier = 1.0;
+    lib7397C7F4_gv_shieldsMultiplier = 1.0;
+    lib7397C7F4_gv_hPMultiplier = 1.0;
+    lib7397C7F4_gv_useLifeTime = true;
+    lib7397C7F4_gv_moveSpeedMultiplier = 1.0;
+    lib7397C7F4_gv_attackSpeedMultiplier = 1.0;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Walking Dead Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib7397C7F4_gt_WalkingDeadModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string autoEC68E9BD_val;
+    string autoB4D07105_val;
+    string auto626B65A8_val;
+    string autoC43E5771_val;
+    string autoED140CAD_val;
+    string auto41BE0A86_val;
+    playergroup auto2FBCE03C_g;
+    int auto2FBCE03C_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("132") == "0001")) {
+        autoEC68E9BD_val = GameAttributeGameValue("139");
+        if (autoEC68E9BD_val == "0001") {
+            lib7397C7F4_gv_lifeTime = 60.0;
+        }
+        else if (autoEC68E9BD_val == "0002") {
+            lib7397C7F4_gv_lifeTime = 120.0;
+        }
+        else if (autoEC68E9BD_val == "0003") {
+            lib7397C7F4_gv_lifeTime = 180.0;
+        }
+        else if (autoEC68E9BD_val == "0004") {
+            lib7397C7F4_gv_lifeTime = 300.0;
+        }
+        else if (autoEC68E9BD_val == "0005") {
+            lib7397C7F4_gv_lifeTime = 600.0;
+        }
+        else if (autoEC68E9BD_val == "0006") {
+            lib7397C7F4_gv_useLifeTime = false;
+        }
+        else {
+        }
+        autoB4D07105_val = GameAttributeGameValue("138");
+        if (autoB4D07105_val == "0001") {
+            lib7397C7F4_gv_armorMultiplier = 0.5;
+        }
+        else if (autoB4D07105_val == "0002") {
+            lib7397C7F4_gv_armorMultiplier = 0.75;
+        }
+        else if (autoB4D07105_val == "0003") {
+            lib7397C7F4_gv_armorMultiplier = 1.0;
+        }
+        else if (autoB4D07105_val == "0004") {
+            lib7397C7F4_gv_armorMultiplier = 1.5;
+        }
+        else if (autoB4D07105_val == "0005") {
+            lib7397C7F4_gv_armorMultiplier = 2.0;
+        }
+        else {
+        }
+        auto626B65A8_val = GameAttributeGameValue("134");
+        if (auto626B65A8_val == "0001") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 0.5;
+        }
+        else if (auto626B65A8_val == "0002") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 0.75;
+        }
+        else if (auto626B65A8_val == "0003") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 1.0;
+        }
+        else if (auto626B65A8_val == "0004") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 1.5;
+        }
+        else if (auto626B65A8_val == "0005") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 2.0;
+        }
+        else {
+        }
+        autoC43E5771_val = GameAttributeGameValue("136");
+        if (autoC43E5771_val == "0001") {
+            lib7397C7F4_gv_hPMultiplier = 0.5;
+        }
+        else if (autoC43E5771_val == "0002") {
+            lib7397C7F4_gv_hPMultiplier = 0.75;
+        }
+        else if (autoC43E5771_val == "0003") {
+            lib7397C7F4_gv_hPMultiplier = 1.0;
+        }
+        else if (autoC43E5771_val == "0004") {
+            lib7397C7F4_gv_hPMultiplier = 1.5;
+        }
+        else if (autoC43E5771_val == "0005") {
+            lib7397C7F4_gv_hPMultiplier = 2.0;
+        }
+        else {
+        }
+        autoED140CAD_val = GameAttributeGameValue("135");
+        if (autoED140CAD_val == "0001") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 0.5;
+        }
+        else if (autoED140CAD_val == "0002") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 0.75;
+        }
+        else if (autoED140CAD_val == "0003") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 1.0;
+        }
+        else if (autoED140CAD_val == "0004") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 1.5;
+        }
+        else if (autoED140CAD_val == "0005") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 2.0;
+        }
+        else {
+        }
+        auto41BE0A86_val = GameAttributeGameValue("137");
+        if (auto41BE0A86_val == "0001") {
+            lib7397C7F4_gv_shieldsMultiplier = 0.5;
+        }
+        else if (auto41BE0A86_val == "0002") {
+            lib7397C7F4_gv_shieldsMultiplier = 0.75;
+        }
+        else if (auto41BE0A86_val == "0003") {
+            lib7397C7F4_gv_shieldsMultiplier = 1.0;
+        }
+        else if (auto41BE0A86_val == "0004") {
+            lib7397C7F4_gv_shieldsMultiplier = 1.5;
+        }
+        else if (auto41BE0A86_val == "0005") {
+            lib7397C7F4_gv_shieldsMultiplier = 2.0;
+        }
+        else {
+        }
+        if ((lib7397C7F4_gv_useLifeTime == true)) {
+            CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Duration", 15, FixedToString(lib7397C7F4_gv_lifeTime, c_fixedPrecisionAny));
+        }
+
+        if ((GameAttributeGameValue("140") == "0001")) {
+            lib7397C7F4_gv_zombiesfromStructures = true;
+        }
+        else {
+            lib7397C7F4_gv_zombiesfromStructures = false;
+        }
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Modification.AttackSpeedMultiplier", 15, FixedToString(lib7397C7F4_gv_attackSpeedMultiplier, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Modification.MoveSpeedMultiplier", 15, FixedToString(lib7397C7F4_gv_attackSpeedMultiplier, c_fixedPrecisionAny));
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Modification.LifeArmorMultiplier", 15, FixedToString(lib7397C7F4_gv_armorMultiplier, c_fixedPrecisionAny));
+        auto2FBCE03C_g = PlayerGroupActive();
+        auto2FBCE03C_var = -1;
+        while (true) {
+            auto2FBCE03C_var = PlayerGroupNextPlayer(auto2FBCE03C_g, auto2FBCE03C_var);
+            if (auto2FBCE03C_var < 0) { break; }
+            if ((GameAttributePlayerValue("133", auto2FBCE03C_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto2FBCE03C_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "MsMod", FixedToText((lib7397C7F4_gv_moveSpeedMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "AsMod", FixedToText((lib7397C7F4_gv_attackSpeedMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "HpMod", FixedToText((lib7397C7F4_gv_hPMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "ArmorMod", FixedToText((lib7397C7F4_gv_armorMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "ShieldsMod", FixedToText((lib7397C7F4_gv_shieldsMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "LifeTime", FixedToText(lib7397C7F4_gv_lifeTime, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_7397C7F4_323BFDCE"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7397C7F4_1AEB5008"), StringExternal("Param/Value/lib_7397C7F4_DDF2B27F"), "Assets\\Textures\\walkingdead_coop.dds");
+        }
+        else {
+            TriggerEnable(lib7397C7F4_gt_CreateWalkingZombie, false);
+        }
+    }
+    else {
+        TriggerEnable(lib7397C7F4_gt_CreateWalkingZombie, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7397C7F4_gt_WalkingDeadModStart_Init () {
+    lib7397C7F4_gt_WalkingDeadModStart = TriggerCreate("lib7397C7F4_gt_WalkingDeadModStart_Func");
+    TriggerAddEventMapInit(lib7397C7F4_gt_WalkingDeadModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Create Walking Zombie
+//--------------------------------------------------------------------------------------------------
+bool lib7397C7F4_gt_CreateWalkingZombie_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_diedUnitCostCategory;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_diedUnitCostCategory = CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(EventUnit()), "CostCategory", c_playerAny);
+
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("133", EventPlayer()) == "0002"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "AdeptPhaseShift"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnit()) != "DisruptorPhased"))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnit()) != 15))) {
+            return false;
+        }
+
+        if (!((UnitGetOwner(EventUnit()) != 0))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestFlag(UnitGetType(EventUnit()), c_unitFlagWorker) == false))) {
+            return false;
+        }
+
+        if (!((lv_diedUnitCostCategory != "None"))) {
+            return false;
+        }
+
+        if (!((UnitTestState(EventUnit(), c_unitStateHallucination) == false))) {
+            return false;
+        }
+
+        if (!((EventUnitDamageEffect() != "SuicideRemove"))) {
+            return false;
+        }
+
+        if (!((EventUnitDamageEffect() != "KillRemove"))) {
+            return false;
+        }
+
+        if (!(((lib7397C7F4_gv_zombiesfromStructures == true) || (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == false)))) {
+            return false;
+        }
+
+        if (!(((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == true) || (UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesMade) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesUsed) > 0.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, UnitGetType(EventUnit()), 0, 5, UnitGetPosition(EventUnit()));
+    UnitBehaviorAdd(UnitLastCreated(), "UnfairSC2WalkingDead", UnitLastCreated(), 1);
+    UnitBehaviorAdd(UnitLastCreated(), "CritterWander", UnitLastCreated(), 1);
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifePercent, (lib7397C7F4_gv_hPMultiplier * 100.0));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropShieldsPercent, (lib7397C7F4_gv_shieldsMultiplier * 100.0));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, (UnitGetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, c_unitPropNormal) * lib7397C7F4_gv_hPMultiplier));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropShieldsMax, (UnitGetPropertyFixed(UnitLastCreated(), c_unitPropShieldsMax, c_unitPropNormal) * lib7397C7F4_gv_shieldsMultiplier));
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib7397C7F4_gt_CreateWalkingZombie_Init () {
+    lib7397C7F4_gt_CreateWalkingZombie = TriggerCreate("lib7397C7F4_gt_CreateWalkingZombie_Func");
+    TriggerAddEventUnitDamaged(lib7397C7F4_gt_CreateWalkingZombie, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
+}
+
+void lib7397C7F4_InitTriggers () {
+    lib7397C7F4_gt_WalkingDeadModStart_Init();
+    lib7397C7F4_gt_CreateWalkingZombie_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib7397C7F4_InitLib_completed = false;
+
+void lib7397C7F4_InitLib () {
+    if (lib7397C7F4_InitLib_completed) {
+        return;
+    }
+
+    lib7397C7F4_InitLib_completed = true;
+
+    lib7397C7F4_InitLibraries();
+    lib7397C7F4_InitVariables();
+    lib7397C7F4_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

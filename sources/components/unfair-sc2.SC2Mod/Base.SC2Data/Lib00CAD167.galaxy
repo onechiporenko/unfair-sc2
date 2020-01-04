@@ -1,0 +1,460 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib00CAD167_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: MINES
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib00CAD167_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib00CAD167_InitVariables_completed = false;
+
+void lib00CAD167_InitVariables () {
+    if (lib00CAD167_InitVariables_completed) {
+        return;
+    }
+
+    lib00CAD167_InitVariables_completed = true;
+
+    lib00CAD167_gv_extraMinesTimer = TimerCreate();
+    lib00CAD167_gv_minesLeaderboard = c_boardNone;
+}
+
+// Functions
+void lib00CAD167_gf_CreateMines (int lp_minesCount) {
+    // Variable Declarations
+    string lv_mineunittype;
+    int lv_regionoffset;
+    region lv_region;
+
+    // Automatic Variable Declarations
+    int auto9C0AD8A1_ae;
+    int auto9C0AD8A1_var;
+    playergroup auto52E9B071_g;
+    int auto52E9B071_var;
+    unitgroup auto50E907DB_g;
+    int auto50E907DB_u;
+    unit auto50E907DB_var;
+
+    // Variable Initialization
+    lv_mineunittype = "WidowMineBurrowed";
+    lv_regionoffset = 10;
+    lv_region = RegionRect((PointGetX(RegionGetBoundsMin(RegionPlayableMap())) + lv_regionoffset), (PointGetY(RegionGetBoundsMin(RegionPlayableMap())) + lv_regionoffset), (PointGetX(RegionGetBoundsMax(RegionPlayableMap())) - lv_regionoffset), (PointGetY(RegionGetBoundsMax(RegionPlayableMap())) - lv_regionoffset));
+
+    // Implementation
+    auto9C0AD8A1_ae = lp_minesCount;
+    auto9C0AD8A1_var = 1;
+    for ( ; auto9C0AD8A1_var <= auto9C0AD8A1_ae; auto9C0AD8A1_var += 1 ) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_mineunittype, c_unitCreateIgnorePlacement, 15, RegionRandomPoint(lv_region));
+    }
+    auto52E9B071_g = PlayerGroupActive();
+    auto52E9B071_var = -1;
+    while (true) {
+        auto52E9B071_var = PlayerGroupNextPlayer(auto52E9B071_g, auto52E9B071_var);
+        if (auto52E9B071_var < 0) { break; }
+        auto50E907DB_g = UnitGroup(lv_mineunittype, 15, RegionCircle(PlayerStartLocation(auto52E9B071_var), libDBC4E2D2_gv_players[auto52E9B071_var].lv_mINES.lv_savezoneradius), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto50E907DB_u = UnitGroupCount(auto50E907DB_g, c_unitCountAll);
+        for (;; auto50E907DB_u -= 1) {
+            auto50E907DB_var = UnitGroupUnitFromEnd(auto50E907DB_g, auto50E907DB_u);
+            if (auto50E907DB_var == null) { break; }
+            UnitRemove(auto50E907DB_var);
+        }
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mines Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_gt_MinesModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    string lv_mineUnitType;
+    int lv_regionOffset;
+    int lv_minesCount;
+    region lv_region;
+    text lv_messageAboutExtraMines;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    string auto5FFCB489_val;
+    string autoC72E9822_val;
+    string autoB5790974_val;
+    playergroup autoC46B0B07_g;
+    int autoC46B0B07_var;
+    string auto761D679E_val;
+    playergroup auto7E84E27E_g;
+    int auto7E84E27E_var;
+
+    // Variable Initialization
+    lv_mineUnitType = "WidowMineBurrowed";
+    lv_regionOffset = 10;
+    lv_region = RegionRect((PointGetX(RegionGetBoundsMin(RegionPlayableMap())) + lv_regionOffset), (PointGetY(RegionGetBoundsMin(RegionPlayableMap())) + lv_regionOffset), (PointGetX(RegionGetBoundsMax(RegionPlayableMap())) - lv_regionOffset), (PointGetY(RegionGetBoundsMax(RegionPlayableMap())) - lv_regionOffset));
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("88") == "0001")) {
+        auto5FFCB489_val = GameAttributeGameValue("89");
+        if (auto5FFCB489_val == "0001") {
+            lv_minesCount = 50;
+        }
+        else if (auto5FFCB489_val == "0002") {
+            lv_minesCount = 100;
+        }
+        else if (auto5FFCB489_val == "0003") {
+            lv_minesCount = 150;
+        }
+        else if (auto5FFCB489_val == "0004") {
+            lv_minesCount = 200;
+        }
+        else if (auto5FFCB489_val == "0005") {
+            lv_minesCount = 250;
+        }
+        else if (auto5FFCB489_val == "0006") {
+            lv_minesCount = 300;
+        }
+        else if (auto5FFCB489_val == "0007") {
+            lv_minesCount = 350;
+        }
+        else if (auto5FFCB489_val == "0008") {
+            lv_minesCount = 400;
+        }
+        else if (auto5FFCB489_val == "0009") {
+            lv_minesCount = 450;
+        }
+        else if (auto5FFCB489_val == "0010") {
+            lv_minesCount = 500;
+        }
+        else {
+        }
+        autoC72E9822_val = GameAttributeGameValue("98");
+        if (autoC72E9822_val == "0001") {
+            lib00CAD167_gv_extraMinesCount = 10;
+        }
+        else if (autoC72E9822_val == "0002") {
+            lib00CAD167_gv_extraMinesCount = 20;
+        }
+        else if (autoC72E9822_val == "0003") {
+            lib00CAD167_gv_extraMinesCount = 30;
+        }
+        else if (autoC72E9822_val == "0004") {
+            lib00CAD167_gv_extraMinesCount = 40;
+        }
+        else if (autoC72E9822_val == "0005") {
+            lib00CAD167_gv_extraMinesCount = 50;
+        }
+        else if (autoC72E9822_val == "0006") {
+            lib00CAD167_gv_extraMinesCount = 60;
+        }
+        else if (autoC72E9822_val == "0007") {
+            lib00CAD167_gv_extraMinesCount = 70;
+        }
+        else if (autoC72E9822_val == "0008") {
+            lib00CAD167_gv_extraMinesCount = 80;
+        }
+        else if (autoC72E9822_val == "0009") {
+            lib00CAD167_gv_extraMinesCount = 90;
+        }
+        else if (autoC72E9822_val == "0010") {
+            lib00CAD167_gv_extraMinesCount = 100;
+        }
+        else {
+        }
+        autoB5790974_val = GameAttributeGameValue("99");
+        if (autoB5790974_val == "0002") {
+            lib00CAD167_gv_extraMinesDelay = 20;
+        }
+        else if (autoB5790974_val == "0005") {
+            lib00CAD167_gv_extraMinesDelay = 30;
+        }
+        else if (autoB5790974_val == "0003") {
+            lib00CAD167_gv_extraMinesDelay = 40;
+        }
+        else if (autoB5790974_val == "0006") {
+            lib00CAD167_gv_extraMinesDelay = 50;
+        }
+        else if (autoB5790974_val == "0004") {
+            lib00CAD167_gv_extraMinesDelay = 60;
+        }
+        else {
+        }
+        autoC46B0B07_g = PlayerGroupAll();
+        autoC46B0B07_var = -1;
+        while (true) {
+            autoC46B0B07_var = PlayerGroupNextPlayer(autoC46B0B07_g, autoC46B0B07_var);
+            if (autoC46B0B07_var < 0) { break; }
+            auto761D679E_val = GameAttributePlayerValue("90", autoC46B0B07_var);
+            if (auto761D679E_val == "0006") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 10;
+            }
+            else if (auto761D679E_val == "0005") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 20;
+            }
+            else if (auto761D679E_val == "0001") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 30;
+            }
+            else if (auto761D679E_val == "0002") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 40;
+            }
+            else if (auto761D679E_val == "0003") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 50;
+            }
+            else if (auto761D679E_val == "0004") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 60;
+            }
+            else if (auto761D679E_val == "0007") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 70;
+            }
+            else if (auto761D679E_val == "0008") {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 80;
+            }
+            else {
+                libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_savezoneradius = 50;
+            }
+            libDBC4E2D2_gv_players[autoC46B0B07_var].lv_mINES.lv_messageindex = libDBC4E2D2_gv_players[autoC46B0B07_var].lv_uI.lv_numberofmessages;
+            libDBC4E2D2_gv_players[autoC46B0B07_var].lv_uI.lv_numberofmessages += 1;
+        }
+        lib00CAD167_gv_minesLeaderboard = libDBC4E2D2_gf_CreateResourcesLeaderboard(StringExternal("Param/Value/lib_00CAD167_72C73CAE"));
+        if ((GameAttributeGameValue("99") != "0001")) {
+            TextExpressionSetToken("Param/Expression/lib_00CAD167_B5810AFC", "ExtraMinesCount", IntToText(lib00CAD167_gv_extraMinesCount));
+            TextExpressionSetToken("Param/Expression/lib_00CAD167_B5810AFC", "ExtraMinesDelay", IntToText(lib00CAD167_gv_extraMinesDelay));
+            lv_messageAboutExtraMines = TextExpressionAssemble("Param/Expression/lib_00CAD167_B5810AFC");
+        }
+
+        libNtve_gf_ShowHideLeaderboard(lib00CAD167_gv_minesLeaderboard, true, libDBC4E2D2_gv_observerGroup);
+        auto7E84E27E_g = PlayerGroupActive();
+        auto7E84E27E_var = -1;
+        while (true) {
+            auto7E84E27E_var = PlayerGroupNextPlayer(auto7E84E27E_g, auto7E84E27E_var);
+            if (auto7E84E27E_var < 0) { break; }
+            TextExpressionSetToken("Param/Expression/lib_00CAD167_BF62793B", "A", TextWithColor(PlayerName(auto7E84E27E_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto7E84E27E_var, false))));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_00CAD167_BF62793B"));
+            TextExpressionSetToken("Param/Expression/lib_00CAD167_57F0A238", "A", FixedToText(libDBC4E2D2_gv_players[auto7E84E27E_var].lv_mINES.lv_savezoneradius, 0));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_00CAD167_57F0A238"));
+        }
+        TextExpressionSetToken("Param/Expression/lib_00CAD167_8942D086", "InitialMines", IntToText(lv_minesCount));
+        TextExpressionSetToken("Param/Expression/lib_00CAD167_8942D086", "Upgrade", StringExternal(CatalogFieldValueGet(c_gameCatalogUnit, "HHWidowMineACGluescreenDummy", "Name", c_playerAny)));
+        TextExpressionSetToken("Param/Expression/lib_00CAD167_8942D086", "MessageAboutExtraMines", lv_messageAboutExtraMines);
+        TextExpressionSetToken("Param/Expression/lib_00CAD167_8942D086", "PlayerSettings", lv_playersSettings);
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_00CAD167_68B5463E"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_00CAD167_8942D086"), StringExternal("Param/Value/lib_00CAD167_B32A0300"), "Assets\\Textures\\btn-unit-terran-widowmine.dds");
+        Wait(1.0, c_timeGame);
+        lib00CAD167_gf_CreateMines(lv_minesCount);
+    }
+    else {
+        TriggerEnable(lib00CAD167_gt_UgradeMines, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00CAD167_gt_MinesModStart_Init () {
+    lib00CAD167_gt_MinesModStart = TriggerCreate("lib00CAD167_gt_MinesModStart_Func");
+    TriggerAddEventMapInit(lib00CAD167_gt_MinesModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ugrade Mines
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_gt_UgradeMines_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libNtve_gf_SetUpgradeLevelForPlayer(15, "DrillClaws", 1);
+    TextExpressionSetToken("Param/Expression/lib_00CAD167_49C3A57D", "A", StringExternal(CatalogFieldValueGet(c_gameCatalogUpgrade, "DrillClaws", "Name", c_playerAny)));
+    TextExpressionSetToken("Param/Expression/lib_00CAD167_49C3A57D", "B", StringExternal(CatalogFieldValueGet(c_gameCatalogUnit, "HHWidowMineACGluescreenDummy", "Name", c_playerAny)));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_00CAD167_49C3A57D"));
+    SoundPlayForPlayer(SoundLink("UI_TerranKlaxonAlert", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00CAD167_gt_UgradeMines_Init () {
+    lib00CAD167_gt_UgradeMines = TriggerCreate("lib00CAD167_gt_UgradeMines_Func");
+    TriggerAddEventTimeElapsed(lib00CAD167_gt_UgradeMines, 360.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Start Creating Extra Mines
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_gt_StartCreatingExtraMines_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((lib00CAD167_gv_extraMinesDelay == 0)) {
+        TriggerEnable(lib00CAD167_gt_CreateExtraMines, false);
+    }
+    else {
+        TimerStart(lib00CAD167_gv_extraMinesTimer, lib00CAD167_gv_extraMinesDelay, true, c_timeReal);
+        TriggerExecute(lib00CAD167_gt_CreateExtraMines, true, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00CAD167_gt_StartCreatingExtraMines_Init () {
+    lib00CAD167_gt_StartCreatingExtraMines = TriggerCreate("lib00CAD167_gt_StartCreatingExtraMines_Func");
+    TriggerAddEventTimeElapsed(lib00CAD167_gt_StartCreatingExtraMines, 360.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Create Extra Mines
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_gt_CreateExtraMines_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_00CAD167_6DA7D691"));
+    lib00CAD167_gf_CreateMines(lib00CAD167_gv_extraMinesCount);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00CAD167_gt_CreateExtraMines_Init () {
+    lib00CAD167_gt_CreateExtraMines = TriggerCreate("lib00CAD167_gt_CreateExtraMines_Func");
+    TriggerAddEventTimer(lib00CAD167_gt_CreateExtraMines, lib00CAD167_gv_extraMinesTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Show Lost Resources
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_gt_ShowLostResources_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto690C1759_g;
+    int auto690C1759_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto690C1759_g = PlayerGroupActive();
+    auto690C1759_var = -1;
+    while (true) {
+        auto690C1759_var = PlayerGroupNextPlayer(auto690C1759_g, auto690C1759_var);
+        if (auto690C1759_var < 0) { break; }
+        TextExpressionSetToken("Param/Expression/lib_00CAD167_535F8908", "minerals", FixedToText(libDBC4E2D2_gv_players[auto690C1759_var].lv_mINES.lv_mineralslost, c_fixedPrecisionAny));
+        TextExpressionSetToken("Param/Expression/lib_00CAD167_535F8908", "gas", FixedToText(libDBC4E2D2_gv_players[auto690C1759_var].lv_mINES.lv_gaslost, c_fixedPrecisionAny));
+        libDBC4E2D2_gv_players[auto690C1759_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[auto690C1759_var].lv_mINES.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_00CAD167_535F8908");
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00CAD167_gt_ShowLostResources_Init () {
+    lib00CAD167_gt_ShowLostResources = TriggerCreate("lib00CAD167_gt_ShowLostResources_Func");
+    TriggerAddEventTimePeriodic(lib00CAD167_gt_ShowLostResources, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Mines Leaderboard
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_gt_UpdateMinesLeaderboard_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoE1F376CD_g;
+    int autoE1F376CD_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoE1F376CD_g = PlayerGroupAll();
+    autoE1F376CD_var = -1;
+    while (true) {
+        autoE1F376CD_var = PlayerGroupNextPlayer(autoE1F376CD_g, autoE1F376CD_var);
+        if (autoE1F376CD_var < 0) { break; }
+        if ((PlayerStatus(autoE1F376CD_var) == c_playerStatusActive)) {
+            BoardItemSetText(lib00CAD167_gv_minesLeaderboard, 1, autoE1F376CD_var, TextWithColor(PlayerName(autoE1F376CD_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoE1F376CD_var, false))));
+            BoardItemSetText(lib00CAD167_gv_minesLeaderboard, 2, autoE1F376CD_var, FixedToText(libDBC4E2D2_gv_players[autoE1F376CD_var].lv_mINES.lv_mineralslost, c_fixedPrecisionAny));
+            BoardItemSetText(lib00CAD167_gv_minesLeaderboard, 3, autoE1F376CD_var, FixedToText(libDBC4E2D2_gv_players[autoE1F376CD_var].lv_mINES.lv_gaslost, c_fixedPrecisionAny));
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00CAD167_gt_UpdateMinesLeaderboard_Init () {
+    lib00CAD167_gt_UpdateMinesLeaderboard = TriggerCreate("lib00CAD167_gt_UpdateMinesLeaderboard_Func");
+    TriggerAddEventTimePeriodic(lib00CAD167_gt_UpdateMinesLeaderboard, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Unit Is Killed By Mine
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_gt_UnitIsKilledByMine_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libNtve_gf_KillingPlayer() == 15))) {
+            return false;
+        }
+
+        if (!(((UnitGetType(libNtve_gf_KillingUnit()) == "WidowMineBurrowed") || (UnitGetType(libNtve_gf_KillingUnit()) == "HHWidowMineACGluescreenDummy") || (UnitGetType(libNtve_gf_KillingUnit()) == "WidowMine")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libDBC4E2D2_gv_players[EventPlayer()].lv_mINES.lv_mineralslost += UnitTypeGetCost(UnitGetType(EventUnit()), c_unitCostMinerals);
+    libDBC4E2D2_gv_players[EventPlayer()].lv_mINES.lv_gaslost += UnitTypeGetCost(UnitGetType(EventUnit()), c_unitCostVespene);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00CAD167_gt_UnitIsKilledByMine_Init () {
+    lib00CAD167_gt_UnitIsKilledByMine = TriggerCreate("lib00CAD167_gt_UnitIsKilledByMine_Func");
+    TriggerAddEventUnitDied(lib00CAD167_gt_UnitIsKilledByMine, null);
+}
+
+void lib00CAD167_InitTriggers () {
+    lib00CAD167_gt_MinesModStart_Init();
+    lib00CAD167_gt_UgradeMines_Init();
+    lib00CAD167_gt_StartCreatingExtraMines_Init();
+    lib00CAD167_gt_CreateExtraMines_Init();
+    lib00CAD167_gt_ShowLostResources_Init();
+    lib00CAD167_gt_UpdateMinesLeaderboard_Init();
+    lib00CAD167_gt_UnitIsKilledByMine_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib00CAD167_InitLib_completed = false;
+
+void lib00CAD167_InitLib () {
+    if (lib00CAD167_InitLib_completed) {
+        return;
+    }
+
+    lib00CAD167_InitLib_completed = true;
+
+    lib00CAD167_InitLibraries();
+    lib00CAD167_InitVariables();
+    lib00CAD167_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

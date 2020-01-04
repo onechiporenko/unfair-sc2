@@ -1,0 +1,22 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: WALKING DEAD
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+fixed lib7397C7F4_gv_armorMultiplier;
+fixed lib7397C7F4_gv_shieldsMultiplier;
+fixed lib7397C7F4_gv_hPMultiplier;
+fixed lib7397C7F4_gv_lifeTime;
+bool lib7397C7F4_gv_useLifeTime;
+fixed lib7397C7F4_gv_moveSpeedMultiplier;
+fixed lib7397C7F4_gv_attackSpeedMultiplier;
+bool lib7397C7F4_gv_zombiesfromStructures;
+
+// Trigger Declarations
+trigger lib7397C7F4_gt_WalkingDeadModStart;
+trigger lib7397C7F4_gt_CreateWalkingZombie;
+
+// Library Initialization
+void lib7397C7F4_InitVariables ();
+

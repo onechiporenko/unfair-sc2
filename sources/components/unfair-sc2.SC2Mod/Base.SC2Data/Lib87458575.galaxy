@@ -1,0 +1,88 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib87458575_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: FAIR MACRO
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib87458575_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Fair Macro Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib87458575_gt_FairMacroModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto36F696E4_g;
+    int auto36F696E4_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("155") == "0001")) {
+        auto36F696E4_g = PlayerGroupAll();
+        auto36F696E4_var = -1;
+        while (true) {
+            auto36F696E4_var = PlayerGroupNextPlayer(auto36F696E4_g, auto36F696E4_var);
+            if (auto36F696E4_var < 0) { break; }
+            if ((GameAttributePlayerValue("156", auto36F696E4_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto36F696E4_var);
+                TechTreeAbilityAllow(auto36F696E4_var, AbilityCommand("SpawnLarva", 0), false);
+                TechTreeAbilityAllow(auto36F696E4_var, AbilityCommand("CalldownMULE", 0), false);
+                TechTreeAbilityAllow(auto36F696E4_var, AbilityCommand("SupplyDrop", 0), false);
+                TechTreeAbilityAllow(auto36F696E4_var, AbilityCommand("TimeWarp", 0), false);
+                TechTreeAbilityAllow(auto36F696E4_var, AbilityCommand("ChronoBoostEnergyCost", 0), false);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_87458575_8B33ABD9", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_87458575_755A4073"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_87458575_8B33ABD9"), StringExternal("Param/Value/lib_87458575_42815186"), "Assets\\Textures\\btn-ability-protoss-phaseshift2.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib87458575_gt_FairMacroModStart_Init () {
+    lib87458575_gt_FairMacroModStart = TriggerCreate("lib87458575_gt_FairMacroModStart_Func");
+    TriggerAddEventMapInit(lib87458575_gt_FairMacroModStart);
+}
+
+void lib87458575_InitTriggers () {
+    lib87458575_gt_FairMacroModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib87458575_InitLib_completed = false;
+
+void lib87458575_InitLib () {
+    if (lib87458575_InitLib_completed) {
+        return;
+    }
+
+    lib87458575_InitLib_completed = true;
+
+    lib87458575_InitLibraries();
+    lib87458575_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

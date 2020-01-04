@@ -1,0 +1,209 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib6D9F8D1C_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: IMMORTALS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib6D9F8D1C_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void lib6D9F8D1C_gf_AddShield (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitBehaviorAdd(lp_unit, "UnfairSC2DamageReductionShield", lp_unit, 1);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Immortals Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib6D9F8D1C_gt_ImmortalsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup auto5D850579_g;
+    int auto5D850579_var;
+    string autoC057F75B_val;
+    playergroup autoD8BA5995_g;
+    int autoD8BA5995_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("162") == "0001")) {
+        auto5D850579_g = PlayerGroupAll();
+        auto5D850579_var = -1;
+        while (true) {
+            auto5D850579_var = PlayerGroupNextPlayer(auto5D850579_g, auto5D850579_var);
+            if (auto5D850579_var < 0) { break; }
+            autoC057F75B_val = GameAttributePlayerValue("163", auto5D850579_var);
+            if (autoC057F75B_val == "0005") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 1.0;
+            }
+            else if (autoC057F75B_val == "0006") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 3.0;
+            }
+            else if (autoC057F75B_val == "0002") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 5.0;
+            }
+            else if (autoC057F75B_val == "0003") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 7.0;
+            }
+            else if (autoC057F75B_val == "0004") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 9.0;
+            }
+            else if (autoC057F75B_val == "0007") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 11.0;
+            }
+            else if (autoC057F75B_val == "0008") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 13.0;
+            }
+            else if (autoC057F75B_val == "0009") {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 15.0;
+            }
+            else {
+                libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage = 0.0;
+            }
+            if ((libDBC4E2D2_gv_players[auto5D850579_var].lv_iMMORTALS.lv_maxdamage != 0.0)) {
+                PlayerGroupAdd(lv_players, auto5D850579_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            autoD8BA5995_g = lv_players;
+            autoD8BA5995_var = -1;
+            while (true) {
+                autoD8BA5995_var = PlayerGroupNextPlayer(autoD8BA5995_g, autoD8BA5995_var);
+                if (autoD8BA5995_var < 0) { break; }
+                CatalogReferenceSet("Behavior,UnfairSC2DamageReductionShield,DamageResponse.ClampMaximum", autoD8BA5995_var, FixedToString(libDBC4E2D2_gv_players[autoD8BA5995_var].lv_iMMORTALS.lv_maxdamage, c_fixedPrecisionAny));
+                CatalogReferenceSet("Behavior,UnfairSC2DamageReductionShield,DamageResponse.Minimum", autoD8BA5995_var, FixedToString(libDBC4E2D2_gv_players[autoD8BA5995_var].lv_iMMORTALS.lv_maxdamage, c_fixedPrecisionAny));
+                TextExpressionSetToken("Param/Expression/lib_6D9F8D1C_0E620970", "A", TextWithColor(PlayerName(autoD8BA5995_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoD8BA5995_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_6D9F8D1C_0E620970"));
+                TextExpressionSetToken("Param/Expression/lib_6D9F8D1C_C41588B9", "A", FixedToText(libDBC4E2D2_gv_players[autoD8BA5995_var].lv_iMMORTALS.lv_maxdamage, c_fixedPrecisionAny));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_6D9F8D1C_C41588B9"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_6D9F8D1C_B9A92B12", "PlayerSettings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_6D9F8D1C_53834AAC"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_6D9F8D1C_B9A92B12"), StringExternal("Param/Value/lib_6D9F8D1C_CB541A86"), "Assets\\Textures\\btn-ability-zeratul-immortal-enternitybarrier.dds");
+            TriggerExecute(lib6D9F8D1C_gt_AddShieldToInitialUnits, true, false);
+        }
+        else {
+            TriggerEnable(lib6D9F8D1C_gt_AddShieldToCreatedUnit, false);
+        }
+    }
+    else {
+        TriggerEnable(lib6D9F8D1C_gt_AddShieldToCreatedUnit, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib6D9F8D1C_gt_ImmortalsModStart_Init () {
+    lib6D9F8D1C_gt_ImmortalsModStart = TriggerCreate("lib6D9F8D1C_gt_ImmortalsModStart_Func");
+    TriggerAddEventMapInit(lib6D9F8D1C_gt_ImmortalsModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Shield To Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib6D9F8D1C_gt_AddShieldToCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libDBC4E2D2_gv_players[UnitGetOwner(EventUnitCreatedUnit())].lv_iMMORTALS.lv_maxdamage != 0.0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib6D9F8D1C_gf_AddShield(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib6D9F8D1C_gt_AddShieldToCreatedUnit_Init () {
+    lib6D9F8D1C_gt_AddShieldToCreatedUnit = TriggerCreate("lib6D9F8D1C_gt_AddShieldToCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib6D9F8D1C_gt_AddShieldToCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Shield To Initial Units
+//--------------------------------------------------------------------------------------------------
+bool lib6D9F8D1C_gt_AddShieldToInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoB1603BC1_g;
+    int autoB1603BC1_var;
+    unitgroup auto7AD61E11_g;
+    int auto7AD61E11_u;
+    unit auto7AD61E11_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    autoB1603BC1_g = PlayerGroupAll();
+    autoB1603BC1_var = -1;
+    while (true) {
+        autoB1603BC1_var = PlayerGroupNextPlayer(autoB1603BC1_g, autoB1603BC1_var);
+        if (autoB1603BC1_var < 0) { break; }
+        if ((libDBC4E2D2_gv_players[autoB1603BC1_var].lv_iMMORTALS.lv_maxdamage != 0.0)) {
+            auto7AD61E11_g = UnitGroup(null, autoB1603BC1_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto7AD61E11_u = UnitGroupCount(auto7AD61E11_g, c_unitCountAll);
+            for (;; auto7AD61E11_u -= 1) {
+                auto7AD61E11_var = UnitGroupUnitFromEnd(auto7AD61E11_g, auto7AD61E11_u);
+                if (auto7AD61E11_var == null) { break; }
+                lib6D9F8D1C_gf_AddShield(auto7AD61E11_var);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib6D9F8D1C_gt_AddShieldToInitialUnits_Init () {
+    lib6D9F8D1C_gt_AddShieldToInitialUnits = TriggerCreate("lib6D9F8D1C_gt_AddShieldToInitialUnits_Func");
+}
+
+void lib6D9F8D1C_InitTriggers () {
+    lib6D9F8D1C_gt_ImmortalsModStart_Init();
+    lib6D9F8D1C_gt_AddShieldToCreatedUnit_Init();
+    lib6D9F8D1C_gt_AddShieldToInitialUnits_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib6D9F8D1C_InitLib_completed = false;
+
+void lib6D9F8D1C_InitLib () {
+    if (lib6D9F8D1C_InitLib_completed) {
+        return;
+    }
+
+    lib6D9F8D1C_InitLib_completed = true;
+
+    lib6D9F8D1C_InitLibraries();
+    lib6D9F8D1C_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

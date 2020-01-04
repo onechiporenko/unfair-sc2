@@ -1,0 +1,223 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib96FBA2DD_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RIOT WORKERS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib96FBA2DD_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib96FBA2DD_InitVariables_completed = false;
+
+void lib96FBA2DD_InitVariables () {
+    if (lib96FBA2DD_InitVariables_completed) {
+        return;
+    }
+
+    lib96FBA2DD_InitVariables_completed = true;
+
+    lib96FBA2DD_gv_riotWorkersPercent = 0.25;
+    lib96FBA2DD_gv_riotTimer = TimerCreate();
+}
+
+// Functions
+trigger auto_lib96FBA2DD_gf_Riot_Trigger = null;
+int auto_lib96FBA2DD_gf_Riot_lp_player;
+
+void lib96FBA2DD_gf_Riot (int lp_player) {
+    auto_lib96FBA2DD_gf_Riot_lp_player = lp_player;
+
+    if (auto_lib96FBA2DD_gf_Riot_Trigger == null) {
+        auto_lib96FBA2DD_gf_Riot_Trigger = TriggerCreate("auto_lib96FBA2DD_gf_Riot_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib96FBA2DD_gf_Riot_Trigger, false, false);
+}
+
+bool auto_lib96FBA2DD_gf_Riot_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib96FBA2DD_gf_Riot_lp_player;
+
+    // Variable Declarations
+    unit lv_selectedUnit;
+    unitgroup lv_allWorkers;
+
+    // Automatic Variable Declarations
+    int auto77A5D5A8_ae;
+    int auto77A5D5A8_var;
+
+    // Variable Initialization
+    lv_allWorkers = UnitGroupEmpty();
+
+    // Implementation
+    UnitGroupAddUnitGroup(lv_allWorkers, UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    auto77A5D5A8_ae = RoundI((UnitGroupCount(lv_allWorkers, c_unitCountAlive) * lib96FBA2DD_gv_riotWorkersPercent));
+    auto77A5D5A8_var = 1;
+    for ( ; auto77A5D5A8_var <= auto77A5D5A8_ae; auto77A5D5A8_var += 1 ) {
+        lv_selectedUnit = UnitGroupRandomUnit(lv_allWorkers, c_unitCountAlive);
+        UnitIssueOrder(lv_selectedUnit, Order(AbilityCommand("stop", 0)), c_orderQueueReplace);
+        UnitIssueOrder(lv_selectedUnit, Order(AbilityCommand("TerranBuild", 30)), c_orderQueueAddToEnd);
+        UnitIssueOrder(lv_selectedUnit, OrderTargetingPoint(AbilityCommand("move", 0), UnitGetPosition(libDBC4E2D2_gf_GetRandomWorkersProdStructure(lp_player))), c_orderQueueAddToEnd);
+        UnitGroupRemove(lv_allWorkers, lv_selectedUnit);
+    }
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Riot Workers Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib96FBA2DD_gt_RiotWorkersModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto0E0B19D1_g;
+    int auto0E0B19D1_var;
+    string autoB3FDB6B7_val;
+    string autoD4E298F9_val;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("114") == "0001")) {
+        auto0E0B19D1_g = PlayerGroupAll();
+        auto0E0B19D1_var = -1;
+        while (true) {
+            auto0E0B19D1_var = PlayerGroupNextPlayer(auto0E0B19D1_g, auto0E0B19D1_var);
+            if (auto0E0B19D1_var < 0) { break; }
+            if ((GameAttributePlayerValue("115", auto0E0B19D1_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto0E0B19D1_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) == 0)) {
+            TriggerEnable(lib96FBA2DD_gt_DoRiot, false);
+        }
+        else {
+            autoB3FDB6B7_val = GameAttributeGameValue("116");
+            if (autoB3FDB6B7_val == "0001") {
+                lib96FBA2DD_gv_riotFreequency = 10;
+            }
+            else if (autoB3FDB6B7_val == "0002") {
+                lib96FBA2DD_gv_riotFreequency = 20;
+            }
+            else if (autoB3FDB6B7_val == "0003") {
+                lib96FBA2DD_gv_riotFreequency = 30;
+            }
+            else if (autoB3FDB6B7_val == "0004") {
+                lib96FBA2DD_gv_riotFreequency = 40;
+            }
+            else if (autoB3FDB6B7_val == "0005") {
+                lib96FBA2DD_gv_riotFreequency = 50;
+            }
+            else if (autoB3FDB6B7_val == "0006") {
+                lib96FBA2DD_gv_riotFreequency = 60;
+            }
+            else {
+                lib96FBA2DD_gv_riotFreequency = 30;
+            }
+            autoD4E298F9_val = GameAttributeGameValue("117");
+            if (autoD4E298F9_val == "0001") {
+                lib96FBA2DD_gv_riotWorkersPercent = 0.1;
+            }
+            else if (autoD4E298F9_val == "0002") {
+                lib96FBA2DD_gv_riotWorkersPercent = 0.25;
+            }
+            else if (autoD4E298F9_val == "0003") {
+                lib96FBA2DD_gv_riotWorkersPercent = 0.5;
+            }
+            else if (autoD4E298F9_val == "0004") {
+                lib96FBA2DD_gv_riotWorkersPercent = 0.75;
+            }
+            else if (autoD4E298F9_val == "0005") {
+                lib96FBA2DD_gv_riotWorkersPercent = 1.0;
+            }
+            else {
+                lib96FBA2DD_gv_riotWorkersPercent = 1.0;
+            }
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1AD37A80", "RiotDelay", IntToText(lib96FBA2DD_gv_riotFreequency));
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1AD37A80", "RiotWorkersPercent", FixedToText((lib96FBA2DD_gv_riotWorkersPercent * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1AD37A80", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_96FBA2DD_1369775C"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_96FBA2DD_1AD37A80"), StringExternal("Param/Value/lib_96FBA2DD_6A512429"), "Assets\\Textures\\btn-unit-collection-scv-remastered.dds");
+            TimerStart(lib96FBA2DD_gv_riotTimer, lib96FBA2DD_gv_riotFreequency, true, c_timeReal);
+        }
+    }
+    else {
+        TriggerEnable(lib96FBA2DD_gt_DoRiot, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib96FBA2DD_gt_RiotWorkersModStart_Init () {
+    lib96FBA2DD_gt_RiotWorkersModStart = TriggerCreate("lib96FBA2DD_gt_RiotWorkersModStart_Func");
+    TriggerAddEventMapInit(lib96FBA2DD_gt_RiotWorkersModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Do Riot
+//--------------------------------------------------------------------------------------------------
+bool lib96FBA2DD_gt_DoRiot_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto263B6A06_g;
+    int auto263B6A06_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto263B6A06_g = PlayerGroupAll();
+    auto263B6A06_var = -1;
+    while (true) {
+        auto263B6A06_var = PlayerGroupNextPlayer(auto263B6A06_g, auto263B6A06_var);
+        if (auto263B6A06_var < 0) { break; }
+        if ((GameAttributePlayerValue("115", auto263B6A06_var) == "0001")) {
+            lib96FBA2DD_gf_Riot(auto263B6A06_var);
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib96FBA2DD_gt_DoRiot_Init () {
+    lib96FBA2DD_gt_DoRiot = TriggerCreate("lib96FBA2DD_gt_DoRiot_Func");
+    TriggerAddEventTimer(lib96FBA2DD_gt_DoRiot, lib96FBA2DD_gv_riotTimer);
+}
+
+void lib96FBA2DD_InitTriggers () {
+    lib96FBA2DD_gt_RiotWorkersModStart_Init();
+    lib96FBA2DD_gt_DoRiot_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib96FBA2DD_InitLib_completed = false;
+
+void lib96FBA2DD_InitLib () {
+    if (lib96FBA2DD_InitLib_completed) {
+        return;
+    }
+
+    lib96FBA2DD_InitLib_completed = true;
+
+    lib96FBA2DD_InitLibraries();
+    lib96FBA2DD_InitVariables();
+    lib96FBA2DD_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

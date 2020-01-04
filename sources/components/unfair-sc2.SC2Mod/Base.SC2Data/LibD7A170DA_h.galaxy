@@ -1,0 +1,20 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BOUNTY
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int libD7A170DA_gv_bountyLeaderboard;
+
+// Function Declarations
+void libD7A170DA_gf_SetUnitBounty (unit lp_unit);
+
+// Trigger Declarations
+trigger libD7A170DA_gt_BountyModStart;
+trigger libD7A170DA_gt_SetBountyForCreatedUnit;
+trigger libD7A170DA_gt_UnitIsKilled;
+trigger libD7A170DA_gt_UpdateBountyLeaderboard;
+
+// Library Initialization
+void libD7A170DA_InitVariables ();
+

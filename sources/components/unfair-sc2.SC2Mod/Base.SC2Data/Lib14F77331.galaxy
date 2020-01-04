@@ -1,0 +1,98 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib14F77331_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO MINIMAP
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib14F77331_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void lib14F77331_gf_ToggleMinimapPanel (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libDBC4E2D2_gv_players[lp_player].lv_nOMINIMAP.lv_minimapEnabled == true)) {
+        UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMinimapPanel, false);
+        libDBC4E2D2_gv_players[lp_player].lv_nOMINIMAP.lv_minimapEnabled = false;
+    }
+    else {
+        UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMinimapPanel, true);
+        libDBC4E2D2_gv_players[lp_player].lv_nOMINIMAP.lv_minimapEnabled = true;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Minimap Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib14F77331_gt_NoMinimapModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto6502C756_g;
+    int auto6502C756_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("11") == "0001")) {
+        auto6502C756_g = PlayerGroupAll();
+        auto6502C756_var = -1;
+        while (true) {
+            auto6502C756_var = PlayerGroupNextPlayer(auto6502C756_g, auto6502C756_var);
+            if (auto6502C756_var < 0) { break; }
+            if ((GameAttributePlayerValue("12", auto6502C756_var) == "0002")) {
+                PlayerGroupAdd(lv_players, auto6502C756_var);
+                lib14F77331_gf_ToggleMinimapPanel(auto6502C756_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_14F77331_DB90180B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_14F77331_BC7BF1CE"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_14F77331_DB90180B"), StringExternal("Param/Value/lib_14F77331_7F63C0D8"), "Assets\\Textures\\btn-tips-starmap.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib14F77331_gt_NoMinimapModStart_Init () {
+    lib14F77331_gt_NoMinimapModStart = TriggerCreate("lib14F77331_gt_NoMinimapModStart_Func");
+    TriggerAddEventMapInit(lib14F77331_gt_NoMinimapModStart);
+}
+
+void lib14F77331_InitTriggers () {
+    lib14F77331_gt_NoMinimapModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib14F77331_InitLib_completed = false;
+
+void lib14F77331_InitLib () {
+    if (lib14F77331_InitLib_completed) {
+        return;
+    }
+
+    lib14F77331_InitLib_completed = true;
+
+    lib14F77331_InitLibraries();
+    lib14F77331_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

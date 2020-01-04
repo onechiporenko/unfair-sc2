@@ -1,0 +1,26 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ZOMBIES
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib77A838C7_gv_zombiesStartDelay;
+int[4] lib77A838C7_gv_zombiesGradesWaves;
+int lib77A838C7_gv_zombiesWavesDelay;
+timer lib77A838C7_gv_zombiesTimer;
+int lib77A838C7_gv_zombiesCount;
+int lib77A838C7_gv_zombiesWavesCount;
+timer lib77A838C7_gv_timerFromGameStarts;
+
+// Function Declarations
+int lib77A838C7_gf_ParseZombiesStartDelay ();
+int lib77A838C7_gf_ParseZombiesWavesDelay ();
+
+// Trigger Declarations
+trigger lib77A838C7_gt_ZombiesModStart;
+trigger lib77A838C7_gt_CreateZombies;
+trigger lib77A838C7_gt_GameTimerTick;
+
+// Library Initialization
+void lib77A838C7_InitVariables ();
+

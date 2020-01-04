@@ -1,0 +1,718 @@
+include "TriggerLibs/NativeLib"
+
+include "LibDBC4E2D2_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: COMMON
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libDBC4E2D2_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool libDBC4E2D2_InitVariables_completed = false;
+
+void libDBC4E2D2_InitVariables () {
+    int init_i;
+    int init_i2;
+
+    if (libDBC4E2D2_InitVariables_completed) {
+        return;
+    }
+
+    libDBC4E2D2_InitVariables_completed = true;
+
+    for (init_i = 0; init_i <= 17; init_i += 1) {
+        libDBC4E2D2_gv_players[init_i].lv_aPMKING.lv_maxAPM = 100500;
+        libDBC4E2D2_gv_players[init_i].lv_aPMKING.lv_minAPM = -1;
+        libDBC4E2D2_gv_players[init_i].lv_dECIMATIO.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_mOTHERCORE.lv_restoreMotherCoreTimer = TimerCreate();
+        libDBC4E2D2_gv_players[init_i].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow = c_timerWindowNone;
+        libDBC4E2D2_gv_players[init_i].lv_nOMINIMAP.lv_minimapEnabled = true;
+        libDBC4E2D2_gv_players[init_i].lv_nOMINIMAP.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_armyButtonEnabled = true;
+        libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_controlGroupsEnabled = true;
+        libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_rIOTWORKERS.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_giveMineralsToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_takeMineralsToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_giveVespeneToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_takeVespeneToggleForReferee = c_invalidDialogControlId;
+        for (init_i2 = 0; init_i2 <= 20; init_i2 += 1) {
+            libDBC4E2D2_gv_players[init_i].lv_uI.lv_dialogMessages[init_i2] = c_invalidDialogControlId;
+        }
+        libDBC4E2D2_gv_players[init_i].lv_uI.lv_numberofmessages = 1;
+        libDBC4E2D2_gv_players[init_i].lv_uI.lv_messagesmodaldialog = c_invalidDialogId;
+    }
+    libDBC4E2D2_gv_sETUPCOMPLETEEVENT = "SETUP COMPLETE EVENT";
+    libDBC4E2D2_gv_observer = CatalogFieldValueGetAsInt(c_gameCatalogGameUI, "Dflt", "DefaultObservedPlayerId", c_playerAny);
+    libDBC4E2D2_gv_observerGroup = PlayerGroupSingle(CatalogFieldValueGetAsInt(c_gameCatalogGameUI, "Dflt", "DefaultObservedPlayerId", c_playerAny));
+}
+
+// Presets
+// Functions
+text libDBC4E2D2_gf_GetPlayerNamesColored (playergroup lp_players) {
+    // Variable Declarations
+    text lv_message;
+
+    // Automatic Variable Declarations
+    playergroup auto7F8E77EE_g;
+    int auto7F8E77EE_var;
+
+    // Variable Initialization
+
+    // Implementation
+    auto7F8E77EE_g = lp_players;
+    auto7F8E77EE_var = -1;
+    while (true) {
+        auto7F8E77EE_var = PlayerGroupNextPlayer(auto7F8E77EE_g, auto7F8E77EE_var);
+        if (auto7F8E77EE_var < 0) { break; }
+        TextExpressionSetToken("Param/Expression/lib_DBC4E2D2_81507A07", "A", TextWithColor(PlayerName(auto7F8E77EE_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto7F8E77EE_var, false))));
+        lv_message = (lv_message + TextExpressionAssemble("Param/Expression/lib_DBC4E2D2_81507A07"));
+    }
+    return lv_message;
+}
+
+int libDBC4E2D2_gf_GetWorkersCount (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    return (UnitCount(null, lp_player, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterAlly) | (1 << c_targetFilterNeutral) | (1 << c_targetFilterEnemy) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+}
+
+int libDBC4E2D2_gf_GetBuiltWorkersCount (int lp_player) {
+    // Variable Declarations
+    int lv_workers;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    lv_workers = libDBC4E2D2_gf_GetWorkersCount(lp_player);
+    lv_workers -= UnitGroupCount(UnitGroup("MULE", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), c_unitCountAlive);
+    return lv_workers;
+}
+
+bool libDBC4E2D2_gf_UnitIsWorker (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((UnitGetType(lp_unit) != "Drone") && (UnitGetType(lp_unit) != "DroneBurrowed") && (UnitGetType(lp_unit) != "Probe") && (UnitGetType(lp_unit) != "SCV") && (UnitGetType(lp_unit) != "MULE"))) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+bool libDBC4E2D2_gf_UnitisBuiltWorker (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((UnitGetType(lp_unit) != "Drone") && (UnitGetType(lp_unit) != "DroneBurrowed") && (UnitGetType(lp_unit) != "Probe") && (UnitGetType(lp_unit) != "SCV") && (UnitGetType(lp_unit) != "MULE"))) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+unit libDBC4E2D2_gf_GetRandomStructure (int lp_player) {
+    // Variable Declarations
+    int lv_counter;
+    unit lv_unitToReturn;
+    unitgroup lv_livePlayersUnits;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_livePlayersUnits = UnitGroup(null, lp_player, RegionPlayableMap(), UnitFilter((1 << c_targetFilterStructure), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterStasis - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+
+    // Implementation
+    while ((lv_counter < 20) && ((libNtve_gf_UnitIsUnderConstruction(lv_unitToReturn) == true) || (lv_unitToReturn == null) || (UnitGetType(lv_unitToReturn) == "Pylon") || (UnitGetType(lv_unitToReturn) == "PhotonCannon") || (UnitGetType(lv_unitToReturn) == "ShieldBatteryACGluescreenDummy") || (UnitGetType(lv_unitToReturn) == "Assimilator") || (UnitGetType(lv_unitToReturn) == "SupplyDepot") || (UnitGetType(lv_unitToReturn) == "SupplyDepotLowered") || (UnitGetType(lv_unitToReturn) == "MissileTurret") || (UnitGetType(lv_unitToReturn) == "SensorTower") || (UnitGetType(lv_unitToReturn) == "Bunker") || (UnitGetType(lv_unitToReturn) == "Refinery") || (UnitGetType(lv_unitToReturn) == "CreepTumor") || (UnitGetType(lv_unitToReturn) == "CreepTumorBurrowed") || (UnitGetType(lv_unitToReturn) == "CreepTumorQueen") || (UnitGetType(lv_unitToReturn) == "Extractor") || (UnitGetType(lv_unitToReturn) == "SpineCrawler") || (UnitGetType(lv_unitToReturn) == "SpineCrawlerUprooted") || (UnitGetType(lv_unitToReturn) == "SporeCrawler") || (UnitGetType(lv_unitToReturn) == "SporeCrawlerUprooted") || (UnitGetType(lv_unitToReturn) == "OracleStasisTrap") || (UnitGetType(lv_unitToReturn) == "AutoTurret"))) {
+        lv_unitToReturn = UnitGroupRandomUnit(lv_livePlayersUnits, c_unitCountAlive);
+        lv_counter = (lv_counter + 1);
+    }
+    return lv_unitToReturn;
+}
+
+unit libDBC4E2D2_gf_GetRandomWorkersProdStructure (int lp_player) {
+    // Variable Declarations
+    unitgroup lv_structuresBelongsToPlayer;
+
+    // Automatic Variable Declarations
+    string autoE1407C79_val;
+
+    // Variable Initialization
+    lv_structuresBelongsToPlayer = UnitGroupEmpty();
+
+    // Implementation
+    autoE1407C79_val = PlayerRace(lp_player);
+    if (autoE1407C79_val == "Zerg") {
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("Hatchery", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("Lair", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("Hive", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+    else if (autoE1407C79_val == "Terr") {
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("OrbitalCommand", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("OrbitalCommandFlying", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("CommandCenter", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("CommandCenterFlying", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("PlanetaryFortress", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+    else if (autoE1407C79_val == "Prot") {
+        UnitGroupAddUnitGroup(lv_structuresBelongsToPlayer, UnitGroup("Nexus", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    }
+    else {
+    }
+    return UnitGroupRandomUnit(lv_structuresBelongsToPlayer, c_unitCountAlive);
+}
+
+unit libDBC4E2D2_gf_GetRandomBuiltWorker (int lp_player) {
+    // Variable Declarations
+    int lv_counter;
+    unit lv_unitToReturn;
+    unitgroup lv_livingWorkers;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_livingWorkers = UnitGroup(null, lp_player, RegionPlayableMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterStasis - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+
+    // Implementation
+    while ((lv_counter < 20) && ((libNtve_gf_UnitIsUnderConstruction(lv_unitToReturn) == true) || (lv_unitToReturn == null) || (UnitGetType(lv_unitToReturn) == "MULE"))) {
+        lv_unitToReturn = UnitGroupRandomUnit(lv_livingWorkers, c_unitCountAlive);
+        lv_counter = (lv_counter + 1);
+    }
+    return lv_unitToReturn;
+}
+
+void libDBC4E2D2_gf_CreateProtossInfrastructure (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Pylon", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "WarpGate", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "CyberneticsCore", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "TwilightCouncil", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "TemplarArchive", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "DarkShrine", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stargate", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "RoboticsFacility", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Pylon", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "TemplarArchive", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "CyberneticsCore", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "FleetBeacon", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Forge", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "RoboticsBay", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "DarkShrine", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "TwilightCouncil", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Pylon", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Zealot", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Adept", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Sentry", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Stalker", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HighTemplar", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "DarkTemplar", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Archon", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Immortal", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "WarpPrism", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Observer", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Colossus", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Disruptor", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Phoenix", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "VoidRay", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Oracle", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Carrier", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Tempest", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Mothership", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Probe", 0, lp_player, PlayerStartLocation(lp_player));
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+}
+
+void libDBC4E2D2_gf_CreateTerranInfrastructure (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "GhostAcademy", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Armory", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Factory", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "EngineeringBay", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Barracks", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Starport", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "FusionCore", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marine", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marauder", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Reaper", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ghost", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "WidowMine", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SiegeTank", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hellion", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HellionTank", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Cyclone", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Thor", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Medivac", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Banshee", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "VikingFighter", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Raven", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Liberator", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Battlecruiser", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SCV", 0, lp_player, PlayerStartLocation(lp_player));
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+}
+
+void libDBC4E2D2_gf_CreateZergInfrastructure (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Overlord", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hive", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BanelingNest", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SpawningPool", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "HydraliskDen", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "LurkerDenMP", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "UltraliskCavern", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "RoachWarren", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Spire", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "GreaterSpire", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "EvolutionChamber", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "InfestationPit", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Zergling", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Baneling", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Roach", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ravager", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hydralisk", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "LurkerMP", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Mutalisk", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Corruptor", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Infestor", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "BroodLord", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ultralisk", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Drone", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Queen", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Overseer", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "OverlordTransport", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Overlord", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmHostMP", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Viper", 0, lp_player, PlayerStartLocation(lp_player));
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+}
+
+int libDBC4E2D2_gf_CreateResourcesLeaderboard (text lp_title) {
+    // Variable Declarations
+    int lv_resourcesLeaderboard;
+
+    // Automatic Variable Declarations
+    const int auto0660F7D7_ae = 3;
+    int auto0660F7D7_var;
+    playergroup autoCBA8292F_g;
+    int autoCBA8292F_var;
+    const int auto523F6AF0_ae = 3;
+    int auto523F6AF0_var;
+
+    // Variable Initialization
+    lv_resourcesLeaderboard = c_boardNone;
+
+    // Implementation
+    BoardCreate(3, PlayerGroupCount(PlayerGroupActive()), lp_title, Color(100.00, 100.00, 100.00));
+    lv_resourcesLeaderboard = BoardLastCreated();
+    BoardItemSetText(lv_resourcesLeaderboard, 1, c_boardRowHeader, StringExternal("Param/Value/lib_DBC4E2D2_11E7B869"));
+    BoardItemSetText(lv_resourcesLeaderboard, 2, c_boardRowHeader, TextExpressionAssemble("Param/Expression/lib_DBC4E2D2_A13E8A7A"));
+    BoardItemSetText(lv_resourcesLeaderboard, 3, c_boardRowHeader, TextExpressionAssemble("Param/Expression/lib_DBC4E2D2_274C522E"));
+    BoardMinimizeSetState(lv_resourcesLeaderboard, PlayerGroupAll(), true);
+    auto0660F7D7_var = 1;
+    for ( ; auto0660F7D7_var <= auto0660F7D7_ae; auto0660F7D7_var += 1 ) {
+        BoardItemSetFontSize(BoardLastCreated(), auto0660F7D7_var, c_boardRowHeader, 16);
+    }
+    autoCBA8292F_g = PlayerGroupAll();
+    autoCBA8292F_var = -1;
+    while (true) {
+        autoCBA8292F_var = PlayerGroupNextPlayer(autoCBA8292F_g, autoCBA8292F_var);
+        if (autoCBA8292F_var < 0) { break; }
+        auto523F6AF0_var = 1;
+        for ( ; auto523F6AF0_var <= auto523F6AF0_ae; auto523F6AF0_var += 1 ) {
+            BoardItemSetFontSize(BoardLastCreated(), auto523F6AF0_var, autoCBA8292F_var, 16);
+        }
+    }
+    libNtve_gf_ShowHideLeaderboard(lv_resourcesLeaderboard, false, PlayerGroupAll());
+    return lv_resourcesLeaderboard;
+}
+
+int libDBC4E2D2_gf_GetRandomPlayer (int lp_playerToSkip) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    lv_players = PlayerGroupActive();
+    PlayerGroupRemove(lv_players, lp_playerToSkip);
+    return PlayerGroupPlayer(lv_players, RandomInt(1, PlayerGroupCount(lv_players)));
+}
+
+void libDBC4E2D2_gf_SetupUnitTypesWithEnergy () {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_unitTypesWithEnergy[0] = "OverseerSiegeMode";
+    libDBC4E2D2_gv_unitTypesWithEnergy[1] = "Overseer";
+    libDBC4E2D2_gv_unitTypesWithEnergy[2] = "InfestorBurrowed";
+    libDBC4E2D2_gv_unitTypesWithEnergy[3] = "Infestor";
+    libDBC4E2D2_gv_unitTypesWithEnergy[4] = "Queen";
+    libDBC4E2D2_gv_unitTypesWithEnergy[5] = "QueenBurrowed";
+    libDBC4E2D2_gv_unitTypesWithEnergy[6] = "Viper";
+    libDBC4E2D2_gv_unitTypesWithEnergy[7] = "Phoenix";
+    libDBC4E2D2_gv_unitTypesWithEnergy[8] = "HighTemplar";
+    libDBC4E2D2_gv_unitTypesWithEnergy[9] = "HighTemplarSkinPreview";
+    libDBC4E2D2_gv_unitTypesWithEnergy[10] = "Mothership";
+    libDBC4E2D2_gv_unitTypesWithEnergy[11] = "Oracle";
+    libDBC4E2D2_gv_unitTypesWithEnergy[12] = "Sentry";
+    libDBC4E2D2_gv_unitTypesWithEnergy[13] = "MothershipCore";
+    libDBC4E2D2_gv_unitTypesWithEnergy[14] = "ShieldBattery";
+    libDBC4E2D2_gv_unitTypesWithEnergy[15] = "Nexus";
+    libDBC4E2D2_gv_unitTypesWithEnergy[16] = "Banshee";
+    libDBC4E2D2_gv_unitTypesWithEnergy[17] = "Raven";
+    libDBC4E2D2_gv_unitTypesWithEnergy[18] = "Medivac";
+    libDBC4E2D2_gv_unitTypesWithEnergy[19] = "Ghost";
+    libDBC4E2D2_gv_unitTypesWithEnergy[20] = "OrbitalCommand";
+    libDBC4E2D2_gv_unitTypesWithEnergy[21] = "OrbitalCommandFlying";
+    libDBC4E2D2_gv_numberOfUnitTypesWithEnergy = 21;
+}
+
+void libDBC4E2D2_gf_SetupUnitTypesGiveSupply () {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_unitTypesGiveSupply[0] = "OverseerACGluescreenDummy";
+    libDBC4E2D2_gv_unitTypesGiveSupply[1] = "OverseerSiegeMode";
+    libDBC4E2D2_gv_unitTypesGiveSupply[2] = "OverlordCocoon";
+    libDBC4E2D2_gv_unitTypesGiveSupply[3] = "TransportOverlordCocoon";
+    libDBC4E2D2_gv_unitTypesGiveSupply[4] = "Overlord";
+    libDBC4E2D2_gv_unitTypesGiveSupply[5] = "OverlordTransport";
+    libDBC4E2D2_gv_unitTypesGiveSupply[6] = "Pylon";
+    libDBC4E2D2_gv_unitTypesGiveSupply[7] = "SupplyDepot";
+    libDBC4E2D2_gv_unitTypesGiveSupply[8] = "SupplyDepotLowered";
+    libDBC4E2D2_gv_numberOfUnitTypesGiveSupply = 8;
+}
+
+void libDBC4E2D2_gf_SetupFlyingUnits () {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_flyingUnits[0] = "OverseerSiegeMode";
+    libDBC4E2D2_gv_flyingUnits[1] = "OverseerSiegeMode";
+    libDBC4E2D2_gv_flyingUnits[2] = "Corruptor";
+    libDBC4E2D2_gv_flyingUnits[4] = "OverlordCocoon";
+    libDBC4E2D2_gv_flyingUnits[5] = "TransportOverlordCocoon";
+    libDBC4E2D2_gv_flyingUnits[6] = "Mutalisk";
+    libDBC4E2D2_gv_flyingUnits[7] = "Overlord";
+    libDBC4E2D2_gv_flyingUnits[8] = "OverlordTransport";
+    libDBC4E2D2_gv_flyingUnits[9] = "Viper";
+    libDBC4E2D2_gv_flyingUnits[10] = "BroodLord";
+    libDBC4E2D2_gv_flyingUnits[11] = "BroodLordCocoon";
+    libDBC4E2D2_gv_flyingUnits[12] = "LocustMPFlying";
+    libDBC4E2D2_gv_flyingUnits[13] = "Tempest";
+    libDBC4E2D2_gv_flyingUnits[14] = "Phoenix";
+    libDBC4E2D2_gv_flyingUnits[15] = "Carrier";
+    libDBC4E2D2_gv_flyingUnits[16] = "VoidRay";
+    libDBC4E2D2_gv_flyingUnits[17] = "Mothership";
+    libDBC4E2D2_gv_flyingUnits[18] = "ObserverSiegeMode";
+    libDBC4E2D2_gv_flyingUnits[19] = "Observer";
+    libDBC4E2D2_gv_flyingUnits[20] = "Oracle";
+    libDBC4E2D2_gv_flyingUnits[21] = "Interceptor";
+    libDBC4E2D2_gv_flyingUnits[22] = "WarpPrism";
+    libDBC4E2D2_gv_flyingUnits[23] = "WarpPrismPhasing";
+    libDBC4E2D2_gv_flyingUnits[24] = "MothershipCore";
+    libDBC4E2D2_gv_flyingUnits[25] = "Banshee";
+    libDBC4E2D2_gv_flyingUnits[26] = "VikingFighter";
+    libDBC4E2D2_gv_flyingUnits[27] = "Raven";
+    libDBC4E2D2_gv_flyingUnits[28] = "Liberator";
+    libDBC4E2D2_gv_flyingUnits[29] = "Battlecruiser";
+    libDBC4E2D2_gv_flyingUnits[30] = "Medivac";
+    libDBC4E2D2_gv_numberOfFlyingUnits = 30;
+}
+
+trigger auto_libDBC4E2D2_gf_ShowCountDownProgressBar_Trigger = null;
+int auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_width;
+int auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_height;
+fixed auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_duration;
+playergroup auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_playersToShow;
+
+void libDBC4E2D2_gf_ShowCountDownProgressBar (int lp_width, int lp_height, fixed lp_duration, playergroup lp_playersToShow) {
+    auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_width = lp_width;
+    auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_height = lp_height;
+    auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_duration = lp_duration;
+    auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_playersToShow = lp_playersToShow;
+
+    if (auto_libDBC4E2D2_gf_ShowCountDownProgressBar_Trigger == null) {
+        auto_libDBC4E2D2_gf_ShowCountDownProgressBar_Trigger = TriggerCreate("auto_libDBC4E2D2_gf_ShowCountDownProgressBar_TriggerFunc");
+    }
+
+    TriggerExecute(auto_libDBC4E2D2_gf_ShowCountDownProgressBar_Trigger, false, false);
+}
+
+bool auto_libDBC4E2D2_gf_ShowCountDownProgressBar_TriggerFunc (bool testConds, bool runActions) {
+    int lp_width = auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_width;
+    int lp_height = auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_height;
+    fixed lp_duration = auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_duration;
+    playergroup lp_playersToShow = auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_playersToShow;
+
+    // Variable Declarations
+    int lv_timelineDialog;
+    int lv_timeline;
+    timer lv_countdownTimer;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_timelineDialog = c_invalidDialogId;
+    lv_timeline = c_invalidDialogControlId;
+    lv_countdownTimer = TimerCreate();
+
+    // Implementation
+    DialogCreate(678, 200, c_anchorTop, 0, 150, true);
+    lv_timelineDialog = DialogLastCreated();
+    DialogSetVisible(DialogLastCreated(), lp_playersToShow, false);
+    DialogSetImageVisible(DialogLastCreated(), false);
+    libNtve_gf_CreateDialogItemImage(lv_timelineDialog, lp_width, lp_height, c_anchorLeft, 44, 0, StringToText(""), "Assets\\Textures\\ui_loadingbar_bar_highlighted_zerg.dds", c_triggerImageTypeNormal, false, Color(100.00, 92.94, 51.76), c_triggerBlendModeNormal);
+    lv_timeline = DialogControlLastCreated();
+    DialogSetVisible(lv_timelineDialog, lp_playersToShow, true);
+    TimerStart(lv_countdownTimer, lp_duration, false, c_timeReal);
+    while ((TimerGetRemaining(lv_countdownTimer) > 0.0)) {
+        DialogControlSetSize(lv_timeline, lp_playersToShow, FixedToInt((lp_width * (TimerGetRemaining(lv_countdownTimer) / TimerGetDuration(lv_countdownTimer)))), lp_height);
+        libNtve_gf_SetDialogItemColor(lv_timeline, Color(100.0, (100.0 * (TimerGetRemaining(lv_countdownTimer) / TimerGetDuration(lv_countdownTimer))), 0.0), lp_playersToShow);
+        Wait(0.04, c_timeReal);
+    }
+    DialogSetVisible(lv_timelineDialog, lp_playersToShow, false);
+    return true;
+}
+
+void libDBC4E2D2_gf_ShowResourcesBaloonForUnit (unit lp_unit, int lp_amount, bool lp_type) {
+    // Variable Declarations
+    text lv_gasMsg;
+    text lv_mineralsMsg;
+    text lv_msg;
+    fixed lv_offset;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_gasMsg = StringExternal("Param/Value/lib_DBC4E2D2_F7C2D6A8");
+    lv_mineralsMsg = StringExternal("Param/Value/lib_DBC4E2D2_80E8AA80");
+    lv_msg = IntToText(lp_amount);
+    lv_offset = 1.0;
+
+    // Implementation
+    if ((lp_type == true)) {
+        lv_msg = (lv_msg + lv_mineralsMsg);
+        lv_offset = 1.7;
+    }
+    else {
+        lv_msg = (lv_msg + lv_gasMsg);
+    }
+    TextTagCreate(lv_msg, 24, UnitGetPosition(lp_unit), lv_offset, true, false, PlayerGroupSingle(UnitGetOwner(lp_unit)));
+    TextTagSetVelocity(TextTagLastCreated(), 1.0, 90.0);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 2.0);
+}
+
+void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, fixed lp_showTime, point lp_point) {
+    // Automatic Variable Declarations
+    // Implementation
+    TextTagCreate(lp_texttoShow, lp_fontSize, lp_point, 1.0, true, false, PlayerGroupAll());
+    TextTagSetVelocity(TextTagLastCreated(), 2.0, 90.0);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, lp_showTime);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: SETUP
+//--------------------------------------------------------------------------------------------------
+bool libDBC4E2D2_gt_SETUP_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoB891AF4B_g;
+    int autoB891AF4B_var;
+    int auto19262EEE_ae;
+    int auto19262EEE_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libDBC4E2D2_gf_SetupUnitTypesWithEnergy();
+    libDBC4E2D2_gf_SetupUnitTypesGiveSupply();
+    libDBC4E2D2_gf_SetupFlyingUnits();
+    TriggerSendEvent(libDBC4E2D2_gv_sETUPCOMPLETEEVENT);
+    Wait(2.0, c_timeGame);
+    autoB891AF4B_g = PlayerGroupActive();
+    autoB891AF4B_var = -1;
+    while (true) {
+        autoB891AF4B_var = PlayerGroupNextPlayer(autoB891AF4B_g, autoB891AF4B_var);
+        if (autoB891AF4B_var < 0) { break; }
+        DialogCreate(400, (libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_numberofmessages * 25), c_anchorTopLeft, 0, 0, true);
+        libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog = DialogLastCreated();
+        DialogSetImageVisible(libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog, false);
+        DialogSetVisible(libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog, PlayerGroupSingle(autoB891AF4B_var), true);
+        auto19262EEE_ae = libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_numberofmessages;
+        auto19262EEE_var = 1;
+        for ( ; auto19262EEE_var <= auto19262EEE_ae; auto19262EEE_var += 1 ) {
+            libNtve_gf_CreateDialogItemLabel(libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog, 400, 40, c_anchorTopLeft, 0, (25 * (auto19262EEE_var - 1)), StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+            libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_dialogMessages[auto19262EEE_var] = DialogControlLastCreated();
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libDBC4E2D2_gt_SETUP_Init () {
+    libDBC4E2D2_gt_SETUP = TriggerCreate("libDBC4E2D2_gt_SETUP_Func");
+    TriggerAddEventMapInit(libDBC4E2D2_gt_SETUP);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: SETUP COMPLETE
+//--------------------------------------------------------------------------------------------------
+bool libDBC4E2D2_gt_SETUPCOMPLETE_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    BoardShowAll(true, libDBC4E2D2_gv_observerGroup);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libDBC4E2D2_gt_SETUPCOMPLETE_Init () {
+    libDBC4E2D2_gt_SETUPCOMPLETE = TriggerCreate("libDBC4E2D2_gt_SETUPCOMPLETE_Func");
+    TriggerAddEventTimeElapsed(libDBC4E2D2_gt_SETUPCOMPLETE, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Game Time
+//--------------------------------------------------------------------------------------------------
+bool libDBC4E2D2_gt_UpdateGameTime_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libDBC4E2D2_gv_gAMETIME += 1;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libDBC4E2D2_gt_UpdateGameTime_Init () {
+    libDBC4E2D2_gt_UpdateGameTime = TriggerCreate("libDBC4E2D2_gt_UpdateGameTime_Func");
+    TriggerAddEventTimePeriodic(libDBC4E2D2_gt_UpdateGameTime, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Player Info Modals
+//--------------------------------------------------------------------------------------------------
+bool libDBC4E2D2_gt_UpdatePlayerInfoModals_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto3A542B0A_g;
+    int auto3A542B0A_var;
+    int auto43EBB41A_ae;
+    int auto43EBB41A_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto3A542B0A_g = PlayerGroupActive();
+    auto3A542B0A_var = -1;
+    while (true) {
+        auto3A542B0A_var = PlayerGroupNextPlayer(auto3A542B0A_g, auto3A542B0A_var);
+        if (auto3A542B0A_var < 0) { break; }
+        auto43EBB41A_ae = libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_numberofmessages;
+        auto43EBB41A_var = 1;
+        for ( ; auto43EBB41A_var <= auto43EBB41A_ae; auto43EBB41A_var += 1 ) {
+            if ((libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_dialogMessages[auto43EBB41A_var] != c_invalidDialogControlId)) {
+                libNtve_gf_SetDialogItemText(libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_dialogMessages[auto43EBB41A_var], libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_messages[auto43EBB41A_var], PlayerGroupSingle(auto3A542B0A_var));
+            }
+
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libDBC4E2D2_gt_UpdatePlayerInfoModals_Init () {
+    libDBC4E2D2_gt_UpdatePlayerInfoModals = TriggerCreate("libDBC4E2D2_gt_UpdatePlayerInfoModals_Func");
+    TriggerAddEventTimePeriodic(libDBC4E2D2_gt_UpdatePlayerInfoModals, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: GameHeart - Initialization
+//--------------------------------------------------------------------------------------------------
+bool libDBC4E2D2_gt_GameHeartInitialization_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_observer;
+    playergroup lv_observerGroup;
+
+    // Automatic Variable Declarations
+    playergroup autoBA865D05_g;
+    int autoBA865D05_var;
+
+    // Variable Initialization
+    lv_observer = CatalogFieldValueGetAsInt(c_gameCatalogGameUI, "Dflt", "DefaultObservedPlayerId", c_playerAny);
+    lv_observerGroup = PlayerGroupSingle(CatalogFieldValueGetAsInt(c_gameCatalogGameUI, "Dflt", "DefaultObservedPlayerId", c_playerAny));
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libDBC4E2D2_gv_observer = lv_observer;
+    libDBC4E2D2_gv_observerGroup = lv_observerGroup;
+    UIUnitColorStyleOverride(libDBC4E2D2_gv_observerGroup, c_unitColorStyleNormal);
+    autoBA865D05_g = PlayerGroupActive();
+    autoBA865D05_var = -1;
+    while (true) {
+        autoBA865D05_var = PlayerGroupNextPlayer(autoBA865D05_g, autoBA865D05_var);
+        if (autoBA865D05_var < 0) { break; }
+        libNtve_gf_SetAllianceOneWay(libDBC4E2D2_gv_observer, autoBA865D05_var, libNtve_ge_AllianceSetting_Neutral);
+        PlayerSetAlliance(autoBA865D05_var, c_allianceIdDefeat, libDBC4E2D2_gv_observer, true);
+        PlayerSetAlliance(autoBA865D05_var, c_allianceIdPassive, libDBC4E2D2_gv_observer, true);
+        PlayerSetAlliance(autoBA865D05_var, c_allianceIdControl, libDBC4E2D2_gv_observer, true);
+        PlayerSetAlliance(autoBA865D05_var, c_allianceIdVision, libDBC4E2D2_gv_observer, true);
+    }
+    PlayerSetAlliance(15, c_allianceIdDefeat, libDBC4E2D2_gv_observer, true);
+    PlayerSetAlliance(15, c_allianceIdPassive, libDBC4E2D2_gv_observer, true);
+    PlayerSetAlliance(15, c_allianceIdControl, libDBC4E2D2_gv_observer, true);
+    PlayerSetAlliance(15, c_allianceIdVision, libDBC4E2D2_gv_observer, true);
+    PlayerSetState(libDBC4E2D2_gv_observer, c_playerStateShowWorldTip, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libDBC4E2D2_gt_GameHeartInitialization_Init () {
+    libDBC4E2D2_gt_GameHeartInitialization = TriggerCreate("libDBC4E2D2_gt_GameHeartInitialization_Func");
+    TriggerAddEventMapInit(libDBC4E2D2_gt_GameHeartInitialization);
+}
+
+void libDBC4E2D2_InitTriggers () {
+    libDBC4E2D2_gt_SETUP_Init();
+    libDBC4E2D2_gt_SETUPCOMPLETE_Init();
+    libDBC4E2D2_gt_UpdateGameTime_Init();
+    libDBC4E2D2_gt_UpdatePlayerInfoModals_Init();
+    libDBC4E2D2_gt_GameHeartInitialization_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libDBC4E2D2_InitLib_completed = false;
+
+void libDBC4E2D2_InitLib () {
+    if (libDBC4E2D2_InitLib_completed) {
+        return;
+    }
+
+    libDBC4E2D2_InitLib_completed = true;
+
+    libDBC4E2D2_InitLibraries();
+    libDBC4E2D2_InitVariables();
+    libDBC4E2D2_InitTriggers();
+}
+

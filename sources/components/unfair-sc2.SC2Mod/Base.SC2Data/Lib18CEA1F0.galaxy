@@ -1,0 +1,106 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib18CEA1F0_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO SUPPLY
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib18CEA1F0_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Supply Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib18CEA1F0_gt_NoSupplyModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto28BA9B19_g;
+    int auto28BA9B19_var;
+    int autoF042DB28_ae;
+    int autoF042DB28_var;
+    unitgroup autoE583E7C6_g;
+    int autoE583E7C6_u;
+    unit autoE583E7C6_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("21") == "0001")) {
+        auto28BA9B19_g = PlayerGroupAll();
+        auto28BA9B19_var = -1;
+        while (true) {
+            auto28BA9B19_var = PlayerGroupNextPlayer(auto28BA9B19_g, auto28BA9B19_var);
+            if (auto28BA9B19_var < 0) { break; }
+            if ((GameAttributePlayerValue("22", auto28BA9B19_var) == "0002")) {
+                TechTreeAbilityAllow(auto28BA9B19_var, AbilityCommand("SupplyDrop", 0), false);
+                PlayerGroupAdd(lv_players, auto28BA9B19_var);
+                autoF042DB28_ae = libDBC4E2D2_gv_numberOfUnitTypesGiveSupply;
+                autoF042DB28_var = 0;
+                for ( ; autoF042DB28_var <= autoF042DB28_ae; autoF042DB28_var += 1 ) {
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesGiveSupply[autoF042DB28_var], "Food", auto28BA9B19_var, "0");
+                }
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "Food", auto28BA9B19_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "OverseerSiegeMode", "Food", auto28BA9B19_var, "0");
+                autoE583E7C6_g = UnitGroup(null, auto28BA9B19_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoE583E7C6_u = UnitGroupCount(autoE583E7C6_g, c_unitCountAll);
+                for (;; autoE583E7C6_u -= 1) {
+                    autoE583E7C6_var = UnitGroupUnitFromEnd(autoE583E7C6_g, autoE583E7C6_u);
+                    if (autoE583E7C6_var == null) { break; }
+                    if ((UnitGetType(autoE583E7C6_var) == "Overlord")) {
+                        UnitBehaviorAdd(autoE583E7C6_var, "UnfairSc2Supply", autoE583E7C6_var, 1);
+                    }
+
+                }
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_18CEA1F0_582E22F6", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_18CEA1F0_68A54C3A"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_18CEA1F0_582E22F6"), StringExternal("Param/Value/lib_18CEA1F0_021C7399"), "Assets\\Textures\\btn-building-protoss-nexus-forged.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib18CEA1F0_gt_NoSupplyModStart_Init () {
+    lib18CEA1F0_gt_NoSupplyModStart = TriggerCreate("lib18CEA1F0_gt_NoSupplyModStart_Func");
+    TriggerAddEventGeneric(lib18CEA1F0_gt_NoSupplyModStart, "SETUP COMPLETE EVENT");
+}
+
+void lib18CEA1F0_InitTriggers () {
+    lib18CEA1F0_gt_NoSupplyModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib18CEA1F0_InitLib_completed = false;
+
+void lib18CEA1F0_InitLib () {
+    if (lib18CEA1F0_InitLib_completed) {
+        return;
+    }
+
+    lib18CEA1F0_InitLib_completed = true;
+
+    lib18CEA1F0_InitLibraries();
+    lib18CEA1F0_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

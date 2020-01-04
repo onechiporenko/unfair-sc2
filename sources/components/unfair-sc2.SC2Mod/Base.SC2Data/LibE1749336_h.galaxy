@@ -1,0 +1,21 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO RUSH
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+timer libE1749336_gv_noRushTimer;
+unit[18] libE1749336_gv_pDDs;
+int libE1749336_gv_noRushTimerWindow;
+
+// Function Declarations
+void libE1749336_gf_AllowToBuild (unit lp_unit);
+void libE1749336_gf_DisallowToBuild (unit lp_unit);
+
+// Trigger Declarations
+trigger libE1749336_gt_NoRushModStart;
+trigger libE1749336_gt_NoRushTimerElapsed;
+
+// Library Initialization
+void libE1749336_InitVariables ();
+

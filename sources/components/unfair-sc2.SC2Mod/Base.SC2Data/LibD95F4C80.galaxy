@@ -1,0 +1,144 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibD95F4C80_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: FREE WORKERS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libD95F4C80_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool libD95F4C80_InitVariables_completed = false;
+
+void libD95F4C80_InitVariables () {
+    if (libD95F4C80_InitVariables_completed) {
+        return;
+    }
+
+    libD95F4C80_InitVariables_completed = true;
+
+    libD95F4C80_gv_playersWithFreeWorkers = PlayerGroupEmpty();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Free Workers Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libD95F4C80_gt_FreeWorkersModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoF1CE5588_g;
+    int autoF1CE5588_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("86") == "0001")) {
+        autoF1CE5588_g = PlayerGroupActive();
+        autoF1CE5588_var = -1;
+        while (true) {
+            autoF1CE5588_var = PlayerGroupNextPlayer(autoF1CE5588_g, autoF1CE5588_var);
+            if (autoF1CE5588_var < 0) { break; }
+            if ((GameAttributePlayerValue("87", autoF1CE5588_var) != "0002")) {
+                PlayerGroupAdd(lv_players, autoF1CE5588_var);
+                if (((GameAttributePlayerValue("87", autoF1CE5588_var) == "0004") || (GameAttributePlayerValue("87", autoF1CE5588_var) == "0001"))) {
+                    CatalogFieldValueSet(c_gameCatalogUnit, "SCV", "CostResource[" + IntToString(0) + "]", autoF1CE5588_var, "0");
+                    CatalogFieldValueSet(c_gameCatalogUnit, "Drone", "CostResource[" + IntToString(0) + "]", autoF1CE5588_var, "0");
+                    CatalogFieldValueSet(c_gameCatalogUnit, "Probe", "CostResource[" + IntToString(0) + "]", autoF1CE5588_var, "0");
+                }
+
+                if (((GameAttributePlayerValue("87", autoF1CE5588_var) == "0003") || (GameAttributePlayerValue("87", autoF1CE5588_var) == "0001"))) {
+                    libDBC4E2D2_gv_players[autoF1CE5588_var].lv_fREEWORKERS.lv_messageindex = libDBC4E2D2_gv_players[autoF1CE5588_var].lv_uI.lv_numberofmessages;
+                    libDBC4E2D2_gv_players[autoF1CE5588_var].lv_uI.lv_numberofmessages += 1;
+                    CatalogFieldValueSet(c_gameCatalogUnit, "SCV", "Food", autoF1CE5588_var, "0");
+                    CatalogFieldValueSet(c_gameCatalogUnit, "Drone", "Food", autoF1CE5588_var, "0");
+                    CatalogFieldValueSet(c_gameCatalogUnit, "DroneBurrowed", "Food", autoF1CE5588_var, "0");
+                    CatalogFieldValueSet(c_gameCatalogUnit, "Probe", "Food", autoF1CE5588_var, "0");
+                }
+
+            }
+
+        }
+        libD95F4C80_gv_playersWithFreeWorkers = lv_players;
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_D95F4C80_0B8877CE", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D95F4C80_03A46D83"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D95F4C80_0B8877CE"), StringExternal("Param/Value/lib_D95F4C80_CE62864B"), "Assets\\Textures\\btn-unit-protoss-blizzcon17-probe.dds");
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD95F4C80_gt_FreeWorkersModStart_Init () {
+    libD95F4C80_gt_FreeWorkersModStart = TriggerCreate("libD95F4C80_gt_FreeWorkersModStart_Func");
+    TriggerAddEventMapInit(libD95F4C80_gt_FreeWorkersModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Update Shown Workers Count
+//--------------------------------------------------------------------------------------------------
+bool libD95F4C80_gt_UpdateShownWorkersCount_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto8D6F86E7_g;
+    int auto8D6F86E7_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    auto8D6F86E7_g = libD95F4C80_gv_playersWithFreeWorkers;
+    auto8D6F86E7_var = -1;
+    while (true) {
+        auto8D6F86E7_var = PlayerGroupNextPlayer(auto8D6F86E7_g, auto8D6F86E7_var);
+        if (auto8D6F86E7_var < 0) { break; }
+        TextExpressionSetToken("Param/Expression/lib_D95F4C80_F1F5207F", "A", IntToText(libDBC4E2D2_gf_GetWorkersCount(auto8D6F86E7_var)));
+        libDBC4E2D2_gv_players[auto8D6F86E7_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[auto8D6F86E7_var].lv_fREEWORKERS.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_D95F4C80_F1F5207F");
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD95F4C80_gt_UpdateShownWorkersCount_Init () {
+    libD95F4C80_gt_UpdateShownWorkersCount = TriggerCreate("libD95F4C80_gt_UpdateShownWorkersCount_Func");
+    TriggerAddEventTimePeriodic(libD95F4C80_gt_UpdateShownWorkersCount, 0.5, c_timeGame);
+}
+
+void libD95F4C80_InitTriggers () {
+    libD95F4C80_gt_FreeWorkersModStart_Init();
+    libD95F4C80_gt_UpdateShownWorkersCount_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libD95F4C80_InitLib_completed = false;
+
+void libD95F4C80_InitLib () {
+    if (libD95F4C80_InitLib_completed) {
+        return;
+    }
+
+    libD95F4C80_InitLib_completed = true;
+
+    libD95F4C80_InitLibraries();
+    libD95F4C80_InitVariables();
+    libD95F4C80_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

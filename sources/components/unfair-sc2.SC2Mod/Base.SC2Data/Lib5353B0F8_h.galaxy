@@ -1,0 +1,24 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: WALL
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+fixed lib5353B0F8_gv_wallTimeout;
+timer lib5353B0F8_gv_wallTimer;
+int lib5353B0F8_gv_wallTimerWindow;
+
+// Function Declarations
+void lib5353B0F8_gf_CreateMainDiagonalWall ();
+void lib5353B0F8_gf_CreateAddDiagonalWall ();
+void lib5353B0F8_gf_CreateVerticalWall ();
+void lib5353B0F8_gf_CreateHorizontalWall ();
+void lib5353B0F8_gf_CreateWallItem (fixed lp_x, fixed lp_y);
+
+// Trigger Declarations
+trigger lib5353B0F8_gt_WallModStart;
+trigger lib5353B0F8_gt_WallTimerElapsed;
+
+// Library Initialization
+void lib5353B0F8_InitVariables ();
+

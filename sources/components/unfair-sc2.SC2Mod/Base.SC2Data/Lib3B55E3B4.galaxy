@@ -1,0 +1,108 @@
+include "TriggerLibs/NativeLib"
+
+include "Lib3B55E3B4_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: BLOCKED RAMPS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib3B55E3B4_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Blocked Ramps Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib3B55E3B4_gt_BlockedRampsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_x;
+    fixed lv_y;
+    point lv_p;
+    point lv_top;
+    point lv_bottom;
+    point lv_left;
+    point lv_right;
+    point lv_point;
+
+    // Automatic Variable Declarations
+    fixed auto5AB430C9_ae;
+    const fixed auto5AB430C9_ai = 1.0;
+    fixed auto618DD4D7_ae;
+    const fixed auto618DD4D7_ai = 1.0;
+    int autoDC0A69CD_val;
+
+    // Variable Initialization
+    lv_p = Point(35.0, 120.0);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("161") == "0001")) {
+        auto5AB430C9_ae = PointGetX(RegionGetBoundsMax(RegionPlayableMap()));
+        lv_x = PointGetX(RegionGetBoundsMin(RegionPlayableMap()));
+        for ( ; ( (auto5AB430C9_ai >= 0 && lv_x <= auto5AB430C9_ae) || (auto5AB430C9_ai < 0 && lv_x >= auto5AB430C9_ae) ) ; lv_x += auto5AB430C9_ai ) {
+            auto618DD4D7_ae = PointGetY(RegionGetBoundsMax(RegionPlayableMap()));
+            lv_y = PointGetY(RegionGetBoundsMin(RegionPlayableMap()));
+            for ( ; ( (auto618DD4D7_ai >= 0 && lv_y <= auto618DD4D7_ae) || (auto618DD4D7_ai < 0 && lv_y >= auto618DD4D7_ae) ) ; lv_y += auto618DD4D7_ai ) {
+                lv_top = Point(lv_x, (lv_y + 1.0));
+                lv_bottom = Point(lv_x, (lv_y - 1.0));
+                lv_left = Point((lv_x - 1.0), lv_y);
+                lv_right = Point((lv_x + 1.0), lv_y);
+                lv_point = libNtve_gf_PointFromXYZ(lv_x, lv_y, 0.0);
+                if ((PathingType(lv_point) == c_pathingGround) && (((PathingType(lv_right) == c_pathingGround) && (PathingType(lv_left) == c_pathingGround) && (AbsF((WorldHeight(c_heightMapGround, lv_left) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2) && (AbsF((WorldHeight(c_heightMapGround, lv_right) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2)) || ((PathingType(lv_bottom) == c_pathingGround) && (PathingType(lv_top) == c_pathingGround) && (AbsF((WorldHeight(c_heightMapGround, lv_top) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2) && (AbsF((WorldHeight(c_heightMapGround, lv_bottom) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2)))) {
+                    autoDC0A69CD_val = RandomInt(1, 4);
+                    if (autoDC0A69CD_val == 1) {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "BraxisAlphaDestructible2x2", c_unitCreateIgnorePlacement, 0, lv_point);
+                    }
+                    else if (autoDC0A69CD_val == 2) {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Debris2x2NonConjoined", c_unitCreateIgnorePlacement, 0, lv_point);
+                    }
+                    else if (autoDC0A69CD_val == 3) {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Rocks2x2NonConjoined", c_unitCreateIgnorePlacement, 0, lv_point);
+                    }
+                    else if (autoDC0A69CD_val == 4) {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ice2x2NonConjoined", c_unitCreateIgnorePlacement, 0, lv_point);
+                    }
+                    else {
+                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "BraxisAlphaDestructible2x2", c_unitCreateIgnorePlacement, 0, lv_point);
+                    }
+                    libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+                }
+
+            }
+        }
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_3B55E3B4_EF593C8C"), libNtve_ge_TipType_NormalTip), StringExternal("Param/Value/lib_3B55E3B4_A4C0B33C"), StringExternal("Param/Value/lib_3B55E3B4_055E40BD"), "Assets\\Textures\\btn-doodad-korhollandinglocation.dds");
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib3B55E3B4_gt_BlockedRampsModStart_Init () {
+    lib3B55E3B4_gt_BlockedRampsModStart = TriggerCreate("lib3B55E3B4_gt_BlockedRampsModStart_Func");
+    TriggerAddEventMapInit(lib3B55E3B4_gt_BlockedRampsModStart);
+}
+
+void lib3B55E3B4_InitTriggers () {
+    lib3B55E3B4_gt_BlockedRampsModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib3B55E3B4_InitLib_completed = false;
+
+void lib3B55E3B4_InitLib () {
+    if (lib3B55E3B4_InitLib_completed) {
+        return;
+    }
+
+    lib3B55E3B4_InitLib_completed = true;
+
+    lib3B55E3B4_InitLibraries();
+    lib3B55E3B4_InitTriggers();
+}
+

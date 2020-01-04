@@ -1,0 +1,11 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: CRITICAL STRIKE
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib02E93650_gt_CriticalStrikeModStart;
+trigger lib02E93650_gt_UnitTakesDamage;
+trigger lib02E93650_gt_AddCritForInitialUnits;
+trigger lib02E93650_gt_AddCritBehaviorForCreatedUnit;
+

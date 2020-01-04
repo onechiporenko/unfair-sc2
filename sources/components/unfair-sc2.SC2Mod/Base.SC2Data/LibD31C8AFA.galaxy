@@ -1,0 +1,200 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibD31C8AFA_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: INSTANT PRODUCTION
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libD31C8AFA_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Instant Production Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libD31C8AFA_gt_InstantProductionModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+    bool lv_disableUpgradesTrigger;
+    bool lv_disableBuildingsTrigger;
+
+    // Automatic Variable Declarations
+    playergroup auto505CF5C1_g;
+    int auto505CF5C1_var;
+    playergroup auto976EAAA4_g;
+    int auto976EAAA4_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+    lv_disableUpgradesTrigger = true;
+    lv_disableBuildingsTrigger = true;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("126") == "0001")) {
+        auto505CF5C1_g = PlayerGroupActive();
+        auto505CF5C1_var = -1;
+        while (true) {
+            auto505CF5C1_var = PlayerGroupNextPlayer(auto505CF5C1_g, auto505CF5C1_var);
+            if (auto505CF5C1_var < 0) { break; }
+            if ((GameAttributePlayerValue("127", auto505CF5C1_var) != "0001")) {
+                PlayerGroupAdd(lv_players, auto505CF5C1_var);
+                if (((GameAttributePlayerValue("127", auto505CF5C1_var) == "0003") || (GameAttributePlayerValue("127", auto505CF5C1_var) == "0004"))) {
+                    libDBC4E2D2_gv_players[auto505CF5C1_var].lv_iNSTANTPRODUCTION.lv_buildings = true;
+                    lv_disableBuildingsTrigger = false;
+                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Facing].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,BarracksAddOns,InfoArray[Build1].Time", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,BarracksAddOns,InfoArray[Build2].Time", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,FactoryAddOns,InfoArray[Build1].Time", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,FactoryAddOns,InfoArray[Build2].Time", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,StarportAddOns,InfoArray[Build1].Time", auto505CF5C1_var, "1");
+                    CatalogReferenceSet("Abil,StarportAddOns,InfoArray[Build2].Time", auto505CF5C1_var, "1");
+                }
+
+                if (((GameAttributePlayerValue("127", auto505CF5C1_var) == "0002") || (GameAttributePlayerValue("127", auto505CF5C1_var) == "0004"))) {
+                    libDBC4E2D2_gv_players[auto505CF5C1_var].lv_iNSTANTPRODUCTION.lv_upgrades = true;
+                    lv_disableUpgradesTrigger = false;
+                }
+
+            }
+
+        }
+        auto976EAAA4_g = lv_players;
+        auto976EAAA4_var = -1;
+        while (true) {
+            auto976EAAA4_var = PlayerGroupNextPlayer(auto976EAAA4_g, auto976EAAA4_var);
+            if (auto976EAAA4_var < 0) { break; }
+            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_E7A75DD3", "A", TextWithColor(PlayerName(auto976EAAA4_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto976EAAA4_var, false))));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D31C8AFA_E7A75DD3"));
+            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_FEDA70CD", "A", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_players[auto976EAAA4_var].lv_iNSTANTPRODUCTION.lv_upgrades));
+            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_FEDA70CD", "B", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_players[auto976EAAA4_var].lv_iNSTANTPRODUCTION.lv_buildings));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D31C8AFA_FEDA70CD"));
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_A4712883", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D31C8AFA_FC321B63"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D31C8AFA_A4712883"), StringExternal("Param/Value/lib_D31C8AFA_783D9DED"), "Assets\\Textures\\btn-progression-hornerhan-6-mirabuildtime.dds");
+        }
+
+        if ((lv_disableBuildingsTrigger == true)) {
+            TriggerEnable(libD31C8AFA_gt_ConstructionStarted, false);
+        }
+
+        if ((lv_disableUpgradesTrigger == true)) {
+            TriggerEnable(libD31C8AFA_gt_UpgradeStarted, false);
+        }
+
+    }
+    else {
+        TriggerEnable(libD31C8AFA_gt_ConstructionStarted, false);
+        TriggerEnable(libD31C8AFA_gt_UpgradeStarted, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD31C8AFA_gt_InstantProductionModStart_Init () {
+    libD31C8AFA_gt_InstantProductionModStart = TriggerCreate("libD31C8AFA_gt_InstantProductionModStart_Func");
+    TriggerAddEventMapInit(libD31C8AFA_gt_InstantProductionModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Construction Started
+//--------------------------------------------------------------------------------------------------
+bool libD31C8AFA_gt_ConstructionStarted_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libDBC4E2D2_gv_players[EventPlayer()].lv_iNSTANTPRODUCTION.lv_buildings == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetProgressComplete(EventUnit(), 1, 99);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD31C8AFA_gt_ConstructionStarted_Init () {
+    libD31C8AFA_gt_ConstructionStarted = TriggerCreate("libD31C8AFA_gt_ConstructionStarted_Func");
+    TriggerAddEventUnitConstructProgress(libD31C8AFA_gt_ConstructionStarted, null, c_unitProgressStageStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Upgrade Started
+//--------------------------------------------------------------------------------------------------
+bool libD31C8AFA_gt_UpgradeStarted_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libDBC4E2D2_gv_players[EventPlayer()].lv_iNSTANTPRODUCTION.lv_upgrades == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetProgressComplete(EventUnit(), 1, 99);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD31C8AFA_gt_UpgradeStarted_Init () {
+    libD31C8AFA_gt_UpgradeStarted = TriggerCreate("libD31C8AFA_gt_UpgradeStarted_Func");
+    TriggerAddEventUnitResearchProgress(libD31C8AFA_gt_UpgradeStarted, null, c_unitProgressStageStart);
+}
+
+void libD31C8AFA_InitTriggers () {
+    libD31C8AFA_gt_InstantProductionModStart_Init();
+    libD31C8AFA_gt_ConstructionStarted_Init();
+    libD31C8AFA_gt_UpgradeStarted_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libD31C8AFA_InitLib_completed = false;
+
+void libD31C8AFA_InitLib () {
+    if (libD31C8AFA_InitLib_completed) {
+        return;
+    }
+
+    libD31C8AFA_InitLib_completed = true;
+
+    libD31C8AFA_InitLibraries();
+    libD31C8AFA_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

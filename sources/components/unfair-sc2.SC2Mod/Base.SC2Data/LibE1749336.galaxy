@@ -1,0 +1,180 @@
+include "TriggerLibs/NativeLib"
+
+include "LibE1749336_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NO RUSH
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libE1749336_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Variable Initialization
+bool libE1749336_InitVariables_completed = false;
+
+void libE1749336_InitVariables () {
+    if (libE1749336_InitVariables_completed) {
+        return;
+    }
+
+    libE1749336_InitVariables_completed = true;
+
+    libE1749336_gv_noRushTimer = TimerCreate();
+    libE1749336_gv_noRushTimerWindow = c_timerWindowNone;
+}
+
+// Functions
+void libE1749336_gf_AllowToBuild (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitAbilityEnable(lp_unit, "ZergBuild", true);
+    UnitAbilityEnable(lp_unit, "ProtossBuild", true);
+    UnitAbilityEnable(lp_unit, "TerranBuild", true);
+}
+
+void libE1749336_gf_DisallowToBuild (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitAbilityEnable(lp_unit, "ZergBuild", false);
+    UnitAbilityEnable(lp_unit, "ProtossBuild", false);
+    UnitAbilityEnable(lp_unit, "TerranBuild", false);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Rush Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libE1749336_gt_NoRushModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_timeout;
+
+    // Automatic Variable Declarations
+    string autoE56FDA10_val;
+    playergroup auto87BB2361_g;
+    int auto87BB2361_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("56") == "0001")) {
+        autoE56FDA10_val = GameAttributeGameValue("57");
+        if (autoE56FDA10_val == "0001") {
+            lv_timeout = 60;
+        }
+        else if (autoE56FDA10_val == "0002") {
+            lv_timeout = 120;
+        }
+        else if (autoE56FDA10_val == "0003") {
+            lv_timeout = 180;
+        }
+        else if (autoE56FDA10_val == "0004") {
+            lv_timeout = 240;
+        }
+        else if (autoE56FDA10_val == "0005") {
+            lv_timeout = 300;
+        }
+        else {
+        }
+        TimerStart(libE1749336_gv_noRushTimer, lv_timeout, false, c_timeReal);
+        TimerWindowCreate(libE1749336_gv_noRushTimer, StringExternal("Param/Value/lib_E1749336_1657C17A"), true, false);
+        libE1749336_gv_noRushTimerWindow = TimerWindowLastCreated();
+        TimerWindowShowBorder(libE1749336_gv_noRushTimerWindow, false);
+        TimerWindowShow(libE1749336_gv_noRushTimerWindow, PlayerGroupAll(), true);
+        TextExpressionSetToken("Param/Expression/lib_E1749336_51BF1D97", "Timeout", IntToText(lv_timeout));
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_E1749336_F257EAC2"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_E1749336_51BF1D97"), StringExternal("Param/Value/lib_E1749336_75BFB82E"), "Assets\\Textures\\btn-unit-collection-defensivematrixdrone-covertops.dds");
+        Wait(1.0, c_timeReal);
+        auto87BB2361_g = PlayerGroupActive();
+        auto87BB2361_var = -1;
+        while (true) {
+            auto87BB2361_var = PlayerGroupNextPlayer(auto87BB2361_g, auto87BB2361_var);
+            if (auto87BB2361_var < 0) { break; }
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "PointDefenseDrone", 0, auto87BB2361_var, PlayerStartLocation(auto87BB2361_var));
+            UnitBehaviorAdd(UnitLastCreated(), "SlownessAura", UnitLastCreated(), 1);
+            UnitSetPropertyFixed(UnitLastCreated(), c_unitPropEnergyMax, 0.0);
+            libNtve_gf_MakeUnitUncommandable(UnitLastCreated(), true);
+            libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+            libNtve_gf_AttachActorToUnit(UnitLastCreated(), "SensorTowerRadar2", "Ref_Head");
+            libE1749336_gv_pDDs[auto87BB2361_var] = UnitLastCreated();
+        }
+    }
+    else {
+        TriggerEnable(libE1749336_gt_NoRushTimerElapsed, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE1749336_gt_NoRushModStart_Init () {
+    libE1749336_gt_NoRushModStart = TriggerCreate("libE1749336_gt_NoRushModStart_Func");
+    TriggerAddEventMapInit(libE1749336_gt_NoRushModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: No Rush Timer Elapsed
+//--------------------------------------------------------------------------------------------------
+bool libE1749336_gt_NoRushTimerElapsed_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    const int auto1F536953_ae = 17;
+    const int auto1F536953_ai = 1;
+    unitgroup autoE9579E8B_g;
+    int autoE9579E8B_u;
+    unit autoE9579E8B_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    TimerWindowShow(libE1749336_gv_noRushTimerWindow, PlayerGroupAll(), false);
+    lv_i = 1;
+    for ( ; ( (auto1F536953_ai >= 0 && lv_i <= auto1F536953_ae) || (auto1F536953_ai < 0 && lv_i >= auto1F536953_ae) ) ; lv_i += auto1F536953_ai ) {
+        UnitKill(libE1749336_gv_pDDs[lv_i]);
+        autoE9579E8B_g = UnitGroup(null, lv_i, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoE9579E8B_u = UnitGroupCount(autoE9579E8B_g, c_unitCountAll);
+        for (;; autoE9579E8B_u -= 1) {
+            autoE9579E8B_var = UnitGroupUnitFromEnd(autoE9579E8B_g, autoE9579E8B_u);
+            if (autoE9579E8B_var == null) { break; }
+            libE1749336_gf_AllowToBuild(autoE9579E8B_var);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libE1749336_gt_NoRushTimerElapsed_Init () {
+    libE1749336_gt_NoRushTimerElapsed = TriggerCreate("libE1749336_gt_NoRushTimerElapsed_Func");
+    TriggerAddEventTimer(libE1749336_gt_NoRushTimerElapsed, libE1749336_gv_noRushTimer);
+}
+
+void libE1749336_InitTriggers () {
+    libE1749336_gt_NoRushModStart_Init();
+    libE1749336_gt_NoRushTimerElapsed_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libE1749336_InitLib_completed = false;
+
+void libE1749336_InitLib () {
+    if (libE1749336_InitLib_completed) {
+        return;
+    }
+
+    libE1749336_InitLib_completed = true;
+
+    libE1749336_InitLibraries();
+    libE1749336_InitVariables();
+    libE1749336_InitTriggers();
+}
+

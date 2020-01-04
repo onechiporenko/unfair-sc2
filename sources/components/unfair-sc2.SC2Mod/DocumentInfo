@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DocInfo>
+    <Flags>
+        <Value>ExtensionMod</Value>
+    </Flags>
+    <Dependencies>
+        <Value>bnet:Legacy of the Void (модификации)/0.0/999,file:Mods/Void.SC2Mod</Value>
+        <Value>bnet:Сетевой режим Legacy of the Void (модификации)/0.0/999,file:Mods/VoidMulti.SC2Mod</Value>
+    </Dependencies>
+</DocInfo>

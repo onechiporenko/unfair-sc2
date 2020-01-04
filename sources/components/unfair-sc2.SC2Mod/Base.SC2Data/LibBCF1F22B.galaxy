@@ -1,0 +1,168 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "LibBCF1F22B_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: EXTRA REGENERATION
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libBCF1F22B_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void libBCF1F22B_gf_AddRegeneration (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true) || (UnitGetPropertyFixed(lp_unit, c_unitPropSuppliesUsed, c_unitPropCurrent) != 0.0))) {
+        UnitBehaviorAdd(lp_unit, "ReaperRegen", lp_unit, 1);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Extra Regeneration Mod Start
+//--------------------------------------------------------------------------------------------------
+bool libBCF1F22B_gt_ExtraRegenerationModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto73DE7750_g;
+    int auto73DE7750_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("23") == "0001")) {
+        auto73DE7750_g = PlayerGroupAll();
+        auto73DE7750_var = -1;
+        while (true) {
+            auto73DE7750_var = PlayerGroupNextPlayer(auto73DE7750_g, auto73DE7750_var);
+            if (auto73DE7750_var < 0) { break; }
+            if ((GameAttributePlayerValue("24", auto73DE7750_var) == "0001")) {
+                PlayerGroupAdd(lv_players, auto73DE7750_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(libBCF1F22B_gt_AddRegenerationToInitialUnits, true, false);
+            TextExpressionSetToken("Param/Expression/lib_BCF1F22B_60F1D27B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BCF1F22B_9469507F"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BCF1F22B_60F1D27B"), StringExternal("Param/Value/lib_BCF1F22B_65DF0D92"), "Assets\\Textures\\btn-upgrade-terran-reapercombatdrugs.dds");
+        }
+        else {
+            TriggerEnable(libBCF1F22B_gt_AddRegenerationToUnit, false);
+        }
+    }
+    else {
+        TriggerEnable(libBCF1F22B_gt_AddRegenerationToUnit, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBCF1F22B_gt_ExtraRegenerationModStart_Init () {
+    libBCF1F22B_gt_ExtraRegenerationModStart = TriggerCreate("libBCF1F22B_gt_ExtraRegenerationModStart_Func");
+    TriggerAddEventMapInit(libBCF1F22B_gt_ExtraRegenerationModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Regeneration To Initial Units
+//--------------------------------------------------------------------------------------------------
+bool libBCF1F22B_gt_AddRegenerationToInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto134B2B77_g;
+    int auto134B2B77_var;
+    unitgroup auto0BD3C7FF_g;
+    int auto0BD3C7FF_u;
+    unit auto0BD3C7FF_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    auto134B2B77_g = PlayerGroupAll();
+    auto134B2B77_var = -1;
+    while (true) {
+        auto134B2B77_var = PlayerGroupNextPlayer(auto134B2B77_g, auto134B2B77_var);
+        if (auto134B2B77_var < 0) { break; }
+        if ((GameAttributePlayerValue("24", auto134B2B77_var) == "0001")) {
+            auto0BD3C7FF_g = UnitGroup(null, auto134B2B77_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto0BD3C7FF_u = UnitGroupCount(auto0BD3C7FF_g, c_unitCountAll);
+            for (;; auto0BD3C7FF_u -= 1) {
+                auto0BD3C7FF_var = UnitGroupUnitFromEnd(auto0BD3C7FF_g, auto0BD3C7FF_u);
+                if (auto0BD3C7FF_var == null) { break; }
+                libBCF1F22B_gf_AddRegeneration(auto0BD3C7FF_var);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBCF1F22B_gt_AddRegenerationToInitialUnits_Init () {
+    libBCF1F22B_gt_AddRegenerationToInitialUnits = TriggerCreate("libBCF1F22B_gt_AddRegenerationToInitialUnits_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Regeneration To Unit
+//--------------------------------------------------------------------------------------------------
+bool libBCF1F22B_gt_AddRegenerationToUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("24", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libBCF1F22B_gf_AddRegeneration(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libBCF1F22B_gt_AddRegenerationToUnit_Init () {
+    libBCF1F22B_gt_AddRegenerationToUnit = TriggerCreate("libBCF1F22B_gt_AddRegenerationToUnit_Func");
+    TriggerAddEventUnitCreated(libBCF1F22B_gt_AddRegenerationToUnit, null, null, null);
+}
+
+void libBCF1F22B_InitTriggers () {
+    libBCF1F22B_gt_ExtraRegenerationModStart_Init();
+    libBCF1F22B_gt_AddRegenerationToInitialUnits_Init();
+    libBCF1F22B_gt_AddRegenerationToUnit_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libBCF1F22B_InitLib_completed = false;
+
+void libBCF1F22B_InitLib () {
+    if (libBCF1F22B_InitLib_completed) {
+        return;
+    }
+
+    libBCF1F22B_InitLib_completed = true;
+
+    libBCF1F22B_InitLibraries();
+    libBCF1F22B_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

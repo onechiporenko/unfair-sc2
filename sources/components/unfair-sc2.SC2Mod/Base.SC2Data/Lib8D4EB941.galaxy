@@ -1,0 +1,257 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib8D4EB941_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: NUKED
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib8D4EB941_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib8D4EB941_InitVariables_completed = false;
+
+void lib8D4EB941_InitVariables () {
+    if (lib8D4EB941_InitVariables_completed) {
+        return;
+    }
+
+    lib8D4EB941_InitVariables_completed = true;
+
+    lib8D4EB941_gv_safeZone = RegionEmpty();
+    lib8D4EB941_gv_nukesTimer = TimerCreate();
+}
+
+// Functions
+trigger auto_lib8D4EB941_gf_SpawnNuke_Trigger = null;
+
+void lib8D4EB941_gf_SpawnNuke () {
+    if (auto_lib8D4EB941_gf_SpawnNuke_Trigger == null) {
+        auto_lib8D4EB941_gf_SpawnNuke_Trigger = TriggerCreate("auto_lib8D4EB941_gf_SpawnNuke_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib8D4EB941_gf_SpawnNuke_Trigger, false, false);
+}
+
+bool auto_lib8D4EB941_gf_SpawnNuke_TriggerFunc (bool testConds, bool runActions) {
+    // Variable Declarations
+    actor lv_actor;
+    point lv_nukePoint;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    while ((lv_nukePoint == null) && (lv_i <= 20)) {
+        lv_nukePoint = RegionRandomPoint(RegionPlayableMap());
+        lv_i += 1;
+        if ((RegionContainsPoint(lib8D4EB941_gv_safeZone, lv_nukePoint) == true)) {
+            lv_nukePoint = null;
+        }
+
+    }
+    libNtve_gf_CreateModelAtPoint("GhostNukeIndicator", lv_nukePoint);
+    PingCreate(PlayerGroupAll(), "PingNuke", lv_nukePoint, ColorWithAlpha(100.00, 0.00, 0.00, 0.78), 5.0);
+    lv_actor = libNtve_gf_ActorLastCreated();
+    Wait(10.0, c_timeReal);
+    PlayerCreateEffectPoint(15, "NukeDetonate", lv_nukePoint);
+    libNtve_gf_KillModel(lv_actor);
+    return true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Nuked Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib8D4EB941_gt_NukedModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup auto5321CDA9_g;
+    int auto5321CDA9_var;
+    string auto3C5B9614_val;
+    string autoB7DC2C7C_val;
+    string auto34FFC3E2_val;
+    playergroup auto6E6138A1_g;
+    int auto6E6138A1_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("106") == "0001")) {
+        auto5321CDA9_g = PlayerGroupAll();
+        auto5321CDA9_var = -1;
+        while (true) {
+            auto5321CDA9_var = PlayerGroupNextPlayer(auto5321CDA9_g, auto5321CDA9_var);
+            if (auto5321CDA9_var < 0) { break; }
+            auto3C5B9614_val = GameAttributePlayerValue("107", auto5321CDA9_var);
+            if (auto3C5B9614_val == "0005") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 10;
+            }
+            else if (auto3C5B9614_val == "0004") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 20;
+            }
+            else if (auto3C5B9614_val == "0003") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 30;
+            }
+            else if (auto3C5B9614_val == "0002") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 40;
+            }
+            else if (auto3C5B9614_val == "0001") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 50;
+            }
+            else if (auto3C5B9614_val == "0006") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 60;
+            }
+            else if (auto3C5B9614_val == "0007") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 70;
+            }
+            else if (auto3C5B9614_val == "0008") {
+                libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius = 80;
+            }
+            else {
+            }
+            if ((PlayerStatus(auto5321CDA9_var) == c_playerStatusActive)) {
+                RegionAddCircle(lib8D4EB941_gv_safeZone, true, PlayerStartLocation(auto5321CDA9_var), libDBC4E2D2_gv_players[auto5321CDA9_var].lv_nUKED.lv_savezoneradius);
+            }
+
+            autoB7DC2C7C_val = GameAttributeGameValue("108");
+            if (autoB7DC2C7C_val == "0001") {
+                lib8D4EB941_gv_nukesDelay = 10;
+            }
+            else if (autoB7DC2C7C_val == "0002") {
+                lib8D4EB941_gv_nukesDelay = 20;
+            }
+            else if (autoB7DC2C7C_val == "0003") {
+                lib8D4EB941_gv_nukesDelay = 30;
+            }
+            else if (autoB7DC2C7C_val == "0004") {
+                lib8D4EB941_gv_nukesDelay = 40;
+            }
+            else {
+                lib8D4EB941_gv_nukesDelay = 10;
+            }
+            auto34FFC3E2_val = GameAttributeGameValue("109");
+            if (auto34FFC3E2_val == "0001") {
+                lib8D4EB941_gv_nukesPerWave = 1;
+            }
+            else if (auto34FFC3E2_val == "0002") {
+                lib8D4EB941_gv_nukesPerWave = 2;
+            }
+            else if (auto34FFC3E2_val == "0003") {
+                lib8D4EB941_gv_nukesPerWave = 3;
+            }
+            else if (auto34FFC3E2_val == "0004") {
+                lib8D4EB941_gv_nukesPerWave = 4;
+            }
+            else if (auto34FFC3E2_val == "0005") {
+                lib8D4EB941_gv_nukesPerWave = 5;
+            }
+            else if (auto34FFC3E2_val == "0006") {
+                lib8D4EB941_gv_nukesPerWave = 6;
+            }
+            else if (auto34FFC3E2_val == "0007") {
+                lib8D4EB941_gv_nukesPerWave = 7;
+            }
+            else if (auto34FFC3E2_val == "0008") {
+                lib8D4EB941_gv_nukesPerWave = 8;
+            }
+            else if (auto34FFC3E2_val == "0009") {
+                lib8D4EB941_gv_nukesPerWave = 9;
+            }
+            else if (auto34FFC3E2_val == "0010") {
+                lib8D4EB941_gv_nukesPerWave = 10;
+            }
+            else {
+            }
+        }
+        auto6E6138A1_g = PlayerGroupActive();
+        auto6E6138A1_var = -1;
+        while (true) {
+            auto6E6138A1_var = PlayerGroupNextPlayer(auto6E6138A1_g, auto6E6138A1_var);
+            if (auto6E6138A1_var < 0) { break; }
+            TextExpressionSetToken("Param/Expression/lib_8D4EB941_1631401C", "A", TextWithColor(PlayerName(auto6E6138A1_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto6E6138A1_var, false))));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_8D4EB941_1631401C"));
+            TextExpressionSetToken("Param/Expression/lib_8D4EB941_782E9BF7", "A", FixedToText(libDBC4E2D2_gv_players[auto6E6138A1_var].lv_nUKED.lv_savezoneradius, 0));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_8D4EB941_782E9BF7"));
+        }
+        TextExpressionSetToken("Param/Expression/lib_8D4EB941_8B1EE5A0", "NukesPerWave", IntToText(lib8D4EB941_gv_nukesPerWave));
+        TextExpressionSetToken("Param/Expression/lib_8D4EB941_8B1EE5A0", "NukesDelay", IntToText(lib8D4EB941_gv_nukesDelay));
+        TextExpressionSetToken("Param/Expression/lib_8D4EB941_8B1EE5A0", "PlayerSettings", lv_playersSettings);
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_8D4EB941_FD24F87C"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_8D4EB941_8B1EE5A0"), StringExternal("Param/Value/lib_8D4EB941_A3D23A64"), "Assets\\Textures\\btn-progression-hornerhan-14-nukefortelefrag.dds");
+        TimerStart(lib8D4EB941_gv_nukesTimer, lib8D4EB941_gv_nukesDelay, true, c_timeReal);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib8D4EB941_gt_NukedModStart_Init () {
+    lib8D4EB941_gt_NukedModStart = TriggerCreate("lib8D4EB941_gt_NukedModStart_Func");
+    TriggerAddEventMapInit(lib8D4EB941_gt_NukedModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Spawn Nukes
+//--------------------------------------------------------------------------------------------------
+bool lib8D4EB941_gt_SpawnNukes_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int auto8BEA70AD_ae;
+    int auto8BEA70AD_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    SoundPlayForPlayer(SoundLink("TUIWarningPing", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+    auto8BEA70AD_ae = lib8D4EB941_gv_nukesPerWave;
+    auto8BEA70AD_var = 1;
+    for ( ; auto8BEA70AD_var <= auto8BEA70AD_ae; auto8BEA70AD_var += 1 ) {
+        lib8D4EB941_gf_SpawnNuke();
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib8D4EB941_gt_SpawnNukes_Init () {
+    lib8D4EB941_gt_SpawnNukes = TriggerCreate("lib8D4EB941_gt_SpawnNukes_Func");
+    TriggerAddEventTimer(lib8D4EB941_gt_SpawnNukes, lib8D4EB941_gv_nukesTimer);
+}
+
+void lib8D4EB941_InitTriggers () {
+    lib8D4EB941_gt_NukedModStart_Init();
+    lib8D4EB941_gt_SpawnNukes_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib8D4EB941_InitLib_completed = false;
+
+void lib8D4EB941_InitLib () {
+    if (lib8D4EB941_InitLib_completed) {
+        return;
+    }
+
+    lib8D4EB941_InitLib_completed = true;
+
+    lib8D4EB941_InitLibraries();
+    lib8D4EB941_InitVariables();
+    lib8D4EB941_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

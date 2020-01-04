@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CBehaviorBuff id="UnfairSC2Waaagh">
+        <Tooltip value="Unfair SC2 WAAAGH!"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-mengsk-topbar-forcedconscription.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="UnfairSC2WaaaghRange"/>
+        <RemoveValidatorArray value="SourceAlive"/>
+        <RemoveValidatorArray value="NotWorker"/>
+        <MaxStackCount value="50"/>
+        <MaxStackCountPerCaster value="1"/>
+        <Modification MoveSpeedBonus="0.0195" AttackSpeedMultiplier="1.02"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2WaaaghAura">
+        <Tooltip value="Unfair SC2 Waaagh (Aura)"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-mengsk-topbar-forcedconscription.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="1"/>
+        <InitialEffect value="UnfairSC2WaaaghInit"/>
+        <PeriodicEffect value="UnfairSC2WaaaghSearch"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Slowness">
+        <Tooltip value="Can&apos;t attack"/>
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-command-stop.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="SlownessAuraCheck"/>
+        <RemoveValidatorArray value="SlownessRange"/>
+        <RemoveValidatorArray value="SourceAlive"/>
+        <Modification>
+            <DamageDealtMaximum index="Spell" value="0"/>
+            <DamageDealtMaximum index="Melee" value="0"/>
+            <DamageDealtMaximum index="Ranged" value="0"/>
+            <DamageDealtMaximum index="Splash" value="0"/>
+            <DamageDealtMaximum index="NoProc" value="0"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+            <AbilClassDisableArray index="CAbilBuild" value="1"/>
+            <AbilClassDisableArray index="CAbilBuildable" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FairCannon">
+        <Tooltip value="Fair cannon"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\wireframe-protoss-photoncannon-taldarim.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <RemoveValidatorArray value="FairCannonAuraCheck"/>
+        <RemoveValidatorArray value="FairCannonsRange"/>
+        <RemoveValidatorArray value="SourceAlive"/>
+        <Modification>
+            <DamageDealtMinimum index="Ranged" value="20"/>
+            <AbilClassDisableArray index="CAbilAttack" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="SlownessAura">
+        <Tooltip value="Disable enemies attack"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-command-stop.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="0.1"/>
+        <PeriodicEffect value="SlownessSearch"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="FairCannonsAura">
+        <Tooltip value="Every photon cannon in range of 15 has damage"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\wireframe-protoss-photoncannon.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Period value="0.1"/>
+        <PeriodicEffect value="FairCannonSearch"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2CatchedSoul">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <InfoIcon value="Assets\Textures\ui_emoticons_skull.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="0.5" LifeArmorMultiplier="0.5" ShieldArmorMultiplier="0.5"/>
+        <InitialEffect value="UnfairSC2CaughtSoulBirth"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2CritMiss">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\nova coop_lvl 01_black ops.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <Handled value="UnfairSc2CritMissDummy"/>
+            <Location value="Attacker"/>
+            <ModifyFraction value="0"/>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2DamageReductionShield">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Chance value="1"/>
+            <ClampMaximum value="10"/>
+            <Handled value="UnfairSC2DamageReductionShieldReaction"/>
+            <Minimum value="10"/>
+        </DamageResponse>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zeratul-immortal-enternitybarrier.dds"/>
+        <DisplayShield index="Self" value="1"/>
+        <DisplayShield index="Ally" value="1"/>
+        <DisplayShield index="Neutral" value="1"/>
+        <DisplayShield index="Enemy" value="1"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2DamageReductionShieldReaction">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2WalkingDead">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\ui_emoticons_infested.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <BehaviorFlags index="EnabledWhileDead" value="1"/>
+        <DisplayDuration index="Self" value="1"/>
+        <DisplayDuration index="Ally" value="1"/>
+        <DisplayDuration index="Neutral" value="1"/>
+        <DisplayDuration index="Enemy" value="1"/>
+        <ExpireEffect value="Kill"/>
+        <InitialEffect value="UnfairSC2WalkingDeadBirth"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood10">
+        <Alignment value="Positive"/>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT10"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+        <Modification AttackSpeedMultiplier="2.8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood102">
+        <Alignment value="Positive"/>
+        <Cost>
+            <Charge Link="Behavior/UnfairSc2BerserkersBlood10"/>
+            <Cooldown Link="Behavior/UnfairSc2BerserkersBlood10"/>
+        </Cost>
+        <BehaviorFlags index="Permanent" value="1"/>
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT10322222222"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+        <DamageResponse>
+            <Cost>
+                <Charge Link="Behavior/UnfairSc2BerserkersBlood10"/>
+                <Cooldown Link="Behavior/UnfairSc2BerserkersBlood10"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood20">
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="2.6"/>
+        <Alignment value="Positive"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT103"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT102"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood30">
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="2.4"/>
+        <Alignment value="Positive"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT1022"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT1032"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood40">
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="2.2"/>
+        <Alignment value="Positive"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT10222"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT10322"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood50">
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="2"/>
+        <Alignment value="Positive"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT102222"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT103222"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood60">
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.8"/>
+        <Alignment value="Positive"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT1022222"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT1032222"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood70">
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.6"/>
+        <Alignment value="Positive"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT10222222"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT10322222"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood80">
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification AttackSpeedMultiplier="1.4"/>
+        <Alignment value="Positive"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT102222222"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT103222222"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2BerserkersBlood90">
+        <Name value="Berserker&apos;s Blood 90"/>
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\ui_attackmove_ring.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT1022222222"/>
+        <DisableValidatorArray value="UnfairSC2HealthLT1032222222"/>
+        <DisableValidatorArray value="NotUnderConstruction"/>
+        <MaxStackCountPerCaster value="1"/>
+        <Modification AttackSpeedMultiplier="1.2"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2Darkness">
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-envision.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification SightBonus="-4"/>
+        <Alignment value="Negative"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2MoveSpeed">
+        <Cost>
+            <Charge Link="Behavior/UnfairSc2MoveSpeedX2"/>
+            <Cooldown Link="Behavior/UnfairSc2MoveSpeedX2"/>
+        </Cost>
+        <InfoIcon value="Assets\Textures\btn-progression-hornerhan-6-mirabuildtime.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Cost>
+                <Charge Link="Behavior/UnfairSc2MoveSpeedX2"/>
+                <Cooldown Link="Behavior/UnfairSc2MoveSpeedX2"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2Supply">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\wireframe-nova-supplydepot.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Modification Food="8"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2CriticalStrike">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\ui_emoticons_flex.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse Handled="UnfairSc2CritDummy" Location="Attacker"/>
+    </CBehaviorBuff>
+</Catalog>

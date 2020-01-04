@@ -1,0 +1,96 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib52829A21_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: GRAPPLE
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib52829A21_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Grapple Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib52829A21_gt_GrappleModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto63F0314C_g;
+    int auto63F0314C_var;
+    playergroup auto93EE6AAA_g;
+    int auto93EE6AAA_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("43") == "0001")) {
+        auto93EE6AAA_g = PlayerGroupAll();
+        auto93EE6AAA_var = -1;
+        while (true) {
+            auto93EE6AAA_var = PlayerGroupNextPlayer(auto93EE6AAA_g, auto93EE6AAA_var);
+            if (auto93EE6AAA_var < 0) { break; }
+            if ((GameAttributePlayerValue("44", auto93EE6AAA_var) == "0001")) {
+                TechTreeUpgradeAddLevel(auto93EE6AAA_var, "Burrow", 1);
+                PlayerGroupAdd(lv_players, auto93EE6AAA_var);
+            }
+            else {
+                TechTreeAbilityAllow(auto93EE6AAA_var, AbilityCommand("Grapple", 0), false);
+            }
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_52829A21_548A23B7", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_52829A21_18C39317"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_52829A21_548A23B7"), StringExternal("Param/Value/lib_52829A21_CA138172"), "Assets\\Textures\\btn-ability-tychus-herc-heavyimpact.dds");
+        }
+
+    }
+    else {
+        auto63F0314C_g = PlayerGroupAll();
+        auto63F0314C_var = -1;
+        while (true) {
+            auto63F0314C_var = PlayerGroupNextPlayer(auto63F0314C_g, auto63F0314C_var);
+            if (auto63F0314C_var < 0) { break; }
+            TechTreeAbilityAllow(auto63F0314C_var, AbilityCommand("Grapple", 0), false);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib52829A21_gt_GrappleModStart_Init () {
+    lib52829A21_gt_GrappleModStart = TriggerCreate("lib52829A21_gt_GrappleModStart_Func");
+    TriggerAddEventMapInit(lib52829A21_gt_GrappleModStart);
+}
+
+void lib52829A21_InitTriggers () {
+    lib52829A21_gt_GrappleModStart_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib52829A21_InitLib_completed = false;
+
+void lib52829A21_InitLib () {
+    if (lib52829A21_InitLib_completed) {
+        return;
+    }
+
+    lib52829A21_InitLib_completed = true;
+
+    lib52829A21_InitLibraries();
+    lib52829A21_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+
