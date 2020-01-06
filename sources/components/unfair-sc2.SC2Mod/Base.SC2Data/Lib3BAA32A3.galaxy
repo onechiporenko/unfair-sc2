@@ -68,6 +68,7 @@ bool lib3BAA32A3_gt_DoubleModStart_Func (bool testConds, bool runActions) {
         else {
             TriggerEnable(lib3BAA32A3_gt_DuplicateCreatedUnit, false);
             TriggerEnable(lib3BAA32A3_gt_UpdateDoubleLeaderboard, false);
+            TriggerEnable(lib3BAA32A3_gt_ShowSavedResources, false);
         }
     }
     else {
@@ -251,7 +252,7 @@ bool lib3BAA32A3_gt_ShowSavedResources_Func (bool testConds, bool runActions) {
     while (true) {
         autoC9498252_var = PlayerGroupNextPlayer(autoC9498252_g, autoC9498252_var);
         if (autoC9498252_var < 0) { break; }
-        if ((GameAttributePlayerValue("20", autoC9498252_var) == "0001")) {
+        if ((GameAttributePlayerValue("8", autoC9498252_var) == "0001")) {
             TextExpressionSetToken("Param/Expression/lib_3BAA32A3_2C951AA8", "minerals", FixedToText(libDBC4E2D2_gv_players[autoC9498252_var].lv_dOUBLE.lv_minerals, c_fixedPrecisionAny));
             TextExpressionSetToken("Param/Expression/lib_3BAA32A3_2C951AA8", "gas", FixedToText(libDBC4E2D2_gv_players[autoC9498252_var].lv_dOUBLE.lv_gas, c_fixedPrecisionAny));
             libDBC4E2D2_gv_players[autoC9498252_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[autoC9498252_var].lv_dOUBLE.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_3BAA32A3_2C951AA8");
