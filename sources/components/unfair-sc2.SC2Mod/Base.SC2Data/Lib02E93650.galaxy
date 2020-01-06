@@ -126,7 +126,7 @@ bool lib02E93650_gt_UnitTakesDamage_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libDBC4E2D2_gf_ShowTextBaloonForUnit(TextWithColor(StringExternal("Param/Value/lib_02E93650_6A9605CB"), Color(50.20, 0.00, 0.00)), 30, 1.0, EventUnitDamageSourcePoint());
+    libDBC4E2D2_gf_ShowTextBaloonForUnit(TextWithColor(StringExternal("Param/Value/lib_02E93650_6A9605CB"), Color(50.20, 0.00, 0.00)), 30, 1.0, EventUnitDamageSourcePoint(), PlayerGroupAll());
     return true;
 }
 

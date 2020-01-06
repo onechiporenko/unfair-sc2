@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CBehaviorBuff id="UnfairSC2RiotWorker">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-setworkerrallypoint.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InitialEffect value="UnfairSC2RiotWorkerInit"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="UnfairSC2Waaagh">
         <Tooltip value="Unfair SC2 WAAAGH!"/>
         <Alignment value="Positive"/>

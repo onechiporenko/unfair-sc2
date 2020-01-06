@@ -9,11 +9,14 @@ fixed lib96FBA2DD_gv_riotWorkersPercent;
 timer lib96FBA2DD_gv_riotTimer;
 
 // Function Declarations
+void lib96FBA2DD_gf_ShowRiotTextBaloonForUnit (text lp_texttoShow, point lp_point, playergroup lp_playersToShow);
 void lib96FBA2DD_gf_Riot (int lp_player);
 
 // Trigger Declarations
 trigger lib96FBA2DD_gt_RiotWorkersModStart;
 trigger lib96FBA2DD_gt_DoRiot;
+trigger lib96FBA2DD_gt_RiotSentenses;
+trigger lib96FBA2DD_gt_RemoveRiotBehavior;
 
 // Library Initialization
 void lib96FBA2DD_InitVariables ();

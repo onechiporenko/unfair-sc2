@@ -9,7 +9,7 @@
 
 * [CONTAMINATION](./handicaps/contamination.md)
     * [FEATURE] Добавлена опция лобби, указывающая на максимальное количество "инфицированных" зданий для каждого игрока.
-    * [BUGFIX] Contaminate теперь применяется сразу ко всем выбранным зданиями, а не по очереди.
+    * [BUGFIX] Contaminate теперь применяется сразу ко всем выбранным зданиям, а не по очереди.
 
 * [DECIMATIO](./handicaps/decimatio.md)
     * [FEATURE] Добавлен визуальный эффект для юнитов, подлежащих децимации.
@@ -25,6 +25,15 @@
 
 * [MOTHER CORE](./handicaps/mother-core.md)
     * [FEATURE] Добавлен визуальный эффект при создании Ядра Материнского Корабля.
+
+* [PURE MINERALS](./handicaps/pure-minerals.md)
+    * [FEATURE] Добавлен визуальный эффект для "бедных" минеральных друз.
+
+* [REDUCE MINING](./handicaps/reduce-mining.md)
+    * [FEATURE] Добавлен визуальный эффект, когда рабочий доставляет ресурсы.
+
+* [RIOT WORKERS](./handicaps/riot-workers.md)
+    * [FEATURE] Добавлен визуальный эффект для "бунтующих" рабочих.
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
     * [FEATURE] Добавлен визуальный эффект при создании "души" юнита.

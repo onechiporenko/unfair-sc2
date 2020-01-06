@@ -1,0 +1,176 @@
+include "TriggerLibs/NativeLib"
+
+include "Lib2B6B0356_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: WAAAGH
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib2B6B0356_InitLibraries () {
+    libNtve_InitVariables();
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Waaagh Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib2B6B0356_gt_WaaaghModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoE2233442_g;
+    int autoE2233442_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("166") == "0001")) {
+        autoE2233442_g = PlayerGroupAll();
+        autoE2233442_var = -1;
+        while (true) {
+            autoE2233442_var = PlayerGroupNextPlayer(autoE2233442_g, autoE2233442_var);
+            if (autoE2233442_var < 0) { break; }
+            if ((GameAttributePlayerValue("167", autoE2233442_var) == "0001")) {
+                PlayerGroupAdd(lv_players, autoE2233442_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) == 0)) {
+            TriggerEnable(lib2B6B0356_gt_AddWAAAGH, false);
+        }
+
+    }
+    else {
+        TriggerEnable(lib2B6B0356_gt_AddWAAAGH, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib2B6B0356_gt_WaaaghModStart_Init () {
+    lib2B6B0356_gt_WaaaghModStart = TriggerCreate("lib2B6B0356_gt_WaaaghModStart_Func");
+    TriggerAddEventMapInit(lib2B6B0356_gt_WaaaghModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add WAAAGH!
+//--------------------------------------------------------------------------------------------------
+bool lib2B6B0356_gt_AddWAAAGH_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("167", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestFlag(UnitGetType(EventUnitCreatedUnit()), c_unitFlagWorker) == false))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitCreatedUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "AdeptPhaseShift"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "DisruptorPhased"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationArchon"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationColossus"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationHighTemplar"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationImmortal"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationPhoenix"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationProbe"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationStalker"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationVoidRay"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationWarpPrism"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationZealot"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationAdept"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationDisruptor"))) {
+            return false;
+        }
+
+        if (!(((UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesMade) > 0.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(EventUnitCreatedUnit(), "UnfairSC2WaaaghAura", EventUnitCreatedUnit(), 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib2B6B0356_gt_AddWAAAGH_Init () {
+    lib2B6B0356_gt_AddWAAAGH = TriggerCreate("lib2B6B0356_gt_AddWAAAGH_Func");
+    TriggerAddEventUnitCreated(lib2B6B0356_gt_AddWAAAGH, null, null, null);
+}
+
+void lib2B6B0356_InitTriggers () {
+    lib2B6B0356_gt_WaaaghModStart_Init();
+    lib2B6B0356_gt_AddWAAAGH_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib2B6B0356_InitLib_completed = false;
+
+void lib2B6B0356_InitLib () {
+    if (lib2B6B0356_InitLib_completed) {
+        return;
+    }
+
+    lib2B6B0356_InitLib_completed = true;
+
+    lib2B6B0356_InitLibraries();
+    lib2B6B0356_InitTriggers();
+}
+

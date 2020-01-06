@@ -85,6 +85,7 @@
 <Behavior id="Detector9"/>
 <Behavior id="ReaperRegen"/>
 <Behavior id="TimeStopStun"/>
+<Behavior id="UnfairSC2WaaaghAura"/>
 <Behavior id="SlownessAura"/>
 <Behavior id="FairCannonsAura"/>
 <Behavior id="UnfairSC2CatchedSoul"/>
@@ -105,7 +106,7 @@
 <Behavior id="UnfairSc2MoveSpeed"/>
 <Behavior id="UnfairSc2Supply"/>
 <Behavior id="UnfairSC2CriticalStrike"/>
-<Behavior id="UnfairSC2WaaaghAura"/>
+<Behavior id="UnfairSC2RiotWorker"/>
 <Effect id="PointDefenseDroneReleaseCreateUnit"/>
 <Effect id="SeekerMissileLaunchMissile"/>
 <Effect id="Yamato"/>
@@ -134,8 +135,9 @@
 <Model id="GrappleStun"/>
 <Model id="UnfairSC2DecimatioDeath"/>
 <Model id="UnfairSC2DoubleBirth"/>
-<Model id="UnfairSC2MineralsSpawn"/>
-<Model id="UnfairSC2GasSpawn"/>
+<Model id="UnfairSC2GoldenMineralsSpawn"/>
+<Model id="UnfairSC2GoldGasSpawn"/>
+<Model id="UnfairSC2PureMineralsSpawn"/>
 <Sound id="UI_PlayerCameraSelect"/>
 <Sound id="UI_TerranKlaxonAlert"/>
 <Sound id="TUIWarningPing"/>
@@ -237,6 +239,5 @@
 <Unit id="BraxisAlphaDestructible2x2"/>
 <Unit id="Debris2x2NonConjoined"/>
 <Unit id="Ice2x2NonConjoined"/>
-<Unit id="LabMineralField750"/>
 <Weapon id="UnfairSc2Wall"/>
 </Preload>

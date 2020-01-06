@@ -73,72 +73,72 @@ bool lib1783C555_gt_PureMineralsModStart_Func (bool testConds, bool runActions) 
                 for (;; autoB33D06AC_u -= 1) {
                     autoB33D06AC_var = UnitGroupUnitFromEnd(autoB33D06AC_g, autoB33D06AC_u);
                     if (autoB33D06AC_var == null) { break; }
-                    UnitKill(autoB33D06AC_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(autoB33D06AC_var), 270.0);
+                    UnitSetPropertyFixed(autoB33D06AC_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoB33D06AC_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 auto34840379_g = UnitGroup("MineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 auto34840379_u = UnitGroupCount(auto34840379_g, c_unitCountAll);
                 for (;; auto34840379_u -= 1) {
                     auto34840379_var = UnitGroupUnitFromEnd(auto34840379_g, auto34840379_u);
                     if (auto34840379_var == null) { break; }
-                    UnitKill(auto34840379_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(auto34840379_var), 270.0);
+                    UnitSetPropertyFixed(auto34840379_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto34840379_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 auto6D64C43C_g = UnitGroup("LabMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 auto6D64C43C_u = UnitGroupCount(auto6D64C43C_g, c_unitCountAll);
                 for (;; auto6D64C43C_u -= 1) {
                     auto6D64C43C_var = UnitGroupUnitFromEnd(auto6D64C43C_g, auto6D64C43C_u);
                     if (auto6D64C43C_var == null) { break; }
-                    UnitKill(auto6D64C43C_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(auto6D64C43C_var), 270.0);
+                    UnitSetPropertyFixed(auto6D64C43C_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto6D64C43C_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 autoE8AFE6E8_g = UnitGroup("BattleStationMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 autoE8AFE6E8_u = UnitGroupCount(autoE8AFE6E8_g, c_unitCountAll);
                 for (;; autoE8AFE6E8_u -= 1) {
                     autoE8AFE6E8_var = UnitGroupUnitFromEnd(autoE8AFE6E8_g, autoE8AFE6E8_u);
                     if (autoE8AFE6E8_var == null) { break; }
-                    UnitKill(autoE8AFE6E8_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(autoE8AFE6E8_var), 270.0);
+                    UnitSetPropertyFixed(autoE8AFE6E8_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoE8AFE6E8_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 auto32FACF83_g = UnitGroup("BattleStationMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 auto32FACF83_u = UnitGroupCount(auto32FACF83_g, c_unitCountAll);
                 for (;; auto32FACF83_u -= 1) {
                     auto32FACF83_var = UnitGroupUnitFromEnd(auto32FACF83_g, auto32FACF83_u);
                     if (auto32FACF83_var == null) { break; }
-                    UnitKill(auto32FACF83_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(auto32FACF83_var), 270.0);
+                    UnitSetPropertyFixed(auto32FACF83_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto32FACF83_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 auto2DC1A12B_g = UnitGroup("PurifierMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 auto2DC1A12B_u = UnitGroupCount(auto2DC1A12B_g, c_unitCountAll);
                 for (;; auto2DC1A12B_u -= 1) {
                     auto2DC1A12B_var = UnitGroupUnitFromEnd(auto2DC1A12B_g, auto2DC1A12B_u);
                     if (auto2DC1A12B_var == null) { break; }
-                    UnitKill(auto2DC1A12B_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(auto2DC1A12B_var), 270.0);
+                    UnitSetPropertyFixed(auto2DC1A12B_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto2DC1A12B_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 autoDCF12E70_g = UnitGroup("PurifierMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 autoDCF12E70_u = UnitGroupCount(autoDCF12E70_g, c_unitCountAll);
                 for (;; autoDCF12E70_u -= 1) {
                     autoDCF12E70_var = UnitGroupUnitFromEnd(autoDCF12E70_g, autoDCF12E70_u);
                     if (autoDCF12E70_var == null) { break; }
-                    UnitKill(autoDCF12E70_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(autoDCF12E70_var), 270.0);
+                    UnitSetPropertyFixed(autoDCF12E70_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoDCF12E70_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 autoFF082F41_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 autoFF082F41_u = UnitGroupCount(autoFF082F41_g, c_unitCountAll);
                 for (;; autoFF082F41_u -= 1) {
                     autoFF082F41_var = UnitGroupUnitFromEnd(autoFF082F41_g, autoFF082F41_u);
                     if (autoFF082F41_var == null) { break; }
-                    UnitKill(autoFF082F41_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(autoFF082F41_var), 270.0);
+                    UnitSetPropertyFixed(autoFF082F41_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoFF082F41_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
                 autoC0CF92CF_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
                 autoC0CF92CF_u = UnitGroupCount(autoC0CF92CF_g, c_unitCountAll);
                 for (;; autoC0CF92CF_u -= 1) {
                     autoC0CF92CF_var = UnitGroupUnitFromEnd(autoC0CF92CF_g, autoC0CF92CF_u);
                     if (autoC0CF92CF_var == null) { break; }
-                    UnitKill(autoC0CF92CF_var);
-                    UnitCreate(1, "LabMineralField750", 0, 0, UnitGetPosition(autoC0CF92CF_var), 270.0);
+                    UnitSetPropertyFixed(autoC0CF92CF_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoC0CF92CF_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
             }
 

@@ -137,7 +137,7 @@ bool libF7F71763_gt_UnitTakesDamage_Func (bool testConds, bool runActions) {
     lv_weaponToUse = UnitWeaponGet(EventUnitDamageSourceUnit(), 1);
     lv_weaponName = CatalogFieldValueGet(c_gameCatalogWeapon, lv_weaponToUse, "Name", EventUnitDamageSourcePlayer());
     lv_weaponsDamageEffect = (CatalogFieldValueGet(c_gameCatalogWeapon, lv_weaponToUse, "Effect", EventUnitDamageSourcePlayer()));
-    libDBC4E2D2_gf_ShowTextBaloonForUnit(TextWithColor(TextExpressionAssemble("Param/Expression/lib_F7F71763_C234CA0C"), Color(100.00, 50.20, 25.10)), 20, 1.0, EventUnitDamageSourcePoint());
+    libDBC4E2D2_gf_ShowTextBaloonForUnit(TextWithColor(TextExpressionAssemble("Param/Expression/lib_F7F71763_C234CA0C"), Color(100.00, 50.20, 25.10)), 20, 1.0, EventUnitDamageSourcePoint(), PlayerGroupAll());
     UnitDamage(EventUnit(), lv_weaponsDamageEffect, EventUnitDamageSourceUnit(), 0.0);
     return true;
 }

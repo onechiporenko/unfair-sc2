@@ -1,0 +1,9 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: WAAAGH
+//--------------------------------------------------------------------------------------------------
+// Trigger Declarations
+trigger lib2B6B0356_gt_WaaaghModStart;
+trigger lib2B6B0356_gt_AddWAAAGH;
+

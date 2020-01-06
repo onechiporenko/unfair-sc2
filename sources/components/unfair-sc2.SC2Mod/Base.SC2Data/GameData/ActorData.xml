@@ -72,6 +72,12 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="ShieldAbsorbImmortalViz"/>
         <AutoScaleFactor value="0.800000"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
+    </CActorModel>
+    <CActorModel id="UnfairSC2RiotWorkerInit" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.UnfairSC2RiotWorkerInit.Start; At Caster" Send="Create"/>
+        <Model value="UnfairSC2RiotWorker"/>
+        <Scale value="0.300000"/>
     </CActorModel>
     <CActorModel id="UnfairSC2Waaagh" parent="ModelAnimationStyleContinuous">
         <Flags index="SuppressSaveLoad" value="1"/>
@@ -79,6 +85,7 @@
         <On index="1" Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
         <On index="2" Terms="ActorOrphan" Send="AnimBracketStop BSD"/>
         <On Terms="Effect.UnfairSC2WaaaghInit; At Caster" Send="Create"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
     <CActorModel id="UnfairSC2WalkingDeadBirth" parent="ModelAnimationStyleOneShot">
         <Terms value="ValidateUnit IsBiological"/>
@@ -89,6 +96,7 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="LurkerMPEggDeath"/>
         <AutoScaleFactor value="1.000000"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
     <CActorModel id="UnfairSC2CritStrikeBio" parent="ModelAnimationStyleOneShot">
         <Terms value="ValidateUnit IsBiological"/>
@@ -99,6 +107,7 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="ZergBuildingBloodHeavy"/>
         <AutoScaleFactor value="1.500000"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
     <CActorRange id="SensorTowerRadar2">
         <Inherits index="Visibility" value="0"/>
@@ -117,6 +126,7 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="HallucinationBirth"/>
         <AutoScaleFactor value="0.500000"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
     <CActorModel id="UnfairSC2CritStrikeMech" parent="ModelAnimationStyleOneShot">
         <Terms value="ValidateUnit IsMechanical"/>
@@ -127,5 +137,6 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <Model value="MineDroneExplodeModel"/>
         <AutoScaleFactor value="0.250000"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
 </Catalog>

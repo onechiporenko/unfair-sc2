@@ -202,12 +202,13 @@ void libDBC4E2D2_gf_CreateTerranInfrastructure (int lp_player);
 void libDBC4E2D2_gf_CreateZergInfrastructure (int lp_player);
 int libDBC4E2D2_gf_CreateResourcesLeaderboard (text lp_title);
 int libDBC4E2D2_gf_GetRandomPlayer (int lp_playerToSkip);
+int libDBC4E2D2_gf_GetRandomEnemyPlayer (int lp_player);
 void libDBC4E2D2_gf_SetupUnitTypesWithEnergy ();
 void libDBC4E2D2_gf_SetupUnitTypesGiveSupply ();
 void libDBC4E2D2_gf_SetupFlyingUnits ();
 void libDBC4E2D2_gf_ShowCountDownProgressBar (int lp_width, int lp_height, fixed lp_duration, playergroup lp_playersToShow);
 void libDBC4E2D2_gf_ShowResourcesBaloonForUnit (unit lp_unit, int lp_amount, bool lp_type);
-void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, fixed lp_showTime, point lp_point);
+void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, fixed lp_showTime, point lp_point, playergroup lp_playersToShow);
 
 // Trigger Declarations
 trigger libDBC4E2D2_gt_SETUP;

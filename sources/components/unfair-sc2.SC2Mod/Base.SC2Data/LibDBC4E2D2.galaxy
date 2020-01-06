@@ -350,6 +350,26 @@ int libDBC4E2D2_gf_GetRandomPlayer (int lp_playerToSkip) {
     return PlayerGroupPlayer(lv_players, RandomInt(1, PlayerGroupCount(lv_players)));
 }
 
+int libDBC4E2D2_gf_GetRandomEnemyPlayer (int lp_player) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    lv_players = PlayerGroupAlliance(c_playerGroupEnemy, lp_player);
+    PlayerGroupRemove(lv_players, 0);
+    PlayerGroupRemove(lv_players, 15);
+    if ((PlayerGroupCount(lv_players) > 0)) {
+        return PlayerGroupPlayer(lv_players, RandomInt(0, PlayerGroupCount(lv_players)));
+    }
+    else {
+        return 0;
+    }
+}
+
 void libDBC4E2D2_gf_SetupUnitTypesWithEnergy () {
     // Automatic Variable Declarations
     // Implementation
@@ -510,10 +530,10 @@ void libDBC4E2D2_gf_ShowResourcesBaloonForUnit (unit lp_unit, int lp_amount, boo
     TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 2.0);
 }
 
-void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, fixed lp_showTime, point lp_point) {
+void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, fixed lp_showTime, point lp_point, playergroup lp_playersToShow) {
     // Automatic Variable Declarations
     // Implementation
-    TextTagCreate(lp_texttoShow, lp_fontSize, lp_point, 1.0, true, false, PlayerGroupAll());
+    TextTagCreate(lp_texttoShow, lp_fontSize, lp_point, 1.0, true, false, lp_playersToShow);
     TextTagSetVelocity(TextTagLastCreated(), 2.0, 90.0);
     TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, lp_showTime);
 }

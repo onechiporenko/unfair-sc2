@@ -5,6 +5,6 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Trigger Declarations
 trigger libBA1CFC25_gt_ReduceMiningModStart;
-trigger libBA1CFC25_gt_PlayerCollectsMinerals;
-trigger libBA1CFC25_gt_PlayerCollectsVespene;
+trigger libBA1CFC25_gt_Mineralsgathered;
+trigger libBA1CFC25_gt_Vespenegathered;
 

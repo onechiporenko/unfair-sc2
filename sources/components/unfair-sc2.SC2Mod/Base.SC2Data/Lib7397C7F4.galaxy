@@ -208,6 +208,9 @@ bool lib7397C7F4_gt_WalkingDeadModStart_Func (bool testConds, bool runActions) {
     else {
         TriggerEnable(lib7397C7F4_gt_CreateWalkingZombie, false);
     }
+    Wait(2.0, c_timeGame);
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Reaper", 0, 1, PlayerStartLocation(1));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Zealot", 0, 0, PlayerStartLocation(1));
     return true;
 }
 

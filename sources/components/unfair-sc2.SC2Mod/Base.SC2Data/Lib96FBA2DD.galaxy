@@ -27,6 +27,14 @@ void lib96FBA2DD_InitVariables () {
 }
 
 // Functions
+void lib96FBA2DD_gf_ShowRiotTextBaloonForUnit (text lp_texttoShow, point lp_point, playergroup lp_playersToShow) {
+    // Automatic Variable Declarations
+    // Implementation
+    TextTagCreate(lp_texttoShow, 20, lp_point, 1.0, true, false, lp_playersToShow);
+    TextTagSetVelocity(TextTagLastCreated(), 0.5, 90.0);
+    TextTagSetTime(TextTagLastCreated(), c_textTagTimeDuration, 4.0);
+}
+
 trigger auto_lib96FBA2DD_gf_Riot_Trigger = null;
 int auto_lib96FBA2DD_gf_Riot_lp_player;
 
@@ -46,13 +54,25 @@ bool auto_lib96FBA2DD_gf_Riot_TriggerFunc (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_selectedUnit;
     unitgroup lv_allWorkers;
+    text lv_icon1;
+    text lv_icon2;
+    text lv_icon3;
+    text lv_icon4;
+    text lv_icon5;
+    text lv_icon;
 
     // Automatic Variable Declarations
     int auto77A5D5A8_ae;
     int auto77A5D5A8_var;
+    int auto546ED145_val;
 
     // Variable Initialization
     lv_allWorkers = UnitGroupEmpty();
+    lv_icon1 = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_8BEE9627");
+    lv_icon2 = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_F9D34EA4");
+    lv_icon3 = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_571DF2D4");
+    lv_icon4 = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_E40EDA3D");
+    lv_icon5 = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_64D7FF6A");
 
     // Implementation
     UnitGroupAddUnitGroup(lv_allWorkers, UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
@@ -62,8 +82,31 @@ bool auto_lib96FBA2DD_gf_Riot_TriggerFunc (bool testConds, bool runActions) {
         lv_selectedUnit = UnitGroupRandomUnit(lv_allWorkers, c_unitCountAlive);
         UnitIssueOrder(lv_selectedUnit, Order(AbilityCommand("stop", 0)), c_orderQueueReplace);
         UnitIssueOrder(lv_selectedUnit, Order(AbilityCommand("TerranBuild", 30)), c_orderQueueAddToEnd);
-        UnitIssueOrder(lv_selectedUnit, OrderTargetingPoint(AbilityCommand("move", 0), UnitGetPosition(libDBC4E2D2_gf_GetRandomWorkersProdStructure(lp_player))), c_orderQueueAddToEnd);
+        UnitIssueOrder(lv_selectedUnit, OrderTargetingUnit(AbilityCommand("move", 0), libDBC4E2D2_gf_GetRandomWorkersProdStructure(lp_player)), c_orderQueueAddToEnd);
         UnitGroupRemove(lv_allWorkers, lv_selectedUnit);
+        auto546ED145_val = RandomInt(1, 5);
+        if (auto546ED145_val == 1) {
+            lv_icon = lv_icon1;
+        }
+        else if (auto546ED145_val == 2) {
+            lv_icon = lv_icon2;
+        }
+        else if (auto546ED145_val == 3) {
+            lv_icon = lv_icon3;
+        }
+        else if (auto546ED145_val == 4) {
+            lv_icon = lv_icon4;
+        }
+        else if (auto546ED145_val == 5) {
+            lv_icon = lv_icon5;
+        }
+        else {
+        }
+        libDBC4E2D2_gf_ShowTextBaloonForUnit(lv_icon, 30, 1.0, UnitGetPosition(lv_selectedUnit), PlayerGroupSingle(UnitGetOwner(lv_selectedUnit)));
+        if ((UnitHasBehavior2(lv_selectedUnit, "UnfairSC2RiotWorker") == false)) {
+            UnitBehaviorAdd(lv_selectedUnit, "UnfairSC2RiotWorker", lv_selectedUnit, 1);
+        }
+
     }
     return true;
 }
@@ -178,6 +221,8 @@ bool lib96FBA2DD_gt_DoRiot_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(lib96FBA2DD_gt_RemoveRiotBehavior, false);
+    Wait(0.05, c_timeGame);
     auto263B6A06_g = PlayerGroupAll();
     auto263B6A06_var = -1;
     while (true) {
@@ -188,6 +233,8 @@ bool lib96FBA2DD_gt_DoRiot_Func (bool testConds, bool runActions) {
         }
 
     }
+    Wait(0.05, c_timeGame);
+    TriggerEnable(lib96FBA2DD_gt_RemoveRiotBehavior, true);
     return true;
 }
 
@@ -197,9 +244,132 @@ void lib96FBA2DD_gt_DoRiot_Init () {
     TriggerAddEventTimer(lib96FBA2DD_gt_DoRiot, lib96FBA2DD_gv_riotTimer);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: Riot Sentenses
+//--------------------------------------------------------------------------------------------------
+bool lib96FBA2DD_gt_RiotSentenses_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unitgroup lv_riotWorkers;
+    unitgroup lv_workers;
+    int lv_numberofsentenses;
+    text lv_sentense;
+    unit lv_unitToShowSentense;
+    text[201] lv_availableRiotSentenses;
+    int lv_i;
+
+    // Automatic Variable Declarations
+    playergroup autoE624EC66_g;
+    int autoE624EC66_var;
+    unitgroup auto29ADED3F_g;
+    int auto29ADED3F_u;
+    unit auto29ADED3F_var;
+    int auto8A1730A5_ae;
+    int auto8A1730A5_var;
+
+    // Variable Initialization
+    lv_riotWorkers = UnitGroupEmpty();
+    lv_workers = UnitGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoE624EC66_g = PlayerGroupActive();
+    autoE624EC66_var = -1;
+    while (true) {
+        autoE624EC66_var = PlayerGroupNextPlayer(autoE624EC66_g, autoE624EC66_var);
+        if (autoE624EC66_var < 0) { break; }
+        if ((GameAttributePlayerValue("115", autoE624EC66_var) == "0001")) {
+            lv_i = 0;
+            lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_B4F91524");
+            lv_i += 1;
+            lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_C3615ED8");
+            lv_i += 1;
+            lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_CFC2AA47");
+            lv_i += 1;
+            lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_8058E558");
+            lv_i += 1;
+            lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_9B4A8321");
+            lv_i += 1;
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_AA6CE661", "PLAYERNAME", PlayerName(autoE624EC66_var));
+            lv_availableRiotSentenses[lv_i] = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_AA6CE661");
+            lv_i += 1;
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_ECC47815", "PLAYERNAME", PlayerName(autoE624EC66_var));
+            lv_availableRiotSentenses[lv_i] = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_ECC47815");
+            lv_i += 1;
+            lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_46AE30FC");
+            lv_i += 1;
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1115668C", "ENEMYPLAYERNAME", PlayerName(libDBC4E2D2_gf_GetRandomEnemyPlayer(autoE624EC66_var)));
+            lv_availableRiotSentenses[lv_i] = TextExpressionAssemble("Param/Expression/lib_96FBA2DD_1115668C");
+            lv_i += 1;
+            lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_4AFAE7A7");
+            lv_i += 1;
+            lv_workers = UnitGroup(null, autoE624EC66_var, RegionPlayableMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            lv_riotWorkers = UnitGroupEmpty();
+            auto29ADED3F_g = lv_workers;
+            auto29ADED3F_u = UnitGroupCount(auto29ADED3F_g, c_unitCountAll);
+            for (;; auto29ADED3F_u -= 1) {
+                auto29ADED3F_var = UnitGroupUnitFromEnd(auto29ADED3F_g, auto29ADED3F_u);
+                if (auto29ADED3F_var == null) { break; }
+                if ((UnitHasBehavior2(auto29ADED3F_var, "UnfairSC2RiotWorker") == true)) {
+                    UnitGroupAdd(lv_riotWorkers, auto29ADED3F_var);
+                }
+
+            }
+            lv_numberofsentenses = RoundI((UnitGroupCount(lv_riotWorkers, c_unitCountAlive) / 10.0));
+            auto8A1730A5_ae = lv_numberofsentenses;
+            auto8A1730A5_var = 1;
+            for ( ; auto8A1730A5_var <= auto8A1730A5_ae; auto8A1730A5_var += 1 ) {
+                lv_sentense = lv_availableRiotSentenses[RandomInt(0, lv_i)];
+                lv_unitToShowSentense = UnitGroupRandomUnit(lv_riotWorkers, c_unitCountAlive);
+                lib96FBA2DD_gf_ShowRiotTextBaloonForUnit(lv_sentense, UnitGetPosition(lv_unitToShowSentense), PlayerGroupSingle(autoE624EC66_var));
+                UnitGroupRemove(lv_riotWorkers, lv_unitToShowSentense);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib96FBA2DD_gt_RiotSentenses_Init () {
+    lib96FBA2DD_gt_RiotSentenses = TriggerCreate("lib96FBA2DD_gt_RiotSentenses_Func");
+    TriggerAddEventTimePeriodic(lib96FBA2DD_gt_RiotSentenses, 7.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Riot Behavior
+//--------------------------------------------------------------------------------------------------
+bool lib96FBA2DD_gt_RemoveRiotBehavior_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("115", UnitGetOwner(EventUnit())) == "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorRemove(EventUnit(), "UnfairSC2RiotWorker", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib96FBA2DD_gt_RemoveRiotBehavior_Init () {
+    lib96FBA2DD_gt_RemoveRiotBehavior = TriggerCreate("lib96FBA2DD_gt_RemoveRiotBehavior_Func");
+    TriggerAddEventUnitOrder(lib96FBA2DD_gt_RemoveRiotBehavior, null, null);
+}
+
 void lib96FBA2DD_InitTriggers () {
     lib96FBA2DD_gt_RiotWorkersModStart_Init();
     lib96FBA2DD_gt_DoRiot_Init();
+    lib96FBA2DD_gt_RiotSentenses_Init();
+    lib96FBA2DD_gt_RemoveRiotBehavior_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
