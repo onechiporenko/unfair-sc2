@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.39
+
+* [RANDOM RALLY POINTS](./handicaps/random-rally-points.md)
+    * [BUGFIX] Гандикап не срабатывает для первого игрока, когда он выключен.
+
 ## v2.38
 
 * [FEATURE] Опции лобби отсортированы в алфавитном порядке имен гандикапов.

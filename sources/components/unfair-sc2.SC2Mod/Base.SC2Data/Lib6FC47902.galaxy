@@ -77,6 +77,10 @@ bool lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Func (bool testConds, bool 
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
+        if (!((GameAttributeGameValue("164") == "0001"))) {
+            return false;
+        }
+
         if (!((GameAttributePlayerValue("165", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
             return false;
         }
