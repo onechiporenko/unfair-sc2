@@ -1,0 +1,552 @@
+include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
+
+include "Lib78D24685_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RANDOM UNITS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib78D24685_InitLibraries () {
+    libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool lib78D24685_InitVariables_completed = false;
+
+void lib78D24685_InitVariables () {
+    if (lib78D24685_InitVariables_completed) {
+        return;
+    }
+
+    lib78D24685_InitVariables_completed = true;
+
+}
+
+// Functions
+void lib78D24685_gf_UpdateResourcesDiff (int lp_player, string lp_oldUnitType, string lp_newUnitType) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_players[lp_player].lv_rANDOMUNITS.lv_minerals += (UnitTypeGetCost(lp_newUnitType, c_unitCostMinerals) - UnitTypeGetCost(lp_oldUnitType, c_unitCostMinerals));
+    libDBC4E2D2_gv_players[lp_player].lv_rANDOMUNITS.lv_gas += (UnitTypeGetCost(lp_newUnitType, c_unitCostVespene) - UnitTypeGetCost(lp_oldUnitType, c_unitCostVespene));
+}
+
+void lib78D24685_gf_ChangeCreatedUnit (unit lp_createdUnit) {
+    // Variable Declarations
+    int lv_unitIndex;
+    int lv_chanceCross;
+    int lv_ownerofCreatedUnit;
+    int lv_i;
+    unit lv_createdByPlayerUnit;
+    order lv_orderToCreatedByPlayerUnit;
+    point lv_positionOfCreatedUnit;
+    string lv_createdUnitType;
+    string lv_newUnitType;
+
+    // Automatic Variable Declarations
+    string auto91B4DCFD_val;
+    int autoC24B74AD_ae;
+    const int autoC24B74AD_ai = 1;
+    int auto2A3830DC_ae;
+    const int auto2A3830DC_ai = 1;
+    int autoCA019A87_ae;
+    const int autoCA019A87_ai = 1;
+    int autoBFB56453_ae;
+    const int autoBFB56453_ai = 1;
+    string auto5735316E_val;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_ownerofCreatedUnit = UnitGetOwner(lp_createdUnit);
+    lv_createdByPlayerUnit = lp_createdUnit;
+    lv_orderToCreatedByPlayerUnit = UnitOrder(lv_createdByPlayerUnit, 0);
+    lv_positionOfCreatedUnit = UnitGetPosition(lv_createdByPlayerUnit);
+    lv_createdUnitType = UnitGetType(lv_createdByPlayerUnit);
+    if ((libNtve_gf_RandomPercent() <= lib78D24685_gv_chancetoRandomizeUnit)) {
+        if (((UnitTypeTestFlag(UnitGetType(lv_createdByPlayerUnit), c_unitFlagWorker) == true) || (lv_createdUnitType == "Zealot") || (lv_createdUnitType == "Zergling") || (lv_createdUnitType == "Marine") || (lv_createdUnitType == "Overlord") || (lv_createdUnitType == "Mothership") || (lv_createdUnitType == "MothershipCore"))) {
+        }
+        else {
+            UnitSetScale(lv_createdByPlayerUnit, 1.0, 1.0, 1.0);
+            libNtve_gf_MakeUnitInvulnerable(lv_createdByPlayerUnit, true);
+            libNtve_gf_MakeUnitUncommandable(lv_createdByPlayerUnit, true);
+            UnitBehaviorAdd(lv_createdByPlayerUnit, "SpectreShield", lv_createdByPlayerUnit, 1);
+            UnitSetOwner(lv_createdByPlayerUnit, 0, true);
+            libNtve_gf_CreateModelAtPoint("UnfairSC2RandomUnitRandomBox", lv_positionOfCreatedUnit);
+            libNtve_gf_MakeModelFaceAngle(libNtve_gf_ActorLastCreated(), 90.0);
+            Wait(1.5, c_timeGame);
+            libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+            if ((GameAttributePlayerValue("170", lv_ownerofCreatedUnit) == "0001")) {
+                auto91B4DCFD_val = PlayerRace(lv_ownerofCreatedUnit);
+                if (auto91B4DCFD_val == "Prot") {
+                    autoC24B74AD_ae = libDBC4E2D2_gv_numberOfProtossUnits;
+                    lv_i = 0;
+                    for ( ; ( (autoC24B74AD_ai >= 0 && lv_i <= autoC24B74AD_ae) || (autoC24B74AD_ai < 0 && lv_i >= autoC24B74AD_ae) ) ; lv_i += autoC24B74AD_ai ) {
+                        if ((lv_createdUnitType == libDBC4E2D2_gv_protossUnits[lv_i])) {
+                            lv_unitIndex = lv_i;
+                        }
+
+                    }
+                    lv_newUnitType = libDBC4E2D2_gv_protossUnits[lib78D24685_gf_GetRandomUnitTypeIndex(lv_unitIndex, libDBC4E2D2_gv_numberOfProtossUnits, 2, 4)];
+                    libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_newUnitType, 0, lv_ownerofCreatedUnit, lv_positionOfCreatedUnit);
+                }
+                else if (auto91B4DCFD_val == "Zerg") {
+                    auto2A3830DC_ae = libDBC4E2D2_gv_numberOfZergUnits;
+                    lv_i = 0;
+                    for ( ; ( (auto2A3830DC_ai >= 0 && lv_i <= auto2A3830DC_ae) || (auto2A3830DC_ai < 0 && lv_i >= auto2A3830DC_ae) ) ; lv_i += auto2A3830DC_ai ) {
+                        if ((lv_createdUnitType == libDBC4E2D2_gv_zergUnits[lv_i])) {
+                            lv_unitIndex = lv_i;
+                        }
+
+                    }
+                    lv_newUnitType = libDBC4E2D2_gv_zergUnits[lib78D24685_gf_GetRandomUnitTypeIndex(lv_unitIndex, libDBC4E2D2_gv_numberOfZergUnits, 2, 4)];
+                    libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_newUnitType, 0, lv_ownerofCreatedUnit, lv_positionOfCreatedUnit);
+                }
+                else if (auto91B4DCFD_val == "Terr") {
+                    autoCA019A87_ae = libDBC4E2D2_gv_numberOfTerranUnits;
+                    lv_i = 0;
+                    for ( ; ( (autoCA019A87_ai >= 0 && lv_i <= autoCA019A87_ae) || (autoCA019A87_ai < 0 && lv_i >= autoCA019A87_ae) ) ; lv_i += autoCA019A87_ai ) {
+                        if ((lv_createdUnitType == libDBC4E2D2_gv_terranUnits[lv_i])) {
+                            lv_unitIndex = lv_i;
+                        }
+
+                    }
+                    lv_newUnitType = libDBC4E2D2_gv_terranUnits[lib78D24685_gf_GetRandomUnitTypeIndex(lv_unitIndex, libDBC4E2D2_gv_numberOfTerranUnits, 2, 4)];
+                    libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_newUnitType, 0, lv_ownerofCreatedUnit, lv_positionOfCreatedUnit);
+                }
+                else {
+                }
+            }
+            else {
+                if ((GameAttributePlayerValue("170", lv_ownerofCreatedUnit) == "0003")) {
+                    autoBFB56453_ae = libDBC4E2D2_gv_numberOfAllUnits;
+                    lv_i = 0;
+                    for ( ; ( (autoBFB56453_ai >= 0 && lv_i <= autoBFB56453_ae) || (autoBFB56453_ai < 0 && lv_i >= autoBFB56453_ae) ) ; lv_i += autoBFB56453_ai ) {
+                        if ((lv_createdUnitType == libDBC4E2D2_gv_allUnits[lv_i])) {
+                            lv_unitIndex = lv_i;
+                        }
+
+                    }
+                    lv_newUnitType = libDBC4E2D2_gv_allUnits[lib78D24685_gf_GetRandomUnitTypeIndex(lv_unitIndex, libDBC4E2D2_gv_numberOfAllUnits, 5, 10)];
+                    if ((UnitTypeTestFlag(lv_newUnitType, c_unitFlagWorker) == true)) {
+                        auto5735316E_val = PlayerRace(lv_ownerofCreatedUnit);
+                        if (auto5735316E_val == "Zerg") {
+                            lv_newUnitType = "Drone";
+                        }
+                        else if (auto5735316E_val == "Prot") {
+                            lv_newUnitType = "Probe";
+                        }
+                        else if (auto5735316E_val == "Terr") {
+                            lv_newUnitType = "SCV";
+                        }
+                        else {
+                        }
+                    }
+
+                    libNtve_gf_CreateUnitsWithDefaultFacing(1, lv_newUnitType, 0, lv_ownerofCreatedUnit, lv_positionOfCreatedUnit);
+                }
+
+            }
+            PlayerCreateEffectUnit(lv_ownerofCreatedUnit, "UnfairSC2RandomUnitBirth", UnitLastCreated());
+            UnitIssueOrder(UnitLastCreated(), lv_orderToCreatedByPlayerUnit, c_orderQueueReplace);
+            UnitSetPosition(lv_createdByPlayerUnit, Point(0.0, 0.0), false);
+            UnitRemove(lv_createdByPlayerUnit);
+            lib78D24685_gf_UpdateResourcesDiff(lv_ownerofCreatedUnit, lv_createdUnitType, lv_newUnitType);
+        }
+    }
+
+}
+
+int lib78D24685_gf_GetRandomUnitTypeIndex (int lp_unitIndex, int lp_maxIndexValue, int lp_unitTypeDeltaLvl1, int lp_unitTypeDeltaLvl2) {
+    // Variable Declarations
+    int lv_chanceCross;
+    int lv_i;
+    int lv_min;
+    int lv_max;
+    fixed lv_chance;
+    fixed lv_chanceLimit1;
+    fixed lv_chanceLimit2;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_chance = libNtve_gf_RandomPercent();
+    lv_chanceLimit1 = 75.0;
+    lv_chanceLimit2 = 95.0;
+
+    // Implementation
+    if (((lp_unitIndex < lp_unitTypeDeltaLvl1) || (lp_unitIndex > (lp_maxIndexValue - lp_unitTypeDeltaLvl1)))) {
+        lv_chanceLimit1 = 25.0;
+        lv_chanceLimit2 = 35.0;
+        if ((lv_chance < lv_chanceLimit1)) {
+            return RandomInt(lv_min, lv_max);
+        }
+        else {
+            if ((lv_chance < lv_chanceLimit2)) {
+                lv_min = MaxI(0, (lp_unitIndex - lp_unitTypeDeltaLvl2));
+                lv_max = MaxI((lp_unitIndex + lp_unitTypeDeltaLvl2), lp_maxIndexValue);
+                return RandomInt(lv_min, lv_max);
+            }
+            else {
+                return lp_unitIndex;
+            }
+        }
+    }
+
+    lv_min = MaxI(0, (lp_unitIndex - lp_unitTypeDeltaLvl1));
+    lv_max = MaxI((lp_unitIndex + lp_unitTypeDeltaLvl1), (lp_maxIndexValue - lp_unitTypeDeltaLvl1));
+    if ((lv_chance < lv_chanceLimit1)) {
+        return RandomInt(lv_min, lv_max);
+    }
+    else {
+        if ((lv_chance < lv_chanceLimit2)) {
+            lv_min = MaxI(0, (lp_unitIndex - lp_unitTypeDeltaLvl2));
+            lv_max = MaxI((lp_unitIndex + lp_unitTypeDeltaLvl2), libDBC4E2D2_gv_numberOfProtossUnits);
+            return RandomInt(lv_min, lv_max);
+        }
+        else {
+            return RandomInt(0, lv_max);
+        }
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Random Units Mod Start
+//--------------------------------------------------------------------------------------------------
+bool lib78D24685_gt_RandomUnitsModStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string auto433BC2FB_val;
+    playergroup autoD227902D_g;
+    int autoD227902D_var;
+    playergroup auto34C6AD03_g;
+    int auto34C6AD03_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((GameAttributeGameValue("169") == "0001")) {
+        auto433BC2FB_val = GameAttributeGameValue("171");
+        if (auto433BC2FB_val == "0001") {
+            lib78D24685_gv_chancetoRandomizeUnit = 10;
+        }
+        else if (auto433BC2FB_val == "0002") {
+            lib78D24685_gv_chancetoRandomizeUnit = 20;
+        }
+        else if (auto433BC2FB_val == "0003") {
+            lib78D24685_gv_chancetoRandomizeUnit = 30;
+        }
+        else if (auto433BC2FB_val == "0004") {
+            lib78D24685_gv_chancetoRandomizeUnit = 40;
+        }
+        else if (auto433BC2FB_val == "0005") {
+            lib78D24685_gv_chancetoRandomizeUnit = 50;
+        }
+        else if (auto433BC2FB_val == "0006") {
+            lib78D24685_gv_chancetoRandomizeUnit = 60;
+        }
+        else if (auto433BC2FB_val == "0007") {
+            lib78D24685_gv_chancetoRandomizeUnit = 70;
+        }
+        else if (auto433BC2FB_val == "0008") {
+            lib78D24685_gv_chancetoRandomizeUnit = 80;
+        }
+        else if (auto433BC2FB_val == "0009") {
+            lib78D24685_gv_chancetoRandomizeUnit = 90;
+        }
+        else if (auto433BC2FB_val == "0010") {
+            lib78D24685_gv_chancetoRandomizeUnit = 100;
+        }
+        else {
+            lib78D24685_gv_chancetoRandomizeUnit = 50;
+        }
+        autoD227902D_g = PlayerGroupAll();
+        autoD227902D_var = -1;
+        while (true) {
+            autoD227902D_var = PlayerGroupNextPlayer(autoD227902D_g, autoD227902D_var);
+            if (autoD227902D_var < 0) { break; }
+            if (((GameAttributePlayerValue("170", autoD227902D_var) == "0001") || (GameAttributePlayerValue("170", autoD227902D_var) == "0003"))) {
+                PlayerGroupAdd(lv_players, autoD227902D_var);
+                libDBC4E2D2_gv_players[autoD227902D_var].lv_rANDOMUNITS.lv_messageindex = libDBC4E2D2_gv_players[autoD227902D_var].lv_uI.lv_numberofmessages;
+                libDBC4E2D2_gv_players[autoD227902D_var].lv_uI.lv_numberofmessages += 1;
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            auto34C6AD03_g = lv_players;
+            auto34C6AD03_var = -1;
+            while (true) {
+                auto34C6AD03_var = PlayerGroupNextPlayer(auto34C6AD03_g, auto34C6AD03_var);
+                if (auto34C6AD03_var < 0) { break; }
+            }
+            TextExpressionSetToken("Param/Expression/lib_78D24685_896580C0", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_78D24685_87384EC0"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_78D24685_896580C0"), StringExternal("Param/Value/lib_78D24685_B1DA95A1"), "Assets\\Textures\\btn-ability-mengsk-trooper-advancedconstruction.dds");
+        }
+        else {
+            TriggerEnable(lib78D24685_gt_ChangeCreatedUnit, false);
+            TriggerEnable(lib78D24685_gt_ChangeMorphedUnit, false);
+            TriggerEnable(lib78D24685_gt_ChangeWarpedUnit, false);
+            TriggerEnable(lib78D24685_gt_ShowResourcesDiff, false);
+        }
+    }
+    else {
+        TriggerEnable(lib78D24685_gt_ChangeCreatedUnit, false);
+        TriggerEnable(lib78D24685_gt_ChangeMorphedUnit, false);
+        TriggerEnable(lib78D24685_gt_ChangeWarpedUnit, false);
+        TriggerEnable(lib78D24685_gt_ShowResourcesDiff, false);
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib78D24685_gt_RandomUnitsModStart_Init () {
+    lib78D24685_gt_RandomUnitsModStart = TriggerCreate("lib78D24685_gt_RandomUnitsModStart_Func");
+    TriggerAddEventMapInit(lib78D24685_gt_RandomUnitsModStart);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib78D24685_gt_ChangeCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributeGameValue("169") == "0001"))) {
+            return false;
+        }
+
+        if (!(((GameAttributePlayerValue("170", UnitGetOwner(EventUnitCreatedUnit())) == "0001") || (GameAttributePlayerValue("170", UnitGetOwner(EventUnitCreatedUnit())) == "0003")))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitCreatedUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "AdeptPhaseShift"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "DisruptorPhased"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationArchon"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationColossus"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationHighTemplar"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationImmortal"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationPhoenix"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationProbe"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationStalker"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationVoidRay"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationWarpPrism"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationZealot"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationAdept"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "HallucinationDisruptor"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "Hyperjump"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "Yoink"))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != ""))) {
+            return false;
+        }
+
+        if (!((EventUnitCreatedAbil() != "WarpGateTrain"))) {
+            return false;
+        }
+
+        if (!((UnitGetType(EventUnitCreatedUnit()) != "Archon"))) {
+            return false;
+        }
+
+        if (!(((UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesMade) > 0.0)))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib78D24685_gf_ChangeCreatedUnit(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib78D24685_gt_ChangeCreatedUnit_Init () {
+    lib78D24685_gt_ChangeCreatedUnit = TriggerCreate("lib78D24685_gt_ChangeCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib78D24685_gt_ChangeCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Warped Unit
+//--------------------------------------------------------------------------------------------------
+bool lib78D24685_gt_ChangeWarpedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnitProgressUnit()), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!(((UnitTypeGetProperty(UnitGetType(EventUnitProgressUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitProgressUnit()), c_unitPropSuppliesMade) > 0.0)))) {
+            return false;
+        }
+
+        if (!(((GameAttributePlayerValue("170", UnitGetOwner(EventUnitProgressUnit())) == "0001") || (GameAttributePlayerValue("170", UnitGetOwner(EventUnitProgressUnit())) == "0003")))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib78D24685_gf_ChangeCreatedUnit(EventUnitProgressUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib78D24685_gt_ChangeWarpedUnit_Init () {
+    lib78D24685_gt_ChangeWarpedUnit = TriggerCreate("lib78D24685_gt_ChangeWarpedUnit_Func");
+    TriggerAddEventUnitConstructProgress(lib78D24685_gt_ChangeWarpedUnit, null, c_unitProgressStageComplete);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Change Morphed Unit
+//--------------------------------------------------------------------------------------------------
+bool lib78D24685_gt_ChangeMorphedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!(((EventUnitAbility() == AbilityCommand("MorphToOverseer", 0)) || (EventUnitAbility() == AbilityCommand("MorphToTransportOverlord", 0)) || (EventUnitAbility() == AbilityCommand("MorphToBroodLord", 0)) || (EventUnitAbility() == AbilityCommand("MorphZerglingToBaneling", 0)) || (EventUnitAbility() == AbilityCommand("MorphToLurker", 0)) || (EventUnitAbility() == AbilityCommand("MorphToRavager", 0))))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib78D24685_gf_ChangeCreatedUnit(EventUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib78D24685_gt_ChangeMorphedUnit_Init () {
+    lib78D24685_gt_ChangeMorphedUnit = TriggerCreate("lib78D24685_gt_ChangeMorphedUnit_Func");
+    TriggerAddEventUnitAbility(lib78D24685_gt_ChangeMorphedUnit, null, null, c_unitAbilStageComplete, false);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Show Resources Diff
+//--------------------------------------------------------------------------------------------------
+bool lib78D24685_gt_ShowResourcesDiff_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoCD38D8E9_g;
+    int autoCD38D8E9_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoCD38D8E9_g = PlayerGroupActive();
+    autoCD38D8E9_var = -1;
+    while (true) {
+        autoCD38D8E9_var = PlayerGroupNextPlayer(autoCD38D8E9_g, autoCD38D8E9_var);
+        if (autoCD38D8E9_var < 0) { break; }
+        if ((GameAttributePlayerValue("170", autoCD38D8E9_var) != "0002")) {
+            TextExpressionSetToken("Param/Expression/lib_78D24685_B851C536", "minerals", FixedToText(libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_rANDOMUNITS.lv_minerals, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_78D24685_B851C536", "gas", FixedToText(libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_rANDOMUNITS.lv_gas, c_fixedPrecisionAny));
+            libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_rANDOMUNITS.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_78D24685_B851C536");
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib78D24685_gt_ShowResourcesDiff_Init () {
+    lib78D24685_gt_ShowResourcesDiff = TriggerCreate("lib78D24685_gt_ShowResourcesDiff_Func");
+    TriggerAddEventTimePeriodic(lib78D24685_gt_ShowResourcesDiff, 1.0, c_timeReal);
+}
+
+void lib78D24685_InitTriggers () {
+    lib78D24685_gt_RandomUnitsModStart_Init();
+    lib78D24685_gt_ChangeCreatedUnit_Init();
+    lib78D24685_gt_ChangeWarpedUnit_Init();
+    lib78D24685_gt_ChangeMorphedUnit_Init();
+    lib78D24685_gt_ShowResourcesDiff_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib78D24685_InitLib_completed = false;
+
+void lib78D24685_InitLib () {
+    if (lib78D24685_InitLib_completed) {
+        return;
+    }
+
+    lib78D24685_InitLib_completed = true;
+
+    lib78D24685_InitLibraries();
+    lib78D24685_InitVariables();
+    lib78D24685_InitTriggers();
+}
+
+include "LibDBC4E2D2"
+

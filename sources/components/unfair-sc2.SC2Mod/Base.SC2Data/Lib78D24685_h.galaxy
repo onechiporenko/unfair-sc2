@@ -1,0 +1,23 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: RANDOM UNITS
+//--------------------------------------------------------------------------------------------------
+// Variable Declarations
+int lib78D24685_gv_chancetoRandomizeUnit;
+
+// Function Declarations
+void lib78D24685_gf_UpdateResourcesDiff (int lp_player, string lp_oldUnitType, string lp_newUnitType);
+void lib78D24685_gf_ChangeCreatedUnit (unit lp_createdUnit);
+int lib78D24685_gf_GetRandomUnitTypeIndex (int lp_unitIndex, int lp_maxIndexValue, int lp_unitTypeDeltaLvl1, int lp_unitTypeDeltaLvl2);
+
+// Trigger Declarations
+trigger lib78D24685_gt_RandomUnitsModStart;
+trigger lib78D24685_gt_ChangeCreatedUnit;
+trigger lib78D24685_gt_ChangeWarpedUnit;
+trigger lib78D24685_gt_ChangeMorphedUnit;
+trigger lib78D24685_gt_ShowResourcesDiff;
+
+// Library Initialization
+void lib78D24685_InitVariables ();
+

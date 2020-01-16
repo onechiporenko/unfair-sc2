@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.40
+
+* [RANDOM UNITS](./handicaps/random-units.md)
+    * [NEW] Гандикап добавлен.
+
 ## v2.39
 
 * [RANDOM RALLY POINTS](./handicaps/random-rally-points.md)

@@ -74,6 +74,10 @@
         <AutoScaleFactor value="0.800000"/>
         <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
+    <CActorModel id="UnfairSC2RandomUnitBirth" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.UnfairSC2RandomUnitBirth.Start; At Effect" Send="Create"/>
+        <Scale value="2.000000"/>
+    </CActorModel>
     <CActorModel id="UnfairSC2RiotWorkerInit" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.UnfairSC2RiotWorkerInit.Start; At Caster" Send="Create"/>
         <Model value="UnfairSC2RiotWorker"/>

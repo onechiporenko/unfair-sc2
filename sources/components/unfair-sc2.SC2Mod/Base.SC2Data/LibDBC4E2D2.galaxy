@@ -34,11 +34,11 @@ void libDBC4E2D2_InitVariables () {
         libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_armyButtonEnabled = true;
         libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_controlGroupsEnabled = true;
         libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_toggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_rIOTWORKERS.lv_toggleForReferee = c_invalidDialogControlId;
         libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_giveMineralsToggleForReferee = c_invalidDialogControlId;
         libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_takeMineralsToggleForReferee = c_invalidDialogControlId;
         libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_giveVespeneToggleForReferee = c_invalidDialogControlId;
         libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_takeVespeneToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_players[init_i].lv_rIOTWORKERS.lv_toggleForReferee = c_invalidDialogControlId;
         for (init_i2 = 0; init_i2 <= 20; init_i2 += 1) {
             libDBC4E2D2_gv_players[init_i].lv_uI.lv_dialogMessages[init_i2] = c_invalidDialogControlId;
         }
@@ -238,6 +238,7 @@ void libDBC4E2D2_gf_CreateTerranInfrastructure (int lp_player) {
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Barracks", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Starport", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "FusionCore", 0, lp_player, PlayerStartLocation(lp_player));
+    libNtve_gf_CreateUnitsWithDefaultFacing(4, "SupplyDepot", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marine", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Marauder", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Reaper", 0, lp_player, PlayerStartLocation(lp_player));
@@ -449,6 +450,256 @@ void libDBC4E2D2_gf_SetupFlyingUnits () {
     libDBC4E2D2_gv_numberOfFlyingUnits = 30;
 }
 
+void libDBC4E2D2_gf_SetupProtossUnits () {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Probe";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Zealot";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Adept";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Stalker";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "WarpPrism";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Observer";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Sentry";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Immortal";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Oracle";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Phoenix";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "VoidRay";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "HighTemplar";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "DarkTemplar";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Colossus";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Archon";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Disruptor";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Carrier";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Tempest";
+    lv_i += 1;
+    libDBC4E2D2_gv_protossUnits[lv_i] = "Mothership";
+    libDBC4E2D2_gv_numberOfProtossUnits = lv_i;
+}
+
+void libDBC4E2D2_gf_SetupTerranUnits () {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libDBC4E2D2_gv_terranUnits[lv_i] = "SCV";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Marine";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Marauder";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Reaper";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Hellion";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "HellionTank";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "HHWidowMineACGluescreenDummy";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "SiegeTank";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Cyclone";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Medivac";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "VikingFighter";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Banshee";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Ghost";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Liberator";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Raven";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "ThorAP";
+    lv_i += 1;
+    libDBC4E2D2_gv_terranUnits[lv_i] = "Battlecruiser";
+    libDBC4E2D2_gv_numberOfTerranUnits = lv_i;
+}
+
+void libDBC4E2D2_gf_SetupZergUnits () {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Drone";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Zergling";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Overlord";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Queen";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Roach";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "OverlordTransport";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Baneling";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Ravager";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Hydralisk";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Overseer";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Infestor";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Corruptor";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "LurkerMP";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "SwarmHostMP";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Mutalisk";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Viper";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "Ultralisk";
+    lv_i += 1;
+    libDBC4E2D2_gv_zergUnits[lv_i] = "BroodLord";
+    libDBC4E2D2_gv_numberOfZergUnits = lv_i;
+}
+
+void libDBC4E2D2_gf_SetupAllUnits () {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libDBC4E2D2_gv_allUnits[lv_i] = "Drone";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Probe";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "SCV";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Zergling";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Marine";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Overlord";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Zealot";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Queen";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Roach";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "HHWidowMineACGluescreenDummy";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Reaper";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Baneling";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "OverlordTransport";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Hellion";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Adept";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Marauder";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Stalker";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Observer";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Ravager";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Ghost";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "WarpPrism";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Overseer";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Hydralisk";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Cyclone";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Sentry";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "SiegeTank";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Infestor";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Immortal";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Corruptor";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Medivac";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "SwarmHostMP";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Mutalisk";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "VikingFighter";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Phoenix";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Banshee";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Oracle";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Liberator";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "VoidRay";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "LurkerMP";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "HighTemplar";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "DarkTemplar";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Raven";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Disruptor";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Viper";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Tempest";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Ultralisk";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Thor";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Colossus";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Carrier";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "BroodLord";
+    lv_i += 1;
+    libDBC4E2D2_gv_allUnits[lv_i] = "Battlecruiser";
+    libDBC4E2D2_gv_numberOfAllUnits = lv_i;
+}
+
 trigger auto_libDBC4E2D2_gf_ShowCountDownProgressBar_Trigger = null;
 int auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_width;
 int auto_libDBC4E2D2_gf_ShowCountDownProgressBar_lp_height;
@@ -557,6 +808,10 @@ bool libDBC4E2D2_gt_SETUP_Func (bool testConds, bool runActions) {
     libDBC4E2D2_gf_SetupUnitTypesWithEnergy();
     libDBC4E2D2_gf_SetupUnitTypesGiveSupply();
     libDBC4E2D2_gf_SetupFlyingUnits();
+    libDBC4E2D2_gf_SetupProtossUnits();
+    libDBC4E2D2_gf_SetupTerranUnits();
+    libDBC4E2D2_gf_SetupZergUnits();
+    libDBC4E2D2_gf_SetupAllUnits();
     TriggerSendEvent(libDBC4E2D2_gv_sETUPCOMPLETEEVENT);
     Wait(2.0, c_timeGame);
     autoB891AF4B_g = PlayerGroupActive();

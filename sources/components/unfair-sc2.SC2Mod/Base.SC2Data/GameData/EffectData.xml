@@ -125,6 +125,10 @@
         <CreateFlags index="SetFacing" value="1"/>
         <SpawnUnit value="MissileTurret"/>
     </CEffectCreateUnit>
+    <CEffectApplyBehavior id="UnfairSC2RandomUnitBirth">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="UnfairSC2RiotWorkerInit">
         <EditorCategories value=""/>
         <Behavior value="UnfairSC2RiotWorker"/>

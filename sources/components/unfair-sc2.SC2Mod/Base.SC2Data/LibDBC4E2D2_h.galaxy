@@ -92,6 +92,12 @@ struct libDBC4E2D2_gs_DoublePlayerOptions {
     int lv_messageindex;
 };
 
+struct libDBC4E2D2_gs_RandomUnitsPlayerOptions {
+    int lv_minerals;
+    int lv_gas;
+    int lv_messageindex;
+};
+
 struct libDBC4E2D2_gs_BountyPlayerOptions {
     fixed lv_minerals;
     fixed lv_gas;
@@ -168,8 +174,9 @@ struct libDBC4E2D2_gs_PlayerOptions {
     libDBC4E2D2_gs_MoveSpeedPlayerOptions lv_mOVESPEED;
     libDBC4E2D2_gs_NukedPlayerOptions lv_nUKED;
     libDBC4E2D2_gs_OrderCostsPlayerOptions lv_oRDERCOSTS;
-    libDBC4E2D2_gs_RiotOptions lv_rIOTWORKERS;
+    libDBC4E2D2_gs_RandomUnitsPlayerOptions lv_rANDOMUNITS;
     libDBC4E2D2_gs_ResourcesOptions lv_rESOURCES;
+    libDBC4E2D2_gs_RiotOptions lv_rIOTWORKERS;
     libDBC4E2D2_gs_TemporalFieldsPlayerOptions lv_tEMPORALFIELDS;
     libDBC4E2D2_gs_PlayerUI lv_uI;
     libDBC4E2D2_gs_VampirismPlayerOptions lv_vAMPIRISM;
@@ -182,6 +189,14 @@ string libDBC4E2D2_gv_sETUPCOMPLETEEVENT;
 int libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
 int libDBC4E2D2_gv_numberOfUnitTypesGiveSupply;
 int libDBC4E2D2_gv_numberOfFlyingUnits;
+int libDBC4E2D2_gv_numberOfProtossUnits;
+int libDBC4E2D2_gv_numberOfTerranUnits;
+int libDBC4E2D2_gv_numberOfZergUnits;
+int libDBC4E2D2_gv_numberOfAllUnits;
+string[51] libDBC4E2D2_gv_protossUnits;
+string[51] libDBC4E2D2_gv_terranUnits;
+string[51] libDBC4E2D2_gv_zergUnits;
+string[151] libDBC4E2D2_gv_allUnits;
 string[23] libDBC4E2D2_gv_unitTypesWithEnergy;
 string[32] libDBC4E2D2_gv_flyingUnits;
 string[101] libDBC4E2D2_gv_unitTypesGiveSupply;
@@ -206,6 +221,10 @@ int libDBC4E2D2_gf_GetRandomEnemyPlayer (int lp_player);
 void libDBC4E2D2_gf_SetupUnitTypesWithEnergy ();
 void libDBC4E2D2_gf_SetupUnitTypesGiveSupply ();
 void libDBC4E2D2_gf_SetupFlyingUnits ();
+void libDBC4E2D2_gf_SetupProtossUnits ();
+void libDBC4E2D2_gf_SetupTerranUnits ();
+void libDBC4E2D2_gf_SetupZergUnits ();
+void libDBC4E2D2_gf_SetupAllUnits ();
 void libDBC4E2D2_gf_ShowCountDownProgressBar (int lp_width, int lp_height, fixed lp_duration, playergroup lp_playersToShow);
 void libDBC4E2D2_gf_ShowResourcesBaloonForUnit (unit lp_unit, int lp_amount, bool lp_type);
 void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, fixed lp_showTime, point lp_point, playergroup lp_playersToShow);

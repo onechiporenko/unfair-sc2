@@ -61,6 +61,7 @@ Unfair SC2 - это модификация для StarCraft2, которая с�
 * [PURE MINERALS](./handicaps/pure-minerals.md)
 * [QUEEN](./handicaps/queen.md)
 * [RANDOM RALLY POINTS](./handicaps/random-rally-points.md)
+* [RANDOM UNITS](./handicaps/random-units.md)
 * [REDUCE MINING](./handicaps/reduce-mining.md)
 * [RIOT WORKERS](./handicaps/riot-workers.md)
 * [SOULS CATCHER](./handicaps/souls-catcher.md)

@@ -6356,6 +6356,164 @@
         </Default>
     </Attribute>
     <Attribute>
+        <Id Value="169"/>
+        <Type Value="Global"/>
+        <Name Value="Attribute169/Name"/>
+        <Description Value="Attribute169/Desc"/>
+        <Availability Value="All"/>
+        <Visibility Value="All"/>
+        <Access Value="Host"/>
+        <Value>
+            <Id Value="1"/>
+            <Name Value="Attribute169/Value001/Name"/>
+        </Value>
+        <Value>
+            <Id Value="2"/>
+            <Name Value="Attribute169/Value002/Name"/>
+        </Value>
+        <Default>
+            <Slot Id="Global"/>
+            <Value Id="2"/>
+        </Default>
+    </Attribute>
+    <Attribute>
+        <Id Value="171"/>
+        <Type Value="Global"/>
+        <Name Value="Attribute171/Name"/>
+        <Description Value="Attribute171/Desc"/>
+        <Availability Value="All"/>
+        <Visibility Value="All"/>
+        <Access Value="Host"/>
+        <Requirement>
+            <Attribute Id="169"/>
+            <Value Id="1"/>
+        </Requirement>
+        <Value>
+            <Id Value="1"/>
+            <Name Value="Attribute171/Value001/Name"/>
+        </Value>
+        <Value>
+            <Id Value="2"/>
+            <Name Value="Attribute171/Value002/Name"/>
+        </Value>
+        <Value>
+            <Id Value="3"/>
+            <Name Value="Attribute171/Value003/Name"/>
+        </Value>
+        <Value>
+            <Id Value="4"/>
+            <Name Value="Attribute171/Value004/Name"/>
+        </Value>
+        <Value>
+            <Id Value="5"/>
+            <Name Value="Attribute171/Value005/Name"/>
+        </Value>
+        <Value>
+            <Id Value="6"/>
+            <Name Value="Attribute171/Value006/Name"/>
+        </Value>
+        <Value>
+            <Id Value="7"/>
+            <Name Value="Attribute171/Value007/Name"/>
+        </Value>
+        <Value>
+            <Id Value="8"/>
+            <Name Value="Attribute171/Value008/Name"/>
+        </Value>
+        <Value>
+            <Id Value="9"/>
+            <Name Value="Attribute171/Value009/Name"/>
+        </Value>
+        <Value>
+            <Id Value="10"/>
+            <Name Value="Attribute171/Value010/Name"/>
+        </Value>
+        <Default>
+            <Slot Id="Global"/>
+            <Value Id="5"/>
+        </Default>
+    </Attribute>
+    <Attribute>
+        <Id Value="170"/>
+        <Type Value="Player"/>
+        <Name Value="Attribute170/Name"/>
+        <Availability Value="All"/>
+        <Visibility Value="All"/>
+        <Access Value="Host"/>
+        <Requirement>
+            <Attribute Id="169"/>
+            <Value Id="1"/>
+        </Requirement>
+        <Value>
+            <Id Value="1"/>
+            <Name Value="Attribute170/Value001/Name"/>
+        </Value>
+        <Value>
+            <Id Value="3"/>
+            <Name Value="Attribute170/Value003/Name"/>
+        </Value>
+        <Value>
+            <Id Value="2"/>
+            <Name Value="Attribute170/Value002/Name"/>
+        </Value>
+        <Default>
+            <Slot Id="1"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="2"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="3"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="4"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="5"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="6"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="7"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="8"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="9"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="10"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="11"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="12"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="13"/>
+            <Value Id="2"/>
+        </Default>
+        <Default>
+            <Slot Id="14"/>
+            <Value Id="2"/>
+        </Default>
+    </Attribute>
+    <Attribute>
         <Id Value="27"/>
         <Type Value="Global"/>
         <Name Value="Attribute027/Name"/>

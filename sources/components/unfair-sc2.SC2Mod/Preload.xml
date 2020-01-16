@@ -54,6 +54,7 @@
 <Asset path="assets\textures\btn-tips-richminerals.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-stetmann-stetelliteoverloadspeed.dds" Type="Image"/>
 <Asset path="assets\textures\btn-upgrade-terran-nova-snipeenergyrefund.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-mengsk-trooper-advancedconstruction.dds" Type="Image"/>
 <Asset path="assets\textures\btn-unit-collection-defensivematrixdrone-covertops.dds" Type="Image"/>
 <Asset path="assets\textures\btn-unit-protoss-blizzcon17-probe.dds" Type="Image"/>
 <Asset path="assets\textures\decaltag_clanlogo_diff_playerproxy_00.lvl0" Type="Image"/>
@@ -83,6 +84,7 @@
 <Behavior id="Detector10"/>
 <Behavior id="Contaminated"/>
 <Behavior id="Detector9"/>
+<Behavior id="SpectreShield"/>
 <Behavior id="ReaperRegen"/>
 <Behavior id="TimeStopStun"/>
 <Behavior id="UnfairSC2RiotWorker"/>
@@ -122,6 +124,7 @@
 <Effect id="TemporalFieldCreatePersistent"/>
 <Effect id="CorsairMPDisruptionWebCreatePersistent"/>
 <Effect id="TemporalFieldAfterBubbleCreatePersistent"/>
+<Effect id="UnfairSC2RandomUnitBirth"/>
 <Model id="PingNuke"/>
 <Model id="MinimapPing"/>
 <Model id="PingWarning"/>
@@ -138,6 +141,7 @@
 <Model id="UnfairSC2GoldGasSpawn"/>
 <Model id="UnfairSC2GoldenMineralsSpawn"/>
 <Model id="UnfairSC2PureMineralsSpawn"/>
+<Model id="UnfairSC2RandomUnitRandomBox"/>
 <Sound id="UI_PlayerCameraSelect"/>
 <Sound id="UI_TerranKlaxonAlert"/>
 <Sound id="TUIWarningPing"/>
@@ -146,6 +150,7 @@
 <Unit id="Mothership"/>
 <Unit id="PointDefenseDrone"/>
 <Unit id="CommandCenter"/>
+<Unit id="SupplyDepot"/>
 <Unit id="Barracks"/>
 <Unit id="EngineeringBay"/>
 <Unit id="GhostAcademy"/>

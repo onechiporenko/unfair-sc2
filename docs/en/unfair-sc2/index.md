@@ -1,6 +1,6 @@
 # Unfair SC2
 
-Unfair SC2 - это модификация для StarCraft2, которая состоит из ряда гандикапов и предназначена для матчей между игроками с разным уровнем игры. Представленные гандикапы могут использоваться как по отдельности, так и вместе.
+Unfair SC2 is a modification for StarCraft2, which consists of a number of handicaps and is designed for matches between players with different levels of the game. Presented handicaps can be used both individually and together.
 
 * [CHANGELOG](./changelog.md)
 
@@ -60,6 +60,7 @@ Unfair SC2 - это модификация для StarCraft2, которая с�
 * [PURE MINERALS](./handicaps/pure-minerals.md)
 * [QUEEN](./handicaps/queen.md)
 * [RANDOM RALLY POINTS](./handicaps/random-rally-points.md)
+* [RANDOM UNITS](./handicaps/random-units.md)
 * [REDUCE MINING](./handicaps/reduce-mining.md)
 * [RIOT WORKERS](./handicaps/riot-workers.md)
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
