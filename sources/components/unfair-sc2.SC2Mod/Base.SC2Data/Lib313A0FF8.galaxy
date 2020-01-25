@@ -140,7 +140,7 @@ bool lib313A0FF8_gt_UnitTakesDamage_Func (bool testConds, bool runActions) {
     }
 
     lv_healing = (lv_damageDone / (100.0 / libDBC4E2D2_gv_players[EventUnitDamageSourcePlayer()].lv_vAMPIRISM.lv_rate));
-    libNtve_gf_AttachModelToUnit(EventUnitDamageSourceUnit(), "MedicHealModel", "Ref_Overhead");
+    UnitCreateEffectUnit(EventUnitDamageSourceUnit(), "UnfairSC2Vampirism", EventUnitDamageSourceUnit());
     if ((UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLifePercent, c_unitPropCurrent) < 100.0)) {
         UnitSetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLife, (UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLife, c_unitPropCurrent) + lv_healing));
     }

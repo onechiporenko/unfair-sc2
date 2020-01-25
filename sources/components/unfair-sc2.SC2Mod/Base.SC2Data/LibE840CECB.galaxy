@@ -88,16 +88,11 @@ bool auto_libE840CECB_gf_Decimatio_TriggerFunc (bool testConds, bool runActions)
 
     // Implementation
     lv_allUnits = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile), (1 << (c_targetFilterStasis - 32)) | (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHallucination - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0);
-    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Larva", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("InfestedTerransEgg", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
     UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Overseer", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
     UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Overseer", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
     UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("OverlordCocoon", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
     UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Overlord", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Interceptor", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("LocustMP", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("LocustMPFlying", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
-    UnitGroupRemoveUnitGroup(lv_allUnits, UnitGroup("Broodling", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    lv_allUnits = libDBC4E2D2_gf_FilterOutAmmoUnits(lv_allUnits, lp_player);
     lv_unitsCount = UnitGroupCount(lv_allUnits, c_unitCountAlive);
     lv_unitsToKillCount = RoundI((lv_unitsCount / 10.0));
     UnitGroupClear(lv_unitsToKill);

@@ -125,6 +125,139 @@
         <CreateFlags index="SetFacing" value="1"/>
         <SpawnUnit value="MissileTurret"/>
     </CEffectCreateUnit>
+    <CEffectApplyBehavior id="UnfairSC2AcidSprayApplyBuff">
+        <EditorCategories value=""/>
+        <Behavior value="UnfairSC2AcidSpray"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="UnfairSC2AcidSprayBubble">
+        <EditorCategories value=""/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="UnfairSC2AcidSprayBubbles">
+        <EditorCategories value=""/>
+        <Flags index="RandomOffset" value="1"/>
+        <Flags index="RandomPeriod" value="1"/>
+        <PeriodCount value="30"/>
+        <PeriodicEffectArray value="UnfairSC2AcidSprayBubble"/>
+        <PeriodicOffsetArray value="2,0,0"/>
+        <PeriodicOffsetArray value="-2,0,0"/>
+        <PeriodicOffsetArray value="0,2,0"/>
+        <PeriodicOffsetArray value="0,-2,0"/>
+        <PeriodicOffsetArray value="0,0,0"/>
+        <PeriodicOffsetArray value="1,0,0"/>
+        <PeriodicOffsetArray value="-1,0,0"/>
+        <PeriodicOffsetArray value="0,1,0"/>
+        <PeriodicOffsetArray value="0,-1,0"/>
+        <PeriodicOffsetArray value="1,1,0"/>
+        <PeriodicOffsetArray value="1,-1,0"/>
+        <PeriodicOffsetArray value="-1,1,0"/>
+        <PeriodicOffsetArray value="-1,-1,0"/>
+        <PeriodicOffsetArray value="2,2,0"/>
+        <PeriodicOffsetArray value="2,-2,0"/>
+        <PeriodicOffsetArray value="-2,2,0"/>
+        <PeriodicOffsetArray value="-2,-2,0"/>
+        <PeriodicPeriodArray value="0.1"/>
+        <PeriodicPeriodArray value="0.2"/>
+        <PeriodicPeriodArray value="0.3"/>
+    </CEffectCreatePersistent>
+    <CEffectDamage id="UnfairSC2AcidSprayDamage">
+        <ValidatorArray value="UnfairSC2CastTargetFilter"/>
+        <EditorCategories value=""/>
+        <Visibility value="Hidden"/>
+        <Amount value="2"/>
+    </CEffectDamage>
+    <CEffectDamage id="UnfairSC2AcidSprayDamage2">
+        <ValidatorArray value="UnfairSC2CastTargetFilter"/>
+        <EditorCategories value=""/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Amount value="2"/>
+    </CEffectDamage>
+    <CEffectSet id="UnfairSC2AcidSprayInit">
+        <EditorCategories value=""/>
+        <EffectArray value="UnfairSC2AcidSprayPersistent"/>
+        <EffectArray value="UnfairSC2AcidSprayBubbles"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSet>
+    <CEffectLaunchMissile id="UnfairSC2AcidSprayLaunchMissle">
+        <EditorCategories value=""/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="UnfairSC2AcidSprayInit"/>
+        <AmmoUnit value="UnfairSC2AcidSprayMissile"/>
+    </CEffectLaunchMissile>
+    <CEffectCreatePersistent id="UnfairSC2AcidSprayPersistent">
+        <EditorCategories value=""/>
+        <InitialEffect value="UnfairSC2AcidSpraySearch"/>
+        <PeriodCount value="30"/>
+        <PeriodicEffectArray value="UnfairSC2AcidSpraySearch"/>
+        <PeriodicPeriodArray value="0.3"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="UnfairSC2AcidSpraySearch">
+        <EditorCategories value=""/>
+        <AINotifyFlags index="HurtFriend" value="1"/>
+        <AINotifyFlags index="HurtEnemy" value="1"/>
+        <SearchFilters value="-;Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="3" Effect="UnfairSC2AcidSprayApplyBuff"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="UnfairSC2BecomeFightClubMember">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UnfairSC2Darkness">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectEnumArea id="UnfairSC2ExtraArmorSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Ally,Neutral,Enemy,Structure,Missile,Stasis,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="4" Effect="UnfairSC2ExtraArmorApplyBuff"/>
+    </CEffectEnumArea>
+    <CEffectApplyBehavior id="UnfairSC2ExtraArmorApplyBuff">
+        <EditorCategories value=""/>
+        <Behavior value="UnfairSC2ExtraArmor"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="UnfairSC2ExtraArmorInit">
+        <EditorCategories value=""/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="UnfairSC2ExtraArmorSearch"/>
+    </CEffectCreatePersistent>
+    <CEffectCreatePersistent id="UnfairSC2FallingRocks">
+        <EditorCategories value=""/>
+        <PeriodCount value="3"/>
+        <PeriodicEffectArray value="UnfairSC2FallingRocksStartAnimation"/>
+        <PeriodicEffectArray value="UnfairSC2FallingRocksRocksAnimation"/>
+        <PeriodicEffectArray value="UnfairSC2FallingRocksSearch"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="0"/>
+        <PeriodicPeriodArray value="4"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="UnfairSC2FallingRocksAB">
+        <EditorCategories value=""/>
+        <EffectArray value="UnfairSC2FallingRocksStun"/>
+        <EffectArray value="UnfairSC2FallingRocksDamage"/>
+    </CEffectSet>
+    <CEffectDamage id="UnfairSC2FallingRocksDamage">
+        <EditorCategories value=""/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Amount value="45"/>
+    </CEffectDamage>
+    <CEffectCreatePersistent id="UnfairSC2FallingRocksRocksAnimation">
+        <EditorCategories value=""/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="UnfairSC2FallingRocksSearch">
+        <EditorCategories value=""/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="2" Effect="UnfairSC2FallingRocksAB"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="UnfairSC2FallingRocksStartAnimation">
+        <EditorCategories value=""/>
+    </CEffectCreatePersistent>
+    <CEffectApplyBehavior id="UnfairSC2FallingRocksStun">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UnfairSC2LeaveFightClub">
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="UnfairSC2RandomUnitBirth">
         <ValidatorArray index="0" removed="1"/>
         <EditorCategories value=""/>
@@ -132,6 +265,13 @@
     <CEffectApplyBehavior id="UnfairSC2RiotWorkerInit">
         <EditorCategories value=""/>
         <Behavior value="UnfairSC2RiotWorker"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UnfairSC2RiotWorkerStop">
+        <ValidatorArray index="0" removed="1"/>
+        <EditorCategories value=""/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="UnfairSC2Vampirism">
+        <EditorCategories value=""/>
     </CEffectApplyBehavior>
     <CEffectModifyUnit id="UnfairSC2WaaaghInit">
         <EditorCategories value=""/>
@@ -172,9 +312,6 @@
     <CEffectEnumArea id="ThermalLancesEReverse">
         <SearchFilters value="-;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
-    <CEffectApplyBehavior id="UnfairSC2VampiricReaction">
-        <EditorCategories value=""/>
-    </CEffectApplyBehavior>
     <CEffectApplyBehavior id="UnfairSC2WalkingDeadBirth">
         <ValidatorArray index="0" removed="1"/>
         <EditorCategories value=""/>

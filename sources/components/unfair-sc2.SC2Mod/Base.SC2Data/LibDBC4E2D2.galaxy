@@ -52,6 +52,25 @@ void libDBC4E2D2_InitVariables () {
 
 // Presets
 // Functions
+unitgroup libDBC4E2D2_gf_FilterOutAmmoUnits (unitgroup lp_unitsGroupToFilter, int lp_unitsOwner) {
+    // Variable Declarations
+    unitgroup lv_resultUnitsGroup;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_resultUnitsGroup = UnitGroupEmpty();
+
+    // Implementation
+    UnitGroupAddUnitGroup(lv_resultUnitsGroup, lp_unitsGroupToFilter);
+    UnitGroupRemoveUnitGroup(lv_resultUnitsGroup, UnitGroup("Larva", lp_unitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_resultUnitsGroup, UnitGroup("InfestedTerransEgg", lp_unitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_resultUnitsGroup, UnitGroup("Interceptor", lp_unitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_resultUnitsGroup, UnitGroup("LocustMP", lp_unitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_resultUnitsGroup, UnitGroup("LocustMPFlying", lp_unitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    UnitGroupRemoveUnitGroup(lv_resultUnitsGroup, UnitGroup("Broodling", lp_unitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    return lv_resultUnitsGroup;
+}
+
 text libDBC4E2D2_gf_GetPlayerNamesColored (playergroup lp_players) {
     // Variable Declarations
     text lv_message;

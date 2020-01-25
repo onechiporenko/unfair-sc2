@@ -1,10 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CBehaviorBuff id="UnfairSC2AcidSpray">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <TimeScaleSource Value="Global"/>
+        <Duration value="0.4"/>
+        <Period value="0.3"/>
+        <InitialEffect value="UnfairSC2AcidSprayDamage2"/>
+        <PeriodicEffect value="UnfairSC2AcidSprayDamage"/>
+        <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ravasaur-dissolvingacid.dds"/>
+        <Modification>
+            <AdditiveMoveSpeedFactor value="-0.1"/>
+            <AdditiveAttackSpeedFactor value="-0.1"/>
+            <LifeArmorBonus value="-1"/>
+            <ShieldArmorBonus value="-1"/>
+        </Modification>
+        <ReplaceLocation History="Damage"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2ExtraArmor">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel3.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="15"/>
+        <Modification LifeArmorBonus="5" ShieldArmorBonus="5"/>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2FallingRocksStun">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds"/>
+        <BehaviorCategories index="Stun" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Duration value="3"/>
+        <Modification>
+            <StateFlags index="Stun" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSC2FightClubMember">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <InitialEffect value="UnfairSC2BecomeFightClubMember"/>
+        <FinalEffect value="UnfairSC2LeaveFightClub"/>
+    </CBehaviorBuff>
     <CBehaviorBuff id="UnfairSC2RiotWorker">
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-setworkerrallypoint.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <InitialEffect value="UnfairSC2RiotWorkerInit"/>
+        <FinalEffect value="UnfairSC2RiotWorkerStop"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="UnfairSC2Waaagh">
         <Tooltip value="Unfair SC2 WAAAGH!"/>
@@ -233,6 +275,7 @@
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Modification SightBonus="-4"/>
         <Alignment value="Negative"/>
+        <InitialEffect value="UnfairSC2Darkness"/>
     </CBehaviorBuff>
     <CBehaviorBuff id="UnfairSc2MoveSpeed">
         <Cost>

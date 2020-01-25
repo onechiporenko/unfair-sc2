@@ -1,4 +1,7 @@
 ﻿Abil/Name/PsiStorm2=Psi Storm Копия
+Abil/Name/UnfairSC2AcidSpray=Acid Spray
+Abil/Name/UnfairSC2ExtraArmor=Extra Armor
+Abil/Name/UnfairSC2FallingRocks=Falling Rocks
 Abil/Name/UnfairSC2MacroDefProtoss=Unfair SC2 Macro Def Protoss
 Abil/Name/UnfairSC2MacroDefTerran=Unfair SC2 Macro Def Terran
 Abil/Name/UnfairSC2MacroDefZerg=Unfair SC2 Macro Def Zerg
@@ -691,6 +694,7 @@ Attribute146/Name=Fight Club for Player
 Attribute146/Value001/Name=Disabled
 Attribute146/Value002/Name=Only workers
 Attribute146/Value003/Name=All units
+Attribute146/Value004/Name=Not workers
 Attribute147/Name= -- Fight Freequency
 Attribute147/Value001/Name=10
 Attribute147/Value002/Name=20
@@ -850,10 +854,13 @@ Behavior/Name/FairCannon=Fair Cannon
 Behavior/Name/FairCannonsAura=Fair Cannons (Aura)
 Behavior/Name/Slowness=No attack
 Behavior/Name/SlownessAura=No attack (Aura)
+Behavior/Name/UnfairSC2AcidSpray=Acid Spray
 Behavior/Name/UnfairSC2CatchedSoul=Unfair SC2 Caught Soul
 Behavior/Name/UnfairSC2CritMiss=UnfairSC2 Crit Miss
 Behavior/Name/UnfairSC2CriticalStrike=UnfairSC2 Critical Strike
 Behavior/Name/UnfairSC2DamageReductionShield=Unfair SC2 Damage Reduction Shield
+Behavior/Name/UnfairSC2ExtraArmor=Extra Armor
+Behavior/Name/UnfairSC2FallingRocksStun=Falling Rocks Stun
 Behavior/Name/UnfairSC2RiotWorker=Unfair SC2 Riot Worker
 Behavior/Name/UnfairSC2Waaagh=Unfair SC2 Waaagh
 Behavior/Name/UnfairSC2WaaaghAura=Unfair SC2 Waaagh (Aura)
@@ -870,10 +877,13 @@ Behavior/Name/UnfairSc2BerserkersBlood80=Unfair SC2 Berserker's Blood lvl3
 Behavior/Name/UnfairSc2Darkness=Unfair SC2 Darkness
 Behavior/Name/UnfairSc2MoveSpeed=Unfair SC2 Move Speed
 Behavior/Name/UnfairSc2Supply=UnfairSc2Supply
+Behavior/Tooltip/UnfairSC2AcidSpray=Deals about 64 damage for 7 seconds.<n/>Attack speed is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.AdditiveAttackSpeedFactor*100" precision="1"/>%.<n/>Move speed is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.AdditiveMoveSpeedFactor*100" precison="1"/>%.<n/>Armor is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.ShieldArmorBonus"/>.<n/>Shield is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.LifeArmorBonus"/>.
 Behavior/Tooltip/UnfairSC2CatchedSoul=Soul of fallen unit serving you<n/><n/>Attack speed is <d ref="Behavior,UnfairSC2CatchedSoul,Modification.AttackSpeedMultiplier*100"/>%<n/>Armor is <d ref="Behavior,UnfairSC2CatchedSoul,Modification.LifeArmorMultiplier*100"/>%<n/>Shield is <d ref="Behavior,UnfairSC2CatchedSoul,Modification.ShieldArmorMultiplier*100"/>%<n/>HP is 50%
 Behavior/Tooltip/UnfairSC2CritMiss=Unit has a <d ref="Behavior,UnfairSC2CritMiss,DamageResponse.Chance * 100"/>% chance to miss and do a damage to himself.<n/><n/>Sometimes self-damage is not done (however text "-**" is shown ).
 Behavior/Tooltip/UnfairSC2CriticalStrike=Unit has a <d ref="Behavior,UnfairSC2CriticalStrike,DamageResponse.Chance * 100"/>% change to deal x<d ref="Behavior,UnfairSC2CriticalStrike,DamageResponse.ModifyFraction"/> damage
 Behavior/Tooltip/UnfairSC2DamageReductionShield=Reduce taken damage to <d ref="Behavior,UnfairSC2DamageReductionShield,DamageResponse.ClampMaximum"/>
+Behavior/Tooltip/UnfairSC2ExtraArmor=Add <d ref="Behavior,UnfairSC2ExtraArmor,Modification.LifeArmorBonus"/> armor and <d ref="Behavior,UnfairSC2ExtraArmor,Modification.ShieldArmorBonus"/> shields for <d ref="Behavior,UnfairSC2ExtraArmor,Duration"/> seconds
+Behavior/Tooltip/UnfairSC2FallingRocksStun=Stunned for <d ref="Behavior,UnfairSC2FallingRocksStun,Duration"/> seconds
 Behavior/Tooltip/UnfairSC2WalkingDead=Zombie<n/><n/>Attack speed is <d ref="Behavior,UnfairSC2WalkingDead,Modification.AttackSpeedMultiplier*100"/>%<n/>Armor is <d ref="Behavior,UnfairSC2WalkingDead,Modification.LifeArmorMultiplier*100"/>%<n/>Move Speed is <d ref="Behavior,UnfairSC2WalkingDead,Modification.MoveSpeedMultiplier*100"/>%<n/><n/>Life Time <d ref="Behavior,UnfairSC2WalkingDead,Duration"/>s (0 for no life time)
 Behavior/Tooltip/UnfairSc2BerserkersBlood10=Attack speed is x<d ref="Behavior,UnfairSc2BerserkersBlood10,Modification.AttackSpeedMultiplier" precision="1" />
 Behavior/Tooltip/UnfairSc2BerserkersBlood102=Unit has a default attack speed
@@ -891,12 +901,23 @@ Behavior/Tooltip/UnfairSc2MoveSpeed=Move speed is <d ref="Behavior,UnfairSc2Move
 Berserker's Blood 90=Unfair SC2 Berserker's Blood lvl2
 Button/Name/CommanderNovaDefensiveMatrixDroneCharges=Macro Def
 Button/Name/CommanderStukovBunkerBonuses=Macro Def Terran
+Button/Name/UnfairSC2AcidSpray=Acid Spray
+Button/Name/UnfairSC2ExtraArmor=Extra Armor
+Button/Name/UnfairSC2FallingRocks=Falling Rocks
+Button/Name/UnfairSC2MacroDefProtoss=Unfair SC2 Macro Def Protoss
 Button/Name/UnfairSC2MacroDefTerran=Unfair SC2 Macro Def Terran
+Button/Name/UnfairSC2MacroDefZerg=Unfair SC2 Macro Def Zerg
 Button/Name/UpgradeToPlanetaryFortress=
 Button/Tooltip/CommanderNovaDefensiveMatrixDroneCharges=
 Button/Tooltip/CommanderStukovBunkerBonuses=
-Button/Tooltip/Pylon2=Снабжает энергией соседние строения. <n/>Количество пилонов определяет максимальный размер армии протоссов.
 Button/Tooltip/SCV=Универсальный рабочий модуль. Может добывать ресурсы, строить здания и проводить ремонтные работы.<n/><n/><c val="#ColorAttackInfo">Атакует только наземные цели.</c>
+Button/Tooltip/UnfairSC2AcidSpray=Deals about 64 damage for 7 seconds to all units in the area. Each unit in the area will get next debuffs:<n/>Attack speed is reduced by <c val="800000"><d ref="-Behavior,UnfairSC2AcidSpray,Modification.AdditiveAttackSpeedFactor*100" precision="1"/>%</c>.<n/>Move speed is reduced by <c val="800000"><d ref="-Behavior,UnfairSC2AcidSpray,Modification.AdditiveMoveSpeedFactor*100" precison="1"/>%</c>.<n/>Armor is reduced by <c val="800000"><d ref="-Behavior,UnfairSC2AcidSpray,Modification.ShieldArmorBonus"/></c>.<n/>Shield is reduced by <c val="800000"><d ref="-Behavior,UnfairSC2AcidSpray,Modification.LifeArmorBonus"/></c>.
+Button/Tooltip/UnfairSC2ExtraArmor=Add <c val="008000"><d ref="Behavior,UnfairSC2ExtraArmor,Modification.LifeArmorBonus"/></c> armor and <c val="008000"><d ref="Behavior,UnfairSC2ExtraArmor,Modification.ShieldArmorBonus"/></c> shields for <d ref="Behavior,UnfairSC2ExtraArmor,Duration"/> seconds to all own units in range of <d ref="Effect,UnfairSC2ExtraArmorSearch,AreaArray[0].Radius"/>
+Button/Tooltip/UnfairSC2FallingRocks=Deals <c val="800000"><d ref="Effect,UnfairSC2FallingRocksDamage,Amount"/></c> damage and stun for <c val="800000"><d ref="Behavior,UnfairSC2FallingRocksStun,Duration"/></c> seconds every enemy unit in the area with radius <d ref="Effect,UnfairSC2FallingRocksSearch,AreaArray[0].Radius"/>
+Button/Tooltip/UnfairSC2MacroDefProtoss=Create 4 pylons, 4 photon cannons and 4 stasis traps
+Button/Tooltip/UnfairSC2MacroDefTerran=Create 4 widow mines, 4 turrets and 1 sensor tower
+Button/Tooltip/UnfairSC2MacroDefZerg=Create 4 Spine Crawlers and 4 Spore Crawlers
+Button/Tooltip/UnfairSC2SuperCaster=Могущественный воин-псионик. Может использовать способности «Противодействие» и «Псионный шторм» (после соответствующего улучшения). Может переродиться в архонта.<n/><n/><c val="ffff8a">Атакует только наземные цели.</c>
 Can't attack=
 Disable enemies attack=
 DocInfo/DescLong=Unfair SC2 is a modification for StarCraft2, which consists of a number of handicaps and is designed for matches between players with different levels of the game. Presented handicaps can be used both individually and together.<n/><n/>Detailed description (ru) - https://git.io/Jeh60
@@ -921,11 +942,34 @@ Effect/Name/FairCannonSearch=Fair Cannon (Search)
 Effect/Name/FairCannonSearchApply=Fair Cannon (Search Apply)
 Effect/Name/SlownessSearch=No attack (Search)
 Effect/Name/SlownessSearchApply=No attack (Search Apply)
+Effect/Name/UnfairSC2AcidSprayApplyBuff=Acid Spray (Apply Buff)
+Effect/Name/UnfairSC2AcidSprayBubble=Acid Spray (Bubble)
+Effect/Name/UnfairSC2AcidSprayBubbles=Acid Spray (Bubbles)
+Effect/Name/UnfairSC2AcidSprayDamage=Acid Spray (Damage)
+Effect/Name/UnfairSC2AcidSprayDamage2=Acid Spray (Damage 2)
+Effect/Name/UnfairSC2AcidSprayInit=Acid Spray (Init)
+Effect/Name/UnfairSC2AcidSprayLaunchMissle=Acid Spray (Launch Missle)
+Effect/Name/UnfairSC2AcidSprayPersistent=Acid Spray (Persistent)
+Effect/Name/UnfairSC2AcidSpraySearch=Acid Spray (Search)
+Effect/Name/UnfairSC2BecomeFightClubMember=Unfair SC2 Become Fight Club Member
 Effect/Name/UnfairSC2CaughtSoulBirth=Unfair SC2 Caught Soul Birth
 Effect/Name/UnfairSC2DamageReductionShieldReaction=Unfair SC2 Damage Reduction Shield Reaction
+Effect/Name/UnfairSC2Darkness=Unfair SC2 Darkness
+Effect/Name/UnfairSC2ExtraArmorApplyBuff=Extra Armor (Apply Buff)
+Effect/Name/UnfairSC2ExtraArmorInit=Extra Armor (Init)
+Effect/Name/UnfairSC2ExtraArmorSearch=Extra Armor (Search)
+Effect/Name/UnfairSC2FallingRocks=Falling Rocks (Init)
+Effect/Name/UnfairSC2FallingRocksAB=Falling Rocks AB
+Effect/Name/UnfairSC2FallingRocksDamage=Falling Rocks (Damage)
+Effect/Name/UnfairSC2FallingRocksRocksAnimation=Falling Rocks (Rocks Animation)
+Effect/Name/UnfairSC2FallingRocksSearch=Falling Rocks (Search)
+Effect/Name/UnfairSC2FallingRocksStartAnimation=Falling Rocks (Start Animation)
+Effect/Name/UnfairSC2FallingRocksStun=Falling Rocks (Stun)
+Effect/Name/UnfairSC2LeaveFightClub=Unfair SC2 Leave Fight Club
 Effect/Name/UnfairSC2RandomUnitBirth=Unfair SC2 Random Unit Birth
 Effect/Name/UnfairSC2RiotWorkerInit=Unfair SC2 Riot Worker Init
-Effect/Name/UnfairSC2VampiricReaction=Unfair SC2 Vampiric Reaction
+Effect/Name/UnfairSC2RiotWorkerStop=Unfair SC2 Riot Worker Stop
+Effect/Name/UnfairSC2Vampirism=Unfair SC2 Vampirism
 Effect/Name/UnfairSC2WaaaghInit=Unfair SC2 Waaagh Init
 Effect/Name/UnfairSC2WaaaghSearch=Unfair SC2 Waaagh (Search)
 Effect/Name/UnfairSC2WaaaghSearchApply=Unfair SC2 Waaagh (Search Apply)
@@ -1212,6 +1256,7 @@ Param/Value/lib_C5CFFE9E_1EFAE59B=Fog of War
 Param/Value/lib_C5CFFE9E_FA36A2E2=Fog of War
 Param/Value/lib_C7F2089F_3AF3BB7A=Fight Club
 Param/Value/lib_C7F2089F_4C54B516= only workers
+Param/Value/lib_C7F2089F_58053FD5=all units but not workers
 Param/Value/lib_C7F2089F_6E17FF99= all units
 Param/Value/lib_C7F2089F_8ACE0E00=Fight Club
 Param/Value/lib_CA473C97_16929788=Almost all units can attack air and ground units
@@ -1286,17 +1331,17 @@ Some AOE-abilities may be used randomly on place where killing unit is.=
 Supply may be get only with building new CCs, Nexuses or Hatcheries.=
 Supply may be get only with building new Nexuses=
 This ability is not available at first 3.5 minutes.=
-Unfair Pylon=Unfair Pylon
-Unfair SC2 Macro Def Protoss=Unfair SC2 Macro Def Protoss
-Unfair SC2 Macro Def Zerg=Unfair SC2 Macro Def Zerg
 Unfair SC2 WAAAGH!=Increased attack speed and move speed
 Unfair SC2 Waaagh (Aura)=Increase attack speed and move speed for nearby own units in range of 8
 UnfairSc2MacroDefProtoss=UnfairSc2MacroDefProtoss
 UnfairSc2MacroDefZerg=UnfairSc2MacroDefZerg
 Unit/Category/TerranUnits=Терраны
+Unit/Category/ZergUnits=
 Unit/LifeArmorName/TerranInfantryArmor=Броня пехоты терранов
-Unit/Name/Pylon2=Пилон Копия
+Unit/LifeArmorName/ZergGroundArmor=
 Unit/Name/SCV=КСМ
 Unit/Name/SupplyDepot=Хранилище
+Unit/Name/UnfairSC2AcidSprayMissile=Acid Spray Missile
+Unit/Name/UnfairSC2SuperCaster=Super Caster
 Upgrade/Name/GameHeartActive=GameHeartActive
 Weapon/Name/UnfairSc2Wall=UnfairSc2Wall

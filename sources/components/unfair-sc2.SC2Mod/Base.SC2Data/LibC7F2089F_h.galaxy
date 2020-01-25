@@ -9,11 +9,12 @@ fixed libC7F2089F_gv_fightUnitsPercent;
 timer libC7F2089F_gv_fightTimer;
 
 // Function Declarations
-void libC7F2089F_gf_Fight (int lp_player);
+void libC7F2089F_gf_Fight (int lp_riotUnitsOwner);
 
 // Trigger Declarations
 trigger libC7F2089F_gt_FightClubModStart;
 trigger libC7F2089F_gt_DoFight;
+trigger libC7F2089F_gt_RemoveFightClubMemberBehavior;
 
 // Library Initialization
 void libC7F2089F_InitVariables ();

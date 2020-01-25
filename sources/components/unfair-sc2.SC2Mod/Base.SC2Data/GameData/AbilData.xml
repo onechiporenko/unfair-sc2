@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CAbilEffectTarget id="UnfairSC2AcidSpray">
+        <Alignment value="Negative"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="UnfairSC2AcidSprayLaunchMissle"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Cost>
+            <Vital index="Energy" value="10"/>
+            <Cooldown TimeUse="2"/>
+        </Cost>
+        <Range value="10"/>
+        <FinishTime value="0.5"/>
+        <CursorEffect value="UnfairSC2AcidSpraySearch"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UnfairSC2AcidSpray"/>
+    </CAbilEffectTarget>
     <CAbilEffectTarget id="Grapple">
         <Flags index="AutoCast" value="1"/>
         <Flags index="AutoCastOn" value="1"/>
@@ -19,6 +33,27 @@
         <CursorEffect value="PsiStormSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PsiStorm" Requirements="UsePsiStorm"/>
     </CAbilEffectTarget>
+    <CAbilEffectInstant id="UnfairSC2ExtraArmor">
+        <Alignment value="Positive"/>
+        <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirm_Void\WayPointConfirm_Void.m3"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <Effect index="0" value="UnfairSC2ExtraArmorInit"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UnfairSC2ExtraArmor"/>
+        <Cost>
+            <Vital index="Energy" value="15"/>
+            <Cooldown TimeUse="2"/>
+        </Cost>
+    </CAbilEffectInstant>
+    <CAbilEffectTarget id="UnfairSC2FallingRocks">
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="UnfairSC2FallingRocks"/>
+        <Cost>
+            <Vital index="Energy" value="5"/>
+            <Cooldown TimeUse="2"/>
+        </Cost>
+        <Range value="10"/>
+        <CursorEffect value="UnfairSC2FallingRocksSearch"/>
+    </CAbilEffectTarget>
     <CAbilEffectInstant id="UnfairSC2MacroDefProtoss">
         <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirm_Void\WayPointConfirm_Void.m3"/>
         <EditorCategories value="AbilityorEffectType:Units,Race:Protoss"/>
@@ -27,6 +62,7 @@
             <Cooldown TimeUse="1800"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="UnfSC2MacroDefProtoss"/>
+        <Flags index="BestUnit" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="UnfairSC2MacroDefTerran">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -35,6 +71,7 @@
             <Cooldown TimeUse="1800"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="UnfairSC2MacroDefTerran"/>
+        <Flags index="BestUnit" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="UnfairSC2MacroDefZerg">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
@@ -43,5 +80,6 @@
         <Cost>
             <Cooldown TimeUse="1800"/>
         </Cost>
+        <Flags index="BestUnit" value="1"/>
     </CAbilEffectInstant>
 </Catalog>

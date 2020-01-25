@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibDBC4E2D2_h"
 
 include "LibC7F2089F_h"
 
@@ -8,6 +9,7 @@ include "LibC7F2089F_h"
 // External Library Initialization
 void libC7F2089F_InitLibraries () {
     libNtve_InitVariables();
+    libDBC4E2D2_InitVariables();
 }
 
 // Variable Initialization
@@ -26,10 +28,10 @@ void libC7F2089F_InitVariables () {
 
 // Functions
 trigger auto_libC7F2089F_gf_Fight_Trigger = null;
-int auto_libC7F2089F_gf_Fight_lp_player;
+int auto_libC7F2089F_gf_Fight_lp_riotUnitsOwner;
 
-void libC7F2089F_gf_Fight (int lp_player) {
-    auto_libC7F2089F_gf_Fight_lp_player = lp_player;
+void libC7F2089F_gf_Fight (int lp_riotUnitsOwner) {
+    auto_libC7F2089F_gf_Fight_lp_riotUnitsOwner = lp_riotUnitsOwner;
 
     if (auto_libC7F2089F_gf_Fight_Trigger == null) {
         auto_libC7F2089F_gf_Fight_Trigger = TriggerCreate("auto_libC7F2089F_gf_Fight_TriggerFunc");
@@ -39,7 +41,7 @@ void libC7F2089F_gf_Fight (int lp_player) {
 }
 
 bool auto_libC7F2089F_gf_Fight_TriggerFunc (bool testConds, bool runActions) {
-    int lp_player = auto_libC7F2089F_gf_Fight_lp_player;
+    int lp_riotUnitsOwner = auto_libC7F2089F_gf_Fight_lp_riotUnitsOwner;
 
     // Variable Declarations
     unit lv_selectedUnit1;
@@ -54,13 +56,22 @@ bool auto_libC7F2089F_gf_Fight_TriggerFunc (bool testConds, bool runActions) {
     lv_allUnits = UnitGroupEmpty();
 
     // Implementation
-    if ((GameAttributePlayerValue("146", lp_player) == "0002")) {
-        UnitGroupAddUnitGroup(lv_allUnits, UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0));
+    if ((GameAttributePlayerValue("146", lp_riotUnitsOwner) == "0002")) {
+        UnitGroupAddUnitGroup(lv_allUnits, UnitGroup(null, lp_riotUnitsOwner, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterHallucination - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0));
     }
     else {
-        UnitGroupAddUnitGroup(lv_allUnits, UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile) | (1 << c_targetFilterUncommandable), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterHallucination - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0));
+        if ((GameAttributePlayerValue("146", lp_riotUnitsOwner) == "0004")) {
+            UnitGroupAddUnitGroup(lv_allUnits, UnitGroup(null, lp_riotUnitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterWorker) | (1 << c_targetFilterMissile) | (1 << c_targetFilterUncommandable), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterHallucination - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0));
+        }
+        else {
+            if ((GameAttributePlayerValue("146", lp_riotUnitsOwner) == "0003")) {
+                UnitGroupAddUnitGroup(lv_allUnits, UnitGroup(null, lp_riotUnitsOwner, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterStructure) | (1 << c_targetFilterMissile) | (1 << c_targetFilterUncommandable), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterHallucination - 32)) | (1 << (c_targetFilterInvulnerable - 32))), 0));
+            }
+
+        }
     }
-    autoD48C6D53_ae = RoundI((UnitGroupCount(lv_allUnits, c_unitCountAlive) * libC7F2089F_gv_fightUnitsPercent));
+    lv_allUnits = libDBC4E2D2_gf_FilterOutAmmoUnits(lv_allUnits, lp_riotUnitsOwner);
+    autoD48C6D53_ae = RoundI(((UnitGroupCount(lv_allUnits, c_unitCountAlive) * libC7F2089F_gv_fightUnitsPercent) / 2.0));
     autoD48C6D53_var = 1;
     for ( ; autoD48C6D53_var <= autoD48C6D53_ae; autoD48C6D53_var += 1 ) {
         lv_selectedUnit1 = UnitGroupRandomUnit(lv_allUnits, c_unitCountAlive);
@@ -73,6 +84,14 @@ bool auto_libC7F2089F_gf_Fight_TriggerFunc (bool testConds, bool runActions) {
         UnitIssueOrder(lv_selectedUnit2, Order(AbilityCommand("stop", 0)), c_orderQueueReplace);
         UnitIssueOrder(lv_selectedUnit2, Order(AbilityCommand("TerranBuild", 30)), c_orderQueueAddToEnd);
         UnitIssueOrder(lv_selectedUnit2, OrderTargetingUnit(AbilityCommand("attack", 0), lv_selectedUnit1), c_orderQueueAddToEnd);
+        if ((UnitHasBehavior2(lv_selectedUnit1, "UnfairSC2FightClubMember") == false)) {
+            UnitBehaviorAdd(lv_selectedUnit1, "UnfairSC2FightClubMember", lv_selectedUnit1, 1);
+        }
+
+        if ((UnitHasBehavior2(lv_selectedUnit2, "UnfairSC2FightClubMember") == false)) {
+            UnitBehaviorAdd(lv_selectedUnit2, "UnfairSC2FightClubMember", lv_selectedUnit2, 1);
+        }
+
     }
     return true;
 }
@@ -169,7 +188,12 @@ bool libC7F2089F_gt_FightClubModStart_Func (bool testConds, bool runActions) {
                     if ((GameAttributePlayerValue("146", auto34A5323E_var) == "0002")) {
                         lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_C7F2089F_4C54B516"));
                     }
+                    else {
+                        if ((GameAttributePlayerValue("146", auto34A5323E_var) == "0004")) {
+                            lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_C7F2089F_58053FD5"));
+                        }
 
+                    }
                 }
             }
             TextExpressionSetToken("Param/Expression/lib_C7F2089F_F6C789F2", "FightDelay", IntToText(libC7F2089F_gv_fightFreequency));
@@ -207,6 +231,8 @@ bool libC7F2089F_gt_DoFight_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TriggerEnable(libC7F2089F_gt_RemoveFightClubMemberBehavior, false);
+    Wait(0.05, c_timeGame);
     autoBA263723_g = PlayerGroupAll();
     autoBA263723_var = -1;
     while (true) {
@@ -217,6 +243,8 @@ bool libC7F2089F_gt_DoFight_Func (bool testConds, bool runActions) {
         }
 
     }
+    Wait(0.05, c_timeGame);
+    TriggerEnable(libC7F2089F_gt_RemoveFightClubMemberBehavior, true);
     return true;
 }
 
@@ -226,9 +254,37 @@ void libC7F2089F_gt_DoFight_Init () {
     TriggerAddEventTimer(libC7F2089F_gt_DoFight, libC7F2089F_gv_fightTimer);
 }
 
+//--------------------------------------------------------------------------------------------------
+// Trigger: Remove Fight Club Member Behavior
+//--------------------------------------------------------------------------------------------------
+bool libC7F2089F_gt_RemoveFightClubMemberBehavior_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((GameAttributePlayerValue("146", UnitGetOwner(EventUnit())) != "0001"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorRemove(EventUnit(), "UnfairSC2FightClubMember", 1);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libC7F2089F_gt_RemoveFightClubMemberBehavior_Init () {
+    libC7F2089F_gt_RemoveFightClubMemberBehavior = TriggerCreate("libC7F2089F_gt_RemoveFightClubMemberBehavior_Func");
+    TriggerAddEventUnitOrder(libC7F2089F_gt_RemoveFightClubMemberBehavior, null, null);
+}
+
 void libC7F2089F_InitTriggers () {
     libC7F2089F_gt_FightClubModStart_Init();
     libC7F2089F_gt_DoFight_Init();
+    libC7F2089F_gt_RemoveFightClubMemberBehavior_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -247,4 +303,6 @@ void libC7F2089F_InitLib () {
     libC7F2089F_InitVariables();
     libC7F2089F_InitTriggers();
 }
+
+include "LibDBC4E2D2"
 

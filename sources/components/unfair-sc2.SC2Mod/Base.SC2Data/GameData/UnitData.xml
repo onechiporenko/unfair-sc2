@@ -138,6 +138,14 @@
         </CardLayouts>
     </CUnit>
     <CUnit id="Drone"/>
+    <CUnit id="UnfairSC2AcidSprayMissile" parent="MISSILE_INVULNERABLE">
+        <ReviveType value=""/>
+        <Race value="Zerg"/>
+        <Mover value="UnfairSC2AcidSprayWeapon"/>
+        <TacticalAI value=""/>
+        <SelectAlias value=""/>
+        <AIEvaluateAlias value=""/>
+    </CUnit>
     <CUnit id="Ghost">
         <AbilArray Link="Blink"/>
         <AbilArray Link="Charge"/>
@@ -188,6 +196,32 @@
             <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="1" Column="2"/>
         </CardLayouts>
+    </CUnit>
+    <CUnit id="UnfairSC2SuperCaster" parent="HighTemplar">
+        <Name value="Unit/Name/UnfairSC2SuperCaster"/>
+        <Description value="Button/Tooltip/UnfairSC2SuperCaster"/>
+        <ReviveType value="UnfairSC2SuperCaster"/>
+        <AbilArray index="2" Link="Warpable"/>
+        <AbilArray index="3" Link="ProgressRally"/>
+        <AbilArray index="4" Link="BuildInProgress"/>
+        <AbilArray index="5" Link="attack"/>
+        <AbilArray index="6" Link="UnfairSC2AcidSpray"/>
+        <AbilArray index="7" Link="UnfairSC2ExtraArmor"/>
+        <AbilArray index="8" Link="UnfairSC2FallingRocks"/>
+        <AbilArray index="9" removed="1"/>
+        <AbilArray index="10" removed="1"/>
+        <CardLayouts index="0">
+            <LayoutButtons index="7" Face="" Type="Undefined" AbilCmd="" Row="0" Column="0"/>
+            <LayoutButtons index="8" Face="" Type="Undefined" AbilCmd="" Row="0" Column="0"/>
+            <LayoutButtons index="9" Face="UnfairSC2AcidSpray" AbilCmd="UnfairSC2AcidSpray,Execute" Row="1" Column="1"/>
+            <LayoutButtons index="10" Face="UnfairSC2ExtraArmor" Type="AbilCmd" AbilCmd="UnfairSC2ExtraArmor,Execute" Row="1" Column="0"/>
+            <LayoutButtons index="11" Face="UnfairSC2FallingRocks" Type="AbilCmd" AbilCmd="UnfairSC2FallingRocks,Execute" Row="1" Column="2"/>
+        </CardLayouts>
+        <LeaderAlias value="UnfairSC2SuperCaster"/>
+        <HotkeyAlias value="UnfairSC2SuperCaster"/>
+        <SelectAlias value="UnfairSC2SuperCaster"/>
+        <SubgroupAlias value="UnfairSC2SuperCaster"/>
+        <AIEvaluateAlias value="UnfairSC2SuperCaster"/>
     </CUnit>
     <CUnit id="Hive">
         <AbilArray Link="UnfairSC2MacroDefZerg"/>
@@ -409,63 +443,6 @@
         </CardLayouts>
     </CUnit>
     <CUnit id="Probe"/>
-    <CUnit id="Pylon2">
-        <Name value="Unfair Pylon"/>
-        <DeathRevealRadius value="3"/>
-        <Race value="Prot"/>
-        <Mob value="Multiplayer"/>
-        <FlagArray index="Turnable" value="0"/>
-        <FlagArray index="PreventDefeat" value="1"/>
-        <FlagArray index="PreventDestroy" value="1"/>
-        <FlagArray index="PenaltyRevealed" value="1"/>
-        <FlagArray index="UseLineOfSight" value="1"/>
-        <FlagArray index="TownAlert" value="1"/>
-        <FlagArray index="NoPortraitTalk" value="1"/>
-        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
-        <FogVisibility value="Snapshot"/>
-        <PlaneArray index="Ground" value="1"/>
-        <Collide index="Burrow" value="1"/>
-        <Collide index="Ground" value="1"/>
-        <Collide index="Structure" value="1"/>
-        <Collide index="RoachBurrow" value="1"/>
-        <Collide index="ForceField" value="1"/>
-        <Attributes index="Armored" value="1"/>
-        <Attributes index="Structure" value="1"/>
-        <LifeStart value="200"/>
-        <LifeMax value="200"/>
-        <LifeArmor value="1"/>
-        <LifeArmorName value="Unit/LifeArmorName/ProtossBuildingPlating"/>
-        <ShieldsStart value="200"/>
-        <ShieldsMax value="200"/>
-        <ShieldRegenDelay value="10"/>
-        <ShieldRegenRate value="2"/>
-        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
-        <StationaryTurningRate value="719.4726"/>
-        <TurningRate value="719.4726"/>
-        <Sight value="9"/>
-        <CostCategory value="Economy"/>
-        <CostResource index="Minerals" value="100"/>
-        <AttackTargetPriority value="11"/>
-        <AbilArray Link="BuildInProgress"/>
-        <BehaviorArray Link="PowerSource"/>
-        <TurretArray value="PylonCrystalRotate"/>
-        <TurretArray value="PylonRingRotate"/>
-        <CardLayouts>
-            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
-        </CardLayouts>
-        <Radius value="1"/>
-        <SeparationRadius value="1"/>
-        <Footprint value="Footprint2x2Contour"/>
-        <PlacementFootprint value="Footprint2x2"/>
-        <ScoreMake value="100"/>
-        <ScoreKill value="100"/>
-        <ScoreResult value="BuildOrder"/>
-        <SubgroupPriority value="2"/>
-        <MinimapRadius value="1"/>
-        <EditorCategories value="ObjectType:Structure,ObjectFamily:Melee"/>
-        <GlossaryPriority value="18"/>
-        <HotkeyCategory value="Unit/Category/ProtossUnits"/>
-    </CUnit>
     <CUnit id="Queen">
         <AbilArray Link="Blink"/>
         <AbilArray Link="Charge"/>

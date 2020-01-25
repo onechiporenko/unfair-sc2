@@ -1,0 +1,6 @@
+﻿Button/Hotkey/UnfSC2MacroDefProtoss=D
+Button/Hotkey/UnfairSC2AcidSpray=Y
+Button/Hotkey/UnfairSC2ExtraArmor=E
+Button/Hotkey/UnfairSC2FallingRocks=R
+Button/Hotkey/UnfairSC2MacroDefTerran=D
+Button/Hotkey/UnfairSC2MacroDefZerg=D

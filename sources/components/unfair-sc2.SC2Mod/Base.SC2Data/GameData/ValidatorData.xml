@@ -3,6 +3,9 @@
     <CValidatorUnitFilters id="EnemiesTargetFilter">
         <Filters value="-;Player,Ally,Neutral,RawResource,HarvestableResource,Missile,Destructible,Item,UnderConstruction,Dead,Invulnerable"/>
     </CValidatorUnitFilters>
+    <CValidatorUnitFilters id="UnfairSC2CastTargetFilter">
+        <Filters value="-;Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
+    </CValidatorUnitFilters>
     <CValidatorLocationCompareRange id="UnfairSC2WaaaghRange">
         <WhichLocation Value="TargetUnit"/>
         <Compare value="LE"/>

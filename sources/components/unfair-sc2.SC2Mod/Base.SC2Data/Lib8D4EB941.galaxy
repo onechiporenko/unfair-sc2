@@ -58,7 +58,7 @@ bool auto_lib8D4EB941_gf_SpawnNuke_TriggerFunc (bool testConds, bool runActions)
     libNtve_gf_CreateModelAtPoint("GhostNukeIndicator", lv_nukePoint);
     PingCreate(PlayerGroupAll(), "PingNuke", lv_nukePoint, ColorWithAlpha(100.00, 0.00, 0.00, 0.78), 5.0);
     lv_actor = libNtve_gf_ActorLastCreated();
-    Wait(10.0, c_timeReal);
+    Wait(13.5, c_timeReal);
     PlayerCreateEffectPoint(15, "NukeDetonate", lv_nukePoint);
     libNtve_gf_KillModel(lv_actor);
     return true;

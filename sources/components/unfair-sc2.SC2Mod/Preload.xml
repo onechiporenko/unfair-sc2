@@ -87,6 +87,7 @@
 <Behavior id="SpectreShield"/>
 <Behavior id="ReaperRegen"/>
 <Behavior id="TimeStopStun"/>
+<Behavior id="UnfairSC2FightClubMember"/>
 <Behavior id="UnfairSC2RiotWorker"/>
 <Behavior id="UnfairSC2WaaaghAura"/>
 <Behavior id="SlownessAura"/>
@@ -125,11 +126,11 @@
 <Effect id="CorsairMPDisruptionWebCreatePersistent"/>
 <Effect id="TemporalFieldAfterBubbleCreatePersistent"/>
 <Effect id="UnfairSC2RandomUnitBirth"/>
+<Effect id="UnfairSC2Vampirism"/>
 <Model id="PingNuke"/>
 <Model id="MinimapPing"/>
 <Model id="PingWarning"/>
 <Model id="Vespene_Pump_Small"/>
-<Model id="MedicHealModel"/>
 <Model id="GhostNukeIndicator"/>
 <Model id="BanelingCocoonDeath"/>
 <Model id="ZergBuildingBlood"/>

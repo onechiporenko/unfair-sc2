@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CButton id="UnfSC2MacroDefProtoss">
-        <Name value="Unfair SC2 Macro Def Protoss"/>
-        <Tooltip value="Unfair SC2 Macro Def Protoss"/>
+        <Name value="Button/Name/UnfairSC2MacroDefProtoss"/>
+        <Tooltip value="Button/Tooltip/UnfairSC2MacroDefProtoss"/>
         <Icon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
-        <AlertName value="Unfair SC2 Macro Def Protoss"/>
-        <AlertTooltip value="Unfair SC2 Macro Def Protoss"/>
+        <AlertName value="Button/Name/UnfairSC2MacroDefProtoss"/>
+        <AlertTooltip value="Button/Tooltip/UnfairSC2MacroDefProtoss"/>
         <EditorCategories value="Race:Protoss"/>
-        <SimpleDisplayText value="Unfair SC2 Macro Def Protoss"/>
+    </CButton>
+    <CButton id="UnfairSC2AcidSpray">
+        <Icon value="Assets\Textures\btn-ability-zerg-dehaka-ravasaur-dissolvingacid.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-zerg-dehaka-ravasaur-dissolvingacid.dds"/>
+    </CButton>
+    <CButton id="UnfairSC2ExtraArmor">
+        <Icon value="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel3.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel3.dds"/>
+    </CButton>
+    <CButton id="UnfairSC2FallingRocks">
+        <Icon value="Assets\Textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds"/>
     </CButton>
     <CButton id="UnfairSC2MacroDefTerran">
         <Icon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
@@ -15,13 +26,8 @@
         <EditorCategories value="Race:Terran"/>
     </CButton>
     <CButton id="UnfairSC2MacroDefZerg">
-        <Name value="Unfair SC2 Macro Def Zerg"/>
-        <Tooltip value="Unfair SC2 Macro Def Zerg"/>
-        <AlertName value="Unfair SC2 Macro Def Zerg"/>
-        <AlertTooltip value="Unfair SC2 Macro Def Zerg"/>
         <AlertIcon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
         <EditorCategories value="Race:Zerg"/>
-        <SimpleDisplayText value="Unfair SC2 Macro Def Zerg"/>
         <Icon value="Assets\Textures\ui_tipicon_campaign_defend.dds"/>
     </CButton>
     <CButton id="UnfairSc2MacroDefProtoss">
