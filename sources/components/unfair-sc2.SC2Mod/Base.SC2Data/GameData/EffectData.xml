@@ -273,18 +273,6 @@
     <CEffectApplyBehavior id="UnfairSC2Vampirism">
         <EditorCategories value=""/>
     </CEffectApplyBehavior>
-    <CEffectModifyUnit id="UnfairSC2WaaaghInit">
-        <EditorCategories value=""/>
-    </CEffectModifyUnit>
-    <CEffectApplyBehavior id="UnfairSC2WaaaghSearchApply">
-        <ValidatorArray index="0" value="SelfTargetFilter"/>
-        <EditorCategories value=""/>
-        <Behavior value="UnfairSC2Waaagh"/>
-    </CEffectApplyBehavior>
-    <CEffectEnumArea id="UnfairSC2WaaaghSearch">
-        <EditorCategories value=""/>
-        <AreaArray Radius="8" Effect="UnfairSC2WaaaghSearchApply"/>
-    </CEffectEnumArea>
     <CEffectEnumArea id="SlownessSearch">
         <EditorCategories value=""/>
         <AreaArray Radius="50" Effect="SlownessSearchApply"/>

@@ -146,14 +146,6 @@
         <On Terms="Effect.UnfairSC2RandomUnitBirth.Start; At Effect" Send="Create"/>
         <Scale value="2.000000"/>
     </CActorModel>
-    <CActorModel id="UnfairSC2Waaagh" parent="ModelAnimationStyleContinuous">
-        <Flags index="SuppressSaveLoad" value="1"/>
-        <On index="0" Terms="ActorCreation" Send="AnimBracketStart BSD Birth Stand Death ContentPlayOnce"/>
-        <On index="1" Terms="AnimBracketState.*.AfterClosing; AnimName BSD" Send="Destroy"/>
-        <On index="2" Terms="ActorOrphan" Send="AnimBracketStop BSD"/>
-        <On Terms="Effect.UnfairSC2WaaaghInit; At Caster" Send="Create"/>
-        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
-    </CActorModel>
     <CActorModel id="UnfairSC2WalkingDeadBirth" parent="ModelAnimationStyleOneShot">
         <Terms value="ValidateUnit IsBiological"/>
         <Inherits index="BaseModelScale" value="1"/>

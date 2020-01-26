@@ -2,6 +2,11 @@
 
 ## v2.41
 
+* [BUGFIX] [#74 Невозможно создать игру формата больше 1х1](https://github.com/onechiporenko/unfair-sc2/issues/74)
+
+* [APM KING](./handicaps/apm-king.md)
+    * [REMOVED] Гандикап удален.
+
 * [DARKNESS](./handicaps/darkness.md)
     * [FEATURE] Добавлен визуальный эффект для единиц под воздействием Darkness.
 

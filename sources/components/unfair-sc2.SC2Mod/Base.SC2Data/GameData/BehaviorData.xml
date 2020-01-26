@@ -48,27 +48,6 @@
         <InitialEffect value="UnfairSC2RiotWorkerInit"/>
         <FinalEffect value="UnfairSC2RiotWorkerStop"/>
     </CBehaviorBuff>
-    <CBehaviorBuff id="UnfairSC2Waaagh">
-        <Tooltip value="Unfair SC2 WAAAGH!"/>
-        <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-mengsk-topbar-forcedconscription.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <RemoveValidatorArray value="UnfairSC2WaaaghRange"/>
-        <RemoveValidatorArray value="SourceAlive"/>
-        <RemoveValidatorArray value="NotWorker"/>
-        <MaxStackCount value="50"/>
-        <MaxStackCountPerCaster value="1"/>
-        <Modification MoveSpeedBonus="0.0195" AttackSpeedMultiplier="1.02"/>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="UnfairSC2WaaaghAura">
-        <Tooltip value="Unfair SC2 Waaagh (Aura)"/>
-        <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-ability-mengsk-topbar-forcedconscription.dds"/>
-        <EditorCategories value="AbilityorEffectType:Units"/>
-        <Period value="1"/>
-        <InitialEffect value="UnfairSC2WaaaghInit"/>
-        <PeriodicEffect value="UnfairSC2WaaaghSearch"/>
-    </CBehaviorBuff>
     <CBehaviorBuff id="Slowness">
         <Tooltip value="Can&apos;t attack"/>
         <Alignment value="Negative"/>

@@ -25,7 +25,6 @@
 <Asset path="assets\textures\btn-building-zerg-creeptumor.dds" Type="Image"/>
 <Asset path="assets\textures\btn-upgrade-protoss-fenix-fenixweapondamage.dds" Type="Image"/>
 <Asset path="assets\textures\btn-upgrade-protoss-alarak-supplicantsacrifice.dds" Type="Image"/>
-<Asset path="assets\textures\decaltag_clanlogo_diff_playerproxy_00.dds" Type="Image"/>
 <Asset path="assets\textures\abilityicon_spawnbroodlings_square.dds" Type="Image"/>
 <Asset path="assets\textures\btn-doodad-minerals.dds" Type="Image"/>
 <Asset path="assets\textures\ui_loadingbar_bar_highlighted_zerg.dds" Type="Image"/>
@@ -52,12 +51,10 @@
 <Asset path="assets\textures\btn-ability-zerg-harvestcorpse.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-hornerhan-wraith-permanentcloak.dds" Type="Image"/>
 <Asset path="assets\textures\btn-tips-richminerals.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-stetmann-stetelliteoverloadspeed.dds" Type="Image"/>
 <Asset path="assets\textures\btn-upgrade-terran-nova-snipeenergyrefund.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-mengsk-trooper-advancedconstruction.dds" Type="Image"/>
 <Asset path="assets\textures\btn-unit-collection-defensivematrixdrone-covertops.dds" Type="Image"/>
 <Asset path="assets\textures\btn-unit-protoss-blizzcon17-probe.dds" Type="Image"/>
-<Asset path="assets\textures\decaltag_clanlogo_diff_playerproxy_00.lvl0" Type="Image"/>
 <Asset path="assets\textures\btn-unit-zerg-infestedcolonist.dds" Type="Image"/>
 <Asset path="assets\textures\speedfreaks_coop.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-protoss-recallondeath.dds" Type="Image"/>
@@ -89,7 +86,6 @@
 <Behavior id="TimeStopStun"/>
 <Behavior id="UnfairSC2FightClubMember"/>
 <Behavior id="UnfairSC2RiotWorker"/>
-<Behavior id="UnfairSC2WaaaghAura"/>
 <Behavior id="SlownessAura"/>
 <Behavior id="FairCannonsAura"/>
 <Behavior id="UnfairSC2CatchedSoul"/>
@@ -117,7 +113,6 @@
 <Effect id="InfestedTerransLayEggPersistant"/>
 <Effect id="VortexCreatePersistent"/>
 <Effect id="NukeDetonate"/>
-<Effect id="ParticleBeam"/>
 <Effect id="Spines"/>
 <Effect id="BlindingCloudCP"/>
 <Effect id="YoinkStartSwitch"/>

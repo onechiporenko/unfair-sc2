@@ -57,19 +57,16 @@
         <TriggerLibs Id="C0051C89"/>
         <TriggerLibs Id="D31C8AFA"/>
         <TriggerLibs Id="ED822536"/>
-        <TriggerLibs Id="F1F5D090"/>
         <TriggerLibs Id="7397C7F4"/>
         <TriggerLibs Id="FCEF8E43"/>
         <TriggerLibs Id="56A96906"/>
         <TriggerLibs Id="C7F2089F"/>
         <TriggerLibs Id="B7A8BF05"/>
-        <TriggerLibs Id="3D67D4CF"/>
         <TriggerLibs Id="87458575"/>
         <TriggerLibs Id="3F2A1735"/>
         <TriggerLibs Id="3B55E3B4"/>
         <TriggerLibs Id="6D9F8D1C"/>
         <TriggerLibs Id="6FC47902"/>
-        <TriggerLibs Id="2B6B0356"/>
         <TriggerLibs Id="78D24685"/>
         <!-- Test Builds -->
         <!-- <AIBuilds index="213" Enabled="0"/>

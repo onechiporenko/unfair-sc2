@@ -86,7 +86,4 @@
     <CModel id="UnfairSC2RiotWorker">
         <Model value="Assets\COOP\Zeratul\Effects\DarkArchon_Zeratul_COOP_Maelstrom\DarkArchon_Zeratul_COOP_Maelstrom.m3"/>
     </CModel>
-    <CModel id="UnfairSC2Waaagh">
-        <Model value="Assets\Effects\Protoss\Alarak_COOP_Empower_PowerUp\Alarak_COOP_Empower_PowerUp.m3"/>
-    </CModel>
 </Catalog>
