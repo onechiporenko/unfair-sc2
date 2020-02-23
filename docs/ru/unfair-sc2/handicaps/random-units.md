@@ -1,4 +1,4 @@
-# Random Rally Points
+# Random Units
 
 *Добавлен в 2.40*
 
