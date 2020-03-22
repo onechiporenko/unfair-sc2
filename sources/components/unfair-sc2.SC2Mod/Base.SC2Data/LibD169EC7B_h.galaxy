@@ -1,0 +1,89 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: HANDICAPS UI
+//--------------------------------------------------------------------------------------------------
+// Constants
+const string libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL = "Doesn't affect player";
+const string libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL = "Enabled";
+const string libD169EC7B_gv_hANDICAPOPTIONDISABLEDVALGAME = "Disabled";
+const string libD169EC7B_gv_hANDICAPOPTIONENABLEDVALGAME = "Enabled";
+
+// Structures
+struct libD169EC7B_gs_HANDICAPGAMEOPTIONVALUE {
+    text lv_label;
+    text lv_value;
+    string lv_val;
+};
+
+struct libD169EC7B_gs_HANDICAPPLAYEROPTIONVALUE {
+    text lv_label;
+    text lv_value;
+    string lv_val;
+};
+
+struct libD169EC7B_gs_HANDICAPGAMEOPTION {
+    text lv_name;
+    libD169EC7B_gs_HANDICAPGAMEOPTIONVALUE[51] lv_values;
+    libD169EC7B_gs_HANDICAPGAMEOPTIONVALUE[26] lv_vals;
+    int lv_numberofValues;
+    text lv_selectedValue;
+    string lv_selectedVal;
+    int lv_listBox;
+};
+
+struct libD169EC7B_gs_HANDICAPPLAYEROPTION {
+    text lv_name;
+    libD169EC7B_gs_HANDICAPPLAYEROPTIONVALUE[26] lv_values;
+    int lv_numberofValues;
+    string[18] lv_selectedVals;
+    int[18] lv_listBoxes;
+    string lv_defaultValue;
+};
+
+struct libD169EC7B_gs_HANDICAP {
+    text lv_name;
+    text lv_description;
+    string lv_iconPath;
+    libD169EC7B_gs_HANDICAPGAMEOPTION[51] lv_gameOptions;
+    libD169EC7B_gs_HANDICAPPLAYEROPTION[51] lv_playerOptions;
+    int lv_numberofGameOptions;
+    int lv_numberofPlayerOptions;
+    bool lv_enabled;
+    int lv_detailsButton;
+    int lv_toggleButton;
+    int lv_backButton;
+    trigger lv_setupTrigger;
+};
+
+// Variable Declarations
+int libD169EC7B_gv_activeHandicapIndex;
+playergroup libD169EC7B_gv_playerstoShowHandicapsUI;
+playergroup libD169EC7B_gv_playerstoShowHandicapsMessages;
+libD169EC7B_gs_HANDICAP[201] libD169EC7B_gv_hANDICAPS;
+int libD169EC7B_gv_handicapsDialog;
+int libD169EC7B_gv_customHandicapDialog;
+int libD169EC7B_gv_startGameButton;
+int libD169EC7B_gv_numberofHandicaps;
+
+// Function Declarations
+void libD169EC7B_gf_SetupOptions (int lp_handicapindex);
+void libD169EC7B_gf_EnableHandicap (int lp_handicapIndex);
+void libD169EC7B_gf_EnableHandicapForPlayer (int lp_player);
+int libD169EC7B_gf_CreateHandicapsDialog ();
+int libD169EC7B_gf_CreateCustomHandicapDialog (int lp_handicapindex);
+
+// Trigger Declarations
+trigger libD169EC7B_gt_SetupHandicap;
+trigger libD169EC7B_gt_SetupHandicaps;
+trigger libD169EC7B_gt_HandicapsUIStart;
+trigger libD169EC7B_gt_HandicapDetailsButtonClick;
+trigger libD169EC7B_gt_ToggleHandicapButtonClick;
+trigger libD169EC7B_gt_HandicapBackButtonClick;
+trigger libD169EC7B_gt_StartGameButtonClick;
+trigger libD169EC7B_gt_PlayerOptionValueChanged;
+trigger libD169EC7B_gt_GameOptionValueChanged;
+
+// Library Initialization
+void libD169EC7B_InitVariables ();
+

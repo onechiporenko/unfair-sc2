@@ -3,6 +3,27 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: TECH TREE RESTRICTIONS
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string lib3F2A1735_gv_allUpgrades = "All";
+const string lib3F2A1735_gv_tier1Upgrades = "Tier1";
+const string lib3F2A1735_gv_tier1Tier2Upgrades = "Tier1 + Tier2";
+const string lib3F2A1735_gv_noneUpgrades = "None";
+const string lib3F2A1735_gv_allUnits = "All";
+const string lib3F2A1735_gv_tier1Units = "Tier1";
+const string lib3F2A1735_gv_tier1Tier2Units = "Tier1 + Tier2";
+const string lib3F2A1735_gv_tier2Units = "Tier2";
+const string lib3F2A1735_gv_tier2Tier3Units = "Tier2 + Tier3";
+const string lib3F2A1735_gv_tier3Units = "Tier3";
+const string lib3F2A1735_gv_tier1Tier3Units = "Tier1 + Tier3";
+const string lib3F2A1735_gv_noneUnits = "None";
+
+// Function Declarations
+void lib3F2A1735_gf_SetupOptions (int lp_handicapindex);
+void lib3F2A1735_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger lib3F2A1735_gt_TechTreeRestrictionsModStart;
+trigger lib3F2A1735_gt_SetupHandicap;
+
+// Library Initialization
+void lib3F2A1735_InitVariables ();
 

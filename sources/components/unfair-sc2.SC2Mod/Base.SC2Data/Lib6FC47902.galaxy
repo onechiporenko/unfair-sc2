@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib6FC47902_h"
@@ -9,51 +10,64 @@ include "Lib6FC47902_h"
 // External Library Initialization
 void lib6FC47902_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Random Rally Points Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib6FC47902_gt_RandomRallyPointsModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib6FC47902_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_6FC47902_FFA4F9C8");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_6FC47902_15C31B5E");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-terran-setrallypoint.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_6FC47902_0EBC4399");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib6FC47902_gt_SetupHandicap;
+}
+
+void lib6FC47902_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto9113D3E9_g;
-    int auto9113D3E9_var;
-    playergroup auto02623EB4_g;
-    int auto02623EB4_var;
+    playergroup auto0458EA56_g;
+    int auto0458EA56_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("164") == "0001")) {
-        auto9113D3E9_g = PlayerGroupAll();
-        auto9113D3E9_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto0458EA56_g = PlayerGroupActive();
+        auto0458EA56_var = -1;
         while (true) {
-            auto9113D3E9_var = PlayerGroupNextPlayer(auto9113D3E9_g, auto9113D3E9_var);
-            if (auto9113D3E9_var < 0) { break; }
-            if ((GameAttributePlayerValue("165", auto9113D3E9_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto9113D3E9_var);
+            auto0458EA56_var = PlayerGroupNextPlayer(auto0458EA56_g, auto0458EA56_var);
+            if (auto0458EA56_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto0458EA56_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto0458EA56_var);
+                libDBC4E2D2_gv_pLAYERS[auto0458EA56_var].lv_rANDOMRALLYPOINTS.lv_enabled = true;
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            auto02623EB4_g = lv_players;
-            auto02623EB4_var = -1;
-            while (true) {
-                auto02623EB4_var = PlayerGroupNextPlayer(auto02623EB4_g, auto02623EB4_var);
-                if (auto02623EB4_var < 0) { break; }
-            }
-            TextExpressionSetToken("Param/Expression/lib_6FC47902_E46A60A1", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_6FC47902_31B3D829"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_6FC47902_E46A60A1"), StringExternal("Param/Value/lib_6FC47902_713C0D46"), "Assets\\Textures\\btn-ability-terran-setrallypoint.dds");
+            TextExpressionSetToken("Param/Expression/lib_6FC47902_6DF56259", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_6FC47902_6DF56259", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_6FC47902_6DF56259"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(lib6FC47902_gt_SetRandomRallyPointToCreatedUnit, false);
@@ -62,12 +76,26 @@ bool lib6FC47902_gt_RandomRallyPointsModStart_Func (bool testConds, bool runActi
     else {
         TriggerEnable(lib6FC47902_gt_SetRandomRallyPointToCreatedUnit, false);
     }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib6FC47902_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib6FC47902_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib6FC47902_gt_RandomRallyPointsModStart_Init () {
-    lib6FC47902_gt_RandomRallyPointsModStart = TriggerCreate("lib6FC47902_gt_RandomRallyPointsModStart_Func");
+void lib6FC47902_gt_SetupHandicap_Init () {
+    lib6FC47902_gt_SetupHandicap = TriggerCreate("lib6FC47902_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -77,11 +105,7 @@ bool lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Func (bool testConds, bool 
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameAttributeGameValue("164") == "0001"))) {
-            return false;
-        }
-
-        if (!((GameAttributePlayerValue("165", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_rANDOMRALLYPOINTS.lv_enabled == true))) {
             return false;
         }
 
@@ -106,7 +130,7 @@ void lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Init () {
 }
 
 void lib6FC47902_InitTriggers () {
-    lib6FC47902_gt_RandomRallyPointsModStart_Init();
+    lib6FC47902_gt_SetupHandicap_Init();
     lib6FC47902_gt_SetRandomRallyPointToCreatedUnit_Init();
 }
 
@@ -126,5 +150,6 @@ void lib6FC47902_InitLib () {
     lib6FC47902_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

@@ -9,11 +9,11 @@ unit[18] libE1749336_gv_pDDs;
 int libE1749336_gv_noRushTimerWindow;
 
 // Function Declarations
-void libE1749336_gf_AllowToBuild (unit lp_unit);
-void libE1749336_gf_DisallowToBuild (unit lp_unit);
+void libE1749336_gf_SetupOptions (int lp_handicapindex);
+void libE1749336_gf_EnableHandicap (int lp_handicapIndex);
 
 // Trigger Declarations
-trigger libE1749336_gt_NoRushModStart;
+trigger libE1749336_gt_SetupHandicap;
 trigger libE1749336_gt_NoRushTimerElapsed;
 
 // Library Initialization

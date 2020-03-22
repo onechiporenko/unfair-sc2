@@ -7,11 +7,14 @@ include "TriggerLibs/natives"
 int libD7A170DA_gv_bountyLeaderboard;
 
 // Function Declarations
+void libD7A170DA_gf_SetupOptions (int lp_handicapindex);
+void libD7A170DA_gf_EnableHandicap (int lp_handicapIndex);
+void libD7A170DA_gf_EnableHandicapForPlayer (int lp_player);
 void libD7A170DA_gf_SetUnitBounty (unit lp_unit);
 
 // Trigger Declarations
-trigger libD7A170DA_gt_BountyModStart;
-trigger libD7A170DA_gt_SetBountyForCreatedUnit;
+trigger libD7A170DA_gt_SetupHandicap;
+trigger libD7A170DA_gt_UnitIsCreated;
 trigger libD7A170DA_gt_UnitIsKilled;
 trigger libD7A170DA_gt_UpdateBountyLeaderboard;
 

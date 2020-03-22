@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibF713A77C_h"
@@ -9,14 +10,63 @@ include "LibF713A77C_h"
 // External Library Initialization
 void libF713A77C_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Energy Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libF713A77C_gt_EnergyModStart_Func (bool testConds, bool runActions) {
+// Variable Initialization
+bool libF713A77C_InitVariables_completed = false;
+
+void libF713A77C_InitVariables () {
+    if (libF713A77C_InitVariables_completed) {
+        return;
+    }
+
+    libF713A77C_InitVariables_completed = true;
+
+}
+
+// Functions
+void libF713A77C_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_F713A77C_6DEB0CBE");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_F713A77C_3D2C76C2");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-protoss-khaydarinamulet.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_F713A77C_254758E4");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libF713A77C_gv_noEnergy;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libF713A77C_gv_double;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_F713A77C_AF5BC485");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libF713A77C_gv_noEnergy;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libF713A77C_gv_half;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libF713A77C_gv_full;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libF713A77C_gt_SetupHandicap;
+}
+
+void libF713A77C_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
     int lv_maxEnergy;
@@ -24,155 +74,172 @@ bool libF713A77C_gt_EnergyModStart_Func (bool testConds, bool runActions) {
     text lv_playersSettings;
 
     // Automatic Variable Declarations
-    playergroup autoB1BE1D38_g;
-    int autoB1BE1D38_var;
-    string auto9322A412_val;
-    int autoB9B7169B_ae;
-    int autoB9B7169B_var;
-    unitgroup autoA96CA6DC_g;
-    int autoA96CA6DC_u;
-    unit autoA96CA6DC_var;
-    int auto85D97B95_ae;
-    int auto85D97B95_var;
-    unitgroup auto52A13246_g;
-    int auto52A13246_u;
-    unit auto52A13246_var;
-    string auto04E05093_val;
-    int auto04B771B2_ae;
-    int auto04B771B2_var;
-    unitgroup auto9DFC835E_g;
-    int auto9DFC835E_u;
-    unit auto9DFC835E_var;
-    int auto63CDBA45_ae;
-    int auto63CDBA45_var;
-    unitgroup auto93303689_g;
-    int auto93303689_u;
-    unit auto93303689_var;
-    int auto4A2C5F05_ae;
-    int auto4A2C5F05_var;
-    unitgroup autoE04A363D_g;
-    int autoE04A363D_u;
-    unit autoE04A363D_var;
+    playergroup auto11DE9FD3_g;
+    int auto11DE9FD3_var;
+    string auto79655915_val;
+    int auto8C5E01D0_ae;
+    int auto8C5E01D0_var;
+    unitgroup auto596DF652_g;
+    int auto596DF652_u;
+    unit auto596DF652_var;
+    int autoDE6187A9_ae;
+    int autoDE6187A9_var;
+    unitgroup auto091AECEF_g;
+    int auto091AECEF_u;
+    unit auto091AECEF_var;
+    string autoB9F15587_val;
+    int auto94C7921D_ae;
+    int auto94C7921D_var;
+    unitgroup auto3AA82758_g;
+    int auto3AA82758_u;
+    unit auto3AA82758_var;
+    int auto32D2717E_ae;
+    int auto32D2717E_var;
+    unitgroup autoA5514E79_g;
+    int autoA5514E79_u;
+    unit autoA5514E79_var;
+    int auto0335B03C_ae;
+    int auto0335B03C_var;
+    unitgroup auto9B86AB31_g;
+    int auto9B86AB31_u;
+    unit auto9B86AB31_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto11DE9FD3_g = PlayerGroupActive();
+        auto11DE9FD3_var = -1;
+        while (true) {
+            auto11DE9FD3_var = PlayerGroupNextPlayer(auto11DE9FD3_g, auto11DE9FD3_var);
+            if (auto11DE9FD3_var < 0) { break; }
+            if (((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto11DE9FD3_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL) || (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[1].lv_selectedVals[auto11DE9FD3_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL))) {
+                PlayerGroupAdd(lv_players, auto11DE9FD3_var);
+                TextExpressionSetToken("Param/Expression/lib_F713A77C_2A11A66B", "A", TextWithColor(PlayerName(auto11DE9FD3_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto11DE9FD3_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_F713A77C_2A11A66B"));
+                auto79655915_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto11DE9FD3_var];
+                if (auto79655915_val == libF713A77C_gv_double) {
+                    lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_8A773CFA"));
+                    auto8C5E01D0_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                    auto8C5E01D0_var = 0;
+                    for ( ; auto8C5E01D0_var <= auto8C5E01D0_ae; auto8C5E01D0_var += 1 ) {
+                        lv_maxEnergy = (StringToInt(CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto8C5E01D0_var], "EnergyMax", auto11DE9FD3_var)) * 2);
+                        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto8C5E01D0_var], "EnergyMax", auto11DE9FD3_var, IntToString(lv_maxEnergy));
+                        auto596DF652_g = UnitGroup(null, auto11DE9FD3_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                        auto596DF652_u = UnitGroupCount(auto596DF652_g, c_unitCountAll);
+                        for (;; auto596DF652_u -= 1) {
+                            auto596DF652_var = UnitGroupUnitFromEnd(auto596DF652_g, auto596DF652_u);
+                            if (auto596DF652_var == null) { break; }
+                            UnitSetPropertyFixed(auto596DF652_var, c_unitPropEnergyMax, (UnitGetPropertyFixed(auto596DF652_var, c_unitPropEnergyMax, c_unitPropNormal) * 2.0));
+                        }
+                    }
+                }
+                else if (auto79655915_val == libF713A77C_gv_noEnergy) {
+                    lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_D1E136AF"));
+                    autoDE6187A9_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                    autoDE6187A9_var = 0;
+                    for ( ; autoDE6187A9_var <= autoDE6187A9_ae; autoDE6187A9_var += 1 ) {
+                        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[autoDE6187A9_var], "EnergyMax", auto11DE9FD3_var, "0");
+                        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[autoDE6187A9_var], "EnergyStart", auto11DE9FD3_var, "0");
+                        auto091AECEF_g = UnitGroup(null, auto11DE9FD3_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                        auto091AECEF_u = UnitGroupCount(auto091AECEF_g, c_unitCountAll);
+                        for (;; auto091AECEF_u -= 1) {
+                            auto091AECEF_var = UnitGroupUnitFromEnd(auto091AECEF_g, auto091AECEF_u);
+                            if (auto091AECEF_var == null) { break; }
+                            UnitSetPropertyFixed(auto091AECEF_var, c_unitPropEnergyMax, 0.0);
+                            UnitSetPropertyFixed(auto091AECEF_var, c_unitPropEnergyPercent, 0.0);
+                        }
+                    }
+                }
+                else {
+                    lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_CE084704"));
+                }
+                autoB9F15587_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[1].lv_selectedVals[auto11DE9FD3_var];
+                if (autoB9F15587_val == libF713A77C_gv_full) {
+                    lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_1E5273F5"));
+                    auto94C7921D_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                    auto94C7921D_var = 0;
+                    for ( ; auto94C7921D_var <= auto94C7921D_ae; auto94C7921D_var += 1 ) {
+                        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto94C7921D_var], "EnergyStart", auto11DE9FD3_var, CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto94C7921D_var], "EnergyMax", auto11DE9FD3_var));
+                        auto3AA82758_g = UnitGroup(null, auto11DE9FD3_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                        auto3AA82758_u = UnitGroupCount(auto3AA82758_g, c_unitCountAll);
+                        for (;; auto3AA82758_u -= 1) {
+                            auto3AA82758_var = UnitGroupUnitFromEnd(auto3AA82758_g, auto3AA82758_u);
+                            if (auto3AA82758_var == null) { break; }
+                            UnitSetPropertyFixed(auto3AA82758_var, c_unitPropEnergyPercent, 100.0);
+                        }
+                    }
+                }
+                else if (autoB9F15587_val == libF713A77C_gv_noEnergy) {
+                    lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_C9A46567"));
+                    auto32D2717E_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                    auto32D2717E_var = 0;
+                    for ( ; auto32D2717E_var <= auto32D2717E_ae; auto32D2717E_var += 1 ) {
+                        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto32D2717E_var], "EnergyStart", auto11DE9FD3_var, "0");
+                        autoA5514E79_g = UnitGroup(null, auto11DE9FD3_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                        autoA5514E79_u = UnitGroupCount(autoA5514E79_g, c_unitCountAll);
+                        for (;; autoA5514E79_u -= 1) {
+                            autoA5514E79_var = UnitGroupUnitFromEnd(autoA5514E79_g, autoA5514E79_u);
+                            if (autoA5514E79_var == null) { break; }
+                            UnitSetPropertyFixed(autoA5514E79_var, c_unitPropEnergyPercent, 0.0);
+                        }
+                    }
+                }
+                else if (autoB9F15587_val == libF713A77C_gv_half) {
+                    lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_0A87ED8F"));
+                    auto0335B03C_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
+                    auto0335B03C_var = 0;
+                    for ( ; auto0335B03C_var <= auto0335B03C_ae; auto0335B03C_var += 1 ) {
+                        lv_initialEnergy = (StringToInt(CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto0335B03C_var], "EnergyMax", auto11DE9FD3_var)) / 2);
+                        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto0335B03C_var], "EnergyStart", auto11DE9FD3_var, FixedToString(lv_initialEnergy, 0));
+                        auto9B86AB31_g = UnitGroup(null, auto11DE9FD3_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                        auto9B86AB31_u = UnitGroupCount(auto9B86AB31_g, c_unitCountAll);
+                        for (;; auto9B86AB31_u -= 1) {
+                            auto9B86AB31_var = UnitGroupUnitFromEnd(auto9B86AB31_g, auto9B86AB31_u);
+                            if (auto9B86AB31_var == null) { break; }
+                            UnitSetPropertyFixed(auto9B86AB31_var, c_unitPropEnergyPercent, 50.0);
+                        }
+                    }
+                }
+                else {
+                    lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_C64D6846"));
+                }
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_F713A77C_3BA456B0", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_F713A77C_3BA456B0", "PlayersSettings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F713A77C_3BA456B0"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libF713A77C_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("91") == "0001")) {
-        autoB1BE1D38_g = PlayerGroupActive();
-        autoB1BE1D38_var = -1;
-        while (true) {
-            autoB1BE1D38_var = PlayerGroupNextPlayer(autoB1BE1D38_g, autoB1BE1D38_var);
-            if (autoB1BE1D38_var < 0) { break; }
-            TextExpressionSetToken("Param/Expression/lib_F713A77C_5C278618", "A", TextWithColor(PlayerName(autoB1BE1D38_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoB1BE1D38_var, false))));
-            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_F713A77C_5C278618"));
-            auto9322A412_val = GameAttributePlayerValue("93", autoB1BE1D38_var);
-            if (auto9322A412_val == "0003") {
-                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_0363C42C"));
-                autoB9B7169B_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
-                autoB9B7169B_var = 0;
-                for ( ; autoB9B7169B_var <= autoB9B7169B_ae; autoB9B7169B_var += 1 ) {
-                    lv_maxEnergy = (StringToInt(CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[autoB9B7169B_var], "EnergyMax", autoB1BE1D38_var)) * 2);
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[autoB9B7169B_var], "EnergyMax", autoB1BE1D38_var, IntToString(lv_maxEnergy));
-                    autoA96CA6DC_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                    autoA96CA6DC_u = UnitGroupCount(autoA96CA6DC_g, c_unitCountAll);
-                    for (;; autoA96CA6DC_u -= 1) {
-                        autoA96CA6DC_var = UnitGroupUnitFromEnd(autoA96CA6DC_g, autoA96CA6DC_u);
-                        if (autoA96CA6DC_var == null) { break; }
-                        UnitSetPropertyFixed(autoA96CA6DC_var, c_unitPropEnergyMax, (UnitGetPropertyFixed(autoA96CA6DC_var, c_unitPropEnergyMax, c_unitPropNormal) * 2.0));
-                    }
-                }
-            }
-            else if (auto9322A412_val == "0002") {
-                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_9567E334"));
-                auto85D97B95_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
-                auto85D97B95_var = 0;
-                for ( ; auto85D97B95_var <= auto85D97B95_ae; auto85D97B95_var += 1 ) {
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto85D97B95_var], "EnergyMax", autoB1BE1D38_var, "0");
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto85D97B95_var], "EnergyStart", autoB1BE1D38_var, "0");
-                    auto52A13246_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                    auto52A13246_u = UnitGroupCount(auto52A13246_g, c_unitCountAll);
-                    for (;; auto52A13246_u -= 1) {
-                        auto52A13246_var = UnitGroupUnitFromEnd(auto52A13246_g, auto52A13246_u);
-                        if (auto52A13246_var == null) { break; }
-                        UnitSetPropertyFixed(auto52A13246_var, c_unitPropEnergyMax, 0.0);
-                        UnitSetPropertyFixed(auto52A13246_var, c_unitPropEnergyPercent, 0.0);
-                    }
-                }
-            }
-            else {
-                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_E0E0B095"));
-            }
-            auto04E05093_val = GameAttributePlayerValue("92", autoB1BE1D38_var);
-            if (auto04E05093_val == "0003") {
-                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_27716E74"));
-                auto04B771B2_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
-                auto04B771B2_var = 0;
-                for ( ; auto04B771B2_var <= auto04B771B2_ae; auto04B771B2_var += 1 ) {
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto04B771B2_var], "EnergyStart", autoB1BE1D38_var, CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto04B771B2_var], "EnergyMax", autoB1BE1D38_var));
-                    auto9DFC835E_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                    auto9DFC835E_u = UnitGroupCount(auto9DFC835E_g, c_unitCountAll);
-                    for (;; auto9DFC835E_u -= 1) {
-                        auto9DFC835E_var = UnitGroupUnitFromEnd(auto9DFC835E_g, auto9DFC835E_u);
-                        if (auto9DFC835E_var == null) { break; }
-                        UnitSetPropertyFixed(auto9DFC835E_var, c_unitPropEnergyPercent, 100.0);
-                    }
-                }
-            }
-            else if (auto04E05093_val == "0002") {
-                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_BF58F008"));
-                auto63CDBA45_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
-                auto63CDBA45_var = 0;
-                for ( ; auto63CDBA45_var <= auto63CDBA45_ae; auto63CDBA45_var += 1 ) {
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto63CDBA45_var], "EnergyStart", autoB1BE1D38_var, "0");
-                    auto93303689_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                    auto93303689_u = UnitGroupCount(auto93303689_g, c_unitCountAll);
-                    for (;; auto93303689_u -= 1) {
-                        auto93303689_var = UnitGroupUnitFromEnd(auto93303689_g, auto93303689_u);
-                        if (auto93303689_var == null) { break; }
-                        UnitSetPropertyFixed(auto93303689_var, c_unitPropEnergyPercent, 0.0);
-                    }
-                }
-            }
-            else if (auto04E05093_val == "0004") {
-                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_DAEE5975"));
-                auto4A2C5F05_ae = libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
-                auto4A2C5F05_var = 0;
-                for ( ; auto4A2C5F05_var <= auto4A2C5F05_ae; auto4A2C5F05_var += 1 ) {
-                    lv_initialEnergy = (StringToInt(CatalogFieldValueGet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto4A2C5F05_var], "EnergyMax", autoB1BE1D38_var)) / 2);
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesWithEnergy[auto4A2C5F05_var], "EnergyStart", autoB1BE1D38_var, FixedToString(lv_initialEnergy, 0));
-                    autoE04A363D_g = UnitGroup(null, autoB1BE1D38_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                    autoE04A363D_u = UnitGroupCount(autoE04A363D_g, c_unitCountAll);
-                    for (;; autoE04A363D_u -= 1) {
-                        autoE04A363D_var = UnitGroupUnitFromEnd(autoE04A363D_g, autoE04A363D_u);
-                        if (autoE04A363D_var == null) { break; }
-                        UnitSetPropertyFixed(autoE04A363D_var, c_unitPropEnergyPercent, 50.0);
-                    }
-                }
-            }
-            else {
-                lv_playersSettings = (lv_playersSettings + StringExternal("Param/Value/lib_F713A77C_81DD8B35"));
-            }
-        }
-        TextExpressionSetToken("Param/Expression/lib_F713A77C_DD3CB6F2", "PlayerSettings", lv_playersSettings);
-        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_F713A77C_DCF5F3A2"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F713A77C_DD3CB6F2"), StringExternal("Param/Value/lib_F713A77C_58C41DE3"), "Assets\\Textures\\btn-upgrade-protoss-khaydarinamulet.dds");
-    }
-
+    libF713A77C_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libF713A77C_gt_EnergyModStart_Init () {
-    libF713A77C_gt_EnergyModStart = TriggerCreate("libF713A77C_gt_EnergyModStart_Func");
-    TriggerAddEventGeneric(libF713A77C_gt_EnergyModStart, "SETUP COMPLETE EVENT");
+void libF713A77C_gt_SetupHandicap_Init () {
+    libF713A77C_gt_SetupHandicap = TriggerCreate("libF713A77C_gt_SetupHandicap_Func");
 }
 
 void libF713A77C_InitTriggers () {
-    libF713A77C_gt_EnergyModStart_Init();
+    libF713A77C_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -188,8 +255,10 @@ void libF713A77C_InitLib () {
     libF713A77C_InitLib_completed = true;
 
     libF713A77C_InitLibraries();
+    libF713A77C_InitVariables();
     libF713A77C_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

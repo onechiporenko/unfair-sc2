@@ -3,12 +3,22 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: WALL
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string lib5353B0F8_gv_horizontal = "Horizontal";
+const string lib5353B0F8_gv_vertical = "Vertical";
+const string lib5353B0F8_gv_diagonal = "/";
+const string lib5353B0F8_gv_diagonal2 = "\\";
+const string lib5353B0F8_gv_crossX = "X";
+const string lib5353B0F8_gv_cross = "+";
+
 // Variable Declarations
 fixed lib5353B0F8_gv_wallTimeout;
 timer lib5353B0F8_gv_wallTimer;
 int lib5353B0F8_gv_wallTimerWindow;
 
 // Function Declarations
+void lib5353B0F8_gf_SetupOptions (int lp_handicapindex);
+void lib5353B0F8_gf_EnableHandicap (int lp_handicapIndex);
 void lib5353B0F8_gf_CreateMainDiagonalWall ();
 void lib5353B0F8_gf_CreateAddDiagonalWall ();
 void lib5353B0F8_gf_CreateVerticalWall ();
@@ -16,7 +26,7 @@ void lib5353B0F8_gf_CreateHorizontalWall ();
 void lib5353B0F8_gf_CreateWallItem (fixed lp_x, fixed lp_y);
 
 // Trigger Declarations
-trigger lib5353B0F8_gt_WallModStart;
+trigger lib5353B0F8_gt_SetupHandicap;
 trigger lib5353B0F8_gt_WallTimerElapsed;
 
 // Library Initialization

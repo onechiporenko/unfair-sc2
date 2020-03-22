@@ -13,6 +13,47 @@ const int libDBC4E2D2_ge_APMKingAffectedUnits_BUILDINGSWORKERS = 5;
 const int libDBC4E2D2_ge_APMKingAffectedUnits_ARMYWORKERS = 6;
 
 // Structures
+struct libDBC4E2D2_gs_BattleHungerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_MacroDefPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ExtraGasPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ExtraCreepPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ExtraRegenerationPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_FairPlayPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_BerserkersBloodPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_BlinkWarsPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_CameraPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_FightClubPlayerOptions {
+    bool lv_enabled;
+    string lv_unitsScope;
+};
+
 struct libDBC4E2D2_gs_MinesPlayerOptions {
     int lv_savezoneradius;
     int lv_mineralslost;
@@ -23,6 +64,26 @@ struct libDBC4E2D2_gs_MinesPlayerOptions {
 struct libDBC4E2D2_gs_EnergyPlayerOptions {
     fixed lv_initial;
     fixed lv_max;
+};
+
+struct libDBC4E2D2_gs_ChargeWarsPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_NoShieldsPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ChatPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ContaminationPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_CorruptionPlayerOptions {
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_ImmportalsPlayerOptions {
@@ -36,6 +97,7 @@ struct libDBC4E2D2_gs_InstantProductionPlayerOptions {
 
 struct libDBC4E2D2_gs_MoveSpeedPlayerOptions {
     fixed lv_rate;
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_DarknessPlayerOptions {
@@ -43,27 +105,29 @@ struct libDBC4E2D2_gs_DarknessPlayerOptions {
     bool lv_hideMap;
 };
 
-struct libDBC4E2D2_gs_NoMinimapOptions {
+struct libDBC4E2D2_gs_NoMinimapPlayerOptions {
     bool lv_minimapEnabled;
     int lv_toggleForReferee;
 };
 
-struct libDBC4E2D2_gs_MotherCoreOptions {
+struct libDBC4E2D2_gs_MotherCorePlayerOptions {
     timer lv_restoreMotherCoreTimer;
     int lv_restoreMotherCoreTimerWindow;
+    bool lv_enabled;
 };
 
-struct libDBC4E2D2_gs_NoArmyControlsOptions {
+struct libDBC4E2D2_gs_NoArmyControlsPlayerOptions {
     bool lv_armyButtonEnabled;
     bool lv_controlGroupsEnabled;
     int lv_toggleForReferee;
 };
 
-struct libDBC4E2D2_gs_RiotOptions {
+struct libDBC4E2D2_gs_RiotPlayerOptions {
     int lv_toggleForReferee;
+    bool lv_enabled;
 };
 
-struct libDBC4E2D2_gs_ResourcesOptions {
+struct libDBC4E2D2_gs_ResourcesPlayerOptions {
     int lv_giveMineralsToggleForReferee;
     int lv_takeMineralsToggleForReferee;
     int lv_giveVespeneToggleForReferee;
@@ -90,12 +154,15 @@ struct libDBC4E2D2_gs_DoublePlayerOptions {
     int lv_minerals;
     int lv_gas;
     int lv_messageindex;
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_RandomUnitsPlayerOptions {
     int lv_minerals;
     int lv_gas;
     int lv_messageindex;
+    string lv_racesScope;
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_BountyPlayerOptions {
@@ -120,6 +187,7 @@ struct libDBC4E2D2_gs_OrderCostsPlayerOptions {
     int lv_mineralslost;
     int lv_gaslost;
     int lv_messageindex;
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_DecimatioPlayerOptions {
@@ -127,6 +195,7 @@ struct libDBC4E2D2_gs_DecimatioPlayerOptions {
     int lv_gaslost;
     int lv_messageindex;
     int lv_toggleForReferee;
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_CriticalMissPlayerOptions {
@@ -135,7 +204,7 @@ struct libDBC4E2D2_gs_CriticalMissPlayerOptions {
 
 struct libDBC4E2D2_gs_CriticalStrikePlayerOptions {
     fixed lv_chance;
-    fixed lv_ammount;
+    fixed lv_amount;
 };
 
 struct libDBC4E2D2_gs_APMKingPlayerOptions {
@@ -143,6 +212,35 @@ struct libDBC4E2D2_gs_APMKingPlayerOptions {
     int lv_minAPM;
     int lv_affectedUnits;
     int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_PermaCloakPlayerOptions {
+    bool lv_enabled;
+    string lv_unitsScope;
+};
+
+struct libDBC4E2D2_gs_ReduceMiningPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_RandomRallyPointsPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_SoulsCatcherPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_StunPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_WalkingDeadPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ZombiesPlayerOptions {
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_PlayerUI {
@@ -155,35 +253,57 @@ struct libDBC4E2D2_gs_PlayerUI {
 struct libDBC4E2D2_gs_PlayerOptions {
     libDBC4E2D2_gs_AliensPlayerOptions lv_aLIENS;
     libDBC4E2D2_gs_APMKingPlayerOptions lv_aPMKING;
+    libDBC4E2D2_gs_BattleHungerOptions lv_bATTLEHUNGER;
+    libDBC4E2D2_gs_BerserkersBloodPlayerOptions lv_bERSERKERSBLOOD;
+    libDBC4E2D2_gs_BlinkWarsPlayerOptions lv_bLINKWARS;
     libDBC4E2D2_gs_BountyPlayerOptions lv_bOUNTY;
+    libDBC4E2D2_gs_CameraPlayerOptions lv_cAMERA;
+    libDBC4E2D2_gs_ChargeWarsPlayerOptions lv_cHARGEWARS;
+    libDBC4E2D2_gs_ChatPlayerOptions lv_cHAT;
+    libDBC4E2D2_gs_ContaminationPlayerOptions lv_cONTAMINATION;
+    libDBC4E2D2_gs_CorruptionPlayerOptions lv_cORRUPTION;
     libDBC4E2D2_gs_CriticalMissPlayerOptions lv_cRITICALMISS;
     libDBC4E2D2_gs_CriticalStrikePlayerOptions lv_cRITICALSTRIKE;
     libDBC4E2D2_gs_DarknessPlayerOptions lv_dARKNESS;
     libDBC4E2D2_gs_DecimatioPlayerOptions lv_dECIMATIO;
     libDBC4E2D2_gs_DoublePlayerOptions lv_dOUBLE;
     libDBC4E2D2_gs_EnergyPlayerOptions lv_eNERGY;
+    libDBC4E2D2_gs_ExtraCreepPlayerOptions lv_eXTRACREEP;
+    libDBC4E2D2_gs_ExtraGasPlayerOptions lv_eXTRAGAS;
+    libDBC4E2D2_gs_ExtraRegenerationPlayerOptions lv_eXTRAREGENERATION;
+    libDBC4E2D2_gs_FairPlayPlayerOptions lv_fAIRPLAY;
     libDBC4E2D2_gs_FreeWorkersPlayerOptions lv_fREEWORKERS;
+    libDBC4E2D2_gs_FightClubPlayerOptions lv_fIGHTCLUB;
     libDBC4E2D2_gs_ImmportalsPlayerOptions lv_iMMORTALS;
     libDBC4E2D2_gs_InstantProductionPlayerOptions lv_iNSTANTPRODUCTION;
     libDBC4E2D2_gs_LastWillPlayerOptions lv_lASTWILL;
     libDBC4E2D2_gs_LimitedWorkersPlayerOptions lv_lIMITEDWORKERS;
+    libDBC4E2D2_gs_MacroDefPlayerOptions lv_mACRODEF;
     libDBC4E2D2_gs_MinesPlayerOptions lv_mINES;
-    libDBC4E2D2_gs_MotherCoreOptions lv_mOTHERCORE;
-    libDBC4E2D2_gs_NoMinimapOptions lv_nOMINIMAP;
-    libDBC4E2D2_gs_NoArmyControlsOptions lv_nOARMYCONTROLS;
+    libDBC4E2D2_gs_MotherCorePlayerOptions lv_mOTHERCORE;
+    libDBC4E2D2_gs_NoArmyControlsPlayerOptions lv_nOARMYCONTROLS;
+    libDBC4E2D2_gs_NoMinimapPlayerOptions lv_nOMINIMAP;
+    libDBC4E2D2_gs_NoShieldsPlayerOptions lv_nOSHIELDS;
     libDBC4E2D2_gs_MoveSpeedPlayerOptions lv_mOVESPEED;
     libDBC4E2D2_gs_NukedPlayerOptions lv_nUKED;
     libDBC4E2D2_gs_OrderCostsPlayerOptions lv_oRDERCOSTS;
+    libDBC4E2D2_gs_PermaCloakPlayerOptions lv_pERMACLOAK;
+    libDBC4E2D2_gs_RandomRallyPointsPlayerOptions lv_rANDOMRALLYPOINTS;
     libDBC4E2D2_gs_RandomUnitsPlayerOptions lv_rANDOMUNITS;
-    libDBC4E2D2_gs_ResourcesOptions lv_rESOURCES;
-    libDBC4E2D2_gs_RiotOptions lv_rIOTWORKERS;
+    libDBC4E2D2_gs_ReduceMiningPlayerOptions lv_rEDUCEMINING;
+    libDBC4E2D2_gs_ResourcesPlayerOptions lv_rESOURCES;
+    libDBC4E2D2_gs_RiotPlayerOptions lv_rIOTWORKERS;
+    libDBC4E2D2_gs_SoulsCatcherPlayerOptions lv_sOULSCATCHER;
+    libDBC4E2D2_gs_StunPlayerOptions lv_sTUN;
     libDBC4E2D2_gs_TemporalFieldsPlayerOptions lv_tEMPORALFIELDS;
+    libDBC4E2D2_gs_WalkingDeadPlayerOptions lv_wALKINGDEAD;
+    libDBC4E2D2_gs_ZombiesPlayerOptions lv_zOMBIES;
     libDBC4E2D2_gs_PlayerUI lv_uI;
     libDBC4E2D2_gs_VampirismPlayerOptions lv_vAMPIRISM;
 };
 
 // Variable Declarations
-libDBC4E2D2_gs_PlayerOptions[18] libDBC4E2D2_gv_players;
+libDBC4E2D2_gs_PlayerOptions[18] libDBC4E2D2_gv_pLAYERS;
 int libDBC4E2D2_gv_gAMETIME;
 string libDBC4E2D2_gv_sETUPCOMPLETEEVENT;
 int libDBC4E2D2_gv_numberOfUnitTypesWithEnergy;
@@ -193,6 +313,7 @@ int libDBC4E2D2_gv_numberOfProtossUnits;
 int libDBC4E2D2_gv_numberOfTerranUnits;
 int libDBC4E2D2_gv_numberOfZergUnits;
 int libDBC4E2D2_gv_numberOfAllUnits;
+timer libDBC4E2D2_gv_timer1s;
 string[51] libDBC4E2D2_gv_protossUnits;
 string[51] libDBC4E2D2_gv_terranUnits;
 string[51] libDBC4E2D2_gv_zergUnits;
@@ -232,7 +353,6 @@ void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, 
 
 // Trigger Declarations
 trigger libDBC4E2D2_gt_SETUP;
-trigger libDBC4E2D2_gt_SETUPCOMPLETE;
 trigger libDBC4E2D2_gt_UpdateGameTime;
 trigger libDBC4E2D2_gt_UpdatePlayerInfoModals;
 trigger libDBC4E2D2_gt_GameHeartInitialization;

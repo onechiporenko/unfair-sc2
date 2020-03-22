@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibF7F71763_h"
@@ -9,87 +10,88 @@ include "LibF7F71763_h"
 // External Library Initialization
 void libF7F71763_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Critical Miss Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libF7F71763_gt_CriticalMissModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libF7F71763_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_F7F71763_35BE4B96");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_F7F71763_F42DBD32");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-terran-snipe-color.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_F7F71763_3CB05F7B");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "15";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libF7F71763_gt_SetupHandicap;
+}
+
+void libF7F71763_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
     text lv_playersSettings;
 
     // Automatic Variable Declarations
-    playergroup auto5A93C7D1_g;
-    int auto5A93C7D1_var;
-    string autoDABDF64C_val;
-    playergroup auto9D03F5AD_g;
-    int auto9D03F5AD_var;
+    playergroup auto681AC53B_g;
+    int auto681AC53B_var;
+    playergroup auto176B75E1_g;
+    int auto176B75E1_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("118") == "0001")) {
-        auto5A93C7D1_g = PlayerGroupActive();
-        auto5A93C7D1_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto681AC53B_g = PlayerGroupActive();
+        auto681AC53B_var = -1;
         while (true) {
-            auto5A93C7D1_var = PlayerGroupNextPlayer(auto5A93C7D1_g, auto5A93C7D1_var);
-            if (auto5A93C7D1_var < 0) { break; }
-            if ((GameAttributePlayerValue("119", auto5A93C7D1_var) != "0001")) {
-                PlayerGroupAdd(lv_players, auto5A93C7D1_var);
-                autoDABDF64C_val = GameAttributePlayerValue("119", auto5A93C7D1_var);
-                if (autoDABDF64C_val == "0002") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", auto5A93C7D1_var, "0.05");
-                    libDBC4E2D2_gv_players[auto5A93C7D1_var].lv_cRITICALMISS.lv_chance = 0.05;
-                }
-                else if (autoDABDF64C_val == "0003") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", auto5A93C7D1_var, "0.1");
-                    libDBC4E2D2_gv_players[auto5A93C7D1_var].lv_cRITICALMISS.lv_chance = 0.1;
-                }
-                else if (autoDABDF64C_val == "0004") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", auto5A93C7D1_var, "0.15");
-                    libDBC4E2D2_gv_players[auto5A93C7D1_var].lv_cRITICALMISS.lv_chance = 0.15;
-                }
-                else if (autoDABDF64C_val == "0005") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", auto5A93C7D1_var, "0.2");
-                    libDBC4E2D2_gv_players[auto5A93C7D1_var].lv_cRITICALMISS.lv_chance = 0.2;
-                }
-                else if (autoDABDF64C_val == "0006") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", auto5A93C7D1_var, "0.25");
-                    libDBC4E2D2_gv_players[auto5A93C7D1_var].lv_cRITICALMISS.lv_chance = 0.25;
-                }
-                else if (autoDABDF64C_val == "0007") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", auto5A93C7D1_var, "0.3");
-                    libDBC4E2D2_gv_players[auto5A93C7D1_var].lv_cRITICALMISS.lv_chance = 0.3;
-                }
-                else {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", auto5A93C7D1_var, "0");
-                    libDBC4E2D2_gv_players[auto5A93C7D1_var].lv_cRITICALMISS.lv_chance = 0.0;
-                }
+            auto681AC53B_var = PlayerGroupNextPlayer(auto681AC53B_g, auto681AC53B_var);
+            if (auto681AC53B_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto681AC53B_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto681AC53B_var);
+                libF7F71763_gf_EnableHandicapForPlayer(auto681AC53B_var);
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
             TriggerExecute(libF7F71763_gt_AddCritMissForInitialUnits, true, false);
-            auto9D03F5AD_g = lv_players;
-            auto9D03F5AD_var = -1;
+            auto176B75E1_g = lv_players;
+            auto176B75E1_var = -1;
             while (true) {
-                auto9D03F5AD_var = PlayerGroupNextPlayer(auto9D03F5AD_g, auto9D03F5AD_var);
-                if (auto9D03F5AD_var < 0) { break; }
-                TextExpressionSetToken("Param/Expression/lib_F7F71763_12F9E286", "A", TextWithColor(PlayerName(auto9D03F5AD_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto9D03F5AD_var, false))));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_F7F71763_12F9E286"));
-                TextExpressionSetToken("Param/Expression/lib_F7F71763_7F3AE052", "A", FixedToText((libDBC4E2D2_gv_players[auto9D03F5AD_var].lv_cRITICALMISS.lv_chance * 100.0), 0));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_F7F71763_7F3AE052"));
+                auto176B75E1_var = PlayerGroupNextPlayer(auto176B75E1_g, auto176B75E1_var);
+                if (auto176B75E1_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_F7F71763_8F19579F", "A", TextWithColor(PlayerName(auto176B75E1_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto176B75E1_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_F7F71763_8F19579F"));
+                TextExpressionSetToken("Param/Expression/lib_F7F71763_89A27A90", "A", FixedToText((libDBC4E2D2_gv_pLAYERS[auto176B75E1_var].lv_cRITICALMISS.lv_chance * 100.0), 0));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_F7F71763_89A27A90"));
             }
-            TextExpressionSetToken("Param/Expression/lib_F7F71763_3C7C05CC", "Players", lv_playersSettings);
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_F7F71763_82E65ED5"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F7F71763_3C7C05CC"), StringExternal("Param/Value/lib_F7F71763_4154274C"), "Assets\\Textures\\btn-ability-terran-snipe-color.dds");
+            TextExpressionSetToken("Param/Expression/lib_F7F71763_DCF8695E", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_F7F71763_DCF8695E", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F7F71763_DCF8695E"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(libF7F71763_gt_AddCritMissForInitialUnits, false);
@@ -100,13 +102,63 @@ bool libF7F71763_gt_CriticalMissModStart_Func (bool testConds, bool runActions) 
         TriggerEnable(libF7F71763_gt_AddCritMissForInitialUnits, false);
         TriggerEnable(libF7F71763_gt_SetCritMissBehaviorForCreatedUnit, false);
     }
+}
+
+void libF7F71763_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    string autoEA2601F3_val;
+
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.0;
+    autoEA2601F3_val = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[0].lv_selectedVals[lp_player];
+    if (autoEA2601F3_val == "5") {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", lp_player, "0.05");
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.05;
+    }
+    else if (autoEA2601F3_val == "10") {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", lp_player, "0.1");
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.1;
+    }
+    else if (autoEA2601F3_val == "15") {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", lp_player, "0.15");
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.15;
+    }
+    else if (autoEA2601F3_val == "20") {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", lp_player, "0.2");
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.2;
+    }
+    else if (autoEA2601F3_val == "25") {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", lp_player, "0.25");
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.25;
+    }
+    else if (autoEA2601F3_val == "30") {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", lp_player, "0.3");
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.3;
+    }
+    else {
+        CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2CritMiss", "DamageResponse.Chance", lp_player, "0");
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_cRITICALMISS.lv_chance = 0.0;
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libF7F71763_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF7F71763_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libF7F71763_gt_CriticalMissModStart_Init () {
-    libF7F71763_gt_CriticalMissModStart = TriggerCreate("libF7F71763_gt_CriticalMissModStart_Func");
-    TriggerAddEventMapInit(libF7F71763_gt_CriticalMissModStart);
+void libF7F71763_gt_SetupHandicap_Init () {
+    libF7F71763_gt_SetupHandicap = TriggerCreate("libF7F71763_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -164,12 +216,12 @@ bool libF7F71763_gt_AddCritMissForInitialUnits_Func (bool testConds, bool runAct
         return true;
     }
 
-    auto8511ECE2_g = PlayerGroupAll();
+    auto8511ECE2_g = PlayerGroupActive();
     auto8511ECE2_var = -1;
     while (true) {
         auto8511ECE2_var = PlayerGroupNextPlayer(auto8511ECE2_g, auto8511ECE2_var);
         if (auto8511ECE2_var < 0) { break; }
-        if ((GameAttributePlayerValue("119", auto8511ECE2_var) != "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto8511ECE2_var].lv_cRITICALMISS.lv_chance != 0.0)) {
             auto60BACE44_g = UnitGroup(null, auto8511ECE2_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             auto60BACE44_u = UnitGroupCount(auto60BACE44_g, c_unitCountAll);
             for (;; auto60BACE44_u -= 1) {
@@ -198,7 +250,7 @@ bool libF7F71763_gt_SetCritMissBehaviorForCreatedUnit_Func (bool testConds, bool
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("119", UnitGetOwner(EventUnitCreatedUnit())) != "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_cRITICALMISS.lv_chance != 0.0))) {
             return false;
         }
     }
@@ -222,7 +274,7 @@ void libF7F71763_gt_SetCritMissBehaviorForCreatedUnit_Init () {
 }
 
 void libF7F71763_InitTriggers () {
-    libF7F71763_gt_CriticalMissModStart_Init();
+    libF7F71763_gt_SetupHandicap_Init();
     libF7F71763_gt_UnitTakesDamage_Init();
     libF7F71763_gt_AddCritMissForInitialUnits_Init();
     libF7F71763_gt_SetCritMissBehaviorForCreatedUnit_Init();
@@ -244,5 +296,6 @@ void libF7F71763_InitLib () {
     libF7F71763_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

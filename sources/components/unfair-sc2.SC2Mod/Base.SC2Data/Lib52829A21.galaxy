@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib52829A21_h"
@@ -9,71 +10,104 @@ include "Lib52829A21_h"
 // External Library Initialization
 void lib52829A21_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Grapple Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib52829A21_gt_GrappleModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib52829A21_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_52829A21_C710EB42");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_52829A21_23B8016B");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-tychus-herc-heavyimpact.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_52829A21_CBEBE1FD");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Enabled";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib52829A21_gt_SetupHandicap;
+}
+
+void lib52829A21_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto63F0314C_g;
-    int auto63F0314C_var;
-    playergroup auto93EE6AAA_g;
-    int auto93EE6AAA_var;
+    playergroup auto8FD4B78B_g;
+    int auto8FD4B78B_var;
+    playergroup auto264C3AB6_g;
+    int auto264C3AB6_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto264C3AB6_g = PlayerGroupActive();
+        auto264C3AB6_var = -1;
+        while (true) {
+            auto264C3AB6_var = PlayerGroupNextPlayer(auto264C3AB6_g, auto264C3AB6_var);
+            if (auto264C3AB6_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto264C3AB6_var] == libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                TechTreeAbilityAllow(auto264C3AB6_var, AbilityCommand("Grapple", 0), false);
+            }
+            else {
+                TechTreeUpgradeAddLevel(auto264C3AB6_var, "Burrow", 1);
+                PlayerGroupAdd(lv_players, auto264C3AB6_var);
+            }
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_52829A21_7018C971", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_52829A21_7018C971", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_52829A21_7018C971"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+    else {
+        auto8FD4B78B_g = PlayerGroupAll();
+        auto8FD4B78B_var = -1;
+        while (true) {
+            auto8FD4B78B_var = PlayerGroupNextPlayer(auto8FD4B78B_g, auto8FD4B78B_var);
+            if (auto8FD4B78B_var < 0) { break; }
+            TechTreeAbilityAllow(auto8FD4B78B_var, AbilityCommand("Grapple", 0), false);
+        }
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib52829A21_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("43") == "0001")) {
-        auto93EE6AAA_g = PlayerGroupAll();
-        auto93EE6AAA_var = -1;
-        while (true) {
-            auto93EE6AAA_var = PlayerGroupNextPlayer(auto93EE6AAA_g, auto93EE6AAA_var);
-            if (auto93EE6AAA_var < 0) { break; }
-            if ((GameAttributePlayerValue("44", auto93EE6AAA_var) == "0001")) {
-                TechTreeUpgradeAddLevel(auto93EE6AAA_var, "Burrow", 1);
-                PlayerGroupAdd(lv_players, auto93EE6AAA_var);
-            }
-            else {
-                TechTreeAbilityAllow(auto93EE6AAA_var, AbilityCommand("Grapple", 0), false);
-            }
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_52829A21_548A23B7", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_52829A21_18C39317"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_52829A21_548A23B7"), StringExternal("Param/Value/lib_52829A21_CA138172"), "Assets\\Textures\\btn-ability-tychus-herc-heavyimpact.dds");
-        }
-
-    }
-    else {
-        auto63F0314C_g = PlayerGroupAll();
-        auto63F0314C_var = -1;
-        while (true) {
-            auto63F0314C_var = PlayerGroupNextPlayer(auto63F0314C_g, auto63F0314C_var);
-            if (auto63F0314C_var < 0) { break; }
-            TechTreeAbilityAllow(auto63F0314C_var, AbilityCommand("Grapple", 0), false);
-        }
-    }
+    lib52829A21_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib52829A21_gt_GrappleModStart_Init () {
-    lib52829A21_gt_GrappleModStart = TriggerCreate("lib52829A21_gt_GrappleModStart_Func");
-    TriggerAddEventMapInit(lib52829A21_gt_GrappleModStart);
+void lib52829A21_gt_SetupHandicap_Init () {
+    lib52829A21_gt_SetupHandicap = TriggerCreate("lib52829A21_gt_SetupHandicap_Func");
 }
 
 void lib52829A21_InitTriggers () {
-    lib52829A21_gt_GrappleModStart_Init();
+    lib52829A21_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -92,5 +126,6 @@ void lib52829A21_InitLib () {
     lib52829A21_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

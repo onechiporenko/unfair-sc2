@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibCA473C97_h"
@@ -9,96 +10,137 @@ include "LibCA473C97_h"
 // External Library Initialization
 void libCA473C97_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void libCA473C97_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_CA473C97_EE241CDE");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_CA473C97_9F579B77");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-protoss-fenix-fenixweapondamage.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_CA473C97_D00C1C66");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Air / Ground";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libCA473C97_gt_SetupHandicap;
+}
+
+void libCA473C97_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoFC33CE2D_g;
+    int autoFC33CE2D_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoFC33CE2D_g = PlayerGroupActive();
+        autoFC33CE2D_var = -1;
+        while (true) {
+            autoFC33CE2D_var = PlayerGroupNextPlayer(autoFC33CE2D_g, autoFC33CE2D_var);
+            if (autoFC33CE2D_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoFC33CE2D_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoFC33CE2D_var);
+                libCA473C97_gf_EnableHandicapForPlayer(autoFC33CE2D_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_CA473C97_F210805F", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_CA473C97_F210805F", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_CA473C97_F210805F"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+void libCA473C97_gf_EnableHandicapForPlayer (int lp_player) {
+    // Variable Declarations
+    string lv_weaponTargetFilters;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_weaponTargetFilters = "Visible;Missile,Stasis,Dead,Hidden,Invulnerable";
+
+    // Implementation
+    CatalogFieldValueSet(c_gameCatalogWeapon, "PsiBlades", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "Adept", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "WarpBlades", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "HighTemplarWeapon", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "PhaseDisruptors", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "ThermalLances", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "IonCannons", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "Oracle", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "RepulsorCannon", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "Claws", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "AcidSaliva", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "RoachMelee", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "RavagerWeapon", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "VolatileBurst", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "VolatileBurstDummy", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "VolatileBurstBuilding", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "LurkerMP", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "ParasiteSpore", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "BroodlingStrike", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "BroodlingEscort", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "NeedleClaws", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "LocustMPMelee", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "KaiserBlades", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "PunisherGrenades", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "P38ScytheGuassPistol", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "90mmCannons", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "CrucioShockCannon", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "InfernalFlameThrower", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "HellionTank", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "LiberatorMissileLaunchers", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "LiberatorAGWeapon", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "BacklashRockets", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "LanzerTorpedoes", "TargetFilters", lp_player, lv_weaponTargetFilters);
+    CatalogFieldValueSet(c_gameCatalogWeapon, "TwinGatlingCannon", "TargetFilters", lp_player, lv_weaponTargetFilters);
 }
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Air/Ground Weapon Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool libCA473C97_gt_AirGroundWeaponModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    string lv_weaponTargetFilters;
-    playergroup lv_players;
-    text lv_defaultDescription;
-
+bool libCA473C97_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup autoDDEBDF8A_g;
-    int autoDDEBDF8A_var;
-
-    // Variable Initialization
-    lv_weaponTargetFilters = "Visible;Missile,Stasis,Dead,Hidden,Invulnerable";
-    lv_players = PlayerGroupEmpty();
-    lv_defaultDescription = StringExternal("Param/Value/lib_CA473C97_52518480");
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("120") == "0001")) {
-        autoDDEBDF8A_g = PlayerGroupAll();
-        autoDDEBDF8A_var = -1;
-        while (true) {
-            autoDDEBDF8A_var = PlayerGroupNextPlayer(autoDDEBDF8A_g, autoDDEBDF8A_var);
-            if (autoDDEBDF8A_var < 0) { break; }
-            if ((GameAttributePlayerValue("121", autoDDEBDF8A_var) == "0002")) {
-                PlayerGroupAdd(lv_players, autoDDEBDF8A_var);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "PsiBlades", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "Adept", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "WarpBlades", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "HighTemplarWeapon", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "PhaseDisruptors", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "ThermalLances", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "IonCannons", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "Oracle", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "RepulsorCannon", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "Claws", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "AcidSaliva", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "RoachMelee", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "RavagerWeapon", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "VolatileBurst", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "VolatileBurstDummy", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "VolatileBurstBuilding", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "LurkerMP", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "ParasiteSpore", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "BroodlingStrike", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "BroodlingEscort", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "NeedleClaws", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "LocustMPMelee", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "KaiserBlades", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "PunisherGrenades", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "P38ScytheGuassPistol", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "90mmCannons", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "CrucioShockCannon", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "InfernalFlameThrower", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "HellionTank", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "LiberatorMissileLaunchers", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "LiberatorAGWeapon", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "BacklashRockets", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "LanzerTorpedoes", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-                CatalogFieldValueSet(c_gameCatalogWeapon, "TwinGatlingCannon", "TargetFilters", autoDDEBDF8A_var, lv_weaponTargetFilters);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_CA473C97_5FA8BE4F", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_CA473C97_BC3A3F4B"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_CA473C97_5FA8BE4F")), StringExternal("Param/Value/lib_CA473C97_F0D34427"), "Assets\\Textures\\btn-upgrade-protoss-fenix-fenixweapondamage.dds");
-        }
-
-    }
-
+    libCA473C97_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libCA473C97_gt_AirGroundWeaponModStart_Init () {
-    libCA473C97_gt_AirGroundWeaponModStart = TriggerCreate("libCA473C97_gt_AirGroundWeaponModStart_Func");
-    TriggerAddEventMapInit(libCA473C97_gt_AirGroundWeaponModStart);
+void libCA473C97_gt_SetupHandicap_Init () {
+    libCA473C97_gt_SetupHandicap = TriggerCreate("libCA473C97_gt_SetupHandicap_Func");
 }
 
 void libCA473C97_InitTriggers () {
-    libCA473C97_gt_AirGroundWeaponModStart_Init();
+    libCA473C97_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -117,5 +159,6 @@ void libCA473C97_InitLib () {
     libCA473C97_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

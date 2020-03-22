@@ -7,8 +7,12 @@ include "TriggerLibs/natives"
 string libFCEF8E43_gv_moveSpeed;
 string libFCEF8E43_gv_creepBonus;
 
+// Function Declarations
+void libFCEF8E43_gf_SetupOptions (int lp_handicapindex);
+void libFCEF8E43_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger libFCEF8E43_gt_QueenModStart;
+trigger libFCEF8E43_gt_SetupHandicap;
 
 // Library Initialization
 void libFCEF8E43_InitVariables ();

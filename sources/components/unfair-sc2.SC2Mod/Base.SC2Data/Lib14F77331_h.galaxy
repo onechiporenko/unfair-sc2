@@ -4,8 +4,10 @@ include "TriggerLibs/natives"
 // Library: NO MINIMAP
 //--------------------------------------------------------------------------------------------------
 // Function Declarations
+void lib14F77331_gf_SetupOptions (int lp_handicapindex);
+void lib14F77331_gf_EnableHandicap (int lp_handicapIndex);
 void lib14F77331_gf_ToggleMinimapPanel (int lp_player);
 
 // Trigger Declarations
-trigger lib14F77331_gt_NoMinimapModStart;
+trigger lib14F77331_gt_SetupHandicap;
 

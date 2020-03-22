@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibCB22438A_h"
@@ -9,10 +10,103 @@ include "LibCB22438A_h"
 // External Library Initialization
 void libCB22438A_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
+// Variable Initialization
+bool libCB22438A_InitVariables_completed = false;
+
+void libCB22438A_InitVariables () {
+    if (libCB22438A_InitVariables_completed) {
+        return;
+    }
+
+    libCB22438A_InitVariables_completed = true;
+
+}
+
 // Functions
+void libCB22438A_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_CB22438A_4CA46A7A");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_CB22438A_B611F2EF");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-zerg-dehaka-tyrannozor-barrageofspikes.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_CB22438A_68D355C0");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libCB22438A_gv_turnOnBerserkersBlood;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libCB22438A_gt_SetupHandicap;
+}
+
+void libCB22438A_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoDA871DD5_g;
+    int autoDA871DD5_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoDA871DD5_g = PlayerGroupActive();
+        autoDA871DD5_var = -1;
+        while (true) {
+            autoDA871DD5_var = PlayerGroupNextPlayer(autoDA871DD5_g, autoDA871DD5_var);
+            if (autoDA871DD5_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoDA871DD5_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoDA871DD5_var);
+                libCB22438A_gf_EnableHandicapForPlayer(autoDA871DD5_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_CB22438A_4F339E92", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_CB22438A_4F339E92", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_CB22438A_4F339E92"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
+        }
+        else {
+            TriggerEnable(libCB22438A_gt_UnitIsCreated, false);
+        }
+    }
+    else {
+        TriggerEnable(libCB22438A_gt_UnitIsCreated, false);
+    }
+}
+
+void libCB22438A_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    unitgroup autoD6E6C6EF_g;
+    int autoD6E6C6EF_u;
+    unit autoD6E6C6EF_var;
+
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_bERSERKERSBLOOD.lv_enabled = true;
+    autoD6E6C6EF_g = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoD6E6C6EF_u = UnitGroupCount(autoD6E6C6EF_g, c_unitCountAll);
+    for (;; autoD6E6C6EF_u -= 1) {
+        autoD6E6C6EF_var = UnitGroupUnitFromEnd(autoD6E6C6EF_g, autoD6E6C6EF_u);
+        if (autoD6E6C6EF_var == null) { break; }
+        libCB22438A_gf_AddBerserkersBloodBehaviors(autoD6E6C6EF_var);
+    }
+}
+
 void libCB22438A_gf_AddBerserkersBloodBehaviors (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation
@@ -29,6 +123,25 @@ void libCB22438A_gf_AddBerserkersBloodBehaviors (unit lp_unit) {
 }
 
 // Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libCB22438A_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libCB22438A_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libCB22438A_gt_SetupHandicap_Init () {
+    libCB22438A_gt_SetupHandicap = TriggerCreate("libCB22438A_gt_SetupHandicap_Func");
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger: Change Unit Size 145
 //--------------------------------------------------------------------------------------------------
@@ -230,106 +343,13 @@ void libCB22438A_gt_ChangeUnitSize100_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Berserker's Blood Mod Start
+// Trigger: Unit Is Created
 //--------------------------------------------------------------------------------------------------
-bool libCB22438A_gt_BerserkersBloodModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-    text lv_defaultDescription;
-
-    // Automatic Variable Declarations
-    playergroup auto5D8198C1_g;
-    int auto5D8198C1_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-    lv_defaultDescription = StringExternal("Param/Value/lib_CB22438A_021CA37A");
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("41") == "0001")) {
-        auto5D8198C1_g = PlayerGroupAll();
-        auto5D8198C1_var = -1;
-        while (true) {
-            auto5D8198C1_var = PlayerGroupNextPlayer(auto5D8198C1_g, auto5D8198C1_var);
-            if (auto5D8198C1_var < 0) { break; }
-            if ((GameAttributePlayerValue("42", auto5D8198C1_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto5D8198C1_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_CB22438A_310396C1", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_CB22438A_298195BA"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_CB22438A_310396C1")), StringExternal("Param/Value/lib_CB22438A_1009F291"), "Assets\\Textures\\btn-ability-zerg-dehaka-tyrannozor-barrageofspikes.dds");
-            TriggerExecute(libCB22438A_gt_AddBuffForInitialUnits, true, false);
-        }
-        else {
-            TriggerEnable(libCB22438A_gt_AddBuffForCreatedUnit, false);
-        }
-    }
-    else {
-        TriggerEnable(libCB22438A_gt_AddBuffForCreatedUnit, false);
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libCB22438A_gt_BerserkersBloodModStart_Init () {
-    libCB22438A_gt_BerserkersBloodModStart = TriggerCreate("libCB22438A_gt_BerserkersBloodModStart_Func");
-    TriggerAddEventMapInit(libCB22438A_gt_BerserkersBloodModStart);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Add Buff For Initial Units
-//--------------------------------------------------------------------------------------------------
-bool libCB22438A_gt_AddBuffForInitialUnits_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    playergroup autoA361336D_g;
-    int autoA361336D_var;
-    unitgroup auto1EF25595_g;
-    int auto1EF25595_u;
-    unit auto1EF25595_var;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoA361336D_g = PlayerGroupAll();
-    autoA361336D_var = -1;
-    while (true) {
-        autoA361336D_var = PlayerGroupNextPlayer(autoA361336D_g, autoA361336D_var);
-        if (autoA361336D_var < 0) { break; }
-        if ((GameAttributePlayerValue("42", autoA361336D_var) == "0001")) {
-            auto1EF25595_g = UnitGroup(null, autoA361336D_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-            auto1EF25595_u = UnitGroupCount(auto1EF25595_g, c_unitCountAll);
-            for (;; auto1EF25595_u -= 1) {
-                auto1EF25595_var = UnitGroupUnitFromEnd(auto1EF25595_g, auto1EF25595_u);
-                if (auto1EF25595_var == null) { break; }
-                libCB22438A_gf_AddBerserkersBloodBehaviors(auto1EF25595_var);
-            }
-        }
-
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libCB22438A_gt_AddBuffForInitialUnits_Init () {
-    libCB22438A_gt_AddBuffForInitialUnits = TriggerCreate("libCB22438A_gt_AddBuffForInitialUnits_Func");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Add Buff For Created Unit
-//--------------------------------------------------------------------------------------------------
-bool libCB22438A_gt_AddBuffForCreatedUnit_Func (bool testConds, bool runActions) {
+bool libCB22438A_gt_UnitIsCreated_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("42", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_bERSERKERSBLOOD.lv_enabled == true))) {
             return false;
         }
     }
@@ -344,12 +364,13 @@ bool libCB22438A_gt_AddBuffForCreatedUnit_Func (bool testConds, bool runActions)
 }
 
 //--------------------------------------------------------------------------------------------------
-void libCB22438A_gt_AddBuffForCreatedUnit_Init () {
-    libCB22438A_gt_AddBuffForCreatedUnit = TriggerCreate("libCB22438A_gt_AddBuffForCreatedUnit_Func");
-    TriggerAddEventUnitCreated(libCB22438A_gt_AddBuffForCreatedUnit, null, null, null);
+void libCB22438A_gt_UnitIsCreated_Init () {
+    libCB22438A_gt_UnitIsCreated = TriggerCreate("libCB22438A_gt_UnitIsCreated_Func");
+    TriggerAddEventUnitCreated(libCB22438A_gt_UnitIsCreated, null, null, null);
 }
 
 void libCB22438A_InitTriggers () {
+    libCB22438A_gt_SetupHandicap_Init();
     libCB22438A_gt_ChangeUnitSize145_Init();
     libCB22438A_gt_ChangeUnitSize140_Init();
     libCB22438A_gt_ChangeUnitSize135_Init();
@@ -360,9 +381,7 @@ void libCB22438A_InitTriggers () {
     libCB22438A_gt_ChangeUnitSize110_Init();
     libCB22438A_gt_ChangeUnitSize105_Init();
     libCB22438A_gt_ChangeUnitSize100_Init();
-    libCB22438A_gt_BerserkersBloodModStart_Init();
-    libCB22438A_gt_AddBuffForInitialUnits_Init();
-    libCB22438A_gt_AddBuffForCreatedUnit_Init();
+    libCB22438A_gt_UnitIsCreated_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -378,8 +397,10 @@ void libCB22438A_InitLib () {
     libCB22438A_InitLib_completed = true;
 
     libCB22438A_InitLibraries();
+    libCB22438A_InitVariables();
     libCB22438A_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

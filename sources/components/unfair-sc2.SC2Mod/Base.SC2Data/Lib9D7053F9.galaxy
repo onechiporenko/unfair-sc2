@@ -71,25 +71,25 @@ int lib9D7053F9_gf_CreateRefereeUI (playergroup lp_players) {
         TextExpressionSetToken("Param/Expression/lib_9D7053F9_76D551AE", "A", TextWithColor(PlayerName(autoCF8C0046_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoCF8C0046_var, false))));
         libNtve_gf_CreateDialogItemLabel(DialogLastCreated(), 200, lv_rowSize, c_anchorTopLeft, 40, ((lv_i * lv_rowSize) + (lv_rowSize / 3)), TextExpressionAssemble("Param/Expression/lib_9D7053F9_76D551AE"), ColorWithAlpha(0,0,0,0), false, 0.0);
         libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_buttonWidth, lv_buttonHeight, c_anchorTopLeft, 250, (lv_i * lv_rowSize), StringExternal("Param/Value/lib_9D7053F9_8B22A5D5"), StringToText(""), "");
-        libDBC4E2D2_gv_players[autoCF8C0046_var].lv_nOMINIMAP.lv_toggleForReferee = DialogControlLastCreated();
+        libDBC4E2D2_gv_pLAYERS[autoCF8C0046_var].lv_nOMINIMAP.lv_toggleForReferee = DialogControlLastCreated();
         libNtve_gf_CreateDialogItemImage(DialogLastCreated(), lv_buttonImageWidth, lv_buttonImageHeight, c_anchorTopLeft, 252, ((lv_i * lv_rowSize) + 2), StringToText(""), "Assets\\Textures\\tip_terrazinefog.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
         libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_buttonWidth, lv_buttonHeight, c_anchorTopLeft, 340, (lv_i * lv_rowSize), StringExternal("Param/Value/lib_9D7053F9_12425594"), StringToText(""), "");
-        libDBC4E2D2_gv_players[autoCF8C0046_var].lv_rIOTWORKERS.lv_toggleForReferee = DialogControlLastCreated();
+        libDBC4E2D2_gv_pLAYERS[autoCF8C0046_var].lv_rIOTWORKERS.lv_toggleForReferee = DialogControlLastCreated();
         libNtve_gf_CreateDialogItemImage(DialogLastCreated(), lv_buttonImageWidth, lv_buttonImageHeight, c_anchorTopLeft, 342, ((lv_i * lv_rowSize) + 2), StringToText(""), "Assets\\Textures\\btn-ability-kerrigan-twindrones.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
         libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_buttonWidth, lv_buttonHeight, c_anchorTopLeft, 430, (lv_i * lv_rowSize), StringExternal("Param/Value/lib_9D7053F9_98D0676C"), StringToText(""), "");
-        libDBC4E2D2_gv_players[autoCF8C0046_var].lv_dECIMATIO.lv_toggleForReferee = DialogControlLastCreated();
+        libDBC4E2D2_gv_pLAYERS[autoCF8C0046_var].lv_dECIMATIO.lv_toggleForReferee = DialogControlLastCreated();
         libNtve_gf_CreateDialogItemImage(DialogLastCreated(), lv_buttonImageWidth, lv_buttonImageHeight, c_anchorTopLeft, 432, ((lv_i * lv_rowSize) + 2), StringToText(""), "Assets\\Textures\\btn-ability-zerg-harvestcorpse.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
         libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_buttonWidth, lv_buttonHeight, c_anchorTopLeft, 520, (lv_i * lv_rowSize), StringExternal("Param/Value/lib_9D7053F9_3D87F6C3"), StringToText(""), "");
-        libDBC4E2D2_gv_players[autoCF8C0046_var].lv_rESOURCES.lv_takeMineralsToggleForReferee = DialogControlLastCreated();
+        libDBC4E2D2_gv_pLAYERS[autoCF8C0046_var].lv_rESOURCES.lv_takeMineralsToggleForReferee = DialogControlLastCreated();
         libNtve_gf_CreateDialogItemImage(DialogLastCreated(), lv_buttonImageWidth, lv_buttonImageHeight, c_anchorTopLeft, 522, ((lv_i * lv_rowSize) + 2), StringToText(""), "Assets\\Textures\\btn-doodad-minerals.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
         libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_buttonWidth, lv_buttonHeight, c_anchorTopLeft, 610, (lv_i * lv_rowSize), StringExternal("Param/Value/lib_9D7053F9_F124E032"), StringToText(""), "");
-        libDBC4E2D2_gv_players[autoCF8C0046_var].lv_rESOURCES.lv_takeVespeneToggleForReferee = DialogControlLastCreated();
+        libDBC4E2D2_gv_pLAYERS[autoCF8C0046_var].lv_rESOURCES.lv_takeVespeneToggleForReferee = DialogControlLastCreated();
         libNtve_gf_CreateDialogItemImage(DialogLastCreated(), lv_buttonImageWidth, lv_buttonImageHeight, c_anchorTopLeft, 612, ((lv_i * lv_rowSize) + 2), StringToText(""), "Assets\\Textures\\btn-doodad-vespenegeyser.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
         libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_buttonWidth, lv_buttonHeight, c_anchorTopLeft, 700, (lv_i * lv_rowSize), StringExternal("Param/Value/lib_9D7053F9_92577B2E"), StringToText(""), "");
-        libDBC4E2D2_gv_players[autoCF8C0046_var].lv_rESOURCES.lv_giveMineralsToggleForReferee = DialogControlLastCreated();
+        libDBC4E2D2_gv_pLAYERS[autoCF8C0046_var].lv_rESOURCES.lv_giveMineralsToggleForReferee = DialogControlLastCreated();
         libNtve_gf_CreateDialogItemImage(DialogLastCreated(), lv_buttonImageWidth, lv_buttonImageHeight, c_anchorTopLeft, 702, ((lv_i * lv_rowSize) + 2), StringToText(""), "Assets\\Textures\\btn-tips-richminerals.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
         libNtve_gf_CreateDialogItemButton(DialogLastCreated(), lv_buttonWidth, lv_buttonHeight, c_anchorTopLeft, 790, (lv_i * lv_rowSize), StringExternal("Param/Value/lib_9D7053F9_CC5D1866"), StringToText(""), "");
-        libDBC4E2D2_gv_players[autoCF8C0046_var].lv_rESOURCES.lv_giveVespeneToggleForReferee = DialogControlLastCreated();
+        libDBC4E2D2_gv_pLAYERS[autoCF8C0046_var].lv_rESOURCES.lv_giveVespeneToggleForReferee = DialogControlLastCreated();
         libNtve_gf_CreateDialogItemImage(DialogLastCreated(), lv_buttonImageWidth, lv_buttonImageHeight, c_anchorTopLeft, 790, ((lv_i * lv_rowSize) + 2), StringToText(""), "Assets\\Textures\\btn-ability-kerrigan-vespeneefficiency.dds", c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
         lv_i += 1;
     }
@@ -178,9 +178,9 @@ bool lib9D7053F9_gt_RefereeUIItemClicked_Func (bool testConds, bool runActions) 
 
     autoDB6BC468_var = 0;
     for ( ; autoDB6BC468_var <= autoDB6BC468_ae; autoDB6BC468_var += 1 ) {
-        if ((EventDialogControl() == libDBC4E2D2_gv_players[autoDB6BC468_var].lv_nOMINIMAP.lv_toggleForReferee)) {
+        if ((EventDialogControl() == libDBC4E2D2_gv_pLAYERS[autoDB6BC468_var].lv_nOMINIMAP.lv_toggleForReferee)) {
             lib14F77331_gf_ToggleMinimapPanel(autoDB6BC468_var);
-            if ((libDBC4E2D2_gv_players[autoDB6BC468_var].lv_nOMINIMAP.lv_minimapEnabled == true)) {
+            if ((libDBC4E2D2_gv_pLAYERS[autoDB6BC468_var].lv_nOMINIMAP.lv_minimapEnabled == true)) {
                 lv_minimapState = StringExternal("Param/Value/lib_9D7053F9_B610A922");
             }
             else {
@@ -194,7 +194,7 @@ bool lib9D7053F9_gt_RefereeUIItemClicked_Func (bool testConds, bool runActions) 
     }
     autoB66D63FC_var = 0;
     for ( ; autoB66D63FC_var <= autoB66D63FC_ae; autoB66D63FC_var += 1 ) {
-        if ((EventDialogControl() == libDBC4E2D2_gv_players[autoB66D63FC_var].lv_rIOTWORKERS.lv_toggleForReferee)) {
+        if ((EventDialogControl() == libDBC4E2D2_gv_pLAYERS[autoB66D63FC_var].lv_rIOTWORKERS.lv_toggleForReferee)) {
             lib96FBA2DD_gf_Riot(autoB66D63FC_var);
             TextExpressionSetToken("Param/Expression/lib_9D7053F9_5612728C", "PlayerName", TextWithColor(PlayerName(autoB66D63FC_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoB66D63FC_var, false))));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_9D7053F9_5612728C"));
@@ -203,8 +203,8 @@ bool lib9D7053F9_gt_RefereeUIItemClicked_Func (bool testConds, bool runActions) 
     }
     autoC6D48E27_var = 0;
     for ( ; autoC6D48E27_var <= autoC6D48E27_ae; autoC6D48E27_var += 1 ) {
-        if ((EventDialogControl() == libDBC4E2D2_gv_players[autoC6D48E27_var].lv_dECIMATIO.lv_toggleForReferee)) {
-            libE840CECB_gf_Decimatio(autoC6D48E27_var);
+        if ((EventDialogControl() == libDBC4E2D2_gv_pLAYERS[autoC6D48E27_var].lv_dECIMATIO.lv_toggleForReferee)) {
+            libE840CECB_gf_KillEvery10thUnitForPlayer(autoC6D48E27_var);
             TextExpressionSetToken("Param/Expression/lib_9D7053F9_BC5032B7", "PlayerName", TextWithColor(PlayerName(autoC6D48E27_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoC6D48E27_var, false))));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_9D7053F9_BC5032B7"));
         }
@@ -212,7 +212,7 @@ bool lib9D7053F9_gt_RefereeUIItemClicked_Func (bool testConds, bool runActions) 
     }
     auto5A446AAD_var = 0;
     for ( ; auto5A446AAD_var <= auto5A446AAD_ae; auto5A446AAD_var += 1 ) {
-        if ((EventDialogControl() == libDBC4E2D2_gv_players[auto5A446AAD_var].lv_rESOURCES.lv_takeMineralsToggleForReferee)) {
+        if ((EventDialogControl() == libDBC4E2D2_gv_pLAYERS[auto5A446AAD_var].lv_rESOURCES.lv_takeMineralsToggleForReferee)) {
             lib5E51B3C2_gf_TakeMinerals(auto5A446AAD_var, 100);
             TextExpressionSetToken("Param/Expression/lib_9D7053F9_6E36DB28", "PlayerName", TextWithColor(PlayerName(auto5A446AAD_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto5A446AAD_var, false))));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_9D7053F9_6E36DB28"));
@@ -221,7 +221,7 @@ bool lib9D7053F9_gt_RefereeUIItemClicked_Func (bool testConds, bool runActions) 
     }
     auto5C5EED26_var = 0;
     for ( ; auto5C5EED26_var <= auto5C5EED26_ae; auto5C5EED26_var += 1 ) {
-        if ((EventDialogControl() == libDBC4E2D2_gv_players[auto5C5EED26_var].lv_rESOURCES.lv_takeVespeneToggleForReferee)) {
+        if ((EventDialogControl() == libDBC4E2D2_gv_pLAYERS[auto5C5EED26_var].lv_rESOURCES.lv_takeVespeneToggleForReferee)) {
             lib5E51B3C2_gf_TakeVespene(auto5C5EED26_var, 100);
             TextExpressionSetToken("Param/Expression/lib_9D7053F9_795DFAC3", "PlayerName", TextWithColor(PlayerName(auto5C5EED26_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto5C5EED26_var, false))));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_9D7053F9_795DFAC3"));
@@ -230,7 +230,7 @@ bool lib9D7053F9_gt_RefereeUIItemClicked_Func (bool testConds, bool runActions) 
     }
     autoD64B2D0A_var = 0;
     for ( ; autoD64B2D0A_var <= autoD64B2D0A_ae; autoD64B2D0A_var += 1 ) {
-        if ((EventDialogControl() == libDBC4E2D2_gv_players[autoD64B2D0A_var].lv_rESOURCES.lv_giveMineralsToggleForReferee)) {
+        if ((EventDialogControl() == libDBC4E2D2_gv_pLAYERS[autoD64B2D0A_var].lv_rESOURCES.lv_giveMineralsToggleForReferee)) {
             lib5E51B3C2_gf_GiveMinerals(autoD64B2D0A_var, 100);
             TextExpressionSetToken("Param/Expression/lib_9D7053F9_238636E8", "PlayerName", TextWithColor(PlayerName(autoD64B2D0A_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoD64B2D0A_var, false))));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_9D7053F9_238636E8"));
@@ -239,7 +239,7 @@ bool lib9D7053F9_gt_RefereeUIItemClicked_Func (bool testConds, bool runActions) 
     }
     autoC8163421_var = 0;
     for ( ; autoC8163421_var <= autoC8163421_ae; autoC8163421_var += 1 ) {
-        if ((EventDialogControl() == libDBC4E2D2_gv_players[autoC8163421_var].lv_rESOURCES.lv_giveVespeneToggleForReferee)) {
+        if ((EventDialogControl() == libDBC4E2D2_gv_pLAYERS[autoC8163421_var].lv_rESOURCES.lv_giveVespeneToggleForReferee)) {
             lib5E51B3C2_gf_GiveVespene(autoC8163421_var, 100);
             TextExpressionSetToken("Param/Expression/lib_9D7053F9_FDB4EECD", "PlayerName", TextWithColor(PlayerName(autoC8163421_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoC8163421_var, false))));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_9D7053F9_FDB4EECD"));

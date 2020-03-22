@@ -3,8 +3,13 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: CHAT
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib04DA748F_gf_SetupOptions (int lp_handicapindex);
+void lib04DA748F_gf_EnableHandicap (int lp_handicapIndex);
+void lib04DA748F_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger lib04DA748F_gt_ChatModStart;
+trigger lib04DA748F_gt_SetupHandicap;
 trigger lib04DA748F_gt_StartBuild;
 trigger lib04DA748F_gt_StartUpgrade;
 trigger lib04DA748F_gt_CancelBuild;

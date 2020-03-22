@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib15E909D0_h"
@@ -9,91 +10,109 @@ include "Lib15E909D0_h"
 // External Library Initialization
 void lib15E909D0_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
 // Functions
-void lib15E909D0_gf_AddMoveSpeedBehavior (unit lp_unit) {
-    // Automatic Variable Declarations
-    // Implementation
-    if ((UnitTypeTestFlag(UnitGetType(lp_unit), c_unitFlagWorker) == false) && (GameAttributePlayerValue("58", UnitGetOwner(lp_unit)) != "0003")) {
-        UnitBehaviorAdd(lp_unit, "UnfairSc2MoveSpeed", lp_unit, 1);
-    }
+void lib15E909D0_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
 
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_15E909D0_6135F7AF");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_15E909D0_9E0491A7");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-shadowcharge.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_15E909D0_E8226FBB");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "0.5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "0.75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1.25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1.5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib15E909D0_gt_SetupHandicap;
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Move Speed Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib15E909D0_gt_MoveSpeedModStart_Func (bool testConds, bool runActions) {
+void lib15E909D0_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
-    playergroup lv_players;
     text lv_playersSettings;
+    playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto6100C8BA_g;
-    int auto6100C8BA_var;
-    string auto35D08CC8_val;
-    playergroup auto89045E94_g;
-    int auto89045E94_var;
+    playergroup auto98EB441C_g;
+    int auto98EB441C_var;
+    string auto3C951F18_val;
+    playergroup autoF8A896D7_g;
+    int autoF8A896D7_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("50") == "0001")) {
-        auto6100C8BA_g = PlayerGroupActive();
-        auto6100C8BA_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto98EB441C_g = PlayerGroupActive();
+        auto98EB441C_var = -1;
         while (true) {
-            auto6100C8BA_var = PlayerGroupNextPlayer(auto6100C8BA_g, auto6100C8BA_var);
-            if (auto6100C8BA_var < 0) { break; }
-            if ((GameAttributePlayerValue("58", auto6100C8BA_var) != "0003")) {
-                auto35D08CC8_val = GameAttributePlayerValue("58", auto6100C8BA_var);
-                if (auto35D08CC8_val == "0001") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "0.5");
-                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 0.5;
+            auto98EB441C_var = PlayerGroupNextPlayer(auto98EB441C_g, auto98EB441C_var);
+            if (auto98EB441C_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto98EB441C_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto98EB441C_var);
+                libDBC4E2D2_gv_pLAYERS[auto98EB441C_var].lv_mOVESPEED.lv_enabled = true;
+                auto3C951F18_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto98EB441C_var];
+                if (auto3C951F18_val == "0.5") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto98EB441C_var, "0.5");
+                    libDBC4E2D2_gv_pLAYERS[auto98EB441C_var].lv_mOVESPEED.lv_rate = 0.5;
                 }
-                else if (auto35D08CC8_val == "0002") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "0.75");
-                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 0.75;
+                else if (auto3C951F18_val == "0.75") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto98EB441C_var, "0.75");
+                    libDBC4E2D2_gv_pLAYERS[auto98EB441C_var].lv_mOVESPEED.lv_rate = 0.75;
                 }
-                else if (auto35D08CC8_val == "0004") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "1.25");
-                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 1.25;
+                else if (auto3C951F18_val == "1.25") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto98EB441C_var, "1.25");
+                    libDBC4E2D2_gv_pLAYERS[auto98EB441C_var].lv_mOVESPEED.lv_rate = 1.25;
                 }
-                else if (auto35D08CC8_val == "0005") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "1.5");
-                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 1.5;
+                else if (auto3C951F18_val == "1.5") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto98EB441C_var, "1.5");
+                    libDBC4E2D2_gv_pLAYERS[auto98EB441C_var].lv_mOVESPEED.lv_rate = 1.5;
                 }
-                else if (auto35D08CC8_val == "0006") {
-                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto6100C8BA_var, "2");
-                    libDBC4E2D2_gv_players[auto6100C8BA_var].lv_mOVESPEED.lv_rate = 2.0;
+                else if (auto3C951F18_val == "2") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2MoveSpeed", "Modification.MoveSpeedMultiplier", auto98EB441C_var, "2");
+                    libDBC4E2D2_gv_pLAYERS[auto98EB441C_var].lv_mOVESPEED.lv_rate = 2.0;
                 }
                 else {
                 }
-                PlayerGroupAdd(lv_players, auto6100C8BA_var);
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
             TriggerExecute(lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits, true, false);
-            auto89045E94_g = lv_players;
-            auto89045E94_var = -1;
+            autoF8A896D7_g = lv_players;
+            autoF8A896D7_var = -1;
             while (true) {
-                auto89045E94_var = PlayerGroupNextPlayer(auto89045E94_g, auto89045E94_var);
-                if (auto89045E94_var < 0) { break; }
-                TextExpressionSetToken("Param/Expression/lib_15E909D0_3A5A221A", "A", TextWithColor(PlayerName(auto89045E94_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto89045E94_var, false))));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_15E909D0_3A5A221A"));
-                TextExpressionSetToken("Param/Expression/lib_15E909D0_1AAC6909", "A", FixedToText(libDBC4E2D2_gv_players[auto89045E94_var].lv_mOVESPEED.lv_rate, 2));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_15E909D0_1AAC6909"));
+                autoF8A896D7_var = PlayerGroupNextPlayer(autoF8A896D7_g, autoF8A896D7_var);
+                if (autoF8A896D7_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_15E909D0_2406A952", "A", TextWithColor(PlayerName(autoF8A896D7_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoF8A896D7_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_15E909D0_2406A952"));
+                TextExpressionSetToken("Param/Expression/lib_15E909D0_AFE54800", "A", FixedToText(libDBC4E2D2_gv_pLAYERS[autoF8A896D7_var].lv_mOVESPEED.lv_rate, 2));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_15E909D0_AFE54800"));
             }
-            TextExpressionSetToken("Param/Expression/lib_15E909D0_E670CA02", "Players", lv_playersSettings);
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_15E909D0_19C77BB5"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_15E909D0_E670CA02"), StringExternal("Param/Value/lib_15E909D0_455ACC0A"), "Assets\\Textures\\speedfreaks_coop.dds");
+            TextExpressionSetToken("Param/Expression/lib_15E909D0_7C2794E7", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_15E909D0_7C2794E7"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit, false);
@@ -104,13 +123,35 @@ bool lib15E909D0_gt_MoveSpeedModStart_Func (bool testConds, bool runActions) {
         TriggerEnable(lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit, false);
         TriggerEnable(lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits, false);
     }
+}
+
+void lib15E909D0_gf_AddMoveSpeedBehavior (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((UnitTypeTestFlag(UnitGetType(lp_unit), c_unitFlagWorker) == false) && (libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unit)].lv_mOVESPEED.lv_enabled == true)) {
+        UnitBehaviorAdd(lp_unit, "UnfairSc2MoveSpeed", lp_unit, 1);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib15E909D0_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib15E909D0_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib15E909D0_gt_MoveSpeedModStart_Init () {
-    lib15E909D0_gt_MoveSpeedModStart = TriggerCreate("lib15E909D0_gt_MoveSpeedModStart_Func");
-    TriggerAddEventMapInit(lib15E909D0_gt_MoveSpeedModStart);
+void lib15E909D0_gt_SetupHandicap_Init () {
+    lib15E909D0_gt_SetupHandicap = TriggerCreate("lib15E909D0_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -155,7 +196,7 @@ bool lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits_Func (bool testConds, bo
     while (true) {
         auto2314812B_var = PlayerGroupNextPlayer(auto2314812B_g, auto2314812B_var);
         if (auto2314812B_var < 0) { break; }
-        if ((GameAttributePlayerValue("58", auto2314812B_var) != "0003")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto2314812B_var].lv_mOVESPEED.lv_enabled == true)) {
             autoC5C447AC_g = UnitGroup(null, auto2314812B_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             autoC5C447AC_u = UnitGroupCount(autoC5C447AC_g, c_unitCountAll);
             for (;; autoC5C447AC_u -= 1) {
@@ -175,7 +216,7 @@ void lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits_Init () {
 }
 
 void lib15E909D0_InitTriggers () {
-    lib15E909D0_gt_MoveSpeedModStart_Init();
+    lib15E909D0_gt_SetupHandicap_Init();
     lib15E909D0_gt_SetMoveSpeedBehaviorForCreatedUnit_Init();
     lib15E909D0_gt_AddMoveSpeedBehaviorForInitialUnits_Init();
 }
@@ -196,5 +237,6 @@ void lib15E909D0_InitLib () {
     lib15E909D0_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

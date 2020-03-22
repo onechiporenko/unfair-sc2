@@ -3,16 +3,23 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: FIGHT CLUB
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libC7F2089F_gv_onlyWorkers = "Only Workers";
+const string libC7F2089F_gv_allUnitsButNotWorkers = "All Units But Not Workers";
+const string libC7F2089F_gv_allUnits = "All Units";
+
 // Variable Declarations
 int libC7F2089F_gv_fightFreequency;
 fixed libC7F2089F_gv_fightUnitsPercent;
 timer libC7F2089F_gv_fightTimer;
 
 // Function Declarations
+void libC7F2089F_gf_SetupOptions (int lp_handicapindex);
+void libC7F2089F_gf_EnableHandicap (int lp_handicapIndex);
 void libC7F2089F_gf_Fight (int lp_riotUnitsOwner);
 
 // Trigger Declarations
-trigger libC7F2089F_gt_FightClubModStart;
+trigger libC7F2089F_gt_SetupHandicap;
 trigger libC7F2089F_gt_DoFight;
 trigger libC7F2089F_gt_RemoveFightClubMemberBehavior;
 

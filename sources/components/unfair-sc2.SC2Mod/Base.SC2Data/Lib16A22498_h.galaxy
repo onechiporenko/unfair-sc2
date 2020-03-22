@@ -3,7 +3,12 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: EXTRA CREEP
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib16A22498_gf_SetupOptions (int lp_handicapindex);
+void lib16A22498_gf_EnableHandicap (int lp_handicapIndex);
+void lib16A22498_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger lib16A22498_gt_ExtraCreepModStart;
+trigger lib16A22498_gt_SetupHandicap;
 trigger lib16A22498_gt_ZergStructureIsBuilt;
 

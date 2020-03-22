@@ -3,6 +3,10 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: GRAPPLE
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib52829A21_gf_SetupOptions (int lp_handicapindex);
+void lib52829A21_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger lib52829A21_gt_GrappleModStart;
+trigger lib52829A21_gt_SetupHandicap;
 

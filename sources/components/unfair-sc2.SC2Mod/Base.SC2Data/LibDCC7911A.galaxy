@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibDCC7911A_h"
@@ -9,6 +10,7 @@ include "LibDCC7911A_h"
 // External Library Initialization
 void libDCC7911A_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -26,71 +28,100 @@ void libDCC7911A_InitVariables () {
     libDCC7911A_gv_defTimerWindow = c_timerWindowNone;
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Macro Def Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libDCC7911A_gt_MacroDefModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libDCC7911A_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_DCC7911A_505BE752");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_DCC7911A_DAD7EF0E");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-terran-nova-defensivedrone.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_DCC7911A_A020E041");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Enabled";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libDCC7911A_gt_SetupHandicap;
+}
+
+void libDCC7911A_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup autoDE5AAC69_g;
-    int autoDE5AAC69_var;
-    playergroup autoE8EC3C06_g;
-    int autoE8EC3C06_var;
+    playergroup autoF82A1E9C_g;
+    int autoF82A1E9C_var;
+    playergroup autoFC1B8793_g;
+    int autoFC1B8793_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    autoF82A1E9C_g = PlayerGroupActive();
+    autoF82A1E9C_var = -1;
+    while (true) {
+        autoF82A1E9C_var = PlayerGroupNextPlayer(autoF82A1E9C_g, autoF82A1E9C_var);
+        if (autoF82A1E9C_var < 0) { break; }
+        TechTreeAbilityAllow(autoF82A1E9C_var, AbilityCommand("UnfairSC2MacroDefTerran", 0), false);
+        TechTreeAbilityAllow(autoF82A1E9C_var, AbilityCommand("UnfairSC2MacroDefProtoss", 0), false);
+        TechTreeAbilityAllow(autoF82A1E9C_var, AbilityCommand("UnfairSC2MacroDefZerg", 0), false);
+    }
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoFC1B8793_g = PlayerGroupActive();
+        autoFC1B8793_var = -1;
+        while (true) {
+            autoFC1B8793_var = PlayerGroupNextPlayer(autoFC1B8793_g, autoFC1B8793_var);
+            if (autoFC1B8793_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoFC1B8793_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoFC1B8793_var);
+                libDBC4E2D2_gv_pLAYERS[autoFC1B8793_var].lv_mACRODEF.lv_enabled = true;
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TimerStart(libDCC7911A_gv_defTimer, 210.0, false, c_timeReal);
+            TimerWindowCreate(libDCC7911A_gv_defTimer, StringExternal("Param/Value/lib_DCC7911A_B13A6AA4"), true, false);
+            libDCC7911A_gv_defTimerWindow = TimerWindowLastCreated();
+            TimerWindowShowBorder(libDCC7911A_gv_defTimerWindow, false);
+            TimerWindowShow(libDCC7911A_gv_defTimerWindow, PlayerGroupAll(), true);
+            TextExpressionSetToken("Param/Expression/lib_DCC7911A_FC7241B0", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_DCC7911A_FC7241B0", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_DCC7911A_FC7241B0"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libDCC7911A_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    autoDE5AAC69_g = PlayerGroupAll();
-    autoDE5AAC69_var = -1;
-    while (true) {
-        autoDE5AAC69_var = PlayerGroupNextPlayer(autoDE5AAC69_g, autoDE5AAC69_var);
-        if (autoDE5AAC69_var < 0) { break; }
-        TechTreeAbilityAllow(autoDE5AAC69_var, AbilityCommand("UnfairSC2MacroDefTerran", 0), false);
-        TechTreeAbilityAllow(autoDE5AAC69_var, AbilityCommand("UnfairSC2MacroDefProtoss", 0), false);
-        TechTreeAbilityAllow(autoDE5AAC69_var, AbilityCommand("UnfairSC2MacroDefZerg", 0), false);
-    }
-    if ((GameAttributeGameValue("33") == "0001")) {
-        autoE8EC3C06_g = PlayerGroupAll();
-        autoE8EC3C06_var = -1;
-        while (true) {
-            autoE8EC3C06_var = PlayerGroupNextPlayer(autoE8EC3C06_g, autoE8EC3C06_var);
-            if (autoE8EC3C06_var < 0) { break; }
-            if ((GameAttributePlayerValue("34", autoE8EC3C06_var) == "0001")) {
-                PlayerGroupAdd(lv_players, autoE8EC3C06_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_DCC7911A_600C461B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_DCC7911A_43638D16"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_DCC7911A_600C461B"), StringExternal("Param/Value/lib_DCC7911A_9A090CC8"), "Assets\\Textures\\btn-upgrade-terran-nova-defensivedrone.dds");
-            TimerStart(libDCC7911A_gv_defTimer, 210.0, false, c_timeReal);
-            TimerWindowCreate(libDCC7911A_gv_defTimer, StringExternal("Param/Value/lib_DCC7911A_98CC036E"), true, false);
-            libDCC7911A_gv_defTimerWindow = TimerWindowLastCreated();
-            TimerWindowShowBorder(libDCC7911A_gv_defTimerWindow, false);
-            TimerWindowShow(libDCC7911A_gv_defTimerWindow, PlayerGroupAll(), true);
-        }
-        else {
-            TriggerEnable(libDCC7911A_gt_DefTimerElapsed, false);
-        }
-    }
-    else {
-        TriggerEnable(libDCC7911A_gt_DefTimerElapsed, false);
-    }
+    libDCC7911A_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libDCC7911A_gt_MacroDefModStart_Init () {
-    libDCC7911A_gt_MacroDefModStart = TriggerCreate("libDCC7911A_gt_MacroDefModStart_Func");
-    TriggerAddEventMapInit(libDCC7911A_gt_MacroDefModStart);
+void libDCC7911A_gt_SetupHandicap_Init () {
+    libDCC7911A_gt_SetupHandicap = TriggerCreate("libDCC7911A_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -111,7 +142,7 @@ bool libDCC7911A_gt_DefTimerElapsed_Func (bool testConds, bool runActions) {
     while (true) {
         auto7FB877DC_var = PlayerGroupNextPlayer(auto7FB877DC_g, auto7FB877DC_var);
         if (auto7FB877DC_var < 0) { break; }
-        if ((GameAttributePlayerValue("34", auto7FB877DC_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto7FB877DC_var].lv_mACRODEF.lv_enabled == true)) {
             TechTreeAbilityAllow(auto7FB877DC_var, AbilityCommand("UnfairSC2MacroDefProtoss", 0), true);
             TechTreeAbilityAllow(auto7FB877DC_var, AbilityCommand("UnfairSC2MacroDefTerran", 0), true);
             TechTreeAbilityAllow(auto7FB877DC_var, AbilityCommand("UnfairSC2MacroDefZerg", 0), true);
@@ -129,7 +160,7 @@ void libDCC7911A_gt_DefTimerElapsed_Init () {
 }
 
 void libDCC7911A_InitTriggers () {
-    libDCC7911A_gt_MacroDefModStart_Init();
+    libDCC7911A_gt_SetupHandicap_Init();
     libDCC7911A_gt_DefTimerElapsed_Init();
 }
 
@@ -150,5 +181,6 @@ void libDCC7911A_InitLib () {
     libDCC7911A_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

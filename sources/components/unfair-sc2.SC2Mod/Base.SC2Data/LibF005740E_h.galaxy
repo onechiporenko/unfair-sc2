@@ -10,10 +10,13 @@ fixed libF005740E_gv_motherCoreInitialDelay;
 int libF005740E_gv_motherCoreTimerWindow;
 
 // Function Declarations
+void libF005740E_gf_SetupOptions (int lp_handicapindex);
+void libF005740E_gf_EnableHandicap (int lp_handicapIndex);
+void libF005740E_gf_EnableHandicapForPlayer (int lp_player);
 void libF005740E_gf_CreateMotherCore (int lp_player);
 
 // Trigger Declarations
-trigger libF005740E_gt_MotherCoreModStart;
+trigger libF005740E_gt_SetupHandicap;
 trigger libF005740E_gt_MotherCoreIsDestroyed;
 trigger libF005740E_gt_MotherCoreTimerElapsed;
 

@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibC0051C89_h"
@@ -9,111 +10,166 @@ include "LibC0051C89_h"
 // External Library Initialization
 void libC0051C89_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
+}
+
+// Variable Initialization
+bool libC0051C89_InitVariables_completed = false;
+
+void libC0051C89_InitVariables () {
+    if (libC0051C89_InitVariables_completed) {
+        return;
+    }
+
+    libC0051C89_InitVariables_completed = true;
+
+}
+
+// Functions
+void libC0051C89_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_C0051C89_8F30FFBC");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_C0051C89_5E68B8A2");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-amoncloud.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_C0051C89_DE6F3BBF");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libC0051C89_gv_allRaces;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_C0051C89_0DFA4AED");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libC0051C89_gv_mainStructuresforAllRaces;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libC0051C89_gt_SetupHandicap;
+}
+
+void libC0051C89_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoB17F0ABB_g;
+    int autoB17F0ABB_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoB17F0ABB_g = PlayerGroupActive();
+        autoB17F0ABB_var = -1;
+        while (true) {
+            autoB17F0ABB_var = PlayerGroupNextPlayer(autoB17F0ABB_g, autoB17F0ABB_var);
+            if (autoB17F0ABB_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoB17F0ABB_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoB17F0ABB_var);
+                libC0051C89_gf_EnableHandicapForPlayer(autoB17F0ABB_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_C0051C89_A0005963", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_C0051C89_A0005963", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_C0051C89_A0005963"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+void libC0051C89_gf_EnableHandicapForPlayer (int lp_player) {
+    // Variable Declarations
+    unitgroup lv_workers;
+
+    // Automatic Variable Declarations
+    unitgroup auto0EDA4537_g;
+    int auto0EDA4537_u;
+    unit auto0EDA4537_var;
+    string auto5A143434_val;
+
+    // Variable Initialization
+    lv_workers = UnitGroupEmpty();
+
+    // Implementation
+    lv_workers = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    libNtve_gf_CreateUnitsWithDefaultFacing(5, "SCV", 0, lp_player, PlayerStartLocation(lp_player));
+    UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
+    libNtve_gf_CreateUnitsWithDefaultFacing(5, "Drone", 0, lp_player, PlayerStartLocation(lp_player));
+    UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
+    libNtve_gf_CreateUnitsWithDefaultFacing(5, "Probe", 0, lp_player, PlayerStartLocation(lp_player));
+    UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
+    auto0EDA4537_g = lv_workers;
+    auto0EDA4537_u = UnitGroupCount(auto0EDA4537_g, c_unitCountAll);
+    for (;; auto0EDA4537_u -= 1) {
+        auto0EDA4537_var = UnitGroupUnitFromEnd(auto0EDA4537_g, auto0EDA4537_u);
+        if (auto0EDA4537_var == null) { break; }
+        UnitKill(auto0EDA4537_var);
+    }
+    CatalogFieldValueSet(c_gameCatalogAbil, "ProtossBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", lp_player, "");
+    CatalogFieldValueSet(c_gameCatalogAbil, "ProtossBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", lp_player, "");
+    CatalogFieldValueSet(c_gameCatalogAbil, "ZergBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", lp_player, "");
+    CatalogFieldValueSet(c_gameCatalogAbil, "ZergBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", lp_player, "");
+    CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", lp_player, "");
+    CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", lp_player, "");
+    if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[1].lv_selectedVals[lp_player] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+        auto5A143434_val = PlayerRace(lp_player);
+        if (auto5A143434_val == "Zerg") {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, lp_player, PlayerStartLocation(lp_player));
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, lp_player, PlayerStartLocation(lp_player));
+        }
+        else if (auto5A143434_val == "Prot") {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, lp_player, PlayerStartLocation(lp_player));
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, lp_player, PlayerStartLocation(lp_player));
+        }
+        else if (auto5A143434_val == "Terr") {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, lp_player, PlayerStartLocation(lp_player));
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, lp_player, PlayerStartLocation(lp_player));
+        }
+        else {
+        }
+    }
+
 }
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: All Races Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool libC0051C89_gt_AllRacesModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-    unitgroup lv_workers;
-
+bool libC0051C89_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup autoA02AA01E_g;
-    int autoA02AA01E_var;
-    playergroup auto8DFAD738_g;
-    int auto8DFAD738_var;
-    unitgroup autoB3DFE054_g;
-    int autoB3DFE054_u;
-    unit autoB3DFE054_var;
-    string auto1AA4273C_val;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-    lv_workers = UnitGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("124") == "0001")) {
-        autoA02AA01E_g = PlayerGroupAll();
-        autoA02AA01E_var = -1;
-        while (true) {
-            autoA02AA01E_var = PlayerGroupNextPlayer(autoA02AA01E_g, autoA02AA01E_var);
-            if (autoA02AA01E_var < 0) { break; }
-            if ((GameAttributePlayerValue("125", autoA02AA01E_var) == "0002")) {
-                PlayerGroupAdd(lv_players, autoA02AA01E_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_C0051C89_7E6FD3AC", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_C0051C89_4A8735DF"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_C0051C89_7E6FD3AC"), StringExternal("Param/Value/lib_C0051C89_3B3491F4"), "Assets\\Textures\\btn-ability-protoss-amoncloud.dds");
-            Wait(0.1, c_timeGame);
-            auto8DFAD738_g = lv_players;
-            auto8DFAD738_var = -1;
-            while (true) {
-                auto8DFAD738_var = PlayerGroupNextPlayer(auto8DFAD738_g, auto8DFAD738_var);
-                if (auto8DFAD738_var < 0) { break; }
-                lv_workers = UnitGroup(null, auto8DFAD738_var, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                libNtve_gf_CreateUnitsWithDefaultFacing(5, "SCV", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
-                libNtve_gf_CreateUnitsWithDefaultFacing(5, "Drone", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
-                libNtve_gf_CreateUnitsWithDefaultFacing(5, "Probe", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                UnitGroupIssueOrder(UnitLastCreatedGroup(), UnitOrder(UnitGroupUnit(lv_workers, 1), 0), c_orderQueueReplace);
-                autoB3DFE054_g = lv_workers;
-                autoB3DFE054_u = UnitGroupCount(autoB3DFE054_g, c_unitCountAll);
-                for (;; autoB3DFE054_u -= 1) {
-                    autoB3DFE054_var = UnitGroupUnitFromEnd(autoB3DFE054_g, autoB3DFE054_u);
-                    if (autoB3DFE054_var == null) { break; }
-                    UnitKill(autoB3DFE054_var);
-                }
-                CatalogFieldValueSet(c_gameCatalogAbil, "ProtossBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", auto8DFAD738_var, "");
-                CatalogFieldValueSet(c_gameCatalogAbil, "ProtossBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", auto8DFAD738_var, "");
-                CatalogFieldValueSet(c_gameCatalogAbil, "ZergBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", auto8DFAD738_var, "");
-                CatalogFieldValueSet(c_gameCatalogAbil, "ZergBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", auto8DFAD738_var, "");
-                CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", auto8DFAD738_var, "");
-                CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", auto8DFAD738_var, "");
-                if ((GameAttributePlayerValue("160", auto8DFAD738_var) == "0002")) {
-                    auto1AA4273C_val = PlayerRace(auto8DFAD738_var);
-                    if (auto1AA4273C_val == "Zerg") {
-                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                    }
-                    else if (auto1AA4273C_val == "Prot") {
-                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                    }
-                    else if (auto1AA4273C_val == "Terr") {
-                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, auto8DFAD738_var, PlayerStartLocation(auto8DFAD738_var));
-                    }
-                    else {
-                    }
-                }
-
-            }
-        }
-
-    }
-
+    libC0051C89_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC0051C89_gt_AllRacesModStart_Init () {
-    libC0051C89_gt_AllRacesModStart = TriggerCreate("libC0051C89_gt_AllRacesModStart_Func");
-    TriggerAddEventMapInit(libC0051C89_gt_AllRacesModStart);
+void libC0051C89_gt_SetupHandicap_Init () {
+    libC0051C89_gt_SetupHandicap = TriggerCreate("libC0051C89_gt_SetupHandicap_Func");
 }
 
 void libC0051C89_InitTriggers () {
-    libC0051C89_gt_AllRacesModStart_Init();
+    libC0051C89_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -129,8 +185,10 @@ void libC0051C89_InitLib () {
     libC0051C89_InitLib_completed = true;
 
     libC0051C89_InitLibraries();
+    libC0051C89_InitVariables();
     libC0051C89_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

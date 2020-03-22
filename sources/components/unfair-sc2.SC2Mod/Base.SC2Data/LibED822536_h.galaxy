@@ -3,6 +3,10 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: TALANDAR
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libED822536_gf_SetupOptions (int lp_handicapindex);
+void libED822536_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger libED822536_gt_TalandarModStart;
+trigger libED822536_gt_SetupHandicap;
 

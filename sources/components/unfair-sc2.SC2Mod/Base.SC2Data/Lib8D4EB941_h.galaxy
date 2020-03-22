@@ -10,10 +10,12 @@ int lib8D4EB941_gv_nukesPerWave;
 timer lib8D4EB941_gv_nukesTimer;
 
 // Function Declarations
+void lib8D4EB941_gf_SetupOptions (int lp_handicapindex);
+void lib8D4EB941_gf_EnableHandicap (int lp_handicapIndex);
 void lib8D4EB941_gf_SpawnNuke ();
 
 // Trigger Declarations
-trigger lib8D4EB941_gt_NukedModStart;
+trigger lib8D4EB941_gt_SetupHandicap;
 trigger lib8D4EB941_gt_SpawnNukes;
 
 // Library Initialization

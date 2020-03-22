@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib18CEA1F0_h"
@@ -9,57 +10,76 @@ include "Lib18CEA1F0_h"
 // External Library Initialization
 void lib18CEA1F0_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: No Supply Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib18CEA1F0_gt_NoSupplyModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib18CEA1F0_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_18CEA1F0_448CD230");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_18CEA1F0_3828EFC3");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-building-protoss-nexus-forged.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_18CEA1F0_08B889BD");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib18CEA1F0_gt_SetupHandicap;
+}
+
+void lib18CEA1F0_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto28BA9B19_g;
-    int auto28BA9B19_var;
-    int autoF042DB28_ae;
-    int autoF042DB28_var;
-    unitgroup autoE583E7C6_g;
-    int autoE583E7C6_u;
-    unit autoE583E7C6_var;
+    playergroup auto7BDA50C0_g;
+    int auto7BDA50C0_var;
+    int auto65CC4A2E_ae;
+    int auto65CC4A2E_var;
+    unitgroup autoEBD7BBB7_g;
+    int autoEBD7BBB7_u;
+    unit autoEBD7BBB7_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("21") == "0001")) {
-        auto28BA9B19_g = PlayerGroupAll();
-        auto28BA9B19_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto7BDA50C0_g = PlayerGroupActive();
+        auto7BDA50C0_var = -1;
         while (true) {
-            auto28BA9B19_var = PlayerGroupNextPlayer(auto28BA9B19_g, auto28BA9B19_var);
-            if (auto28BA9B19_var < 0) { break; }
-            if ((GameAttributePlayerValue("22", auto28BA9B19_var) == "0002")) {
-                TechTreeAbilityAllow(auto28BA9B19_var, AbilityCommand("SupplyDrop", 0), false);
-                PlayerGroupAdd(lv_players, auto28BA9B19_var);
-                autoF042DB28_ae = libDBC4E2D2_gv_numberOfUnitTypesGiveSupply;
-                autoF042DB28_var = 0;
-                for ( ; autoF042DB28_var <= autoF042DB28_ae; autoF042DB28_var += 1 ) {
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesGiveSupply[autoF042DB28_var], "Food", auto28BA9B19_var, "0");
+            auto7BDA50C0_var = PlayerGroupNextPlayer(auto7BDA50C0_g, auto7BDA50C0_var);
+            if (auto7BDA50C0_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto7BDA50C0_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto7BDA50C0_var);
+                TechTreeAbilityAllow(auto7BDA50C0_var, AbilityCommand("SupplyDrop", 0), false);
+                auto65CC4A2E_ae = libDBC4E2D2_gv_numberOfUnitTypesGiveSupply;
+                auto65CC4A2E_var = 0;
+                for ( ; auto65CC4A2E_var <= auto65CC4A2E_ae; auto65CC4A2E_var += 1 ) {
+                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_unitTypesGiveSupply[auto65CC4A2E_var], "Food", auto7BDA50C0_var, "0");
                 }
-                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "Food", auto28BA9B19_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "OverseerSiegeMode", "Food", auto28BA9B19_var, "0");
-                autoE583E7C6_g = UnitGroup(null, auto28BA9B19_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoE583E7C6_u = UnitGroupCount(autoE583E7C6_g, c_unitCountAll);
-                for (;; autoE583E7C6_u -= 1) {
-                    autoE583E7C6_var = UnitGroupUnitFromEnd(autoE583E7C6_g, autoE583E7C6_u);
-                    if (autoE583E7C6_var == null) { break; }
-                    if ((UnitGetType(autoE583E7C6_var) == "Overlord")) {
-                        UnitBehaviorAdd(autoE583E7C6_var, "UnfairSc2Supply", autoE583E7C6_var, 1);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "Food", auto7BDA50C0_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "OverseerSiegeMode", "Food", auto7BDA50C0_var, "0");
+                autoEBD7BBB7_g = UnitGroup(null, auto7BDA50C0_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoEBD7BBB7_u = UnitGroupCount(autoEBD7BBB7_g, c_unitCountAll);
+                for (;; autoEBD7BBB7_u -= 1) {
+                    autoEBD7BBB7_var = UnitGroupUnitFromEnd(autoEBD7BBB7_g, autoEBD7BBB7_u);
+                    if (autoEBD7BBB7_var == null) { break; }
+                    if ((UnitGetType(autoEBD7BBB7_var) == "Overlord")) {
+                        UnitBehaviorAdd(autoEBD7BBB7_var, "UnfairSc2Supply", autoEBD7BBB7_var, 1);
                     }
 
                 }
@@ -67,23 +87,37 @@ bool lib18CEA1F0_gt_NoSupplyModStart_Func (bool testConds, bool runActions) {
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_18CEA1F0_582E22F6", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_18CEA1F0_68A54C3A"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_18CEA1F0_582E22F6"), StringExternal("Param/Value/lib_18CEA1F0_021C7399"), "Assets\\Textures\\btn-building-protoss-nexus-forged.dds");
+            TextExpressionSetToken("Param/Expression/lib_18CEA1F0_09B87EBA", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_18CEA1F0_09B87EBA", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_18CEA1F0_09B87EBA"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
 
     }
 
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib18CEA1F0_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib18CEA1F0_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib18CEA1F0_gt_NoSupplyModStart_Init () {
-    lib18CEA1F0_gt_NoSupplyModStart = TriggerCreate("lib18CEA1F0_gt_NoSupplyModStart_Func");
-    TriggerAddEventGeneric(lib18CEA1F0_gt_NoSupplyModStart, "SETUP COMPLETE EVENT");
+void lib18CEA1F0_gt_SetupHandicap_Init () {
+    lib18CEA1F0_gt_SetupHandicap = TriggerCreate("lib18CEA1F0_gt_SetupHandicap_Func");
 }
 
 void lib18CEA1F0_InitTriggers () {
-    lib18CEA1F0_gt_NoSupplyModStart_Init();
+    lib18CEA1F0_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -102,5 +136,6 @@ void lib18CEA1F0_InitLib () {
     lib18CEA1F0_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

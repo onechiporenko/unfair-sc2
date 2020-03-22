@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib6B9047BC_h"
@@ -9,227 +10,266 @@ include "Lib6B9047BC_h"
 // External Library Initialization
 void lib6B9047BC_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Gold Rush Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib6B9047BC_gt_GoldRushModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib6B9047BC_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_6B9047BC_FEBAB9A9");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_6B9047BC_7270B333");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-tips-richminerals.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_6B9047BC_38D3DBA5");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Enabled";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib6B9047BC_gt_SetupHandicap;
+}
+
+void lib6B9047BC_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto6C67E61B_g;
-    int auto6C67E61B_var;
-    unitgroup auto2779E789_g;
-    int auto2779E789_u;
-    unit auto2779E789_var;
-    unitgroup auto4D866811_g;
-    int auto4D866811_u;
-    unit auto4D866811_var;
-    unitgroup auto91B761ED_g;
-    int auto91B761ED_u;
-    unit auto91B761ED_var;
-    unitgroup autoACC04381_g;
-    int autoACC04381_u;
-    unit autoACC04381_var;
-    unitgroup autoDC35B2F3_g;
-    int autoDC35B2F3_u;
-    unit autoDC35B2F3_var;
-    unitgroup autoDE12A56F_g;
-    int autoDE12A56F_u;
-    unit autoDE12A56F_var;
-    unitgroup auto0304BAB6_g;
-    int auto0304BAB6_u;
-    unit auto0304BAB6_var;
-    unitgroup autoDCCD84BF_g;
-    int autoDCCD84BF_u;
-    unit autoDCCD84BF_var;
-    unitgroup auto1BBE7B65_g;
-    int auto1BBE7B65_u;
-    unit auto1BBE7B65_var;
-    unitgroup autoC7300C66_g;
-    int autoC7300C66_u;
-    unit autoC7300C66_var;
-    unitgroup autoB4CD2A4C_g;
-    int autoB4CD2A4C_u;
-    unit autoB4CD2A4C_var;
-    unitgroup autoE4633210_g;
-    int autoE4633210_u;
-    unit autoE4633210_var;
-    unitgroup auto6DC073BA_g;
-    int auto6DC073BA_u;
-    unit auto6DC073BA_var;
-    unitgroup auto46D07E41_g;
-    int auto46D07E41_u;
-    unit auto46D07E41_var;
+    playergroup autoA4B4709E_g;
+    int autoA4B4709E_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoA4B4709E_g = PlayerGroupActive();
+        autoA4B4709E_var = -1;
+        while (true) {
+            autoA4B4709E_var = PlayerGroupNextPlayer(autoA4B4709E_g, autoA4B4709E_var);
+            if (autoA4B4709E_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoA4B4709E_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoA4B4709E_var);
+                lib6B9047BC_gf_EnableHandicapForPlayer(autoA4B4709E_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_6B9047BC_041A812E", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_6B9047BC_041A812E", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_6B9047BC_041A812E"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+void lib6B9047BC_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    unitgroup auto4500BD65_g;
+    int auto4500BD65_u;
+    unit auto4500BD65_var;
+    unitgroup auto58B607C9_g;
+    int auto58B607C9_u;
+    unit auto58B607C9_var;
+    unitgroup autoCA9AAC4B_g;
+    int autoCA9AAC4B_u;
+    unit autoCA9AAC4B_var;
+    unitgroup autoE424F4DD_g;
+    int autoE424F4DD_u;
+    unit autoE424F4DD_var;
+    unitgroup auto386F1715_g;
+    int auto386F1715_u;
+    unit auto386F1715_var;
+    unitgroup autoDB42E42A_g;
+    int autoDB42E42A_u;
+    unit autoDB42E42A_var;
+    unitgroup autoD73ADBCD_g;
+    int autoD73ADBCD_u;
+    unit autoD73ADBCD_var;
+    unitgroup auto757C6007_g;
+    int auto757C6007_u;
+    unit auto757C6007_var;
+    unitgroup auto7259357B_g;
+    int auto7259357B_u;
+    unit auto7259357B_var;
+    unitgroup auto57A2FA56_g;
+    int auto57A2FA56_u;
+    unit auto57A2FA56_var;
+    unitgroup autoB06CD736_g;
+    int autoB06CD736_u;
+    unit autoB06CD736_var;
+    unitgroup auto7752B4E3_g;
+    int auto7752B4E3_u;
+    unit auto7752B4E3_var;
+    unitgroup autoBE85F206_g;
+    int autoBE85F206_u;
+    unit autoBE85F206_var;
+    unitgroup auto0281E79F_g;
+    int auto0281E79F_u;
+    unit auto0281E79F_var;
+
+    // Implementation
+    auto4500BD65_g = UnitGroup("MineralField", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto4500BD65_u = UnitGroupCount(auto4500BD65_g, c_unitCountAll);
+    for (;; auto4500BD65_u -= 1) {
+        auto4500BD65_var = UnitGroupUnitFromEnd(auto4500BD65_g, auto4500BD65_u);
+        if (auto4500BD65_var == null) { break; }
+        UnitKill(auto4500BD65_var);
+        UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(auto4500BD65_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    auto58B607C9_g = UnitGroup("MineralField750", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto58B607C9_u = UnitGroupCount(auto58B607C9_g, c_unitCountAll);
+    for (;; auto58B607C9_u -= 1) {
+        auto58B607C9_var = UnitGroupUnitFromEnd(auto58B607C9_g, auto58B607C9_u);
+        if (auto58B607C9_var == null) { break; }
+        UnitKill(auto58B607C9_var);
+        UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(auto58B607C9_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    autoCA9AAC4B_g = UnitGroup("LabMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoCA9AAC4B_u = UnitGroupCount(autoCA9AAC4B_g, c_unitCountAll);
+    for (;; autoCA9AAC4B_u -= 1) {
+        autoCA9AAC4B_var = UnitGroupUnitFromEnd(autoCA9AAC4B_g, autoCA9AAC4B_u);
+        if (autoCA9AAC4B_var == null) { break; }
+        UnitKill(autoCA9AAC4B_var);
+        UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(autoCA9AAC4B_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    autoE424F4DD_g = UnitGroup("BattleStationMineralField", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoE424F4DD_u = UnitGroupCount(autoE424F4DD_g, c_unitCountAll);
+    for (;; autoE424F4DD_u -= 1) {
+        autoE424F4DD_var = UnitGroupUnitFromEnd(autoE424F4DD_g, autoE424F4DD_u);
+        if (autoE424F4DD_var == null) { break; }
+        UnitKill(autoE424F4DD_var);
+        UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(autoE424F4DD_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    auto386F1715_g = UnitGroup("BattleStationMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto386F1715_u = UnitGroupCount(auto386F1715_g, c_unitCountAll);
+    for (;; auto386F1715_u -= 1) {
+        auto386F1715_var = UnitGroupUnitFromEnd(auto386F1715_g, auto386F1715_u);
+        if (auto386F1715_var == null) { break; }
+        UnitKill(auto386F1715_var);
+        UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(auto386F1715_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    autoDB42E42A_g = UnitGroup("PurifierMineralField", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoDB42E42A_u = UnitGroupCount(autoDB42E42A_g, c_unitCountAll);
+    for (;; autoDB42E42A_u -= 1) {
+        autoDB42E42A_var = UnitGroupUnitFromEnd(autoDB42E42A_g, autoDB42E42A_u);
+        if (autoDB42E42A_var == null) { break; }
+        UnitKill(autoDB42E42A_var);
+        UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(autoDB42E42A_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    autoD73ADBCD_g = UnitGroup("PurifierMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoD73ADBCD_u = UnitGroupCount(autoD73ADBCD_g, c_unitCountAll);
+    for (;; autoD73ADBCD_u -= 1) {
+        autoD73ADBCD_var = UnitGroupUnitFromEnd(autoD73ADBCD_g, autoD73ADBCD_u);
+        if (autoD73ADBCD_var == null) { break; }
+        UnitKill(autoD73ADBCD_var);
+        UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(autoD73ADBCD_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    auto757C6007_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto757C6007_u = UnitGroupCount(auto757C6007_g, c_unitCountAll);
+    for (;; auto757C6007_u -= 1) {
+        auto757C6007_var = UnitGroupUnitFromEnd(auto757C6007_g, auto757C6007_u);
+        if (auto757C6007_var == null) { break; }
+        UnitKill(auto757C6007_var);
+        UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(auto757C6007_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    auto7259357B_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto7259357B_u = UnitGroupCount(auto7259357B_g, c_unitCountAll);
+    for (;; auto7259357B_u -= 1) {
+        auto7259357B_var = UnitGroupUnitFromEnd(auto7259357B_g, auto7259357B_u);
+        if (auto7259357B_var == null) { break; }
+        UnitKill(auto7259357B_var);
+        UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(auto7259357B_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
+    }
+    auto57A2FA56_g = UnitGroup("VespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto57A2FA56_u = UnitGroupCount(auto57A2FA56_g, c_unitCountAll);
+    for (;; auto57A2FA56_u -= 1) {
+        auto57A2FA56_var = UnitGroupUnitFromEnd(auto57A2FA56_g, auto57A2FA56_u);
+        if (auto57A2FA56_var == null) { break; }
+        UnitKill(auto57A2FA56_var);
+        UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(auto57A2FA56_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
+    }
+    autoB06CD736_g = UnitGroup("SpacePlatformGeyser", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoB06CD736_u = UnitGroupCount(autoB06CD736_g, c_unitCountAll);
+    for (;; autoB06CD736_u -= 1) {
+        autoB06CD736_var = UnitGroupUnitFromEnd(autoB06CD736_g, autoB06CD736_u);
+        if (autoB06CD736_var == null) { break; }
+        UnitKill(autoB06CD736_var);
+        UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(autoB06CD736_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
+    }
+    auto7752B4E3_g = UnitGroup("ProtossVespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto7752B4E3_u = UnitGroupCount(auto7752B4E3_g, c_unitCountAll);
+    for (;; auto7752B4E3_u -= 1) {
+        auto7752B4E3_var = UnitGroupUnitFromEnd(auto7752B4E3_g, auto7752B4E3_u);
+        if (auto7752B4E3_var == null) { break; }
+        UnitKill(auto7752B4E3_var);
+        UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(auto7752B4E3_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
+    }
+    autoBE85F206_g = UnitGroup("PurifierVespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    autoBE85F206_u = UnitGroupCount(autoBE85F206_g, c_unitCountAll);
+    for (;; autoBE85F206_u -= 1) {
+        autoBE85F206_var = UnitGroupUnitFromEnd(autoBE85F206_g, autoBE85F206_u);
+        if (autoBE85F206_var == null) { break; }
+        UnitKill(autoBE85F206_var);
+        UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(autoBE85F206_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
+    }
+    auto0281E79F_g = UnitGroup("ShakurasVespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(lp_player), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+    auto0281E79F_u = UnitGroupCount(auto0281E79F_g, c_unitCountAll);
+    for (;; auto0281E79F_u -= 1) {
+        auto0281E79F_var = UnitGroupUnitFromEnd(auto0281E79F_g, auto0281E79F_u);
+        if (auto0281E79F_var == null) { break; }
+        UnitKill(auto0281E79F_var);
+        UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(auto0281E79F_var), 270.0);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib6B9047BC_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("39") == "0001")) {
-        Wait(1.0, c_timeGame);
-        auto6C67E61B_g = PlayerGroupAll();
-        auto6C67E61B_var = -1;
-        while (true) {
-            auto6C67E61B_var = PlayerGroupNextPlayer(auto6C67E61B_g, auto6C67E61B_var);
-            if (auto6C67E61B_var < 0) { break; }
-            if ((GameAttributePlayerValue("40", auto6C67E61B_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto6C67E61B_var);
-                auto2779E789_g = UnitGroup("MineralField", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto2779E789_u = UnitGroupCount(auto2779E789_g, c_unitCountAll);
-                for (;; auto2779E789_u -= 1) {
-                    auto2779E789_var = UnitGroupUnitFromEnd(auto2779E789_g, auto2779E789_u);
-                    if (auto2779E789_var == null) { break; }
-                    UnitKill(auto2779E789_var);
-                    UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(auto2779E789_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                auto4D866811_g = UnitGroup("MineralField750", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto4D866811_u = UnitGroupCount(auto4D866811_g, c_unitCountAll);
-                for (;; auto4D866811_u -= 1) {
-                    auto4D866811_var = UnitGroupUnitFromEnd(auto4D866811_g, auto4D866811_u);
-                    if (auto4D866811_var == null) { break; }
-                    UnitKill(auto4D866811_var);
-                    UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(auto4D866811_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                auto91B761ED_g = UnitGroup("LabMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto91B761ED_u = UnitGroupCount(auto91B761ED_g, c_unitCountAll);
-                for (;; auto91B761ED_u -= 1) {
-                    auto91B761ED_var = UnitGroupUnitFromEnd(auto91B761ED_g, auto91B761ED_u);
-                    if (auto91B761ED_var == null) { break; }
-                    UnitKill(auto91B761ED_var);
-                    UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(auto91B761ED_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                autoACC04381_g = UnitGroup("BattleStationMineralField", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoACC04381_u = UnitGroupCount(autoACC04381_g, c_unitCountAll);
-                for (;; autoACC04381_u -= 1) {
-                    autoACC04381_var = UnitGroupUnitFromEnd(autoACC04381_g, autoACC04381_u);
-                    if (autoACC04381_var == null) { break; }
-                    UnitKill(autoACC04381_var);
-                    UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(autoACC04381_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                autoDC35B2F3_g = UnitGroup("BattleStationMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoDC35B2F3_u = UnitGroupCount(autoDC35B2F3_g, c_unitCountAll);
-                for (;; autoDC35B2F3_u -= 1) {
-                    autoDC35B2F3_var = UnitGroupUnitFromEnd(autoDC35B2F3_g, autoDC35B2F3_u);
-                    if (autoDC35B2F3_var == null) { break; }
-                    UnitKill(autoDC35B2F3_var);
-                    UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(autoDC35B2F3_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                autoDE12A56F_g = UnitGroup("PurifierMineralField", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoDE12A56F_u = UnitGroupCount(autoDE12A56F_g, c_unitCountAll);
-                for (;; autoDE12A56F_u -= 1) {
-                    autoDE12A56F_var = UnitGroupUnitFromEnd(autoDE12A56F_g, autoDE12A56F_u);
-                    if (autoDE12A56F_var == null) { break; }
-                    UnitKill(autoDE12A56F_var);
-                    UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(autoDE12A56F_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                auto0304BAB6_g = UnitGroup("PurifierMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto0304BAB6_u = UnitGroupCount(auto0304BAB6_g, c_unitCountAll);
-                for (;; auto0304BAB6_u -= 1) {
-                    auto0304BAB6_var = UnitGroupUnitFromEnd(auto0304BAB6_g, auto0304BAB6_u);
-                    if (auto0304BAB6_var == null) { break; }
-                    UnitKill(auto0304BAB6_var);
-                    UnitCreate(1, "RichMineralField750", 0, 0, UnitGetPosition(auto0304BAB6_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                autoDCCD84BF_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoDCCD84BF_u = UnitGroupCount(autoDCCD84BF_g, c_unitCountAll);
-                for (;; autoDCCD84BF_u -= 1) {
-                    autoDCCD84BF_var = UnitGroupUnitFromEnd(autoDCCD84BF_g, autoDCCD84BF_u);
-                    if (autoDCCD84BF_var == null) { break; }
-                    UnitKill(autoDCCD84BF_var);
-                    UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(autoDCCD84BF_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                auto1BBE7B65_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto1BBE7B65_u = UnitGroupCount(auto1BBE7B65_g, c_unitCountAll);
-                for (;; auto1BBE7B65_u -= 1) {
-                    auto1BBE7B65_var = UnitGroupUnitFromEnd(auto1BBE7B65_g, auto1BBE7B65_u);
-                    if (auto1BBE7B65_var == null) { break; }
-                    UnitKill(auto1BBE7B65_var);
-                    UnitCreate(1, "RichMineralField", 0, 0, UnitGetPosition(auto1BBE7B65_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldenMineralsSpawn", "Ref_Head");
-                }
-                autoC7300C66_g = UnitGroup("VespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoC7300C66_u = UnitGroupCount(autoC7300C66_g, c_unitCountAll);
-                for (;; autoC7300C66_u -= 1) {
-                    autoC7300C66_var = UnitGroupUnitFromEnd(autoC7300C66_g, autoC7300C66_u);
-                    if (autoC7300C66_var == null) { break; }
-                    UnitKill(autoC7300C66_var);
-                    UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(autoC7300C66_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
-                }
-                autoB4CD2A4C_g = UnitGroup("SpacePlatformGeyser", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoB4CD2A4C_u = UnitGroupCount(autoB4CD2A4C_g, c_unitCountAll);
-                for (;; autoB4CD2A4C_u -= 1) {
-                    autoB4CD2A4C_var = UnitGroupUnitFromEnd(autoB4CD2A4C_g, autoB4CD2A4C_u);
-                    if (autoB4CD2A4C_var == null) { break; }
-                    UnitKill(autoB4CD2A4C_var);
-                    UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(autoB4CD2A4C_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
-                }
-                autoE4633210_g = UnitGroup("ProtossVespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoE4633210_u = UnitGroupCount(autoE4633210_g, c_unitCountAll);
-                for (;; autoE4633210_u -= 1) {
-                    autoE4633210_var = UnitGroupUnitFromEnd(autoE4633210_g, autoE4633210_u);
-                    if (autoE4633210_var == null) { break; }
-                    UnitKill(autoE4633210_var);
-                    UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(autoE4633210_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
-                }
-                auto6DC073BA_g = UnitGroup("PurifierVespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto6DC073BA_u = UnitGroupCount(auto6DC073BA_g, c_unitCountAll);
-                for (;; auto6DC073BA_u -= 1) {
-                    auto6DC073BA_var = UnitGroupUnitFromEnd(auto6DC073BA_g, auto6DC073BA_u);
-                    if (auto6DC073BA_var == null) { break; }
-                    UnitKill(auto6DC073BA_var);
-                    UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(auto6DC073BA_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
-                }
-                auto46D07E41_g = UnitGroup("ShakurasVespeneGeyser", c_playerAny, RegionCircle(PlayerStartLocation(auto6C67E61B_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto46D07E41_u = UnitGroupCount(auto46D07E41_g, c_unitCountAll);
-                for (;; auto46D07E41_u -= 1) {
-                    auto46D07E41_var = UnitGroupUnitFromEnd(auto46D07E41_g, auto46D07E41_u);
-                    if (auto46D07E41_var == null) { break; }
-                    UnitKill(auto46D07E41_var);
-                    UnitCreate(1, "RichVespeneGeyser", 0, 0, UnitGetPosition(auto46D07E41_var), 270.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2GoldGasSpawn", "Ref_Head");
-                }
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_6B9047BC_5DBDB454", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_6B9047BC_893A4C5A"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_6B9047BC_5DBDB454"), StringExternal("Param/Value/lib_6B9047BC_57C44F7D"), "Assets\\Textures\\btn-tips-richminerals.dds");
-        }
-
-    }
-
+    lib6B9047BC_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib6B9047BC_gt_GoldRushModStart_Init () {
-    lib6B9047BC_gt_GoldRushModStart = TriggerCreate("lib6B9047BC_gt_GoldRushModStart_Func");
-    TriggerAddEventMapInit(lib6B9047BC_gt_GoldRushModStart);
+void lib6B9047BC_gt_SetupHandicap_Init () {
+    lib6B9047BC_gt_SetupHandicap = TriggerCreate("lib6B9047BC_gt_SetupHandicap_Func");
 }
 
 void lib6B9047BC_InitTriggers () {
-    lib6B9047BC_gt_GoldRushModStart_Init();
+    lib6B9047BC_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -248,5 +288,6 @@ void lib6B9047BC_InitLib () {
     lib6B9047BC_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

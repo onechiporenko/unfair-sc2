@@ -10,10 +10,12 @@ int lib1D99399F_gv_temporalFieldsPerWave;
 timer lib1D99399F_gv_temporalFieldsTimer;
 
 // Function Declarations
+void lib1D99399F_gf_SetupOptions (int lp_handicapindex);
+void lib1D99399F_gf_EnableHandicap (int lp_handicapIndex);
 void lib1D99399F_gf_SpawnTemporalField ();
 
 // Trigger Declarations
-trigger lib1D99399F_gt_TemporalFieldsModStart;
+trigger lib1D99399F_gt_SetupHandicap;
 trigger lib1D99399F_gt_SpawnTemporalFields;
 
 // Library Initialization

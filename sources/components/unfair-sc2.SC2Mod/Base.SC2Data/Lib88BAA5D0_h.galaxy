@@ -3,18 +3,24 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: BLINK WARS
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string lib88BAA5D0_gv_turnOnBlinkWars = "Turn On";
+
 // Variable Declarations
 timer lib88BAA5D0_gv_blinkTimer;
+bool lib88BAA5D0_gv_blnikWarsEnabled;
 int lib88BAA5D0_gv_blinkTimerWindow;
 
 // Function Declarations
+void lib88BAA5D0_gf_SetupOptions (int lp_handicapindex);
 void lib88BAA5D0_gf_RemoveBlink (unit lp_unit);
+void lib88BAA5D0_gf_EnableHandicap (int lp_handicapIndex);
+void lib88BAA5D0_gf_EnableHandicapForPlayer (int lp_player);
 
 // Trigger Declarations
-trigger lib88BAA5D0_gt_BlinkWarsModStart;
-trigger lib88BAA5D0_gt_RemoveBlinkFromInitialUnits;
-trigger lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit;
-trigger lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit;
+trigger lib88BAA5D0_gt_SetupHandicap;
+trigger lib88BAA5D0_gt_UnitIsCreated;
+trigger lib88BAA5D0_gt_UnitIsConstructed;
 trigger lib88BAA5D0_gt_GiveBlink;
 
 // Library Initialization

@@ -3,7 +3,11 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: SOULS CATCHER
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libBFCD4496_gf_SetupOptions (int lp_handicapindex);
+void libBFCD4496_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger libBFCD4496_gt_SoulsCatcherModStart;
+trigger libBFCD4496_gt_SetupHandicap;
 trigger libBFCD4496_gt_CreateSoul;
 

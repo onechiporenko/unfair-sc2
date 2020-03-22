@@ -8,12 +8,15 @@ int lib00CAD167_gv_extraMinesCount;
 int lib00CAD167_gv_extraMinesDelay;
 timer lib00CAD167_gv_extraMinesTimer;
 int lib00CAD167_gv_minesLeaderboard;
+timer lib00CAD167_gv_minesTimer;
 
 // Function Declarations
+void lib00CAD167_gf_SetupOptions (int lp_handicapindex);
+void lib00CAD167_gf_EnableHandicap (int lp_handicapIndex);
 void lib00CAD167_gf_CreateMines (int lp_minesCount);
 
 // Trigger Declarations
-trigger lib00CAD167_gt_MinesModStart;
+trigger lib00CAD167_gt_SetupHandicap;
 trigger lib00CAD167_gt_UgradeMines;
 trigger lib00CAD167_gt_StartCreatingExtraMines;
 trigger lib00CAD167_gt_CreateExtraMines;

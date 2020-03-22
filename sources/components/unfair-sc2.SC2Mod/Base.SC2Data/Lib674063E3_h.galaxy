@@ -8,10 +8,12 @@ int lib674063E3_gv_zoomButton;
 int lib674063E3_gv_zoomButtonx2;
 
 // Function Declarations
+void lib674063E3_gf_SetupOptions (int lp_handicapindex);
+void lib674063E3_gf_EnableHandicap (int lp_handicapIndex);
 void lib674063E3_gf_SetCameraHeightForPlayer (int lp_player);
 
 // Trigger Declarations
-trigger lib674063E3_gt_ZoomModStart;
+trigger lib674063E3_gt_SetupHandicap;
 trigger lib674063E3_gt_ZoomButtonClick;
 trigger lib674063E3_gt_ZoomButtonx2Click;
 

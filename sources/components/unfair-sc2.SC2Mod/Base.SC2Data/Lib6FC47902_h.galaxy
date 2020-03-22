@@ -3,7 +3,11 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: RANDOM RALLY POINTS
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib6FC47902_gf_SetupOptions (int lp_handicapindex);
+void lib6FC47902_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger lib6FC47902_gt_RandomRallyPointsModStart;
+trigger lib6FC47902_gt_SetupHandicap;
 trigger lib6FC47902_gt_SetRandomRallyPointToCreatedUnit;
 

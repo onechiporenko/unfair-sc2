@@ -10,10 +10,13 @@ int lib827A7D7F_gv_maxContaminationsCount;
 timer lib827A7D7F_gv_contaminationTimer;
 
 // Function Declarations
+void lib827A7D7F_gf_SetupOptions (int lp_handicapindex);
+void lib827A7D7F_gf_EnableHandicap (int lp_handicapIndex);
+void lib827A7D7F_gf_EnableHandicapForPlayer (int lp_player);
 void lib827A7D7F_gf_ContaminateUnit (unit lp_unit);
 
 // Trigger Declarations
-trigger lib827A7D7F_gt_ContaminationModStart;
+trigger lib827A7D7F_gt_SetupHandicap;
 trigger lib827A7D7F_gt_ContaminationTimerTick;
 trigger lib827A7D7F_gt_IncContaminationsCount;
 

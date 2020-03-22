@@ -12,11 +12,14 @@ fixed libE840CECB_gv_decimacioStartTime;
 int libE840CECB_gv_decimatioTimerWindow;
 
 // Function Declarations
+void libE840CECB_gf_SetupOptions (int lp_handicapindex);
+void libE840CECB_gf_EnableHandicap (int lp_handicapIndex);
+void libE840CECB_gf_EnableHandicapForPlayer (int lp_player);
 void libE840CECB_gf_KillEvery10thUnitForPlayers ();
-void libE840CECB_gf_Decimatio (int lp_player);
+void libE840CECB_gf_KillEvery10thUnitForPlayer (int lp_player);
 
 // Trigger Declarations
-trigger libE840CECB_gt_DecimatioModStart;
+trigger libE840CECB_gt_SetupHandicap;
 trigger libE840CECB_gt_DecimatioStart;
 trigger libE840CECB_gt_DecimatioWave;
 trigger libE840CECB_gt_ShowLostResources;

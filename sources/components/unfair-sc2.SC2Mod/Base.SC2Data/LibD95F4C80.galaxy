@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibD95F4C80_h"
@@ -9,6 +10,7 @@ include "LibD95F4C80_h"
 // External Library Initialization
 void libD95F4C80_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -25,67 +27,110 @@ void libD95F4C80_InitVariables () {
     libD95F4C80_gv_playersWithFreeWorkers = PlayerGroupEmpty();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Free Workers Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libD95F4C80_gt_FreeWorkersModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libD95F4C80_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_D95F4C80_50933230");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_D95F4C80_0869A2E6");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-unit-protoss-blizzcon17-probe.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_D95F4C80_AF5F36BB");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD95F4C80_gv_noSupply;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD95F4C80_gv_noMinerals;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD95F4C80_gv_noSupplyNoMinerals;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libD95F4C80_gt_SetupHandicap;
+}
+
+void libD95F4C80_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup autoF1CE5588_g;
-    int autoF1CE5588_var;
+    playergroup auto37C78D60_g;
+    int auto37C78D60_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto37C78D60_g = PlayerGroupActive();
+        auto37C78D60_var = -1;
+        while (true) {
+            auto37C78D60_var = PlayerGroupNextPlayer(auto37C78D60_g, auto37C78D60_var);
+            if (auto37C78D60_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto37C78D60_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto37C78D60_var);
+                libD95F4C80_gf_EnableHandicapForPlayer(auto37C78D60_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            libD95F4C80_gv_playersWithFreeWorkers = lv_players;
+            TextExpressionSetToken("Param/Expression/lib_D95F4C80_3E78612B", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_D95F4C80_3E78612B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D95F4C80_3E78612B"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+void libD95F4C80_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[0].lv_selectedVals[lp_player] == libD95F4C80_gv_noMinerals) || (libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[0].lv_selectedVals[lp_player] == libD95F4C80_gv_noSupplyNoMinerals))) {
+        CatalogFieldValueSet(c_gameCatalogUnit, "SCV", "CostResource[" + IntToString(0) + "]", lp_player, "0");
+        CatalogFieldValueSet(c_gameCatalogUnit, "Drone", "CostResource[" + IntToString(0) + "]", lp_player, "0");
+        CatalogFieldValueSet(c_gameCatalogUnit, "DroneBurrowed", "CostResource[" + IntToString(0) + "]", lp_player, "0");
+        CatalogFieldValueSet(c_gameCatalogUnit, "Probe", "CostResource[" + IntToString(0) + "]", lp_player, "0");
+    }
+
+    if (((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[0].lv_selectedVals[lp_player] == libD95F4C80_gv_noSupply) || (libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[0].lv_selectedVals[lp_player] == libD95F4C80_gv_noSupplyNoMinerals))) {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_fREEWORKERS.lv_messageindex = libDBC4E2D2_gv_pLAYERS[lp_player].lv_uI.lv_numberofmessages;
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_uI.lv_numberofmessages += 1;
+        CatalogFieldValueSet(c_gameCatalogUnit, "SCV", "Food", lp_player, "0");
+        CatalogFieldValueSet(c_gameCatalogUnit, "Drone", "Food", lp_player, "0");
+        CatalogFieldValueSet(c_gameCatalogUnit, "DroneBurrowed", "Food", lp_player, "0");
+        CatalogFieldValueSet(c_gameCatalogUnit, "Probe", "Food", lp_player, "0");
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libD95F4C80_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("86") == "0001")) {
-        autoF1CE5588_g = PlayerGroupActive();
-        autoF1CE5588_var = -1;
-        while (true) {
-            autoF1CE5588_var = PlayerGroupNextPlayer(autoF1CE5588_g, autoF1CE5588_var);
-            if (autoF1CE5588_var < 0) { break; }
-            if ((GameAttributePlayerValue("87", autoF1CE5588_var) != "0002")) {
-                PlayerGroupAdd(lv_players, autoF1CE5588_var);
-                if (((GameAttributePlayerValue("87", autoF1CE5588_var) == "0004") || (GameAttributePlayerValue("87", autoF1CE5588_var) == "0001"))) {
-                    CatalogFieldValueSet(c_gameCatalogUnit, "SCV", "CostResource[" + IntToString(0) + "]", autoF1CE5588_var, "0");
-                    CatalogFieldValueSet(c_gameCatalogUnit, "Drone", "CostResource[" + IntToString(0) + "]", autoF1CE5588_var, "0");
-                    CatalogFieldValueSet(c_gameCatalogUnit, "Probe", "CostResource[" + IntToString(0) + "]", autoF1CE5588_var, "0");
-                }
-
-                if (((GameAttributePlayerValue("87", autoF1CE5588_var) == "0003") || (GameAttributePlayerValue("87", autoF1CE5588_var) == "0001"))) {
-                    libDBC4E2D2_gv_players[autoF1CE5588_var].lv_fREEWORKERS.lv_messageindex = libDBC4E2D2_gv_players[autoF1CE5588_var].lv_uI.lv_numberofmessages;
-                    libDBC4E2D2_gv_players[autoF1CE5588_var].lv_uI.lv_numberofmessages += 1;
-                    CatalogFieldValueSet(c_gameCatalogUnit, "SCV", "Food", autoF1CE5588_var, "0");
-                    CatalogFieldValueSet(c_gameCatalogUnit, "Drone", "Food", autoF1CE5588_var, "0");
-                    CatalogFieldValueSet(c_gameCatalogUnit, "DroneBurrowed", "Food", autoF1CE5588_var, "0");
-                    CatalogFieldValueSet(c_gameCatalogUnit, "Probe", "Food", autoF1CE5588_var, "0");
-                }
-
-            }
-
-        }
-        libD95F4C80_gv_playersWithFreeWorkers = lv_players;
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_D95F4C80_0B8877CE", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D95F4C80_03A46D83"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D95F4C80_0B8877CE"), StringExternal("Param/Value/lib_D95F4C80_CE62864B"), "Assets\\Textures\\btn-unit-protoss-blizzcon17-probe.dds");
-        }
-
-    }
-
+    libD95F4C80_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libD95F4C80_gt_FreeWorkersModStart_Init () {
-    libD95F4C80_gt_FreeWorkersModStart = TriggerCreate("libD95F4C80_gt_FreeWorkersModStart_Func");
-    TriggerAddEventMapInit(libD95F4C80_gt_FreeWorkersModStart);
+void libD95F4C80_gt_SetupHandicap_Init () {
+    libD95F4C80_gt_SetupHandicap = TriggerCreate("libD95F4C80_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -107,7 +152,7 @@ bool libD95F4C80_gt_UpdateShownWorkersCount_Func (bool testConds, bool runAction
         auto8D6F86E7_var = PlayerGroupNextPlayer(auto8D6F86E7_g, auto8D6F86E7_var);
         if (auto8D6F86E7_var < 0) { break; }
         TextExpressionSetToken("Param/Expression/lib_D95F4C80_F1F5207F", "A", IntToText(libDBC4E2D2_gf_GetWorkersCount(auto8D6F86E7_var)));
-        libDBC4E2D2_gv_players[auto8D6F86E7_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[auto8D6F86E7_var].lv_fREEWORKERS.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_D95F4C80_F1F5207F");
+        libDBC4E2D2_gv_pLAYERS[auto8D6F86E7_var].lv_uI.lv_messages[libDBC4E2D2_gv_pLAYERS[auto8D6F86E7_var].lv_fREEWORKERS.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_D95F4C80_F1F5207F");
     }
     return true;
 }
@@ -119,7 +164,7 @@ void libD95F4C80_gt_UpdateShownWorkersCount_Init () {
 }
 
 void libD95F4C80_InitTriggers () {
-    libD95F4C80_gt_FreeWorkersModStart_Init();
+    libD95F4C80_gt_SetupHandicap_Init();
     libD95F4C80_gt_UpdateShownWorkersCount_Init();
 }
 
@@ -140,5 +185,6 @@ void libD95F4C80_InitLib () {
     libD95F4C80_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

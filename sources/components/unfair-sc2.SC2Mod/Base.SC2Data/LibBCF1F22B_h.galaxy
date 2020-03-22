@@ -4,10 +4,13 @@ include "TriggerLibs/natives"
 // Library: EXTRA REGENERATION
 //--------------------------------------------------------------------------------------------------
 // Function Declarations
+void libBCF1F22B_gf_SetupOptions (int lp_handicapindex);
+void libBCF1F22B_gf_EnableHandicap (int lp_handicapIndex);
+void libBCF1F22B_gf_EnableHandicapForPlayer (int lp_player);
 void libBCF1F22B_gf_AddRegeneration (unit lp_unit);
 
 // Trigger Declarations
-trigger libBCF1F22B_gt_ExtraRegenerationModStart;
+trigger libBCF1F22B_gt_SetupHandicap;
 trigger libBCF1F22B_gt_AddRegenerationToInitialUnits;
 trigger libBCF1F22B_gt_AddRegenerationToUnit;
 

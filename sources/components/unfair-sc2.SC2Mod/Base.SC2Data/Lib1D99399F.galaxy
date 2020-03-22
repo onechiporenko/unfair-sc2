@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib1D99399F_h"
@@ -9,6 +10,7 @@ include "Lib1D99399F_h"
 // External Library Initialization
 void lib1D99399F_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -27,6 +29,213 @@ void lib1D99399F_InitVariables () {
 }
 
 // Functions
+void lib1D99399F_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    playergroup autoCDB120CB_g;
+    int autoCDB120CB_var;
+
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_1D99399F_4A6DC45F");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_1D99399F_287B06EE");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-timewarp.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_1D99399F_505EDB5A");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "40";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_1D99399F_C2115C87");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "1";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "3";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "4";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "6";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "7";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "8";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "9";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_1D99399F_20E7D601");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_defaultValue = "50";
+    lv_optionvalueindex = 0;
+    autoCDB120CB_g = PlayerGroupActive();
+    autoCDB120CB_var = -1;
+    while (true) {
+        autoCDB120CB_var = PlayerGroupNextPlayer(autoCDB120CB_g, autoCDB120CB_var);
+        if (autoCDB120CB_var < 0) { break; }
+        libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_selectedVals[autoCDB120CB_var] = "50";
+    }
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "40";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "60";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "70";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "80";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib1D99399F_gt_SetupHandicap;
+}
+
+void lib1D99399F_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    text lv_playersSettings;
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string autoBA3DB881_val;
+    string autoF63FD432_val;
+    playergroup auto96D1D075_g;
+    int auto96D1D075_var;
+    string auto89D4EE16_val;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoBA3DB881_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (autoBA3DB881_val == "10") {
+            lib1D99399F_gv_temporalFieldsDelay = 10;
+        }
+        else if (autoBA3DB881_val == "20") {
+            lib1D99399F_gv_temporalFieldsDelay = 20;
+        }
+        else if (autoBA3DB881_val == "30") {
+            lib1D99399F_gv_temporalFieldsDelay = 30;
+        }
+        else if (autoBA3DB881_val == "40") {
+            lib1D99399F_gv_temporalFieldsDelay = 40;
+        }
+        else {
+            lib1D99399F_gv_temporalFieldsDelay = 10;
+        }
+        autoF63FD432_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[1].lv_selectedVal;
+        if (autoF63FD432_val == "1") {
+            lib1D99399F_gv_temporalFieldsPerWave = 1;
+        }
+        else if (autoF63FD432_val == "2") {
+            lib1D99399F_gv_temporalFieldsPerWave = 2;
+        }
+        else if (autoF63FD432_val == "3") {
+            lib1D99399F_gv_temporalFieldsPerWave = 3;
+        }
+        else if (autoF63FD432_val == "4") {
+            lib1D99399F_gv_temporalFieldsPerWave = 4;
+        }
+        else if (autoF63FD432_val == "5") {
+            lib1D99399F_gv_temporalFieldsPerWave = 5;
+        }
+        else if (autoF63FD432_val == "6") {
+            lib1D99399F_gv_temporalFieldsPerWave = 6;
+        }
+        else if (autoF63FD432_val == "7") {
+            lib1D99399F_gv_temporalFieldsPerWave = 7;
+        }
+        else if (autoF63FD432_val == "8") {
+            lib1D99399F_gv_temporalFieldsPerWave = 8;
+        }
+        else if (autoF63FD432_val == "9") {
+            lib1D99399F_gv_temporalFieldsPerWave = 9;
+        }
+        else if (autoF63FD432_val == "10") {
+            lib1D99399F_gv_temporalFieldsPerWave = 10;
+        }
+        else {
+            lib1D99399F_gv_temporalFieldsPerWave = 1;
+        }
+        auto96D1D075_g = PlayerGroupActive();
+        auto96D1D075_var = -1;
+        while (true) {
+            auto96D1D075_var = PlayerGroupNextPlayer(auto96D1D075_g, auto96D1D075_var);
+            if (auto96D1D075_var < 0) { break; }
+            auto89D4EE16_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto96D1D075_var];
+            if (auto89D4EE16_val == "10") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 10;
+            }
+            else if (auto89D4EE16_val == "20") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 20;
+            }
+            else if (auto89D4EE16_val == "30") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 30;
+            }
+            else if (auto89D4EE16_val == "40") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 40;
+            }
+            else if (auto89D4EE16_val == "50") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 50;
+            }
+            else if (auto89D4EE16_val == "60") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 60;
+            }
+            else if (auto89D4EE16_val == "70") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 70;
+            }
+            else if (auto89D4EE16_val == "80") {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 80;
+            }
+            else {
+                libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius = 50;
+            }
+            PlayerGroupAdd(lv_players, auto96D1D075_var);
+            RegionAddCircle(lib1D99399F_gv_safeZone, true, PlayerStartLocation(auto96D1D075_var), libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius);
+            TextExpressionSetToken("Param/Expression/lib_1D99399F_C6C07C59", "A", TextWithColor(PlayerName(auto96D1D075_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto96D1D075_var, false))));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_1D99399F_C6C07C59"));
+            TextExpressionSetToken("Param/Expression/lib_1D99399F_5308CD87", "A", FixedToText(libDBC4E2D2_gv_pLAYERS[auto96D1D075_var].lv_tEMPORALFIELDS.lv_savezoneradius, 0));
+            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_1D99399F_5308CD87"));
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_1D99399F_FF9DF61D", "TWPerWave", IntToText(lib1D99399F_gv_temporalFieldsPerWave));
+            TextExpressionSetToken("Param/Expression/lib_1D99399F_FF9DF61D", "TWDelay", IntToText(lib1D99399F_gv_temporalFieldsDelay));
+            TextExpressionSetToken("Param/Expression/lib_1D99399F_FF9DF61D", "PlayerSettings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_1D99399F_FF9DF61D"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+            TimerStart(lib1D99399F_gv_temporalFieldsTimer, lib1D99399F_gv_temporalFieldsDelay, true, c_timeReal);
+        }
+
+    }
+
+}
+
 trigger auto_lib1D99399F_gf_SpawnTemporalField_Trigger = null;
 
 void lib1D99399F_gf_SpawnTemporalField () {
@@ -60,141 +269,22 @@ bool auto_lib1D99399F_gf_SpawnTemporalField_TriggerFunc (bool testConds, bool ru
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Temporal Fields Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib1D99399F_gt_TemporalFieldsModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-    text lv_playersSettings;
-
+bool lib1D99399F_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto3EAE7150_g;
-    int auto3EAE7150_var;
-    string auto21A88D46_val;
-    string auto8EDC3FBA_val;
-    string autoFE4C4B2C_val;
-    playergroup autoACD73F66_g;
-    int autoACD73F66_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("110") == "0001")) {
-        auto3EAE7150_g = PlayerGroupAll();
-        auto3EAE7150_var = -1;
-        while (true) {
-            auto3EAE7150_var = PlayerGroupNextPlayer(auto3EAE7150_g, auto3EAE7150_var);
-            if (auto3EAE7150_var < 0) { break; }
-            auto21A88D46_val = GameAttributePlayerValue("113", auto3EAE7150_var);
-            if (auto21A88D46_val == "0005") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 10;
-            }
-            else if (auto21A88D46_val == "0004") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 20;
-            }
-            else if (auto21A88D46_val == "0003") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 30;
-            }
-            else if (auto21A88D46_val == "0002") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 40;
-            }
-            else if (auto21A88D46_val == "0001") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 50;
-            }
-            else if (auto21A88D46_val == "0006") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 60;
-            }
-            else if (auto21A88D46_val == "0007") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 70;
-            }
-            else if (auto21A88D46_val == "0008") {
-                libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius = 80;
-            }
-            else {
-            }
-            if ((PlayerStatus(auto3EAE7150_var) == c_playerStatusActive)) {
-                RegionAddCircle(lib1D99399F_gv_safeZone, true, PlayerStartLocation(auto3EAE7150_var), libDBC4E2D2_gv_players[auto3EAE7150_var].lv_tEMPORALFIELDS.lv_savezoneradius);
-            }
-
-            auto8EDC3FBA_val = GameAttributeGameValue("111");
-            if (auto8EDC3FBA_val == "0001") {
-                lib1D99399F_gv_temporalFieldsDelay = 10;
-            }
-            else if (auto8EDC3FBA_val == "0002") {
-                lib1D99399F_gv_temporalFieldsDelay = 20;
-            }
-            else if (auto8EDC3FBA_val == "0003") {
-                lib1D99399F_gv_temporalFieldsDelay = 30;
-            }
-            else if (auto8EDC3FBA_val == "0004") {
-                lib1D99399F_gv_temporalFieldsDelay = 40;
-            }
-            else {
-                lib1D99399F_gv_temporalFieldsDelay = 10;
-            }
-            autoFE4C4B2C_val = GameAttributeGameValue("112");
-            if (autoFE4C4B2C_val == "0001") {
-                lib1D99399F_gv_temporalFieldsPerWave = 1;
-            }
-            else if (autoFE4C4B2C_val == "0002") {
-                lib1D99399F_gv_temporalFieldsPerWave = 2;
-            }
-            else if (autoFE4C4B2C_val == "0003") {
-                lib1D99399F_gv_temporalFieldsPerWave = 3;
-            }
-            else if (autoFE4C4B2C_val == "0004") {
-                lib1D99399F_gv_temporalFieldsPerWave = 4;
-            }
-            else if (autoFE4C4B2C_val == "0005") {
-                lib1D99399F_gv_temporalFieldsPerWave = 5;
-            }
-            else if (autoFE4C4B2C_val == "0006") {
-                lib1D99399F_gv_temporalFieldsPerWave = 6;
-            }
-            else if (autoFE4C4B2C_val == "0007") {
-                lib1D99399F_gv_temporalFieldsPerWave = 7;
-            }
-            else if (autoFE4C4B2C_val == "0008") {
-                lib1D99399F_gv_temporalFieldsPerWave = 8;
-            }
-            else if (autoFE4C4B2C_val == "0009") {
-                lib1D99399F_gv_temporalFieldsPerWave = 9;
-            }
-            else if (autoFE4C4B2C_val == "0010") {
-                lib1D99399F_gv_temporalFieldsPerWave = 10;
-            }
-            else {
-            }
-        }
-        autoACD73F66_g = PlayerGroupActive();
-        autoACD73F66_var = -1;
-        while (true) {
-            autoACD73F66_var = PlayerGroupNextPlayer(autoACD73F66_g, autoACD73F66_var);
-            if (autoACD73F66_var < 0) { break; }
-            TextExpressionSetToken("Param/Expression/lib_1D99399F_1571645C", "A", TextWithColor(PlayerName(autoACD73F66_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoACD73F66_var, false))));
-            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_1D99399F_1571645C"));
-            TextExpressionSetToken("Param/Expression/lib_1D99399F_2ECDF195", "A", FixedToText(libDBC4E2D2_gv_players[autoACD73F66_var].lv_tEMPORALFIELDS.lv_savezoneradius, 0));
-            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_1D99399F_2ECDF195"));
-        }
-        TextExpressionSetToken("Param/Expression/lib_1D99399F_BAC90AF0", "TWPerWave", IntToText(lib1D99399F_gv_temporalFieldsPerWave));
-        TextExpressionSetToken("Param/Expression/lib_1D99399F_BAC90AF0", "TWDelay", IntToText(lib1D99399F_gv_temporalFieldsDelay));
-        TextExpressionSetToken("Param/Expression/lib_1D99399F_BAC90AF0", "PlayerSettings", lv_playersSettings);
-        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_1D99399F_5A3EEBED"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_1D99399F_BAC90AF0"), StringExternal("Param/Value/lib_1D99399F_D5EA6B26"), "Assets\\Textures\\btn-ability-protoss-timewarp.dds");
-        TimerStart(lib1D99399F_gv_temporalFieldsTimer, lib1D99399F_gv_temporalFieldsDelay, true, c_timeReal);
-    }
-
+    lib1D99399F_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib1D99399F_gt_TemporalFieldsModStart_Init () {
-    lib1D99399F_gt_TemporalFieldsModStart = TriggerCreate("lib1D99399F_gt_TemporalFieldsModStart_Func");
-    TriggerAddEventMapInit(lib1D99399F_gt_TemporalFieldsModStart);
+void lib1D99399F_gt_SetupHandicap_Init () {
+    lib1D99399F_gt_SetupHandicap = TriggerCreate("lib1D99399F_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -225,7 +315,7 @@ void lib1D99399F_gt_SpawnTemporalFields_Init () {
 }
 
 void lib1D99399F_InitTriggers () {
-    lib1D99399F_gt_TemporalFieldsModStart_Init();
+    lib1D99399F_gt_SetupHandicap_Init();
     lib1D99399F_gt_SpawnTemporalFields_Init();
 }
 
@@ -246,5 +336,6 @@ void lib1D99399F_InitLib () {
     lib1D99399F_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

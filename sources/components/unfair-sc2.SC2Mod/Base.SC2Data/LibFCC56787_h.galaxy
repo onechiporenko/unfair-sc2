@@ -3,7 +3,18 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: CAMERA
 //--------------------------------------------------------------------------------------------------
+// Variable Declarations
+timer libFCC56787_gv_cameraTimer;
+
+// Function Declarations
+void libFCC56787_gf_SetupOptions (int lp_handicapindex);
+void libFCC56787_gf_EnableHandicap (int lp_handicapIndex);
+void libFCC56787_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger libFCC56787_gt_CameraModStart;
+trigger libFCC56787_gt_SetupHandicap;
 trigger libFCC56787_gt_RotateCamera;
+
+// Library Initialization
+void libFCC56787_InitVariables ();
 

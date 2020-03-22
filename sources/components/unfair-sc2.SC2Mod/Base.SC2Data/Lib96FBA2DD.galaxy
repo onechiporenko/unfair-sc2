@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib96FBA2DD_h"
@@ -9,6 +10,7 @@ include "Lib96FBA2DD_h"
 // External Library Initialization
 void lib96FBA2DD_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -24,9 +26,153 @@ void lib96FBA2DD_InitVariables () {
 
     lib96FBA2DD_gv_riotWorkersPercent = 0.25;
     lib96FBA2DD_gv_riotTimer = TimerCreate();
+    lib96FBA2DD_gv_riotSentensesTimer = TimerCreate();
 }
 
 // Functions
+void lib96FBA2DD_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_96FBA2DD_6D02DEEC");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_96FBA2DD_A0375D9C");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-unit-collection-scv-remastered.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_96FBA2DD_FA83805E");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "40";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "60";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_96FBA2DD_2EE5FEF4");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_96FBA2DD_2D58A5A8");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib96FBA2DD_gt_SetupHandicap;
+}
+
+void lib96FBA2DD_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string autoAF6DE940_val;
+    string autoB6BE4D91_val;
+    playergroup autoEABCB2B5_g;
+    int autoEABCB2B5_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoAF6DE940_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (autoAF6DE940_val == "10") {
+            lib96FBA2DD_gv_riotFreequency = 10;
+        }
+        else if (autoAF6DE940_val == "20") {
+            lib96FBA2DD_gv_riotFreequency = 20;
+        }
+        else if (autoAF6DE940_val == "30") {
+            lib96FBA2DD_gv_riotFreequency = 30;
+        }
+        else if (autoAF6DE940_val == "40") {
+            lib96FBA2DD_gv_riotFreequency = 40;
+        }
+        else if (autoAF6DE940_val == "50") {
+            lib96FBA2DD_gv_riotFreequency = 50;
+        }
+        else if (autoAF6DE940_val == "60") {
+            lib96FBA2DD_gv_riotFreequency = 60;
+        }
+        else {
+            lib96FBA2DD_gv_riotFreequency = 30;
+        }
+        autoB6BE4D91_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[1].lv_selectedVal;
+        if (autoB6BE4D91_val == "10") {
+            lib96FBA2DD_gv_riotWorkersPercent = 0.1;
+        }
+        else if (autoB6BE4D91_val == "25") {
+            lib96FBA2DD_gv_riotWorkersPercent = 0.25;
+        }
+        else if (autoB6BE4D91_val == "50") {
+            lib96FBA2DD_gv_riotWorkersPercent = 0.5;
+        }
+        else if (autoB6BE4D91_val == "75") {
+            lib96FBA2DD_gv_riotWorkersPercent = 0.75;
+        }
+        else if (autoB6BE4D91_val == "100") {
+            lib96FBA2DD_gv_riotWorkersPercent = 1.0;
+        }
+        else {
+            lib96FBA2DD_gv_riotWorkersPercent = 0.25;
+        }
+        autoEABCB2B5_g = PlayerGroupActive();
+        autoEABCB2B5_var = -1;
+        while (true) {
+            autoEABCB2B5_var = PlayerGroupNextPlayer(autoEABCB2B5_g, autoEABCB2B5_var);
+            if (autoEABCB2B5_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoEABCB2B5_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoEABCB2B5_var);
+                libDBC4E2D2_gv_pLAYERS[autoEABCB2B5_var].lv_rIOTWORKERS.lv_enabled = true;
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_96F63F92", "RiotDelay", IntToText(lib96FBA2DD_gv_riotFreequency));
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_96F63F92", "RiotWorkersPercent", FixedToText((lib96FBA2DD_gv_riotWorkersPercent * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_96F63F92", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_96FBA2DD_96F63F92"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+            TimerStart(lib96FBA2DD_gv_riotTimer, lib96FBA2DD_gv_riotFreequency, true, c_timeReal);
+            TimerStart(lib96FBA2DD_gv_riotSentensesTimer, 7.0, true, c_timeReal);
+        }
+        else {
+            TriggerEnable(lib96FBA2DD_gt_DoRiot, false);
+        }
+    }
+    else {
+        TriggerEnable(lib96FBA2DD_gt_DoRiot, false);
+    }
+}
+
 void lib96FBA2DD_gf_ShowRiotTextBaloonForUnit (text lp_texttoShow, point lp_point, playergroup lp_playersToShow) {
     // Automatic Variable Declarations
     // Implementation
@@ -112,6 +258,25 @@ bool auto_lib96FBA2DD_gf_Riot_TriggerFunc (bool testConds, bool runActions) {
 }
 
 // Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib96FBA2DD_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib96FBA2DD_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib96FBA2DD_gt_SetupHandicap_Init () {
+    lib96FBA2DD_gt_SetupHandicap = TriggerCreate("lib96FBA2DD_gt_SetupHandicap_Func");
+}
+
 //--------------------------------------------------------------------------------------------------
 // Trigger: Riot Workers Mod Start
 //--------------------------------------------------------------------------------------------------
@@ -205,7 +370,6 @@ bool lib96FBA2DD_gt_RiotWorkersModStart_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void lib96FBA2DD_gt_RiotWorkersModStart_Init () {
     lib96FBA2DD_gt_RiotWorkersModStart = TriggerCreate("lib96FBA2DD_gt_RiotWorkersModStart_Func");
-    TriggerAddEventMapInit(lib96FBA2DD_gt_RiotWorkersModStart);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -228,7 +392,7 @@ bool lib96FBA2DD_gt_DoRiot_Func (bool testConds, bool runActions) {
     while (true) {
         auto263B6A06_var = PlayerGroupNextPlayer(auto263B6A06_g, auto263B6A06_var);
         if (auto263B6A06_var < 0) { break; }
-        if ((GameAttributePlayerValue("115", auto263B6A06_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto263B6A06_var].lv_rIOTWORKERS.lv_enabled == true)) {
             lib96FBA2DD_gf_Riot(auto263B6A06_var);
         }
 
@@ -280,7 +444,7 @@ bool lib96FBA2DD_gt_RiotSentenses_Func (bool testConds, bool runActions) {
     while (true) {
         autoE624EC66_var = PlayerGroupNextPlayer(autoE624EC66_g, autoE624EC66_var);
         if (autoE624EC66_var < 0) { break; }
-        if ((GameAttributePlayerValue("115", autoE624EC66_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[autoE624EC66_var].lv_rIOTWORKERS.lv_enabled == true)) {
             lv_i = 0;
             lv_availableRiotSentenses[lv_i] = StringExternal("Param/Value/lib_96FBA2DD_B4F91524");
             lv_i += 1;
@@ -335,7 +499,7 @@ bool lib96FBA2DD_gt_RiotSentenses_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void lib96FBA2DD_gt_RiotSentenses_Init () {
     lib96FBA2DD_gt_RiotSentenses = TriggerCreate("lib96FBA2DD_gt_RiotSentenses_Func");
-    TriggerAddEventTimePeriodic(lib96FBA2DD_gt_RiotSentenses, 7.0, c_timeReal);
+    TriggerAddEventTimer(lib96FBA2DD_gt_RiotSentenses, lib96FBA2DD_gv_riotSentensesTimer);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -345,7 +509,7 @@ bool lib96FBA2DD_gt_RemoveRiotBehavior_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("115", UnitGetOwner(EventUnit())) == "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnit())].lv_rIOTWORKERS.lv_enabled == true))) {
             return false;
         }
     }
@@ -366,6 +530,7 @@ void lib96FBA2DD_gt_RemoveRiotBehavior_Init () {
 }
 
 void lib96FBA2DD_InitTriggers () {
+    lib96FBA2DD_gt_SetupHandicap_Init();
     lib96FBA2DD_gt_RiotWorkersModStart_Init();
     lib96FBA2DD_gt_DoRiot_Init();
     lib96FBA2DD_gt_RiotSentenses_Init();
@@ -389,5 +554,6 @@ void lib96FBA2DD_InitLib () {
     lib96FBA2DD_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

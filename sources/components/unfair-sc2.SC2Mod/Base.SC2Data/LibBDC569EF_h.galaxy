@@ -3,11 +3,20 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: PERMA CLOAK
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libBDC569EF_gv_all = "All";
+const string libBDC569EF_gv_onlyUnits = "Only Units";
+
 // Function Declarations
+void libBDC569EF_gf_SetupOptions (int lp_handicapindex);
+void libBDC569EF_gf_EnableHandicap (int lp_handicapIndex);
 void libBDC569EF_gf_HideUnit (unit lp_unit);
 
 // Trigger Declarations
-trigger libBDC569EF_gt_PermaCloakModStart;
+trigger libBDC569EF_gt_SetupHandicap;
 trigger libBDC569EF_gt_HideInitialUnits;
 trigger libBDC569EF_gt_MakeUnitInvisible;
+
+// Library Initialization
+void libBDC569EF_InitVariables ();
 

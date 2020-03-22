@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib1A704C64_h"
@@ -9,45 +10,76 @@ include "Lib1A704C64_h"
 // External Library Initialization
 void lib1A704C64_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Battle Hunger Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib1A704C64_gt_BattleHungerModStart_Func (bool testConds, bool runActions) {
+// Variable Initialization
+bool lib1A704C64_InitVariables_completed = false;
+
+void lib1A704C64_InitVariables () {
+    if (lib1A704C64_InitVariables_completed) {
+        return;
+    }
+
+    lib1A704C64_InitVariables_completed = true;
+
+}
+
+// Functions
+void lib1A704C64_gf_SetupOptions (int lp_handicapindex) {
     // Variable Declarations
-    playergroup lv_players;
-    text lv_defaultDescription;
+    int lv_optionindex;
+    int lv_optionvalueindex;
 
     // Automatic Variable Declarations
-    playergroup auto1E79CEB3_g;
-    int auto1E79CEB3_var;
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_1A704C64_82A1DDE8");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_1A704C64_90639D01");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-terran-stimpack-color.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_1A704C64_43C0ECB2");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib1A704C64_gv_turnOnBattleHunger;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib1A704C64_gt_SetupHandicap;
+}
+
+void lib1A704C64_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto12E25C28_g;
+    int auto12E25C28_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
-    lv_defaultDescription = StringExternal("Param/Value/lib_1A704C64_278A2556");
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("48") == "0001")) {
-        auto1E79CEB3_g = PlayerGroupAll();
-        auto1E79CEB3_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto12E25C28_g = PlayerGroupActive();
+        auto12E25C28_var = -1;
         while (true) {
-            auto1E79CEB3_var = PlayerGroupNextPlayer(auto1E79CEB3_g, auto1E79CEB3_var);
-            if (auto1E79CEB3_var < 0) { break; }
-            if ((GameAttributePlayerValue("49", auto1E79CEB3_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto1E79CEB3_var);
+            auto12E25C28_var = PlayerGroupNextPlayer(auto12E25C28_g, auto12E25C28_var);
+            if (auto12E25C28_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto12E25C28_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto12E25C28_var);
+                lib1A704C64_gf_EnableHandicapForPlayer(auto12E25C28_var);
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_1A704C64_CFFB82CC", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_1A704C64_6AE20476"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_1A704C64_CFFB82CC")), StringExternal("Param/Value/lib_1A704C64_B3917A4E"), "Assets\\Textures\\btn-ability-terran-stimpack-color.dds");
+            TextExpressionSetToken("Param/Expression/lib_1A704C64_399CF9C1", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_1A704C64_399CF9C1", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_1A704C64_399CF9C1"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(lib1A704C64_gt_UnitIsKilled, false);
@@ -56,13 +88,32 @@ bool lib1A704C64_gt_BattleHungerModStart_Func (bool testConds, bool runActions) 
     else {
         TriggerEnable(lib1A704C64_gt_UnitIsKilled, false);
     }
+}
+
+void lib1A704C64_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_bATTLEHUNGER.lv_enabled = true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib1A704C64_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1A704C64_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib1A704C64_gt_BattleHungerModStart_Init () {
-    lib1A704C64_gt_BattleHungerModStart = TriggerCreate("lib1A704C64_gt_BattleHungerModStart_Func");
-    TriggerAddEventMapInit(lib1A704C64_gt_BattleHungerModStart);
+void lib1A704C64_gt_SetupHandicap_Init () {
+    lib1A704C64_gt_SetupHandicap = TriggerCreate("lib1A704C64_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -77,7 +128,7 @@ bool lib1A704C64_gt_UnitIsKilled_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("49", EventUnitDamageSourcePlayer()) == "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventUnitDamageSourcePlayer()].lv_bATTLEHUNGER.lv_enabled == true))) {
             return false;
         }
 
@@ -121,7 +172,7 @@ void lib1A704C64_gt_UnitIsKilled_Init () {
 }
 
 void lib1A704C64_InitTriggers () {
-    lib1A704C64_gt_BattleHungerModStart_Init();
+    lib1A704C64_gt_SetupHandicap_Init();
     lib1A704C64_gt_UnitIsKilled_Init();
 }
 
@@ -138,8 +189,10 @@ void lib1A704C64_InitLib () {
     lib1A704C64_InitLib_completed = true;
 
     lib1A704C64_InitLibraries();
+    lib1A704C64_InitVariables();
     lib1A704C64_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

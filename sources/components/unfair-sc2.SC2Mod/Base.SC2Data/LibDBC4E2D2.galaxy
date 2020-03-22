@@ -24,28 +24,32 @@ void libDBC4E2D2_InitVariables () {
     libDBC4E2D2_InitVariables_completed = true;
 
     for (init_i = 0; init_i <= 17; init_i += 1) {
-        libDBC4E2D2_gv_players[init_i].lv_aPMKING.lv_maxAPM = 100500;
-        libDBC4E2D2_gv_players[init_i].lv_aPMKING.lv_minAPM = -1;
-        libDBC4E2D2_gv_players[init_i].lv_dECIMATIO.lv_toggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_mOTHERCORE.lv_restoreMotherCoreTimer = TimerCreate();
-        libDBC4E2D2_gv_players[init_i].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow = c_timerWindowNone;
-        libDBC4E2D2_gv_players[init_i].lv_nOMINIMAP.lv_minimapEnabled = true;
-        libDBC4E2D2_gv_players[init_i].lv_nOMINIMAP.lv_toggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_armyButtonEnabled = true;
-        libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_controlGroupsEnabled = true;
-        libDBC4E2D2_gv_players[init_i].lv_nOARMYCONTROLS.lv_toggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_giveMineralsToggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_takeMineralsToggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_giveVespeneToggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_rESOURCES.lv_takeVespeneToggleForReferee = c_invalidDialogControlId;
-        libDBC4E2D2_gv_players[init_i].lv_rIOTWORKERS.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_aPMKING.lv_maxAPM = 100500;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_aPMKING.lv_minAPM = -1;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_dECIMATIO.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_fIGHTCLUB.lv_unitsScope = "";
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_mOTHERCORE.lv_restoreMotherCoreTimer = TimerCreate();
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow = c_timerWindowNone;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_nOARMYCONTROLS.lv_armyButtonEnabled = true;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_nOARMYCONTROLS.lv_controlGroupsEnabled = true;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_nOARMYCONTROLS.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_nOMINIMAP.lv_minimapEnabled = true;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_nOMINIMAP.lv_toggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_pERMACLOAK.lv_unitsScope = "";
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_rANDOMUNITS.lv_racesScope = "";
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_rESOURCES.lv_giveMineralsToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_rESOURCES.lv_takeMineralsToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_rESOURCES.lv_giveVespeneToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_rESOURCES.lv_takeVespeneToggleForReferee = c_invalidDialogControlId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_rIOTWORKERS.lv_toggleForReferee = c_invalidDialogControlId;
         for (init_i2 = 0; init_i2 <= 20; init_i2 += 1) {
-            libDBC4E2D2_gv_players[init_i].lv_uI.lv_dialogMessages[init_i2] = c_invalidDialogControlId;
+            libDBC4E2D2_gv_pLAYERS[init_i].lv_uI.lv_dialogMessages[init_i2] = c_invalidDialogControlId;
         }
-        libDBC4E2D2_gv_players[init_i].lv_uI.lv_numberofmessages = 1;
-        libDBC4E2D2_gv_players[init_i].lv_uI.lv_messagesmodaldialog = c_invalidDialogId;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_uI.lv_numberofmessages = 1;
+        libDBC4E2D2_gv_pLAYERS[init_i].lv_uI.lv_messagesmodaldialog = c_invalidDialogId;
     }
     libDBC4E2D2_gv_sETUPCOMPLETEEVENT = "SETUP COMPLETE EVENT";
+    libDBC4E2D2_gv_timer1s = TimerCreate();
     libDBC4E2D2_gv_observer = CatalogFieldValueGetAsInt(c_gameCatalogGameUI, "Dflt", "DefaultObservedPlayerId", c_playerAny);
     libDBC4E2D2_gv_observerGroup = PlayerGroupSingle(CatalogFieldValueGetAsInt(c_gameCatalogGameUI, "Dflt", "DefaultObservedPlayerId", c_playerAny));
 }
@@ -383,7 +387,7 @@ int libDBC4E2D2_gf_GetRandomEnemyPlayer (int lp_player) {
     PlayerGroupRemove(lv_players, 0);
     PlayerGroupRemove(lv_players, 15);
     if ((PlayerGroupCount(lv_players) > 0)) {
-        return PlayerGroupPlayer(lv_players, RandomInt(0, PlayerGroupCount(lv_players)));
+        return PlayerGroupPlayer(lv_players, RandomInt(1, PlayerGroupCount(lv_players)));
     }
     else {
         return 0;
@@ -633,7 +637,7 @@ void libDBC4E2D2_gf_SetupAllUnits () {
     lv_i += 1;
     libDBC4E2D2_gv_allUnits[lv_i] = "Roach";
     lv_i += 1;
-    libDBC4E2D2_gv_allUnits[lv_i] = "HHWidowMineACGluescreenDummy";
+    libDBC4E2D2_gv_allUnits[lv_i] = "WidowMine";
     lv_i += 1;
     libDBC4E2D2_gv_allUnits[lv_i] = "Reaper";
     lv_i += 1;
@@ -814,11 +818,6 @@ void libDBC4E2D2_gf_ShowTextBaloonForUnit (text lp_texttoShow, int lp_fontSize, 
 //--------------------------------------------------------------------------------------------------
 bool libDBC4E2D2_gt_SETUP_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup autoB891AF4B_g;
-    int autoB891AF4B_var;
-    int auto19262EEE_ae;
-    int auto19262EEE_var;
-
     // Actions
     if (!runActions) {
         return true;
@@ -832,23 +831,6 @@ bool libDBC4E2D2_gt_SETUP_Func (bool testConds, bool runActions) {
     libDBC4E2D2_gf_SetupZergUnits();
     libDBC4E2D2_gf_SetupAllUnits();
     TriggerSendEvent(libDBC4E2D2_gv_sETUPCOMPLETEEVENT);
-    Wait(2.0, c_timeGame);
-    autoB891AF4B_g = PlayerGroupActive();
-    autoB891AF4B_var = -1;
-    while (true) {
-        autoB891AF4B_var = PlayerGroupNextPlayer(autoB891AF4B_g, autoB891AF4B_var);
-        if (autoB891AF4B_var < 0) { break; }
-        DialogCreate(400, (libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_numberofmessages * 25), c_anchorTopLeft, 0, 0, true);
-        libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog = DialogLastCreated();
-        DialogSetImageVisible(libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog, false);
-        DialogSetVisible(libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog, PlayerGroupSingle(autoB891AF4B_var), true);
-        auto19262EEE_ae = libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_numberofmessages;
-        auto19262EEE_var = 1;
-        for ( ; auto19262EEE_var <= auto19262EEE_ae; auto19262EEE_var += 1 ) {
-            libNtve_gf_CreateDialogItemLabel(libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_messagesmodaldialog, 400, 40, c_anchorTopLeft, 0, (25 * (auto19262EEE_var - 1)), StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-            libDBC4E2D2_gv_players[autoB891AF4B_var].lv_uI.lv_dialogMessages[auto19262EEE_var] = DialogControlLastCreated();
-        }
-    }
     return true;
 }
 
@@ -856,26 +838,6 @@ bool libDBC4E2D2_gt_SETUP_Func (bool testConds, bool runActions) {
 void libDBC4E2D2_gt_SETUP_Init () {
     libDBC4E2D2_gt_SETUP = TriggerCreate("libDBC4E2D2_gt_SETUP_Func");
     TriggerAddEventMapInit(libDBC4E2D2_gt_SETUP);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: SETUP COMPLETE
-//--------------------------------------------------------------------------------------------------
-bool libDBC4E2D2_gt_SETUPCOMPLETE_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    BoardShowAll(true, libDBC4E2D2_gv_observerGroup);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libDBC4E2D2_gt_SETUPCOMPLETE_Init () {
-    libDBC4E2D2_gt_SETUPCOMPLETE = TriggerCreate("libDBC4E2D2_gt_SETUPCOMPLETE_Func");
-    TriggerAddEventTimeElapsed(libDBC4E2D2_gt_SETUPCOMPLETE, 1.0, c_timeReal);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -895,7 +857,7 @@ bool libDBC4E2D2_gt_UpdateGameTime_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libDBC4E2D2_gt_UpdateGameTime_Init () {
     libDBC4E2D2_gt_UpdateGameTime = TriggerCreate("libDBC4E2D2_gt_UpdateGameTime_Func");
-    TriggerAddEventTimePeriodic(libDBC4E2D2_gt_UpdateGameTime, 1.0, c_timeReal);
+    TriggerAddEventTimer(libDBC4E2D2_gt_UpdateGameTime, libDBC4E2D2_gv_timer1s);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -918,11 +880,11 @@ bool libDBC4E2D2_gt_UpdatePlayerInfoModals_Func (bool testConds, bool runActions
     while (true) {
         auto3A542B0A_var = PlayerGroupNextPlayer(auto3A542B0A_g, auto3A542B0A_var);
         if (auto3A542B0A_var < 0) { break; }
-        auto43EBB41A_ae = libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_numberofmessages;
+        auto43EBB41A_ae = libDBC4E2D2_gv_pLAYERS[auto3A542B0A_var].lv_uI.lv_numberofmessages;
         auto43EBB41A_var = 1;
         for ( ; auto43EBB41A_var <= auto43EBB41A_ae; auto43EBB41A_var += 1 ) {
-            if ((libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_dialogMessages[auto43EBB41A_var] != c_invalidDialogControlId)) {
-                libNtve_gf_SetDialogItemText(libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_dialogMessages[auto43EBB41A_var], libDBC4E2D2_gv_players[auto3A542B0A_var].lv_uI.lv_messages[auto43EBB41A_var], PlayerGroupSingle(auto3A542B0A_var));
+            if ((libDBC4E2D2_gv_pLAYERS[auto3A542B0A_var].lv_uI.lv_dialogMessages[auto43EBB41A_var] != c_invalidDialogControlId)) {
+                libNtve_gf_SetDialogItemText(libDBC4E2D2_gv_pLAYERS[auto3A542B0A_var].lv_uI.lv_dialogMessages[auto43EBB41A_var], libDBC4E2D2_gv_pLAYERS[auto3A542B0A_var].lv_uI.lv_messages[auto43EBB41A_var], PlayerGroupSingle(auto3A542B0A_var));
             }
 
         }
@@ -933,7 +895,7 @@ bool libDBC4E2D2_gt_UpdatePlayerInfoModals_Func (bool testConds, bool runActions
 //--------------------------------------------------------------------------------------------------
 void libDBC4E2D2_gt_UpdatePlayerInfoModals_Init () {
     libDBC4E2D2_gt_UpdatePlayerInfoModals = TriggerCreate("libDBC4E2D2_gt_UpdatePlayerInfoModals_Func");
-    TriggerAddEventTimePeriodic(libDBC4E2D2_gt_UpdatePlayerInfoModals, 1.0, c_timeReal);
+    TriggerAddEventTimer(libDBC4E2D2_gt_UpdatePlayerInfoModals, libDBC4E2D2_gv_timer1s);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -987,7 +949,6 @@ void libDBC4E2D2_gt_GameHeartInitialization_Init () {
 
 void libDBC4E2D2_InitTriggers () {
     libDBC4E2D2_gt_SETUP_Init();
-    libDBC4E2D2_gt_SETUPCOMPLETE_Init();
     libDBC4E2D2_gt_UpdateGameTime_Init();
     libDBC4E2D2_gt_UpdatePlayerInfoModals_Init();
     libDBC4E2D2_gt_GameHeartInitialization_Init();

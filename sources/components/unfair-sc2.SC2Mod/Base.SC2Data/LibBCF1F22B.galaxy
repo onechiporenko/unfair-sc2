@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibBCF1F22B_h"
@@ -9,54 +10,64 @@ include "LibBCF1F22B_h"
 // External Library Initialization
 void libBCF1F22B_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
 // Functions
-void libBCF1F22B_gf_AddRegeneration (unit lp_unit) {
-    // Automatic Variable Declarations
-    // Implementation
-    if (((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true) || (UnitGetPropertyFixed(lp_unit, c_unitPropSuppliesUsed, c_unitPropCurrent) != 0.0))) {
-        UnitBehaviorAdd(lp_unit, "ReaperRegen", lp_unit, 1);
-    }
+void libBCF1F22B_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
 
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_BCF1F22B_9B8D1207");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_BCF1F22B_04E9DE62");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-terran-reapercombatdrugs.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_BCF1F22B_9088A61E");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Enabled";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libBCF1F22B_gt_SetupHandicap;
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Extra Regeneration Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libBCF1F22B_gt_ExtraRegenerationModStart_Func (bool testConds, bool runActions) {
+void libBCF1F22B_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto73DE7750_g;
-    int auto73DE7750_var;
+    playergroup auto5D797FFA_g;
+    int auto5D797FFA_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("23") == "0001")) {
-        auto73DE7750_g = PlayerGroupAll();
-        auto73DE7750_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto5D797FFA_g = PlayerGroupActive();
+        auto5D797FFA_var = -1;
         while (true) {
-            auto73DE7750_var = PlayerGroupNextPlayer(auto73DE7750_g, auto73DE7750_var);
-            if (auto73DE7750_var < 0) { break; }
-            if ((GameAttributePlayerValue("24", auto73DE7750_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto73DE7750_var);
+            auto5D797FFA_var = PlayerGroupNextPlayer(auto5D797FFA_g, auto5D797FFA_var);
+            if (auto5D797FFA_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto5D797FFA_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto5D797FFA_var);
+                libBCF1F22B_gf_EnableHandicapForPlayer(auto5D797FFA_var);
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_BCF1F22B_37D4AC3C", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_BCF1F22B_37D4AC3C", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BCF1F22B_37D4AC3C"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
             TriggerExecute(libBCF1F22B_gt_AddRegenerationToInitialUnits, true, false);
-            TextExpressionSetToken("Param/Expression/lib_BCF1F22B_60F1D27B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BCF1F22B_9469507F"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BCF1F22B_60F1D27B"), StringExternal("Param/Value/lib_BCF1F22B_65DF0D92"), "Assets\\Textures\\btn-upgrade-terran-reapercombatdrugs.dds");
         }
         else {
             TriggerEnable(libBCF1F22B_gt_AddRegenerationToUnit, false);
@@ -65,13 +76,41 @@ bool libBCF1F22B_gt_ExtraRegenerationModStart_Func (bool testConds, bool runActi
     else {
         TriggerEnable(libBCF1F22B_gt_AddRegenerationToUnit, false);
     }
+}
+
+void libBCF1F22B_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_eXTRAREGENERATION.lv_enabled = true;
+}
+
+void libBCF1F22B_gf_AddRegeneration (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true) || ((UnitGetPropertyFixed(lp_unit, c_unitPropSuppliesUsed, c_unitPropCurrent) != 0.0) || (UnitGetPropertyFixed(lp_unit, c_unitPropSuppliesMade, c_unitPropCurrent) != 0.0)))) {
+        UnitBehaviorAdd(lp_unit, "ReaperRegen", lp_unit, 1);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libBCF1F22B_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libBCF1F22B_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libBCF1F22B_gt_ExtraRegenerationModStart_Init () {
-    libBCF1F22B_gt_ExtraRegenerationModStart = TriggerCreate("libBCF1F22B_gt_ExtraRegenerationModStart_Func");
-    TriggerAddEventMapInit(libBCF1F22B_gt_ExtraRegenerationModStart);
+void libBCF1F22B_gt_SetupHandicap_Init () {
+    libBCF1F22B_gt_SetupHandicap = TriggerCreate("libBCF1F22B_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -90,13 +129,12 @@ bool libBCF1F22B_gt_AddRegenerationToInitialUnits_Func (bool testConds, bool run
         return true;
     }
 
-    Wait(1.0, c_timeGame);
     auto134B2B77_g = PlayerGroupAll();
     auto134B2B77_var = -1;
     while (true) {
         auto134B2B77_var = PlayerGroupNextPlayer(auto134B2B77_g, auto134B2B77_var);
         if (auto134B2B77_var < 0) { break; }
-        if ((GameAttributePlayerValue("24", auto134B2B77_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto134B2B77_var].lv_eXTRAREGENERATION.lv_enabled == true)) {
             auto0BD3C7FF_g = UnitGroup(null, auto134B2B77_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             auto0BD3C7FF_u = UnitGroupCount(auto0BD3C7FF_g, c_unitCountAll);
             for (;; auto0BD3C7FF_u -= 1) {
@@ -122,7 +160,7 @@ bool libBCF1F22B_gt_AddRegenerationToUnit_Func (bool testConds, bool runActions)
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("24", UnitGetOwner(EventUnitCreatedUnit())) == "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_eXTRAREGENERATION.lv_enabled == true))) {
             return false;
         }
     }
@@ -143,7 +181,7 @@ void libBCF1F22B_gt_AddRegenerationToUnit_Init () {
 }
 
 void libBCF1F22B_InitTriggers () {
-    libBCF1F22B_gt_ExtraRegenerationModStart_Init();
+    libBCF1F22B_gt_SetupHandicap_Init();
     libBCF1F22B_gt_AddRegenerationToInitialUnits_Init();
     libBCF1F22B_gt_AddRegenerationToUnit_Init();
 }
@@ -164,5 +202,6 @@ void libBCF1F22B_InitLib () {
     libBCF1F22B_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

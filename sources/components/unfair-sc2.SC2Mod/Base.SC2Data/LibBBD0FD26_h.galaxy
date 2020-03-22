@@ -7,11 +7,14 @@ include "TriggerLibs/natives"
 timer libBBD0FD26_gv_gameTimer;
 
 // Function Declarations
+void libBBD0FD26_gf_SetupOptions (int lp_handicapindex);
+void libBBD0FD26_gf_EnableHandicap (int lp_handicapIndex);
+void libBBD0FD26_gf_EnableHandicapForPlayer (int lp_player);
 void libBBD0FD26_gf_CorruptUnit (unit lp_unit);
 void libBBD0FD26_gf_SetHPForUnit (unit lp_unit);
 
 // Trigger Declarations
-trigger libBBD0FD26_gt_CorruptionModStart;
+trigger libBBD0FD26_gt_SetupHandicap;
 trigger libBBD0FD26_gt_CorruptBuildingsEverySecond;
 trigger libBBD0FD26_gt_BuildingIsCreated;
 trigger libBBD0FD26_gt_CorruptInitialUnits;

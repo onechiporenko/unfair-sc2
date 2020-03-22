@@ -3,8 +3,13 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: CRITICAL STRIKE
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib02E93650_gf_SetupOptions (int lp_handicapindex);
+void lib02E93650_gf_EnableHandicap (int lp_handicapIndex);
+void lib02E93650_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger lib02E93650_gt_CriticalStrikeModStart;
+trigger lib02E93650_gt_SetupHandicap;
 trigger lib02E93650_gt_UnitTakesDamage;
 trigger lib02E93650_gt_AddCritForInitialUnits;
 trigger lib02E93650_gt_AddCritBehaviorForCreatedUnit;

@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibFCEF8E43_h"
@@ -9,6 +10,7 @@ include "LibFCEF8E43_h"
 // External Library Initialization
 void libFCEF8E43_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -26,92 +28,125 @@ void libFCEF8E43_InitVariables () {
     libFCEF8E43_gv_creepBonus = "";
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Queen Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libFCEF8E43_gt_QueenModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libFCEF8E43_gf_SetupOptions (int lp_handicapindex) {
     // Variable Declarations
-    playergroup lv_players;
-    text lv_defaultDescription;
+    int lv_optionindex;
+    int lv_optionvalueindex;
 
     // Automatic Variable Declarations
-    playergroup autoB487CC4C_g;
-    int autoB487CC4C_var;
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_FCEF8E43_B7F55022");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_FCEF8E43_4904CA1A");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-zerg-creepspread.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_FCEF8E43_7CC4597C");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libFCEF8E43_gt_SetupHandicap;
+}
+
+void libFCEF8E43_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoC99FADDD_g;
+    int autoC99FADDD_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
-    lv_defaultDescription = StringExternal("Param/Value/lib_FCEF8E43_857108D0");
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        libFCEF8E43_gv_moveSpeed = CatalogFieldValueGet(c_gameCatalogUnit, "Queen", "Speed", c_playerAny);
+        libFCEF8E43_gv_creepBonus = CatalogFieldValueGet(c_gameCatalogUnit, "Queen", "SpeedMultiplierCreep", c_playerAny);
+        autoC99FADDD_g = PlayerGroupActive();
+        autoC99FADDD_var = -1;
+        while (true) {
+            autoC99FADDD_var = PlayerGroupNextPlayer(autoC99FADDD_g, autoC99FADDD_var);
+            if (autoC99FADDD_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoC99FADDD_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoC99FADDD_var);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overlord", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overlord", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "OverlordTransport", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "OverlordTransport", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Zergling", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Zergling", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Roach", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Roach", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoachBurrowed", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoachBurrowed", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ravager", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ravager", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RavagerBurrowed", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "RavagerBurrowed", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Hydralisk", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Hydralisk", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerMP", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerMP", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Mutalisk", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Mutalisk", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Corruptor", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Corruptor", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "BroodLord", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "BroodLord", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Infestor", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Infestor", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "InfestorBurrowed", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "InfestorBurrowed", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "SwarmHostMP", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "SwarmHostMP", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Viper", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Viper", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ultralisk", "Speed", autoC99FADDD_var, libFCEF8E43_gv_moveSpeed);
+                CatalogFieldValueSet(c_gameCatalogUnit, "Ultralisk", "SpeedMultiplierCreep", autoC99FADDD_var, libFCEF8E43_gv_creepBonus);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_FCEF8E43_4E6009E2", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_FCEF8E43_4E6009E2", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_FCEF8E43_4E6009E2"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libFCEF8E43_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("141") == "0001")) {
-        libFCEF8E43_gv_moveSpeed = CatalogFieldValueGet(c_gameCatalogUnit, "Queen", "Speed", c_playerAny);
-        libFCEF8E43_gv_creepBonus = CatalogFieldValueGet(c_gameCatalogUnit, "Queen", "SpeedMultiplierCreep", c_playerAny);
-        autoB487CC4C_g = PlayerGroupAll();
-        autoB487CC4C_var = -1;
-        while (true) {
-            autoB487CC4C_var = PlayerGroupNextPlayer(autoB487CC4C_g, autoB487CC4C_var);
-            if (autoB487CC4C_var < 0) { break; }
-            if ((GameAttributePlayerValue("142", autoB487CC4C_var) == "0001")) {
-                PlayerGroupAdd(lv_players, autoB487CC4C_var);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Overlord", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Overlord", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "OverlordTransport", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "OverlordTransport", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Overseer", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Zergling", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Zergling", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Roach", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Roach", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "RoachBurrowed", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "RoachBurrowed", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Ravager", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Ravager", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "RavagerBurrowed", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "RavagerBurrowed", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Hydralisk", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Hydralisk", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerMP", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerMP", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Mutalisk", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Mutalisk", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Corruptor", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Corruptor", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "BroodLord", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "BroodLord", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Infestor", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Infestor", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "InfestorBurrowed", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "InfestorBurrowed", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "SwarmHostMP", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "SwarmHostMP", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Viper", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Viper", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Ultralisk", "Speed", autoB487CC4C_var, libFCEF8E43_gv_moveSpeed);
-                CatalogFieldValueSet(c_gameCatalogUnit, "Ultralisk", "SpeedMultiplierCreep", autoB487CC4C_var, libFCEF8E43_gv_creepBonus);
-            }
-
-        }
-        TextExpressionSetToken("Param/Expression/lib_FCEF8E43_F6E5C387", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_FCEF8E43_8BE9E8C8"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_FCEF8E43_F6E5C387")), StringExternal("Param/Value/lib_FCEF8E43_C6CB88D7"), "Assets\\Textures\\btn-ability-zerg-creepspread.dds");
-    }
-
+    libFCEF8E43_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libFCEF8E43_gt_QueenModStart_Init () {
-    libFCEF8E43_gt_QueenModStart = TriggerCreate("libFCEF8E43_gt_QueenModStart_Func");
-    TriggerAddEventMapInit(libFCEF8E43_gt_QueenModStart);
+void libFCEF8E43_gt_SetupHandicap_Init () {
+    libFCEF8E43_gt_SetupHandicap = TriggerCreate("libFCEF8E43_gt_SetupHandicap_Func");
 }
 
 void libFCEF8E43_InitTriggers () {
-    libFCEF8E43_gt_QueenModStart_Init();
+    libFCEF8E43_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -131,5 +166,6 @@ void libFCEF8E43_InitLib () {
     libFCEF8E43_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

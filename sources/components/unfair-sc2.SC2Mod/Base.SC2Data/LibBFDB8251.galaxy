@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibBFDB8251_h"
@@ -9,70 +10,110 @@ include "LibBFDB8251_h"
 // External Library Initialization
 void libBFDB8251_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: No Fly Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libBFDB8251_gt_NoFlyModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libBFDB8251_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_BFDB8251_AD2ED5A5");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_BFDB8251_3E7DA134");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-zeratul-topbar-directlegions.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_BFDB8251_D893FF62");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libBFDB8251_gt_SetupHandicap;
+}
+
+void libBFDB8251_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto033A8FC2_g;
-    int auto033A8FC2_var;
-    int auto07A7D2B0_ae;
-    int auto07A7D2B0_var;
+    playergroup autoE6928FAD_g;
+    int autoE6928FAD_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoE6928FAD_g = PlayerGroupActive();
+        autoE6928FAD_var = -1;
+        while (true) {
+            autoE6928FAD_var = PlayerGroupNextPlayer(autoE6928FAD_g, autoE6928FAD_var);
+            if (autoE6928FAD_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoE6928FAD_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoE6928FAD_var);
+                libBFDB8251_gf_EnableHandicapForPlayer(autoE6928FAD_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_BFDB8251_D9A12880", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_BFDB8251_D9A12880", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BFDB8251_D9A12880"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+void libBFDB8251_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    int autoECDEF0E1_ae;
+    int autoECDEF0E1_var;
+
+    // Implementation
+    autoECDEF0E1_ae = libDBC4E2D2_gv_numberOfFlyingUnits;
+    autoECDEF0E1_var = 0;
+    for ( ; autoECDEF0E1_var <= autoECDEF0E1_ae; autoECDEF0E1_var += 1 ) {
+        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[autoECDEF0E1_var], "Collide[" + IntToString(5) + "]", lp_player, "1");
+        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[autoECDEF0E1_var], "Collide[" + IntToString(7) + "]", lp_player, "0");
+        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[autoECDEF0E1_var], "Collide[" + IntToString(28) + "]", lp_player, "1");
+        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[autoECDEF0E1_var], "Collide[" + IntToString(29) + "]", lp_player, "1");
+        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[autoECDEF0E1_var], "Mover", lp_player, "Ground");
+        CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[autoECDEF0E1_var], "VisionHeight", lp_player, "0");
+    }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libBFDB8251_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("102") == "0001")) {
-        auto033A8FC2_g = PlayerGroupAll();
-        auto033A8FC2_var = -1;
-        while (true) {
-            auto033A8FC2_var = PlayerGroupNextPlayer(auto033A8FC2_g, auto033A8FC2_var);
-            if (auto033A8FC2_var < 0) { break; }
-            if ((GameAttributePlayerValue("103", auto033A8FC2_var) == "0002")) {
-                PlayerGroupAdd(lv_players, auto033A8FC2_var);
-                auto07A7D2B0_ae = libDBC4E2D2_gv_numberOfFlyingUnits;
-                auto07A7D2B0_var = 0;
-                for ( ; auto07A7D2B0_var <= auto07A7D2B0_ae; auto07A7D2B0_var += 1 ) {
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(5) + "]", auto033A8FC2_var, "1");
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(7) + "]", auto033A8FC2_var, "0");
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(28) + "]", auto033A8FC2_var, "1");
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Collide[" + IntToString(29) + "]", auto033A8FC2_var, "1");
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "Mover", auto033A8FC2_var, "Ground");
-                    CatalogFieldValueSet(c_gameCatalogUnit, libDBC4E2D2_gv_flyingUnits[auto07A7D2B0_var], "VisionHeight", auto033A8FC2_var, "0");
-                }
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_BFDB8251_5E78C1DA", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BFDB8251_8D8C8325"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BFDB8251_5E78C1DA"), StringExternal("Param/Value/lib_BFDB8251_42E00026"), "Assets\\Textures\\btn-ability-zeratul-topbar-directlegions.dds");
-        }
-
-    }
-
+    libBFDB8251_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libBFDB8251_gt_NoFlyModStart_Init () {
-    libBFDB8251_gt_NoFlyModStart = TriggerCreate("libBFDB8251_gt_NoFlyModStart_Func");
-    TriggerAddEventGeneric(libBFDB8251_gt_NoFlyModStart, "SETUP COMPLETE EVENT");
+void libBFDB8251_gt_SetupHandicap_Init () {
+    libBFDB8251_gt_SetupHandicap = TriggerCreate("libBFDB8251_gt_SetupHandicap_Func");
 }
 
 void libBFDB8251_InitTriggers () {
-    libBFDB8251_gt_NoFlyModStart_Init();
+    libBFDB8251_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -91,5 +132,6 @@ void libBFDB8251_InitLib () {
     libBFDB8251_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib14F77331_h"
@@ -9,73 +10,105 @@ include "Lib14F77331_h"
 // External Library Initialization
 void lib14F77331_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
 // Functions
+void lib14F77331_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_14F77331_BD9F137F");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_14F77331_0D5441F2");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-tips-starmap.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_14F77331_5E9A2E6F");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Minimap is hidden";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib14F77331_gt_SetupHandicap;
+}
+
+void lib14F77331_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto551D5FA1_g;
+    int auto551D5FA1_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto551D5FA1_g = PlayerGroupActive();
+        auto551D5FA1_var = -1;
+        while (true) {
+            auto551D5FA1_var = PlayerGroupNextPlayer(auto551D5FA1_g, auto551D5FA1_var);
+            if (auto551D5FA1_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto551D5FA1_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto551D5FA1_var);
+                lib14F77331_gf_ToggleMinimapPanel(auto551D5FA1_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_14F77331_FD10082B", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_14F77331_FD10082B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_14F77331_FD10082B"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
 void lib14F77331_gf_ToggleMinimapPanel (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    if ((libDBC4E2D2_gv_players[lp_player].lv_nOMINIMAP.lv_minimapEnabled == true)) {
+    if ((libDBC4E2D2_gv_pLAYERS[lp_player].lv_nOMINIMAP.lv_minimapEnabled == true)) {
         UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMinimapPanel, false);
-        libDBC4E2D2_gv_players[lp_player].lv_nOMINIMAP.lv_minimapEnabled = false;
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_nOMINIMAP.lv_minimapEnabled = false;
     }
     else {
         UISetFrameVisible(PlayerGroupSingle(lp_player), c_syncFrameTypeMinimapPanel, true);
-        libDBC4E2D2_gv_players[lp_player].lv_nOMINIMAP.lv_minimapEnabled = true;
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_nOMINIMAP.lv_minimapEnabled = true;
     }
 }
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: No Minimap Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib14F77331_gt_NoMinimapModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-
+bool lib14F77331_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto6502C756_g;
-    int auto6502C756_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("11") == "0001")) {
-        auto6502C756_g = PlayerGroupAll();
-        auto6502C756_var = -1;
-        while (true) {
-            auto6502C756_var = PlayerGroupNextPlayer(auto6502C756_g, auto6502C756_var);
-            if (auto6502C756_var < 0) { break; }
-            if ((GameAttributePlayerValue("12", auto6502C756_var) == "0002")) {
-                PlayerGroupAdd(lv_players, auto6502C756_var);
-                lib14F77331_gf_ToggleMinimapPanel(auto6502C756_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_14F77331_DB90180B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_14F77331_BC7BF1CE"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_14F77331_DB90180B"), StringExternal("Param/Value/lib_14F77331_7F63C0D8"), "Assets\\Textures\\btn-tips-starmap.dds");
-        }
-
-    }
-
+    lib14F77331_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib14F77331_gt_NoMinimapModStart_Init () {
-    lib14F77331_gt_NoMinimapModStart = TriggerCreate("lib14F77331_gt_NoMinimapModStart_Func");
-    TriggerAddEventMapInit(lib14F77331_gt_NoMinimapModStart);
+void lib14F77331_gt_SetupHandicap_Init () {
+    lib14F77331_gt_SetupHandicap = TriggerCreate("lib14F77331_gt_SetupHandicap_Func");
 }
 
 void lib14F77331_InitTriggers () {
-    lib14F77331_gt_NoMinimapModStart_Init();
+    lib14F77331_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -94,5 +127,6 @@ void lib14F77331_InitLib () {
     lib14F77331_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib77A838C7_h"
@@ -9,6 +10,7 @@ include "Lib77A838C7_h"
 // External Library Initialization
 void lib77A838C7_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -27,6 +29,196 @@ void lib77A838C7_InitVariables () {
 }
 
 // Functions
+void lib77A838C7_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_77A838C7_1F09F2D6");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_77A838C7_0A062915");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-unit-zerg-infestedcolonist.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_77A838C7_A4A6FE2C");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "0";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "90";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "60";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "90";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "120";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_77A838C7_27E29BEA");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "45";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "35";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "40";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "45";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "55";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "60";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_77A838C7_CE53AE95");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib77A838C7_gv__71421;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = lib77A838C7_gv__71421;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib77A838C7_gv__81624;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib77A838C7_gv__91827;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib77A838C7_gv__102030;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_77A838C7_4F78AD49");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib77A838C7_gt_SetupHandicap;
+}
+
+void lib77A838C7_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string auto042EFB9D_val;
+    string auto49065E78_val;
+    string auto39FF1D5F_val;
+    playergroup autoB92C4027_g;
+    int autoB92C4027_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto042EFB9D_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (auto042EFB9D_val == "0") {
+            lib77A838C7_gv_zombiesStartDelay = 0;
+        }
+        else if (auto042EFB9D_val == "30") {
+            lib77A838C7_gv_zombiesStartDelay = 30;
+        }
+        else if (auto042EFB9D_val == "60") {
+            lib77A838C7_gv_zombiesStartDelay = 60;
+        }
+        else if (auto042EFB9D_val == "90") {
+            lib77A838C7_gv_zombiesStartDelay = 90;
+        }
+        else if (auto042EFB9D_val == "120") {
+            lib77A838C7_gv_zombiesStartDelay = 120;
+        }
+        else {
+            lib77A838C7_gv_zombiesStartDelay = 0;
+        }
+        auto49065E78_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[1].lv_selectedVal;
+        if (auto49065E78_val == "30") {
+            lib77A838C7_gv_zombiesWavesDelay = 30;
+        }
+        else if (auto49065E78_val == "35") {
+            lib77A838C7_gv_zombiesWavesDelay = 35;
+        }
+        else if (auto49065E78_val == "40") {
+            lib77A838C7_gv_zombiesWavesDelay = 40;
+        }
+        else if (auto49065E78_val == "45") {
+            lib77A838C7_gv_zombiesWavesDelay = 45;
+        }
+        else if (auto49065E78_val == "50") {
+            lib77A838C7_gv_zombiesWavesDelay = 50;
+        }
+        else if (auto49065E78_val == "55") {
+            lib77A838C7_gv_zombiesWavesDelay = 55;
+        }
+        else if (auto49065E78_val == "60") {
+            lib77A838C7_gv_zombiesWavesDelay = 60;
+        }
+        else {
+            lib77A838C7_gv_zombiesWavesDelay = 45;
+        }
+        auto39FF1D5F_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[2].lv_selectedVal;
+        if (auto39FF1D5F_val == lib77A838C7_gv__71421) {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 7;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 14;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 21;
+        }
+        else if (auto39FF1D5F_val == lib77A838C7_gv__81624) {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 8;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 16;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 24;
+        }
+        else if (auto39FF1D5F_val == lib77A838C7_gv__91827) {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 9;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 18;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 27;
+        }
+        else if (auto39FF1D5F_val == lib77A838C7_gv__102030) {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 10;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 20;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 30;
+        }
+        else {
+            lib77A838C7_gv_zombiesGradesWaves[0] = 7;
+            lib77A838C7_gv_zombiesGradesWaves[1] = 14;
+            lib77A838C7_gv_zombiesGradesWaves[2] = 21;
+        }
+        autoB92C4027_g = PlayerGroupActive();
+        autoB92C4027_var = -1;
+        while (true) {
+            autoB92C4027_var = PlayerGroupNextPlayer(autoB92C4027_g, autoB92C4027_var);
+            if (autoB92C4027_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoB92C4027_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoB92C4027_var);
+                libDBC4E2D2_gv_pLAYERS[autoB92C4027_var].lv_zOMBIES.lv_enabled = true;
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "ZombiesWavesDelay", IntToText(lib77A838C7_gv_zombiesWavesDelay));
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "ZombiesStartDelay", IntToText(lib77A838C7_gv_zombiesStartDelay));
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "GradesDelayWaves", IntToText(lib77A838C7_gv_zombiesGradesWaves[0]));
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupActive(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_77A838C7_3E63CB4B"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+            Wait(lib77A838C7_gv_zombiesStartDelay, c_timeReal);
+            TimerStart(lib77A838C7_gv_zombiesTimer, (lib77A838C7_gv_zombiesWavesDelay + 1), true, c_timeReal);
+            TimerStart(lib77A838C7_gv_timerFromGameStarts, lib77A838C7_gv_zombiesWavesDelay, true, c_timeReal);
+        }
+        else {
+            TriggerEnable(lib77A838C7_gt_CreateZombies, false);
+        }
+    }
+    else {
+        TriggerEnable(lib77A838C7_gt_CreateZombies, false);
+    }
+}
+
 int lib77A838C7_gf_ParseZombiesStartDelay () {
     // Automatic Variable Declarations
     string auto0D484012_val;
@@ -87,85 +279,22 @@ int lib77A838C7_gf_ParseZombiesWavesDelay () {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Zombies Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib77A838C7_gt_ZombiesModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-
+bool lib77A838C7_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    string auto2ACEC4D8_val;
-    playergroup autoA19DB31D_g;
-    int autoA19DB31D_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("5") == "0001")) {
-        auto2ACEC4D8_val = GameAttributeGameValue("95");
-        if (auto2ACEC4D8_val == "0001") {
-            lib77A838C7_gv_zombiesGradesWaves[0] = 7;
-            lib77A838C7_gv_zombiesGradesWaves[1] = 14;
-            lib77A838C7_gv_zombiesGradesWaves[2] = 21;
-        }
-        else if (auto2ACEC4D8_val == "0002") {
-            lib77A838C7_gv_zombiesGradesWaves[0] = 8;
-            lib77A838C7_gv_zombiesGradesWaves[1] = 16;
-            lib77A838C7_gv_zombiesGradesWaves[2] = 24;
-        }
-        else if (auto2ACEC4D8_val == "0003") {
-            lib77A838C7_gv_zombiesGradesWaves[0] = 9;
-            lib77A838C7_gv_zombiesGradesWaves[1] = 18;
-            lib77A838C7_gv_zombiesGradesWaves[2] = 27;
-        }
-        else if (auto2ACEC4D8_val == "0004") {
-            lib77A838C7_gv_zombiesGradesWaves[0] = 10;
-            lib77A838C7_gv_zombiesGradesWaves[1] = 20;
-            lib77A838C7_gv_zombiesGradesWaves[2] = 30;
-        }
-        else {
-        }
-        autoA19DB31D_g = PlayerGroupAll();
-        autoA19DB31D_var = -1;
-        while (true) {
-            autoA19DB31D_var = PlayerGroupNextPlayer(autoA19DB31D_g, autoA19DB31D_var);
-            if (autoA19DB31D_var < 0) { break; }
-            if ((GameAttributePlayerValue("6", autoA19DB31D_var) == "0001")) {
-                PlayerGroupAdd(lv_players, autoA19DB31D_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            lib77A838C7_gv_zombiesStartDelay = lib77A838C7_gf_ParseZombiesStartDelay();
-            lib77A838C7_gv_zombiesWavesDelay = lib77A838C7_gf_ParseZombiesWavesDelay();
-            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "ZombiesWavesDelay", IntToText(lib77A838C7_gv_zombiesWavesDelay));
-            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "ZombiesStartDelay", IntToText(lib77A838C7_gv_zombiesStartDelay));
-            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "GradesDelayWaves", IntToText(lib77A838C7_gv_zombiesGradesWaves[0]));
-            TextExpressionSetToken("Param/Expression/lib_77A838C7_CBB36F4C", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_77A838C7_683E7F76"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_77A838C7_CBB36F4C"), StringExternal("Param/Value/lib_77A838C7_4C46187D"), "Assets\\Textures\\btn-unit-zerg-infestedcolonist.dds");
-            Wait(lib77A838C7_gv_zombiesStartDelay, c_timeReal);
-            TimerStart(lib77A838C7_gv_zombiesTimer, (lib77A838C7_gv_zombiesWavesDelay + 1), true, c_timeReal);
-            TimerStart(lib77A838C7_gv_timerFromGameStarts, lib77A838C7_gv_zombiesWavesDelay, true, c_timeReal);
-        }
-        else {
-            TriggerEnable(lib77A838C7_gt_CreateZombies, false);
-        }
-    }
-    else {
-        TriggerEnable(lib77A838C7_gt_CreateZombies, false);
-    }
+    lib77A838C7_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib77A838C7_gt_ZombiesModStart_Init () {
-    lib77A838C7_gt_ZombiesModStart = TriggerCreate("lib77A838C7_gt_ZombiesModStart_Func");
-    TriggerAddEventMapInit(lib77A838C7_gt_ZombiesModStart);
+void lib77A838C7_gt_SetupHandicap_Init () {
+    lib77A838C7_gt_SetupHandicap = TriggerCreate("lib77A838C7_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -192,7 +321,7 @@ bool lib77A838C7_gt_CreateZombies_Func (bool testConds, bool runActions) {
     while (true) {
         auto54D0554A_var = PlayerGroupNextPlayer(auto54D0554A_g, auto54D0554A_var);
         if (auto54D0554A_var < 0) { break; }
-        if ((GameAttributePlayerValue("6", auto54D0554A_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto54D0554A_var].lv_zOMBIES.lv_enabled == true)) {
             lv_structure = libDBC4E2D2_gf_GetRandomStructure(auto54D0554A_var);
             if ((lv_structure != null)) {
                 lv_point = UnitGetPosition(lv_structure);
@@ -260,7 +389,7 @@ void lib77A838C7_gt_GameTimerTick_Init () {
 }
 
 void lib77A838C7_InitTriggers () {
-    lib77A838C7_gt_ZombiesModStart_Init();
+    lib77A838C7_gt_SetupHandicap_Init();
     lib77A838C7_gt_CreateZombies_Init();
     lib77A838C7_gt_GameTimerTick_Init();
 }
@@ -282,5 +411,6 @@ void lib77A838C7_InitLib () {
     lib77A838C7_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

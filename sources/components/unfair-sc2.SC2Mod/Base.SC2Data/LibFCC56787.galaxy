@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibFCC56787_h"
@@ -9,43 +10,78 @@ include "LibFCC56787_h"
 // External Library Initialization
 void libFCC56787_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Camera Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libFCC56787_gt_CameraModStart_Func (bool testConds, bool runActions) {
+// Variable Initialization
+bool libFCC56787_InitVariables_completed = false;
+
+void libFCC56787_InitVariables () {
+    if (libFCC56787_InitVariables_completed) {
+        return;
+    }
+
+    libFCC56787_InitVariables_completed = true;
+
+    libFCC56787_gv_cameraTimer = TimerCreate();
+}
+
+// Functions
+void libFCC56787_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_FCC56787_E51BB55C");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_FCC56787_76CA7B9D");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\vertigo_coop.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_FCC56787_A4B9FE91");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Rotate";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libFCC56787_gt_SetupHandicap;
+}
+
+void libFCC56787_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto011854B8_g;
-    int auto011854B8_var;
+    playergroup auto65E8725F_g;
+    int auto65E8725F_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("78") == "0001")) {
-        auto011854B8_g = PlayerGroupAll();
-        auto011854B8_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto65E8725F_g = PlayerGroupActive();
+        auto65E8725F_var = -1;
         while (true) {
-            auto011854B8_var = PlayerGroupNextPlayer(auto011854B8_g, auto011854B8_var);
-            if (auto011854B8_var < 0) { break; }
-            if ((GameAttributePlayerValue("79", auto011854B8_var) == "0002")) {
-                PlayerGroupAdd(lv_players, auto011854B8_var);
+            auto65E8725F_var = PlayerGroupNextPlayer(auto65E8725F_g, auto65E8725F_var);
+            if (auto65E8725F_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto65E8725F_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto65E8725F_var);
+                libFCC56787_gf_EnableHandicapForPlayer(auto65E8725F_var);
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_FCC56787_1FB0B5C2", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_FCC56787_CDE7EF93"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_FCC56787_1FB0B5C2"), StringExternal("Param/Value/lib_FCC56787_283B3FF7"), "Assets\\Textures\\vertigo_coop.dds");
+            TextExpressionSetToken("Param/Expression/lib_FCC56787_DADC80D0", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_FCC56787_DADC80D0", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_FCC56787_DADC80D0"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
+            TimerStart(libFCC56787_gv_cameraTimer, 20.0, true, c_timeReal);
         }
         else {
             TriggerEnable(libFCC56787_gt_RotateCamera, false);
@@ -54,13 +90,32 @@ bool libFCC56787_gt_CameraModStart_Func (bool testConds, bool runActions) {
     else {
         TriggerEnable(libFCC56787_gt_RotateCamera, false);
     }
+}
+
+void libFCC56787_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_cAMERA.lv_enabled = true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libFCC56787_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libFCC56787_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libFCC56787_gt_CameraModStart_Init () {
-    libFCC56787_gt_CameraModStart = TriggerCreate("libFCC56787_gt_CameraModStart_Func");
-    TriggerAddEventMapInit(libFCC56787_gt_CameraModStart);
+void libFCC56787_gt_SetupHandicap_Init () {
+    libFCC56787_gt_SetupHandicap = TriggerCreate("libFCC56787_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -81,14 +136,13 @@ bool libFCC56787_gt_RotateCamera_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    Wait(10.0, c_timeReal);
     while (true) {
         auto447595FB_g = PlayerGroupAll();
         auto447595FB_var = -1;
         while (true) {
             auto447595FB_var = PlayerGroupNextPlayer(auto447595FB_g, auto447595FB_var);
             if (auto447595FB_var < 0) { break; }
-            if ((GameAttributePlayerValue("79", auto447595FB_var) == "0002")) {
+            if ((libDBC4E2D2_gv_pLAYERS[auto447595FB_var].lv_cAMERA.lv_enabled == true)) {
                 SoundPlayForPlayer(SoundLink("UI_PlayerCameraSelect", -1), c_maxPlayers, PlayerGroupSingle(auto447595FB_var), 100.0, 0.0);
                 lv_angle = (RandomInt(0, 3) * 90.0);
                 if ((lv_angle == 360.0)) {
@@ -108,11 +162,11 @@ bool libFCC56787_gt_RotateCamera_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libFCC56787_gt_RotateCamera_Init () {
     libFCC56787_gt_RotateCamera = TriggerCreate("libFCC56787_gt_RotateCamera_Func");
-    TriggerAddEventMapInit(libFCC56787_gt_RotateCamera);
+    TriggerAddEventTimer(libFCC56787_gt_RotateCamera, libFCC56787_gv_cameraTimer);
 }
 
 void libFCC56787_InitTriggers () {
-    libFCC56787_gt_CameraModStart_Init();
+    libFCC56787_gt_SetupHandicap_Init();
     libFCC56787_gt_RotateCamera_Init();
 }
 
@@ -129,8 +183,10 @@ void libFCC56787_InitLib () {
     libFCC56787_InitLib_completed = true;
 
     libFCC56787_InitLibraries();
+    libFCC56787_InitVariables();
     libFCC56787_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

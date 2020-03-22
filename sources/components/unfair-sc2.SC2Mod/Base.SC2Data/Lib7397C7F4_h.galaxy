@@ -3,6 +3,10 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: WALKING DEAD
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string lib7397C7F4_gv_yes = "Yes";
+const string lib7397C7F4_gv_no = "No";
+
 // Variable Declarations
 fixed lib7397C7F4_gv_armorMultiplier;
 fixed lib7397C7F4_gv_shieldsMultiplier;
@@ -13,8 +17,12 @@ fixed lib7397C7F4_gv_moveSpeedMultiplier;
 fixed lib7397C7F4_gv_attackSpeedMultiplier;
 bool lib7397C7F4_gv_zombiesfromStructures;
 
+// Function Declarations
+void lib7397C7F4_gf_SetupOptions (int lp_handicapindex);
+void lib7397C7F4_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger lib7397C7F4_gt_WalkingDeadModStart;
+trigger lib7397C7F4_gt_SetupHandicap;
 trigger lib7397C7F4_gt_CreateWalkingZombie;
 
 // Library Initialization

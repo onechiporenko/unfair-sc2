@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 
 include "Lib5353B0F8_h"
 
@@ -8,6 +9,7 @@ include "Lib5353B0F8_h"
 // External Library Initialization
 void lib5353B0F8_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
 }
 
 // Variable Initialization
@@ -25,6 +27,115 @@ void lib5353B0F8_InitVariables () {
 }
 
 // Functions
+void lib5353B0F8_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_5353B0F8_14DB006C");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_5353B0F8_598EFD83");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-building-terran-planetaryfortress.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_5353B0F8_A90CFB06");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "1";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "3";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "4";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_5353B0F8_139C583B");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib5353B0F8_gv_horizontal;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = lib5353B0F8_gv_horizontal;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib5353B0F8_gv_vertical;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib5353B0F8_gv_diagonal;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib5353B0F8_gv_diagonal2;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib5353B0F8_gv_crossX;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib5353B0F8_gv_cross;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib5353B0F8_gt_SetupHandicap;
+}
+
+void lib5353B0F8_gf_EnableHandicap (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    string auto5D09E13E_val;
+    string autoD72E55EE_val;
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto5D09E13E_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (auto5D09E13E_val == "1") {
+            lib5353B0F8_gv_wallTimeout = 60.0;
+        }
+        else if (auto5D09E13E_val == "2") {
+            lib5353B0F8_gv_wallTimeout = 120.0;
+        }
+        else if (auto5D09E13E_val == "3") {
+            lib5353B0F8_gv_wallTimeout = 180.0;
+        }
+        else if (auto5D09E13E_val == "4") {
+            lib5353B0F8_gv_wallTimeout = 240.0;
+        }
+        else if (auto5D09E13E_val == "5") {
+            lib5353B0F8_gv_wallTimeout = 300.0;
+        }
+        else {
+            lib5353B0F8_gv_wallTimeout = 60.0;
+        }
+        autoD72E55EE_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[1].lv_selectedVal;
+        if (autoD72E55EE_val == lib5353B0F8_gv_vertical) {
+            lib5353B0F8_gf_CreateVerticalWall();
+        }
+        else if (autoD72E55EE_val == lib5353B0F8_gv_horizontal) {
+            lib5353B0F8_gf_CreateHorizontalWall();
+        }
+        else if (autoD72E55EE_val == lib5353B0F8_gv_diagonal) {
+            lib5353B0F8_gf_CreateMainDiagonalWall();
+        }
+        else if (autoD72E55EE_val == lib5353B0F8_gv_diagonal2) {
+            lib5353B0F8_gf_CreateAddDiagonalWall();
+        }
+        else if (autoD72E55EE_val == lib5353B0F8_gv_crossX) {
+            lib5353B0F8_gf_CreateMainDiagonalWall();
+            lib5353B0F8_gf_CreateAddDiagonalWall();
+        }
+        else if (autoD72E55EE_val == lib5353B0F8_gv_cross) {
+            lib5353B0F8_gf_CreateVerticalWall();
+            lib5353B0F8_gf_CreateHorizontalWall();
+        }
+        else {
+        }
+        TextExpressionSetToken("Param/Expression/lib_5353B0F8_C2000C23", "WallLifeTime", FixedToText(lib5353B0F8_gv_wallTimeout, c_fixedPrecisionAny));
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_5353B0F8_C2000C23"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        TimerStart(lib5353B0F8_gv_wallTimer, lib5353B0F8_gv_wallTimeout, false, c_timeReal);
+        TimerWindowCreate(lib5353B0F8_gv_wallTimer, StringExternal("Param/Value/lib_5353B0F8_AE67E78C"), true, false);
+        lib5353B0F8_gv_wallTimerWindow = TimerWindowLastCreated();
+        TimerWindowShowBorder(lib5353B0F8_gv_wallTimerWindow, false);
+        TimerWindowShow(lib5353B0F8_gv_wallTimerWindow, PlayerGroupActive(), true);
+    }
+
+}
+
 void lib5353B0F8_gf_CreateMainDiagonalWall () {
     // Variable Declarations
     point lv_point;
@@ -198,80 +309,22 @@ void lib5353B0F8_gf_CreateWallItem (fixed lp_x, fixed lp_y) {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Wall Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib5353B0F8_gt_WallModStart_Func (bool testConds, bool runActions) {
+bool lib5353B0F8_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    string autoFF5A15EE_val;
-    string auto855FE996_val;
-
-    // Conditions
-    if (testConds) {
-        if (!((GameAttributeGameValue("53") == "0001"))) {
-            return false;
-        }
-    }
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    autoFF5A15EE_val = GameAttributeGameValue("55");
-    if (autoFF5A15EE_val == "0001") {
-        lib5353B0F8_gv_wallTimeout = 60.0;
-    }
-    else if (autoFF5A15EE_val == "0002") {
-        lib5353B0F8_gv_wallTimeout = 120.0;
-    }
-    else if (autoFF5A15EE_val == "0003") {
-        lib5353B0F8_gv_wallTimeout = 180.0;
-    }
-    else if (autoFF5A15EE_val == "0004") {
-        lib5353B0F8_gv_wallTimeout = 240.0;
-    }
-    else if (autoFF5A15EE_val == "0005") {
-        lib5353B0F8_gv_wallTimeout = 300.0;
-    }
-    else {
-    }
-    auto855FE996_val = GameAttributeGameValue("54");
-    if (auto855FE996_val == "0002") {
-        lib5353B0F8_gf_CreateVerticalWall();
-    }
-    else if (auto855FE996_val == "0001") {
-        lib5353B0F8_gf_CreateHorizontalWall();
-    }
-    else if (auto855FE996_val == "0003") {
-        lib5353B0F8_gf_CreateMainDiagonalWall();
-    }
-    else if (auto855FE996_val == "0004") {
-        lib5353B0F8_gf_CreateAddDiagonalWall();
-    }
-    else if (auto855FE996_val == "0005") {
-        lib5353B0F8_gf_CreateMainDiagonalWall();
-        lib5353B0F8_gf_CreateAddDiagonalWall();
-    }
-    else if (auto855FE996_val == "0006") {
-        lib5353B0F8_gf_CreateVerticalWall();
-        lib5353B0F8_gf_CreateHorizontalWall();
-    }
-    else {
-    }
-    TimerStart(lib5353B0F8_gv_wallTimer, lib5353B0F8_gv_wallTimeout, false, c_timeReal);
-    TextExpressionSetToken("Param/Expression/lib_5353B0F8_804B1A46", "WallLifeTime", FixedToText(lib5353B0F8_gv_wallTimeout, c_fixedPrecisionAny));
-    HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_5353B0F8_50930A31"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_5353B0F8_804B1A46"), StringExternal("Param/Value/lib_5353B0F8_96178536"), "Assets\\Textures\\btn-building-terran-planetaryfortress.dds");
-    TimerWindowCreate(lib5353B0F8_gv_wallTimer, StringExternal("Param/Value/lib_5353B0F8_A71954DA"), true, false);
-    lib5353B0F8_gv_wallTimerWindow = TimerWindowLastCreated();
-    TimerWindowShowBorder(lib5353B0F8_gv_wallTimerWindow, false);
-    TimerWindowShow(lib5353B0F8_gv_wallTimerWindow, PlayerGroupAll(), true);
+    lib5353B0F8_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib5353B0F8_gt_WallModStart_Init () {
-    lib5353B0F8_gt_WallModStart = TriggerCreate("lib5353B0F8_gt_WallModStart_Func");
-    TriggerAddEventMapInit(lib5353B0F8_gt_WallModStart);
+void lib5353B0F8_gt_SetupHandicap_Init () {
+    lib5353B0F8_gt_SetupHandicap = TriggerCreate("lib5353B0F8_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -279,9 +332,6 @@ void lib5353B0F8_gt_WallModStart_Init () {
 //--------------------------------------------------------------------------------------------------
 bool lib5353B0F8_gt_WallTimerElapsed_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    unitgroup autoF2CB05D8_g;
-    int autoF2CB05D8_u;
-    unit autoF2CB05D8_var;
     unitgroup auto57CACC9B_g;
     int auto57CACC9B_u;
     unit auto57CACC9B_var;
@@ -291,13 +341,6 @@ bool lib5353B0F8_gt_WallTimerElapsed_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    autoF2CB05D8_g = UnitGroup("DestructibleRock6x6", 15, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterInvulnerable - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-    autoF2CB05D8_u = UnitGroupCount(autoF2CB05D8_g, c_unitCountAll);
-    for (;; autoF2CB05D8_u -= 1) {
-        autoF2CB05D8_var = UnitGroupUnitFromEnd(autoF2CB05D8_g, autoF2CB05D8_u);
-        if (autoF2CB05D8_var == null) { break; }
-        UnitKill(autoF2CB05D8_var);
-    }
     auto57CACC9B_g = UnitGroup("PlanetaryFortress", 15, RegionEntireMap(), UnitFilter(0, (1 << (c_targetFilterInvulnerable - 32)), (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
     auto57CACC9B_u = UnitGroupCount(auto57CACC9B_g, c_unitCountAll);
     for (;; auto57CACC9B_u -= 1) {
@@ -316,7 +359,7 @@ void lib5353B0F8_gt_WallTimerElapsed_Init () {
 }
 
 void lib5353B0F8_InitTriggers () {
-    lib5353B0F8_gt_WallModStart_Init();
+    lib5353B0F8_gt_SetupHandicap_Init();
     lib5353B0F8_gt_WallTimerElapsed_Init();
 }
 
@@ -336,4 +379,6 @@ void lib5353B0F8_InitLib () {
     lib5353B0F8_InitVariables();
     lib5353B0F8_InitTriggers();
 }
+
+include "LibD169EC7B"
 

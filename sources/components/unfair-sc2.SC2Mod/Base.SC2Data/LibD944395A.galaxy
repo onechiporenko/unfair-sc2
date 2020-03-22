@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibD944395A_h"
@@ -9,124 +10,191 @@ include "LibD944395A_h"
 // External Library Initialization
 void libD944395A_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
+// Variable Initialization
+bool libD944395A_InitVariables_completed = false;
+
+void libD944395A_InitVariables () {
+    if (libD944395A_InitVariables_completed) {
+        return;
+    }
+
+    libD944395A_InitVariables_completed = true;
+
+}
+
 // Functions
-int libD944395A_gf_GetAliensRateForPlayer (int lp_player) {
+void libD944395A_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
     // Automatic Variable Declarations
-    string auto9E862CE6_val;
+    // Variable Initialization
 
     // Implementation
-    auto9E862CE6_val = GameAttributePlayerValue("2", lp_player);
-    if (auto9E862CE6_val == "0002") {
-        return 1;
-    }
-    else if (auto9E862CE6_val == "0003") {
-        return 2;
-    }
-    else if (auto9E862CE6_val == "0004") {
-        return 3;
-    }
-    else if (auto9E862CE6_val == "0005") {
-        return 4;
-    }
-    else if (auto9E862CE6_val == "0006") {
-        return 5;
-    }
-    else if (auto9E862CE6_val == "0007") {
-        return 6;
-    }
-    else if (auto9E862CE6_val == "0008") {
-        return 7;
-    }
-    else if (auto9E862CE6_val == "0009") {
-        return 8;
-    }
-    else if (auto9E862CE6_val == "0010") {
-        return 9;
-    }
-    else if (auto9E862CE6_val == "0011") {
-        return 10;
-    }
-    else if (auto9E862CE6_val == "0012") {
-        return -1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_D944395A_00DA77FE");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_D944395A_73EA62C4");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\abilityicon_spawnbroodlings_square.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_D944395A_5EF11966");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "3";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "4";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "6";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "7";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "8";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "9";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD944395A_gv_sameaslimit;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libD944395A_gt_SetupHandicap;
+}
+
+void libD944395A_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup auto5AF7E972_g;
+    int auto5AF7E972_var;
+    playergroup autoF28864B5_g;
+    int autoF28864B5_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto5AF7E972_g = PlayerGroupActive();
+        auto5AF7E972_var = -1;
+        while (true) {
+            auto5AF7E972_var = PlayerGroupNextPlayer(auto5AF7E972_g, auto5AF7E972_var);
+            if (auto5AF7E972_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto5AF7E972_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto5AF7E972_var);
+                libD944395A_gf_EnableHandicapForPlayer(auto5AF7E972_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            autoF28864B5_g = lv_players;
+            autoF28864B5_var = -1;
+            while (true) {
+                autoF28864B5_var = PlayerGroupNextPlayer(autoF28864B5_g, autoF28864B5_var);
+                if (autoF28864B5_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_D944395A_863FE54B", "A", TextWithColor(PlayerName(autoF28864B5_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoF28864B5_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D944395A_863FE54B"));
+                TextExpressionSetToken("Param/Expression/lib_D944395A_E8D1F328", "A", IntToText(libDBC4E2D2_gv_pLAYERS[autoF28864B5_var].lv_aLIENS.lv_broodlingsrate));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D944395A_E8D1F328"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_D944395A_C44B22B0", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_D944395A_C44B22B0", "PlayersSettings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D944395A_C44B22B0"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
+        }
+        else {
+            TriggerEnable(libD944395A_gt_UnitIsKilled, false);
+        }
     }
     else {
-        return 0;
+        TriggerEnable(libD944395A_gt_UnitIsKilled, false);
+    }
+}
+
+void libD944395A_gf_EnableHandicapForPlayer (int lp_player) {
+    // Variable Declarations
+    int lv_broodlingsRate;
+
+    // Automatic Variable Declarations
+    string auto9918ABB5_val;
+
+    // Variable Initialization
+
+    // Implementation
+    auto9918ABB5_val = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[0].lv_selectedVals[lp_player];
+    if (auto9918ABB5_val == "1") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 1;
+    }
+    else if (auto9918ABB5_val == "2") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 2;
+    }
+    else if (auto9918ABB5_val == "3") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 3;
+    }
+    else if (auto9918ABB5_val == "4") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 4;
+    }
+    else if (auto9918ABB5_val == "5") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 5;
+    }
+    else if (auto9918ABB5_val == "6") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 6;
+    }
+    else if (auto9918ABB5_val == "7") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 7;
+    }
+    else if (auto9918ABB5_val == "8") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 8;
+    }
+    else if (auto9918ABB5_val == "9") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 9;
+    }
+    else if (auto9918ABB5_val == "10") {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = 10;
+    }
+    else if (auto9918ABB5_val == libD944395A_gv_sameaslimit) {
+        libDBC4E2D2_gv_pLAYERS[lp_player].lv_aLIENS.lv_broodlingsrate = -1;
+    }
+    else {
     }
 }
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Aliens Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool libD944395A_gt_AliensModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-    text lv_playersSettings;
-    text lv_defaultDescription;
-
+bool libD944395A_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup autoB622556B_g;
-    int autoB622556B_var;
-    playergroup autoD8967C87_g;
-    int autoD8967C87_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-    lv_defaultDescription = StringExternal("Param/Value/lib_D944395A_09B6706D");
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("1") == "0001")) {
-        autoB622556B_g = PlayerGroupAll();
-        autoB622556B_var = -1;
-        while (true) {
-            autoB622556B_var = PlayerGroupNextPlayer(autoB622556B_g, autoB622556B_var);
-            if (autoB622556B_var < 0) { break; }
-            libDBC4E2D2_gv_players[autoB622556B_var].lv_aLIENS.lv_broodlingsrate = libD944395A_gf_GetAliensRateForPlayer(autoB622556B_var);
-            if ((libDBC4E2D2_gv_players[autoB622556B_var].lv_aLIENS.lv_broodlingsrate != 0)) {
-                PlayerGroupAdd(lv_players, autoB622556B_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            autoD8967C87_g = lv_players;
-            autoD8967C87_var = -1;
-            while (true) {
-                autoD8967C87_var = PlayerGroupNextPlayer(autoD8967C87_g, autoD8967C87_var);
-                if (autoD8967C87_var < 0) { break; }
-                TextExpressionSetToken("Param/Expression/lib_D944395A_610951D9", "A", TextWithColor(PlayerName(autoD8967C87_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoD8967C87_var, false))));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D944395A_610951D9"));
-                TextExpressionSetToken("Param/Expression/lib_D944395A_EAA94110", "A", IntToText(libDBC4E2D2_gv_players[autoD8967C87_var].lv_aLIENS.lv_broodlingsrate));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D944395A_EAA94110"));
-            }
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D944395A_21E35C94"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + lv_playersSettings), StringExternal("Param/Value/lib_D944395A_3FE00000"), "Assets\\Textures\\abilityicon_spawnbroodlings_square.dds");
-        }
-        else {
-            TriggerEnable(libD944395A_gt_CreateBroodlings, false);
-        }
-    }
-    else {
-        TriggerEnable(libD944395A_gt_CreateBroodlings, false);
-    }
+    libD944395A_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libD944395A_gt_AliensModStart_Init () {
-    libD944395A_gt_AliensModStart = TriggerCreate("libD944395A_gt_AliensModStart_Func");
-    TriggerAddEventMapInit(libD944395A_gt_AliensModStart);
+void libD944395A_gt_SetupHandicap_Init () {
+    libD944395A_gt_SetupHandicap = TriggerCreate("libD944395A_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Create Broodlings
+// Trigger: Unit Is Killed
 //--------------------------------------------------------------------------------------------------
-bool libD944395A_gt_CreateBroodlings_Func (bool testConds, bool runActions) {
+bool libD944395A_gt_UnitIsKilled_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     unitgroup autoE2B8BEEC_g;
     int autoE2B8BEEC_u;
@@ -152,11 +220,11 @@ bool libD944395A_gt_CreateBroodlings_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((libDBC4E2D2_gv_players[EventPlayer()].lv_aLIENS.lv_broodlingsrate == -1)) {
+    if ((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_aLIENS.lv_broodlingsrate == -1)) {
         libNtve_gf_CreateUnitsAtPoint2(MaxI(FixedToInt(UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropSuppliesUsed)), 1), "Broodling", 0, EventUnitDamageSourcePlayer(), UnitGetPosition(EventUnit()));
     }
     else {
-        libNtve_gf_CreateUnitsAtPoint2(libDBC4E2D2_gv_players[EventPlayer()].lv_aLIENS.lv_broodlingsrate, "Broodling", 0, EventPlayer(), UnitGetPosition(EventUnit()));
+        libNtve_gf_CreateUnitsAtPoint2(libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_aLIENS.lv_broodlingsrate, "Broodling", 0, EventPlayer(), UnitGetPosition(EventUnit()));
     }
     UnitGroupIssueOrder(UnitLastCreatedGroup(), OrderTargetingPoint(AbilityCommand("attack", 0), EventUnitDamageSourcePoint()), c_orderQueueReplace);
     autoE2B8BEEC_g = UnitLastCreatedGroup();
@@ -170,14 +238,14 @@ bool libD944395A_gt_CreateBroodlings_Func (bool testConds, bool runActions) {
 }
 
 //--------------------------------------------------------------------------------------------------
-void libD944395A_gt_CreateBroodlings_Init () {
-    libD944395A_gt_CreateBroodlings = TriggerCreate("libD944395A_gt_CreateBroodlings_Func");
-    TriggerAddEventUnitDamaged(libD944395A_gt_CreateBroodlings, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
+void libD944395A_gt_UnitIsKilled_Init () {
+    libD944395A_gt_UnitIsKilled = TriggerCreate("libD944395A_gt_UnitIsKilled_Func");
+    TriggerAddEventUnitDamaged(libD944395A_gt_UnitIsKilled, null, c_unitDamageTypeAny, c_unitDamageFatal, null);
 }
 
 void libD944395A_InitTriggers () {
-    libD944395A_gt_AliensModStart_Init();
-    libD944395A_gt_CreateBroodlings_Init();
+    libD944395A_gt_SetupHandicap_Init();
+    libD944395A_gt_UnitIsKilled_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -193,8 +261,10 @@ void libD944395A_InitLib () {
     libD944395A_InitLib_completed = true;
 
     libD944395A_InitLibraries();
+    libD944395A_InitVariables();
     libD944395A_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

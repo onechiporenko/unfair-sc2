@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib7BF03AFB_h"
@@ -9,6 +10,7 @@ include "Lib7BF03AFB_h"
 // External Library Initialization
 void lib7BF03AFB_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -25,114 +27,156 @@ void lib7BF03AFB_InitVariables () {
 }
 
 // Functions
-fixed lib7BF03AFB_gf_GetLastWillRateForPlayer (int lp_player) {
+void lib7BF03AFB_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
     // Automatic Variable Declarations
-    string autoFF3F12EA_val;
+    // Variable Initialization
 
     // Implementation
-    autoFF3F12EA_val = GameAttributePlayerValue("26", lp_player);
-    if (autoFF3F12EA_val == "0002") {
-        return 0.5;
-    }
-    else if (autoFF3F12EA_val == "0003") {
-        return 1.0;
-    }
-    else if (autoFF3F12EA_val == "0004") {
-        return 2.0;
-    }
-    else {
-        return 0;
-    }
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_7BF03AFB_3DEE39DC");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_7BF03AFB_FDFDF356");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-recallondeath.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7BF03AFB_112FB72D");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVALGAME;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVALGAME;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "15";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7BF03AFB_516A7050");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib7BF03AFB_gt_SetupHandicap;
 }
 
-fixed lib7BF03AFB_gf_GetLastWillCasteChance () {
-    // Automatic Variable Declarations
-    string autoD02BB364_val;
-
-    // Implementation
-    autoD02BB364_val = GameAttributeGameValue("71");
-    if (autoD02BB364_val == "0001") {
-        return 5.0;
-    }
-    else if (autoD02BB364_val == "0002") {
-        return 10.0;
-    }
-    else if (autoD02BB364_val == "0003") {
-        return 15.0;
-    }
-    else if (autoD02BB364_val == "0004") {
-        return 20.0;
-    }
-    else if (autoD02BB364_val == "0005") {
-        return 25.0;
-    }
-    else {
-        return 0;
-    }
-}
-
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Last Will Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib7BF03AFB_gt_LastWillModStart_Func (bool testConds, bool runActions) {
+void lib7BF03AFB_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
     text lv_msgAboutExtraCasts;
     text lv_playersSettings;
 
     // Automatic Variable Declarations
-    playergroup auto589976D3_g;
-    int auto589976D3_var;
-    playergroup auto4E625F35_g;
-    int auto4E625F35_var;
+    string auto055388A5_val;
+    playergroup autoBBE0F0E5_g;
+    int autoBBE0F0E5_var;
+    string auto6877A7A6_val;
+    playergroup autoE10DB0D1_g;
+    int autoE10DB0D1_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("25") == "0001")) {
-        if ((GameAttributeGameValue("47") == "0001")) {
-            lib7BF03AFB_gv_useLastWillCaste = true;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto055388A5_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (auto055388A5_val == "5") {
+            lib7BF03AFB_gv_lastWillCasteChance = 5.0;
+        }
+        else if (auto055388A5_val == "10") {
+            lib7BF03AFB_gv_lastWillCasteChance = 10.0;
+        }
+        else if (auto055388A5_val == "15") {
+            lib7BF03AFB_gv_lastWillCasteChance = 15.0;
+        }
+        else if (auto055388A5_val == "20") {
+            lib7BF03AFB_gv_lastWillCasteChance = 20.0;
+        }
+        else if (auto055388A5_val == "25") {
+            lib7BF03AFB_gv_lastWillCasteChance = 25.0;
+        }
+        else if (auto055388A5_val == "50") {
+            lib7BF03AFB_gv_lastWillCasteChance = 50.0;
+        }
+        else if (auto055388A5_val == "75") {
+            lib7BF03AFB_gv_lastWillCasteChance = 75.0;
+        }
+        else if (auto055388A5_val == "100") {
+            lib7BF03AFB_gv_lastWillCasteChance = 100.0;
         }
         else {
-            lib7BF03AFB_gv_useLastWillCaste = false;
+            lib7BF03AFB_gv_lastWillCasteChance = 0.0;
         }
-        lib7BF03AFB_gv_lastWillCasteChance = lib7BF03AFB_gf_GetLastWillCasteChance();
-        auto589976D3_g = PlayerGroupAll();
-        auto589976D3_var = -1;
+        if ((lib7BF03AFB_gv_lastWillCasteChance != 0.0)) {
+            lib7BF03AFB_gv_useLastWillCaste = true;
+        }
+
+        autoBBE0F0E5_g = PlayerGroupActive();
+        autoBBE0F0E5_var = -1;
         while (true) {
-            auto589976D3_var = PlayerGroupNextPlayer(auto589976D3_g, auto589976D3_var);
-            if (auto589976D3_var < 0) { break; }
-            libDBC4E2D2_gv_players[auto589976D3_var].lv_lASTWILL.lv_rate = lib7BF03AFB_gf_GetLastWillRateForPlayer(auto589976D3_var);
-            if ((libDBC4E2D2_gv_players[auto589976D3_var].lv_lASTWILL.lv_rate != 0)) {
-                PlayerGroupAdd(lv_players, auto589976D3_var);
+            autoBBE0F0E5_var = PlayerGroupNextPlayer(autoBBE0F0E5_g, autoBBE0F0E5_var);
+            if (autoBBE0F0E5_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoBBE0F0E5_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                auto6877A7A6_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoBBE0F0E5_var];
+                if (auto6877A7A6_val == "50") {
+                    libDBC4E2D2_gv_pLAYERS[autoBBE0F0E5_var].lv_lASTWILL.lv_rate = 0.5;
+                }
+                else if (auto6877A7A6_val == "100") {
+                    libDBC4E2D2_gv_pLAYERS[autoBBE0F0E5_var].lv_lASTWILL.lv_rate = 1.0;
+                }
+                else if (auto6877A7A6_val == "200") {
+                    libDBC4E2D2_gv_pLAYERS[autoBBE0F0E5_var].lv_lASTWILL.lv_rate = 2.0;
+                }
+                else {
+                    libDBC4E2D2_gv_pLAYERS[autoBBE0F0E5_var].lv_lASTWILL.lv_rate = 0.0;
+                }
+                if ((libDBC4E2D2_gv_pLAYERS[autoBBE0F0E5_var].lv_lASTWILL.lv_rate != 0)) {
+                    PlayerGroupAdd(lv_players, autoBBE0F0E5_var);
+                }
+
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
             if ((lib7BF03AFB_gv_useLastWillCaste == true)) {
-                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_DEED7A01", "Chance", FixedToText(lib7BF03AFB_gv_lastWillCasteChance, 0));
-                lv_msgAboutExtraCasts = TextExpressionAssemble("Param/Expression/lib_7BF03AFB_DEED7A01");
+                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_440FEDE7", "Chance", FixedToText(lib7BF03AFB_gv_lastWillCasteChance, 0));
+                lv_msgAboutExtraCasts = TextExpressionAssemble("Param/Expression/lib_7BF03AFB_440FEDE7");
             }
 
-            auto4E625F35_g = lv_players;
-            auto4E625F35_var = -1;
+            autoE10DB0D1_g = lv_players;
+            autoE10DB0D1_var = -1;
             while (true) {
-                auto4E625F35_var = PlayerGroupNextPlayer(auto4E625F35_g, auto4E625F35_var);
-                if (auto4E625F35_var < 0) { break; }
-                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_EF399DDD", "A", TextWithColor(PlayerName(auto4E625F35_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto4E625F35_var, false))));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_7BF03AFB_EF399DDD"));
-                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_034E6995", "A", FixedToText((libDBC4E2D2_gv_players[auto4E625F35_var].lv_lASTWILL.lv_rate * 100.0), 0));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_7BF03AFB_034E6995"));
+                autoE10DB0D1_var = PlayerGroupNextPlayer(autoE10DB0D1_g, autoE10DB0D1_var);
+                if (autoE10DB0D1_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_EF94A59A", "A", TextWithColor(PlayerName(autoE10DB0D1_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(autoE10DB0D1_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_7BF03AFB_EF94A59A"));
+                TextExpressionSetToken("Param/Expression/lib_7BF03AFB_BB24BF77", "A", FixedToText((libDBC4E2D2_gv_pLAYERS[autoE10DB0D1_var].lv_lASTWILL.lv_rate * 100.0), 0));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_7BF03AFB_BB24BF77"));
             }
-            TextExpressionSetToken("Param/Expression/lib_7BF03AFB_269F603C", "Chance", lv_msgAboutExtraCasts);
-            TextExpressionSetToken("Param/Expression/lib_7BF03AFB_269F603C", "Settings", lv_playersSettings);
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_7BF03AFB_D1584704"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7BF03AFB_269F603C"), StringExternal("Param/Value/lib_7BF03AFB_87863E0B"), "Assets\\Textures\\btn-ability-protoss-recallondeath.dds");
+            TextExpressionSetToken("Param/Expression/lib_7BF03AFB_F96E6253", "Chance", lv_msgAboutExtraCasts);
+            TextExpressionSetToken("Param/Expression/lib_7BF03AFB_F96E6253", "Settings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7BF03AFB_F96E6253"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(lib7BF03AFB_gt_UnitTakesFatalDamage, false);
@@ -141,13 +185,26 @@ bool lib7BF03AFB_gt_LastWillModStart_Func (bool testConds, bool runActions) {
     else {
         TriggerEnable(lib7BF03AFB_gt_UnitTakesFatalDamage, false);
     }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib7BF03AFB_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib7BF03AFB_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib7BF03AFB_gt_LastWillModStart_Init () {
-    lib7BF03AFB_gt_LastWillModStart = TriggerCreate("lib7BF03AFB_gt_LastWillModStart_Func");
-    TriggerAddEventMapInit(lib7BF03AFB_gt_LastWillModStart);
+void lib7BF03AFB_gt_SetupHandicap_Init () {
+    lib7BF03AFB_gt_SetupHandicap = TriggerCreate("lib7BF03AFB_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -158,13 +215,13 @@ bool lib7BF03AFB_gt_UnitTakesFatalDamage_Func (bool testConds, bool runActions) 
     unit lv_unit;
 
     // Automatic Variable Declarations
-    int auto36BF7055_val;
+    int autoCEA0405C_val;
 
     // Variable Initialization
 
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("26", EventPlayer()) != "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_lASTWILL.lv_rate != 0.0))) {
             return false;
         }
 
@@ -208,59 +265,56 @@ bool lib7BF03AFB_gt_UnitTakesFatalDamage_Func (bool testConds, bool runActions) 
 
     libNtve_gf_AttachModelToUnit(EventUnitDamageSourceUnit(), "BanelingCocoonDeath", "Ref_Overhead");
     libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
-    UnitDamage(EventUnit(), "Spines", EventUnitDamageSourceUnit(), (UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropLifeMax) * libDBC4E2D2_gv_players[EventPlayer()].lv_lASTWILL.lv_rate));
+    UnitDamage(EventUnit(), "Spines", EventUnitDamageSourceUnit(), (UnitTypeGetProperty(UnitGetType(EventUnit()), c_unitPropLifeMax) * libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_lASTWILL.lv_rate));
     if ((libNtve_gf_RandomPercent() <= lib7BF03AFB_gv_lastWillCasteChance)) {
-        if ((GameAttributeGameValue("47") == "0001")) {
-            auto36BF7055_val = RandomInt(0, 15);
-            if (auto36BF7055_val == 0) {
-                UnitCreateEffectPoint(EventUnit(), "PsiStormPersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 1) {
-                PlayerCreateEffectPoint(EventPlayer(), "InfestedTerransLayEggPersistant", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 2) {
-                PlayerCreateEffectPoint(EventPlayer(), "VortexCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 3) {
-                PlayerCreateEffectPoint(EventPlayer(), "BlindingCloudCP", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 4) {
-                UnitCreateEffectPoint(EventUnit(), "CorsairMPDisruptionWebCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 5) {
-                UnitCreateEffectPoint(EventUnit(), "PointDefenseDroneReleaseCreateUnit", libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(EventUnit()), 1.5, UnitGetPosition(EventUnitDamageSourceUnit())));
-            }
-            else if (auto36BF7055_val == 6) {
-                UnitCreateEffectUnit(EventUnit(), "DefensiveMatrixSet", EventUnitDamageSourceUnit());
-            }
-            else if (auto36BF7055_val == 7) {
-                UnitCreateEffectPoint(EventUnit(), "TemporalFieldCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 8) {
-                UnitCreateEffectPoint(EventUnit(), "VoidHighTemplarPsiOrbInitialPersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 9) {
-                UnitCreateEffectUnit(EventUnit(), "GravitonBeamUrun", EventUnitDamageSourceUnit());
-            }
-            else if (auto36BF7055_val == 10) {
-                UnitCreateEffectUnit(EventUnit(), "Yamato", EventUnitDamageSourceUnit());
-            }
-            else if (auto36BF7055_val == 11) {
-                UnitCreateEffectUnit(EventUnit(), "YoinkStartSwitch", EventUnitDamageSourceUnit());
-            }
-            else if (auto36BF7055_val == 12) {
-                UnitCreateEffectUnit(EventUnit(), "IrradiateSet", EventUnitDamageSourceUnit());
-            }
-            else if (auto36BF7055_val == 13) {
-                UnitCreateEffectPoint(EventUnit(), "FungalGrowthLaunchMissile", UnitGetPosition(EventUnitDamageSourceUnit()));
-            }
-            else if (auto36BF7055_val == 14) {
-                UnitCreateEffectUnit(EventUnit(), "SeekerMissileLaunchMissile", EventUnitDamageSourceUnit());
-            }
-            else {
-            }
+        autoCEA0405C_val = RandomInt(0, 15);
+        if (autoCEA0405C_val == 0) {
+            UnitCreateEffectPoint(EventUnit(), "PsiStormPersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
         }
-
+        else if (autoCEA0405C_val == 1) {
+            PlayerCreateEffectPoint(EventPlayer(), "InfestedTerransLayEggPersistant", UnitGetPosition(EventUnitDamageSourceUnit()));
+        }
+        else if (autoCEA0405C_val == 2) {
+            PlayerCreateEffectPoint(EventPlayer(), "VortexCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+        }
+        else if (autoCEA0405C_val == 3) {
+            PlayerCreateEffectPoint(EventPlayer(), "BlindingCloudCP", UnitGetPosition(EventUnitDamageSourceUnit()));
+        }
+        else if (autoCEA0405C_val == 4) {
+            UnitCreateEffectPoint(EventUnit(), "CorsairMPDisruptionWebCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+        }
+        else if (autoCEA0405C_val == 5) {
+            UnitCreateEffectPoint(EventUnit(), "PointDefenseDroneReleaseCreateUnit", libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(EventUnit()), 1.5, UnitGetPosition(EventUnitDamageSourceUnit())));
+        }
+        else if (autoCEA0405C_val == 6) {
+            UnitCreateEffectUnit(EventUnit(), "DefensiveMatrixSet", EventUnitDamageSourceUnit());
+        }
+        else if (autoCEA0405C_val == 7) {
+            UnitCreateEffectPoint(EventUnit(), "TemporalFieldCreatePersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+        }
+        else if (autoCEA0405C_val == 8) {
+            UnitCreateEffectPoint(EventUnit(), "VoidHighTemplarPsiOrbInitialPersistent", UnitGetPosition(EventUnitDamageSourceUnit()));
+        }
+        else if (autoCEA0405C_val == 9) {
+            UnitCreateEffectUnit(EventUnit(), "GravitonBeamUrun", EventUnitDamageSourceUnit());
+        }
+        else if (autoCEA0405C_val == 10) {
+            UnitCreateEffectUnit(EventUnit(), "Yamato", EventUnitDamageSourceUnit());
+        }
+        else if (autoCEA0405C_val == 11) {
+            UnitCreateEffectUnit(EventUnit(), "YoinkStartSwitch", EventUnitDamageSourceUnit());
+        }
+        else if (autoCEA0405C_val == 12) {
+            UnitCreateEffectUnit(EventUnit(), "IrradiateSet", EventUnitDamageSourceUnit());
+        }
+        else if (autoCEA0405C_val == 13) {
+            UnitCreateEffectPoint(EventUnit(), "FungalGrowthLaunchMissile", UnitGetPosition(EventUnitDamageSourceUnit()));
+        }
+        else if (autoCEA0405C_val == 14) {
+            UnitCreateEffectUnit(EventUnit(), "SeekerMissileLaunchMissile", EventUnitDamageSourceUnit());
+        }
+        else {
+        }
     }
 
     return true;
@@ -273,7 +327,7 @@ void lib7BF03AFB_gt_UnitTakesFatalDamage_Init () {
 }
 
 void lib7BF03AFB_InitTriggers () {
-    lib7BF03AFB_gt_LastWillModStart_Init();
+    lib7BF03AFB_gt_SetupHandicap_Init();
     lib7BF03AFB_gt_UnitTakesFatalDamage_Init();
 }
 
@@ -294,5 +348,6 @@ void lib7BF03AFB_InitLib () {
     lib7BF03AFB_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

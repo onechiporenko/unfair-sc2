@@ -3,6 +3,12 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: ZOMBIES
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string lib77A838C7_gv__71421 = "7/14/21";
+const string lib77A838C7_gv__81624 = "8/16/24";
+const string lib77A838C7_gv__91827 = "9/18/27";
+const string lib77A838C7_gv__102030 = "10/20/30";
+
 // Variable Declarations
 int lib77A838C7_gv_zombiesStartDelay;
 int[4] lib77A838C7_gv_zombiesGradesWaves;
@@ -13,11 +19,13 @@ int lib77A838C7_gv_zombiesWavesCount;
 timer lib77A838C7_gv_timerFromGameStarts;
 
 // Function Declarations
+void lib77A838C7_gf_SetupOptions (int lp_handicapindex);
+void lib77A838C7_gf_EnableHandicap (int lp_handicapIndex);
 int lib77A838C7_gf_ParseZombiesStartDelay ();
 int lib77A838C7_gf_ParseZombiesWavesDelay ();
 
 // Trigger Declarations
-trigger lib77A838C7_gt_ZombiesModStart;
+trigger lib77A838C7_gt_SetupHandicap;
 trigger lib77A838C7_gt_CreateZombies;
 trigger lib77A838C7_gt_GameTimerTick;
 

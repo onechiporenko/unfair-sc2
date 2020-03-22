@@ -8,11 +8,11 @@ fixed lib7BF03AFB_gv_lastWillCasteChance;
 bool lib7BF03AFB_gv_useLastWillCaste;
 
 // Function Declarations
-fixed lib7BF03AFB_gf_GetLastWillRateForPlayer (int lp_player);
-fixed lib7BF03AFB_gf_GetLastWillCasteChance ();
+void lib7BF03AFB_gf_SetupOptions (int lp_handicapindex);
+void lib7BF03AFB_gf_EnableHandicap (int lp_handicapIndex);
 
 // Trigger Declarations
-trigger lib7BF03AFB_gt_LastWillModStart;
+trigger lib7BF03AFB_gt_SetupHandicap;
 trigger lib7BF03AFB_gt_UnitTakesFatalDamage;
 
 // Library Initialization

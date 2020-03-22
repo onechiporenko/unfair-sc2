@@ -1,5 +1,24 @@
 # Changelog
 
+## v3.0
+
+* [FEATURE] Настройки гандикапов перенесены из опций лобби в саму игру. В лобби выбирается один игрок, для которого в начале игры будет выведено окно с доступными гандикапами.
+
+* [EXTRA GAS](./handicaps/extra-gas.md)
+    * [BUGFIX] Визуальный эффект на занятых веспеновых гейзерах не видим через туман войны.
+
+* [LAST WILL](./handicaps/last-will.md)
+    * [FEATURE] Добавленые опции 50%, 75% и 100% для шанса появления способности.
+
+* [RANDOM UNITS](./handicaps/random-units.md)
+    * [BUGFIX] Мины создаются корректно.
+
+* [SOULS CATCHER](./handicaps/souls-catcher.md)
+    * [BUGFIX] "Души" не создаются от иллюзий.
+
+* [TALANDAR](./handicaps/talandar.md)
+    * [BUGFIX] Взлет и приземление Космопорта и Завода не требуют ресурсов.
+
 ## v2.41
 
 * [BUGFIX] [#74 Невозможно создать игру формата больше 1х1](https://github.com/onechiporenko/unfair-sc2/issues/74)

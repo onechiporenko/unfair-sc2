@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibC5CFFE9E_h"
@@ -9,59 +10,98 @@ include "LibC5CFFE9E_h"
 // External Library Initialization
 void libC5CFFE9E_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Fog of War Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libC5CFFE9E_gt_FogofWarModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libC5CFFE9E_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_C5CFFE9E_38191039");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_C5CFFE9E_81AEF29B");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-zerg-darkswarm.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_C5CFFE9E_8EFC86A1");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Remove Fog";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libC5CFFE9E_gt_SetupHandicap;
+}
+
+void libC5CFFE9E_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup autoC8EAB9EA_g;
-    int autoC8EAB9EA_var;
+    playergroup auto871CC933_g;
+    int auto871CC933_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto871CC933_g = PlayerGroupActive();
+        auto871CC933_var = -1;
+        while (true) {
+            auto871CC933_var = PlayerGroupNextPlayer(auto871CC933_g, auto871CC933_var);
+            if (auto871CC933_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto871CC933_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto871CC933_var);
+                libC5CFFE9E_gf_EnableHandicapForPlayer(auto871CC933_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_C5CFFE9E_EEE81A4D", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_C5CFFE9E_EEE81A4D", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_C5CFFE9E_EEE81A4D"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+void libC5CFFE9E_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    VisRevealerCreate(lp_player, RegionEntireMap());
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libC5CFFE9E_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("9") == "0001")) {
-        autoC8EAB9EA_g = PlayerGroupAll();
-        autoC8EAB9EA_var = -1;
-        while (true) {
-            autoC8EAB9EA_var = PlayerGroupNextPlayer(autoC8EAB9EA_g, autoC8EAB9EA_var);
-            if (autoC8EAB9EA_var < 0) { break; }
-            if ((GameAttributePlayerValue("10", autoC8EAB9EA_var) == "0002")) {
-                PlayerGroupAdd(lv_players, autoC8EAB9EA_var);
-                VisRevealerCreate(autoC8EAB9EA_var, RegionEntireMap());
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_C5CFFE9E_D74D8190", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_C5CFFE9E_1EFAE59B"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_C5CFFE9E_D74D8190"), StringExternal("Param/Value/lib_C5CFFE9E_FA36A2E2"), "Assets\\Textures\\btn-ability-zerg-darkswarm.dds");
-        }
-
-    }
-
+    libC5CFFE9E_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libC5CFFE9E_gt_FogofWarModStart_Init () {
-    libC5CFFE9E_gt_FogofWarModStart = TriggerCreate("libC5CFFE9E_gt_FogofWarModStart_Func");
-    TriggerAddEventMapInit(libC5CFFE9E_gt_FogofWarModStart);
+void libC5CFFE9E_gt_SetupHandicap_Init () {
+    libC5CFFE9E_gt_SetupHandicap = TriggerCreate("libC5CFFE9E_gt_SetupHandicap_Func");
 }
 
 void libC5CFFE9E_InitTriggers () {
-    libC5CFFE9E_gt_FogofWarModStart_Init();
+    libC5CFFE9E_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -80,5 +120,6 @@ void libC5CFFE9E_InitLib () {
     libC5CFFE9E_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

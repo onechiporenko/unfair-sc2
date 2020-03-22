@@ -3,6 +3,11 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: GOLD RUSH
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib6B9047BC_gf_SetupOptions (int lp_handicapindex);
+void lib6B9047BC_gf_EnableHandicap (int lp_handicapIndex);
+void lib6B9047BC_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger lib6B9047BC_gt_GoldRushModStart;
+trigger lib6B9047BC_gt_SetupHandicap;
 

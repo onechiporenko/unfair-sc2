@@ -3,8 +3,12 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: REDUCE MINING
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libBA1CFC25_gf_SetupOptions (int lp_handicapindex);
+void libBA1CFC25_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger libBA1CFC25_gt_ReduceMiningModStart;
+trigger libBA1CFC25_gt_SetupHandicap;
 trigger libBA1CFC25_gt_Mineralsgathered;
 trigger libBA1CFC25_gt_Vespenegathered;
 

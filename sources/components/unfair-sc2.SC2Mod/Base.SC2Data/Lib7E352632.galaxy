@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib7E352632_h"
@@ -9,6 +10,7 @@ include "Lib7E352632_h"
 // External Library Initialization
 void lib7E352632_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -27,6 +29,78 @@ void lib7E352632_InitVariables () {
 }
 
 // Functions
+void lib7E352632_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_7E352632_BC654822");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_7E352632_F36F6202");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-kerrigan-vespeneefficiency.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7E352632_CA0BA8F7");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Give extra gas";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib7E352632_gt_SetupHandicap;
+}
+
+void lib7E352632_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoE8C4E1D4_g;
+    int autoE8C4E1D4_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoE8C4E1D4_g = PlayerGroupActive();
+        autoE8C4E1D4_var = -1;
+        while (true) {
+            autoE8C4E1D4_var = PlayerGroupNextPlayer(autoE8C4E1D4_g, autoE8C4E1D4_var);
+            if (autoE8C4E1D4_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoE8C4E1D4_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoE8C4E1D4_var);
+                lib7E352632_gf_EnableHandicapForPlayer(autoE8C4E1D4_var);
+                lib7E352632_gf_AddActorToAllExisitingVespene(autoE8C4E1D4_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TimerStart(lib7E352632_gv_timer, 3.0, true, c_timeReal);
+            TextExpressionSetToken("Param/Expression/lib_7E352632_92BBE436", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_7E352632_92BBE436", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7E352632_92BBE436"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+        else {
+            TriggerEnable(lib7E352632_gt_GiveExtraVespene, false);
+            TriggerEnable(lib7E352632_gt_AddActorToVespene, false);
+        }
+    }
+    else {
+        TriggerEnable(lib7E352632_gt_GiveExtraVespene, false);
+        TriggerEnable(lib7E352632_gt_AddActorToVespene, false);
+    }
+}
+
+void lib7E352632_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_eXTRAGAS.lv_enabled = true;
+}
+
 void lib7E352632_gf_AddActorToAllExisitingVespene (int lp_player) {
     // Automatic Variable Declarations
     unitgroup auto9075A9D1_g;
@@ -96,65 +170,30 @@ void lib7E352632_gf_AddActorToAllExisitingVespene (int lp_player) {
 void lib7E352632_gf_AddActorToVespene (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation
-    if ((GameAttributePlayerValue("52", UnitGetOwner(lp_unit)) == "0001") && ((UnitGetType(lp_unit) == "Extractor") || (UnitGetType(lp_unit) == "ExtractorRich") || (UnitGetType(lp_unit) == "Refinery") || (UnitGetType(lp_unit) == "RefineryRich") || (UnitGetType(lp_unit) == "Assimilator") || (UnitGetType(lp_unit) == "AssimilatorRich"))) {
-        libNtve_gf_AttachModelToUnit(lp_unit, "Vespene_Pump_Small", "Ref_Head");
+    if ((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unit)].lv_eXTRAGAS.lv_enabled == true) && ((UnitGetType(lp_unit) == "Extractor") || (UnitGetType(lp_unit) == "ExtractorRich") || (UnitGetType(lp_unit) == "Refinery") || (UnitGetType(lp_unit) == "RefineryRich") || (UnitGetType(lp_unit) == "Assimilator") || (UnitGetType(lp_unit) == "AssimilatorRich"))) {
+        libNtve_gf_AttachModelToUnitInheritVisibility(lp_unit, "Vespene_Pump_Small", "Ref_Head");
     }
 
 }
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Extra Gas Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib7E352632_gt_ExtraGasModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-
+bool lib7E352632_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto7CB3D556_g;
-    int auto7CB3D556_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("51") == "0001")) {
-        auto7CB3D556_g = PlayerGroupAll();
-        auto7CB3D556_var = -1;
-        while (true) {
-            auto7CB3D556_var = PlayerGroupNextPlayer(auto7CB3D556_g, auto7CB3D556_var);
-            if (auto7CB3D556_var < 0) { break; }
-            if ((GameAttributePlayerValue("52", auto7CB3D556_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto7CB3D556_var);
-                lib7E352632_gf_AddActorToAllExisitingVespene(auto7CB3D556_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TimerStart(lib7E352632_gv_timer, 3.0, true, c_timeReal);
-            TextExpressionSetToken("Param/Expression/lib_7E352632_27314A4B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_7E352632_8FC0B403"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7E352632_27314A4B"), StringExternal("Param/Value/lib_7E352632_2351DB60"), "Assets\\Textures\\btn-ability-kerrigan-vespeneefficiency.dds");
-        }
-        else {
-            TriggerEnable(lib7E352632_gt_GiveExtraVespene, false);
-            TriggerEnable(lib7E352632_gt_AddActorToVespene, false);
-        }
-    }
-    else {
-        TriggerEnable(lib7E352632_gt_GiveExtraVespene, false);
-        TriggerEnable(lib7E352632_gt_AddActorToVespene, false);
-    }
+    lib7E352632_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib7E352632_gt_ExtraGasModStart_Init () {
-    lib7E352632_gt_ExtraGasModStart = TriggerCreate("lib7E352632_gt_ExtraGasModStart_Func");
-    TriggerAddEventMapInit(lib7E352632_gt_ExtraGasModStart);
+void lib7E352632_gt_SetupHandicap_Init () {
+    lib7E352632_gt_SetupHandicap = TriggerCreate("lib7E352632_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -213,7 +252,7 @@ bool lib7E352632_gt_GiveExtraVespene_Func (bool testConds, bool runActions) {
     while (true) {
         autoF40EBC39_var = PlayerGroupNextPlayer(autoF40EBC39_g, autoF40EBC39_var);
         if (autoF40EBC39_var < 0) { break; }
-        if ((GameAttributePlayerValue("52", autoF40EBC39_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[autoF40EBC39_var].lv_eXTRAGAS.lv_enabled == true)) {
             auto7646E298_g = UnitGroup("Assimilator", autoF40EBC39_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterUnderConstruction - 32)) | (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             auto7646E298_u = UnitGroupCount(auto7646E298_g, c_unitCountAll);
             for (;; auto7646E298_u -= 1) {
@@ -275,7 +314,7 @@ void lib7E352632_gt_GiveExtraVespene_Init () {
 }
 
 void lib7E352632_InitTriggers () {
-    lib7E352632_gt_ExtraGasModStart_Init();
+    lib7E352632_gt_SetupHandicap_Init();
     lib7E352632_gt_AddActorToVespene_Init();
     lib7E352632_gt_GiveExtraVespene_Init();
 }
@@ -297,5 +336,6 @@ void lib7E352632_InitLib () {
     lib7E352632_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

@@ -3,11 +3,21 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: FREE WORKERS
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libD95F4C80_gv_noSupply = "0 supply";
+const string libD95F4C80_gv_noMinerals = "0 minerals";
+const string libD95F4C80_gv_noSupplyNoMinerals = "0 supply, 0 minerals";
+
 // Variable Declarations
 playergroup libD95F4C80_gv_playersWithFreeWorkers;
 
+// Function Declarations
+void libD95F4C80_gf_SetupOptions (int lp_handicapindex);
+void libD95F4C80_gf_EnableHandicap (int lp_handicapIndex);
+void libD95F4C80_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger libD95F4C80_gt_FreeWorkersModStart;
+trigger libD95F4C80_gt_SetupHandicap;
 trigger libD95F4C80_gt_UpdateShownWorkersCount;
 
 // Library Initialization

@@ -8,13 +8,15 @@ timer lib56A96906_gv_chargeTimer;
 int lib56A96906_gv_chargeTimerWindow;
 
 // Function Declarations
+void lib56A96906_gf_SetupOptions (int lp_handicapindex);
+void lib56A96906_gf_EnableHandicap (int lp_handicapIndex);
+void lib56A96906_gf_EnableHandicapForPlayer (int lp_player);
 void lib56A96906_gf_RemoveCharge (unit lp_unit);
 
 // Trigger Declarations
-trigger lib56A96906_gt_ChargeWarsModStart;
+trigger lib56A96906_gt_SetupHandicap;
 trigger lib56A96906_gt_RemoveChargeFromCreatedUnit;
 trigger lib56A96906_gt_RemoveChargeFromConstructedUnit;
-trigger lib56A96906_gt_RemoveChargeFromInitialUnits;
 trigger lib56A96906_gt_GiveCharge;
 
 // Library Initialization

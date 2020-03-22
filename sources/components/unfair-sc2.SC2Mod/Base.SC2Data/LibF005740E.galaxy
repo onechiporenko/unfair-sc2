@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibF005740E_h"
@@ -9,6 +10,7 @@ include "LibF005740E_h"
 // External Library Initialization
 void libF005740E_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -24,64 +26,69 @@ void libF005740E_InitVariables () {
 
     libF005740E_gv_motherCoreTimer = TimerCreate();
     libF005740E_gv_motherCoreDelay = 10.0;
-    libF005740E_gv_motherCoreInitialDelay = 150.0;
+    libF005740E_gv_motherCoreInitialDelay = 210.0;
     libF005740E_gv_motherCoreTimerWindow = c_timerWindowNone;
 }
 
 // Functions
-void libF005740E_gf_CreateMotherCore (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    if ((GameAttributePlayerValue("38", lp_player) == "0001")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "MothershipCore", 0, lp_player, PlayerStartLocation(lp_player));
-        UnitAbilityEnable(UnitLastCreated(), "MorphToMothership", false);
-        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2DoubleBirth", "Ref_Head");
-        PingCreate(PlayerGroupSingle(lp_player), "MinimapPing", PlayerStartLocation(lp_player), ColorWithAlpha(0.00, 50.20, 0.00, 0.39), 3.0);
-    }
+void libF005740E_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
 
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_F005740E_12BAA0F7");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_F005740E_B67C8360");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-unit-collection-taldarim-mothershipcore.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_F005740E_F457336D");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libF005740E_gt_SetupHandicap;
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Mother Core Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libF005740E_gt_MotherCoreModStart_Func (bool testConds, bool runActions) {
+void libF005740E_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto564EF1CB_g;
-    int auto564EF1CB_var;
+    playergroup auto82F6929C_g;
+    int auto82F6929C_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("37") == "0001")) {
-        auto564EF1CB_g = PlayerGroupAll();
-        auto564EF1CB_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto82F6929C_g = PlayerGroupActive();
+        auto82F6929C_var = -1;
         while (true) {
-            auto564EF1CB_var = PlayerGroupNextPlayer(auto564EF1CB_g, auto564EF1CB_var);
-            if (auto564EF1CB_var < 0) { break; }
-            if ((GameAttributePlayerValue("38", auto564EF1CB_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto564EF1CB_var);
+            auto82F6929C_var = PlayerGroupNextPlayer(auto82F6929C_g, auto82F6929C_var);
+            if (auto82F6929C_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto82F6929C_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto82F6929C_var);
+                libF005740E_gf_EnableHandicapForPlayer(auto82F6929C_var);
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_F005740E_6F98492A", "InitialDelay", FixedToText(libF005740E_gv_motherCoreInitialDelay, c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_F005740E_6F98492A", "Delay", FixedToText(libF005740E_gv_motherCoreDelay, c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_F005740E_6F98492A", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_F005740E_23B6BF16"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F005740E_6F98492A"), StringExternal("Param/Value/lib_F005740E_6A9CC936"), "Assets\\Textures\\btn-unit-collection-taldarim-mothershipcore.dds");
+            TextExpressionSetToken("Param/Expression/lib_F005740E_25559DFB", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_F005740E_25559DFB", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_F005740E_25559DFB"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
             TimerStart(libF005740E_gv_motherCoreTimer, libF005740E_gv_motherCoreInitialDelay, false, c_timeReal);
-            TimerWindowCreate(libF005740E_gv_motherCoreTimer, StringExternal("Param/Value/lib_F005740E_BBC90F07"), true, false);
+            TimerWindowCreate(libF005740E_gv_motherCoreTimer, StringExternal("Param/Value/lib_F005740E_29C23B39"), true, false);
             libF005740E_gv_motherCoreTimerWindow = TimerWindowLastCreated();
             TimerWindowShowBorder(libF005740E_gv_motherCoreTimerWindow, false);
-            TimerWindowShow(libF005740E_gv_motherCoreTimerWindow, PlayerGroupAll(), true);
+            TimerWindowShow(libF005740E_gv_motherCoreTimerWindow, PlayerGroupActive(), true);
         }
         else {
             TriggerEnable(libF005740E_gt_MotherCoreIsDestroyed, false);
@@ -92,13 +99,44 @@ bool libF005740E_gt_MotherCoreModStart_Func (bool testConds, bool runActions) {
         TriggerEnable(libF005740E_gt_MotherCoreIsDestroyed, false);
         TriggerEnable(libF005740E_gt_MotherCoreTimerElapsed, false);
     }
+}
+
+void libF005740E_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_mOTHERCORE.lv_enabled = true;
+}
+
+void libF005740E_gf_CreateMotherCore (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libDBC4E2D2_gv_pLAYERS[lp_player].lv_mOTHERCORE.lv_enabled == true)) {
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "MothershipCore", 0, lp_player, PlayerStartLocation(lp_player));
+        UnitAbilityEnable(UnitLastCreated(), "MorphToMothership", false);
+        libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2DoubleBirth", "Ref_Head");
+        PingCreate(PlayerGroupSingle(lp_player), "MinimapPing", PlayerStartLocation(lp_player), ColorWithAlpha(0.00, 50.20, 0.00, 0.39), 3.0);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libF005740E_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libF005740E_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libF005740E_gt_MotherCoreModStart_Init () {
-    libF005740E_gt_MotherCoreModStart = TriggerCreate("libF005740E_gt_MotherCoreModStart_Func");
-    TriggerAddEventMapInit(libF005740E_gt_MotherCoreModStart);
+void libF005740E_gt_SetupHandicap_Init () {
+    libF005740E_gt_SetupHandicap = TriggerCreate("libF005740E_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -124,12 +162,12 @@ bool libF005740E_gt_MotherCoreIsDestroyed_Func (bool testConds, bool runActions)
         return true;
     }
 
-    TimerStart(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimer, libF005740E_gv_motherCoreDelay, false, c_timeReal);
-    TimerWindowCreate(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimer, StringExternal("Param/Value/lib_F005740E_D1152615"), true, false);
-    libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow = TimerWindowLastCreated();
-    TimerWindowShowBorder(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, false);
-    TimerWindowShow(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, PlayerGroupAll(), false);
-    TimerWindowShow(libDBC4E2D2_gv_players[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, PlayerGroupSingle(lv_player), true);
+    TimerStart(libDBC4E2D2_gv_pLAYERS[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimer, libF005740E_gv_motherCoreDelay, false, c_timeReal);
+    TimerWindowCreate(libDBC4E2D2_gv_pLAYERS[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimer, StringExternal("Param/Value/lib_F005740E_D1152615"), true, false);
+    libDBC4E2D2_gv_pLAYERS[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow = TimerWindowLastCreated();
+    TimerWindowShowBorder(libDBC4E2D2_gv_pLAYERS[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, false);
+    TimerWindowShow(libDBC4E2D2_gv_pLAYERS[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, PlayerGroupAll(), false);
+    TimerWindowShow(libDBC4E2D2_gv_pLAYERS[lv_player].lv_mOTHERCORE.lv_restoreMotherCoreTimerWindow, PlayerGroupSingle(lv_player), true);
     Wait(libF005740E_gv_motherCoreDelay, c_timeReal);
     libF005740E_gf_CreateMotherCore(lv_player);
     return true;
@@ -154,12 +192,12 @@ bool libF005740E_gt_MotherCoreTimerElapsed_Func (bool testConds, bool runActions
         return true;
     }
 
-    auto3ABF7AC0_g = PlayerGroupAll();
+    auto3ABF7AC0_g = PlayerGroupActive();
     auto3ABF7AC0_var = -1;
     while (true) {
         auto3ABF7AC0_var = PlayerGroupNextPlayer(auto3ABF7AC0_g, auto3ABF7AC0_var);
         if (auto3ABF7AC0_var < 0) { break; }
-        if ((GameAttributePlayerValue("38", auto3ABF7AC0_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto3ABF7AC0_var].lv_mOTHERCORE.lv_enabled == true)) {
             libF005740E_gf_CreateMotherCore(auto3ABF7AC0_var);
         }
 
@@ -175,7 +213,7 @@ void libF005740E_gt_MotherCoreTimerElapsed_Init () {
 }
 
 void libF005740E_InitTriggers () {
-    libF005740E_gt_MotherCoreModStart_Init();
+    libF005740E_gt_SetupHandicap_Init();
     libF005740E_gt_MotherCoreIsDestroyed_Init();
     libF005740E_gt_MotherCoreTimerElapsed_Init();
 }
@@ -197,5 +235,6 @@ void libF005740E_InitLib () {
     libF005740E_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

@@ -3,11 +3,22 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: DARKNESS
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string lib60DF5275_gv_hideMap = "Hide Map";
+const string lib60DF5275_gv_reduceRange = "Reduce Range";
+const string lib60DF5275_gv_both = "Both";
+
 // Function Declarations
+void lib60DF5275_gf_SetupOptions (int lp_handicapindex);
+void lib60DF5275_gf_EnableHandicap (int lp_handicapIndex);
+void lib60DF5275_gf_EnableHandicapForPlayer (int lp_player);
 void lib60DF5275_gf_AddDarknessBehavior (unit lp_unit);
 
 // Trigger Declarations
-trigger lib60DF5275_gt_DarknessModStart;
+trigger lib60DF5275_gt_SetupHandicap;
 trigger lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit;
 trigger lib60DF5275_gt_AddDarknessBehaviorForInitialUnits;
+
+// Library Initialization
+void lib60DF5275_InitVariables ();
 

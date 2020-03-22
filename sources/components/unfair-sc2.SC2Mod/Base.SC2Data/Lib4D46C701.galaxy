@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib4D46C701_h"
@@ -9,6 +10,7 @@ include "Lib4D46C701_h"
 // External Library Initialization
 void lib4D46C701_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -24,75 +26,121 @@ void lib4D46C701_InitVariables () {
 
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Stun Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib4D46C701_gt_StunModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib4D46C701_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_4D46C701_8745BAD6");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_4D46C701_6BCE2AD1");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_4D46C701_F2DB3016");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "15";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_4D46C701_A86FBA3A");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib4D46C701_gt_SetupHandicap;
+}
+
+void lib4D46C701_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto74AE3813_g;
-    int auto74AE3813_var;
-    string auto19E5C369_val;
+    string auto9E0B8762_val;
+    playergroup auto60507A32_g;
+    int auto60507A32_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto9E0B8762_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (auto9E0B8762_val == "5") {
+            lib4D46C701_gv_stunChance = 5.0;
+        }
+        else if (auto9E0B8762_val == "10") {
+            lib4D46C701_gv_stunChance = 10.0;
+        }
+        else if (auto9E0B8762_val == "15") {
+            lib4D46C701_gv_stunChance = 15.0;
+        }
+        else if (auto9E0B8762_val == "20") {
+            lib4D46C701_gv_stunChance = 20.0;
+        }
+        else if (auto9E0B8762_val == "25") {
+            lib4D46C701_gv_stunChance = 25.0;
+        }
+        else {
+            lib4D46C701_gv_stunChance = 10.0;
+        }
+        auto60507A32_g = PlayerGroupActive();
+        auto60507A32_var = -1;
+        while (true) {
+            auto60507A32_var = PlayerGroupNextPlayer(auto60507A32_g, auto60507A32_var);
+            if (auto60507A32_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto60507A32_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto60507A32_var);
+                libDBC4E2D2_gv_pLAYERS[auto60507A32_var].lv_sTUN.lv_enabled = true;
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_4D46C701_5D939DB1", "StunChance", FixedToText(lib4D46C701_gv_stunChance, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_4D46C701_5D939DB1", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_4D46C701_5D939DB1"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib4D46C701_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("45") == "0001")) {
-        auto74AE3813_g = PlayerGroupAll();
-        auto74AE3813_var = -1;
-        while (true) {
-            auto74AE3813_var = PlayerGroupNextPlayer(auto74AE3813_g, auto74AE3813_var);
-            if (auto74AE3813_var < 0) { break; }
-            if ((GameAttributePlayerValue("46", auto74AE3813_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto74AE3813_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            auto19E5C369_val = GameAttributeGameValue("72");
-            if (auto19E5C369_val == "0001") {
-                lib4D46C701_gv_stunChance = 5.0;
-            }
-            else if (auto19E5C369_val == "0002") {
-                lib4D46C701_gv_stunChance = 10.0;
-            }
-            else if (auto19E5C369_val == "0003") {
-                lib4D46C701_gv_stunChance = 15.0;
-            }
-            else if (auto19E5C369_val == "0004") {
-                lib4D46C701_gv_stunChance = 20.0;
-            }
-            else if (auto19E5C369_val == "0005") {
-                lib4D46C701_gv_stunChance = 25.0;
-            }
-            else {
-            }
-            TextExpressionSetToken("Param/Expression/lib_4D46C701_E5799E15", "StunChance", FixedToText(lib4D46C701_gv_stunChance, c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_4D46C701_E5799E15", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_4D46C701_4FF38885"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_4D46C701_E5799E15"), StringExternal("Param/Value/lib_4D46C701_6334EA9A"), "Assets\\Textures\\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds");
-        }
-        else {
-            TriggerEnable(lib4D46C701_gt_UnitDidDamage, false);
-        }
-    }
-    else {
-        TriggerEnable(lib4D46C701_gt_UnitDidDamage, false);
-    }
+    lib4D46C701_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib4D46C701_gt_StunModStart_Init () {
-    lib4D46C701_gt_StunModStart = TriggerCreate("lib4D46C701_gt_StunModStart_Func");
-    TriggerAddEventMapInit(lib4D46C701_gt_StunModStart);
+void lib4D46C701_gt_SetupHandicap_Init () {
+    lib4D46C701_gt_SetupHandicap = TriggerCreate("lib4D46C701_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -102,7 +150,7 @@ bool lib4D46C701_gt_UnitDidDamage_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("46", EventUnitDamageSourcePlayer()) == "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventUnitDamageSourcePlayer()].lv_sTUN.lv_enabled == true))) {
             return false;
         }
     }
@@ -129,7 +177,7 @@ void lib4D46C701_gt_UnitDidDamage_Init () {
 }
 
 void lib4D46C701_InitTriggers () {
-    lib4D46C701_gt_StunModStart_Init();
+    lib4D46C701_gt_SetupHandicap_Init();
     lib4D46C701_gt_UnitDidDamage_Init();
 }
 
@@ -150,5 +198,6 @@ void lib4D46C701_InitLib () {
     lib4D46C701_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

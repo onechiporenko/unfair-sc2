@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib04DA748F_h"
@@ -9,49 +10,70 @@ include "Lib04DA748F_h"
 // External Library Initialization
 void lib04DA748F_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Chat Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib04DA748F_gt_ChatModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib04DA748F_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_04DA748F_40061EC4");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_04DA748F_AF82E83F");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\momentofsilence_coop.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_04DA748F_5F40CCA5");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Write Messages";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib04DA748F_gt_SetupHandicap;
+}
+
+void lib04DA748F_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup autoB1C80B2E_g;
-    int autoB1C80B2E_var;
+    playergroup autoABE1C2A5_g;
+    int autoABE1C2A5_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("96") == "0001")) {
-        autoB1C80B2E_g = PlayerGroupAll();
-        autoB1C80B2E_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoABE1C2A5_g = PlayerGroupActive();
+        autoABE1C2A5_var = -1;
         while (true) {
-            autoB1C80B2E_var = PlayerGroupNextPlayer(autoB1C80B2E_g, autoB1C80B2E_var);
-            if (autoB1C80B2E_var < 0) { break; }
-            if ((GameAttributePlayerValue("97", autoB1C80B2E_var) == "0001")) {
-                PlayerGroupAdd(lv_players, autoB1C80B2E_var);
+            autoABE1C2A5_var = PlayerGroupNextPlayer(autoABE1C2A5_g, autoABE1C2A5_var);
+            if (autoABE1C2A5_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoABE1C2A5_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoABE1C2A5_var);
+                lib04DA748F_gf_EnableHandicapForPlayer(autoABE1C2A5_var);
             }
 
         }
-        if ((PlayerGroupCount(lv_players) == 0)) {
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_04DA748F_4B23FFD6", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_04DA748F_4B23FFD6", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_04DA748F_4B23FFD6"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
+        }
+        else {
             TriggerEnable(lib04DA748F_gt_StartBuild, false);
             TriggerEnable(lib04DA748F_gt_CancelBuild, false);
             TriggerEnable(lib04DA748F_gt_StartUpgrade, false);
             TriggerEnable(lib04DA748F_gt_CancelUpgrade, false);
-        }
-        else {
-            TextExpressionSetToken("Param/Expression/lib_04DA748F_6266DBF4", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_04DA748F_5447DB8E"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_04DA748F_6266DBF4"), StringExternal("Param/Value/lib_04DA748F_98E7BB52"), "Assets\\Textures\\momentofsilence_coop.dds");
         }
     }
     else {
@@ -60,13 +82,32 @@ bool lib04DA748F_gt_ChatModStart_Func (bool testConds, bool runActions) {
         TriggerEnable(lib04DA748F_gt_StartUpgrade, false);
         TriggerEnable(lib04DA748F_gt_CancelUpgrade, false);
     }
+}
+
+void lib04DA748F_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_cHAT.lv_enabled = true;
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib04DA748F_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib04DA748F_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib04DA748F_gt_ChatModStart_Init () {
-    lib04DA748F_gt_ChatModStart = TriggerCreate("lib04DA748F_gt_ChatModStart_Func");
-    TriggerAddEventMapInit(lib04DA748F_gt_ChatModStart);
+void lib04DA748F_gt_SetupHandicap_Init () {
+    lib04DA748F_gt_SetupHandicap = TriggerCreate("lib04DA748F_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -86,7 +127,7 @@ bool lib04DA748F_gt_StartBuild_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((GameAttributePlayerValue("97", EventPlayer()) == "0001")) {
+    if ((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_cHAT.lv_enabled == true)) {
         TextExpressionSetToken("Param/Expression/lib_04DA748F_E2C86255", "Time", TextTimeFormat(StringToText("<hour2/>:<min2/>:<sec2/>"), libDBC4E2D2_gv_gAMETIME));
         TextExpressionSetToken("Param/Expression/lib_04DA748F_E2C86255", "Player", TextWithColor(PlayerName(EventPlayer()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
         TextExpressionSetToken("Param/Expression/lib_04DA748F_E2C86255", "Building", TextWithColor(UnitTypeGetName(libNtve_gf_TriggeringProgressUnitType()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
@@ -118,7 +159,7 @@ bool lib04DA748F_gt_StartUpgrade_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((GameAttributePlayerValue("97", EventPlayer()) == "0001")) {
+    if ((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_cHAT.lv_enabled == true)) {
         TextExpressionSetToken("Param/Expression/lib_04DA748F_1670EBC4", "Time", TextTimeFormat(StringToText("<hour2/>:<min2/>:<sec2/>"), libDBC4E2D2_gv_gAMETIME));
         TextExpressionSetToken("Param/Expression/lib_04DA748F_1670EBC4", "Player", TextWithColor(PlayerName(EventPlayer()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
         TextExpressionSetToken("Param/Expression/lib_04DA748F_1670EBC4", "Upgrade", TextWithColor(StringToText(StringSub(CatalogFieldValueGet(c_gameCatalogUpgrade, libNtve_gf_TriggeringProgressUpgrade(), "Name", EventPlayer()), 14, 100)), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
@@ -152,7 +193,7 @@ bool lib04DA748F_gt_CancelBuild_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((GameAttributePlayerValue("97", UnitGetOwner(EventUnitProgressUnit())) == "0001")) {
+    if ((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitProgressUnit())].lv_cHAT.lv_enabled == true)) {
         TextExpressionSetToken("Param/Expression/lib_04DA748F_E815A48E", "Player", TextWithColor(PlayerName(UnitGetOwner(EventUnitProgressUnit())), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(UnitGetOwner(EventUnitProgressUnit()), false))));
         TextExpressionSetToken("Param/Expression/lib_04DA748F_E815A48E", "Building", TextWithColor(UnitTypeGetName(UnitGetType(EventUnitProgressUnit())), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(UnitGetOwner(EventUnitProgressUnit()), false))));
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_04DA748F_E815A48E"));
@@ -183,7 +224,7 @@ bool lib04DA748F_gt_CancelUpgrade_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((GameAttributePlayerValue("97", EventPlayer()) == "0001")) {
+    if ((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_cHAT.lv_enabled == true)) {
         TextExpressionSetToken("Param/Expression/lib_04DA748F_D57EA528", "Player", TextWithColor(PlayerName(EventPlayer()), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
         TextExpressionSetToken("Param/Expression/lib_04DA748F_D57EA528", "Upgrade", TextWithColor(StringToText(StringSub(CatalogFieldValueGet(c_gameCatalogUpgrade, libNtve_gf_TriggeringProgressUpgrade(), "Name", EventPlayer()), 14, 100)), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(EventPlayer(), false))));
         TextExpressionSetToken("Param/Expression/lib_04DA748F_D57EA528", "iconPath", lv_iconPath);
@@ -200,7 +241,7 @@ void lib04DA748F_gt_CancelUpgrade_Init () {
 }
 
 void lib04DA748F_InitTriggers () {
-    lib04DA748F_gt_ChatModStart_Init();
+    lib04DA748F_gt_SetupHandicap_Init();
     lib04DA748F_gt_StartBuild_Init();
     lib04DA748F_gt_StartUpgrade_Init();
     lib04DA748F_gt_CancelBuild_Init();
@@ -223,5 +264,6 @@ void lib04DA748F_InitLib () {
     lib04DA748F_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

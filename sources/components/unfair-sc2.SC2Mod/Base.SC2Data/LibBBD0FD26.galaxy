@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibBBD0FD26_h"
@@ -9,6 +10,7 @@ include "LibBBD0FD26_h"
 // External Library Initialization
 void libBBD0FD26_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -26,6 +28,82 @@ void libBBD0FD26_InitVariables () {
 }
 
 // Functions
+void libBBD0FD26_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_BBD0FD26_B8DE2F22");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_BBD0FD26_0372C549");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-zerg-corruption-color.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_BBD0FD26_BEF040F1");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Corrupt";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libBBD0FD26_gt_SetupHandicap;
+}
+
+void libBBD0FD26_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoE1108D10_g;
+    int autoE1108D10_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoE1108D10_g = PlayerGroupActive();
+        autoE1108D10_var = -1;
+        while (true) {
+            autoE1108D10_var = PlayerGroupNextPlayer(autoE1108D10_g, autoE1108D10_var);
+            if (autoE1108D10_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoE1108D10_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoE1108D10_var);
+                libBBD0FD26_gf_EnableHandicapForPlayer(autoE1108D10_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_BBD0FD26_FE373F83", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_BBD0FD26_FE373F83", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BBD0FD26_FE373F83"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
+            TimerStart(libBBD0FD26_gv_gameTimer, 1.0, true, c_timeReal);
+            TriggerExecute(libBBD0FD26_gt_CorruptInitialUnits, true, false);
+        }
+        else {
+            TriggerEnable(libBBD0FD26_gt_CorruptBuildingsEverySecond, false);
+            TriggerEnable(libBBD0FD26_gt_BuildingIsCreated, false);
+        }
+    }
+    else {
+        TriggerEnable(libBBD0FD26_gt_CorruptBuildingsEverySecond, false);
+        TriggerEnable(libBBD0FD26_gt_BuildingIsCreated, false);
+    }
+}
+
+void libBBD0FD26_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_cORRUPTION.lv_enabled = true;
+    TechTreeAbilityAllow(lp_player, AbilityCommand("Repair", 0), false);
+    TechTreeAbilityAllow(lp_player, AbilityCommand("MULERepair", 0), false);
+    TechTreeAbilityAllow(lp_player, AbilityCommand("Transfusion", 0), false);
+}
+
 void libBBD0FD26_gf_CorruptUnit (unit lp_unit) {
     // Variable Declarations
     int lv_unitOwner;
@@ -35,7 +113,7 @@ void libBBD0FD26_gf_CorruptUnit (unit lp_unit) {
     lv_unitOwner = UnitGetOwner(lp_unit);
 
     // Implementation
-    if ((GameAttributePlayerValue("32", lv_unitOwner) == "0002") && (UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true)) {
+    if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true)) {
         libNtve_gf_AttachModelToUnit(lp_unit, "CorruptionBombPersistent", "Ref_Overhead");
     }
 
@@ -44,7 +122,7 @@ void libBBD0FD26_gf_CorruptUnit (unit lp_unit) {
 void libBBD0FD26_gf_SetHPForUnit (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation
-    if ((GameAttributePlayerValue("32", UnitGetOwner(lp_unit)) == "0002") && (UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true) && (UnitTypeGetProperty(UnitGetType(lp_unit), c_unitPropShieldsMax) > 0.0)) {
+    if ((UnitTypeTestAttribute(UnitGetType(lp_unit), c_unitAttributeStructure) == true) && (UnitTypeGetProperty(UnitGetType(lp_unit), c_unitPropShieldsMax) > 0.0)) {
         UnitSetPropertyFixed(lp_unit, c_unitPropLifeMax, (UnitGetPropertyFixed(lp_unit, c_unitPropLifeMax, c_unitPropCurrent) * 2.0));
         UnitSetPropertyFixed(lp_unit, c_unitPropShieldsMax, 0.0);
         UnitSetPropertyFixed(lp_unit, c_unitPropLife, (UnitGetPropertyFixed(lp_unit, c_unitPropLifeMax, c_unitPropNormal) * 2.0));
@@ -54,64 +132,22 @@ void libBBD0FD26_gf_SetHPForUnit (unit lp_unit) {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Corruption Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool libBBD0FD26_gt_CorruptionModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-
+bool libBBD0FD26_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto6EDA54DE_g;
-    int auto6EDA54DE_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("31") == "0001")) {
-        auto6EDA54DE_g = PlayerGroupAll();
-        auto6EDA54DE_var = -1;
-        while (true) {
-            auto6EDA54DE_var = PlayerGroupNextPlayer(auto6EDA54DE_g, auto6EDA54DE_var);
-            if (auto6EDA54DE_var < 0) { break; }
-            if ((GameAttributePlayerValue("32", auto6EDA54DE_var) == "0002")) {
-                PlayerGroupAdd(lv_players, auto6EDA54DE_var);
-                TechTreeAbilityAllow(auto6EDA54DE_var, AbilityCommand("Repair", 0), false);
-                TechTreeAbilityAllow(auto6EDA54DE_var, AbilityCommand("MULERepair", 0), false);
-                TechTreeAbilityAllow(auto6EDA54DE_var, AbilityCommand("Transfusion", 0), false);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_BBD0FD26_C6C85339", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_BBD0FD26_ABD78EE1"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_BBD0FD26_C6C85339"), StringExternal("Param/Value/lib_BBD0FD26_8019DA04"), "Assets\\Textures\\btn-ability-zerg-corruption-color.dds");
-            TimerStart(libBBD0FD26_gv_gameTimer, 1.0, true, c_timeReal);
-            TriggerExecute(libBBD0FD26_gt_CorruptInitialUnits, true, false);
-        }
-        else {
-            TriggerEnable(libBBD0FD26_gt_CorruptBuildingsEverySecond, false);
-            TriggerEnable(libBBD0FD26_gt_BuildingIsCreated, false);
-            TriggerEnable(libBBD0FD26_gt_CorruptBuildingsEverySecond, false);
-            TriggerEnable(libBBD0FD26_gt_CorruptInitialUnits, false);
-        }
-    }
-    else {
-        TriggerEnable(libBBD0FD26_gt_CorruptBuildingsEverySecond, false);
-        TriggerEnable(libBBD0FD26_gt_BuildingIsCreated, false);
-        TriggerEnable(libBBD0FD26_gt_CorruptBuildingsEverySecond, false);
-        TriggerEnable(libBBD0FD26_gt_CorruptInitialUnits, false);
-    }
+    libBBD0FD26_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libBBD0FD26_gt_CorruptionModStart_Init () {
-    libBBD0FD26_gt_CorruptionModStart = TriggerCreate("libBBD0FD26_gt_CorruptionModStart_Func");
-    TriggerAddEventMapInit(libBBD0FD26_gt_CorruptionModStart);
+void libBBD0FD26_gt_SetupHandicap_Init () {
+    libBBD0FD26_gt_SetupHandicap = TriggerCreate("libBBD0FD26_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -140,7 +176,7 @@ bool libBBD0FD26_gt_CorruptBuildingsEverySecond_Func (bool testConds, bool runAc
     while (true) {
         autoDE11A37A_var = PlayerGroupNextPlayer(autoDE11A37A_g, autoDE11A37A_var);
         if (autoDE11A37A_var < 0) { break; }
-        if ((GameAttributePlayerValue("32", autoDE11A37A_var) == "0002")) {
+        if ((libDBC4E2D2_gv_pLAYERS[autoDE11A37A_var].lv_cORRUPTION.lv_enabled == true)) {
             autoFBE1B9A7_g = UnitGroup(null, autoDE11A37A_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             autoFBE1B9A7_u = UnitGroupCount(autoFBE1B9A7_g, c_unitCountAll);
             for (;; autoFBE1B9A7_u -= 1) {
@@ -171,11 +207,7 @@ bool libBBD0FD26_gt_BuildingIsCreated_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((PlayerType(UnitGetOwner(EventUnitProgressUnit())) == c_playerTypeUser))) {
-            return false;
-        }
-
-        if (!((GameAttributePlayerValue("32", UnitGetOwner(EventUnitProgressUnit())) == "0002"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitProgressUnit())].lv_cORRUPTION.lv_enabled == true))) {
             return false;
         }
     }
@@ -224,7 +256,7 @@ bool libBBD0FD26_gt_CorruptInitialUnits_Func (bool testConds, bool runActions) {
     while (true) {
         auto65199A1F_var = PlayerGroupNextPlayer(auto65199A1F_g, auto65199A1F_var);
         if (auto65199A1F_var < 0) { break; }
-        if ((GameAttributePlayerValue("32", auto65199A1F_var) == "0002")) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto65199A1F_var].lv_cORRUPTION.lv_enabled == true)) {
             auto1C6A6B8D_g = UnitGroup(null, auto65199A1F_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             auto1C6A6B8D_u = UnitGroupCount(auto1C6A6B8D_g, c_unitCountAll);
             for (;; auto1C6A6B8D_u -= 1) {
@@ -248,7 +280,7 @@ void libBBD0FD26_gt_CorruptInitialUnits_Init () {
 }
 
 void libBBD0FD26_InitTriggers () {
-    libBBD0FD26_gt_CorruptionModStart_Init();
+    libBBD0FD26_gt_SetupHandicap_Init();
     libBBD0FD26_gt_CorruptBuildingsEverySecond_Init();
     libBBD0FD26_gt_BuildingIsCreated_Init();
     libBBD0FD26_gt_CorruptInitialUnits_Init();
@@ -271,5 +303,6 @@ void libBBD0FD26_InitLib () {
     libBBD0FD26_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

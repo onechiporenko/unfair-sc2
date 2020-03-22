@@ -3,6 +3,18 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: ALL RACES
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libC0051C89_gv_allRaces = "All Races";
+const string libC0051C89_gv_mainStructuresforAllRaces = "For All Races";
+
+// Function Declarations
+void libC0051C89_gf_SetupOptions (int lp_handicapindex);
+void libC0051C89_gf_EnableHandicap (int lp_handicapIndex);
+void libC0051C89_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger libC0051C89_gt_AllRacesModStart;
+trigger libC0051C89_gt_SetupHandicap;
+
+// Library Initialization
+void libC0051C89_InitVariables ();
 

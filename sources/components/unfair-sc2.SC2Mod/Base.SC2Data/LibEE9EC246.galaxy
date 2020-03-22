@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibEE9EC246_h"
@@ -9,59 +10,98 @@ include "LibEE9EC246_h"
 // External Library Initialization
 void libEE9EC246_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: No Limits Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libEE9EC246_gt_NoLimitsModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libEE9EC246_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_EE9EC246_19F0BA9D");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_EE9EC246_0B21C78F");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-progression-hornerhan-8-supplydepot.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_EE9EC246_60834529");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libEE9EC246_gt_SetupHandicap;
+}
+
+void libEE9EC246_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto456BE1A9_g;
-    int auto456BE1A9_var;
+    playergroup auto1BC99E8F_g;
+    int auto1BC99E8F_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto1BC99E8F_g = PlayerGroupActive();
+        auto1BC99E8F_var = -1;
+        while (true) {
+            auto1BC99E8F_var = PlayerGroupNextPlayer(auto1BC99E8F_g, auto1BC99E8F_var);
+            if (auto1BC99E8F_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto1BC99E8F_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto1BC99E8F_var);
+                libEE9EC246_gf_EnableHandicap(auto1BC99E8F_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_EE9EC246_6C89EE36", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_EE9EC246_6C89EE36", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_EE9EC246_6C89EE36"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+void libEE9EC246_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    PlayerModifyPropertyInt(lp_player, c_playerPropSuppliesLimit, c_playerPropOperSetTo, 10000);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libEE9EC246_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("84") == "0001")) {
-        auto456BE1A9_g = PlayerGroupAll();
-        auto456BE1A9_var = -1;
-        while (true) {
-            auto456BE1A9_var = PlayerGroupNextPlayer(auto456BE1A9_g, auto456BE1A9_var);
-            if (auto456BE1A9_var < 0) { break; }
-            if ((GameAttributePlayerValue("85", auto456BE1A9_var) == "0002")) {
-                PlayerGroupAdd(lv_players, auto456BE1A9_var);
-                PlayerModifyPropertyInt(auto456BE1A9_var, c_playerPropSuppliesLimit, c_playerPropOperSetTo, 10000);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_EE9EC246_6A6E05F6", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_EE9EC246_C6018C2D"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_EE9EC246_6A6E05F6"), StringExternal("Param/Value/lib_EE9EC246_C95EE38B"), "Assets\\Textures\\btn-progression-hornerhan-8-supplydepot.dds");
-        }
-
-    }
-
+    libEE9EC246_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libEE9EC246_gt_NoLimitsModStart_Init () {
-    libEE9EC246_gt_NoLimitsModStart = TriggerCreate("libEE9EC246_gt_NoLimitsModStart_Func");
-    TriggerAddEventMapInit(libEE9EC246_gt_NoLimitsModStart);
+void libEE9EC246_gt_SetupHandicap_Init () {
+    libEE9EC246_gt_SetupHandicap = TriggerCreate("libEE9EC246_gt_SetupHandicap_Func");
 }
 
 void libEE9EC246_InitTriggers () {
-    libEE9EC246_gt_NoLimitsModStart_Init();
+    libEE9EC246_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -80,5 +120,6 @@ void libEE9EC246_InitLib () {
     libEE9EC246_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

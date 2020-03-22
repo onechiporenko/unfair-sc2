@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibD31C8AFA_h"
@@ -9,101 +10,115 @@ include "LibD31C8AFA_h"
 // External Library Initialization
 void libD31C8AFA_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Instant Production Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libD31C8AFA_gt_InstantProductionModStart_Func (bool testConds, bool runActions) {
+// Variable Initialization
+bool libD31C8AFA_InitVariables_completed = false;
+
+void libD31C8AFA_InitVariables () {
+    if (libD31C8AFA_InitVariables_completed) {
+        return;
+    }
+
+    libD31C8AFA_InitVariables_completed = true;
+
+}
+
+// Functions
+void libD31C8AFA_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_D31C8AFA_0576C07F");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_D31C8AFA_772B01CC");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-progression-hornerhan-6-mirabuildtime.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_D31C8AFA_2CF9030B");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD31C8AFA_gv_upgrades;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD31C8AFA_gv_buildings;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD31C8AFA_gv_both;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libD31C8AFA_gt_SetupHandicap;
+}
+
+void libD31C8AFA_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
     text lv_playersSettings;
-    bool lv_disableUpgradesTrigger;
-    bool lv_disableBuildingsTrigger;
 
     // Automatic Variable Declarations
-    playergroup auto505CF5C1_g;
-    int auto505CF5C1_var;
-    playergroup auto976EAAA4_g;
-    int auto976EAAA4_var;
+    playergroup auto8F9D4B9E_g;
+    int auto8F9D4B9E_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
-    lv_disableUpgradesTrigger = true;
-    lv_disableBuildingsTrigger = true;
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("126") == "0001")) {
-        auto505CF5C1_g = PlayerGroupActive();
-        auto505CF5C1_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto8F9D4B9E_g = PlayerGroupActive();
+        auto8F9D4B9E_var = -1;
         while (true) {
-            auto505CF5C1_var = PlayerGroupNextPlayer(auto505CF5C1_g, auto505CF5C1_var);
-            if (auto505CF5C1_var < 0) { break; }
-            if ((GameAttributePlayerValue("127", auto505CF5C1_var) != "0001")) {
-                PlayerGroupAdd(lv_players, auto505CF5C1_var);
-                if (((GameAttributePlayerValue("127", auto505CF5C1_var) == "0003") || (GameAttributePlayerValue("127", auto505CF5C1_var) == "0004"))) {
-                    libDBC4E2D2_gv_players[auto505CF5C1_var].lv_iNSTANTPRODUCTION.lv_buildings = true;
-                    lv_disableBuildingsTrigger = false;
-                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Facing].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,BarracksAddOns,InfoArray[Build1].Time", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,BarracksAddOns,InfoArray[Build2].Time", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,FactoryAddOns,InfoArray[Build1].Time", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,FactoryAddOns,InfoArray[Build2].Time", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,StarportAddOns,InfoArray[Build1].Time", auto505CF5C1_var, "1");
-                    CatalogReferenceSet("Abil,StarportAddOns,InfoArray[Build2].Time", auto505CF5C1_var, "1");
+            auto8F9D4B9E_var = PlayerGroupNextPlayer(auto8F9D4B9E_g, auto8F9D4B9E_var);
+            if (auto8F9D4B9E_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto8F9D4B9E_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto8F9D4B9E_var);
+                if (((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto8F9D4B9E_var] == libD31C8AFA_gv_buildings) || (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto8F9D4B9E_var] == libD31C8AFA_gv_both))) {
+                    libDBC4E2D2_gv_pLAYERS[auto8F9D4B9E_var].lv_iNSTANTPRODUCTION.lv_buildings = true;
+                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToLair,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToHive,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToGreaterSpire,InfoArray[0].SectionArray[Facing].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Abils].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Actor].DurationArray[Duration]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,UpgradeToPlanetaryFortress,InfoArray[0].SectionArray[Stats].DurationArray[Delay]", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,BarracksAddOns,InfoArray[Build1].Time", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,BarracksAddOns,InfoArray[Build2].Time", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,FactoryAddOns,InfoArray[Build1].Time", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,FactoryAddOns,InfoArray[Build2].Time", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,StarportAddOns,InfoArray[Build1].Time", auto8F9D4B9E_var, "1");
+                    CatalogReferenceSet("Abil,StarportAddOns,InfoArray[Build2].Time", auto8F9D4B9E_var, "1");
                 }
 
-                if (((GameAttributePlayerValue("127", auto505CF5C1_var) == "0002") || (GameAttributePlayerValue("127", auto505CF5C1_var) == "0004"))) {
-                    libDBC4E2D2_gv_players[auto505CF5C1_var].lv_iNSTANTPRODUCTION.lv_upgrades = true;
-                    lv_disableUpgradesTrigger = false;
+                if (((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto8F9D4B9E_var] == libD31C8AFA_gv_upgrades) || (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto8F9D4B9E_var] == libD31C8AFA_gv_both))) {
+                    libDBC4E2D2_gv_pLAYERS[auto8F9D4B9E_var].lv_iNSTANTPRODUCTION.lv_upgrades = true;
                 }
 
+                TextExpressionSetToken("Param/Expression/lib_D31C8AFA_DACB65FC", "A", TextWithColor(PlayerName(auto8F9D4B9E_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto8F9D4B9E_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D31C8AFA_DACB65FC"));
+                TextExpressionSetToken("Param/Expression/lib_D31C8AFA_FE2A0A9A", "A", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_pLAYERS[auto8F9D4B9E_var].lv_iNSTANTPRODUCTION.lv_upgrades));
+                TextExpressionSetToken("Param/Expression/lib_D31C8AFA_FE2A0A9A", "B", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_pLAYERS[auto8F9D4B9E_var].lv_iNSTANTPRODUCTION.lv_buildings));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D31C8AFA_FE2A0A9A"));
             }
 
         }
-        auto976EAAA4_g = lv_players;
-        auto976EAAA4_var = -1;
-        while (true) {
-            auto976EAAA4_var = PlayerGroupNextPlayer(auto976EAAA4_g, auto976EAAA4_var);
-            if (auto976EAAA4_var < 0) { break; }
-            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_E7A75DD3", "A", TextWithColor(PlayerName(auto976EAAA4_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto976EAAA4_var, false))));
-            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D31C8AFA_E7A75DD3"));
-            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_FEDA70CD", "A", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_players[auto976EAAA4_var].lv_iNSTANTPRODUCTION.lv_upgrades));
-            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_FEDA70CD", "B", libNtve_gf_ConvertBooleanToText(libDBC4E2D2_gv_players[auto976EAAA4_var].lv_iNSTANTPRODUCTION.lv_buildings));
-            lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_D31C8AFA_FEDA70CD"));
-        }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_A4712883", "Players", lv_playersSettings);
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_D31C8AFA_FC321B63"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D31C8AFA_A4712883"), StringExternal("Param/Value/lib_D31C8AFA_783D9DED"), "Assets\\Textures\\btn-progression-hornerhan-6-mirabuildtime.dds");
-        }
-
-        if ((lv_disableBuildingsTrigger == true)) {
-            TriggerEnable(libD31C8AFA_gt_ConstructionStarted, false);
-        }
-
-        if ((lv_disableUpgradesTrigger == true)) {
-            TriggerEnable(libD31C8AFA_gt_UpgradeStarted, false);
+            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_BFBFCEAB", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_D31C8AFA_BFBFCEAB", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_D31C8AFA_BFBFCEAB"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
 
     }
@@ -111,13 +126,26 @@ bool libD31C8AFA_gt_InstantProductionModStart_Func (bool testConds, bool runActi
         TriggerEnable(libD31C8AFA_gt_ConstructionStarted, false);
         TriggerEnable(libD31C8AFA_gt_UpgradeStarted, false);
     }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libD31C8AFA_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libD31C8AFA_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libD31C8AFA_gt_InstantProductionModStart_Init () {
-    libD31C8AFA_gt_InstantProductionModStart = TriggerCreate("libD31C8AFA_gt_InstantProductionModStart_Func");
-    TriggerAddEventMapInit(libD31C8AFA_gt_InstantProductionModStart);
+void libD31C8AFA_gt_SetupHandicap_Init () {
+    libD31C8AFA_gt_SetupHandicap = TriggerCreate("libD31C8AFA_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -127,7 +155,7 @@ bool libD31C8AFA_gt_ConstructionStarted_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((libDBC4E2D2_gv_players[EventPlayer()].lv_iNSTANTPRODUCTION.lv_buildings == true))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_iNSTANTPRODUCTION.lv_buildings == true))) {
             return false;
         }
     }
@@ -154,7 +182,7 @@ bool libD31C8AFA_gt_UpgradeStarted_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((libDBC4E2D2_gv_players[EventPlayer()].lv_iNSTANTPRODUCTION.lv_upgrades == true))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_iNSTANTPRODUCTION.lv_upgrades == true))) {
             return false;
         }
     }
@@ -175,7 +203,7 @@ void libD31C8AFA_gt_UpgradeStarted_Init () {
 }
 
 void libD31C8AFA_InitTriggers () {
-    libD31C8AFA_gt_InstantProductionModStart_Init();
+    libD31C8AFA_gt_SetupHandicap_Init();
     libD31C8AFA_gt_ConstructionStarted_Init();
     libD31C8AFA_gt_UpgradeStarted_Init();
 }
@@ -193,8 +221,10 @@ void libD31C8AFA_InitLib () {
     libD31C8AFA_InitLib_completed = true;
 
     libD31C8AFA_InitLibraries();
+    libD31C8AFA_InitVariables();
     libD31C8AFA_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

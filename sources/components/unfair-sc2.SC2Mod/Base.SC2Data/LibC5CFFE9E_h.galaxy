@@ -3,6 +3,11 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: FOG OF WAR
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libC5CFFE9E_gf_SetupOptions (int lp_handicapindex);
+void libC5CFFE9E_gf_EnableHandicap (int lp_handicapIndex);
+void libC5CFFE9E_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger libC5CFFE9E_gt_FogofWarModStart;
+trigger libC5CFFE9E_gt_SetupHandicap;
 

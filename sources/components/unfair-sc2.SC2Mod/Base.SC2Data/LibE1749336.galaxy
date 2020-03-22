@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 
 include "LibE1749336_h"
 
@@ -8,6 +9,7 @@ include "LibE1749336_h"
 // External Library Initialization
 void libE1749336_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
 }
 
 // Variable Initialization
@@ -25,110 +27,124 @@ void libE1749336_InitVariables () {
 }
 
 // Functions
-void libE1749336_gf_AllowToBuild (unit lp_unit) {
-    // Automatic Variable Declarations
-    // Implementation
-    UnitAbilityEnable(lp_unit, "ZergBuild", true);
-    UnitAbilityEnable(lp_unit, "ProtossBuild", true);
-    UnitAbilityEnable(lp_unit, "TerranBuild", true);
-}
-
-void libE1749336_gf_DisallowToBuild (unit lp_unit) {
-    // Automatic Variable Declarations
-    // Implementation
-    UnitAbilityEnable(lp_unit, "ZergBuild", false);
-    UnitAbilityEnable(lp_unit, "ProtossBuild", false);
-    UnitAbilityEnable(lp_unit, "TerranBuild", false);
-}
-
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: No Rush Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libE1749336_gt_NoRushModStart_Func (bool testConds, bool runActions) {
+void libE1749336_gf_SetupOptions (int lp_handicapindex) {
     // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_E1749336_E9261E7A");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_E1749336_345D9572");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-unit-collection-defensivematrixdrone-covertops.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_E1749336_E0A7FDC1");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "3";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "4";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libE1749336_gt_SetupHandicap;
+}
+
+void libE1749336_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
     int lv_timeout;
 
     // Automatic Variable Declarations
-    string autoE56FDA10_val;
-    playergroup auto87BB2361_g;
-    int auto87BB2361_var;
+    string auto093FF477_val;
+    playergroup autoBFEDF9AA_g;
+    int autoBFEDF9AA_var;
 
     // Variable Initialization
+    lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("56") == "0001")) {
-        autoE56FDA10_val = GameAttributeGameValue("57");
-        if (autoE56FDA10_val == "0001") {
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto093FF477_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (auto093FF477_val == "1") {
             lv_timeout = 60;
         }
-        else if (autoE56FDA10_val == "0002") {
+        else if (auto093FF477_val == "2") {
             lv_timeout = 120;
         }
-        else if (autoE56FDA10_val == "0003") {
+        else if (auto093FF477_val == "3") {
             lv_timeout = 180;
         }
-        else if (autoE56FDA10_val == "0004") {
+        else if (auto093FF477_val == "4") {
             lv_timeout = 240;
         }
-        else if (autoE56FDA10_val == "0005") {
+        else if (auto093FF477_val == "5") {
             lv_timeout = 300;
         }
         else {
         }
         TimerStart(libE1749336_gv_noRushTimer, lv_timeout, false, c_timeReal);
-        TimerWindowCreate(libE1749336_gv_noRushTimer, StringExternal("Param/Value/lib_E1749336_1657C17A"), true, false);
+        TimerWindowCreate(libE1749336_gv_noRushTimer, StringExternal("Param/Value/lib_E1749336_262853B9"), true, false);
         libE1749336_gv_noRushTimerWindow = TimerWindowLastCreated();
         TimerWindowShowBorder(libE1749336_gv_noRushTimerWindow, false);
         TimerWindowShow(libE1749336_gv_noRushTimerWindow, PlayerGroupAll(), true);
-        TextExpressionSetToken("Param/Expression/lib_E1749336_51BF1D97", "Timeout", IntToText(lv_timeout));
-        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_E1749336_F257EAC2"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_E1749336_51BF1D97"), StringExternal("Param/Value/lib_E1749336_75BFB82E"), "Assets\\Textures\\btn-unit-collection-defensivematrixdrone-covertops.dds");
-        Wait(1.0, c_timeReal);
-        auto87BB2361_g = PlayerGroupActive();
-        auto87BB2361_var = -1;
+        TextExpressionSetToken("Param/Expression/lib_E1749336_299E8ECA", "Timeout", IntToText(lv_timeout));
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_E1749336_299E8ECA"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        autoBFEDF9AA_g = PlayerGroupActive();
+        autoBFEDF9AA_var = -1;
         while (true) {
-            auto87BB2361_var = PlayerGroupNextPlayer(auto87BB2361_g, auto87BB2361_var);
-            if (auto87BB2361_var < 0) { break; }
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "PointDefenseDrone", 0, auto87BB2361_var, PlayerStartLocation(auto87BB2361_var));
+            autoBFEDF9AA_var = PlayerGroupNextPlayer(autoBFEDF9AA_g, autoBFEDF9AA_var);
+            if (autoBFEDF9AA_var < 0) { break; }
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "PointDefenseDrone", 0, autoBFEDF9AA_var, PlayerStartLocation(autoBFEDF9AA_var));
             UnitBehaviorAdd(UnitLastCreated(), "SlownessAura", UnitLastCreated(), 1);
             UnitSetPropertyFixed(UnitLastCreated(), c_unitPropEnergyMax, 0.0);
             libNtve_gf_MakeUnitUncommandable(UnitLastCreated(), true);
             libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
             libNtve_gf_AttachActorToUnit(UnitLastCreated(), "SensorTowerRadar2", "Ref_Head");
-            libE1749336_gv_pDDs[auto87BB2361_var] = UnitLastCreated();
+            libE1749336_gv_pDDs[autoBFEDF9AA_var] = UnitLastCreated();
         }
     }
     else {
         TriggerEnable(libE1749336_gt_NoRushTimerElapsed, false);
     }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libE1749336_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libE1749336_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libE1749336_gt_NoRushModStart_Init () {
-    libE1749336_gt_NoRushModStart = TriggerCreate("libE1749336_gt_NoRushModStart_Func");
-    TriggerAddEventMapInit(libE1749336_gt_NoRushModStart);
+void libE1749336_gt_SetupHandicap_Init () {
+    libE1749336_gt_SetupHandicap = TriggerCreate("libE1749336_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: No Rush Timer Elapsed
 //--------------------------------------------------------------------------------------------------
 bool libE1749336_gt_NoRushTimerElapsed_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_i;
-
     // Automatic Variable Declarations
-    const int auto1F536953_ae = 17;
-    const int auto1F536953_ai = 1;
-    unitgroup autoE9579E8B_g;
-    int autoE9579E8B_u;
-    unit autoE9579E8B_var;
-
-    // Variable Initialization
+    playergroup auto67645A40_g;
+    int auto67645A40_var;
 
     // Actions
     if (!runActions) {
@@ -136,16 +152,12 @@ bool libE1749336_gt_NoRushTimerElapsed_Func (bool testConds, bool runActions) {
     }
 
     TimerWindowShow(libE1749336_gv_noRushTimerWindow, PlayerGroupAll(), false);
-    lv_i = 1;
-    for ( ; ( (auto1F536953_ai >= 0 && lv_i <= auto1F536953_ae) || (auto1F536953_ai < 0 && lv_i >= auto1F536953_ae) ) ; lv_i += auto1F536953_ai ) {
-        UnitKill(libE1749336_gv_pDDs[lv_i]);
-        autoE9579E8B_g = UnitGroup(null, lv_i, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-        autoE9579E8B_u = UnitGroupCount(autoE9579E8B_g, c_unitCountAll);
-        for (;; autoE9579E8B_u -= 1) {
-            autoE9579E8B_var = UnitGroupUnitFromEnd(autoE9579E8B_g, autoE9579E8B_u);
-            if (autoE9579E8B_var == null) { break; }
-            libE1749336_gf_AllowToBuild(autoE9579E8B_var);
-        }
+    auto67645A40_g = PlayerGroupActive();
+    auto67645A40_var = -1;
+    while (true) {
+        auto67645A40_var = PlayerGroupNextPlayer(auto67645A40_g, auto67645A40_var);
+        if (auto67645A40_var < 0) { break; }
+        UnitKill(libE1749336_gv_pDDs[auto67645A40_var]);
     }
     return true;
 }
@@ -157,7 +169,7 @@ void libE1749336_gt_NoRushTimerElapsed_Init () {
 }
 
 void libE1749336_InitTriggers () {
-    libE1749336_gt_NoRushModStart_Init();
+    libE1749336_gt_SetupHandicap_Init();
     libE1749336_gt_NoRushTimerElapsed_Init();
 }
 
@@ -177,4 +189,6 @@ void libE1749336_InitLib () {
     libE1749336_InitVariables();
     libE1749336_InitTriggers();
 }
+
+include "LibD169EC7B"
 

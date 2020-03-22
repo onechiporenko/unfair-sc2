@@ -1,4 +1,6 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
+include "LibCB22438A_h"
 include "LibDBC4E2D2_h"
 
 include "Lib88BAA5D0_h"
@@ -9,6 +11,8 @@ include "Lib88BAA5D0_h"
 // External Library Initialization
 void lib88BAA5D0_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
+    libCB22438A_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -27,15 +31,40 @@ void lib88BAA5D0_InitVariables () {
 }
 
 // Functions
+void lib88BAA5D0_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_88BAA5D0_D890F9B4");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_88BAA5D0_7F14A64A");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-blink-color.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_88BAA5D0_D515225B");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib88BAA5D0_gv_turnOnBlinkWars;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib88BAA5D0_gt_SetupHandicap;
+}
+
 void lib88BAA5D0_gf_RemoveBlink (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation
     if ((UnitGetType(lp_unit) != "Stalker")) {
-        if ((GameAttributeGameValue("63") == "0002")) {
+        if ((lib88BAA5D0_gv_blnikWarsEnabled == false)) {
             UnitAbilityShow(lp_unit, "Blink", false);
         }
         else {
-            if ((GameAttributePlayerValue("64", UnitGetOwner(lp_unit)) != "0001")) {
+            if ((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unit)].lv_bLINKWARS.lv_enabled == false)) {
                 UnitAbilityShow(lp_unit, "Blink", false);
             }
 
@@ -44,131 +73,130 @@ void lib88BAA5D0_gf_RemoveBlink (unit lp_unit) {
 
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Blink Wars Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib88BAA5D0_gt_BlinkWarsModStart_Func (bool testConds, bool runActions) {
+void lib88BAA5D0_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
-    text lv_defaultDescription;
 
     // Automatic Variable Declarations
-    playergroup autoC0F7FF09_g;
-    int autoC0F7FF09_var;
+    playergroup auto8465C758_g;
+    int auto8465C758_var;
+    unitgroup auto74A63F3D_g;
+    int auto74A63F3D_u;
+    unit auto74A63F3D_var;
+    playergroup auto5673635E_g;
+    int auto5673635E_var;
+    unitgroup auto271B5CB7_g;
+    int auto271B5CB7_u;
+    unit auto271B5CB7_var;
+    playergroup auto3D49698B_g;
+    int auto3D49698B_var;
+    unitgroup auto12A71D0C_g;
+    int auto12A71D0C_u;
+    unit auto12A71D0C_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
-    lv_defaultDescription = StringExternal("Param/Value/lib_88BAA5D0_BC2EF092");
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("63") == "0001")) {
-        autoC0F7FF09_g = PlayerGroupAll();
-        autoC0F7FF09_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        lib88BAA5D0_gv_blnikWarsEnabled = true;
+        auto5673635E_g = PlayerGroupActive();
+        auto5673635E_var = -1;
         while (true) {
-            autoC0F7FF09_var = PlayerGroupNextPlayer(autoC0F7FF09_g, autoC0F7FF09_var);
-            if (autoC0F7FF09_var < 0) { break; }
-            if ((GameAttributePlayerValue("64", autoC0F7FF09_var) == "0001")) {
-                PlayerGroupAdd(lv_players, autoC0F7FF09_var);
+            auto5673635E_var = PlayerGroupNextPlayer(auto5673635E_g, auto5673635E_var);
+            if (auto5673635E_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto5673635E_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto5673635E_var);
+                lib88BAA5D0_gf_EnableHandicapForPlayer(auto5673635E_var);
             }
+            else {
+                if ((libDBC4E2D2_gv_pLAYERS[auto5673635E_var].lv_bLINKWARS.lv_enabled == false)) {
+                    auto271B5CB7_g = UnitGroup(null, auto5673635E_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                    auto271B5CB7_u = UnitGroupCount(auto271B5CB7_g, c_unitCountAll);
+                    for (;; auto271B5CB7_u -= 1) {
+                        auto271B5CB7_var = UnitGroupUnitFromEnd(auto271B5CB7_g, auto271B5CB7_u);
+                        if (auto271B5CB7_var == null) { break; }
+                        lib88BAA5D0_gf_RemoveBlink(auto271B5CB7_var);
+                    }
+                }
 
+            }
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_88BAA5D0_74F1A993", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_88BAA5D0_7BAB5FCA"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_88BAA5D0_74F1A993")), StringExternal("Param/Value/lib_88BAA5D0_7CA83610"), "Assets\\Textures\\btn-ability-protoss-blink-color.dds");
+            TextExpressionSetToken("Param/Expression/lib_88BAA5D0_536C3BF3", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_88BAA5D0_536C3BF3", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_88BAA5D0_536C3BF3"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
             TimerStart(lib88BAA5D0_gv_blinkTimer, 300.0, false, c_timeReal);
-            TimerWindowCreate(lib88BAA5D0_gv_blinkTimer, StringExternal("Param/Value/lib_88BAA5D0_A1067A8A"), true, false);
+            TimerWindowCreate(lib88BAA5D0_gv_blinkTimer, StringExternal("Param/Value/lib_88BAA5D0_C3744022"), true, false);
             lib88BAA5D0_gv_blinkTimerWindow = TimerWindowLastCreated();
             TimerWindowShowBorder(lib88BAA5D0_gv_blinkTimerWindow, false);
             TimerWindowShow(lib88BAA5D0_gv_blinkTimerWindow, PlayerGroupAll(), true);
         }
         else {
-            TriggerEnable(lib88BAA5D0_gt_GiveBlink, false);
+            TriggerEnable(libCB22438A_gt_UnitIsCreated, false);
+            auto3D49698B_g = PlayerGroupAll();
+            auto3D49698B_var = -1;
+            while (true) {
+                auto3D49698B_var = PlayerGroupNextPlayer(auto3D49698B_g, auto3D49698B_var);
+                if (auto3D49698B_var < 0) { break; }
+                auto12A71D0C_g = UnitGroup(null, auto3D49698B_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto12A71D0C_u = UnitGroupCount(auto12A71D0C_g, c_unitCountAll);
+                for (;; auto12A71D0C_u -= 1) {
+                    auto12A71D0C_var = UnitGroupUnitFromEnd(auto12A71D0C_g, auto12A71D0C_u);
+                    if (auto12A71D0C_var == null) { break; }
+                    lib88BAA5D0_gf_RemoveBlink(auto12A71D0C_var);
+                }
+            }
         }
     }
     else {
-        TriggerEnable(lib88BAA5D0_gt_GiveBlink, false);
+        TriggerEnable(libCB22438A_gt_UnitIsCreated, false);
+        auto8465C758_g = PlayerGroupAll();
+        auto8465C758_var = -1;
+        while (true) {
+            auto8465C758_var = PlayerGroupNextPlayer(auto8465C758_g, auto8465C758_var);
+            if (auto8465C758_var < 0) { break; }
+            auto74A63F3D_g = UnitGroup(null, auto8465C758_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto74A63F3D_u = UnitGroupCount(auto74A63F3D_g, c_unitCountAll);
+            for (;; auto74A63F3D_u -= 1) {
+                auto74A63F3D_var = UnitGroupUnitFromEnd(auto74A63F3D_g, auto74A63F3D_u);
+                if (auto74A63F3D_var == null) { break; }
+                lib88BAA5D0_gf_RemoveBlink(auto74A63F3D_var);
+            }
+        }
     }
-    return true;
 }
 
-//--------------------------------------------------------------------------------------------------
-void lib88BAA5D0_gt_BlinkWarsModStart_Init () {
-    lib88BAA5D0_gt_BlinkWarsModStart = TriggerCreate("lib88BAA5D0_gt_BlinkWarsModStart_Func");
-    TriggerAddEventMapInit(lib88BAA5D0_gt_BlinkWarsModStart);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Remove Blink From Initial Units
-//--------------------------------------------------------------------------------------------------
-bool lib88BAA5D0_gt_RemoveBlinkFromInitialUnits_Func (bool testConds, bool runActions) {
+void lib88BAA5D0_gf_EnableHandicapForPlayer (int lp_player) {
     // Automatic Variable Declarations
-    playergroup auto3D055157_g;
-    int auto3D055157_var;
-    unitgroup auto25E95CC5_g;
-    int auto25E95CC5_u;
-    unit auto25E95CC5_var;
-    playergroup auto8E6F68D6_g;
-    int auto8E6F68D6_var;
-    unitgroup autoB47A829C_g;
-    int autoB47A829C_u;
-    unit autoB47A829C_var;
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_bLINKWARS.lv_enabled = true;
+}
 
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib88BAA5D0_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("63") == "0001")) {
-        auto8E6F68D6_g = PlayerGroupAll();
-        auto8E6F68D6_var = -1;
-        while (true) {
-            auto8E6F68D6_var = PlayerGroupNextPlayer(auto8E6F68D6_g, auto8E6F68D6_var);
-            if (auto8E6F68D6_var < 0) { break; }
-            if ((GameAttributePlayerValue("64", auto8E6F68D6_var) != "0001")) {
-                autoB47A829C_g = UnitGroup(null, auto8E6F68D6_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoB47A829C_u = UnitGroupCount(autoB47A829C_g, c_unitCountAll);
-                for (;; autoB47A829C_u -= 1) {
-                    autoB47A829C_var = UnitGroupUnitFromEnd(autoB47A829C_g, autoB47A829C_u);
-                    if (autoB47A829C_var == null) { break; }
-                    lib88BAA5D0_gf_RemoveBlink(autoB47A829C_var);
-                }
-            }
-
-        }
-    }
-    else {
-        auto3D055157_g = PlayerGroupAll();
-        auto3D055157_var = -1;
-        while (true) {
-            auto3D055157_var = PlayerGroupNextPlayer(auto3D055157_g, auto3D055157_var);
-            if (auto3D055157_var < 0) { break; }
-            auto25E95CC5_g = UnitGroup(null, auto3D055157_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-            auto25E95CC5_u = UnitGroupCount(auto25E95CC5_g, c_unitCountAll);
-            for (;; auto25E95CC5_u -= 1) {
-                auto25E95CC5_var = UnitGroupUnitFromEnd(auto25E95CC5_g, auto25E95CC5_u);
-                if (auto25E95CC5_var == null) { break; }
-                lib88BAA5D0_gf_RemoveBlink(auto25E95CC5_var);
-            }
-        }
-    }
+    lib88BAA5D0_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib88BAA5D0_gt_RemoveBlinkFromInitialUnits_Init () {
-    lib88BAA5D0_gt_RemoveBlinkFromInitialUnits = TriggerCreate("lib88BAA5D0_gt_RemoveBlinkFromInitialUnits_Func");
-    TriggerAddEventTimeElapsed(lib88BAA5D0_gt_RemoveBlinkFromInitialUnits, 1.0, c_timeReal);
+void lib88BAA5D0_gt_SetupHandicap_Init () {
+    lib88BAA5D0_gt_SetupHandicap = TriggerCreate("lib88BAA5D0_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Remove Blink From Created Unit
+// Trigger: Unit Is Created
 //--------------------------------------------------------------------------------------------------
-bool lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit_Func (bool testConds, bool runActions) {
+bool lib88BAA5D0_gt_UnitIsCreated_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -180,15 +208,15 @@ bool lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit_Func (bool testConds, bool runAct
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit_Init () {
-    lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit = TriggerCreate("lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit_Func");
-    TriggerAddEventUnitCreated(lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit, null, null, null);
+void lib88BAA5D0_gt_UnitIsCreated_Init () {
+    lib88BAA5D0_gt_UnitIsCreated = TriggerCreate("lib88BAA5D0_gt_UnitIsCreated_Func");
+    TriggerAddEventUnitCreated(lib88BAA5D0_gt_UnitIsCreated, null, null, null);
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Remove Blink From Constructed Unit
+// Trigger: Unit Is Constructed
 //--------------------------------------------------------------------------------------------------
-bool lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit_Func (bool testConds, bool runActions) {
+bool lib88BAA5D0_gt_UnitIsConstructed_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Actions
     if (!runActions) {
@@ -200,9 +228,9 @@ bool lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit_Func (bool testConds, bool ru
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit_Init () {
-    lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit = TriggerCreate("lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit_Func");
-    TriggerAddEventUnitConstructProgress(lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit, null, c_unitProgressStageComplete);
+void lib88BAA5D0_gt_UnitIsConstructed_Init () {
+    lib88BAA5D0_gt_UnitIsConstructed = TriggerCreate("lib88BAA5D0_gt_UnitIsConstructed_Func");
+    TriggerAddEventUnitConstructProgress(lib88BAA5D0_gt_UnitIsConstructed, null, c_unitProgressStageComplete);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -218,13 +246,13 @@ bool lib88BAA5D0_gt_GiveBlink_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("63") == "0001")) {
+    if ((lib88BAA5D0_gv_blnikWarsEnabled == true)) {
         auto3669A0B7_g = PlayerGroupAll();
         auto3669A0B7_var = -1;
         while (true) {
             auto3669A0B7_var = PlayerGroupNextPlayer(auto3669A0B7_g, auto3669A0B7_var);
             if (auto3669A0B7_var < 0) { break; }
-            if ((GameAttributePlayerValue("64", auto3669A0B7_var) == "0001")) {
+            if ((libDBC4E2D2_gv_pLAYERS[auto3669A0B7_var].lv_bLINKWARS.lv_enabled == true)) {
                 libNtve_gf_SetUpgradeLevelForPlayer(auto3669A0B7_var, "BlinkTech", 1);
             }
 
@@ -238,14 +266,13 @@ bool lib88BAA5D0_gt_GiveBlink_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void lib88BAA5D0_gt_GiveBlink_Init () {
     lib88BAA5D0_gt_GiveBlink = TriggerCreate("lib88BAA5D0_gt_GiveBlink_Func");
-    TriggerAddEventTimeElapsed(lib88BAA5D0_gt_GiveBlink, 300.0, c_timeReal);
+    TriggerAddEventTimer(lib88BAA5D0_gt_GiveBlink, lib88BAA5D0_gv_blinkTimer);
 }
 
 void lib88BAA5D0_InitTriggers () {
-    lib88BAA5D0_gt_BlinkWarsModStart_Init();
-    lib88BAA5D0_gt_RemoveBlinkFromInitialUnits_Init();
-    lib88BAA5D0_gt_RemoveBlinkFromCreatedUnit_Init();
-    lib88BAA5D0_gt_RemoveBlinkFromConstructedUnit_Init();
+    lib88BAA5D0_gt_SetupHandicap_Init();
+    lib88BAA5D0_gt_UnitIsCreated_Init();
+    lib88BAA5D0_gt_UnitIsConstructed_Init();
     lib88BAA5D0_gt_GiveBlink_Init();
 }
 
@@ -266,5 +293,7 @@ void lib88BAA5D0_InitLib () {
     lib88BAA5D0_InitTriggers();
 }
 
+include "LibD169EC7B"
+include "LibCB22438A"
 include "LibDBC4E2D2"
 

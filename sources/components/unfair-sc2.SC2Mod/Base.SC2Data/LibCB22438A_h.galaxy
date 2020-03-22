@@ -3,10 +3,17 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: BERSERKER'S BLOOD
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libCB22438A_gv_turnOnBerserkersBlood = "Turn On";
+
 // Function Declarations
+void libCB22438A_gf_SetupOptions (int lp_handicapindex);
+void libCB22438A_gf_EnableHandicap (int lp_handicapIndex);
+void libCB22438A_gf_EnableHandicapForPlayer (int lp_player);
 void libCB22438A_gf_AddBerserkersBloodBehaviors (unit lp_unit);
 
 // Trigger Declarations
+trigger libCB22438A_gt_SetupHandicap;
 trigger libCB22438A_gt_ChangeUnitSize145;
 trigger libCB22438A_gt_ChangeUnitSize140;
 trigger libCB22438A_gt_ChangeUnitSize135;
@@ -17,7 +24,8 @@ trigger libCB22438A_gt_ChangeUnitSize115;
 trigger libCB22438A_gt_ChangeUnitSize110;
 trigger libCB22438A_gt_ChangeUnitSize105;
 trigger libCB22438A_gt_ChangeUnitSize100;
-trigger libCB22438A_gt_BerserkersBloodModStart;
-trigger libCB22438A_gt_AddBuffForInitialUnits;
-trigger libCB22438A_gt_AddBuffForCreatedUnit;
+trigger libCB22438A_gt_UnitIsCreated;
+
+// Library Initialization
+void libCB22438A_InitVariables ();
 

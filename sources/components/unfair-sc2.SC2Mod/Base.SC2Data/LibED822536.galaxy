@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibED822536_h"
@@ -9,88 +10,123 @@ include "LibED822536_h"
 // External Library Initialization
 void libED822536_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Talandar Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libED822536_gt_TalandarModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libED822536_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_ED822536_1A08DED0");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_ED822536_88D76789");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-progression-protoss-fenix-2-purifierconclave.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_ED822536_F708BE80");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libED822536_gt_SetupHandicap;
+}
+
+void libED822536_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup auto1C2CBF91_g;
-    int auto1C2CBF91_var;
+    playergroup auto26CD8657_g;
+    int auto26CD8657_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto26CD8657_g = PlayerGroupActive();
+        auto26CD8657_var = -1;
+        while (true) {
+            auto26CD8657_var = PlayerGroupNextPlayer(auto26CD8657_g, auto26CD8657_var);
+            if (auto26CD8657_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto26CD8657_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto26CD8657_var);
+                TechTreeRequirementsEnable(auto26CD8657_var, false);
+                CatalogFieldValueSet(c_gameCatalogUnit, "BanelingNest", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "HydraliskDen", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "InfestationPit", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerDenMP", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Spire", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "GreaterSpire", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "NydusNetwork", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "UltraliskCavern", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "TwilightCouncil", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoboticsFacility", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Stargate", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "TemplarArchive", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FleetBeacon", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "RoboticsBay", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "DarkShrine", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "GhostAcademy", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Factory", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FactoryFlying", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Armory", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Starport", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "StarportFlying", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FusionCore", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "PlanetaryFortress", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "TechLab", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FactoryTechLab", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "BarracksTechLab", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "StarportTechLab", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "Reactor", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "FactoryReactor", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "BarracksReactor", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+                CatalogFieldValueSet(c_gameCatalogUnit, "StarportReactor", "CostResource[" + IntToString(1) + "]", auto26CD8657_var, "0");
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_ED822536_283D0D8A", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_ED822536_283D0D8A", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_ED822536_283D0D8A"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libED822536_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("128") == "0001")) {
-        auto1C2CBF91_g = PlayerGroupAll();
-        auto1C2CBF91_var = -1;
-        while (true) {
-            auto1C2CBF91_var = PlayerGroupNextPlayer(auto1C2CBF91_g, auto1C2CBF91_var);
-            if (auto1C2CBF91_var < 0) { break; }
-            if ((GameAttributePlayerValue("129", auto1C2CBF91_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto1C2CBF91_var);
-                TechTreeRequirementsEnable(auto1C2CBF91_var, false);
-                CatalogFieldValueSet(c_gameCatalogUnit, "BanelingNest", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "HydraliskDen", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "InfestationPit", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "LurkerDenMP", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "Spire", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "GreaterSpire", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "NydusNetwork", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "UltraliskCavern", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "TwilightCouncil", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "RoboticsFacility", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "Stargate", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "TemplarArchive", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "FleetBeacon", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "RoboticsBay", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "DarkShrine", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "GhostAcademy", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "Factory", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "Armory", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "Starport", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "FusionCore", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "PlanetaryFortress", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "TechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "FactoryTechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "BarracksTechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "StarportTechLab", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "Reactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "FactoryReactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "BarracksReactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-                CatalogFieldValueSet(c_gameCatalogUnit, "StarportReactor", "CostResource[" + IntToString(1) + "]", auto1C2CBF91_var, "0");
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_ED822536_6FAC3629", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_ED822536_F0D064B0"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_ED822536_6FAC3629"), StringExternal("Param/Value/lib_ED822536_42E6F4CF"), "Assets\\Textures\\btn-progression-protoss-fenix-2-purifierconclave.dds");
-        }
-
-    }
-
+    libED822536_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libED822536_gt_TalandarModStart_Init () {
-    libED822536_gt_TalandarModStart = TriggerCreate("libED822536_gt_TalandarModStart_Func");
-    TriggerAddEventMapInit(libED822536_gt_TalandarModStart);
+void libED822536_gt_SetupHandicap_Init () {
+    libED822536_gt_SetupHandicap = TriggerCreate("libED822536_gt_SetupHandicap_Func");
 }
 
 void libED822536_InitTriggers () {
-    libED822536_gt_TalandarModStart_Init();
+    libED822536_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -109,5 +145,6 @@ void libED822536_InitLib () {
     libED822536_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

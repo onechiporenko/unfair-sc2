@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib7397C7F4_h"
@@ -9,6 +10,7 @@ include "Lib7397C7F4_h"
 // External Library Initialization
 void lib7397C7F4_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -30,149 +32,268 @@ void lib7397C7F4_InitVariables () {
     lib7397C7F4_gv_attackSpeedMultiplier = 1.0;
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Walking Dead Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib7397C7F4_gt_WalkingDeadModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib7397C7F4_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_0238AE68");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_7397C7F4_92C10C87");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\walkingdead_coop.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_70122563");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "1";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "3";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Infinity";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_AE45BCE0");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "150";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_DC904D95");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "150";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_4C5C675C");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "150";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_69D5E22D");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "150";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_CEB31355");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "150";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_0BB6134D");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib7397C7F4_gv_yes;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = lib7397C7F4_gv_yes;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib7397C7F4_gv_no;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_7397C7F4_5D442356");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib7397C7F4_gt_SetupHandicap;
+}
+
+void lib7397C7F4_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    string autoEC68E9BD_val;
-    string autoB4D07105_val;
-    string auto626B65A8_val;
-    string autoC43E5771_val;
-    string autoED140CAD_val;
-    string auto41BE0A86_val;
-    playergroup auto2FBCE03C_g;
-    int auto2FBCE03C_var;
+    string auto807F8A98_val;
+    string auto1CE2F0F7_val;
+    string auto4F8E36E2_val;
+    string auto56EA1A7E_val;
+    string autoB0B58754_val;
+    string autoEFCEF963_val;
+    playergroup auto5C831F28_g;
+    int auto5C831F28_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("132") == "0001")) {
-        autoEC68E9BD_val = GameAttributeGameValue("139");
-        if (autoEC68E9BD_val == "0001") {
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto807F8A98_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (auto807F8A98_val == "1") {
             lib7397C7F4_gv_lifeTime = 60.0;
         }
-        else if (autoEC68E9BD_val == "0002") {
+        else if (auto807F8A98_val == "2") {
             lib7397C7F4_gv_lifeTime = 120.0;
         }
-        else if (autoEC68E9BD_val == "0003") {
+        else if (auto807F8A98_val == "3") {
             lib7397C7F4_gv_lifeTime = 180.0;
         }
-        else if (autoEC68E9BD_val == "0004") {
+        else if (auto807F8A98_val == "5") {
             lib7397C7F4_gv_lifeTime = 300.0;
         }
-        else if (autoEC68E9BD_val == "0005") {
+        else if (auto807F8A98_val == "10") {
             lib7397C7F4_gv_lifeTime = 600.0;
         }
-        else if (autoEC68E9BD_val == "0006") {
+        else {
             lib7397C7F4_gv_useLifeTime = false;
-        }
-        else {
-        }
-        autoB4D07105_val = GameAttributeGameValue("138");
-        if (autoB4D07105_val == "0001") {
-            lib7397C7F4_gv_armorMultiplier = 0.5;
-        }
-        else if (autoB4D07105_val == "0002") {
-            lib7397C7F4_gv_armorMultiplier = 0.75;
-        }
-        else if (autoB4D07105_val == "0003") {
-            lib7397C7F4_gv_armorMultiplier = 1.0;
-        }
-        else if (autoB4D07105_val == "0004") {
-            lib7397C7F4_gv_armorMultiplier = 1.5;
-        }
-        else if (autoB4D07105_val == "0005") {
-            lib7397C7F4_gv_armorMultiplier = 2.0;
-        }
-        else {
-        }
-        auto626B65A8_val = GameAttributeGameValue("134");
-        if (auto626B65A8_val == "0001") {
-            lib7397C7F4_gv_attackSpeedMultiplier = 0.5;
-        }
-        else if (auto626B65A8_val == "0002") {
-            lib7397C7F4_gv_attackSpeedMultiplier = 0.75;
-        }
-        else if (auto626B65A8_val == "0003") {
-            lib7397C7F4_gv_attackSpeedMultiplier = 1.0;
-        }
-        else if (auto626B65A8_val == "0004") {
-            lib7397C7F4_gv_attackSpeedMultiplier = 1.5;
-        }
-        else if (auto626B65A8_val == "0005") {
-            lib7397C7F4_gv_attackSpeedMultiplier = 2.0;
-        }
-        else {
-        }
-        autoC43E5771_val = GameAttributeGameValue("136");
-        if (autoC43E5771_val == "0001") {
-            lib7397C7F4_gv_hPMultiplier = 0.5;
-        }
-        else if (autoC43E5771_val == "0002") {
-            lib7397C7F4_gv_hPMultiplier = 0.75;
-        }
-        else if (autoC43E5771_val == "0003") {
-            lib7397C7F4_gv_hPMultiplier = 1.0;
-        }
-        else if (autoC43E5771_val == "0004") {
-            lib7397C7F4_gv_hPMultiplier = 1.5;
-        }
-        else if (autoC43E5771_val == "0005") {
-            lib7397C7F4_gv_hPMultiplier = 2.0;
-        }
-        else {
-        }
-        autoED140CAD_val = GameAttributeGameValue("135");
-        if (autoED140CAD_val == "0001") {
-            lib7397C7F4_gv_moveSpeedMultiplier = 0.5;
-        }
-        else if (autoED140CAD_val == "0002") {
-            lib7397C7F4_gv_moveSpeedMultiplier = 0.75;
-        }
-        else if (autoED140CAD_val == "0003") {
-            lib7397C7F4_gv_moveSpeedMultiplier = 1.0;
-        }
-        else if (autoED140CAD_val == "0004") {
-            lib7397C7F4_gv_moveSpeedMultiplier = 1.5;
-        }
-        else if (autoED140CAD_val == "0005") {
-            lib7397C7F4_gv_moveSpeedMultiplier = 2.0;
-        }
-        else {
-        }
-        auto41BE0A86_val = GameAttributeGameValue("137");
-        if (auto41BE0A86_val == "0001") {
-            lib7397C7F4_gv_shieldsMultiplier = 0.5;
-        }
-        else if (auto41BE0A86_val == "0002") {
-            lib7397C7F4_gv_shieldsMultiplier = 0.75;
-        }
-        else if (auto41BE0A86_val == "0003") {
-            lib7397C7F4_gv_shieldsMultiplier = 1.0;
-        }
-        else if (auto41BE0A86_val == "0004") {
-            lib7397C7F4_gv_shieldsMultiplier = 1.5;
-        }
-        else if (auto41BE0A86_val == "0005") {
-            lib7397C7F4_gv_shieldsMultiplier = 2.0;
-        }
-        else {
         }
         if ((lib7397C7F4_gv_useLifeTime == true)) {
             CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Duration", 15, FixedToString(lib7397C7F4_gv_lifeTime, c_fixedPrecisionAny));
         }
 
-        if ((GameAttributeGameValue("140") == "0001")) {
+        auto1CE2F0F7_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[1].lv_selectedVal;
+        if (auto1CE2F0F7_val == "50") {
+            lib7397C7F4_gv_armorMultiplier = 0.5;
+        }
+        else if (auto1CE2F0F7_val == "75") {
+            lib7397C7F4_gv_armorMultiplier = 0.75;
+        }
+        else if (auto1CE2F0F7_val == "100") {
+            lib7397C7F4_gv_armorMultiplier = 1.0;
+        }
+        else if (auto1CE2F0F7_val == "150") {
+            lib7397C7F4_gv_armorMultiplier = 1.5;
+        }
+        else if (auto1CE2F0F7_val == "200") {
+            lib7397C7F4_gv_armorMultiplier = 2.0;
+        }
+        else {
+        }
+        auto4F8E36E2_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[2].lv_selectedVal;
+        if (auto4F8E36E2_val == "50") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 0.5;
+        }
+        else if (auto4F8E36E2_val == "75") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 0.75;
+        }
+        else if (auto4F8E36E2_val == "100") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 1.0;
+        }
+        else if (auto4F8E36E2_val == "150") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 1.5;
+        }
+        else if (auto4F8E36E2_val == "200") {
+            lib7397C7F4_gv_attackSpeedMultiplier = 2.0;
+        }
+        else {
+        }
+        auto56EA1A7E_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[3].lv_selectedVal;
+        if (auto56EA1A7E_val == "50") {
+            lib7397C7F4_gv_hPMultiplier = 0.5;
+        }
+        else if (auto56EA1A7E_val == "75") {
+            lib7397C7F4_gv_hPMultiplier = 0.75;
+        }
+        else if (auto56EA1A7E_val == "100") {
+            lib7397C7F4_gv_hPMultiplier = 1.0;
+        }
+        else if (auto56EA1A7E_val == "150") {
+            lib7397C7F4_gv_hPMultiplier = 1.5;
+        }
+        else if (auto56EA1A7E_val == "200") {
+            lib7397C7F4_gv_hPMultiplier = 2.0;
+        }
+        else {
+        }
+        autoB0B58754_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[4].lv_selectedVal;
+        if (autoB0B58754_val == "50") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 0.5;
+        }
+        else if (autoB0B58754_val == "75") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 0.75;
+        }
+        else if (autoB0B58754_val == "100") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 1.0;
+        }
+        else if (autoB0B58754_val == "150") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 1.5;
+        }
+        else if (autoB0B58754_val == "200") {
+            lib7397C7F4_gv_moveSpeedMultiplier = 2.0;
+        }
+        else {
+        }
+        autoEFCEF963_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[5].lv_selectedVal;
+        if (autoEFCEF963_val == "50") {
+            lib7397C7F4_gv_shieldsMultiplier = 0.5;
+        }
+        else if (autoEFCEF963_val == "75") {
+            lib7397C7F4_gv_shieldsMultiplier = 0.75;
+        }
+        else if (autoEFCEF963_val == "100") {
+            lib7397C7F4_gv_shieldsMultiplier = 1.0;
+        }
+        else if (autoEFCEF963_val == "150") {
+            lib7397C7F4_gv_shieldsMultiplier = 1.5;
+        }
+        else if (autoEFCEF963_val == "200") {
+            lib7397C7F4_gv_shieldsMultiplier = 2.0;
+        }
+        else {
+        }
+        if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[6].lv_selectedVal == lib7397C7F4_gv_yes)) {
             lib7397C7F4_gv_zombiesfromStructures = true;
         }
         else {
@@ -181,25 +302,26 @@ bool lib7397C7F4_gt_WalkingDeadModStart_Func (bool testConds, bool runActions) {
         CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Modification.AttackSpeedMultiplier", 15, FixedToString(lib7397C7F4_gv_attackSpeedMultiplier, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Modification.MoveSpeedMultiplier", 15, FixedToString(lib7397C7F4_gv_attackSpeedMultiplier, c_fixedPrecisionAny));
         CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSC2WalkingDead", "Modification.LifeArmorMultiplier", 15, FixedToString(lib7397C7F4_gv_armorMultiplier, c_fixedPrecisionAny));
-        auto2FBCE03C_g = PlayerGroupActive();
-        auto2FBCE03C_var = -1;
+        auto5C831F28_g = PlayerGroupActive();
+        auto5C831F28_var = -1;
         while (true) {
-            auto2FBCE03C_var = PlayerGroupNextPlayer(auto2FBCE03C_g, auto2FBCE03C_var);
-            if (auto2FBCE03C_var < 0) { break; }
-            if ((GameAttributePlayerValue("133", auto2FBCE03C_var) == "0002")) {
-                PlayerGroupAdd(lv_players, auto2FBCE03C_var);
+            auto5C831F28_var = PlayerGroupNextPlayer(auto5C831F28_g, auto5C831F28_var);
+            if (auto5C831F28_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto5C831F28_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto5C831F28_var);
+                libDBC4E2D2_gv_pLAYERS[auto5C831F28_var].lv_wALKINGDEAD.lv_enabled = true;
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "MsMod", FixedToText((lib7397C7F4_gv_moveSpeedMultiplier * 100.0), c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "AsMod", FixedToText((lib7397C7F4_gv_attackSpeedMultiplier * 100.0), c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "HpMod", FixedToText((lib7397C7F4_gv_hPMultiplier * 100.0), c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "ArmorMod", FixedToText((lib7397C7F4_gv_armorMultiplier * 100.0), c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "ShieldsMod", FixedToText((lib7397C7F4_gv_shieldsMultiplier * 100.0), c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "LifeTime", FixedToText(lib7397C7F4_gv_lifeTime, c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_7397C7F4_1AEB5008", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_7397C7F4_323BFDCE"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7397C7F4_1AEB5008"), StringExternal("Param/Value/lib_7397C7F4_DDF2B27F"), "Assets\\Textures\\walkingdead_coop.dds");
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_6EFE8B0E", "MsMod", FixedToText((lib7397C7F4_gv_moveSpeedMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_6EFE8B0E", "AsMod", FixedToText((lib7397C7F4_gv_attackSpeedMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_6EFE8B0E", "HpMod", FixedToText((lib7397C7F4_gv_hPMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_6EFE8B0E", "ArmorMod", FixedToText((lib7397C7F4_gv_armorMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_6EFE8B0E", "ShieldsMod", FixedToText((lib7397C7F4_gv_shieldsMultiplier * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_6EFE8B0E", "LifeTime", FixedToText(lib7397C7F4_gv_lifeTime, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_7397C7F4_6EFE8B0E", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7397C7F4_6EFE8B0E"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(lib7397C7F4_gt_CreateWalkingZombie, false);
@@ -208,13 +330,26 @@ bool lib7397C7F4_gt_WalkingDeadModStart_Func (bool testConds, bool runActions) {
     else {
         TriggerEnable(lib7397C7F4_gt_CreateWalkingZombie, false);
     }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib7397C7F4_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib7397C7F4_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib7397C7F4_gt_WalkingDeadModStart_Init () {
-    lib7397C7F4_gt_WalkingDeadModStart = TriggerCreate("lib7397C7F4_gt_WalkingDeadModStart_Func");
-    TriggerAddEventMapInit(lib7397C7F4_gt_WalkingDeadModStart);
+void lib7397C7F4_gt_SetupHandicap_Init () {
+    lib7397C7F4_gt_SetupHandicap = TriggerCreate("lib7397C7F4_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -230,7 +365,7 @@ bool lib7397C7F4_gt_CreateWalkingZombie_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!((GameAttributePlayerValue("133", EventPlayer()) == "0002"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_wALKINGDEAD.lv_enabled == true))) {
             return false;
         }
 
@@ -301,7 +436,7 @@ void lib7397C7F4_gt_CreateWalkingZombie_Init () {
 }
 
 void lib7397C7F4_InitTriggers () {
-    lib7397C7F4_gt_WalkingDeadModStart_Init();
+    lib7397C7F4_gt_SetupHandicap_Init();
     lib7397C7F4_gt_CreateWalkingZombie_Init();
 }
 
@@ -322,5 +457,6 @@ void lib7397C7F4_InitLib () {
     lib7397C7F4_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

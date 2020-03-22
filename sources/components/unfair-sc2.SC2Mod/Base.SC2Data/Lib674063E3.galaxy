@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib674063E3_h"
@@ -9,6 +10,7 @@ include "Lib674063E3_h"
 // External Library Initialization
 void lib674063E3_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -27,6 +29,72 @@ void lib674063E3_InitVariables () {
 }
 
 // Functions
+void lib674063E3_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_674063E3_82B1E19C");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_674063E3_904ACE66");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-terran-nova-snipeenergyrefund.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_674063E3_DA131DC1");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib674063E3_gt_SetupHandicap;
+}
+
+void lib674063E3_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto86DF1119_g;
+    int auto86DF1119_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto86DF1119_g = PlayerGroupActive();
+        auto86DF1119_var = -1;
+        while (true) {
+            auto86DF1119_var = PlayerGroupNextPlayer(auto86DF1119_g, auto86DF1119_var);
+            if (auto86DF1119_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto86DF1119_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto86DF1119_var);
+                lib674063E3_gf_SetCameraHeightForPlayer(auto86DF1119_var);
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_674063E3_02956386", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_674063E3_02956386", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_674063E3_02956386"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+            DialogCreate(500, 400, c_anchorBottomRight, 10, 100, false);
+            DialogSetVisible(DialogLastCreated(), lv_players, true);
+            DialogSetImageVisible(DialogLastCreated(), false);
+            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 150, 50, c_anchorTopRight, 0, 70, StringToText(""), StringExternal("Param/Value/lib_674063E3_AE30C8C5"), "");
+            lib674063E3_gv_zoomButton = DialogControlLastCreated();
+            libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 150, 50, c_anchorTopRight, 0, 20, StringToText(""), StringExternal("Param/Value/lib_674063E3_72BFA0CE"), "");
+            lib674063E3_gv_zoomButtonx2 = DialogControlLastCreated();
+        }
+
+    }
+
+}
+
 void lib674063E3_gf_SetCameraHeightForPlayer (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
@@ -35,57 +103,22 @@ void lib674063E3_gf_SetCameraHeightForPlayer (int lp_player) {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Zoom Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib674063E3_gt_ZoomModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-
+bool lib674063E3_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto56CF38BB_g;
-    int auto56CF38BB_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("68") == "0001")) {
-        auto56CF38BB_g = PlayerGroupAll();
-        auto56CF38BB_var = -1;
-        while (true) {
-            auto56CF38BB_var = PlayerGroupNextPlayer(auto56CF38BB_g, auto56CF38BB_var);
-            if (auto56CF38BB_var < 0) { break; }
-            if ((GameAttributePlayerValue("69", auto56CF38BB_var) == "0002")) {
-                PlayerGroupAdd(lv_players, auto56CF38BB_var);
-                lib674063E3_gf_SetCameraHeightForPlayer(auto56CF38BB_var);
-            }
-
-        }
-    }
-
-    if ((PlayerGroupCount(lv_players) > 0)) {
-        TextExpressionSetToken("Param/Expression/lib_674063E3_8B8CE1FD", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_674063E3_F3620088"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_674063E3_8B8CE1FD"), StringExternal("Param/Value/lib_674063E3_0E8EAD99"), "Assets\\Textures\\btn-upgrade-terran-nova-snipeenergyrefund.dds");
-        DialogCreate(500, 400, c_anchorBottomRight, 10, 100, false);
-        DialogSetVisible(DialogLastCreated(), lv_players, true);
-        DialogSetImageVisible(DialogLastCreated(), false);
-        libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 150, 50, c_anchorTopRight, 0, 70, StringToText(""), StringExternal("Param/Value/lib_674063E3_101D461A"), "");
-        lib674063E3_gv_zoomButton = DialogControlLastCreated();
-        libNtve_gf_CreateDialogItemButton(DialogLastCreated(), 150, 50, c_anchorTopRight, 0, 20, StringToText(""), StringExternal("Param/Value/lib_674063E3_FE66DC01"), "");
-        lib674063E3_gv_zoomButtonx2 = DialogControlLastCreated();
-    }
-
+    lib674063E3_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib674063E3_gt_ZoomModStart_Init () {
-    lib674063E3_gt_ZoomModStart = TriggerCreate("lib674063E3_gt_ZoomModStart_Func");
-    TriggerAddEventMapInit(lib674063E3_gt_ZoomModStart);
+void lib674063E3_gt_SetupHandicap_Init () {
+    lib674063E3_gt_SetupHandicap = TriggerCreate("lib674063E3_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -143,7 +176,7 @@ void lib674063E3_gt_ZoomButtonx2Click_Init () {
 }
 
 void lib674063E3_InitTriggers () {
-    lib674063E3_gt_ZoomModStart_Init();
+    lib674063E3_gt_SetupHandicap_Init();
     lib674063E3_gt_ZoomButtonClick_Init();
     lib674063E3_gt_ZoomButtonx2Click_Init();
 }
@@ -165,5 +198,6 @@ void lib674063E3_InitLib () {
     lib674063E3_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

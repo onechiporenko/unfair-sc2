@@ -3,6 +3,11 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: AIR/GROUND WEAPON
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libCA473C97_gf_SetupOptions (int lp_handicapindex);
+void libCA473C97_gf_EnableHandicap (int lp_handicapIndex);
+void libCA473C97_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger libCA473C97_gt_AirGroundWeaponModStart;
+trigger libCA473C97_gt_SetupHandicap;
 

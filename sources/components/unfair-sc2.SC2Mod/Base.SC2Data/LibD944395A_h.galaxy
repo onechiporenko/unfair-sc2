@@ -3,10 +3,18 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: ALIENS
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libD944395A_gv_sameaslimit = "Same as limit";
+
 // Function Declarations
-int libD944395A_gf_GetAliensRateForPlayer (int lp_player);
+void libD944395A_gf_SetupOptions (int lp_handicapindex);
+void libD944395A_gf_EnableHandicap (int lp_handicapIndex);
+void libD944395A_gf_EnableHandicapForPlayer (int lp_player);
 
 // Trigger Declarations
-trigger libD944395A_gt_AliensModStart;
-trigger libD944395A_gt_CreateBroodlings;
+trigger libD944395A_gt_SetupHandicap;
+trigger libD944395A_gt_UnitIsKilled;
+
+// Library Initialization
+void libD944395A_InitVariables ();
 

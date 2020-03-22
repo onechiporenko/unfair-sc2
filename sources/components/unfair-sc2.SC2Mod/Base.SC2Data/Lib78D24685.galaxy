@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib78D24685_h"
@@ -9,6 +10,7 @@ include "Lib78D24685_h"
 // External Library Initialization
 void lib78D24685_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -22,14 +24,152 @@ void lib78D24685_InitVariables () {
 
     lib78D24685_InitVariables_completed = true;
 
+    lib78D24685_gv_randomUnitResourcesTimer = TimerCreate();
 }
 
 // Functions
+void lib78D24685_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_78D24685_2DF2F770");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_78D24685_CA7DFD68");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-mengsk-trooper-advancedconstruction.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_78D24685_2A5BA0D6");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "40";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "60";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "70";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "80";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "90";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_78D24685_79755B1D");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib78D24685_gv_randomUnitsAllRaces;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib78D24685_gv_randomUnitsOwnRace;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib78D24685_gt_SetupHandicap;
+}
+
+void lib78D24685_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    string autoB4B88C11_val;
+    playergroup auto52E669CC_g;
+    int auto52E669CC_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoB4B88C11_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (autoB4B88C11_val == "10") {
+            lib78D24685_gv_chancetoRandomizeUnit = 10;
+        }
+        else if (autoB4B88C11_val == "20") {
+            lib78D24685_gv_chancetoRandomizeUnit = 20;
+        }
+        else if (autoB4B88C11_val == "30") {
+            lib78D24685_gv_chancetoRandomizeUnit = 30;
+        }
+        else if (autoB4B88C11_val == "40") {
+            lib78D24685_gv_chancetoRandomizeUnit = 40;
+        }
+        else if (autoB4B88C11_val == "50") {
+            lib78D24685_gv_chancetoRandomizeUnit = 50;
+        }
+        else if (autoB4B88C11_val == "60") {
+            lib78D24685_gv_chancetoRandomizeUnit = 60;
+        }
+        else if (autoB4B88C11_val == "70") {
+            lib78D24685_gv_chancetoRandomizeUnit = 70;
+        }
+        else if (autoB4B88C11_val == "80") {
+            lib78D24685_gv_chancetoRandomizeUnit = 80;
+        }
+        else if (autoB4B88C11_val == "90") {
+            lib78D24685_gv_chancetoRandomizeUnit = 90;
+        }
+        else if (autoB4B88C11_val == "100") {
+            lib78D24685_gv_chancetoRandomizeUnit = 100;
+        }
+        else {
+            lib78D24685_gv_chancetoRandomizeUnit = 50;
+        }
+        auto52E669CC_g = PlayerGroupActive();
+        auto52E669CC_var = -1;
+        while (true) {
+            auto52E669CC_var = PlayerGroupNextPlayer(auto52E669CC_g, auto52E669CC_var);
+            if (auto52E669CC_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto52E669CC_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto52E669CC_var);
+                libDBC4E2D2_gv_pLAYERS[auto52E669CC_var].lv_rANDOMUNITS.lv_messageindex = libDBC4E2D2_gv_pLAYERS[auto52E669CC_var].lv_uI.lv_numberofmessages;
+                libDBC4E2D2_gv_pLAYERS[auto52E669CC_var].lv_rANDOMUNITS.lv_enabled = true;
+                libDBC4E2D2_gv_pLAYERS[auto52E669CC_var].lv_rANDOMUNITS.lv_racesScope = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto52E669CC_var];
+                libDBC4E2D2_gv_pLAYERS[auto52E669CC_var].lv_uI.lv_numberofmessages += 1;
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TimerStart(lib78D24685_gv_randomUnitResourcesTimer, 1.0, true, c_timeReal);
+            TextExpressionSetToken("Param/Expression/lib_78D24685_A54D9222", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_78D24685_A54D9222", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_78D24685_A54D9222"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+        else {
+            TriggerEnable(lib78D24685_gt_ChangeCreatedUnit, false);
+            TriggerEnable(lib78D24685_gt_ChangeMorphedUnit, false);
+            TriggerEnable(lib78D24685_gt_ChangeWarpedUnit, false);
+            TriggerEnable(lib78D24685_gt_ShowResourcesDiff, false);
+        }
+    }
+    else {
+        TriggerEnable(lib78D24685_gt_ChangeCreatedUnit, false);
+        TriggerEnable(lib78D24685_gt_ChangeMorphedUnit, false);
+        TriggerEnable(lib78D24685_gt_ChangeWarpedUnit, false);
+        TriggerEnable(lib78D24685_gt_ShowResourcesDiff, false);
+    }
+}
+
 void lib78D24685_gf_UpdateResourcesDiff (int lp_player, string lp_oldUnitType, string lp_newUnitType) {
     // Automatic Variable Declarations
     // Implementation
-    libDBC4E2D2_gv_players[lp_player].lv_rANDOMUNITS.lv_minerals += (UnitTypeGetCost(lp_newUnitType, c_unitCostMinerals) - UnitTypeGetCost(lp_oldUnitType, c_unitCostMinerals));
-    libDBC4E2D2_gv_players[lp_player].lv_rANDOMUNITS.lv_gas += (UnitTypeGetCost(lp_newUnitType, c_unitCostVespene) - UnitTypeGetCost(lp_oldUnitType, c_unitCostVespene));
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_rANDOMUNITS.lv_minerals += (UnitTypeGetCost(lp_newUnitType, c_unitCostMinerals) - UnitTypeGetCost(lp_oldUnitType, c_unitCostMinerals));
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_rANDOMUNITS.lv_gas += (UnitTypeGetCost(lp_newUnitType, c_unitCostVespene) - UnitTypeGetCost(lp_oldUnitType, c_unitCostVespene));
 }
 
 void lib78D24685_gf_ChangeCreatedUnit (unit lp_createdUnit) {
@@ -77,7 +217,7 @@ void lib78D24685_gf_ChangeCreatedUnit (unit lp_createdUnit) {
             libNtve_gf_MakeModelFaceAngle(libNtve_gf_ActorLastCreated(), 90.0);
             Wait(1.5, c_timeGame);
             libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
-            if ((GameAttributePlayerValue("170", lv_ownerofCreatedUnit) == "0001")) {
+            if ((libDBC4E2D2_gv_pLAYERS[lv_ownerofCreatedUnit].lv_rANDOMUNITS.lv_racesScope == lib78D24685_gv_randomUnitsOwnRace)) {
                 auto91B4DCFD_val = PlayerRace(lv_ownerofCreatedUnit);
                 if (auto91B4DCFD_val == "Prot") {
                     autoC24B74AD_ae = libDBC4E2D2_gv_numberOfProtossUnits;
@@ -119,7 +259,7 @@ void lib78D24685_gf_ChangeCreatedUnit (unit lp_createdUnit) {
                 }
             }
             else {
-                if ((GameAttributePlayerValue("170", lv_ownerofCreatedUnit) == "0003")) {
+                if ((libDBC4E2D2_gv_pLAYERS[lv_ownerofCreatedUnit].lv_rANDOMUNITS.lv_racesScope == lib78D24685_gv_randomUnitsAllRaces)) {
                     autoBFB56453_ae = libDBC4E2D2_gv_numberOfAllUnits;
                     lv_i = 0;
                     for ( ; ( (autoBFB56453_ai >= 0 && lv_i <= autoBFB56453_ae) || (autoBFB56453_ai < 0 && lv_i >= autoBFB56453_ae) ) ; lv_i += autoBFB56453_ai ) {
@@ -212,104 +352,22 @@ int lib78D24685_gf_GetRandomUnitTypeIndex (int lp_unitIndex, int lp_maxIndexValu
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Random Units Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib78D24685_gt_RandomUnitsModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-
+bool lib78D24685_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    string auto433BC2FB_val;
-    playergroup autoD227902D_g;
-    int autoD227902D_var;
-    playergroup auto34C6AD03_g;
-    int auto34C6AD03_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("169") == "0001")) {
-        auto433BC2FB_val = GameAttributeGameValue("171");
-        if (auto433BC2FB_val == "0001") {
-            lib78D24685_gv_chancetoRandomizeUnit = 10;
-        }
-        else if (auto433BC2FB_val == "0002") {
-            lib78D24685_gv_chancetoRandomizeUnit = 20;
-        }
-        else if (auto433BC2FB_val == "0003") {
-            lib78D24685_gv_chancetoRandomizeUnit = 30;
-        }
-        else if (auto433BC2FB_val == "0004") {
-            lib78D24685_gv_chancetoRandomizeUnit = 40;
-        }
-        else if (auto433BC2FB_val == "0005") {
-            lib78D24685_gv_chancetoRandomizeUnit = 50;
-        }
-        else if (auto433BC2FB_val == "0006") {
-            lib78D24685_gv_chancetoRandomizeUnit = 60;
-        }
-        else if (auto433BC2FB_val == "0007") {
-            lib78D24685_gv_chancetoRandomizeUnit = 70;
-        }
-        else if (auto433BC2FB_val == "0008") {
-            lib78D24685_gv_chancetoRandomizeUnit = 80;
-        }
-        else if (auto433BC2FB_val == "0009") {
-            lib78D24685_gv_chancetoRandomizeUnit = 90;
-        }
-        else if (auto433BC2FB_val == "0010") {
-            lib78D24685_gv_chancetoRandomizeUnit = 100;
-        }
-        else {
-            lib78D24685_gv_chancetoRandomizeUnit = 50;
-        }
-        autoD227902D_g = PlayerGroupAll();
-        autoD227902D_var = -1;
-        while (true) {
-            autoD227902D_var = PlayerGroupNextPlayer(autoD227902D_g, autoD227902D_var);
-            if (autoD227902D_var < 0) { break; }
-            if (((GameAttributePlayerValue("170", autoD227902D_var) == "0001") || (GameAttributePlayerValue("170", autoD227902D_var) == "0003"))) {
-                PlayerGroupAdd(lv_players, autoD227902D_var);
-                libDBC4E2D2_gv_players[autoD227902D_var].lv_rANDOMUNITS.lv_messageindex = libDBC4E2D2_gv_players[autoD227902D_var].lv_uI.lv_numberofmessages;
-                libDBC4E2D2_gv_players[autoD227902D_var].lv_uI.lv_numberofmessages += 1;
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            auto34C6AD03_g = lv_players;
-            auto34C6AD03_var = -1;
-            while (true) {
-                auto34C6AD03_var = PlayerGroupNextPlayer(auto34C6AD03_g, auto34C6AD03_var);
-                if (auto34C6AD03_var < 0) { break; }
-            }
-            TextExpressionSetToken("Param/Expression/lib_78D24685_896580C0", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_78D24685_87384EC0"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_78D24685_896580C0"), StringExternal("Param/Value/lib_78D24685_B1DA95A1"), "Assets\\Textures\\btn-ability-mengsk-trooper-advancedconstruction.dds");
-        }
-        else {
-            TriggerEnable(lib78D24685_gt_ChangeCreatedUnit, false);
-            TriggerEnable(lib78D24685_gt_ChangeMorphedUnit, false);
-            TriggerEnable(lib78D24685_gt_ChangeWarpedUnit, false);
-            TriggerEnable(lib78D24685_gt_ShowResourcesDiff, false);
-        }
-    }
-    else {
-        TriggerEnable(lib78D24685_gt_ChangeCreatedUnit, false);
-        TriggerEnable(lib78D24685_gt_ChangeMorphedUnit, false);
-        TriggerEnable(lib78D24685_gt_ChangeWarpedUnit, false);
-        TriggerEnable(lib78D24685_gt_ShowResourcesDiff, false);
-    }
+    lib78D24685_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib78D24685_gt_RandomUnitsModStart_Init () {
-    lib78D24685_gt_RandomUnitsModStart = TriggerCreate("lib78D24685_gt_RandomUnitsModStart_Func");
-    TriggerAddEventMapInit(lib78D24685_gt_RandomUnitsModStart);
+void lib78D24685_gt_SetupHandicap_Init () {
+    lib78D24685_gt_SetupHandicap = TriggerCreate("lib78D24685_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -319,11 +377,7 @@ bool lib78D24685_gt_ChangeCreatedUnit_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
-        if (!((GameAttributeGameValue("169") == "0001"))) {
-            return false;
-        }
-
-        if (!(((GameAttributePlayerValue("170", UnitGetOwner(EventUnitCreatedUnit())) == "0001") || (GameAttributePlayerValue("170", UnitGetOwner(EventUnitCreatedUnit())) == "0003")))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_rANDOMUNITS.lv_enabled == true))) {
             return false;
         }
 
@@ -438,11 +492,11 @@ bool lib78D24685_gt_ChangeWarpedUnit_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!(((UnitTypeGetProperty(UnitGetType(EventUnitProgressUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitProgressUnit()), c_unitPropSuppliesMade) > 0.0)))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitProgressUnit())].lv_rANDOMUNITS.lv_enabled == true))) {
             return false;
         }
 
-        if (!(((GameAttributePlayerValue("170", UnitGetOwner(EventUnitProgressUnit())) == "0001") || (GameAttributePlayerValue("170", UnitGetOwner(EventUnitProgressUnit())) == "0003")))) {
+        if (!(((UnitTypeGetProperty(UnitGetType(EventUnitProgressUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitProgressUnit()), c_unitPropSuppliesMade) > 0.0)))) {
             return false;
         }
     }
@@ -469,6 +523,10 @@ bool lib78D24685_gt_ChangeMorphedUnit_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
     // Conditions
     if (testConds) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnit())].lv_rANDOMUNITS.lv_enabled == true))) {
+            return false;
+        }
+
         if (!(((EventUnitAbility() == AbilityCommand("MorphToOverseer", 0)) || (EventUnitAbility() == AbilityCommand("MorphToTransportOverlord", 0)) || (EventUnitAbility() == AbilityCommand("MorphToBroodLord", 0)) || (EventUnitAbility() == AbilityCommand("MorphZerglingToBaneling", 0)) || (EventUnitAbility() == AbilityCommand("MorphToLurker", 0)) || (EventUnitAbility() == AbilityCommand("MorphToRavager", 0))))) {
             return false;
         }
@@ -507,10 +565,10 @@ bool lib78D24685_gt_ShowResourcesDiff_Func (bool testConds, bool runActions) {
     while (true) {
         autoCD38D8E9_var = PlayerGroupNextPlayer(autoCD38D8E9_g, autoCD38D8E9_var);
         if (autoCD38D8E9_var < 0) { break; }
-        if ((GameAttributePlayerValue("170", autoCD38D8E9_var) != "0002")) {
-            TextExpressionSetToken("Param/Expression/lib_78D24685_B851C536", "minerals", FixedToText(libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_rANDOMUNITS.lv_minerals, c_fixedPrecisionAny));
-            TextExpressionSetToken("Param/Expression/lib_78D24685_B851C536", "gas", FixedToText(libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_rANDOMUNITS.lv_gas, c_fixedPrecisionAny));
-            libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_uI.lv_messages[libDBC4E2D2_gv_players[autoCD38D8E9_var].lv_rANDOMUNITS.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_78D24685_B851C536");
+        if ((libDBC4E2D2_gv_pLAYERS[autoCD38D8E9_var].lv_rANDOMUNITS.lv_enabled == true)) {
+            TextExpressionSetToken("Param/Expression/lib_78D24685_B851C536", "minerals", FixedToText(libDBC4E2D2_gv_pLAYERS[autoCD38D8E9_var].lv_rANDOMUNITS.lv_minerals, c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_78D24685_B851C536", "gas", FixedToText(libDBC4E2D2_gv_pLAYERS[autoCD38D8E9_var].lv_rANDOMUNITS.lv_gas, c_fixedPrecisionAny));
+            libDBC4E2D2_gv_pLAYERS[autoCD38D8E9_var].lv_uI.lv_messages[libDBC4E2D2_gv_pLAYERS[autoCD38D8E9_var].lv_rANDOMUNITS.lv_messageindex] = TextExpressionAssemble("Param/Expression/lib_78D24685_B851C536");
         }
 
     }
@@ -520,11 +578,11 @@ bool lib78D24685_gt_ShowResourcesDiff_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void lib78D24685_gt_ShowResourcesDiff_Init () {
     lib78D24685_gt_ShowResourcesDiff = TriggerCreate("lib78D24685_gt_ShowResourcesDiff_Func");
-    TriggerAddEventTimePeriodic(lib78D24685_gt_ShowResourcesDiff, 1.0, c_timeReal);
+    TriggerAddEventTimer(lib78D24685_gt_ShowResourcesDiff, lib78D24685_gv_randomUnitResourcesTimer);
 }
 
 void lib78D24685_InitTriggers () {
-    lib78D24685_gt_RandomUnitsModStart_Init();
+    lib78D24685_gt_SetupHandicap_Init();
     lib78D24685_gt_ChangeCreatedUnit_Init();
     lib78D24685_gt_ChangeWarpedUnit_Init();
     lib78D24685_gt_ChangeMorphedUnit_Init();
@@ -548,5 +606,6 @@ void lib78D24685_InitLib () {
     lib78D24685_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

@@ -3,6 +3,11 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: NO FLY
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libBFDB8251_gf_SetupOptions (int lp_handicapindex);
+void libBFDB8251_gf_EnableHandicap (int lp_handicapIndex);
+void libBFDB8251_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger libBFDB8251_gt_NoFlyModStart;
+trigger libBFDB8251_gt_SetupHandicap;
 

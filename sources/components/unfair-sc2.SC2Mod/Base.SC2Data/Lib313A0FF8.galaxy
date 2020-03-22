@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib313A0FF8_h"
@@ -9,87 +10,107 @@ include "Lib313A0FF8_h"
 // External Library Initialization
 void lib313A0FF8_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
 // Functions
-int lib313A0FF8_gf_GetVampirismRateForPlayer (int lp_player) {
+void lib313A0FF8_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
     // Automatic Variable Declarations
-    string autoD7D631FF_val;
+    // Variable Initialization
 
     // Implementation
-    autoD7D631FF_val = GameAttributePlayerValue("30", lp_player);
-    if (autoD7D631FF_val == "0001") {
-        return 10;
-    }
-    else if (autoD7D631FF_val == "0002") {
-        return 25;
-    }
-    else if (autoD7D631FF_val == "0003") {
-        return 50;
-    }
-    else if (autoD7D631FF_val == "0004") {
-        return 75;
-    }
-    else if (autoD7D631FF_val == "0005") {
-        return 100;
-    }
-    else if (autoD7D631FF_val == "0006") {
-        return 200;
-    }
-    else {
-        return 0;
-    }
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_313A0FF8_E62376B4");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_313A0FF8_5958332E");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_313A0FF8_FDA9F269");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "50";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "100";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib313A0FF8_gt_SetupHandicap;
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Vampirism Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib313A0FF8_gt_VampirismModStart_Func (bool testConds, bool runActions) {
+void lib313A0FF8_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
     text lv_playersSettings;
 
     // Automatic Variable Declarations
-    playergroup autoE434563B_g;
-    int autoE434563B_var;
-    playergroup auto7BBE3D27_g;
-    int auto7BBE3D27_var;
+    playergroup auto3E222368_g;
+    int auto3E222368_var;
+    string autoBACFA6AF_val;
+    playergroup auto37A9BB8A_g;
+    int auto37A9BB8A_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("29") == "0001")) {
-        autoE434563B_g = PlayerGroupAll();
-        autoE434563B_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto3E222368_g = PlayerGroupActive();
+        auto3E222368_var = -1;
         while (true) {
-            autoE434563B_var = PlayerGroupNextPlayer(autoE434563B_g, autoE434563B_var);
-            if (autoE434563B_var < 0) { break; }
-            libDBC4E2D2_gv_players[autoE434563B_var].lv_vAMPIRISM.lv_rate = lib313A0FF8_gf_GetVampirismRateForPlayer(autoE434563B_var);
-            if ((libDBC4E2D2_gv_players[autoE434563B_var].lv_vAMPIRISM.lv_rate != 0)) {
-                PlayerGroupAdd(lv_players, autoE434563B_var);
+            auto3E222368_var = PlayerGroupNextPlayer(auto3E222368_g, auto3E222368_var);
+            if (auto3E222368_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto3E222368_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto3E222368_var);
+                autoBACFA6AF_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto3E222368_var];
+                if (autoBACFA6AF_val == "10") {
+                    libDBC4E2D2_gv_pLAYERS[auto3E222368_var].lv_vAMPIRISM.lv_rate = 10.0;
+                }
+                else if (autoBACFA6AF_val == "25") {
+                    libDBC4E2D2_gv_pLAYERS[auto3E222368_var].lv_vAMPIRISM.lv_rate = 25.0;
+                }
+                else if (autoBACFA6AF_val == "50") {
+                    libDBC4E2D2_gv_pLAYERS[auto3E222368_var].lv_vAMPIRISM.lv_rate = 50.0;
+                }
+                else if (autoBACFA6AF_val == "75") {
+                    libDBC4E2D2_gv_pLAYERS[auto3E222368_var].lv_vAMPIRISM.lv_rate = 75.0;
+                }
+                else if (autoBACFA6AF_val == "100") {
+                    libDBC4E2D2_gv_pLAYERS[auto3E222368_var].lv_vAMPIRISM.lv_rate = 100.0;
+                }
+                else if (autoBACFA6AF_val == "200") {
+                    libDBC4E2D2_gv_pLAYERS[auto3E222368_var].lv_vAMPIRISM.lv_rate = 200.0;
+                }
+                else {
+                }
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            auto7BBE3D27_g = lv_players;
-            auto7BBE3D27_var = -1;
+            auto37A9BB8A_g = lv_players;
+            auto37A9BB8A_var = -1;
             while (true) {
-                auto7BBE3D27_var = PlayerGroupNextPlayer(auto7BBE3D27_g, auto7BBE3D27_var);
-                if (auto7BBE3D27_var < 0) { break; }
-                TextExpressionSetToken("Param/Expression/lib_313A0FF8_D3AEFA6D", "A", TextWithColor(PlayerName(auto7BBE3D27_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto7BBE3D27_var, false))));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_313A0FF8_D3AEFA6D"));
-                TextExpressionSetToken("Param/Expression/lib_313A0FF8_16DBA01D", "A", FixedToText(libDBC4E2D2_gv_players[auto7BBE3D27_var].lv_vAMPIRISM.lv_rate, c_fixedPrecisionAny));
-                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_313A0FF8_16DBA01D"));
+                auto37A9BB8A_var = PlayerGroupNextPlayer(auto37A9BB8A_g, auto37A9BB8A_var);
+                if (auto37A9BB8A_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_313A0FF8_5D2681E1", "A", TextWithColor(PlayerName(auto37A9BB8A_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto37A9BB8A_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_313A0FF8_5D2681E1"));
+                TextExpressionSetToken("Param/Expression/lib_313A0FF8_970B3C9E", "A", FixedToText(libDBC4E2D2_gv_pLAYERS[auto37A9BB8A_var].lv_vAMPIRISM.lv_rate, c_fixedPrecisionAny));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_313A0FF8_970B3C9E"));
             }
-            TextExpressionSetToken("Param/Expression/lib_313A0FF8_A042AF73", "PlayerSettings", lv_playersSettings);
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_313A0FF8_F388EF98"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_313A0FF8_A042AF73"), StringExternal("Param/Value/lib_313A0FF8_20ADAC22"), "Assets\\Textures\\btn-ability-zerg-genemutation-lifeleech.dds");
+            TextExpressionSetToken("Param/Expression/lib_313A0FF8_C82CF622", "PlayerSettings", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_313A0FF8_C82CF622"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(lib313A0FF8_gt_UnitTakesDamage, false);
@@ -98,13 +119,26 @@ bool lib313A0FF8_gt_VampirismModStart_Func (bool testConds, bool runActions) {
     else {
         TriggerEnable(lib313A0FF8_gt_UnitTakesDamage, false);
     }
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib313A0FF8_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib313A0FF8_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib313A0FF8_gt_VampirismModStart_Init () {
-    lib313A0FF8_gt_VampirismModStart = TriggerCreate("lib313A0FF8_gt_VampirismModStart_Func");
-    TriggerAddEventMapInit(lib313A0FF8_gt_VampirismModStart);
+void lib313A0FF8_gt_SetupHandicap_Init () {
+    lib313A0FF8_gt_SetupHandicap = TriggerCreate("lib313A0FF8_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -129,7 +163,7 @@ bool lib313A0FF8_gt_UnitTakesDamage_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((libDBC4E2D2_gv_players[EventUnitDamageSourcePlayer()].lv_vAMPIRISM.lv_rate != 0))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventUnitDamageSourcePlayer()].lv_vAMPIRISM.lv_rate != 0))) {
             return false;
         }
     }
@@ -139,7 +173,7 @@ bool lib313A0FF8_gt_UnitTakesDamage_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lv_healing = (lv_damageDone / (100.0 / libDBC4E2D2_gv_players[EventUnitDamageSourcePlayer()].lv_vAMPIRISM.lv_rate));
+    lv_healing = (lv_damageDone / (100.0 / libDBC4E2D2_gv_pLAYERS[EventUnitDamageSourcePlayer()].lv_vAMPIRISM.lv_rate));
     UnitCreateEffectUnit(EventUnitDamageSourceUnit(), "UnfairSC2Vampirism", EventUnitDamageSourceUnit());
     if ((UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLifePercent, c_unitPropCurrent) < 100.0)) {
         UnitSetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLife, (UnitGetPropertyFixed(EventUnitDamageSourceUnit(), c_unitPropLife, c_unitPropCurrent) + lv_healing));
@@ -160,7 +194,7 @@ void lib313A0FF8_gt_UnitTakesDamage_Init () {
 }
 
 void lib313A0FF8_InitTriggers () {
-    lib313A0FF8_gt_VampirismModStart_Init();
+    lib313A0FF8_gt_SetupHandicap_Init();
     lib313A0FF8_gt_UnitTakesDamage_Init();
 }
 
@@ -180,5 +214,6 @@ void lib313A0FF8_InitLib () {
     lib313A0FF8_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

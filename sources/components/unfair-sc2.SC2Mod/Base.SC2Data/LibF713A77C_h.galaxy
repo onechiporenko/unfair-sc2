@@ -3,6 +3,19 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: ENERGY
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libF713A77C_gv_double = "Double";
+const string libF713A77C_gv_half = "Half";
+const string libF713A77C_gv_full = "Full";
+const string libF713A77C_gv_noEnergy = "No Energy";
+
+// Function Declarations
+void libF713A77C_gf_SetupOptions (int lp_handicapindex);
+void libF713A77C_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger libF713A77C_gt_EnergyModStart;
+trigger libF713A77C_gt_SetupHandicap;
+
+// Library Initialization
+void libF713A77C_InitVariables ();
 

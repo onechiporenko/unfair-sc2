@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "LibB7A8BF05_h"
@@ -9,45 +10,64 @@ include "LibB7A8BF05_h"
 // External Library Initialization
 void libB7A8BF05_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Fair Play Mod Start
-//--------------------------------------------------------------------------------------------------
-bool libB7A8BF05_gt_FairPlayModStart_Func (bool testConds, bool runActions) {
+// Functions
+void libB7A8BF05_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_B7A8BF05_1041003A");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_B7A8BF05_FAC459EF");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-phasecannon.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_B7A8BF05_7100FE62");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Enable";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libB7A8BF05_gt_SetupHandicap;
+}
+
+void libB7A8BF05_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup autoA972010C_g;
-    int autoA972010C_var;
+    playergroup auto5AE566C5_g;
+    int auto5AE566C5_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("149") == "0001")) {
-        autoA972010C_g = PlayerGroupAll();
-        autoA972010C_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto5AE566C5_g = PlayerGroupActive();
+        auto5AE566C5_var = -1;
         while (true) {
-            autoA972010C_var = PlayerGroupNextPlayer(autoA972010C_g, autoA972010C_var);
-            if (autoA972010C_var < 0) { break; }
-            if ((GameAttributePlayerValue("150", autoA972010C_var) == "0001")) {
-                PlayerGroupAdd(lv_players, autoA972010C_var);
-                CatalogFieldValueSet(c_gameCatalogEffect, "PhotonCannonU", "Amount", autoA972010C_var, "0");
+            auto5AE566C5_var = PlayerGroupNextPlayer(auto5AE566C5_g, auto5AE566C5_var);
+            if (auto5AE566C5_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto5AE566C5_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto5AE566C5_var);
+                libB7A8BF05_gf_EnableHandicapForPlayer(auto5AE566C5_var);
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
             TriggerExecute(libB7A8BF05_gt_AddAuraToInitialNexuses, true, false);
-            TextExpressionSetToken("Param/Expression/lib_B7A8BF05_980EAA61", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_B7A8BF05_AD3357FC"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_B7A8BF05_980EAA61"), StringExternal("Param/Value/lib_B7A8BF05_9349B108"), "Assets\\Textures\\btn-ability-protoss-phasecannon.dds");
+            TextExpressionSetToken("Param/Expression/lib_B7A8BF05_5A4F98AF", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_B7A8BF05_5A4F98AF", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_B7A8BF05_5A4F98AF"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(libB7A8BF05_gt_AddAuraToNexus, false);
@@ -56,13 +76,33 @@ bool libB7A8BF05_gt_FairPlayModStart_Func (bool testConds, bool runActions) {
     else {
         TriggerEnable(libB7A8BF05_gt_AddAuraToNexus, false);
     }
+}
+
+void libB7A8BF05_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_fAIRPLAY.lv_enabled = true;
+    CatalogFieldValueSet(c_gameCatalogEffect, "PhotonCannonU", "Amount", lp_player, "0");
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libB7A8BF05_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libB7A8BF05_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libB7A8BF05_gt_FairPlayModStart_Init () {
-    libB7A8BF05_gt_FairPlayModStart = TriggerCreate("libB7A8BF05_gt_FairPlayModStart_Func");
-    TriggerAddEventMapInit(libB7A8BF05_gt_FairPlayModStart);
+void libB7A8BF05_gt_SetupHandicap_Init () {
+    libB7A8BF05_gt_SetupHandicap = TriggerCreate("libB7A8BF05_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -81,13 +121,12 @@ bool libB7A8BF05_gt_AddAuraToInitialNexuses_Func (bool testConds, bool runAction
         return true;
     }
 
-    Wait(1.0, c_timeGame);
     autoA7DF03A5_g = PlayerGroupAll();
     autoA7DF03A5_var = -1;
     while (true) {
         autoA7DF03A5_var = PlayerGroupNextPlayer(autoA7DF03A5_g, autoA7DF03A5_var);
         if (autoA7DF03A5_var < 0) { break; }
-        if ((GameAttributePlayerValue("150", autoA7DF03A5_var) == "0001")) {
+        if ((libDBC4E2D2_gv_pLAYERS[autoA7DF03A5_var].lv_fAIRPLAY.lv_enabled == true)) {
             auto6508BA33_g = UnitGroup("Nexus", autoA7DF03A5_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             auto6508BA33_u = UnitGroupCount(auto6508BA33_g, c_unitCountAll);
             for (;; auto6508BA33_u -= 1) {
@@ -117,7 +156,7 @@ bool libB7A8BF05_gt_AddAuraToNexus_Func (bool testConds, bool runActions) {
             return false;
         }
 
-        if (!((GameAttributePlayerValue("150", UnitGetOwner(EventUnitProgressUnit())) == "0001"))) {
+        if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitProgressUnit())].lv_fAIRPLAY.lv_enabled == true))) {
             return false;
         }
     }
@@ -138,7 +177,7 @@ void libB7A8BF05_gt_AddAuraToNexus_Init () {
 }
 
 void libB7A8BF05_InitTriggers () {
-    libB7A8BF05_gt_FairPlayModStart_Init();
+    libB7A8BF05_gt_SetupHandicap_Init();
     libB7A8BF05_gt_AddAuraToInitialNexuses_Init();
     libB7A8BF05_gt_AddAuraToNexus_Init();
 }
@@ -159,5 +198,6 @@ void libB7A8BF05_InitLib () {
     libB7A8BF05_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

@@ -3,6 +3,11 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: FAIR MACRO
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib87458575_gf_SetupOptions (int lp_handicapindex);
+void lib87458575_gf_EnableHandicap (int lp_handicapIndex);
+void lib87458575_gf_EnableHandicapForPlayer (int lp_player);
+
 // Trigger Declarations
-trigger lib87458575_gt_FairMacroModStart;
+trigger lib87458575_gt_SetupHandicap;
 

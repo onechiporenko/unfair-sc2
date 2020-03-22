@@ -4,9 +4,10 @@ include "TriggerLibs/natives"
 // Library: VAMPIRISM
 //--------------------------------------------------------------------------------------------------
 // Function Declarations
-int lib313A0FF8_gf_GetVampirismRateForPlayer (int lp_player);
+void lib313A0FF8_gf_SetupOptions (int lp_handicapindex);
+void lib313A0FF8_gf_EnableHandicap (int lp_handicapIndex);
 
 // Trigger Declarations
-trigger lib313A0FF8_gt_VampirismModStart;
+trigger lib313A0FF8_gt_SetupHandicap;
 trigger lib313A0FF8_gt_UnitTakesDamage;
 

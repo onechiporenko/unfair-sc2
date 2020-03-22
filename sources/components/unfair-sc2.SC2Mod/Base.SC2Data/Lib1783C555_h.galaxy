@@ -3,6 +3,10 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: PURE MINERALS
 //--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib1783C555_gf_SetupOptions (int lp_handicapindex);
+void lib1783C555_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger lib1783C555_gt_PureMineralsModStart;
+trigger lib1783C555_gt_SetupHandicap;
 

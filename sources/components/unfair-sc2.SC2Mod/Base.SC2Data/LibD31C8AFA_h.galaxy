@@ -3,8 +3,20 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: INSTANT PRODUCTION
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string libD31C8AFA_gv_upgrades = "Upgrades";
+const string libD31C8AFA_gv_buildings = "Buildings";
+const string libD31C8AFA_gv_both = "Both";
+
+// Function Declarations
+void libD31C8AFA_gf_SetupOptions (int lp_handicapindex);
+void libD31C8AFA_gf_EnableHandicap (int lp_handicapIndex);
+
 // Trigger Declarations
-trigger libD31C8AFA_gt_InstantProductionModStart;
+trigger libD31C8AFA_gt_SetupHandicap;
 trigger libD31C8AFA_gt_ConstructionStarted;
 trigger libD31C8AFA_gt_UpgradeStarted;
+
+// Library Initialization
+void libD31C8AFA_InitVariables ();
 

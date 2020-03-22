@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib56A96906_h"
@@ -9,6 +10,7 @@ include "Lib56A96906_h"
 // External Library Initialization
 void lib56A96906_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
@@ -27,6 +29,125 @@ void lib56A96906_InitVariables () {
 }
 
 // Functions
+void lib56A96906_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_56A96906_9A6D6D4B");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_56A96906_18804C54");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-shadow-charge.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_56A96906_DE705B0C");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "Enable";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib56A96906_gt_SetupHandicap;
+}
+
+void lib56A96906_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup autoBF097F6C_g;
+    int autoBF097F6C_var;
+    unitgroup auto2B5F6297_g;
+    int auto2B5F6297_u;
+    unit auto2B5F6297_var;
+    playergroup autoF94458AC_g;
+    int autoF94458AC_var;
+    unitgroup autoF151F157_g;
+    int autoF151F157_u;
+    unit autoF151F157_var;
+    playergroup auto62087621_g;
+    int auto62087621_var;
+    unitgroup auto055107DC_g;
+    int auto055107DC_u;
+    unit auto055107DC_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoF94458AC_g = PlayerGroupActive();
+        autoF94458AC_var = -1;
+        while (true) {
+            autoF94458AC_var = PlayerGroupNextPlayer(autoF94458AC_g, autoF94458AC_var);
+            if (autoF94458AC_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoF94458AC_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoF94458AC_var);
+                lib56A96906_gf_EnableHandicapForPlayer(autoF94458AC_var);
+            }
+            else {
+                autoF151F157_g = UnitGroup(null, autoF94458AC_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoF151F157_u = UnitGroupCount(autoF151F157_g, c_unitCountAll);
+                for (;; autoF151F157_u -= 1) {
+                    autoF151F157_var = UnitGroupUnitFromEnd(autoF151F157_g, autoF151F157_u);
+                    if (autoF151F157_var == null) { break; }
+                    lib56A96906_gf_RemoveCharge(autoF151F157_var);
+                }
+            }
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_56A96906_D2CFF0CA", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_56A96906_D2CFF0CA", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_56A96906_D2CFF0CA"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_iconPath);
+            TimerStart(lib56A96906_gv_chargeTimer, 300.0, false, c_timeReal);
+            TimerWindowCreate(lib56A96906_gv_chargeTimer, StringExternal("Param/Value/lib_56A96906_8A145A2B"), true, false);
+            lib56A96906_gv_chargeTimerWindow = TimerWindowLastCreated();
+            TimerWindowShowBorder(lib56A96906_gv_chargeTimerWindow, false);
+            TimerWindowShow(lib56A96906_gv_chargeTimerWindow, PlayerGroupAll(), true);
+        }
+        else {
+            auto62087621_g = PlayerGroupActive();
+            auto62087621_var = -1;
+            while (true) {
+                auto62087621_var = PlayerGroupNextPlayer(auto62087621_g, auto62087621_var);
+                if (auto62087621_var < 0) { break; }
+                auto055107DC_g = UnitGroup(null, auto62087621_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto055107DC_u = UnitGroupCount(auto055107DC_g, c_unitCountAll);
+                for (;; auto055107DC_u -= 1) {
+                    auto055107DC_var = UnitGroupUnitFromEnd(auto055107DC_g, auto055107DC_u);
+                    if (auto055107DC_var == null) { break; }
+                    lib56A96906_gf_RemoveCharge(auto055107DC_var);
+                }
+            }
+        }
+    }
+    else {
+        autoBF097F6C_g = PlayerGroupActive();
+        autoBF097F6C_var = -1;
+        while (true) {
+            autoBF097F6C_var = PlayerGroupNextPlayer(autoBF097F6C_g, autoBF097F6C_var);
+            if (autoBF097F6C_var < 0) { break; }
+            auto2B5F6297_g = UnitGroup(null, autoBF097F6C_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto2B5F6297_u = UnitGroupCount(auto2B5F6297_g, c_unitCountAll);
+            for (;; auto2B5F6297_u -= 1) {
+                auto2B5F6297_var = UnitGroupUnitFromEnd(auto2B5F6297_g, auto2B5F6297_u);
+                if (auto2B5F6297_var == null) { break; }
+                lib56A96906_gf_RemoveCharge(auto2B5F6297_var);
+            }
+        }
+    }
+}
+
+void lib56A96906_gf_EnableHandicapForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    libDBC4E2D2_gv_pLAYERS[lp_player].lv_cHARGEWARS.lv_enabled = true;
+}
+
 void lib56A96906_gf_RemoveCharge (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation
@@ -46,60 +167,22 @@ void lib56A96906_gf_RemoveCharge (unit lp_unit) {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: Charge Wars Mod Start
+// Trigger: Setup Handicap
 //--------------------------------------------------------------------------------------------------
-bool lib56A96906_gt_ChargeWarsModStart_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    playergroup lv_players;
-    text lv_defaultDescription;
-
+bool lib56A96906_gt_SetupHandicap_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto4071F5BD_g;
-    int auto4071F5BD_var;
-
-    // Variable Initialization
-    lv_players = PlayerGroupEmpty();
-    lv_defaultDescription = StringExternal("Param/Value/lib_56A96906_E71A4441");
-
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("143") == "0001")) {
-        auto4071F5BD_g = PlayerGroupAll();
-        auto4071F5BD_var = -1;
-        while (true) {
-            auto4071F5BD_var = PlayerGroupNextPlayer(auto4071F5BD_g, auto4071F5BD_var);
-            if (auto4071F5BD_var < 0) { break; }
-            if ((GameAttributePlayerValue("144", auto4071F5BD_var) == "0001")) {
-                PlayerGroupAdd(lv_players, auto4071F5BD_var);
-            }
-
-        }
-        if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_56A96906_46AA1217", "A", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_56A96906_119A7697"), libNtve_ge_TipType_NormalTip), (lv_defaultDescription + TextExpressionAssemble("Param/Expression/lib_56A96906_46AA1217")), StringExternal("Param/Value/lib_56A96906_55AF9C7F"), "Assets\\Textures\\btn-ability-protoss-shadow-charge.dds");
-            TimerStart(lib56A96906_gv_chargeTimer, 300.0, false, c_timeReal);
-            TimerWindowCreate(lib56A96906_gv_chargeTimer, StringExternal("Param/Value/lib_56A96906_C0743462"), true, false);
-            lib56A96906_gv_chargeTimerWindow = TimerWindowLastCreated();
-            TimerWindowShowBorder(lib56A96906_gv_chargeTimerWindow, false);
-            TimerWindowShow(lib56A96906_gv_chargeTimerWindow, PlayerGroupAll(), true);
-        }
-        else {
-            TriggerEnable(lib56A96906_gt_GiveCharge, false);
-        }
-    }
-    else {
-        TriggerEnable(lib56A96906_gt_GiveCharge, false);
-    }
+    lib56A96906_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib56A96906_gt_ChargeWarsModStart_Init () {
-    lib56A96906_gt_ChargeWarsModStart = TriggerCreate("lib56A96906_gt_ChargeWarsModStart_Func");
-    TriggerAddEventMapInit(lib56A96906_gt_ChargeWarsModStart);
+void lib56A96906_gt_SetupHandicap_Init () {
+    lib56A96906_gt_SetupHandicap = TriggerCreate("lib56A96906_gt_SetupHandicap_Func");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -143,109 +226,41 @@ void lib56A96906_gt_RemoveChargeFromConstructedUnit_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Remove Charge From Initial Units
-//--------------------------------------------------------------------------------------------------
-bool lib56A96906_gt_RemoveChargeFromInitialUnits_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    playergroup auto2209D972_g;
-    int auto2209D972_var;
-    unitgroup autoB43CD375_g;
-    int autoB43CD375_u;
-    unit autoB43CD375_var;
-    playergroup auto23DCF167_g;
-    int auto23DCF167_var;
-    unitgroup auto9575C7AC_g;
-    int auto9575C7AC_u;
-    unit auto9575C7AC_var;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("143") == "0001")) {
-        auto23DCF167_g = PlayerGroupAll();
-        auto23DCF167_var = -1;
-        while (true) {
-            auto23DCF167_var = PlayerGroupNextPlayer(auto23DCF167_g, auto23DCF167_var);
-            if (auto23DCF167_var < 0) { break; }
-            if ((GameAttributePlayerValue("144", auto23DCF167_var) != "0001")) {
-                auto9575C7AC_g = UnitGroup(null, auto23DCF167_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto9575C7AC_u = UnitGroupCount(auto9575C7AC_g, c_unitCountAll);
-                for (;; auto9575C7AC_u -= 1) {
-                    auto9575C7AC_var = UnitGroupUnitFromEnd(auto9575C7AC_g, auto9575C7AC_u);
-                    if (auto9575C7AC_var == null) { break; }
-                    lib56A96906_gf_RemoveCharge(auto9575C7AC_var);
-                }
-            }
-
-        }
-    }
-    else {
-        auto2209D972_g = PlayerGroupAll();
-        auto2209D972_var = -1;
-        while (true) {
-            auto2209D972_var = PlayerGroupNextPlayer(auto2209D972_g, auto2209D972_var);
-            if (auto2209D972_var < 0) { break; }
-            autoB43CD375_g = UnitGroup(null, auto2209D972_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-            autoB43CD375_u = UnitGroupCount(autoB43CD375_g, c_unitCountAll);
-            for (;; autoB43CD375_u -= 1) {
-                autoB43CD375_var = UnitGroupUnitFromEnd(autoB43CD375_g, autoB43CD375_u);
-                if (autoB43CD375_var == null) { break; }
-                lib56A96906_gf_RemoveCharge(autoB43CD375_var);
-            }
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib56A96906_gt_RemoveChargeFromInitialUnits_Init () {
-    lib56A96906_gt_RemoveChargeFromInitialUnits = TriggerCreate("lib56A96906_gt_RemoveChargeFromInitialUnits_Func");
-    TriggerAddEventTimeElapsed(lib56A96906_gt_RemoveChargeFromInitialUnits, 1.0, c_timeReal);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Give Charge
 //--------------------------------------------------------------------------------------------------
 bool lib56A96906_gt_GiveCharge_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto3E323D65_g;
-    int auto3E323D65_var;
+    playergroup auto2F0ACF5F_g;
+    int auto2F0ACF5F_var;
 
     // Actions
     if (!runActions) {
         return true;
     }
 
-    if ((GameAttributeGameValue("143") == "0001")) {
-        auto3E323D65_g = PlayerGroupAll();
-        auto3E323D65_var = -1;
-        while (true) {
-            auto3E323D65_var = PlayerGroupNextPlayer(auto3E323D65_g, auto3E323D65_var);
-            if (auto3E323D65_var < 0) { break; }
-            if ((GameAttributePlayerValue("144", auto3E323D65_var) == "0001")) {
-                libNtve_gf_SetUpgradeLevelForPlayer(auto3E323D65_var, "Charge", 1);
-            }
-
+    auto2F0ACF5F_g = PlayerGroupAll();
+    auto2F0ACF5F_var = -1;
+    while (true) {
+        auto2F0ACF5F_var = PlayerGroupNextPlayer(auto2F0ACF5F_g, auto2F0ACF5F_var);
+        if (auto2F0ACF5F_var < 0) { break; }
+        if ((libDBC4E2D2_gv_pLAYERS[auto2F0ACF5F_var].lv_cHARGEWARS.lv_enabled == true)) {
+            libNtve_gf_SetUpgradeLevelForPlayer(auto2F0ACF5F_var, "Charge", 1);
         }
-        TimerWindowShow(lib56A96906_gv_chargeTimerWindow, PlayerGroupAll(), false);
-    }
 
+    }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void lib56A96906_gt_GiveCharge_Init () {
     lib56A96906_gt_GiveCharge = TriggerCreate("lib56A96906_gt_GiveCharge_Func");
-    TriggerAddEventTimeElapsed(lib56A96906_gt_GiveCharge, 300.0, c_timeReal);
+    TriggerAddEventTimer(lib56A96906_gt_GiveCharge, lib56A96906_gv_chargeTimer);
 }
 
 void lib56A96906_InitTriggers () {
-    lib56A96906_gt_ChargeWarsModStart_Init();
+    lib56A96906_gt_SetupHandicap_Init();
     lib56A96906_gt_RemoveChargeFromCreatedUnit_Init();
     lib56A96906_gt_RemoveChargeFromConstructedUnit_Init();
-    lib56A96906_gt_RemoveChargeFromInitialUnits_Init();
     lib56A96906_gt_GiveCharge_Init();
 }
 
@@ -266,5 +281,6 @@ void lib56A96906_InitLib () {
     lib56A96906_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

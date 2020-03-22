@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 include "LibDBC4E2D2_h"
 
 include "Lib1783C555_h"
@@ -9,158 +10,190 @@ include "Lib1783C555_h"
 // External Library Initialization
 void lib1783C555_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
     libDBC4E2D2_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Pure Minerals Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib1783C555_gt_PureMineralsModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib1783C555_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_1783C555_4D70ABF6");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_1783C555_3FE94DA3");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\mineralshields_coop.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_1783C555_5980C80C");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib1783C555_gt_SetupHandicap;
+}
+
+void lib1783C555_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     playergroup lv_players;
 
     // Automatic Variable Declarations
-    playergroup autoA5D7D2F9_g;
-    int autoA5D7D2F9_var;
-    unitgroup autoB33D06AC_g;
-    int autoB33D06AC_u;
-    unit autoB33D06AC_var;
-    unitgroup auto34840379_g;
-    int auto34840379_u;
-    unit auto34840379_var;
-    unitgroup auto6D64C43C_g;
-    int auto6D64C43C_u;
-    unit auto6D64C43C_var;
-    unitgroup autoE8AFE6E8_g;
-    int autoE8AFE6E8_u;
-    unit autoE8AFE6E8_var;
-    unitgroup auto32FACF83_g;
-    int auto32FACF83_u;
-    unit auto32FACF83_var;
-    unitgroup auto2DC1A12B_g;
-    int auto2DC1A12B_u;
-    unit auto2DC1A12B_var;
-    unitgroup autoDCF12E70_g;
-    int autoDCF12E70_u;
-    unit autoDCF12E70_var;
-    unitgroup autoFF082F41_g;
-    int autoFF082F41_u;
-    unit autoFF082F41_var;
-    unitgroup autoC0CF92CF_g;
-    int autoC0CF92CF_u;
-    unit autoC0CF92CF_var;
+    playergroup autoF555F250_g;
+    int autoF555F250_var;
+    unitgroup auto694AEA07_g;
+    int auto694AEA07_u;
+    unit auto694AEA07_var;
+    unitgroup auto8508C84C_g;
+    int auto8508C84C_u;
+    unit auto8508C84C_var;
+    unitgroup auto17BA590D_g;
+    int auto17BA590D_u;
+    unit auto17BA590D_var;
+    unitgroup autoD764DCA3_g;
+    int autoD764DCA3_u;
+    unit autoD764DCA3_var;
+    unitgroup auto3F6642BE_g;
+    int auto3F6642BE_u;
+    unit auto3F6642BE_var;
+    unitgroup auto9A74C359_g;
+    int auto9A74C359_u;
+    unit auto9A74C359_var;
+    unitgroup auto6F30F126_g;
+    int auto6F30F126_u;
+    unit auto6F30F126_var;
+    unitgroup autoFBB9E0B7_g;
+    int autoFBB9E0B7_u;
+    unit autoFBB9E0B7_var;
+    unitgroup autoEE090921_g;
+    int autoEE090921_u;
+    unit autoEE090921_var;
 
     // Variable Initialization
     lv_players = PlayerGroupEmpty();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("65") == "0001")) {
-        Wait(1.0, c_timeGame);
-        autoA5D7D2F9_g = PlayerGroupAll();
-        autoA5D7D2F9_var = -1;
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoF555F250_g = PlayerGroupActive();
+        autoF555F250_var = -1;
         while (true) {
-            autoA5D7D2F9_var = PlayerGroupNextPlayer(autoA5D7D2F9_g, autoA5D7D2F9_var);
-            if (autoA5D7D2F9_var < 0) { break; }
-            if ((GameAttributePlayerValue("66", autoA5D7D2F9_var) == "0001")) {
-                PlayerGroupAdd(lv_players, autoA5D7D2F9_var);
-                autoB33D06AC_g = UnitGroup("MineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoB33D06AC_u = UnitGroupCount(autoB33D06AC_g, c_unitCountAll);
-                for (;; autoB33D06AC_u -= 1) {
-                    autoB33D06AC_var = UnitGroupUnitFromEnd(autoB33D06AC_g, autoB33D06AC_u);
-                    if (autoB33D06AC_var == null) { break; }
-                    UnitSetPropertyFixed(autoB33D06AC_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(autoB33D06AC_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+            autoF555F250_var = PlayerGroupNextPlayer(autoF555F250_g, autoF555F250_var);
+            if (autoF555F250_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoF555F250_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, autoF555F250_var);
+                auto694AEA07_g = UnitGroup("MineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto694AEA07_u = UnitGroupCount(auto694AEA07_g, c_unitCountAll);
+                for (;; auto694AEA07_u -= 1) {
+                    auto694AEA07_var = UnitGroupUnitFromEnd(auto694AEA07_g, auto694AEA07_u);
+                    if (auto694AEA07_var == null) { break; }
+                    UnitSetPropertyFixed(auto694AEA07_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto694AEA07_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                auto34840379_g = UnitGroup("MineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto34840379_u = UnitGroupCount(auto34840379_g, c_unitCountAll);
-                for (;; auto34840379_u -= 1) {
-                    auto34840379_var = UnitGroupUnitFromEnd(auto34840379_g, auto34840379_u);
-                    if (auto34840379_var == null) { break; }
-                    UnitSetPropertyFixed(auto34840379_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(auto34840379_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                auto8508C84C_g = UnitGroup("MineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto8508C84C_u = UnitGroupCount(auto8508C84C_g, c_unitCountAll);
+                for (;; auto8508C84C_u -= 1) {
+                    auto8508C84C_var = UnitGroupUnitFromEnd(auto8508C84C_g, auto8508C84C_u);
+                    if (auto8508C84C_var == null) { break; }
+                    UnitSetPropertyFixed(auto8508C84C_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto8508C84C_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                auto6D64C43C_g = UnitGroup("LabMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto6D64C43C_u = UnitGroupCount(auto6D64C43C_g, c_unitCountAll);
-                for (;; auto6D64C43C_u -= 1) {
-                    auto6D64C43C_var = UnitGroupUnitFromEnd(auto6D64C43C_g, auto6D64C43C_u);
-                    if (auto6D64C43C_var == null) { break; }
-                    UnitSetPropertyFixed(auto6D64C43C_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(auto6D64C43C_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                auto17BA590D_g = UnitGroup("LabMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto17BA590D_u = UnitGroupCount(auto17BA590D_g, c_unitCountAll);
+                for (;; auto17BA590D_u -= 1) {
+                    auto17BA590D_var = UnitGroupUnitFromEnd(auto17BA590D_g, auto17BA590D_u);
+                    if (auto17BA590D_var == null) { break; }
+                    UnitSetPropertyFixed(auto17BA590D_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto17BA590D_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                autoE8AFE6E8_g = UnitGroup("BattleStationMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoE8AFE6E8_u = UnitGroupCount(autoE8AFE6E8_g, c_unitCountAll);
-                for (;; autoE8AFE6E8_u -= 1) {
-                    autoE8AFE6E8_var = UnitGroupUnitFromEnd(autoE8AFE6E8_g, autoE8AFE6E8_u);
-                    if (autoE8AFE6E8_var == null) { break; }
-                    UnitSetPropertyFixed(autoE8AFE6E8_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(autoE8AFE6E8_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                autoD764DCA3_g = UnitGroup("BattleStationMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoD764DCA3_u = UnitGroupCount(autoD764DCA3_g, c_unitCountAll);
+                for (;; autoD764DCA3_u -= 1) {
+                    autoD764DCA3_var = UnitGroupUnitFromEnd(autoD764DCA3_g, autoD764DCA3_u);
+                    if (autoD764DCA3_var == null) { break; }
+                    UnitSetPropertyFixed(autoD764DCA3_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoD764DCA3_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                auto32FACF83_g = UnitGroup("BattleStationMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto32FACF83_u = UnitGroupCount(auto32FACF83_g, c_unitCountAll);
-                for (;; auto32FACF83_u -= 1) {
-                    auto32FACF83_var = UnitGroupUnitFromEnd(auto32FACF83_g, auto32FACF83_u);
-                    if (auto32FACF83_var == null) { break; }
-                    UnitSetPropertyFixed(auto32FACF83_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(auto32FACF83_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                auto3F6642BE_g = UnitGroup("BattleStationMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto3F6642BE_u = UnitGroupCount(auto3F6642BE_g, c_unitCountAll);
+                for (;; auto3F6642BE_u -= 1) {
+                    auto3F6642BE_var = UnitGroupUnitFromEnd(auto3F6642BE_g, auto3F6642BE_u);
+                    if (auto3F6642BE_var == null) { break; }
+                    UnitSetPropertyFixed(auto3F6642BE_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto3F6642BE_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                auto2DC1A12B_g = UnitGroup("PurifierMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                auto2DC1A12B_u = UnitGroupCount(auto2DC1A12B_g, c_unitCountAll);
-                for (;; auto2DC1A12B_u -= 1) {
-                    auto2DC1A12B_var = UnitGroupUnitFromEnd(auto2DC1A12B_g, auto2DC1A12B_u);
-                    if (auto2DC1A12B_var == null) { break; }
-                    UnitSetPropertyFixed(auto2DC1A12B_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(auto2DC1A12B_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                auto9A74C359_g = UnitGroup("PurifierMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto9A74C359_u = UnitGroupCount(auto9A74C359_g, c_unitCountAll);
+                for (;; auto9A74C359_u -= 1) {
+                    auto9A74C359_var = UnitGroupUnitFromEnd(auto9A74C359_g, auto9A74C359_u);
+                    if (auto9A74C359_var == null) { break; }
+                    UnitSetPropertyFixed(auto9A74C359_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto9A74C359_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                autoDCF12E70_g = UnitGroup("PurifierMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoDCF12E70_u = UnitGroupCount(autoDCF12E70_g, c_unitCountAll);
-                for (;; autoDCF12E70_u -= 1) {
-                    autoDCF12E70_var = UnitGroupUnitFromEnd(autoDCF12E70_g, autoDCF12E70_u);
-                    if (autoDCF12E70_var == null) { break; }
-                    UnitSetPropertyFixed(autoDCF12E70_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(autoDCF12E70_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                auto6F30F126_g = UnitGroup("PurifierMineralField750", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                auto6F30F126_u = UnitGroupCount(auto6F30F126_g, c_unitCountAll);
+                for (;; auto6F30F126_u -= 1) {
+                    auto6F30F126_var = UnitGroupUnitFromEnd(auto6F30F126_g, auto6F30F126_u);
+                    if (auto6F30F126_var == null) { break; }
+                    UnitSetPropertyFixed(auto6F30F126_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(auto6F30F126_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                autoFF082F41_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoFF082F41_u = UnitGroupCount(autoFF082F41_g, c_unitCountAll);
-                for (;; autoFF082F41_u -= 1) {
-                    autoFF082F41_var = UnitGroupUnitFromEnd(autoFF082F41_g, autoFF082F41_u);
-                    if (autoFF082F41_var == null) { break; }
-                    UnitSetPropertyFixed(autoFF082F41_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(autoFF082F41_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                autoFBB9E0B7_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoFBB9E0B7_u = UnitGroupCount(autoFBB9E0B7_g, c_unitCountAll);
+                for (;; autoFBB9E0B7_u -= 1) {
+                    autoFBB9E0B7_var = UnitGroupUnitFromEnd(autoFBB9E0B7_g, autoFBB9E0B7_u);
+                    if (autoFBB9E0B7_var == null) { break; }
+                    UnitSetPropertyFixed(autoFBB9E0B7_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoFBB9E0B7_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
-                autoC0CF92CF_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoA5D7D2F9_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
-                autoC0CF92CF_u = UnitGroupCount(autoC0CF92CF_g, c_unitCountAll);
-                for (;; autoC0CF92CF_u -= 1) {
-                    autoC0CF92CF_var = UnitGroupUnitFromEnd(autoC0CF92CF_g, autoC0CF92CF_u);
-                    if (autoC0CF92CF_var == null) { break; }
-                    UnitSetPropertyFixed(autoC0CF92CF_var, c_unitPropResources, 900.0);
-                    libNtve_gf_AttachModelToUnitInheritVisibility(autoC0CF92CF_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
+                autoEE090921_g = UnitGroup("LabMineralField", c_playerAny, RegionCircle(PlayerStartLocation(autoF555F250_var), 50.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+                autoEE090921_u = UnitGroupCount(autoEE090921_g, c_unitCountAll);
+                for (;; autoEE090921_u -= 1) {
+                    autoEE090921_var = UnitGroupUnitFromEnd(autoEE090921_g, autoEE090921_u);
+                    if (autoEE090921_var == null) { break; }
+                    UnitSetPropertyFixed(autoEE090921_var, c_unitPropResources, 900.0);
+                    libNtve_gf_AttachModelToUnitInheritVisibility(autoEE090921_var, "UnfairSC2PureMineralsSpawn", "Ref_Center");
                 }
             }
 
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_1783C555_7775322E", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_1783C555_EBF4E1C9"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_1783C555_7775322E"), StringExternal("Param/Value/lib_1783C555_B559916A"), "Assets\\Textures\\mineralshields_coop.dds");
+            TextExpressionSetToken("Param/Expression/lib_1783C555_3245C390", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_1783C555_3245C390", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_1783C555_3245C390"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
 
     }
 
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib1783C555_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib1783C555_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib1783C555_gt_PureMineralsModStart_Init () {
-    lib1783C555_gt_PureMineralsModStart = TriggerCreate("lib1783C555_gt_PureMineralsModStart_Func");
-    TriggerAddEventMapInit(lib1783C555_gt_PureMineralsModStart);
+void lib1783C555_gt_SetupHandicap_Init () {
+    lib1783C555_gt_SetupHandicap = TriggerCreate("lib1783C555_gt_SetupHandicap_Func");
 }
 
 void lib1783C555_InitTriggers () {
-    lib1783C555_gt_PureMineralsModStart_Init();
+    lib1783C555_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -179,5 +212,6 @@ void lib1783C555_InitLib () {
     lib1783C555_InitTriggers();
 }
 
+include "LibD169EC7B"
 include "LibDBC4E2D2"
 

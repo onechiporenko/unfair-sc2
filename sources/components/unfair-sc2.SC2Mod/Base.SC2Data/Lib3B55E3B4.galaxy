@@ -1,4 +1,5 @@
 include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
 
 include "Lib3B55E3B4_h"
 
@@ -8,13 +9,27 @@ include "Lib3B55E3B4_h"
 // External Library Initialization
 void lib3B55E3B4_InitLibraries () {
     libNtve_InitVariables();
+    libD169EC7B_InitVariables();
 }
 
-// Triggers
-//--------------------------------------------------------------------------------------------------
-// Trigger: Blocked Ramps Mod Start
-//--------------------------------------------------------------------------------------------------
-bool lib3B55E3B4_gt_BlockedRampsModStart_Func (bool testConds, bool runActions) {
+// Functions
+void lib3B55E3B4_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_3B55E3B4_AD2BB9DD");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_3B55E3B4_C5AFCF88");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-doodad-korhallandinglocation.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib3B55E3B4_gt_SetupHandicap;
+}
+
+void lib3B55E3B4_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
     fixed lv_x;
     fixed lv_y;
@@ -26,44 +41,40 @@ bool lib3B55E3B4_gt_BlockedRampsModStart_Func (bool testConds, bool runActions) 
     point lv_point;
 
     // Automatic Variable Declarations
-    fixed auto5AB430C9_ae;
-    const fixed auto5AB430C9_ai = 1.0;
-    fixed auto618DD4D7_ae;
-    const fixed auto618DD4D7_ai = 1.0;
-    int autoDC0A69CD_val;
+    fixed auto50E70628_ae;
+    const fixed auto50E70628_ai = 1.0;
+    fixed auto4F379455_ae;
+    const fixed auto4F379455_ai = 1.0;
+    int autoB5BB5F33_val;
 
     // Variable Initialization
     lv_p = Point(35.0, 120.0);
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((GameAttributeGameValue("161") == "0001")) {
-        auto5AB430C9_ae = PointGetX(RegionGetBoundsMax(RegionPlayableMap()));
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto50E70628_ae = PointGetX(RegionGetBoundsMax(RegionPlayableMap()));
         lv_x = PointGetX(RegionGetBoundsMin(RegionPlayableMap()));
-        for ( ; ( (auto5AB430C9_ai >= 0 && lv_x <= auto5AB430C9_ae) || (auto5AB430C9_ai < 0 && lv_x >= auto5AB430C9_ae) ) ; lv_x += auto5AB430C9_ai ) {
-            auto618DD4D7_ae = PointGetY(RegionGetBoundsMax(RegionPlayableMap()));
+        for ( ; ( (auto50E70628_ai >= 0 && lv_x <= auto50E70628_ae) || (auto50E70628_ai < 0 && lv_x >= auto50E70628_ae) ) ; lv_x += auto50E70628_ai ) {
+            auto4F379455_ae = PointGetY(RegionGetBoundsMax(RegionPlayableMap()));
             lv_y = PointGetY(RegionGetBoundsMin(RegionPlayableMap()));
-            for ( ; ( (auto618DD4D7_ai >= 0 && lv_y <= auto618DD4D7_ae) || (auto618DD4D7_ai < 0 && lv_y >= auto618DD4D7_ae) ) ; lv_y += auto618DD4D7_ai ) {
+            for ( ; ( (auto4F379455_ai >= 0 && lv_y <= auto4F379455_ae) || (auto4F379455_ai < 0 && lv_y >= auto4F379455_ae) ) ; lv_y += auto4F379455_ai ) {
                 lv_top = Point(lv_x, (lv_y + 1.0));
                 lv_bottom = Point(lv_x, (lv_y - 1.0));
                 lv_left = Point((lv_x - 1.0), lv_y);
                 lv_right = Point((lv_x + 1.0), lv_y);
                 lv_point = libNtve_gf_PointFromXYZ(lv_x, lv_y, 0.0);
                 if ((PathingType(lv_point) == c_pathingGround) && (((PathingType(lv_right) == c_pathingGround) && (PathingType(lv_left) == c_pathingGround) && (AbsF((WorldHeight(c_heightMapGround, lv_left) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2) && (AbsF((WorldHeight(c_heightMapGround, lv_right) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2)) || ((PathingType(lv_bottom) == c_pathingGround) && (PathingType(lv_top) == c_pathingGround) && (AbsF((WorldHeight(c_heightMapGround, lv_top) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2) && (AbsF((WorldHeight(c_heightMapGround, lv_bottom) - WorldHeight(c_heightMapGround, lv_point))) >= 0.2)))) {
-                    autoDC0A69CD_val = RandomInt(1, 4);
-                    if (autoDC0A69CD_val == 1) {
+                    autoB5BB5F33_val = RandomInt(1, 4);
+                    if (autoB5BB5F33_val == 1) {
                         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BraxisAlphaDestructible2x2", c_unitCreateIgnorePlacement, 0, lv_point);
                     }
-                    else if (autoDC0A69CD_val == 2) {
+                    else if (autoB5BB5F33_val == 2) {
                         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Debris2x2NonConjoined", c_unitCreateIgnorePlacement, 0, lv_point);
                     }
-                    else if (autoDC0A69CD_val == 3) {
+                    else if (autoB5BB5F33_val == 3) {
                         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Rocks2x2NonConjoined", c_unitCreateIgnorePlacement, 0, lv_point);
                     }
-                    else if (autoDC0A69CD_val == 4) {
+                    else if (autoB5BB5F33_val == 4) {
                         libNtve_gf_CreateUnitsWithDefaultFacing(1, "Ice2x2NonConjoined", c_unitCreateIgnorePlacement, 0, lv_point);
                     }
                     else {
@@ -74,20 +85,33 @@ bool lib3B55E3B4_gt_BlockedRampsModStart_Func (bool testConds, bool runActions) 
 
             }
         }
-        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_3B55E3B4_EF593C8C"), libNtve_ge_TipType_NormalTip), StringExternal("Param/Value/lib_3B55E3B4_A4C0B33C"), StringExternal("Param/Value/lib_3B55E3B4_055E40BD"), "Assets\\Textures\\btn-doodad-korhollandinglocation.dds");
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
     }
 
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib3B55E3B4_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib3B55E3B4_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void lib3B55E3B4_gt_BlockedRampsModStart_Init () {
-    lib3B55E3B4_gt_BlockedRampsModStart = TriggerCreate("lib3B55E3B4_gt_BlockedRampsModStart_Func");
-    TriggerAddEventMapInit(lib3B55E3B4_gt_BlockedRampsModStart);
+void lib3B55E3B4_gt_SetupHandicap_Init () {
+    lib3B55E3B4_gt_SetupHandicap = TriggerCreate("lib3B55E3B4_gt_SetupHandicap_Func");
 }
 
 void lib3B55E3B4_InitTriggers () {
-    lib3B55E3B4_gt_BlockedRampsModStart_Init();
+    lib3B55E3B4_gt_SetupHandicap_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -105,4 +129,6 @@ void lib3B55E3B4_InitLib () {
     lib3B55E3B4_InitLibraries();
     lib3B55E3B4_InitTriggers();
 }
+
+include "LibD169EC7B"
 

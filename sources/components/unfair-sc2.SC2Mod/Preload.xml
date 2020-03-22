@@ -1,75 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Preload>
 <Asset path="assets\textures\tip_terrazinefog.dds" Type="Image"/>
-<Asset path="assets\textures\btn-unit-collection-taldarim-mothershipcore.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zerg-darkswarm.dds" Type="Image"/>
-<Asset path="assets\textures\walkingdead_coop.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-soulabsorbtion.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-kerrigan-twindrones.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-tychus-herc-heavyimpact.dds" Type="Image"/>
-<Asset path="assets\textures\momentofsilence_coop.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-terran-stimpack-color.dds" Type="Image"/>
 <Asset path="assets\textures\btn-unit-collection-scv-remastered.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zerg-creepspread.dds" Type="Image"/>
-<Asset path="assets\textures\microtransactions_coop.dds" Type="Image"/>
-<Asset path="assets\textures\btn-progression-hornerhan-14-nukefortelefrag.dds" Type="Image"/>
-<Asset path="assets\textures\btn-tips-starmap.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-doubleshieldrecharge.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zerg-corruption-color.dds" Type="Image"/>
-<Asset path="assets\textures\talent-tychus-level13-additionalupgrades.dds" Type="Image"/>
-<Asset path="assets\textures\btn-progression-protoss-fenix-2-purifierconclave.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-arcshield.dds" Type="Image"/>
-<Asset path="assets\textures\ui_tipicon_story-evolution.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-timewarp.dds" Type="Image"/>
-<Asset path="assets\textures\btn-unit-terran-widowmine.dds" Type="Image"/>
-<Asset path="assets\textures\btn-building-zerg-creeptumor.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-protoss-fenix-fenixweapondamage.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-protoss-alarak-supplicantsacrifice.dds" Type="Image"/>
-<Asset path="assets\textures\abilityicon_spawnbroodlings_square.dds" Type="Image"/>
 <Asset path="assets\textures\btn-doodad-minerals.dds" Type="Image"/>
 <Asset path="assets\textures\ui_loadingbar_bar_highlighted_zerg.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-blink-color.dds" Type="Image"/>
-<Asset path="assets\textures\btn-unit-collection-blizzcon17-drone.dds" Type="Image"/>
-<Asset path="assets\textures\btn-progression-hornerhan-6-mirabuildtime.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-shadow-charge.dds" Type="Image"/>
-<Asset path="assets\textures\btn-tips-resourcecaches.dds" Type="Image"/>
 <Asset path="assets\textures\btn-doodad-vespenegeyser.dds" Type="Image"/>
-<Asset path="assets\textures\economiccrisis_coop.dds" Type="Image"/>
-<Asset path="assets\textures\btn-progression-hornerhan-8-supplydepot.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-tychus-herc-criticalsystem.dds" Type="Image"/>
-<Asset path="assets\textures\btn-doodad-korhollandinglocation.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-purifierstasisending.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-protoss-alarak-stunnonheroicenemies.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-terran-snipe-color.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zerg-genemutation-lifeleech.dds" Type="Image"/>
-<Asset path="assets\textures\mineralshields_coop.dds" Type="Image"/>
-<Asset path="assets\textures\btn-building-protoss-nexus-forged.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-phasecannon.dds" Type="Image"/>
 <Asset path="assets\textures\btn-ability-kerrigan-vespeneefficiency.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zerg-dehaka-tyrannozor-barrageofspikes.dds" Type="Image"/>
-<Asset path="assets\textures\btn-building-terran-planetaryfortress.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zerg-harvestcorpse.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-hornerhan-wraith-permanentcloak.dds" Type="Image"/>
 <Asset path="assets\textures\btn-tips-richminerals.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-terran-nova-snipeenergyrefund.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-mengsk-trooper-advancedconstruction.dds" Type="Image"/>
-<Asset path="assets\textures\btn-unit-collection-defensivematrixdrone-covertops.dds" Type="Image"/>
-<Asset path="assets\textures\btn-unit-protoss-blizzcon17-probe.dds" Type="Image"/>
-<Asset path="assets\textures\btn-unit-zerg-infestedcolonist.dds" Type="Image"/>
-<Asset path="assets\textures\speedfreaks_coop.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-recallondeath.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-amoncloud.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-terran-setrallypoint.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-spearofadun-massrecall.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-protoss-phaseshift2.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-terran-reapercombatdrugs.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-protoss-khaydarinamulet.dds" Type="Image"/>
-<Asset path="assets\textures\darkness_coop.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zeratul-topbar-directlegions.dds" Type="Image"/>
-<Asset path="assets\textures\btn-upgrade-terran-nova-defensivedrone.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zeratul-immortal-enternitybarrier.dds" Type="Image"/>
-<Asset path="assets\textures\btn-ability-zerg-contaminate-color.dds" Type="Image"/>
-<Asset path="assets\textures\vertigo_coop.dds" Type="Image"/>
+<Asset path="assets\textures\btn-ability-zerg-harvestcorpse.dds" Type="Image"/>
 <Actor id="SYSTEM_ActorConfig"/>
 <Actor id="SensorTowerRadar2"/>
 <Behavior id="PermanentlyCloaked"/>
@@ -138,6 +77,7 @@
 <Model id="UnfairSC2GoldenMineralsSpawn"/>
 <Model id="UnfairSC2PureMineralsSpawn"/>
 <Model id="UnfairSC2RandomUnitRandomBox"/>
+<Sound id="AlarakA_Countdown"/>
 <Sound id="UI_PlayerCameraSelect"/>
 <Sound id="UI_TerranKlaxonAlert"/>
 <Sound id="TUIWarningPing"/>
