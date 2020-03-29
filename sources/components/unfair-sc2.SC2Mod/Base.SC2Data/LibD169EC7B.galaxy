@@ -28,6 +28,7 @@ include "LibB7A8BF05_h"
 include "LibC7F2089F_h"
 include "LibC5CFFE9E_h"
 include "LibD95F4C80_h"
+include "LibAE474D3F_h"
 include "Lib6B9047BC_h"
 include "Lib52829A21_h"
 include "Lib6D9F8D1C_h"
@@ -292,7 +293,7 @@ int libD169EC7B_gf_CreateHandicapsDialog () {
     lv_handicapsDialogLocal = c_invalidDialogId;
     lv_handicapButtonWidth = 330;
     lv_handicapButtonHeight = 45;
-    lv_buttonsInTheRow = 5;
+    lv_buttonsInTheRow = 4;
 
     // Implementation
     DialogCreate(700, 500, c_anchorCenter, 0, 0, true);
@@ -565,6 +566,8 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     libC5CFFE9E_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     libD95F4C80_gf_SetupOptions(lv_handicapindex);
+    lv_handicapindex += 1;
+    libAE474D3F_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     lib6B9047BC_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
@@ -1076,6 +1079,7 @@ include "LibB7A8BF05"
 include "LibC7F2089F"
 include "LibC5CFFE9E"
 include "LibD95F4C80"
+include "LibAE474D3F"
 include "Lib6B9047BC"
 include "Lib52829A21"
 include "Lib6D9F8D1C"

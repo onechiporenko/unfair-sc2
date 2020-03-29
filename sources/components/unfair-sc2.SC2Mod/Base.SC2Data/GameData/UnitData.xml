@@ -358,6 +358,7 @@
     </CUnit>
     <CUnit id="Nexus">
         <AbilArray index="8" Link="UnfairSC2MacroDefProtoss"/>
+        <AbilArray Link="NexusMassRecall"/>
         <CardLayouts index="0">
             <LayoutButtons>
                 <Face value="UnfSC2MacroDefProtoss"/>

@@ -12,6 +12,7 @@ Attribute001/Value002/Name=No
 Attribute075/Desc=Delay between two 
 Attribute090/Desc=Radius for zone 
 Attribute138/Value001/Desc=7
+Behavior/Name/BoostX2=Boost x2
 Behavior/Name/FairCannon=Fair Cannon
 Behavior/Name/FairCannonsAura=Fair Cannons (Aura)
 Behavior/Name/Slowness=No attack
@@ -37,6 +38,7 @@ Behavior/Name/UnfairSc2BerserkersBlood80=Unfair SC2 Berserker's Blood lvl3
 Behavior/Name/UnfairSc2Darkness=Unfair SC2 Darkness
 Behavior/Name/UnfairSc2MoveSpeed=Unfair SC2 Move Speed
 Behavior/Name/UnfairSc2Supply=UnfairSc2Supply
+Behavior/Tooltip/BoostX2=
 Behavior/Tooltip/UnfairSC2AcidSpray=Deals about 64 damage for 7 seconds.<n/>Attack speed is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.AdditiveAttackSpeedFactor*100" precision="1"/>%.<n/>Move speed is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.AdditiveMoveSpeedFactor*100" precison="1"/>%.<n/>Armor is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.ShieldArmorBonus"/>.<n/>Shield is reduced by <d ref="-Behavior,UnfairSC2AcidSpray,Modification.LifeArmorBonus"/>.
 Behavior/Tooltip/UnfairSC2CatchedSoul=Soul of fallen unit serving you<n/><n/>Attack speed is <d ref="Behavior,UnfairSC2CatchedSoul,Modification.AttackSpeedMultiplier*100"/>%<n/>Armor is <d ref="Behavior,UnfairSC2CatchedSoul,Modification.LifeArmorMultiplier*100"/>%<n/>Shield is <d ref="Behavior,UnfairSC2CatchedSoul,Modification.ShieldArmorMultiplier*100"/>%<n/>HP is 50%
 Behavior/Tooltip/UnfairSC2CritMiss=Unit has a <d ref="Behavior,UnfairSC2CritMiss,DamageResponse.Chance * 100"/>% chance to miss and do a damage to himself.<n/><n/>Sometimes self-damage is not done (however text "-**" is shown ).
@@ -226,6 +228,10 @@ Param/Expression/lib_9D7053F9_795DFAC3=Take 100 vespene  from ~PlayerName~ by Re
 Param/Expression/lib_9D7053F9_A6471FFA=<img path="EditorData\Images\CutSceneEditor\Toolbar\ToggleDebugHelpers.tga"/>
 Param/Expression/lib_9D7053F9_BC5032B7=Decimatio for ~PlayerName~ initiated by Referee
 Param/Expression/lib_9D7053F9_FDB4EECD=Give 100 vespene to ~PlayerName~ by Referee
+Param/Expression/lib_AE474D3F_5AEA0953=~Description~<n/>~Settings~
+Param/Expression/lib_AE474D3F_678F1808=~Settings~ 400%
+Param/Expression/lib_AE474D3F_C65F0B17=~Settings~ 200%
+Param/Expression/lib_AE474D3F_DDEA2969=~Settings~ 300%
 Param/Expression/lib_B7A8BF05_5A4F98AF=~Description~<n/>Enabled for: ~Players~
 Param/Expression/lib_BA1CFC25_366E671E=~Description~<n/>Enabled for: ~Players~
 Param/Expression/lib_BBD0FD26_FE373F83=~Description~<n/>Enabled for: ~Players~
@@ -451,6 +457,10 @@ Param/Value/lib_9D7053F9_B610A922=is turned on
 Param/Value/lib_9D7053F9_CA147E12=Referee UI
 Param/Value/lib_9D7053F9_CC5D1866=Give 100 vespene
 Param/Value/lib_9D7053F9_F124E032=Take 100 vespene
+Param/Value/lib_AE474D3F_18DBE29E=Game Speed
+Param/Value/lib_AE474D3F_1C2FBBA7=Game Speed Boost, %
+Param/Value/lib_AE474D3F_596F1D04=Increase game speed for all players.
+Param/Value/lib_AE474D3F_7F752A56=Game Speed is
 Param/Value/lib_B7A8BF05_1041003A=Fair Play
 Param/Value/lib_B7A8BF05_7100FE62=Fair Play for Player
 Param/Value/lib_B7A8BF05_FAC459EF=Photon cannons can do damage only if placed in radius of 15 of any own Nexus
@@ -598,4 +608,5 @@ Unit/Name/SupplyDepot=Хранилище
 Unit/Name/UnfairSC2AcidSprayMissile=Acid Spray Missile
 Unit/Name/UnfairSC2SuperCaster=Super Caster
 Upgrade/Name/GameHeartActive=GameHeartActive
+Upgrade/Name/TerranBoostX2=Terran Boost x2
 Weapon/Name/UnfairSc2Wall=UnfairSc2Wall

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="us-ascii"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <CUpgrade default="1" id="ProtossShields">
         <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
@@ -19,6 +19,79 @@
     <CUpgrade id="ProtossShieldsLevel3">
         <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,Pylon2,ShieldArmor" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="TerranBoostX2">
+        <Flags index="TechTreeCheat" value="1"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-transformationservos.dds"/>
+        <Alert value="ResearchComplete"/>
+        <Race value="Terr"/>
+        <ScoreAmount value="300"/>
+        <ScoreResult value="BuildOrder"/>
+        <EffectArray Operation="Divide" Reference="Abil,AssaultMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,AssaultMode,InfoArray[0].SectionArray[Mover].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,AssaultMode,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,FighterMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,FighterMode,InfoArray[0].SectionArray[Collide].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,AssaultMode,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,FighterMode,InfoArray[0].SectionArray[Mover].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,FighterMode,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellionTank,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellionTank,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellionTank,InfoArray[0].SectionArray[Collide].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellionTank,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellionTank,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellion,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellion,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellion,InfoArray[0].SectionArray[Collide].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellion,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellion,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorAPMode,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorAPMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorAPMode,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorNormalMode,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorNormalMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorNormalMode,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellionTank,InfoArray[0].RandomDelayMax" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MorphToHellion,InfoArray[0].RandomDelayMax" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorAPMode,InfoArray[0].RandomDelayMax" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,ThorNormalMode,InfoArray[0].RandomDelayMax" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAA,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAA,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAA,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAA,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAG,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAG,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAG,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAG,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,SiegeMode,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,SiegeMode,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,Unsiege,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,Unsiege,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,MedivacTransport,UnloadPeriod" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAA,InfoArray[0].SectionArray[Actor].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAA,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LiberatorMorphtoAG,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,WidowMineAttack,PrepTime[0]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,WidowMineUnburrow,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,WidowMineUnburrow,InfoArray[0].SectionArray[Mover].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,WidowMineUnburrow,InfoArray[0].SectionArray[Stats].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,WidowMineBurrow,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,WidowMineBurrow,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,WidowMineAttack,Cost[0].Cooldown.TimeUse" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LockOn,Cost[0].Cooldown.TimeUse" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,LockOnAir,Cost[0].Cooldown.TimeUse" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Effect,LiberatorTargetMorphDelayPersistent,PeriodicPeriodArray[0]" Value="2.000000"/>
+        <EffectArray Operation="Divide" Reference="Abil,SCVHarvest,ResourceTimeMultiplier[Minerals]" Value="2"/>
+        <EffectArray Operation="Divide" Reference="Abil,SCVHarvest,ResourceTimeMultiplier[Vespene]" Value="2"/>
+        <EffectArray Operation="Divide" Reference="Abil,MULEGather,ResourceTimeMultiplier[Minerals]" Value="2"/>
+        <EffectArray Operation="Divide" Reference="Abil,MULEGather,ResourceTimeMultiplier[Vespene]" Value="2"/>
+        <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
+        <AffectedUnitArray value="Hellion"/>
+        <AffectedUnitArray value="HellionTank"/>
+        <AffectedUnitArray value="VikingAssault"/>
+        <AffectedUnitArray value="VikingFighter"/>
+        <AffectedUnitArray value="ThorAP"/>
+        <AffectedUnitArray value="Thor"/>
     </CUpgrade>
     <CUpgrade id="TerranBuildingArmor"/>
 </Catalog>

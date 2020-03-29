@@ -110,6 +110,10 @@ bool libBA1CFC25_gt_Mineralsgathered_Func (bool testConds, bool runActions) {
         if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnit())].lv_rEDUCEMINING.lv_enabled == true))) {
             return false;
         }
+
+        if (!((UnitIsAlive(EventUnit()) == true))) {
+            return false;
+        }
     }
 
     // Actions
@@ -137,6 +141,10 @@ bool libBA1CFC25_gt_Vespenegathered_Func (bool testConds, bool runActions) {
     // Conditions
     if (testConds) {
         if (!((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnit())].lv_rEDUCEMINING.lv_enabled == true))) {
+            return false;
+        }
+
+        if (!((UnitIsAlive(EventUnit()) == true))) {
             return false;
         }
     }
