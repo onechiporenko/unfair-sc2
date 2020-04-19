@@ -8,6 +8,314 @@
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
         <LeaderAlias value=""/>
     </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranVehicleAndShipArmorsLevel6" parent="TerranVehicleAndShipArmors">
+        <Name value="Upgrade/Name/TerranVehicleAndShipArmorsLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <ScoreAmount value="800"/>
+        <EffectArray Operation="Set" Reference="Actor,Thor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,SiegeTank,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,SiegeTankSieged,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Hellion,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,HellionTank,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,WidowMine,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Banshee,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Battlecruiser,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Raven,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Medivac,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,VikingAssault,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,VikingFighter,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Cyclone,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Reference="Unit,Cyclone,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Cyclone,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,Liberator,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,LiberatorAG,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Reference="Unit,Liberator,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Liberator,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,LiberatorAG,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,LiberatorAG,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,LiberatorAG,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <LeaderLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranShipArmorsLevel6" parent="TerranShipArmorsLevel3">
+        <Name value="Upgrade/Name/TerranShipArmorsLevel6"/>
+        <ScoreAmount value="900"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranInfantryWeaponsLevel6" parent="TerranInfantryWeapons">
+        <Name value="Upgrade/Name/TerranInfantryWeaponsLevel6"/>
+        <InfoTooltipPriority value="0"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <ScoreAmount value="950"/>
+        <EffectArray Operation="Set" Reference="Weapon,GuassRifle,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,D8Charge,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,P38ScytheGuassPistol,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,PunisherGrenades,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,C10CanisterRifle,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,HERCWeapon,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Reference="Weapon,HERCWeapon,Level" Value="1"/>
+        <EffectArray Reference="Effect,HERCWeaponDamage,Amount" Value="2.000000"/>
+        <AffectedUnitArray value="HERC"/>
+        <LeaderLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossGroundWeaponsLevel6" parent="ProtossGroundWeaponsLevel3">
+        <Name value="Upgrade/Name/ProtossGroundWeaponsLevel6"/>
+        <ScoreAmount value="700"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranVehicleWeaponsLevel6" parent="TerranVehicleWeaponsLevel3">
+        <Name value="Upgrade/Name/TerranVehicleWeaponsLevel6"/>
+        <ScoreAmount value="950"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossAirWeaponsLevel6" parent="ProtossAirWeaponsLevel3">
+        <Name value="Upgrade/Name/ProtossAirWeaponsLevel6"/>
+        <ScoreAmount value="950"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranShipWeaponsLevel6" parent="TerranShipWeaponsLevel3">
+        <Name value="Upgrade/Name/TerranShipWeaponsLevel6"/>
+        <ScoreAmount value="950"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranInfantryArmorsLevel6" parent="TerranInfantryArmorsLevel3">
+        <Name value="Upgrade/Name/TerranInfantryArmorsLevel6"/>
+        <ScoreAmount value="950"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossGroundArmorsLevel6" parent="ProtossGroundArmors">
+        <Name value="Upgrade/Name/ProtossGroundArmorsLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <ScoreAmount value="700"/>
+        <EffectArray Operation="Set" Reference="Actor,Probe,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Zealot,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Sentry,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Stalker,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Immortal,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,HighTemplar,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,DarkTemplar,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Archon,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Colossus,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Adept,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Reference="Unit,Adept,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Adept,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,Disruptor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Reference="Unit,Disruptor,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,DisruptorPhased,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,Disruptor,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,DisruptorPhased,LifeArmor" Value="1"/>
+        <AffectedUnitArray value="Adept"/>
+        <AffectedUnitArray value="Disruptor"/>
+        <AffectedUnitArray value="DisruptorPhased"/>
+        <LeaderLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossAirArmorsLevel6" parent="ProtossAirArmorsLevel3">
+        <Name value="Upgrade/Name/ProtossAirArmorsLevel6"/>
+        <ScoreAmount value="1050"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossAirWeaponsLevel5" parent="ProtossAirWeaponsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2ProtossAirWeaponsLevel5"/>
+        <ScoreAmount value="800"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranShipArmorsLevel5" parent="TerranShipArmorsLevel3">
+        <Name value="Upgrade/Name/TerranShipArmorsLevel5"/>
+        <ScoreAmount value="900"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranShipWeaponsLevel5" parent="TerranShipWeaponsLevel3">
+        <Name value="Upgrade/Name/TerranShipWeaponsLevel5"/>
+        <ScoreAmount value="800"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranVehicleWeaponsLevel5" parent="TerranVehicleWeaponsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2TerranVehicleWeaponsLevel5"/>
+        <ScoreAmount value="800"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranInfantryWeaponsLevel5" parent="TerranInfantryWeapons">
+        <Name value="Upgrade/Name/UnfairSC2TerranInfantryWeaponsLevel5"/>
+        <InfoTooltipPriority value="0"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <ScoreAmount value="800"/>
+        <EffectArray Operation="Set" Reference="Weapon,GuassRifle,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,D8Charge,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,P38ScytheGuassPistol,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,PunisherGrenades,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,C10CanisterRifle,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,HERCWeapon,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Reference="Weapon,HERCWeapon,Level" Value="1"/>
+        <EffectArray Reference="Effect,HERCWeaponDamage,Amount" Value="2.000000"/>
+        <AffectedUnitArray value="HERC"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossGroundWeaponsLevel5" parent="ProtossGroundWeaponsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2ProtossGroundWeaponsLevel5"/>
+        <ScoreAmount value="600"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranVehicleAndShipArmorsLevel5" parent="TerranVehicleAndShipArmors">
+        <Name value="Upgrade/Name/UnfairSC2TerranVehicleAndShipArmorsLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <ScoreAmount value="800"/>
+        <EffectArray Operation="Set" Reference="Actor,Thor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,SiegeTank,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,SiegeTankSieged,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Hellion,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,HellionTank,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,WidowMine,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Banshee,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Battlecruiser,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Raven,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Medivac,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,VikingAssault,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,VikingFighter,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Cyclone,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Reference="Unit,Cyclone,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Cyclone,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,Liberator,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,LiberatorAG,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Reference="Unit,Liberator,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Liberator,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,LiberatorAG,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,LiberatorAG,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,LiberatorAG,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranInfantryArmorsLevel5" parent="TerranInfantryArmorsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2TerranInfantryArmorsLevel5"/>
+        <ScoreAmount value="800"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossGroundArmorsLevel5" parent="ProtossGroundArmors">
+        <Name value="Upgrade/Name/UnfairSC2ProtossGroundArmorsLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <ScoreAmount value="600"/>
+        <EffectArray Operation="Set" Reference="Actor,Probe,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Zealot,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Sentry,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Stalker,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Immortal,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,HighTemplar,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,DarkTemplar,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Archon,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Colossus,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Adept,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Reference="Unit,Adept,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Adept,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,Disruptor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Reference="Unit,Disruptor,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,DisruptorPhased,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,Disruptor,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,DisruptorPhased,LifeArmor" Value="1"/>
+        <AffectedUnitArray value="Adept"/>
+        <AffectedUnitArray value="Disruptor"/>
+        <AffectedUnitArray value="DisruptorPhased"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossAirArmorsLevel5" parent="ProtossAirArmorsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2ProtossAirArmorsLevel5"/>
+        <ScoreAmount value="900"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranVehicleAndShipArmorsLevel4" parent="TerranVehicleAndShipArmors">
+        <Name value="Upgrade/Name/TerranVehicleAndShipArmorsLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <ScoreAmount value="650"/>
+        <EffectArray Operation="Set" Reference="Actor,Thor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,SiegeTank,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,SiegeTankSieged,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Hellion,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,HellionTank,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,WidowMine,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Banshee,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Battlecruiser,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Raven,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Medivac,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,VikingAssault,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,VikingFighter,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Cyclone,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <EffectArray Reference="Unit,Cyclone,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Cyclone,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,Liberator,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,LiberatorAG,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <EffectArray Reference="Unit,Liberator,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Liberator,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,LiberatorAG,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,LiberatorAG,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,LiberatorAG,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-terran-shipplatinglevel3.dds"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranShipArmorsLevel4" parent="TerranShipArmorsLevel3">
+        <Name value="Upgrade/Name/TerranShipArmorsLevel4"/>
+        <ScoreAmount value="750"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranInfantryWeaponsLevel4" parent="TerranInfantryWeapons">
+        <Name value="Upgrade/Name/TerranInfantryWeaponsLevel4"/>
+        <InfoTooltipPriority value="0"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <ScoreAmount value="650"/>
+        <EffectArray Operation="Set" Reference="Weapon,GuassRifle,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,D8Charge,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,P38ScytheGuassPistol,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,PunisherGrenades,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,C10CanisterRifle,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,HERCWeapon,Icon" Value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EffectArray Reference="Weapon,HERCWeapon,Level" Value="1"/>
+        <EffectArray Reference="Effect,HERCWeaponDamage,Amount" Value="2.000000"/>
+        <AffectedUnitArray value="HERC"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranVehicleWeaponsLevel4" parent="TerranVehicleWeaponsLevel3">
+        <Name value="Upgrade/Name/TerranVehicleWeaponsLevel4"/>
+        <ScoreAmount value="650"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranShipWeaponsLevel4" parent="TerranShipWeaponsLevel3">
+        <Name value="Upgrade/Name/TerranShipWeaponsLevel4"/>
+        <ScoreAmount value="650"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranInfantryArmorsLevel4" parent="TerranInfantryArmorsLevel3">
+        <Name value="Upgrade/Name/TerranInfantryArmorsLevel4"/>
+        <ScoreAmount value="650"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossGroundWeaponsLevel4" parent="ProtossGroundWeaponsLevel3">
+        <Name value="Upgrade/Name/ProtossGroundWeaponsLevel4"/>
+        <ScoreAmount value="500"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossAirWeaponsLevel4" parent="ProtossAirWeaponsLevel3">
+        <Name value="Upgrade/Name/ProtossAirWeaponsLevel4"/>
+        <ScoreAmount value="650"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossGroundArmorsLevel4" parent="ProtossGroundArmors">
+        <Name value="Upgrade/Name/ProtossGroundArmorsLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <ScoreAmount value="500"/>
+        <EffectArray Operation="Set" Reference="Actor,Probe,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Zealot,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Sentry,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Stalker,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Immortal,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,HighTemplar,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,DarkTemplar,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Archon,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Colossus,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Operation="Set" Reference="Actor,Adept,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Reference="Unit,Adept,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,Adept,LifeArmorLevel" Value="1"/>
+        <EffectArray Operation="Set" Reference="Actor,Disruptor,LifeArmorIcon" Value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel3.dds"/>
+        <EffectArray Reference="Unit,Disruptor,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,DisruptorPhased,LifeArmorLevel" Value="1"/>
+        <EffectArray Reference="Unit,Disruptor,LifeArmor" Value="1"/>
+        <EffectArray Reference="Unit,DisruptorPhased,LifeArmor" Value="1"/>
+        <AffectedUnitArray value="Adept"/>
+        <AffectedUnitArray value="Disruptor"/>
+        <AffectedUnitArray value="DisruptorPhased"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossAirArmorsLevel4" parent="ProtossAirArmorsLevel3">
+        <Name value="Upgrade/Name/ProtossAirArmorsLevel4"/>
+        <ScoreAmount value="750"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
     <CUpgrade id="ProtossShieldsLevel1">
         <EffectArray Reference="Unit,Pylon2,ShieldArmor" Value="1"/>
         <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
@@ -19,6 +327,20 @@
     <CUpgrade id="ProtossShieldsLevel3">
         <EffectArray Reference="Unit,Pylon2,ShieldArmorLevel" Value="1"/>
         <EffectArray Reference="Unit,Pylon2,ShieldArmor" Value="1"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossShieldsLevel6" parent="ProtossShieldsLevel3">
+        <Name value="Upgrade/Name/ProtossShieldsLevel6"/>
+        <ScoreAmount value="1050"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossShieldsLevel5" parent="ProtossShieldsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2ProtossShieldsLevel5"/>
+        <ScoreAmount value="900"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ProtossShieldsLevel4" parent="ProtossShieldsLevel3">
+        <Name value="Upgrade/Name/ProtossShieldsLevel4"/>
+        <ScoreAmount value="750"/>
+        <LeaderLevel value="4"/>
     </CUpgrade>
     <CUpgrade id="TerranBoostX2">
         <Flags index="TechTreeCheat" value="1"/>
@@ -94,4 +416,93 @@
         <AffectedUnitArray value="Thor"/>
     </CUpgrade>
     <CUpgrade id="TerranBuildingArmor"/>
+    <CUpgrade id="UnfairSC2ZergMeleeWeaponsLevel4" parent="ZergMeleeWeaponsLevel3">
+        <Name value="Upgrade/Name/ZergMeleeWeaponsLevel4"/>
+        <ScoreAmount value="500"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergFlyerArmorsLevel5" parent="ZergFlyerArmorsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2ZergFlyerArmorsLevel5"/>
+        <ScoreAmount value="900"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergFlyerArmorsLevel6" parent="ZergFlyerArmorsLevel3">
+        <Name value="Upgrade/Name/ZergFlyerArmorsLevel6"/>
+        <ScoreAmount value="1050"/>
+    </CUpgrade>
+    <CUpgrade id="ZergFlyerArmorsLevel4" parent="ZergFlyerArmorsLevel3">
+        <Name value="Upgrade/Name/ZergFlyerArmorsLevel4"/>
+        <ScoreAmount value="750"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergFlyerWeaponsLevel5" parent="ZergFlyerWeapons">
+        <Name value="Upgrade/Name/ZergFlyerWeaponsLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <ScoreAmount value="800"/>
+        <EffectArray index="5" Reference="Effect,BroodlingEscortDamage,Amount" Value="2"/>
+        <EffectArray index="6" Reference="Effect,BroodlingEscortDamageUnit,Amount" Value="2"/>
+        <EffectArray Operation="Set" Reference="Weapon,GlaiveWurm,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,BroodlingStrike,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,ParasiteSpore,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergFlyerWeaponsLevel6" parent="ZergFlyerWeapons">
+        <Name value="Upgrade/Name/UnfairSC2ZergFlyerWeaponsLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <ScoreAmount value="950"/>
+        <EffectArray index="5" Reference="Effect,BroodlingEscortDamage,Amount" Value="2"/>
+        <EffectArray index="6" Reference="Effect,BroodlingEscortDamageUnit,Amount" Value="2"/>
+        <EffectArray Operation="Set" Reference="Weapon,GlaiveWurm,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,BroodlingStrike,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,ParasiteSpore,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <LeaderLevel value="3"/>
+    </CUpgrade>
+    <CUpgrade id="ZergFlyerWeaponsLevel4" parent="ZergFlyerWeapons">
+        <Name value="Upgrade/Name/ZergFlyerWeaponsLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <ScoreAmount value="650"/>
+        <EffectArray index="5" Reference="Effect,BroodlingEscortDamage,Amount" Value="2"/>
+        <EffectArray index="6" Reference="Effect,BroodlingEscortDamageUnit,Amount" Value="2"/>
+        <EffectArray Operation="Set" Reference="Weapon,GlaiveWurm,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,BroodlingStrike,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EffectArray Operation="Set" Reference="Weapon,ParasiteSpore,Icon" Value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergGroundArmorsLevel5" parent="ZergGroundArmorsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2ZergGroundArmorsLevel5"/>
+        <ScoreAmount value="900"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergGroundArmorsLevel6" parent="ZergGroundArmorsLevel3">
+        <Name value="Upgrade/Name/ZergGroundArmorsLevel6"/>
+        <ScoreAmount value="1050"/>
+    </CUpgrade>
+    <CUpgrade id="ZergGroundArmorsLevel4" parent="ZergGroundArmorsLevel3">
+        <Name value="Upgrade/Name/ZergGroundArmorsLevel4"/>
+        <LeaderLevel value="4"/>
+        <ScoreAmount value="750"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergMeleeWeaponsLevel5" parent="ZergMeleeWeaponsLevel3">
+        <Name value="Upgrade/Name/ZergMeleeWeaponsLevel5"/>
+        <ScoreAmount value="600"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergMissileWeaponsLevel5" parent="ZergMissileWeaponsLevel3">
+        <Name value="Upgrade/Name/UnfairSC2ZergMissileWeaponsLevel5"/>
+        <ScoreAmount value="600"/>
+        <LeaderLevel value="5"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergMeleeWeaponsLevel6" parent="ZergMeleeWeaponsLevel3">
+        <Name value="Upgrade/Name/ZergMeleeWeaponsLevel6"/>
+        <ScoreAmount value="700"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2ZergMissileWeaponsLevel6" parent="ZergMissileWeaponsLevel3">
+        <Name value="Upgrade/Name/ZergMissileWeaponsLevel6"/>
+        <ScoreAmount value="700"/>
+    </CUpgrade>
+    <CUpgrade id="ZergMissileWeaponsLevel4" parent="ZergMissileWeaponsLevel3">
+        <Name value="Upgrade/Name/ZergMissileWeaponsLevel4"/>
+        <ScoreAmount value="500"/>
+        <LeaderLevel value="4"/>
+    </CUpgrade>
 </Catalog>

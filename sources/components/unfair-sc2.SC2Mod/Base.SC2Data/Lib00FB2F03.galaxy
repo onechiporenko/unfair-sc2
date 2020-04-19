@@ -1,0 +1,183 @@
+include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
+include "LibDBC4E2D2_h"
+
+include "Lib00FB2F03_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: EXTRA UPGRADES
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib00FB2F03_InitLibraries () {
+    libNtve_InitVariables();
+    libD169EC7B_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void lib00FB2F03_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_00FB2F03_68F1A7F0");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_00FB2F03_BF1ED073");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-zerg-stukov-flyingqueenunlocksmoreupgrades_13.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_00FB2F03_701F7BC6");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib00FB2F03_gt_SetupHandicap;
+}
+
+void lib00FB2F03_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto03FE791E_g;
+    int auto03FE791E_var;
+    playergroup auto83F2F60C_g;
+    int auto83F2F60C_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto83F2F60C_g = PlayerGroupActive();
+        auto83F2F60C_var = -1;
+        while (true) {
+            auto83F2F60C_var = PlayerGroupNextPlayer(auto83F2F60C_g, auto83F2F60C_var);
+            if (auto83F2F60C_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto83F2F60C_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto83F2F60C_var);
+            }
+            else {
+                lib00FB2F03_gf_DisallowExtraUpgradesForPlayer(auto83F2F60C_var);
+            }
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_00FB2F03_5592D7B5", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_00FB2F03_5592D7B5", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_00FB2F03_5592D7B5"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+
+    }
+    else {
+        auto03FE791E_g = PlayerGroupActive();
+        auto03FE791E_var = -1;
+        while (true) {
+            auto03FE791E_var = PlayerGroupNextPlayer(auto03FE791E_g, auto03FE791E_var);
+            if (auto03FE791E_var < 0) { break; }
+            lib00FB2F03_gf_DisallowExtraUpgradesForPlayer(auto03FE791E_var);
+        }
+    }
+}
+
+void lib00FB2F03_gf_DisallowExtraUpgradesForPlayer (int lp_player) {
+    // Automatic Variable Declarations
+    // Implementation
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossAirWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossAirWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossAirWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossGroundWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossGroundWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossGroundWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranInfantryWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranInfantryWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranInfantryWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranShipWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranShipWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranShipWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranVehicleWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranVehicleWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranVehicleWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "ZergFlyerWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergFlyerWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergFlyerWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergMeleeWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergMeleeWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergMeleeWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "ZergMissileWeaponsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergMissileWeaponsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergMissileWeaponsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossAirArmorsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossAirArmorsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossAirArmorsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossGroundArmorsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossGroundArmorsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossGroundArmorsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossShieldsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossShieldsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ProtossShieldsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranInfantryArmorsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranInfantryArmorsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranInfantryArmorsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranShipArmorsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranShipArmorsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranShipArmorsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranVehicleAndShipArmorsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranVehicleAndShipArmorsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2TerranVehicleAndShipArmorsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "ZergFlyerArmorsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergFlyerArmorsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergFlyerArmorsLevel6", false);
+    TechTreeUpgradeAllow(lp_player, "ZergGroundArmorsLevel4", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergGroundArmorsLevel5", false);
+    TechTreeUpgradeAllow(lp_player, "UnfairSC2ZergGroundArmorsLevel6", false);
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib00FB2F03_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib00FB2F03_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib00FB2F03_gt_SetupHandicap_Init () {
+    lib00FB2F03_gt_SetupHandicap = TriggerCreate("lib00FB2F03_gt_SetupHandicap_Func");
+}
+
+void lib00FB2F03_InitTriggers () {
+    lib00FB2F03_gt_SetupHandicap_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib00FB2F03_InitLib_completed = false;
+
+void lib00FB2F03_InitLib () {
+    if (lib00FB2F03_InitLib_completed) {
+        return;
+    }
+
+    lib00FB2F03_InitLib_completed = true;
+
+    lib00FB2F03_InitLibraries();
+    lib00FB2F03_InitTriggers();
+}
+
+include "LibD169EC7B"
+include "LibDBC4E2D2"
+

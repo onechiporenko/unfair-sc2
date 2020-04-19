@@ -1,0 +1,125 @@
+include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
+
+include "LibAE474D3F_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: GAME SPEED
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libAE474D3F_InitLibraries () {
+    libNtve_InitVariables();
+    libD169EC7B_InitVariables();
+}
+
+// Functions
+void libAE474D3F_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_AE474D3F_18DBE29E");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_AE474D3F_596F1D04");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-stetmann-topbar-speedconfiguration.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_AE474D3F_1C2FBBA7");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "200";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "200";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "300";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "400";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libAE474D3F_gt_SetupHandicap;
+}
+
+void libAE474D3F_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    text lv_settings;
+
+    // Automatic Variable Declarations
+    string autoCF2B1249_val;
+
+    // Variable Initialization
+    lv_settings = StringExternal("Param/Value/lib_AE474D3F_7F752A56");
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        autoCF2B1249_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal;
+        if (autoCF2B1249_val == "200") {
+            GameSetGlobalTimeScale(2.0);
+            TextExpressionSetToken("Param/Expression/lib_AE474D3F_C65F0B17", "Settings", lv_settings);
+            lv_settings = TextExpressionAssemble("Param/Expression/lib_AE474D3F_C65F0B17");
+        }
+        else if (autoCF2B1249_val == "300") {
+            GameSetGlobalTimeScale(3.0);
+            TextExpressionSetToken("Param/Expression/lib_AE474D3F_DDEA2969", "Settings", lv_settings);
+            lv_settings = TextExpressionAssemble("Param/Expression/lib_AE474D3F_DDEA2969");
+        }
+        else if (autoCF2B1249_val == "400") {
+            GameSetGlobalTimeScale(4.0);
+            TextExpressionSetToken("Param/Expression/lib_AE474D3F_678F1808", "Settings", lv_settings);
+            lv_settings = TextExpressionAssemble("Param/Expression/lib_AE474D3F_678F1808");
+        }
+        else {
+        }
+        TextExpressionSetToken("Param/Expression/lib_AE474D3F_5AEA0953", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+        TextExpressionSetToken("Param/Expression/lib_AE474D3F_5AEA0953", "Settings", lv_settings);
+        HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_AE474D3F_5AEA0953"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Phoenix", 0, 1, PlayerStartLocation(1));
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "VikingFighter", 0, 1, PlayerStartLocation(1));
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Mutalisk", 0, 1, PlayerStartLocation(1));
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libAE474D3F_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libAE474D3F_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libAE474D3F_gt_SetupHandicap_Init () {
+    libAE474D3F_gt_SetupHandicap = TriggerCreate("libAE474D3F_gt_SetupHandicap_Func");
+}
+
+void libAE474D3F_InitTriggers () {
+    libAE474D3F_gt_SetupHandicap_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libAE474D3F_InitLib_completed = false;
+
+void libAE474D3F_InitLib () {
+    if (libAE474D3F_InitLib_completed) {
+        return;
+    }
+
+    libAE474D3F_InitLib_completed = true;
+
+    libAE474D3F_InitLibraries();
+    libAE474D3F_InitTriggers();
+}
+
+include "LibD169EC7B"
+

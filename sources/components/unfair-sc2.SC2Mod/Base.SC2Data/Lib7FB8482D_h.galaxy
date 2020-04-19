@@ -5,7 +5,7 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Function Declarations
 void lib7FB8482D_gf_SetupOptions (int lp_handicapindex);
-void lib7FB8482D_gf_EnableHandicap (int lp_yxegfoeajkdqoece);
+void lib7FB8482D_gf_EnableHandicap (int lp_oyrdlcbqqbocrqut);
 void lib7FB8482D_gf_EnableHandicapForPlayer (int lp_player);
 
 // Trigger Declarations

@@ -16,6 +16,61 @@
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
         </CardLayouts>
     </CUnit>
+    <!-- Balance change for balance patch of Nov 11th 2013 (combined Air/Ground vehicle upgrades)-->
+    <!-- Balance test 3/12 (separate Air/Ground vehicle upgrades)-->
+    <!-- Balance test 6/30 (combine Air/Ground mech armor upgrades)-->
+    <CUnit id="Armory">
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="UnfairSC2TerranVehicleWeaponsLevel4"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="ArmoryResearch,Research19"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="0"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="UnfairSC2TerranVehicleWeaponsLevel5"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="ArmoryResearch,Research22"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="0"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons>
+                <Face value="UnfairSC2TerranVehicleWeaponsLevel6"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="ArmoryResearch,Research25"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="0"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons Face="UnfairSC2TerranShipWeaponsLevel4" Type="AbilCmd" AbilCmd="ArmoryResearch,Research18" Row="1" Column="0"/>
+            <LayoutButtons Face="UnfairSC2TerranShipWeaponsLevel5" Type="AbilCmd" AbilCmd="ArmoryResearch,Research21" Row="1" Column="0"/>
+            <LayoutButtons Face="UnfairSC2TerranVehicleAndShipPlatingLevel4" Type="AbilCmd" AbilCmd="ArmoryResearch,Research20" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2TerranVehicleAndShipPlatingLevel5" Type="AbilCmd" AbilCmd="ArmoryResearch,Research23" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2TerranVehicleAndShipPlatingLevel6" Type="AbilCmd" AbilCmd="ArmoryResearch,Research26" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2TerranShipWeaponsLevel6" Type="AbilCmd" AbilCmd="ArmoryResearch,Research24" Row="1" Column="0"/>
+        </CardLayouts>
+    </CUnit>
     <CUnit id="Baneling">
         <AbilArray Link="Grapple"/>
         <AbilArray Link="Blink"/>
@@ -99,6 +154,29 @@
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
         </CardLayouts>
     </CUnit>
+    <CUnit id="CyberneticsCore">
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="UnfairSC2ProtossAirWeaponsLevel4"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="CyberneticsCoreResearch,Research12"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="0"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons Face="UnfairSC2ProtossAirWeaponsLevel5" Type="AbilCmd" AbilCmd="CyberneticsCoreResearch,Research14" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2ProtossAirWeaponsLevel6" Type="AbilCmd" AbilCmd="CyberneticsCoreResearch,Research16" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2ProtossAirArmorLevel4" Type="AbilCmd" AbilCmd="CyberneticsCoreResearch,Research13" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2ProtossAirArmorLevel5" Type="AbilCmd" AbilCmd="CyberneticsCoreResearch,Research15" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2ProtossAirArmorLevel6" Type="AbilCmd" AbilCmd="CyberneticsCoreResearch,Research17" Row="0" Column="1"/>
+        </CardLayouts>
+    </CUnit>
     <CUnit id="Cyclone">
         <AbilArray Link="Blink"/>
         <AbilArray Link="Charge"/>
@@ -138,6 +216,76 @@
         </CardLayouts>
     </CUnit>
     <CUnit id="Drone"/>
+    <CUnit id="EngineeringBay">
+        <CardLayouts index="0">
+            <LayoutButtons>
+                <Face value="UnfairSC2TerranInfantryWeaponsLevel4"/>
+                <Type value="AbilCmd"/>
+                <AbilCmd value="EngineeringBayResearch,Research10"/>
+                <Behavior value=""/>
+                <Requirements value=""/>
+                <SubmenuAbilState value=""/>
+                <SubmenuCardId value=""/>
+                <SubmenuFullSubCmdValidation value="0"/>
+                <SubmenuIsSticky value="0"/>
+                <ShowInGlossary value="1"/>
+                <Row value="0"/>
+                <Column value="0"/>
+            </LayoutButtons>
+            <LayoutButtons Face="UnfairSC2TerranInfantryWeaponsLevel5" Type="AbilCmd" AbilCmd="EngineeringBayResearch,Research12" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2TerranInfantryWeaponsLevel6" Type="AbilCmd" AbilCmd="EngineeringBayResearch,Research15" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2TerranInfantryArmorLevel4" Type="AbilCmd" AbilCmd="EngineeringBayResearch,Research11" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2TerranInfantryArmorLevel5" Type="AbilCmd" AbilCmd="EngineeringBayResearch,Research13" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2TerranInfantryArmorLevel6" Type="AbilCmd" AbilCmd="EngineeringBayResearch,Research14" Row="0" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="EvolutionChamber">
+        <ResourceState value="Raw"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="UnfairSC2zerggroundarmor4" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research11" Row="0" Column="2"/>
+            <LayoutButtons Face="UnfairSC2zerggroundarmor5" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research16" Row="0" Column="2"/>
+            <LayoutButtons Face="UnfairSC2zergmeleeweapons4" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research12" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfaiSC2zergmeleeweapons5" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research14" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergmeleeweapons6" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research17" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergmissileweapons4" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research13" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2zergmissileweapons5" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research15" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2zergmissileweapons6" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research18" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2zerggroundarmor6" Type="AbilCmd" AbilCmd="evolutionchamberresearch,Research19" Row="0" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Forge">
+        <CardLayouts index="0">
+            <LayoutButtons Face="UnfairSC2ProtossGroundWeaponsLevel4" Type="AbilCmd" AbilCmd="ForgeResearch,Research10" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2ProtossGroundWeaponsLevel5" Type="AbilCmd" AbilCmd="ForgeResearch,Research13" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2ProtossGroundWeaponsLevel6" Type="AbilCmd" AbilCmd="ForgeResearch,Research16" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2ProtossGroundArmorLevel4" Type="AbilCmd" AbilCmd="ForgeResearch,Research11" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2ProtossGroundArmorLevel5" Type="AbilCmd" AbilCmd="ForgeResearch,Research14" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2ProtossShieldsLevel4" Type="AbilCmd" AbilCmd="ForgeResearch,Research12" Row="0" Column="2"/>
+            <LayoutButtons Face="UnfairSC2ProtossShieldsLevel5" Type="AbilCmd" AbilCmd="ForgeResearch,Research15" Row="0" Column="2"/>
+            <LayoutButtons Face="UnfairSC2ProtossGroundArmorLevel6" Type="AbilCmd" AbilCmd="ForgeResearch,Research17" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2ProtossShieldsLevel6" Type="AbilCmd" AbilCmd="ForgeResearch,Research18" Row="0" Column="2"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="GreaterSpire">
+        <CardLayouts index="0">
+            <LayoutButtons Face="UnfairSC2zergflyerattack4" Type="AbilCmd" AbilCmd="SpireResearch,Research7" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergflyerattack5" Type="AbilCmd" AbilCmd="SpireResearch,Research9" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergflyerattack6" Type="AbilCmd" AbilCmd="SpireResearch,Research11" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergflyerarmor4" Type="AbilCmd" AbilCmd="SpireResearch,Research8" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2zergflyerarmor5" Type="AbilCmd" AbilCmd="SpireResearch,Research10" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2zergflyerarmor6" Type="AbilCmd" AbilCmd="SpireResearch,Research12" Row="0" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Spire">
+        <CardLayouts index="0">
+            <LayoutButtons Face="UnfairSC2zergflyerattack4" Type="AbilCmd" AbilCmd="SpireResearch,Research7" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergflyerattack5" Type="AbilCmd" AbilCmd="SpireResearch,Research9" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergflyerattack6" Type="AbilCmd" AbilCmd="SpireResearch,Research11" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfairSC2zergflyerarmor4" Type="AbilCmd" AbilCmd="SpireResearch,Research8" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2zergflyerarmor5" Type="AbilCmd" AbilCmd="SpireResearch,Research10" Row="0" Column="1"/>
+            <LayoutButtons Face="UnfairSC2zergflyerarmor6" Type="AbilCmd" AbilCmd="SpireResearch,Research12" Row="0" Column="1"/>
+        </CardLayouts>
+    </CUnit>
     <CUnit id="UnfairSC2AcidSprayMissile" parent="MISSILE_INVULNERABLE">
         <ReviveType value=""/>
         <Race value="Zerg"/>
@@ -577,6 +725,7 @@
             <LayoutButtons Face="Blink" Type="AbilCmd" AbilCmd="Blink,Execute" Row="2" Column="2"/>
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
         </CardLayouts>
+        <FlagArray index="TurnBeforeMove" value="1"/>
     </CUnit>
     <CUnit id="Viper">
         <AbilArray Link="Blink"/>

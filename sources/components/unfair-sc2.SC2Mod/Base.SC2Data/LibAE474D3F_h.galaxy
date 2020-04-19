@@ -1,0 +1,12 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: GAME SPEED
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libAE474D3F_gf_SetupOptions (int lp_handicapindex);
+void libAE474D3F_gf_EnableHandicap (int lp_handicapIndex);
+
+// Trigger Declarations
+trigger libAE474D3F_gt_SetupHandicap;
+

@@ -158,6 +158,10 @@ bool libD31C8AFA_gt_ConstructionStarted_Func (bool testConds, bool runActions) {
         if (!((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_iNSTANTPRODUCTION.lv_buildings == true))) {
             return false;
         }
+
+        if (!((UnitTypeTestAttribute(libNtve_gf_TriggeringProgressUnitType(), c_unitAttributeStructure) == true))) {
+            return false;
+        }
     }
 
     // Actions

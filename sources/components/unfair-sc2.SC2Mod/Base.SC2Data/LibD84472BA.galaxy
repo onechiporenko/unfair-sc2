@@ -89,7 +89,6 @@ void libD84472BA_gf_EnableHandicap (int lp_handicapIndex) {
 void libD84472BA_gf_EnableHandicapForPlayer (int lp_player) {
     // Automatic Variable Declarations
     // Implementation
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, PlayerName(lp_player));
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "ProtossGroundWeaponsLevel1", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "ProtossGroundWeaponsLevel2", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "ProtossGroundWeaponsLevel3", 1);

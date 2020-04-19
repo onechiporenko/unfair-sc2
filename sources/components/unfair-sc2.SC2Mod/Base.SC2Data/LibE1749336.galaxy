@@ -53,6 +53,10 @@ void libE1749336_gf_SetupOptions (int lp_handicapindex) {
     lv_optionvalueindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
     lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "7";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
     lv_optionindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
@@ -89,6 +93,12 @@ void libE1749336_gf_EnableHandicap (int lp_handicapIndex) {
         }
         else if (auto093FF477_val == "5") {
             lv_timeout = 300;
+        }
+        else if (auto093FF477_val == "7") {
+            lv_timeout = 420;
+        }
+        else if (auto093FF477_val == "10") {
+            lv_timeout = 600;
         }
         else {
         }

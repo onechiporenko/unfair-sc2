@@ -106,6 +106,16 @@ void lib3BAA32A3_gf_EnableHandicapForPlayer (int lp_player) {
     PlayerModifyPropertyInt(lp_player, c_playerPropSuppliesMade, c_playerPropOperSetTo, 200);
 }
 
+void lib3BAA32A3_gf_CreateCloneofUnit (unit lp_unitToClone) {
+    // Automatic Variable Declarations
+    // Implementation
+    UnitCreate(1, UnitGetType(lp_unitToClone), 0, UnitGetOwner(lp_unitToClone), UnitGetPosition(lp_unitToClone), 270.0);
+    UnitIssueOrder(UnitLastCreated(), UnitOrder(lp_unitToClone, 0), c_orderQueueReplace);
+    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2DoubleBirth", "Ref_Head");
+    libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unitToClone)].lv_dOUBLE.lv_minerals += UnitTypeGetCost(UnitGetType(lp_unitToClone), c_unitCostMinerals);
+    libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unitToClone)].lv_dOUBLE.lv_gas += UnitTypeGetCost(UnitGetType(lp_unitToClone), c_unitCostVespene);
+}
+
 // Triggers
 //--------------------------------------------------------------------------------------------------
 // Trigger: Setup Handicap
@@ -217,6 +227,10 @@ bool lib3BAA32A3_gt_DuplicateCreatedUnit_Func (bool testConds, bool runActions) 
             return false;
         }
 
+        if (!((EventUnitCreatedAbil() != "WarpGateTrain"))) {
+            return false;
+        }
+
         if (!(((UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesMade) > 0.0)))) {
             return false;
         }
@@ -227,11 +241,7 @@ bool lib3BAA32A3_gt_DuplicateCreatedUnit_Func (bool testConds, bool runActions) 
         return true;
     }
 
-    UnitCreate(1, UnitGetType(EventUnitCreatedUnit()), 0, UnitGetOwner(EventUnitCreatedUnit()), UnitGetPosition(EventUnitCreatedUnit()), 270.0);
-    UnitIssueOrder(UnitLastCreated(), UnitOrder(EventUnitCreatedUnit(), 0), c_orderQueueReplace);
-    libNtve_gf_AttachModelToUnitInheritVisibility(UnitLastCreated(), "UnfairSC2DoubleBirth", "Ref_Head");
-    libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_dOUBLE.lv_minerals += UnitTypeGetCost(UnitGetType(EventUnitCreatedUnit()), c_unitCostMinerals);
-    libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_dOUBLE.lv_gas += UnitTypeGetCost(UnitGetType(EventUnitCreatedUnit()), c_unitCostVespene);
+    lib3BAA32A3_gf_CreateCloneofUnit(EventUnitCreatedUnit());
     return true;
 }
 
@@ -239,6 +249,41 @@ bool lib3BAA32A3_gt_DuplicateCreatedUnit_Func (bool testConds, bool runActions) 
 void lib3BAA32A3_gt_DuplicateCreatedUnit_Init () {
     lib3BAA32A3_gt_DuplicateCreatedUnit = TriggerCreate("lib3BAA32A3_gt_DuplicateCreatedUnit_Func");
     TriggerAddEventUnitCreated(lib3BAA32A3_gt_DuplicateCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Duplicate Warped Unit
+//--------------------------------------------------------------------------------------------------
+bool lib3BAA32A3_gt_DuplicateWarpedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Conditions
+    if (testConds) {
+        if (!((libDBC4E2D2_gv_pLAYERS[EventPlayer()].lv_dOUBLE.lv_enabled == true))) {
+            return false;
+        }
+
+        if (!((UnitTypeTestAttribute(libNtve_gf_TriggeringProgressUnitType(), c_unitAttributeStructure) == false))) {
+            return false;
+        }
+
+        if (!((libNtve_gf_TriggeringProgressUnitType() != "Archon"))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib3BAA32A3_gf_CreateCloneofUnit(EventUnitProgressUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib3BAA32A3_gt_DuplicateWarpedUnit_Init () {
+    lib3BAA32A3_gt_DuplicateWarpedUnit = TriggerCreate("lib3BAA32A3_gt_DuplicateWarpedUnit_Func");
+    TriggerAddEventUnitConstructProgress(lib3BAA32A3_gt_DuplicateWarpedUnit, null, c_unitProgressStageComplete);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -312,6 +357,7 @@ void lib3BAA32A3_gt_ShowSavedResources_Init () {
 void lib3BAA32A3_InitTriggers () {
     lib3BAA32A3_gt_SetupHandicap_Init();
     lib3BAA32A3_gt_DuplicateCreatedUnit_Init();
+    lib3BAA32A3_gt_DuplicateWarpedUnit_Init();
     lib3BAA32A3_gt_UpdateDoubleLeaderboard_Init();
     lib3BAA32A3_gt_ShowSavedResources_Init();
 }

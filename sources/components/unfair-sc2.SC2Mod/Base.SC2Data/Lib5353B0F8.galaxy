@@ -53,6 +53,10 @@ void lib5353B0F8_gf_SetupOptions (int lp_handicapindex) {
     lv_optionvalueindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
     lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "7";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
     lv_optionindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_5353B0F8_139C583B");
@@ -98,6 +102,12 @@ void lib5353B0F8_gf_EnableHandicap (int lp_handicapIndex) {
         }
         else if (auto5D09E13E_val == "5") {
             lib5353B0F8_gv_wallTimeout = 300.0;
+        }
+        else if (auto5D09E13E_val == "7") {
+            lib5353B0F8_gv_wallTimeout = 420.0;
+        }
+        else if (auto5D09E13E_val == "10") {
+            lib5353B0F8_gv_wallTimeout = 600.0;
         }
         else {
             lib5353B0F8_gv_wallTimeout = 60.0;

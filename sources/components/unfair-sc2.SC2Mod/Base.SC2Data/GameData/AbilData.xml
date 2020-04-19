@@ -1,5 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CAbilResearch id="ArmoryResearch">
+        <InfoArray index="Research18" Time="230" Upgrade="UnfairSC2TerranShipWeaponsLevel4">
+            <Resource index="Minerals" value="325"/>
+            <Resource index="Vespene" value="325"/>
+            <Button DefaultButtonFace="UnfairSC2TerranShipWeaponsLevel4" State="Restricted" Requirements="UnfairSC2LearnTerranShipWeapon4"/>
+        </InfoArray>
+        <InfoArray index="Research19" Time="230" Upgrade="UnfairSC2TerranVehicleWeaponsLevel4">
+            <Resource index="Minerals" value="325"/>
+            <Resource index="Vespene" value="325"/>
+            <Button DefaultButtonFace="UnfairSC2TerranVehicleWeaponsLevel4" State="Restricted" Requirements="UnfairSC2LearnTerranVehicleWeapon4"/>
+        </InfoArray>
+        <InfoArray index="Research20" Time="230" Upgrade="UnfairSC2TerranVehicleAndShipArmorsLevel4">
+            <Resource index="Minerals" value="325"/>
+            <Resource index="Vespene" value="325"/>
+            <Button DefaultButtonFace="UnfairSC2TerranVehicleAndShipPlatingLevel4" State="Restricted" Requirements="UnfairSC2LearnTerranVehicleAndShipArmor4"/>
+        </InfoArray>
+        <InfoArray index="Research21" Time="240" Upgrade="UnfairSC2TerranShipWeaponsLevel5">
+            <Resource index="Minerals" value="400"/>
+            <Resource index="Vespene" value="400"/>
+            <Button DefaultButtonFace="UnfairSC2TerranShipWeaponsLevel5" State="Restricted" Requirements="UnfairSC2LearnTerranShipWeapon5"/>
+        </InfoArray>
+        <InfoArray index="Research22" Time="240" Upgrade="UnfairSC2TerranVehicleWeaponsLevel5">
+            <Resource index="Minerals" value="400"/>
+            <Resource index="Vespene" value="400"/>
+            <Button DefaultButtonFace="UnfairSC2TerranVehicleWeaponsLevel5" State="Restricted" Requirements="UnfairSC2LearnTerranVehicleWeapon5"/>
+        </InfoArray>
+        <InfoArray index="Research23" Time="240" Upgrade="UnfairSC2TerranVehicleAndShipArmorsLevel5">
+            <Resource index="Minerals" value="400"/>
+            <Resource index="Vespene" value="400"/>
+            <Button DefaultButtonFace="UnfairSC2TerranVehicleAndShipPlatingLevel5" State="Restricted" Requirements="UnfairSC2LearnTerranVehicleAndShipArmor5"/>
+        </InfoArray>
+        <InfoArray index="Research24" Time="250" Upgrade="UnfairSC2TerranShipWeaponsLevel6">
+            <Resource index="Minerals" value="475"/>
+            <Resource index="Vespene" value="475"/>
+            <Button DefaultButtonFace="UnfairSC2TerranShipWeaponsLevel6" State="Restricted" Requirements="UnfairSC2LearnTerranShipWeapon6"/>
+        </InfoArray>
+        <InfoArray index="Research25" Time="250" Upgrade="UnfairSC2TerranVehicleWeaponsLevel6">
+            <Resource index="Minerals" value="475"/>
+            <Resource index="Vespene" value="475"/>
+            <Button DefaultButtonFace="UnfairSC2TerranVehicleWeaponsLevel6" State="Restricted" Requirements="UnfairSC2LearnTerranShipWeapon6"/>
+        </InfoArray>
+        <InfoArray index="Research26" Time="250" Upgrade="UnfairSC2TerranVehicleAndShipArmorsLevel6">
+            <Resource index="Minerals" value="475"/>
+            <Resource index="Vespene" value="475"/>
+            <Button DefaultButtonFace="UnfairSC2TerranVehicleAndShipPlatingLevel6" State="Restricted" Requirements="UnfairSC2LearnTerranVehicleAndShipArmor6"/>
+        </InfoArray>
+    </CAbilResearch>
+    <CAbilResearch id="CyberneticsCoreResearch">
+        <InfoArray index="Research12" Time="260" Upgrade="UnfairSC2ProtossAirWeaponsLevel4">
+            <Resource index="Minerals" value="325"/>
+            <Resource index="Vespene" value="325"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossAirWeaponsLevel4" State="Restricted" Requirements="UnfairSC2LearnProtossAirWeapon4"/>
+        </InfoArray>
+        <InfoArray index="Research13" Time="260" Upgrade="UnfairSC2ProtossAirArmorsLevel4">
+            <Resource index="Minerals" value="375"/>
+            <Resource index="Vespene" value="375"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossAirArmorLevel4" Requirements="UnfairSC2LearnProtossAirArmor4"/>
+        </InfoArray>
+        <InfoArray index="Research14" Time="270" Upgrade="UnfairSC2ProtossAirWeaponsLevel5">
+            <Resource index="Minerals" value="400"/>
+            <Resource index="Vespene" value="400"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossAirWeaponsLevel5" State="Restricted" Requirements="UnfairSC2LearnProtossAirWeapon5"/>
+        </InfoArray>
+        <InfoArray index="Research15" Time="270" Upgrade="UnfairSC2ProtossAirArmorsLevel5">
+            <Resource index="Minerals" value="450"/>
+            <Resource index="Vespene" value="450"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossAirArmorLevel5" State="Restricted" Requirements="UnfairSC2LearnProtossAirArmor5"/>
+        </InfoArray>
+        <InfoArray index="Research16" Time="250" Upgrade="UnfairSC2ProtossAirWeaponsLevel6">
+            <Resource index="Minerals" value="475"/>
+            <Resource index="Vespene" value="475"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossAirWeaponsLevel6" State="Restricted" Requirements="UnfairSC2LearnProtossAirWeapon6"/>
+        </InfoArray>
+        <InfoArray index="Research17" Time="250" Upgrade="UnfairSC2ProtossAirArmorsLevel6">
+            <Resource index="Minerals" value="525"/>
+            <Resource index="Vespene" value="525"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossAirArmorLevel6" State="Restricted" Requirements="UnfairSC2LearnProtossAirArmor6"/>
+        </InfoArray>
+    </CAbilResearch>
+    <CAbilResearch id="EngineeringBayResearch">
+        <InfoArray index="Research10" Time="230" Upgrade="UnfairSC2TerranInfantryWeaponsLevel4">
+            <Resource index="Minerals" value="325"/>
+            <Resource index="Vespene" value="325"/>
+            <Button DefaultButtonFace="UnfairSC2TerranInfantryWeaponsLevel4" State="Restricted" Requirements="UnfairSC2LearnTerranInfantryWeapon4"/>
+        </InfoArray>
+        <InfoArray index="Research11" Time="230" Upgrade="UnfairSC2TerranInfantryArmorsLevel4">
+            <Resource index="Minerals" value="325"/>
+            <Resource index="Vespene" value="325"/>
+            <Button DefaultButtonFace="UnfairSC2TerranInfantryArmorLevel4" Requirements="UnfairSC2LearnTerranInfantryArmor4"/>
+        </InfoArray>
+        <InfoArray index="Research12" Time="240" Upgrade="UnfairSC2TerranInfantryWeaponsLevel5">
+            <Resource index="Minerals" value="400"/>
+            <Resource index="Vespene" value="400"/>
+            <Button DefaultButtonFace="UnfairSC2TerranInfantryWeaponsLevel5" State="Restricted" Requirements="UnfairSC2LearnTerranInfantryWeapon5"/>
+        </InfoArray>
+        <InfoArray index="Research13" Time="240" Upgrade="UnfairSC2TerranInfantryArmorsLevel5">
+            <Resource index="Minerals" value="400"/>
+            <Resource index="Vespene" value="400"/>
+            <Button DefaultButtonFace="UnfairSC2TerranInfantryArmorLevel5" State="Restricted" Requirements="UnfairSC2LearnTerranInfantryArmor5"/>
+        </InfoArray>
+        <InfoArray index="Research14" Time="250" Upgrade="UnfairSC2TerranInfantryArmorsLevel6">
+            <Resource index="Minerals" value="475"/>
+            <Resource index="Vespene" value="475"/>
+            <Button DefaultButtonFace="UnfairSC2TerranInfantryArmorLevel6" State="Restricted" Requirements="UnfairSC2LearnTerranInfantryArmor6"/>
+        </InfoArray>
+        <InfoArray index="Research15" Time="250" Upgrade="UnfairSC2TerranInfantryWeaponsLevel6">
+            <Resource index="Minerals" value="475"/>
+            <Resource index="Vespene" value="475"/>
+            <Button DefaultButtonFace="UnfairSC2TerranInfantryWeaponsLevel6" State="Restricted" Requirements="UnfairSC2LearnTerranInfantryWeapon6"/>
+        </InfoArray>
+    </CAbilResearch>
+    <CAbilResearch id="ForgeResearch">
+        <InfoArray index="Research10" Time="260" Upgrade="UnfairSC2ProtossGroundWeaponsLevel4">
+            <Resource index="Minerals" value="250"/>
+            <Resource index="Vespene" value="250"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossGroundWeaponsLevel4" State="Restricted" Requirements="UnfairSC2LearnProtossGroundWeapon4"/>
+        </InfoArray>
+        <InfoArray index="Research11" Time="260" Upgrade="UnfairSC2ProtossGroundArmorsLevel4">
+            <Resource index="Minerals" value="250"/>
+            <Resource index="Vespene" value="250"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossGroundArmorLevel4" State="Restricted" Requirements="UnfairSC2LearnProtossGroundArmor4"/>
+        </InfoArray>
+        <InfoArray index="Research12" Time="260" Upgrade="UnfairSC2ProtossShieldsLevel4">
+            <Resource index="Minerals" value="375"/>
+            <Resource index="Vespene" value="375"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossShieldsLevel4" State="Restricted" Requirements="UnfairSC2LearnProtossShield4"/>
+        </InfoArray>
+        <InfoArray index="Research13" Time="270" Upgrade="UnfairSC2ProtossGroundWeaponsLevel5">
+            <Resource index="Minerals" value="300"/>
+            <Resource index="Vespene" value="300"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossGroundWeaponsLevel5" Requirements="UnfairSC2LearnProtossGroundWeapon5"/>
+        </InfoArray>
+        <InfoArray index="Research14" Time="270" Upgrade="UnfairSC2ProtossGroundArmorsLevel5">
+            <Resource index="Minerals" value="300"/>
+            <Resource index="Vespene" value="300"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossGroundArmorLevel5" State="Restricted" Requirements="UnfairSC2LearnProtossGroundArmor5"/>
+        </InfoArray>
+        <InfoArray index="Research15" Time="270" Upgrade="UnfairSC2ProtossShieldsLevel5">
+            <Resource index="Minerals" value="450"/>
+            <Resource index="Vespene" value="450"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossShieldsLevel5" Requirements="UnfairSC2LearnProtossShield5"/>
+        </InfoArray>
+        <InfoArray index="Research16" Time="280" Upgrade="UnfairSC2ProtossGroundWeaponsLevel6">
+            <Resource index="Minerals" value="350"/>
+            <Resource index="Vespene" value="350"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossGroundWeaponsLevel6" Requirements="LearnProtossGroundWeapon6"/>
+        </InfoArray>
+        <InfoArray index="Research17" Time="280" Upgrade="UnfairSC2ProtossGroundArmorsLevel6">
+            <Resource index="Minerals" value="350"/>
+            <Resource index="Vespene" value="350"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossGroundArmorLevel6" State="Restricted" Requirements="UnfairSC2LearnProtossGroundArmor6"/>
+        </InfoArray>
+        <InfoArray index="Research18" Time="280" Upgrade="UnfairSC2ProtossShieldsLevel6">
+            <Resource index="Minerals" value="525"/>
+            <Resource index="Vespene" value="525"/>
+            <Button DefaultButtonFace="UnfairSC2ProtossShieldsLevel6" Requirements="UnfairSC2LearnProtossShield6"/>
+        </InfoArray>
+    </CAbilResearch>
+    <CAbilResearch id="SpireResearch">
+        <InfoArray index="Research7" Time="230" Upgrade="ZergFlyerWeaponsLevel4">
+            <Resource index="Minerals" value="325"/>
+            <Resource index="Vespene" value="325"/>
+            <Button DefaultButtonFace="UnfairSC2zergflyerattack4" State="Restricted" Requirements="UnfairSC2LearnZergFlyerAttack4"/>
+        </InfoArray>
+        <InfoArray index="Research8" Time="230" Upgrade="ZergFlyerArmorsLevel4">
+            <Resource index="Minerals" value="375"/>
+            <Resource index="Vespene" value="375"/>
+            <Button DefaultButtonFace="UnfairSC2zergflyerarmor4" Requirements="UnfairSC2LearnZergFlyerArmor4"/>
+        </InfoArray>
+        <InfoArray index="Research9" Time="240" Upgrade="UnfairSC2ZergFlyerWeaponsLevel5">
+            <Resource index="Minerals" value="400"/>
+            <Resource index="Vespene" value="400"/>
+            <Button DefaultButtonFace="UnfairSC2zergflyerattack5" Requirements="UnfairSC2LearnZergFlyerAttack5"/>
+        </InfoArray>
+        <InfoArray index="Research10" Time="240" Upgrade="UnfairSC2ZergFlyerArmorsLevel5">
+            <Resource index="Minerals" value="450"/>
+            <Resource index="Vespene" value="450"/>
+            <Button DefaultButtonFace="UnfairSC2zergflyerarmor5" Requirements="UnfairSC2LearnZergFlyerArmor5"/>
+        </InfoArray>
+        <InfoArray index="Research11" Time="250" Upgrade="UnfairSC2ZergFlyerWeaponsLevel6">
+            <Resource index="Minerals" value="475"/>
+            <Resource index="Vespene" value="475"/>
+            <Button DefaultButtonFace="UnfairSC2zergflyerattack6" State="Restricted" Requirements="UnfairSC2LearnZergFlyerAttack6"/>
+        </InfoArray>
+        <InfoArray index="Research12" Time="250" Upgrade="UnfairSC2ZergFlyerArmorsLevel6">
+            <Resource index="Minerals" value="525"/>
+            <Resource index="Vespene" value="525"/>
+            <Button DefaultButtonFace="UnfairSC2zergflyerarmor6" Requirements="LearnZergFlyerArmor6"/>
+        </InfoArray>
+    </CAbilResearch>
     <CAbilEffectTarget id="UnfairSC2AcidSpray">
         <Alignment value="Negative"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -82,4 +272,51 @@
         </Cost>
         <Flags index="BestUnit" value="1"/>
     </CAbilEffectInstant>
+    <CAbilResearch id="evolutionchamberresearch">
+        <InfoArray index="Research11" Time="230" Upgrade="ZergGroundArmorsLevel4">
+            <Resource index="Minerals" value="375"/>
+            <Resource index="Vespene" value="375"/>
+            <Button DefaultButtonFace="UnfairSC2zerggroundarmor4" State="Restricted" Requirements="UnfairSC2LearnZergGroundArmor4"/>
+        </InfoArray>
+        <InfoArray index="Research12" Time="230" Upgrade="UnfairSC2ZergMeleeWeaponsLevel4">
+            <Resource index="Minerals" value="250"/>
+            <Resource index="Vespene" value="250"/>
+            <Button DefaultButtonFace="UnfairSC2zergmeleeweapons4" State="Restricted" Requirements="UnfairSC2LearnZergMeleeWeapon4"/>
+        </InfoArray>
+        <InfoArray index="Research13" Time="230" Upgrade="ZergMissileWeaponsLevel4">
+            <Resource index="Minerals" value="250"/>
+            <Resource index="Vespene" value="250"/>
+            <Button DefaultButtonFace="UnfairSC2zergmissileweapons4" State="Restricted" Requirements="UnfairSC2LearnZergMissileWeapon4"/>
+        </InfoArray>
+        <InfoArray index="Research14" Time="240" Upgrade="UnfairSC2ZergMeleeWeaponsLevel5">
+            <Resource index="Minerals" value="300"/>
+            <Resource index="Vespene" value="300"/>
+            <Button DefaultButtonFace="UnfaiSC2zergmeleeweapons5" State="Restricted" Requirements="UnfairSC2LearnZergMeleeWeapon5"/>
+        </InfoArray>
+        <InfoArray index="Research15" Time="240" Upgrade="UnfairSC2ZergMissileWeaponsLevel5">
+            <Resource index="Minerals" value="300"/>
+            <Resource index="Vespene" value="300"/>
+            <Button DefaultButtonFace="UnfairSC2zergmissileweapons5" State="Restricted" Requirements="UnfairSC2LearnZergMissileWeapon5"/>
+        </InfoArray>
+        <InfoArray index="Research16" Time="240" Upgrade="UnfairSC2ZergGroundArmorsLevel5">
+            <Resource index="Minerals" value="450"/>
+            <Resource index="Vespene" value="450"/>
+            <Button DefaultButtonFace="UnfairSC2zerggroundarmor5" Requirements="UnfairSC2LearnZergGroundArmor5"/>
+        </InfoArray>
+        <InfoArray index="Research17" Time="250" Upgrade="UnfairSC2ZergMeleeWeaponsLevel6">
+            <Resource index="Minerals" value="350"/>
+            <Resource index="Vespene" value="350"/>
+            <Button DefaultButtonFace="UnfairSC2zergmeleeweapons6" State="Restricted" Requirements="UnfairSC2LearnZergMeleeWeapon6"/>
+        </InfoArray>
+        <InfoArray index="Research18" Time="250" Upgrade="UnfairSC2ZergMissileWeaponsLevel6">
+            <Resource index="Minerals" value="350"/>
+            <Resource index="Vespene" value="350"/>
+            <Button DefaultButtonFace="UnfairSC2zergmissileweapons6" State="Restricted" Requirements="UnfairSC2LearnZergMissileWeapon6"/>
+        </InfoArray>
+        <InfoArray index="Research19" Time="250" Upgrade="UnfairSC2ZergGroundArmorsLevel6">
+            <Resource index="Minerals" value="525"/>
+            <Resource index="Vespene" value="525"/>
+            <Button DefaultButtonFace="UnfairSC2zerggroundarmor6" Requirements="UnfairSC2LearnZergGroundArmor6"/>
+        </InfoArray>
+    </CAbilResearch>
 </Catalog>

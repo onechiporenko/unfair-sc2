@@ -6,14 +6,23 @@
 
 * [BUGFIX] Нексусам возвращена способность "Массовая телепортация".
 
+* [DOUBLE](./handicaps/double.md)
+    * [BUGFIX] Копия юнита, который "варпается", создается только по завершению варпа.
+
 * [EXTRA GAS](./handicaps/extra-gas.md)
     * [BUGFIX] Визуальный эффект на занятых веспеновых гейзерах не видим через туман войны.
+
+* [EXTRA UPGRADES](./handicaps/extra-upgrades.md)
+    * [NEW] Гандикап добавлен.
 
 * [GAME SPEED](./handicaps/game-speed.md)
     * [NEW] Гандикап добавлен.
 
 * [LAST WILL](./handicaps/last-will.md)
     * [FEATURE] Добавленые опции 50%, 75% и 100% для шанса появления способности.
+
+* [NO RUSH](./handicaps/no-rush.md)
+    * [FEATURE] Добавлены варианты 7 и 10 минут для ненападения.
 
 * [RANDOM UNITS](./handicaps/random-units.md)
     * [BUGFIX] Мины создаются корректно.
@@ -26,6 +35,9 @@
 
 * [TALANDAR](./handicaps/talandar.md)
     * [BUGFIX] Взлет и приземление Космопорта и Завода не требуют ресурсов.
+
+* [WALL](./handicaps/wall.md)
+    * [FEATURE] Добавлены варианты 7 и 10 минут для стены
 
 ## v2.41
 

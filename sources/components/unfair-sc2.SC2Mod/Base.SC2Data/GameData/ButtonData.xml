@@ -1,5 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CButton id="UnfairSC2TerranInfantryWeaponsLevel6">
+        <Name value="Button/Name/TerranInfantryWeaponsLevel6"/>
+        <Tooltip value="Button/Tooltip/TerranInfantryWeaponsLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranInfantryWeaponsLevel6"/>
+        <AlertTooltip value="Button/Tooltip/TerranInfantryWeaponsLevel6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranInfantryWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossGroundWeaponsLevel6">
+        <Name value="Button/Name/ProtossGroundWeaponsLevel6"/>
+        <Tooltip value="Button/Tooltip/ProtossGroundWeaponsLevel6"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-GroundWeaponsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossGroundWeaponsLevel6"/>
+        <AlertTooltip value="Button/Tooltip/ProtossGroundWeaponsLevel6"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-GroundWeaponsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossGroundWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranVehicleWeaponsLevel6">
+        <Name value="Button/Name/TerranVehicleWeaponsLevel6"/>
+        <Tooltip value="Button/Tooltip/TerranVehicleWeaponsLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranVehicleWeaponsLevel6"/>
+        <AlertTooltip value="Button/Tooltip/TerranVehicleWeaponsLevel6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranVehicleWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossAirWeaponsLevel6">
+        <Name value="Button/Name/ProtossAirWeaponsLevel6"/>
+        <Tooltip value="Button/Tooltip/ProtossAirWeaponsLevel6"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-AirWeaponsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossAirWeaponsLevel6"/>
+        <AlertTooltip value="Button/Tooltip/ProtossAirWeaponsLevel6"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-AirWeaponsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossAirWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranShipWeaponsLevel6">
+        <Name value="Button/Name/TerranShipWeaponsLevel6"/>
+        <Tooltip value="Button/Tooltip/TerranShipWeaponsLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranShipWeaponsLevel6"/>
+        <AlertTooltip value="Button/Tooltip/TerranShipWeaponsLevel6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranShipWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossShieldsLevel6">
+        <Name value="Button/Name/ProtossShieldsLevel6"/>
+        <Tooltip value="Button/Tooltip/ProtossShieldsLevel6"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-ShieldsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossShieldsLevel6"/>
+        <AlertTooltip value="Button/Tooltip/ProtossShieldsLevel6"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-ShieldsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossShieldsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranVehicleAndShipPlatingLevel6">
+        <Name value="Button/Name/TerranVehicleAndShipPlatingLevel6"/>
+        <Tooltip value="Button/Tooltip/TerranVehicleAndShipPlatingLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <AlertName value="Button/Name/TerranVehicleAndShipPlatingLevel6"/>
+        <AlertTooltip value="Button/Tooltip/TerranVehicleAndShipPlatingLevel6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <Hotkey value="Button/Hotkey/TerranVehicleAndShipPlatingLevel1"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranVehicleAndShipPlatingLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranInfantryArmorLevel6">
+        <Name value="Button/Name/TerranInfantryArmorLevel6"/>
+        <Tooltip value="Button/Tooltip/TerranInfantryArmorLevel6"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds"/>
+        <AlertName value="Button/Name/TerranInfantryArmorLevel6"/>
+        <AlertTooltip value="Button/Tooltip/TerranInfantryArmorLevel6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranInfantryArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossGroundArmorLevel6">
+        <Name value="Button/Name/ProtossGroundArmorLevel6"/>
+        <Tooltip value="Button/Tooltip/ProtossGroundArmorLevel6"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-GroundArmorLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossGroundArmorLevel6"/>
+        <AlertTooltip value="Button/Tooltip/ProtossGroundArmorLevel6"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-GroundArmorLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossGroundArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossAirArmorLevel6">
+        <Name value="Button/Name/ProtossAirArmorLevel6"/>
+        <Tooltip value="Button/Tooltip/ProtossAirArmorLevel6"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-AirArmorLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossAirArmorLevel6"/>
+        <AlertTooltip value="Button/Tooltip/ProtossAirArmorLevel6"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-AirArmorLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossAirArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranInfantryWeaponsLevel5">
+        <Name value="Button/Name/TerranInfantryWeaponsLevel5"/>
+        <Tooltip value="Button/Tooltip/TerranInfantryWeaponsLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranInfantryWeaponsLevel5"/>
+        <AlertTooltip value="Button/Tooltip/TerranInfantryWeaponsLevel5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranInfantryWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossGroundWeaponsLevel5">
+        <Name value="Button/Name/ProtossGroundWeaponsLevel5"/>
+        <Tooltip value="Button/Tooltip/ProtossGroundWeaponsLevel5"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-GroundWeaponsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossGroundWeaponsLevel5"/>
+        <AlertTooltip value="Button/Tooltip/ProtossGroundWeaponsLevel5"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-GroundWeaponsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossGroundWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranVehicleWeaponsLevel5">
+        <Name value="Button/Name/TerranVehicleWeaponsLevel5"/>
+        <Tooltip value="Button/Tooltip/TerranVehicleWeaponsLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranVehicleWeaponsLevel5"/>
+        <AlertTooltip value="Button/Tooltip/TerranVehicleWeaponsLevel5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranVehicleWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossAirWeaponsLevel5">
+        <Name value="Button/Name/ProtossAirWeaponsLevel5"/>
+        <Tooltip value="Button/Tooltip/ProtossAirWeaponsLevel5"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-AirWeaponsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossAirWeaponsLevel5"/>
+        <AlertTooltip value="Button/Tooltip/ProtossAirWeaponsLevel5"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-AirWeaponsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossAirWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranShipWeaponsLevel5">
+        <Name value="Button/Name/TerranShipWeaponsLevel5"/>
+        <Tooltip value="Button/Tooltip/TerranShipWeaponsLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranShipWeaponsLevel5"/>
+        <AlertTooltip value="Button/Tooltip/TerranShipWeaponsLevel5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranShipWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossShieldsLevel5">
+        <Name value="Button/Name/ProtossShieldsLevel5"/>
+        <Tooltip value="Button/Tooltip/ProtossShieldsLevel5"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-ShieldsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossShieldsLevel5"/>
+        <AlertTooltip value="Button/Tooltip/ProtossShieldsLevel5"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-ShieldsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossShieldsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranVehicleAndShipPlatingLevel5">
+        <Name value="Button/Name/TerranVehicleAndShipPlatingLevel5"/>
+        <Tooltip value="Button/Tooltip/TerranVehicleAndShipPlatingLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <AlertName value="Button/Name/TerranVehicleAndShipPlatingLevel5"/>
+        <AlertTooltip value="Button/Tooltip/TerranVehicleAndShipPlatingLevel5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <Hotkey value="Button/Hotkey/TerranVehicleAndShipPlatingLevel1"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranVehicleAndShipPlatingLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranInfantryArmorLevel5">
+        <Name value="Button/Name/TerranInfantryArmorLevel5"/>
+        <Tooltip value="Button/Tooltip/TerranInfantryArmorLevel5"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds"/>
+        <AlertName value="Button/Name/TerranInfantryArmorLevel5"/>
+        <AlertTooltip value="Button/Tooltip/TerranInfantryArmorLevel5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranInfantryArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossGroundArmorLevel5">
+        <Name value="Button/Name/ProtossGroundArmorLevel5"/>
+        <Tooltip value="Button/Tooltip/ProtossGroundArmorLevel5"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-GroundArmorLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossGroundArmorLevel5"/>
+        <AlertTooltip value="Button/Tooltip/ProtossGroundArmorLevel5"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-GroundArmorLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossGroundArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossAirArmorLevel5">
+        <Name value="Button/Name/ProtossAirArmorLevel5"/>
+        <Tooltip value="Button/Tooltip/ProtossAirArmorLevel5"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-AirArmorLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossAirArmorLevel5"/>
+        <AlertTooltip value="Button/Tooltip/ProtossAirArmorLevel5"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-AirArmorLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossAirArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossShieldsLevel4">
+        <Name value="Button/Name/ProtossShieldsLevel4"/>
+        <Tooltip value="Button/Tooltip/ProtossShieldsLevel4"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-ShieldsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossShieldsLevel4"/>
+        <AlertTooltip value="Button/Tooltip/ProtossShieldsLevel4"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-ShieldsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossShieldsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossGroundArmorLevel4">
+        <Name value="Button/Name/ProtossGroundArmorLevel4"/>
+        <Tooltip value="Button/Tooltip/ProtossGroundArmorLevel4"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-GroundArmorLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossGroundArmorLevel4"/>
+        <AlertTooltip value="Button/Tooltip/ProtossGroundArmorLevel4"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-GroundArmorLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossGroundArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossAirArmorLevel4">
+        <Name value="Button/Name/ProtossAirArmorLevel4"/>
+        <Tooltip value="Button/Tooltip/ProtossAirArmorLevel4"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-AirArmorLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossAirArmorLevel4"/>
+        <AlertTooltip value="Button/Tooltip/ProtossAirArmorLevel4"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-AirArmorLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossAirArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossGroundWeaponsLevel4">
+        <Name value="Button/Name/ProtossGroundWeaponsLevel4"/>
+        <Tooltip value="Button/Tooltip/ProtossGroundWeaponsLevel4"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-GroundWeaponsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossGroundWeaponsLevel4"/>
+        <AlertTooltip value="Button/Tooltip/ProtossGroundWeaponsLevel4"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-GroundWeaponsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossGroundWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2ProtossAirWeaponsLevel4">
+        <Name value="Button/Name/ProtossAirWeaponsLevel4"/>
+        <Tooltip value="Button/Tooltip/ProtossAirWeaponsLevel4"/>
+        <Icon value="Assets\Textures\BTN-Upgrade-Protoss-AirWeaponsLevel3.dds"/>
+        <AlertName value="Button/Name/ProtossAirWeaponsLevel4"/>
+        <AlertTooltip value="Button/Tooltip/ProtossAirWeaponsLevel4"/>
+        <AlertIcon value="Assets\Textures\BTN-Upgrade-Protoss-AirWeaponsLevel3.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+        <HotkeyAlias value="ProtossAirWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranInfantryWeaponsLevel4">
+        <Name value="Button/Name/TerranInfantryWeaponsLevel4"/>
+        <Tooltip value="Button/Tooltip/TerranInfantryWeaponsLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranInfantryWeaponsLevel4"/>
+        <AlertTooltip value="Button/Tooltip/TerranInfantryWeaponsLevel4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranInfantryWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranVehicleAndShipPlatingLevel4">
+        <Name value="Button/Name/TerranVehicleAndShipPlatingLevel4"/>
+        <Tooltip value="Button/Tooltip/TerranVehicleAndShipPlatingLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <AlertName value="Button/Name/TerranVehicleAndShipPlatingLevel4"/>
+        <AlertTooltip value="Button/Tooltip/TerranVehicleAndShipPlatingLevel4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>
+        <Hotkey value="Button/Hotkey/TerranVehicleAndShipPlatingLevel1"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranVehicleAndShipPlatingLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranInfantryArmorLevel4">
+        <Name value="Button/Name/TerranInfantryArmorLevel4"/>
+        <Tooltip value="Button/Tooltip/TerranInfantryArmorLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds"/>
+        <AlertName value="Button/Name/TerranInfantryArmorLevel4"/>
+        <AlertTooltip value="Button/Tooltip/TerranInfantryArmorLevel4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranInfantryArmorLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranVehicleWeaponsLevel4">
+        <Name value="Button/Name/TerranVehicleWeaponsLevel4"/>
+        <Tooltip value="Button/Tooltip/TerranVehicleWeaponsLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranVehicleWeaponsLevel4"/>
+        <AlertTooltip value="Button/Tooltip/TerranVehicleWeaponsLevel4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-vehicleweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranVehicleWeaponsLevel1"/>
+    </CButton>
+    <CButton id="UnfairSC2TerranShipWeaponsLevel4">
+        <Name value="Button/Name/TerranShipWeaponsLevel4"/>
+        <Tooltip value="Button/Tooltip/TerranShipWeaponsLevel4"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <AlertName value="Button/Name/TerranShipWeaponsLevel4"/>
+        <AlertTooltip value="Button/Tooltip/TerranShipWeaponsLevel4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-terran-shipweaponslevel3.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <HotkeyAlias value="TerranShipWeaponsLevel1"/>
+    </CButton>
     <CButton id="UnfSC2MacroDefProtoss">
         <Name value="Button/Name/UnfairSC2MacroDefProtoss"/>
         <Tooltip value="Button/Tooltip/UnfairSC2MacroDefProtoss"/>
@@ -55,5 +358,161 @@
         <AlertName value="UnfairSc2MacroDefZerg"/>
         <AlertTooltip value="UnfairSc2MacroDefZerg"/>
         <AlertIcon value="Assets\Textures\btn-upgrade-zerg-enduringcorruption.dds"/>
+    </CButton>
+    <CButton id="UnfairSC2zergmeleeweapons4">
+        <Name value="Button/Name/zergmeleeweapons4"/>
+        <Tooltip value="Button/Tooltip/zergmeleeweapons4"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergmeleeweapons4"/>
+        <AlertTooltip value="Button/Tooltip/zergmeleeweapons4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergmeleeweapons1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergflyerattack4">
+        <Name value="Button/Name/zergflyerattack4"/>
+        <Tooltip value="Button/Tooltip/zergflyerattack4"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergflyerattack4"/>
+        <AlertTooltip value="Button/Tooltip/zergflyerattack4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergflyerattack1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergmissileweapons4">
+        <Name value="Button/Name/zergmissileweapons4"/>
+        <Tooltip value="Button/Tooltip/zergmissileweapons4"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergmissileweapons4"/>
+        <AlertTooltip value="Button/Tooltip/zergmissileweapons4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergmissileweapons1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergflyerarmor4">
+        <Name value="Button/Name/zergflyerarmor4"/>
+        <Tooltip value="Button/Tooltip/zergflyerarmor4"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level3.dds"/>
+        <AlertName value="Button/Name/zergflyerarmor4"/>
+        <AlertTooltip value="Button/Tooltip/zergflyerarmor4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergflyerarmor1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="UnfairSC2zerggroundarmor4">
+        <Name value="Button/Name/zerggroundarmor4"/>
+        <Tooltip value="Button/Tooltip/zerggroundarmor4"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <AlertName value="Button/Name/zerggroundarmor4"/>
+        <AlertTooltip value="Button/Tooltip/zerggroundarmor4"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zerggroundarmor1"/>
+    </CButton>
+    <CButton id="UnfaiSC2zergmeleeweapons5">
+        <Name value="Button/Name/zergmeleeweapons5"/>
+        <Tooltip value="Button/Tooltip/zergmeleeweapons5"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergmeleeweapons5"/>
+        <AlertTooltip value="Button/Tooltip/zergmeleeweapons5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergmeleeweapons1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergflyerattack5">
+        <Name value="Button/Name/zergflyerattack5"/>
+        <Tooltip value="Button/Tooltip/zergflyerattack5"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergflyerattack5"/>
+        <AlertTooltip value="Button/Tooltip/zergflyerattack5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergflyerattack1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergmissileweapons5">
+        <Name value="Button/Name/zergmissileweapons5"/>
+        <Tooltip value="Button/Tooltip/zergmissileweapons5"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergmissileweapons5"/>
+        <AlertTooltip value="Button/Tooltip/zergmissileweapons5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergmissileweapons1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergflyerarmor5">
+        <Name value="Button/Name/zergflyerarmor5"/>
+        <Tooltip value="Button/Tooltip/zergflyerarmor5"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level3.dds"/>
+        <AlertName value="Button/Name/zergflyerarmor5"/>
+        <AlertTooltip value="Button/Tooltip/zergflyerarmor5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergflyerarmor1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="UnfairSC2zerggroundarmor5">
+        <Name value="Button/Name/zerggroundarmor5"/>
+        <Tooltip value="Button/Tooltip/zerggroundarmor5"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <AlertName value="Button/Name/zerggroundarmor5"/>
+        <AlertTooltip value="Button/Tooltip/zerggroundarmor5"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zerggroundarmor1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergflyerarmor6">
+        <Name value="Button/Name/zergflyerarmor6"/>
+        <Tooltip value="Button/Tooltip/zergflyerarmor6"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level3.dds"/>
+        <AlertName value="Button/Name/zergflyerarmor6"/>
+        <AlertTooltip value="Button/Tooltip/zergflyerarmor6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-flyercarapace-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergflyerarmor1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="UnfairSC2zerggroundarmor6">
+        <Name value="Button/Name/zerggroundarmor6"/>
+        <Tooltip value="Button/Tooltip/zerggroundarmor6"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <AlertName value="Button/Name/zerggroundarmor6"/>
+        <AlertTooltip value="Button/Tooltip/zerggroundarmor6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-groundcarapace-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zerggroundarmor1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergmeleeweapons6">
+        <Name value="Button/Name/zergmeleeweapons6"/>
+        <Tooltip value="Button/Tooltip/zergmeleeweapons6"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergmeleeweapons6"/>
+        <AlertTooltip value="Button/Tooltip/zergmeleeweapons6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-meleeattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergmeleeweapons1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergflyerattack6">
+        <Name value="Button/Name/zergflyerattack6"/>
+        <Tooltip value="Button/Tooltip/zergflyerattack6"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergflyerattack6"/>
+        <AlertTooltip value="Button/Tooltip/zergflyerattack6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-airattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergflyerattack1"/>
+        <Universal value="1"/>
+    </CButton>
+    <CButton id="UnfairSC2zergmissileweapons6">
+        <Name value="Button/Name/zergmissileweapons6"/>
+        <Tooltip value="Button/Tooltip/zergmissileweapons6"/>
+        <Icon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <AlertName value="Button/Name/zergmissileweapons6"/>
+        <AlertTooltip value="Button/Tooltip/zergmissileweapons6"/>
+        <AlertIcon value="Assets\Textures\btn-upgrade-zerg-missileattacks-level3.dds"/>
+        <EditorCategories value="Race:Zerg"/>
+        <HotkeyAlias value="zergmissileweapons1"/>
     </CButton>
 </Catalog>

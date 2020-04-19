@@ -246,8 +246,8 @@ void libDBC4E2D2_gf_CreateProtossInfrastructure (int lp_player) {
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Tempest", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Mothership", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Probe", 0, lp_player, PlayerStartLocation(lp_player));
-    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
-    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperAdd, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperAdd, 10000);
 }
 
 void libDBC4E2D2_gf_CreateTerranInfrastructure (int lp_player) {
@@ -279,8 +279,8 @@ void libDBC4E2D2_gf_CreateTerranInfrastructure (int lp_player) {
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Liberator", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Battlecruiser", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "SCV", 0, lp_player, PlayerStartLocation(lp_player));
-    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
-    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperAdd, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperAdd, 10000);
 }
 
 void libDBC4E2D2_gf_CreateZergInfrastructure (int lp_player) {
@@ -316,8 +316,8 @@ void libDBC4E2D2_gf_CreateZergInfrastructure (int lp_player) {
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Overlord", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "SwarmHostMP", 0, lp_player, PlayerStartLocation(lp_player));
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "Viper", 0, lp_player, PlayerStartLocation(lp_player));
-    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperSetTo, 10000);
-    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperSetTo, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropMinerals, c_playerPropOperAdd, 10000);
+    PlayerModifyPropertyInt(lp_player, c_playerPropVespene, c_playerPropOperAdd, 10000);
 }
 
 int libDBC4E2D2_gf_CreateResourcesLeaderboard (text lp_title) {

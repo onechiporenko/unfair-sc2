@@ -23,6 +23,7 @@ include "LibF713A77C_h"
 include "Lib16A22498_h"
 include "Lib7E352632_h"
 include "LibBCF1F22B_h"
+include "Lib00FB2F03_h"
 include "Lib87458575_h"
 include "LibB7A8BF05_h"
 include "LibC7F2089F_h"
@@ -557,6 +558,8 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     lv_handicapindex += 1;
     libBCF1F22B_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
+    lib00FB2F03_gf_SetupOptions(lv_handicapindex);
+    lv_handicapindex += 1;
     lib87458575_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     libB7A8BF05_gf_SetupOptions(lv_handicapindex);
@@ -1074,6 +1077,7 @@ include "LibF713A77C"
 include "Lib16A22498"
 include "Lib7E352632"
 include "LibBCF1F22B"
+include "Lib00FB2F03"
 include "Lib87458575"
 include "LibB7A8BF05"
 include "LibC7F2089F"

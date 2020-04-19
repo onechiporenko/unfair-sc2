@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <CRequirement id="LearnProtossGroundWeapon6">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3736873581CountUpgradeUnfairSC2ProtossGroundWeaponsLevel5CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossGroundWeaponsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossShield6">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3994227042CountUpgradeUnfairSC2ProtossShieldsLevel5CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossShieldsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossGroundArmor6">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2391243100CountUpgradeUnfairSC2ProtossGroundArmorsLevel5CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossGroundArmorsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossAirWeapon6">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2237149486CountUpgradeUnfairSC2ProtossAirWeaponsLevel5CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter0AllowUnitPhoenix"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossAirArmor6">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq556563840CountUpgradeUnfairSC2ProtossAirArmorsLevel5CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="AndEqCountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBetter0AllowUnitPhoenix"/>
+    </CRequirement>
+    <CRequirement id="LearnTerranVehicleWeapon6">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2082276741CountUpgradeUnfairSC2TerranVehicleWeaponsLevel5CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranVehicleWeaponsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="LearnZergFlyerArmor6">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq163248222CountUpgradeUnfairSC2ZergFlyerArmorsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergFlyerArmorsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergMissileWeapon6">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq1142985321CountUpgradeUnfairSC2ZergMissileWeaponsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergMissileWeaponsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergMeleeWeapon6">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2243502679CountUpgradeUnfairSC2ZergMeleeWeaponsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergMeleeWeaponsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergGroundArmor6">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3114888313CountUpgradeUnfairSC2ZergGroundArmorsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergGroundArmorsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergFlyerAttack6">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2112705294CountUpgradeUnfairSC2ZergFlyerWeaponsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergFlyerWeaponsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranVehicleAndShipArmor6">
+        <NodeArray index="Use" Link="AndEq2693264468CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel5CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranShipWeapon6">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2739572236CountUpgradeUnfairSC2TerranShipWeaponsLevel5CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranShipWeaponsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranInfantryWeapon6">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq1312925800CountUpgradeUnfairSC2TerranInfantryWeaponsLevel5CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranInfantryWeaponsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranInfantryArmor6">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq270156112CountUpgradeUnfairSC2TerranInfantryArmorsLevel5CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel6QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossAirArmor5">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq1878546379CountUpgradeUnfairSC2ProtossAirArmorsLevel4CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="AndEqCountUpgradeUnfairSC2ProtossAirArmorsLevel5QueuedOrBetter0AllowUnitPhoenix"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossAirWeapon5">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3355315774CountUpgradeUnfairSC2ProtossAirWeaponsLevel4CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel5QueuedOrBetter0AllowUnitPhoenix"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossGroundArmor5">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq4017920968CountUpgradeUnfairSC2ProtossGroundArmorsLevel4CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossGroundArmorsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossGroundWeapon5">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq4086158534CountUpgradeUnfairSC2ProtossGroundWeaponsLevel4CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossGroundWeaponsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossShield4">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3941573746CountUpgradeProtossShieldsLevel3CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossShieldsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossGroundWeapon4">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2498229184CountUpgradeProtossGroundWeaponsLevel3CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossGroundWeaponsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossGroundArmor4">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq965970934CountUpgradeProtossGroundArmorsLevel3CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossGroundArmorsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossAirWeapon4">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2008817957CountUpgradeProtossAirWeaponsLevel3CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel4QueuedOrBetter0AllowUnitPhoenix"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossAirArmor4">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq482091657CountUpgradeProtossAirArmorsLevel3CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="AndEqCountUpgradeUnfairSC2ProtossAirArmorsLevel4QueuedOrBetter0AllowUnitPhoenix"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnProtossShield5">
+        <EditorCategories value="Race:Protoss,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq4007492973CountUpgradeUnfairSC2ProtossShieldsLevel4CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ProtossShieldsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranInfantryArmor5">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq4035647568CountUpgradeUnfairSC2TerranInfantryArmorsLevel4CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranInfantryWeapon5">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2075919609CountUpgradeUnfairSC2TerranInfantryWeaponsLevel4CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranInfantryWeaponsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranShipWeapon5">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq1067782088CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranShipWeaponsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranVehicleAndShipArmor4">
+        <NodeArray index="Use" Link="AndEq249986062CountUpgradeTerranVehicleAndShipArmorsLevel3CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranVehicleAndShipArmor5">
+        <NodeArray index="Use" Link="AndEq4247612749CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel4CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranVehicleWeapon4">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq168944470CountUpgradeTerranVehicleWeaponsLevel3CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranVehicleWeaponsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranShipWeapon4">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq4105696375CountUpgradeTerranShipWeaponsLevel3CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranShipWeaponsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranInfantryArmor4">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2700979123CountUpgradeTerranInfantryArmorsLevel3CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranInfantryWeapon4">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq1563428791CountUpgradeTerranInfantryWeaponsLevel3CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranInfantryWeaponsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnTerranVehicleWeapon5">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2833587555CountUpgradeUnfairSC2TerranVehicleWeaponsLevel4CompleteOnly1"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2TerranVehicleWeaponsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergFlyerArmor5">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3244353610CountUpgradeZergFlyerArmorsLevel4CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergFlyerArmorsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergFlyerAttack5">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3768636960CountUpgradeZergFlyerWeaponsLevel4CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergFlyerWeaponsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergGroundArmor5">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq1700863508CountUpgradeZergGroundArmorsLevel4CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergGroundArmorsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergMeleeWeapon5">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq1446969223CountUpgradeUnfairSC2ZergMeleeWeaponsLevel4CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergMeleeWeaponsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergMissileWeapon4">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq55459016CountUpgradeZergMissileWeaponsLevel3CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeZergMissileWeaponsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergMeleeWeapon4">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2150930885CountUpgradeZergMeleeWeaponsLevel3CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergMeleeWeaponsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergGroundArmor4">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3701690913CountUpgradeZergGroundArmorsLevel3CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeZergGroundArmorsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergFlyerAttack4">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq3451605711CountUpgradeZergFlyerWeaponsLevel3CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeZergFlyerWeaponsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergFlyerArmor4">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq2562994225CountUpgradeZergFlyerArmorsLevel3CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeZergFlyerArmorsLevel4QueuedOrBetter0"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2LearnZergMissileWeapon5">
+        <EditorCategories value="Race:Zerg,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEq33074718CountUpgradeZergMissileWeaponsLevel4CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergMissileWeaponsLevel5QueuedOrBetter0"/>
+    </CRequirement>
+</Catalog>

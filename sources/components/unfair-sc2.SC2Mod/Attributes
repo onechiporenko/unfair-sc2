@@ -4,7 +4,7 @@
         <Id Value="1"/>
         <Type Value="Player"/>
         <Name Value="Attribute001/Name"/>
-        <Availability Value="First"/>
+        <Availability Value="All"/>
         <Visibility Value="All"/>
         <Access Value="Host"/>
         <Value>
@@ -69,7 +69,7 @@
         </Default>
         <Default>
             <Slot Id="1"/>
-            <Value Id="1"/>
+            <Value Id="2"/>
         </Default>
     </Attribute>
     <DefaultVariants Value="1"/>

@@ -70,6 +70,7 @@
         <TriggerLibs Id="78D24685"/>
         <TriggerLibs Id="D169EC7B"/>
         <TriggerLibs Id="AE474D3F"/>
+        <TriggerLibs Id="00FB2F03"/>
         <!-- Test Builds -->
         <!-- <AIBuilds index="213" Enabled="0"/>
              <AIBuilds index="214" Enabled="0"/>
