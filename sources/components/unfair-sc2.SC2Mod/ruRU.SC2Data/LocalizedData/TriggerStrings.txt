@@ -82,6 +82,7 @@ FunctionDef/Grammar/lib_827A7D7F_4E1C54BE=Setup Options For Contamination (~hand
 FunctionDef/Grammar/lib_87458575_223E00EB=Setup Options For Fair Macro (~handicapindex~)
 FunctionDef/Grammar/lib_87458575_53CDB3C2=Enable Fair Macro Handicap For Player(~player~)
 FunctionDef/Grammar/lib_87458575_6E3E442B=Enable Fair Macro Handicap (~handicapIndex~)
+FunctionDef/Grammar/lib_88BAA5D0_6C1F72E7=Enable Blink Wars Handicap For Player(~player~)
 FunctionDef/Grammar/lib_88BAA5D0_720C9611=Enable Blink Wars Handicap(~handicapIndex~)
 FunctionDef/Grammar/lib_88BAA5D0_7E6139E3=Setup Options For Blink Wars (~handicapindex~)
 FunctionDef/Grammar/lib_8D4EB941_33A9140A=Enable Nuked Handicap (~handicapIndex~)

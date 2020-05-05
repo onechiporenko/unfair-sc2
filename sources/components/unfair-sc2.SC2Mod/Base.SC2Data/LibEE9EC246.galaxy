@@ -60,7 +60,7 @@ void libEE9EC246_gf_EnableHandicap (int lp_handicapIndex) {
             if (auto1BC99E8F_var < 0) { break; }
             if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto1BC99E8F_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
                 PlayerGroupAdd(lv_players, auto1BC99E8F_var);
-                libEE9EC246_gf_EnableHandicap(auto1BC99E8F_var);
+                libEE9EC246_gf_EnableHandicapForPlayer(auto1BC99E8F_var);
             }
 
         }
