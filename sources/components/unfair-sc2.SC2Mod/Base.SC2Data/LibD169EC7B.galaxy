@@ -1,5 +1,6 @@
 include "TriggerLibs/NativeLib"
 include "LibCA473C97_h"
+include "Lib9BDC8046_h"
 include "LibD944395A_h"
 include "LibD84472BA_h"
 include "LibC0051C89_h"
@@ -32,6 +33,7 @@ include "LibD95F4C80_h"
 include "LibAE474D3F_h"
 include "Lib6B9047BC_h"
 include "Lib52829A21_h"
+include "LibAAAD51C3_h"
 include "Lib6D9F8D1C_h"
 include "LibD31C8AFA_h"
 include "Lib7BF03AFB_h"
@@ -518,6 +520,8 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     lv_handicapindex += 1;
     libD84472BA_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
+    lib9BDC8046_gf_SetupOptions(lv_handicapindex);
+    lv_handicapindex += 1;
     libC0051C89_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     lib1A704C64_gf_SetupOptions(lv_handicapindex);
@@ -575,6 +579,8 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     lib6B9047BC_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     lib52829A21_gf_SetupOptions(lv_handicapindex);
+    lv_handicapindex += 1;
+    libAAAD51C3_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     lib6D9F8D1C_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
@@ -1054,6 +1060,7 @@ void libD169EC7B_InitLib () {
 }
 
 include "LibCA473C97"
+include "Lib9BDC8046"
 include "LibD944395A"
 include "LibD84472BA"
 include "LibC0051C89"
@@ -1086,6 +1093,7 @@ include "LibD95F4C80"
 include "LibAE474D3F"
 include "Lib6B9047BC"
 include "Lib52829A21"
+include "LibAAAD51C3"
 include "Lib6D9F8D1C"
 include "LibD31C8AFA"
 include "Lib7BF03AFB"

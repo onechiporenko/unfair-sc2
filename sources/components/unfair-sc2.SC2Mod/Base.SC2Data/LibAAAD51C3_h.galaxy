@@ -1,0 +1,15 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: HP AND SHIELDS
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void libAAAD51C3_gf_SetupOptions (int lp_handicapindex);
+void libAAAD51C3_gf_EnableHandicap (int lp_handicapIndex);
+void libAAAD51C3_gf_SetHPandShields (unit lp_unit);
+
+// Trigger Declarations
+trigger libAAAD51C3_gt_SetupHandicap;
+trigger libAAAD51C3_gt_SetHPandShieldsForCreatedUnit;
+trigger libAAAD51C3_gt_SetHPandShieldsForInitialUnits;
+

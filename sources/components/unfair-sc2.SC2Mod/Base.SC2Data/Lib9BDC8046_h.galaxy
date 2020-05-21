@@ -1,0 +1,15 @@
+include "TriggerLibs/natives"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ATTACK SPEED
+//--------------------------------------------------------------------------------------------------
+// Function Declarations
+void lib9BDC8046_gf_SetupOptions (int lp_handicapindex);
+void lib9BDC8046_gf_EnableHandicap (int lp_handicapIndex);
+void lib9BDC8046_gf_AddAttackSpeedBehavior (unit lp_unit);
+
+// Trigger Declarations
+trigger lib9BDC8046_gt_SetupHandicap;
+trigger lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit;
+trigger lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits;
+

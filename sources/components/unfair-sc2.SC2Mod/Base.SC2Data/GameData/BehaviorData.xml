@@ -297,6 +297,21 @@
             </Cost>
         </DamageResponse>
     </CBehaviorBuff>
+    <CBehaviorBuff id="UnfairSc2AttackSpeed">
+        <Tooltip value="Behavior/Tooltip/UnfairSc2MoveSpeed2"/>
+        <Cost>
+            <Charge Link="Behavior/UnfairSc2MoveSpeedX2"/>
+            <Cooldown Link="Behavior/UnfairSc2MoveSpeedX2"/>
+        </Cost>
+        <InfoIcon value="Assets\Textures\btn-ability-hornerhan-wraith-attackspeed.dds"/>
+        <EditorCategories value="AbilityorEffectType:Units"/>
+        <DamageResponse>
+            <Cost>
+                <Charge Link="Behavior/UnfairSc2MoveSpeedX2"/>
+                <Cooldown Link="Behavior/UnfairSc2MoveSpeedX2"/>
+            </Cost>
+        </DamageResponse>
+    </CBehaviorBuff>
     <CBehaviorBuff id="UnfairSc2Supply">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\wireframe-nova-supplydepot.dds"/>

@@ -43,6 +43,7 @@
 <Behavior id="UnfairSc2BerserkersBlood90"/>
 <Behavior id="UnfairSc2Darkness"/>
 <Behavior id="UnfairSc2MoveSpeed"/>
+<Behavior id="UnfairSc2AttackSpeed"/>
 <Behavior id="UnfairSc2Supply"/>
 <Behavior id="UnfairSC2CriticalStrike"/>
 <Effect id="PointDefenseDroneReleaseCreateUnit"/>

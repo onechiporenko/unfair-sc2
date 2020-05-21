@@ -8,6 +8,27 @@
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
         <LeaderAlias value=""/>
     </CUpgrade>
+    <CUpgrade id="UnfairSC2ConstructionTime">
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build1].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build10].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build11].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build12].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build13].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build14].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build16].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build2].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build3].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build30].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build4].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build5].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build6].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build7].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build8].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,TerranBuild,InfoArray[Build9].Time" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Abils].DurationArray[Delay]" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="1.500000"/>
+        <EffectArray Operation="Multiply" Reference="Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="1.500000"/>
+    </CUpgrade>
     <CUpgrade id="UnfairSC2TerranVehicleAndShipArmorsLevel6" parent="TerranVehicleAndShipArmors">
         <Name value="Upgrade/Name/TerranVehicleAndShipArmorsLevel6"/>
         <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>

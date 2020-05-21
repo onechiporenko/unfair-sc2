@@ -13,12 +13,84 @@ const int libDBC4E2D2_ge_APMKingAffectedUnits_BUILDINGSWORKERS = 5;
 const int libDBC4E2D2_ge_APMKingAffectedUnits_ARMYWORKERS = 6;
 
 // Structures
+struct libDBC4E2D2_gs_AliensPlayerOptions {
+    int lv_broodlingsrate;
+};
+
+struct libDBC4E2D2_gs_APMKingPlayerOptions {
+    int lv_maxAPM;
+    int lv_minAPM;
+    int lv_affectedUnits;
+    int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_AttackSpeedPlayerOptions {
+    fixed lv_rate;
+    bool lv_enabled;
+};
+
 struct libDBC4E2D2_gs_BattleHungerOptions {
     bool lv_enabled;
 };
 
-struct libDBC4E2D2_gs_MacroDefPlayerOptions {
+struct libDBC4E2D2_gs_BerserkersBloodPlayerOptions {
     bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_BlinkWarsPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_BountyPlayerOptions {
+    fixed lv_minerals;
+    fixed lv_gas;
+    fixed lv_percent;
+};
+
+struct libDBC4E2D2_gs_CameraPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ChargeWarsPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ChatPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_ContaminationPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_CorruptionPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_CriticalMissPlayerOptions {
+    fixed lv_chance;
+};
+
+struct libDBC4E2D2_gs_CriticalStrikePlayerOptions {
+    fixed lv_chance;
+    fixed lv_amount;
+};
+
+struct libDBC4E2D2_gs_DarknessPlayerOptions {
+    bool lv_reduceVisionRange;
+    bool lv_hideMap;
+};
+
+struct libDBC4E2D2_gs_DoublePlayerOptions {
+    int lv_minerals;
+    int lv_gas;
+    int lv_messageindex;
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_EnergyPlayerOptions {
+    fixed lv_initial;
+    fixed lv_max;
 };
 
 struct libDBC4E2D2_gs_ExtraGasPlayerOptions {
@@ -37,52 +109,17 @@ struct libDBC4E2D2_gs_FairPlayPlayerOptions {
     bool lv_enabled;
 };
 
-struct libDBC4E2D2_gs_BerserkersBloodPlayerOptions {
-    bool lv_enabled;
-};
-
-struct libDBC4E2D2_gs_BlinkWarsPlayerOptions {
-    bool lv_enabled;
-};
-
-struct libDBC4E2D2_gs_CameraPlayerOptions {
-    bool lv_enabled;
-};
-
 struct libDBC4E2D2_gs_FightClubPlayerOptions {
     bool lv_enabled;
     string lv_unitsScope;
 };
 
-struct libDBC4E2D2_gs_MinesPlayerOptions {
-    int lv_savezoneradius;
-    int lv_mineralslost;
-    int lv_gaslost;
+struct libDBC4E2D2_gs_FreeWorkersPlayerOptions {
     int lv_messageindex;
 };
 
-struct libDBC4E2D2_gs_EnergyPlayerOptions {
-    fixed lv_initial;
-    fixed lv_max;
-};
-
-struct libDBC4E2D2_gs_ChargeWarsPlayerOptions {
-    bool lv_enabled;
-};
-
-struct libDBC4E2D2_gs_NoShieldsPlayerOptions {
-    bool lv_enabled;
-};
-
-struct libDBC4E2D2_gs_ChatPlayerOptions {
-    bool lv_enabled;
-};
-
-struct libDBC4E2D2_gs_ContaminationPlayerOptions {
-    bool lv_enabled;
-};
-
-struct libDBC4E2D2_gs_CorruptionPlayerOptions {
+struct libDBC4E2D2_gs_HPandShieldsPlayerOptions {
+    fixed lv_rate;
     bool lv_enabled;
 };
 
@@ -95,14 +132,32 @@ struct libDBC4E2D2_gs_InstantProductionPlayerOptions {
     bool lv_buildings;
 };
 
-struct libDBC4E2D2_gs_MoveSpeedPlayerOptions {
+struct libDBC4E2D2_gs_LastWillPlayerOptions {
     fixed lv_rate;
+};
+
+struct libDBC4E2D2_gs_LimitedWorkersPlayerOptions {
+    int lv_workerslimit;
+};
+
+struct libDBC4E2D2_gs_MacroDefPlayerOptions {
     bool lv_enabled;
 };
 
-struct libDBC4E2D2_gs_DarknessPlayerOptions {
-    bool lv_reduceVisionRange;
-    bool lv_hideMap;
+struct libDBC4E2D2_gs_MinesPlayerOptions {
+    int lv_savezoneradius;
+    int lv_mineralslost;
+    int lv_gaslost;
+    int lv_messageindex;
+};
+
+struct libDBC4E2D2_gs_NoShieldsPlayerOptions {
+    bool lv_enabled;
+};
+
+struct libDBC4E2D2_gs_MoveSpeedPlayerOptions {
+    fixed lv_rate;
+    bool lv_enabled;
 };
 
 struct libDBC4E2D2_gs_NoMinimapPlayerOptions {
@@ -122,37 +177,13 @@ struct libDBC4E2D2_gs_NoArmyControlsPlayerOptions {
     int lv_toggleForReferee;
 };
 
-struct libDBC4E2D2_gs_RiotPlayerOptions {
-    int lv_toggleForReferee;
-    bool lv_enabled;
+struct libDBC4E2D2_gs_NukedPlayerOptions {
+    int lv_savezoneradius;
 };
 
-struct libDBC4E2D2_gs_ResourcesPlayerOptions {
-    int lv_giveMineralsToggleForReferee;
-    int lv_takeMineralsToggleForReferee;
-    int lv_giveVespeneToggleForReferee;
-    int lv_takeVespeneToggleForReferee;
-};
-
-struct libDBC4E2D2_gs_VampirismPlayerOptions {
-    fixed lv_rate;
-};
-
-struct libDBC4E2D2_gs_LastWillPlayerOptions {
-    fixed lv_rate;
-};
-
-struct libDBC4E2D2_gs_FreeWorkersPlayerOptions {
-    int lv_messageindex;
-};
-
-struct libDBC4E2D2_gs_AliensPlayerOptions {
-    int lv_broodlingsrate;
-};
-
-struct libDBC4E2D2_gs_DoublePlayerOptions {
-    int lv_minerals;
-    int lv_gas;
+struct libDBC4E2D2_gs_OrderCostsPlayerOptions {
+    int lv_mineralslost;
+    int lv_gaslost;
     int lv_messageindex;
     bool lv_enabled;
 };
@@ -165,29 +196,24 @@ struct libDBC4E2D2_gs_RandomUnitsPlayerOptions {
     bool lv_enabled;
 };
 
-struct libDBC4E2D2_gs_BountyPlayerOptions {
-    fixed lv_minerals;
-    fixed lv_gas;
-    fixed lv_percent;
+struct libDBC4E2D2_gs_RiotPlayerOptions {
+    int lv_toggleForReferee;
+    bool lv_enabled;
 };
 
-struct libDBC4E2D2_gs_NukedPlayerOptions {
-    int lv_savezoneradius;
+struct libDBC4E2D2_gs_ResourcesPlayerOptions {
+    int lv_giveMineralsToggleForReferee;
+    int lv_takeMineralsToggleForReferee;
+    int lv_giveVespeneToggleForReferee;
+    int lv_takeVespeneToggleForReferee;
 };
 
 struct libDBC4E2D2_gs_TemporalFieldsPlayerOptions {
     int lv_savezoneradius;
 };
 
-struct libDBC4E2D2_gs_LimitedWorkersPlayerOptions {
-    int lv_workerslimit;
-};
-
-struct libDBC4E2D2_gs_OrderCostsPlayerOptions {
-    int lv_mineralslost;
-    int lv_gaslost;
-    int lv_messageindex;
-    bool lv_enabled;
+struct libDBC4E2D2_gs_VampirismPlayerOptions {
+    fixed lv_rate;
 };
 
 struct libDBC4E2D2_gs_DecimatioPlayerOptions {
@@ -196,22 +222,6 @@ struct libDBC4E2D2_gs_DecimatioPlayerOptions {
     int lv_messageindex;
     int lv_toggleForReferee;
     bool lv_enabled;
-};
-
-struct libDBC4E2D2_gs_CriticalMissPlayerOptions {
-    fixed lv_chance;
-};
-
-struct libDBC4E2D2_gs_CriticalStrikePlayerOptions {
-    fixed lv_chance;
-    fixed lv_amount;
-};
-
-struct libDBC4E2D2_gs_APMKingPlayerOptions {
-    int lv_maxAPM;
-    int lv_minAPM;
-    int lv_affectedUnits;
-    int lv_messageindex;
 };
 
 struct libDBC4E2D2_gs_PermaCloakPlayerOptions {
@@ -253,6 +263,7 @@ struct libDBC4E2D2_gs_PlayerUI {
 struct libDBC4E2D2_gs_PlayerOptions {
     libDBC4E2D2_gs_AliensPlayerOptions lv_aLIENS;
     libDBC4E2D2_gs_APMKingPlayerOptions lv_aPMKING;
+    libDBC4E2D2_gs_AttackSpeedPlayerOptions lv_aTTACKSPEED;
     libDBC4E2D2_gs_BattleHungerOptions lv_bATTLEHUNGER;
     libDBC4E2D2_gs_BerserkersBloodPlayerOptions lv_bERSERKERSBLOOD;
     libDBC4E2D2_gs_BlinkWarsPlayerOptions lv_bLINKWARS;
@@ -274,6 +285,7 @@ struct libDBC4E2D2_gs_PlayerOptions {
     libDBC4E2D2_gs_FairPlayPlayerOptions lv_fAIRPLAY;
     libDBC4E2D2_gs_FreeWorkersPlayerOptions lv_fREEWORKERS;
     libDBC4E2D2_gs_FightClubPlayerOptions lv_fIGHTCLUB;
+    libDBC4E2D2_gs_HPandShieldsPlayerOptions lv_hPSHIELDS;
     libDBC4E2D2_gs_ImmportalsPlayerOptions lv_iMMORTALS;
     libDBC4E2D2_gs_InstantProductionPlayerOptions lv_iNSTANTPRODUCTION;
     libDBC4E2D2_gs_LastWillPlayerOptions lv_lASTWILL;

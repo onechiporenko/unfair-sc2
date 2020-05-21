@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.2
+
+* [ATTACK SPEED](./handicaps/attack-speed.md)
+    * [NEW] Гандикап добавлен.
+
+* [HP AND SHIELDS](./handicaps/hp-and-shields.md)
+    * [NEW] Гандикап добавлен.
+
+* [LIMITED WORKERS](./handicaps/limited-workers.md)
+    * [BUGFIX] Рабочие больше не уничтожаются у игроков, для которых этот гандикап выключен (баг с 3.0).
+
 ## v3.1
 
 * [NO LIMITS](./handicaps/no-limits.md)

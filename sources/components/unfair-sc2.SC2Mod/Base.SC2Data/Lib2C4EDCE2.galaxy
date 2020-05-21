@@ -89,7 +89,10 @@ void lib2C4EDCE2_gf_EnableHandicap (int lp_handicapIndex) {
         while (true) {
             autoE9EC3EAB_var = PlayerGroupNextPlayer(autoE9EC3EAB_g, autoE9EC3EAB_var);
             if (autoE9EC3EAB_var < 0) { break; }
-            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoE9EC3EAB_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoE9EC3EAB_var] == libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 10000;
+            }
+            else {
                 PlayerGroupAdd(lv_players, autoE9EC3EAB_var);
                 autoECCF8AEE_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoE9EC3EAB_var];
                 if (autoECCF8AEE_val == "12") {
@@ -123,7 +126,6 @@ void lib2C4EDCE2_gf_EnableHandicap (int lp_handicapIndex) {
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 10000;
                 }
             }
-
         }
         if ((PlayerGroupCount(lv_players) > 0)) {
             autoE5E6484A_g = lv_players;

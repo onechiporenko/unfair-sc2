@@ -26,6 +26,7 @@ Behavior/Name/UnfairSC2ExtraArmor=Extra Armor
 Behavior/Name/UnfairSC2FallingRocksStun=Falling Rocks Stun
 Behavior/Name/UnfairSC2RiotWorker=Unfair SC2 Riot Worker
 Behavior/Name/UnfairSC2WalkingDead=Unfair SC2 Walking Dead
+Behavior/Name/UnfairSc2AttackSpeed=Attack Speed
 Behavior/Name/UnfairSc2BerserkersBlood10=Unfair SC2 Berserker's Blood lvl10
 Behavior/Name/UnfairSc2BerserkersBlood102=Unfair SC2 Berserker's Blood lvl1
 Behavior/Name/UnfairSc2BerserkersBlood20=Unfair SC2 Berserker's Blood lvl9
@@ -47,6 +48,7 @@ Behavior/Tooltip/UnfairSC2DamageReductionShield=Reduce taken damage to <d ref="B
 Behavior/Tooltip/UnfairSC2ExtraArmor=Add <d ref="Behavior,UnfairSC2ExtraArmor,Modification.LifeArmorBonus"/> armor and <d ref="Behavior,UnfairSC2ExtraArmor,Modification.ShieldArmorBonus"/> shields for <d ref="Behavior,UnfairSC2ExtraArmor,Duration"/> seconds
 Behavior/Tooltip/UnfairSC2FallingRocksStun=Stunned for <d ref="Behavior,UnfairSC2FallingRocksStun,Duration"/> seconds
 Behavior/Tooltip/UnfairSC2WalkingDead=Zombie<n/><n/>Attack speed is <d ref="Behavior,UnfairSC2WalkingDead,Modification.AttackSpeedMultiplier*100"/>%<n/>Armor is <d ref="Behavior,UnfairSC2WalkingDead,Modification.LifeArmorMultiplier*100"/>%<n/>Move Speed is <d ref="Behavior,UnfairSC2WalkingDead,Modification.MoveSpeedMultiplier*100"/>%<n/><n/>Life Time <d ref="Behavior,UnfairSC2WalkingDead,Duration"/>s (0 for no life time)
+Behavior/Tooltip/UnfairSc2AttackSpeed=Move speed is <d ref="Behavior,UnfairSc2MoveSpeed,Modification.MoveSpeedMultiplier * 100"/>%
 Behavior/Tooltip/UnfairSc2BerserkersBlood10=Attack speed is x<d ref="Behavior,UnfairSc2BerserkersBlood10,Modification.AttackSpeedMultiplier" precision="1" />
 Behavior/Tooltip/UnfairSc2BerserkersBlood102=Unit has a default attack speed
 Behavior/Tooltip/UnfairSc2BerserkersBlood20=Attack speed is x<d ref="Behavior,UnfairSc2BerserkersBlood20,Modification.AttackSpeedMultiplier" precision="1" />
@@ -60,6 +62,7 @@ Behavior/Tooltip/UnfairSc2BerserkersBlood90=Attack speed is x<d ref="Behavior,Un
 Behavior/Tooltip/UnfairSc2BerserkersBlood902=Attack speed is x<d ref="Behavior,UnfairSc2BerserkersBlood90,Modification.AttackSpeedMultiplier" precision="1" />
 Behavior/Tooltip/UnfairSc2Darkness=Vision is reduced by <d ref="Behavior,UnfairSc2Darkness,Modification.SightBonus"/>
 Behavior/Tooltip/UnfairSc2MoveSpeed=Move speed is <d ref="Behavior,UnfairSc2MoveSpeed,Modification.MoveSpeedMultiplier * 100"/>%
+Behavior/Tooltip/UnfairSc2MoveSpeed2=Attack speed is <d ref="Behavior,UnfairSc2AttackSpeed,Modification.AttackSpeedMultiplier * 100"/>%
 Berserker's Blood 90=Unfair SC2 Berserker's Blood lvl2
 Button/Name/CommanderNovaDefensiveMatrixDroneCharges=Macro Def
 Button/Name/CommanderStukovBunkerBonuses=Macro Def Terran
@@ -366,6 +369,7 @@ Param/Expression/lib_16A22498_CAC3AA52=~Description~<n/>Enabled for: ~Players~
 Param/Expression/lib_1783C555_3245C390=~Description~<n/>Enabled for: ~Players~
 Param/Expression/lib_18CEA1F0_09B87EBA=~Description~<n/>Enabled for: ~Players~
 Param/Expression/lib_1A704C64_399CF9C1=~Description~<n/>Enabled for: ~Players~
+Param/Expression/lib_1B8D4CA9_8DDDF483=~Description~<n/>Enabled for: ~Players~
 Param/Expression/lib_1D99399F_5308CD87= ~A~<n/>
 Param/Expression/lib_1D99399F_C6C07C59=~A~
 Param/Expression/lib_1D99399F_FF9DF61D=Create ~TWPerWave~ time warps every ~TWDelay~ seconds in the random point at the map but not in the safe zones fro players.<n/><n/>Safe zone radiuses:<n/>~PlayerSettings~
@@ -419,6 +423,9 @@ Param/Expression/lib_96FBA2DD_AA6CE661=Долой ~PLAYERNAME~!
 Param/Expression/lib_96FBA2DD_E40EDA3D=<img path="Assets\Textures\ui_emoticons_poo.dds"/>
 Param/Expression/lib_96FBA2DD_ECC47815=~PLAYERNAME~, сам добывай ресурсы!
 Param/Expression/lib_96FBA2DD_F9D34EA4=<img path="Assets\Textures\ui_emoticons_brew.dds"/>
+Param/Expression/lib_9BDC8046_94BA46E8=~A~
+Param/Expression/lib_9BDC8046_B167F809= x~A~<n/>
+Param/Expression/lib_9BDC8046_E938710C=~Description~<n/><n/>~Players~
 Param/Expression/lib_9D7053F9_238636E8=Give 100 minerals to ~PlayerName~ by Referee
 Param/Expression/lib_9D7053F9_5612728C=Riot for ~PlayerName~ initiated by Referee
 Param/Expression/lib_9D7053F9_6E36DB28=Take 100 minerals from ~PlayerName~ by Referee
@@ -428,6 +435,9 @@ Param/Expression/lib_9D7053F9_795DFAC3=Take 100 vespene  from ~PlayerName~ by Re
 Param/Expression/lib_9D7053F9_A6471FFA=<img path="EditorData\Images\CutSceneEditor\Toolbar\ToggleDebugHelpers.tga"/>
 Param/Expression/lib_9D7053F9_BC5032B7=Decimatio for ~PlayerName~ initiated by Referee
 Param/Expression/lib_9D7053F9_FDB4EECD=Give 100 vespene to ~PlayerName~ by Referee
+Param/Expression/lib_AAAD51C3_89531861=~A~
+Param/Expression/lib_AAAD51C3_A144C81C=~Description~<n/>Enabled for: ~Players~
+Param/Expression/lib_AAAD51C3_CCF86D66= x~A~<n/>
 Param/Expression/lib_AE474D3F_5AEA0953=~Description~<n/>~Settings~
 Param/Expression/lib_AE474D3F_678F1808=~Settings~ 400%
 Param/Expression/lib_AE474D3F_C65F0B17=~Settings~ 200%
@@ -523,6 +533,14 @@ Param/Value/lib_18CEA1F0_448CD230=No Supply
 Param/Value/lib_1A704C64_43C0ECB2=Battle Hunger for Player
 Param/Value/lib_1A704C64_82A1DDE8=Battle Hunger
 Param/Value/lib_1A704C64_90639D01=Stimpack is applied to unit that kills another unit
+Param/Value/lib_1B8D4CA9_240DFBCA=%PLAYER OPTION NAME%
+Param/Value/lib_1B8D4CA9_36A34B21=%DESCRIPTION%
+Param/Value/lib_1B8D4CA9_37720E28=%PLAYER OPTION NAME%
+Param/Value/lib_1B8D4CA9_3C15AA0F=%NAME%
+Param/Value/lib_1B8D4CA9_3E8D099B=%PLAYER OPTION NAME%
+Param/Value/lib_1B8D4CA9_61EFA5CC=%GAME OPTION NAME%
+Param/Value/lib_1B8D4CA9_6C553EF2=%GAME OPTION NAME%
+Param/Value/lib_1B8D4CA9_C4D56CB8=%GAME OPTION NAME%
 Param/Value/lib_1D99399F_20E7D601=Temporal Fields Safe Zone Radius for Player
 Param/Value/lib_1D99399F_287B06EE=Temporal Fields are randomly spawn on the map
 Param/Value/lib_1D99399F_4A6DC45F=Temporal Fields
@@ -646,6 +664,9 @@ Param/Value/lib_96FBA2DD_B4F91524=Хватит это терпеть!
 Param/Value/lib_96FBA2DD_C3615ED8=Требуем профсоюз!
 Param/Value/lib_96FBA2DD_CFC2AA47=Мы не рабы!
 Param/Value/lib_96FBA2DD_FA83805E=Riot Freequency
+Param/Value/lib_9BDC8046_2D99FEFD=Change attack speed for all units except workers
+Param/Value/lib_9BDC8046_B4C9801E=Attack Speed
+Param/Value/lib_9BDC8046_C9E359F9=Attack Speed for Player
 Param/Value/lib_9D7053F9_12425594=Riot Workers
 Param/Value/lib_9D7053F9_2AA93D54=
 Param/Value/lib_9D7053F9_36DE2EE4=
@@ -660,6 +681,9 @@ Param/Value/lib_9D7053F9_B610A922=is turned on
 Param/Value/lib_9D7053F9_CA147E12=Referee UI
 Param/Value/lib_9D7053F9_CC5D1866=Give 100 vespene
 Param/Value/lib_9D7053F9_F124E032=Take 100 vespene
+Param/Value/lib_AAAD51C3_11081065=Change max HP and Shields for units (including workers) and structures
+Param/Value/lib_AAAD51C3_6DEDF565=HP & Shields for Player
+Param/Value/lib_AAAD51C3_BF1E58F4=HP & Shields
 Param/Value/lib_AE474D3F_18DBE29E=Game Speed
 Param/Value/lib_AE474D3F_1C2FBBA7=Game Speed Boost, %
 Param/Value/lib_AE474D3F_596F1D04=Increase game speed for all players.<n/>IMPORTANT! Doesn't affect timers from other handicaps!
@@ -890,6 +914,7 @@ Upgrade/Name/TerranVehicleAndShipArmorsLevel6=Terran Vehicle And Ship Armors Lev
 Upgrade/Name/TerranVehicleWeaponsLevel2=Вооружение наземной техники терранов, уровень 2
 Upgrade/Name/TerranVehicleWeaponsLevel4=Terran Vehicle Weapons Level 4
 Upgrade/Name/TerranVehicleWeaponsLevel6=Terran Vehicle Weapons Level 6
+Upgrade/Name/UnfairSC2ConstructionTime=Construction Time
 Upgrade/Name/UnfairSC2ProtossAirArmorsLevel4=Protoss Air Armors Level 4
 Upgrade/Name/UnfairSC2ProtossAirArmorsLevel5=Protoss Air Armors Level 5
 Upgrade/Name/UnfairSC2ProtossAirArmorsLevel6=Protoss Air Armors Level 6

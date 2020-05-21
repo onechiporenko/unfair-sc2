@@ -1,0 +1,241 @@
+include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
+include "LibDBC4E2D2_h"
+
+include "LibAAAD51C3_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: HP AND SHIELDS
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void libAAAD51C3_InitLibraries () {
+    libNtve_InitVariables();
+    libD169EC7B_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void libAAAD51C3_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_AAAD51C3_BF1E58F4");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_AAAD51C3_11081065");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-stetmann-garypersonalstetzone-health.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_AAAD51C3_6DEDF565");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "0.5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "0.75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1.25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1.5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = libAAAD51C3_gt_SetupHandicap;
+}
+
+void libAAAD51C3_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    playergroup lv_players;
+    text lv_playersSettings;
+
+    // Automatic Variable Declarations
+    playergroup auto5E37C706_g;
+    int auto5E37C706_var;
+    string auto50A112D1_val;
+    playergroup auto69B49F99_g;
+    int auto69B49F99_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto5E37C706_g = PlayerGroupActive();
+        auto5E37C706_var = -1;
+        while (true) {
+            auto5E37C706_var = PlayerGroupNextPlayer(auto5E37C706_g, auto5E37C706_var);
+            if (auto5E37C706_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto5E37C706_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto5E37C706_var);
+                libDBC4E2D2_gv_pLAYERS[auto5E37C706_var].lv_hPSHIELDS.lv_enabled = true;
+                auto50A112D1_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto5E37C706_var];
+                if (auto50A112D1_val == "0.5") {
+                    libDBC4E2D2_gv_pLAYERS[auto5E37C706_var].lv_hPSHIELDS.lv_rate = 0.5;
+                }
+                else if (auto50A112D1_val == "0.75") {
+                    libDBC4E2D2_gv_pLAYERS[auto5E37C706_var].lv_hPSHIELDS.lv_rate = 0.75;
+                }
+                else if (auto50A112D1_val == "1.25") {
+                    libDBC4E2D2_gv_pLAYERS[auto5E37C706_var].lv_hPSHIELDS.lv_rate = 1.25;
+                }
+                else if (auto50A112D1_val == "1.5") {
+                    libDBC4E2D2_gv_pLAYERS[auto5E37C706_var].lv_hPSHIELDS.lv_rate = 1.5;
+                }
+                else if (auto50A112D1_val == "2") {
+                    libDBC4E2D2_gv_pLAYERS[auto5E37C706_var].lv_hPSHIELDS.lv_rate = 2.0;
+                }
+                else {
+                }
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(libAAAD51C3_gt_SetHPandShieldsForInitialUnits, true, false);
+            auto69B49F99_g = lv_players;
+            auto69B49F99_var = -1;
+            while (true) {
+                auto69B49F99_var = PlayerGroupNextPlayer(auto69B49F99_g, auto69B49F99_var);
+                if (auto69B49F99_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_AAAD51C3_89531861", "A", TextWithColor(PlayerName(auto69B49F99_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto69B49F99_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_AAAD51C3_89531861"));
+                TextExpressionSetToken("Param/Expression/lib_AAAD51C3_CCF86D66", "A", FixedToText(libDBC4E2D2_gv_pLAYERS[auto69B49F99_var].lv_hPSHIELDS.lv_rate, 2));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_AAAD51C3_CCF86D66"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_AAAD51C3_A144C81C", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_AAAD51C3_A144C81C", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_AAAD51C3_A144C81C"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+        else {
+            TriggerEnable(libAAAD51C3_gt_SetHPandShieldsForCreatedUnit, false);
+            TriggerEnable(libAAAD51C3_gt_SetHPandShieldsForInitialUnits, false);
+        }
+    }
+    else {
+        TriggerEnable(libAAAD51C3_gt_SetHPandShieldsForCreatedUnit, false);
+        TriggerEnable(libAAAD51C3_gt_SetHPandShieldsForInitialUnits, false);
+    }
+}
+
+void libAAAD51C3_gf_SetHPandShields (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unit)].lv_hPSHIELDS.lv_enabled == true)) {
+        UnitSetPropertyFixed(lp_unit, c_unitPropLifeMax, (UnitGetPropertyFixed(lp_unit, c_unitPropLifeMax, c_unitPropCurrent) * libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unit)].lv_hPSHIELDS.lv_rate));
+        UnitSetPropertyFixed(lp_unit, c_unitPropLifePercent, 100.0);
+        UnitSetPropertyFixed(lp_unit, c_unitPropShieldsMax, (UnitGetPropertyFixed(lp_unit, c_unitPropShieldsMax, c_unitPropCurrent) * libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unit)].lv_hPSHIELDS.lv_rate));
+        UnitSetPropertyFixed(lp_unit, c_unitPropShieldsPercent, 100.0);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool libAAAD51C3_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libAAAD51C3_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libAAAD51C3_gt_SetupHandicap_Init () {
+    libAAAD51C3_gt_SetupHandicap = TriggerCreate("libAAAD51C3_gt_SetupHandicap_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set HP and Shields For Created Unit
+//--------------------------------------------------------------------------------------------------
+bool libAAAD51C3_gt_SetHPandShieldsForCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libAAAD51C3_gf_SetHPandShields(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libAAAD51C3_gt_SetHPandShieldsForCreatedUnit_Init () {
+    libAAAD51C3_gt_SetHPandShieldsForCreatedUnit = TriggerCreate("libAAAD51C3_gt_SetHPandShieldsForCreatedUnit_Func");
+    TriggerAddEventUnitCreated(libAAAD51C3_gt_SetHPandShieldsForCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set HP and Shields For Initial Units
+//--------------------------------------------------------------------------------------------------
+bool libAAAD51C3_gt_SetHPandShieldsForInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoADA4FF0F_g;
+    int autoADA4FF0F_var;
+    unitgroup autoB5572E18_g;
+    int autoB5572E18_u;
+    unit autoB5572E18_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    autoADA4FF0F_g = PlayerGroupAll();
+    autoADA4FF0F_var = -1;
+    while (true) {
+        autoADA4FF0F_var = PlayerGroupNextPlayer(autoADA4FF0F_g, autoADA4FF0F_var);
+        if (autoADA4FF0F_var < 0) { break; }
+        if ((libDBC4E2D2_gv_pLAYERS[autoADA4FF0F_var].lv_hPSHIELDS.lv_enabled == true)) {
+            autoB5572E18_g = UnitGroup(null, autoADA4FF0F_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            autoB5572E18_u = UnitGroupCount(autoB5572E18_g, c_unitCountAll);
+            for (;; autoB5572E18_u -= 1) {
+                autoB5572E18_var = UnitGroupUnitFromEnd(autoB5572E18_g, autoB5572E18_u);
+                if (autoB5572E18_var == null) { break; }
+                libAAAD51C3_gf_SetHPandShields(autoB5572E18_var);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libAAAD51C3_gt_SetHPandShieldsForInitialUnits_Init () {
+    libAAAD51C3_gt_SetHPandShieldsForInitialUnits = TriggerCreate("libAAAD51C3_gt_SetHPandShieldsForInitialUnits_Func");
+}
+
+void libAAAD51C3_InitTriggers () {
+    libAAAD51C3_gt_SetupHandicap_Init();
+    libAAAD51C3_gt_SetHPandShieldsForCreatedUnit_Init();
+    libAAAD51C3_gt_SetHPandShieldsForInitialUnits_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool libAAAD51C3_InitLib_completed = false;
+
+void libAAAD51C3_InitLib () {
+    if (libAAAD51C3_InitLib_completed) {
+        return;
+    }
+
+    libAAAD51C3_InitLib_completed = true;
+
+    libAAAD51C3_InitLibraries();
+    libAAAD51C3_InitTriggers();
+}
+
+include "LibD169EC7B"
+include "LibDBC4E2D2"
+

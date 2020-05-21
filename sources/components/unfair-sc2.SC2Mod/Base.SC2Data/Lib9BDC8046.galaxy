@@ -1,0 +1,243 @@
+include "TriggerLibs/NativeLib"
+include "LibD169EC7B_h"
+include "LibDBC4E2D2_h"
+
+include "Lib9BDC8046_h"
+
+//--------------------------------------------------------------------------------------------------
+// Library: ATTACK SPEED
+//--------------------------------------------------------------------------------------------------
+// External Library Initialization
+void lib9BDC8046_InitLibraries () {
+    libNtve_InitVariables();
+    libD169EC7B_InitVariables();
+    libDBC4E2D2_InitVariables();
+}
+
+// Functions
+void lib9BDC8046_gf_SetupOptions (int lp_handicapindex) {
+    // Variable Declarations
+    int lv_optionindex;
+    int lv_optionvalueindex;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_9BDC8046_B4C9801E");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_9BDC8046_2D99FEFD");
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-hornerhan-wraith-attackspeed.dds";
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_9BDC8046_C9E359F9");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "0.5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "0.75";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1.25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "1.5";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "2";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = lv_optionindex;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib9BDC8046_gt_SetupHandicap;
+}
+
+void lib9BDC8046_gf_EnableHandicap (int lp_handicapIndex) {
+    // Variable Declarations
+    text lv_playersSettings;
+    playergroup lv_players;
+
+    // Automatic Variable Declarations
+    playergroup auto17C89D64_g;
+    int auto17C89D64_var;
+    string auto4E2B3792_val;
+    playergroup auto17D15FDE_g;
+    int auto17D15FDE_var;
+
+    // Variable Initialization
+    lv_players = PlayerGroupEmpty();
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        auto17C89D64_g = PlayerGroupActive();
+        auto17C89D64_var = -1;
+        while (true) {
+            auto17C89D64_var = PlayerGroupNextPlayer(auto17C89D64_g, auto17C89D64_var);
+            if (auto17C89D64_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto17C89D64_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto17C89D64_var);
+                libDBC4E2D2_gv_pLAYERS[auto17C89D64_var].lv_aTTACKSPEED.lv_enabled = true;
+                auto4E2B3792_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto17C89D64_var];
+                if (auto4E2B3792_val == "0.5") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2AttackSpeed", "Modification.AttackSpeedMultiplier", auto17C89D64_var, "0.5");
+                    libDBC4E2D2_gv_pLAYERS[auto17C89D64_var].lv_aTTACKSPEED.lv_rate = 0.5;
+                }
+                else if (auto4E2B3792_val == "0.75") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2AttackSpeed", "Modification.AttackSpeedMultiplier", auto17C89D64_var, "0.75");
+                    libDBC4E2D2_gv_pLAYERS[auto17C89D64_var].lv_aTTACKSPEED.lv_rate = 0.75;
+                }
+                else if (auto4E2B3792_val == "1.25") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2AttackSpeed", "Modification.AttackSpeedMultiplier", auto17C89D64_var, "1.25");
+                    libDBC4E2D2_gv_pLAYERS[auto17C89D64_var].lv_aTTACKSPEED.lv_rate = 1.25;
+                }
+                else if (auto4E2B3792_val == "1.5") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2AttackSpeed", "Modification.AttackSpeedMultiplier", auto17C89D64_var, "1.5");
+                    libDBC4E2D2_gv_pLAYERS[auto17C89D64_var].lv_aTTACKSPEED.lv_rate = 1.5;
+                }
+                else if (auto4E2B3792_val == "2") {
+                    CatalogFieldValueSet(c_gameCatalogBehavior, "UnfairSc2AttackSpeed", "Modification.AttackSpeedMultiplier", auto17C89D64_var, "2");
+                    libDBC4E2D2_gv_pLAYERS[auto17C89D64_var].lv_aTTACKSPEED.lv_rate = 2.0;
+                }
+                else {
+                }
+            }
+
+        }
+        if ((PlayerGroupCount(lv_players) > 0)) {
+            TriggerExecute(lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits, true, false);
+            auto17D15FDE_g = lv_players;
+            auto17D15FDE_var = -1;
+            while (true) {
+                auto17D15FDE_var = PlayerGroupNextPlayer(auto17D15FDE_g, auto17D15FDE_var);
+                if (auto17D15FDE_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_9BDC8046_94BA46E8", "A", TextWithColor(PlayerName(auto17D15FDE_var), libNtve_gf_ConvertPlayerColorToColor(PlayerGetColorIndex(auto17D15FDE_var, false))));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_9BDC8046_94BA46E8"));
+                TextExpressionSetToken("Param/Expression/lib_9BDC8046_B167F809", "A", FixedToText(libDBC4E2D2_gv_pLAYERS[auto17D15FDE_var].lv_aTTACKSPEED.lv_rate, 2));
+                lv_playersSettings = (lv_playersSettings + TextExpressionAssemble("Param/Expression/lib_9BDC8046_B167F809"));
+            }
+            TextExpressionSetToken("Param/Expression/lib_9BDC8046_E938710C", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_9BDC8046_E938710C", "Players", lv_playersSettings);
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_9BDC8046_E938710C"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
+        }
+        else {
+            TriggerEnable(lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit, false);
+            TriggerEnable(lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits, false);
+        }
+    }
+    else {
+        TriggerEnable(lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit, false);
+        TriggerEnable(lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits, false);
+    }
+}
+
+void lib9BDC8046_gf_AddAttackSpeedBehavior (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(lp_unit)].lv_aTTACKSPEED.lv_enabled == true)) {
+        UnitBehaviorAdd(lp_unit, "UnfairSc2AttackSpeed", lp_unit, 1);
+    }
+
+}
+
+// Triggers
+//--------------------------------------------------------------------------------------------------
+// Trigger: Setup Handicap
+//--------------------------------------------------------------------------------------------------
+bool lib9BDC8046_gt_SetupHandicap_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib9BDC8046_gf_EnableHandicap(libD169EC7B_gv_activeHandicapIndex);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib9BDC8046_gt_SetupHandicap_Init () {
+    lib9BDC8046_gt_SetupHandicap = TriggerCreate("lib9BDC8046_gt_SetupHandicap_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Set Attack Speed Behavior For Created Unit
+//--------------------------------------------------------------------------------------------------
+bool lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lib9BDC8046_gf_AddAttackSpeedBehavior(EventUnitCreatedUnit());
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit_Init () {
+    lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit = TriggerCreate("lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit_Func");
+    TriggerAddEventUnitCreated(lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit, null, null, null);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Add Attack Speed Behavior For Initial Units
+//--------------------------------------------------------------------------------------------------
+bool lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup auto0D93FF3A_g;
+    int auto0D93FF3A_var;
+    unitgroup auto5D628E3A_g;
+    int auto5D628E3A_u;
+    unit auto5D628E3A_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(1.0, c_timeGame);
+    auto0D93FF3A_g = PlayerGroupAll();
+    auto0D93FF3A_var = -1;
+    while (true) {
+        auto0D93FF3A_var = PlayerGroupNextPlayer(auto0D93FF3A_g, auto0D93FF3A_var);
+        if (auto0D93FF3A_var < 0) { break; }
+        if ((libDBC4E2D2_gv_pLAYERS[auto0D93FF3A_var].lv_mOVESPEED.lv_enabled == true)) {
+            auto5D628E3A_g = UnitGroup(null, auto0D93FF3A_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+            auto5D628E3A_u = UnitGroupCount(auto5D628E3A_g, c_unitCountAll);
+            for (;; auto5D628E3A_u -= 1) {
+                auto5D628E3A_var = UnitGroupUnitFromEnd(auto5D628E3A_g, auto5D628E3A_u);
+                if (auto5D628E3A_var == null) { break; }
+                lib9BDC8046_gf_AddAttackSpeedBehavior(auto5D628E3A_var);
+            }
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits_Init () {
+    lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits = TriggerCreate("lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits_Func");
+}
+
+void lib9BDC8046_InitTriggers () {
+    lib9BDC8046_gt_SetupHandicap_Init();
+    lib9BDC8046_gt_SetAttackSpeedBehaviorForCreatedUnit_Init();
+    lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits_Init();
+}
+
+//--------------------------------------------------------------------------------------------------
+// Library Initialization
+//--------------------------------------------------------------------------------------------------
+bool lib9BDC8046_InitLib_completed = false;
+
+void lib9BDC8046_InitLib () {
+    if (lib9BDC8046_InitLib_completed) {
+        return;
+    }
+
+    lib9BDC8046_InitLib_completed = true;
+
+    lib9BDC8046_InitLibraries();
+    lib9BDC8046_InitTriggers();
+}
+
+include "LibD169EC7B"
+include "LibDBC4E2D2"
+
