@@ -127,6 +127,17 @@ bool libDBC4E2D2_gf_UnitIsWorker (unit lp_unit) {
     }
 }
 
+bool libDBC4E2D2_gf_UnitIsStructureToCollectVespene (unit lp_unit) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((UnitGetType(lp_unit) != "RefineryRich") && (UnitGetType(lp_unit) != "Refinery") && (UnitGetType(lp_unit) != "AssimilatorRich") && (UnitGetType(lp_unit) != "Assimilator") && (UnitGetType(lp_unit) != "Extractor") && (UnitGetType(lp_unit) != "ExtractorRich")) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 bool libDBC4E2D2_gf_UnitisBuiltWorker (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation

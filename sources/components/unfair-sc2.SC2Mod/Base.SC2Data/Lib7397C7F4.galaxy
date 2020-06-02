@@ -405,6 +405,10 @@ bool lib7397C7F4_gt_CreateWalkingZombie_Func (bool testConds, bool runActions) {
             return false;
         }
 
+        if (!((libDBC4E2D2_gf_UnitIsStructureToCollectVespene(EventUnit()) == false))) {
+            return false;
+        }
+
         if (!(((lib7397C7F4_gv_zombiesfromStructures == true) || (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeStructure) == false)))) {
             return false;
         }
@@ -419,13 +423,13 @@ bool lib7397C7F4_gt_CreateWalkingZombie_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_CreateUnitsWithDefaultFacing(1, UnitGetType(EventUnit()), 0, 5, UnitGetPosition(EventUnit()));
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, UnitGetType(EventUnit()), 0, 15, UnitGetPosition(EventUnit()));
     UnitBehaviorAdd(UnitLastCreated(), "UnfairSC2WalkingDead", UnitLastCreated(), 1);
     UnitBehaviorAdd(UnitLastCreated(), "CritterWander", UnitLastCreated(), 1);
-    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifePercent, (lib7397C7F4_gv_hPMultiplier * 100.0));
-    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropShieldsPercent, (lib7397C7F4_gv_shieldsMultiplier * 100.0));
     UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, (UnitGetPropertyFixed(UnitLastCreated(), c_unitPropLifeMax, c_unitPropNormal) * lib7397C7F4_gv_hPMultiplier));
     UnitSetPropertyFixed(UnitLastCreated(), c_unitPropShieldsMax, (UnitGetPropertyFixed(UnitLastCreated(), c_unitPropShieldsMax, c_unitPropNormal) * lib7397C7F4_gv_shieldsMultiplier));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropLifePercent, (lib7397C7F4_gv_hPMultiplier * 100.0));
+    UnitSetPropertyFixed(UnitLastCreated(), c_unitPropShieldsPercent, (lib7397C7F4_gv_shieldsMultiplier * 100.0));
     return true;
 }
 

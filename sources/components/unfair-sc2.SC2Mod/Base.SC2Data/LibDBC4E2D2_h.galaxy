@@ -342,6 +342,7 @@ text libDBC4E2D2_gf_GetPlayerNamesColored (playergroup lp_players);
 int libDBC4E2D2_gf_GetWorkersCount (int lp_player);
 int libDBC4E2D2_gf_GetBuiltWorkersCount (int lp_player);
 bool libDBC4E2D2_gf_UnitIsWorker (unit lp_unit);
+bool libDBC4E2D2_gf_UnitIsStructureToCollectVespene (unit lp_unit);
 bool libDBC4E2D2_gf_UnitisBuiltWorker (unit lp_unit);
 unit libDBC4E2D2_gf_GetRandomStructure (int lp_player);
 unit libDBC4E2D2_gf_GetRandomWorkersProdStructure (int lp_player);
