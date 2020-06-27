@@ -222,4 +222,14 @@
         <NodeArray index="Use" Link="AndEq33074718CountUpgradeZergMissileWeaponsLevel4CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
         <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergMissileWeaponsLevel5QueuedOrBetter0"/>
     </CRequirement>
+    <CRequirement id="UnfairSC2TerranBuildLikeTerran">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0"/>
+        <NodeArray index="Show" Link="And"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2TerranBuildLikeZerg">
+        <EditorCategories value="Race:Terran,TechType:Upgrade"/>
+        <NodeArray index="Use" Link="AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1"/>
+        <NodeArray index="Show" Link="And"/>
+    </CRequirement>
 </Catalog>

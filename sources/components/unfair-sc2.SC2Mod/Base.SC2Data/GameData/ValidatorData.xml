@@ -6,6 +6,13 @@
     <CValidatorUnitFilters id="UnfairSC2CastTargetFilter">
         <Filters value="-;Structure,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
     </CValidatorUnitFilters>
+    <CValidatorPlayerRequirement id="UnfairSC2TerranBuildLikeTerran">
+        <Value value="UnfairSC2TerranBuildLikeTerran"/>
+    </CValidatorPlayerRequirement>
+    <CValidatorPlayerRequirement id="UnfairSC2TerranBuildLikeZerg">
+        <OtherPlayer Value="Origin"/>
+        <Value value="UnfairSC2TerranBuildLikeZerg"/>
+    </CValidatorPlayerRequirement>
     <CValidatorLocationCompareRange id="UnfairSC2WaaaghRange">
         <WhichLocation Value="TargetUnit"/>
         <Compare value="LE"/>

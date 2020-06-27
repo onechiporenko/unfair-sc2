@@ -119,7 +119,7 @@ int libDBC4E2D2_gf_GetBuiltWorkersCount (int lp_player) {
 bool libDBC4E2D2_gf_UnitIsWorker (unit lp_unit) {
     // Automatic Variable Declarations
     // Implementation
-    if (((UnitGetType(lp_unit) != "Drone") && (UnitGetType(lp_unit) != "DroneBurrowed") && (UnitGetType(lp_unit) != "Probe") && (UnitGetType(lp_unit) != "SCV") && (UnitGetType(lp_unit) != "MULE"))) {
+    if ((UnitGetType(lp_unit) != "Drone") && (UnitGetType(lp_unit) != "DroneBurrowed") && (UnitGetType(lp_unit) != "Probe") && (UnitGetType(lp_unit) != "SCV") && (UnitGetType(lp_unit) != "MULE")) {
         return false;
     }
     else {

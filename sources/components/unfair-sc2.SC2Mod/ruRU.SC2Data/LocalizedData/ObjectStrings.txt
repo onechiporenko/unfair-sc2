@@ -1,7 +1,14 @@
-﻿Abil/EditorPrefix/PsiStorm2=Высший тамплиер -
+﻿Abil/EditorPrefix/ProtossBuild2=Зонд -
+Abil/EditorPrefix/PsiStorm2=Высший тамплиер -
 Abil/EditorPrefix/UnfairSC2AcidSpray=Unfair SC2 - 
+Abil/EditorPrefix/UnfairSC2BuildLikeDrone=Unfair SC2 - 
+Abil/EditorPrefix/UnfairSC2BuildLikeProbe=Unfair SC2 - 
+Abil/EditorPrefix/UnfairSC2DroneBuildLikeProbe=Unfair SC2 - 
+Abil/EditorPrefix/UnfairSC2DroneBuildLikeSCV=Unfair SC2 - 
 Abil/EditorPrefix/UnfairSC2ExtraArmor=Unfair SC2 - 
 Abil/EditorPrefix/UnfairSC2FallingRocks=Unfair SC2 - 
+Abil/EditorPrefix/UnfairSC2ProbeBuildLikeDrone=Unfair SC2 - 
+Abil/EditorPrefix/UnfairSC2ProbeBuildLikeSCV=Unfair SC2 - 
 Abil/EditorSuffix/PsiStorm2=
 Actor/EditorPrefix/UnfairSC2AcidSprayAttack=Unfair SC2 - 
 Actor/EditorPrefix/UnfairSC2AcidSprayAttackMissile=Unfair SC2 - 
@@ -217,6 +224,8 @@ Requirement/EditorPrefix/UnfairSC2LearnZergMeleeWeapon6=Unfair SC2 -
 Requirement/EditorPrefix/UnfairSC2LearnZergMissileWeapon4=Unfair SC2 - 
 Requirement/EditorPrefix/UnfairSC2LearnZergMissileWeapon5=Unfair SC2 - 
 Requirement/EditorPrefix/UnfairSC2LearnZergMissileWeapon6=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2TerranBuildLikeTerran=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2TerranBuildLikeZerg=Unfair SC2 - 
 Requirement/Name/LearnProtossGroundWeapon6=Learn Protoss Ground Weapon6
 Requirement/Name/LearnTerranVehicleWeapon6=Learn Terran Vehicle Weapon6
 Requirement/Name/LearnZergFlyerArmor6=Learn Zerg Flyer Armor6
@@ -262,7 +271,10 @@ Requirement/Name/UnfairSC2LearnZergMeleeWeapon6=Learn Zerg Melee Weapon6
 Requirement/Name/UnfairSC2LearnZergMissileWeapon4=Learn Zerg Missile Weapon4
 Requirement/Name/UnfairSC2LearnZergMissileWeapon5=Learn Zerg Missile Weapon5
 Requirement/Name/UnfairSC2LearnZergMissileWeapon6=Learn Zerg Missile Weapon6
+Requirement/Name/UnfairSC2TerranBuildLikeTerran=Terran Build Like Terran
+Requirement/Name/UnfairSC2TerranBuildLikeZerg=Terran Build Like Zerg
 RequirementNode/Name/AllowAbilUpgradeToGreaterSpire0TechTreeCheat=AllowAbil(UpgradeToGreaterSpire,0)[TechTreeCheat]
+RequirementNode/Name/And=() && ()
 RequirementNode/Name/AndEq1067782088CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly1=CountUpgrade(UnfairSC2TerranShipWeaponsLevel4,CompleteOnly) == {Terran Ship Weapon, Level 4}1 && ()
 RequirementNode/Name/AndEq1142985321CountUpgradeUnfairSC2ZergMissileWeaponsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat=CountUpgrade(UnfairSC2ZergMissileWeaponsLevel5,CompleteOnly) == {Zerg Missile Weapon, Level 5}1 && CountUnit(Hive,CompleteOnly)[TechTreeCheat]
 RequirementNode/Name/AndEq1312925800CountUpgradeUnfairSC2TerranInfantryWeaponsLevel5CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat=CountUpgrade(UnfairSC2TerranInfantryWeaponsLevel5,CompleteOnly) == {Terran Infantry Weapon, Level 5}1 && CountUnit(Armory,CompleteOnly)[TechTreeCheat]
@@ -314,6 +326,8 @@ RequirementNode/Name/AndEqCountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBet
 RequirementNode/Name/AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel4QueuedOrBetter0AllowUnitPhoenix=CountUpgrade(UnfairSC2ProtossAirWeaponsLevel4,QueuedOrBetter) == 0 && AllowUnit(Phoenix)
 RequirementNode/Name/AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel5QueuedOrBetter0AllowUnitPhoenix=CountUpgrade(UnfairSC2ProtossAirWeaponsLevel5,QueuedOrBetter) == 0 && AllowUnit(Phoenix)
 RequirementNode/Name/AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter0AllowUnitPhoenix=CountUpgrade(UnfairSC2ProtossAirWeaponsLevel6,QueuedOrBetter) == 0 && AllowUnit(Phoenix)
+RequirementNode/Name/AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0=CountUpgrade(UnfairSC2TerranBuildLikeZerg,CompleteOnly) == 0 && ()
+RequirementNode/Name/AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1=CountUpgrade(UnfairSC2TerranBuildLikeZerg,CompleteOnly) == 1 && ()
 RequirementNode/Name/CountUpgradeProtossAirArmorsLevel3CompleteOnly=CountUpgrade(ProtossAirArmorsLevel3,CompleteOnly)
 RequirementNode/Name/CountUpgradeProtossAirWeaponsLevel3CompleteOnly=CountUpgrade(ProtossAirWeaponsLevel3,CompleteOnly)
 RequirementNode/Name/CountUpgradeProtossGroundArmorsLevel3CompleteOnly=CountUpgrade(ProtossGroundArmorsLevel3,CompleteOnly)
@@ -349,6 +363,7 @@ RequirementNode/Name/CountUpgradeUnfairSC2ProtossShieldsLevel4QueuedOrBetter=Cou
 RequirementNode/Name/CountUpgradeUnfairSC2ProtossShieldsLevel5CompleteOnly=CountUpgrade(UnfairSC2ProtossShieldsLevel5,CompleteOnly)
 RequirementNode/Name/CountUpgradeUnfairSC2ProtossShieldsLevel5QueuedOrBetter=CountUpgrade(UnfairSC2ProtossShieldsLevel5,QueuedOrBetter)
 RequirementNode/Name/CountUpgradeUnfairSC2ProtossShieldsLevel6QueuedOrBetter=CountUpgrade(UnfairSC2ProtossShieldsLevel6,QueuedOrBetter)
+RequirementNode/Name/CountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly=CountUpgrade(UnfairSC2TerranBuildLikeZerg,CompleteOnly)
 RequirementNode/Name/CountUpgradeUnfairSC2TerranInfantryArmorsLevel4CompleteOnly=CountUpgrade(UnfairSC2TerranInfantryArmorsLevel4,CompleteOnly)
 RequirementNode/Name/CountUpgradeUnfairSC2TerranInfantryArmorsLevel4QueuedOrBetter=CountUpgrade(UnfairSC2TerranInfantryArmorsLevel4,QueuedOrBetter)
 RequirementNode/Name/CountUpgradeUnfairSC2TerranInfantryArmorsLevel5CompleteOnly=CountUpgrade(UnfairSC2TerranInfantryArmorsLevel5,CompleteOnly)
@@ -464,6 +479,8 @@ RequirementNode/Name/EqCountUpgradeUnfairSC2ProtossGroundWeaponsLevel6QueuedOrBe
 RequirementNode/Name/EqCountUpgradeUnfairSC2ProtossShieldsLevel4QueuedOrBetter0=CountUpgrade(UnfairSC2ProtossShieldsLevel4,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeUnfairSC2ProtossShieldsLevel5QueuedOrBetter0=CountUpgrade(UnfairSC2ProtossShieldsLevel5,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeUnfairSC2ProtossShieldsLevel6QueuedOrBetter0=CountUpgrade(UnfairSC2ProtossShieldsLevel6,QueuedOrBetter) == 0
+RequirementNode/Name/EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0=CountUpgrade(UnfairSC2TerranBuildLikeZerg,CompleteOnly) == 0
+RequirementNode/Name/EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1=CountUpgrade(UnfairSC2TerranBuildLikeZerg,CompleteOnly) == 1
 RequirementNode/Name/EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel4QueuedOrBetter0=CountUpgrade(UnfairSC2TerranInfantryArmorsLevel4,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel5QueuedOrBetter0=CountUpgrade(UnfairSC2TerranInfantryArmorsLevel5,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel6QueuedOrBetter0=CountUpgrade(UnfairSC2TerranInfantryArmorsLevel6,QueuedOrBetter) == 0
@@ -513,6 +530,7 @@ Upgrade/EditorPrefix/UnfairSC2ProtossGroundWeaponsLevel6=Unfair SC2 -
 Upgrade/EditorPrefix/UnfairSC2ProtossShieldsLevel4=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2ProtossShieldsLevel5=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2ProtossShieldsLevel6=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2TerranBuildLikeZerg=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2TerranInfantryArmorsLevel4=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2TerranInfantryArmorsLevel5=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2TerranInfantryArmorsLevel6=Unfair SC2 - 
@@ -547,6 +565,8 @@ Upgrade/EditorPrefix/ZergFlyerWeaponsLevel4=Unfair SC2 -
 Upgrade/EditorPrefix/ZergGroundArmorsLevel4=Unfair SC2 - 
 Upgrade/EditorPrefix/ZergMissileWeaponsLevel4=Unfair SC2 - 
 Validator/EditorPrefix/UnfairSC2CastTargetFilter=Unfair SC2 - 
+Validator/EditorPrefix/UnfairSC2TerranBuildLikeTerran=Unfair SC2 - 
+Validator/EditorPrefix/UnfairSC2TerranBuildLikeZerg=Unfair SC2 - 
 Validator/Name/EnemiesTargetFilter=Enemies (Target Filter)
 Validator/Name/FairCannonAuraCheck=Fair Cannon (Aura Check)
 Validator/Name/FairCannonNotExist=Fair Cannon (Not Exist)
@@ -576,4 +596,6 @@ Validator/Name/UnfairSC2HealthLT10322222=Unfair SC2 Health GT 60
 Validator/Name/UnfairSC2HealthLT103222222=Unfair SC2 Health GT 70
 Validator/Name/UnfairSC2HealthLT1032222222=Unfair SC2 Health GT 80
 Validator/Name/UnfairSC2HealthLT10322222222=Unfair SC2 Health GT 90
+Validator/Name/UnfairSC2TerranBuildLikeTerran=Terran Build Like Terran
+Validator/Name/UnfairSC2TerranBuildLikeZerg=Terran Build Like Zerg
 Validator/Name/UnfairSC2WaaaghRange=Unfair SC2 Waaagh (Range)

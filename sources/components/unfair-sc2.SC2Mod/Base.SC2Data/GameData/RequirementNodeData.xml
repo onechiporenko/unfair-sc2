@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CRequirementAnd id="And"/>
     <CRequirementAnd id="AndEq1067782088CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly1">
         <OperandArray value="Eq1067782088CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly1"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq1142985321CountUpgradeUnfairSC2ZergMissileWeaponsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq1142985321CountUpgradeUnfairSC2ZergMissileWeaponsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq1312925800CountUpgradeUnfairSC2TerranInfantryWeaponsLevel5CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq1312925800CountUpgradeUnfairSC2TerranInfantryWeaponsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitArmoryCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -22,7 +21,6 @@
         <OperandArray value="CountUnitArmoryCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq163248222CountUpgradeUnfairSC2ZergFlyerArmorsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq163248222CountUpgradeUnfairSC2ZergFlyerArmorsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -46,11 +44,9 @@
         <OperandArray value="CountUnitArmoryCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2082276741CountUpgradeUnfairSC2TerranVehicleWeaponsLevel5CompleteOnly1">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq2082276741CountUpgradeUnfairSC2TerranVehicleWeaponsLevel5CompleteOnly1"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2112705294CountUpgradeUnfairSC2ZergFlyerWeaponsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq2112705294CountUpgradeUnfairSC2ZergFlyerWeaponsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -59,17 +55,14 @@
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2237149486CountUpgradeUnfairSC2ProtossAirWeaponsLevel5CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq2237149486CountUpgradeUnfairSC2ProtossAirWeaponsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2243502679CountUpgradeUnfairSC2ZergMeleeWeaponsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq2243502679CountUpgradeUnfairSC2ZergMeleeWeaponsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2391243100CountUpgradeUnfairSC2ProtossGroundArmorsLevel5CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq2391243100CountUpgradeUnfairSC2ProtossGroundArmorsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -85,7 +78,6 @@
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2693264468CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel5CompleteOnly1">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq2693264468CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel5CompleteOnly1"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2700979123CountUpgradeTerranInfantryArmorsLevel3CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat">
@@ -93,19 +85,16 @@
         <OperandArray value="CountUnitArmoryCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq270156112CountUpgradeUnfairSC2TerranInfantryArmorsLevel5CompleteOnly1CountUnitArmoryCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq270156112CountUpgradeUnfairSC2TerranInfantryArmorsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitArmoryCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2739572236CountUpgradeUnfairSC2TerranShipWeaponsLevel5CompleteOnly1">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq2739572236CountUpgradeUnfairSC2TerranShipWeaponsLevel5CompleteOnly1"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq2833587555CountUpgradeUnfairSC2TerranVehicleWeaponsLevel4CompleteOnly1">
         <OperandArray value="Eq2833587555CountUpgradeUnfairSC2TerranVehicleWeaponsLevel4CompleteOnly1"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq3114888313CountUpgradeUnfairSC2ZergGroundArmorsLevel5CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq3114888313CountUpgradeUnfairSC2ZergGroundArmorsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -130,7 +119,6 @@
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq3736873581CountUpgradeUnfairSC2ProtossGroundWeaponsLevel5CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq3736873581CountUpgradeUnfairSC2ProtossGroundWeaponsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -143,7 +131,6 @@
         <OperandArray value="CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq3994227042CountUpgradeUnfairSC2ProtossShieldsLevel5CompleteOnly1CountUnitTwilightCouncilCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq3994227042CountUpgradeUnfairSC2ProtossShieldsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitTwilightCouncilCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -178,7 +165,6 @@
         <OperandArray value="CountUnitHiveCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEq556563840CountUpgradeUnfairSC2ProtossAirArmorsLevel5CompleteOnly1CountUnitFleetBeaconCompleteOnlyTechTreeCheat">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="Eq556563840CountUpgradeUnfairSC2ProtossAirArmorsLevel5CompleteOnly1"/>
         <OperandArray value="CountUnitFleetBeaconCompleteOnlyTechTreeCheat"/>
     </CRequirementAnd>
@@ -195,7 +181,6 @@
         <OperandArray value="AllowUnitPhoenix"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEqCountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBetter0AllowUnitPhoenix">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="EqCountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBetter0"/>
         <OperandArray value="AllowUnitPhoenix"/>
     </CRequirementAnd>
@@ -208,9 +193,15 @@
         <OperandArray value="AllowUnitPhoenix"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter0AllowUnitPhoenix">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="EqCountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter0"/>
         <OperandArray value="AllowUnitPhoenix"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0">
+        <OperandArray value="EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0"/>
+    </CRequirementAnd>
+    <CRequirementAnd id="AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1">
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <OperandArray value="EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1"/>
     </CRequirementAnd>
     <CRequirementCountUpgrade id="CountUpgradeProtossAirArmorsLevel3CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
@@ -262,7 +253,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirArmorsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossAirArmorsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirArmorsLevel5QueuedOrBetter">
@@ -271,7 +261,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossAirArmorsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirWeaponsLevel4CompleteOnly">
@@ -284,7 +273,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossAirWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirWeaponsLevel5QueuedOrBetter">
@@ -293,7 +281,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossAirWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundArmorsLevel4CompleteOnly">
@@ -306,7 +293,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundArmorsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossGroundArmorsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundArmorsLevel5QueuedOrBetter">
@@ -315,7 +301,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundArmorsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossGroundArmorsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundWeaponsLevel4CompleteOnly">
@@ -328,7 +313,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossGroundWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundWeaponsLevel5QueuedOrBetter">
@@ -337,7 +321,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossGroundWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossGroundWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossShieldsLevel4CompleteOnly">
@@ -350,7 +333,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossShieldsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossShieldsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossShieldsLevel5QueuedOrBetter">
@@ -359,8 +341,11 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossShieldsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ProtossShieldsLevel6" State="QueuedOrBetter"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2TerranBuildLikeZerg" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryArmorsLevel4CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
@@ -372,7 +357,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryArmorsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranInfantryArmorsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryArmorsLevel5QueuedOrBetter">
@@ -381,7 +365,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryArmorsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranInfantryArmorsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryWeaponsLevel4CompleteOnly">
@@ -394,7 +377,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranInfantryWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryWeaponsLevel5QueuedOrBetter">
@@ -403,7 +385,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranInfantryWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranInfantryWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly">
@@ -416,7 +397,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranShipWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranShipWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranShipWeaponsLevel5QueuedOrBetter">
@@ -425,7 +405,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranShipWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranShipWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel4CompleteOnly">
@@ -438,7 +417,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranVehicleAndShipArmorsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel5QueuedOrBetter">
@@ -447,7 +425,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranVehicleAndShipArmorsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleWeaponsLevel4CompleteOnly">
@@ -460,7 +437,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranVehicleWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleWeaponsLevel5QueuedOrBetter">
@@ -469,12 +445,10 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2TerranVehicleWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2TerranVehicleWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergFlyerArmorsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergFlyerArmorsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergFlyerArmorsLevel5QueuedOrBetter">
@@ -483,12 +457,10 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergFlyerArmorsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergFlyerArmorsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergFlyerWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergFlyerWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergFlyerWeaponsLevel5QueuedOrBetter">
@@ -497,12 +469,10 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergFlyerWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergFlyerWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergGroundArmorsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergGroundArmorsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergGroundArmorsLevel5QueuedOrBetter">
@@ -511,7 +481,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergGroundArmorsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergGroundArmorsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergMeleeWeaponsLevel4CompleteOnly">
@@ -524,7 +493,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergMeleeWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergMeleeWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergMeleeWeaponsLevel5QueuedOrBetter">
@@ -533,12 +501,10 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergMeleeWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergMeleeWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergMissileWeaponsLevel5CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergMissileWeaponsLevel5" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergMissileWeaponsLevel5QueuedOrBetter">
@@ -547,7 +513,6 @@
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ZergMissileWeaponsLevel6QueuedOrBetter">
         <Flags index="TechTreeCheat" value="0"/>
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <Count Link="UnfairSC2ZergMissileWeaponsLevel6" State="QueuedOrBetter"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeZergFlyerArmorsLevel3CompleteOnly">
@@ -791,7 +756,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -804,7 +768,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -817,7 +780,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ProtossGroundArmorsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ProtossGroundArmorsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -830,7 +792,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ProtossGroundWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ProtossGroundWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -843,9 +804,17 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ProtossShieldsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ProtossShieldsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1">
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <OperandArray index="0" value="CountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel4QueuedOrBetter0">
         <OperandArray index="0" value="CountUpgradeUnfairSC2TerranInfantryArmorsLevel4QueuedOrBetter"/>
@@ -856,7 +825,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2TerranInfantryArmorsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2TerranInfantryArmorsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -869,7 +837,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2TerranInfantryWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2TerranInfantryWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -882,7 +849,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2TerranShipWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2TerranShipWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -895,7 +861,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2TerranVehicleAndShipArmorsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -908,7 +873,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2TerranVehicleWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2TerranVehicleWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -917,7 +881,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ZergFlyerArmorsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ZergFlyerArmorsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -926,7 +889,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ZergFlyerWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ZergFlyerWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -935,7 +897,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ZergGroundArmorsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ZergGroundArmorsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -948,7 +909,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ZergMeleeWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ZergMeleeWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
@@ -957,7 +917,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ZergMissileWeaponsLevel6QueuedOrBetter0">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2ZergMissileWeaponsLevel6QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>

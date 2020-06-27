@@ -238,6 +238,7 @@ bool lib56A96906_gt_GiveCharge_Func (bool testConds, bool runActions) {
         return true;
     }
 
+    TimerWindowShow(lib56A96906_gv_chargeTimerWindow, PlayerGroupAll(), false);
     auto2F0ACF5F_g = PlayerGroupAll();
     auto2F0ACF5F_var = -1;
     while (true) {

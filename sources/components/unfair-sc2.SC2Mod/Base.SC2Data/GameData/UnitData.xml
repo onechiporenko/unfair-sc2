@@ -215,7 +215,42 @@
             <LayoutButtons Face="Charge" Type="AbilCmd" AbilCmd="Charge,Execute" Row="2" Column="3"/>
         </CardLayouts>
     </CUnit>
-    <CUnit id="Drone"/>
+    <CUnit id="Drone">
+        <AbilArray Link="UnfairSC2DroneBuildLikeProbe"/>
+        <AbilArray Link="UnfairSC2DroneBuildLikeSCV"/>
+        <CardLayouts index="1" CardId="ZBl1">
+            <LayoutButtons Face="Hatchery" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build1" Row="0" Column="0"/>
+            <LayoutButtons Face="Extractor" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build3" Row="0" Column="1"/>
+            <LayoutButtons Face="SpawningPool" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build4" Row="1" Column="0"/>
+            <LayoutButtons Face="EvolutionChamber" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build5" Row="1" Column="1"/>
+            <LayoutButtons Face="RoachWarren" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build14" Row="1" Column="2"/>
+            <LayoutButtons Face="BanelingNest" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build11" Row="1" Column="3"/>
+            <LayoutButtons Face="SpineCrawler" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build15" Row="2" Column="0"/>
+            <LayoutButtons Face="SporeCrawler" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build16" Row="2" Column="1"/>
+            <LayoutButtons Face="Hatchery" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build1" Row="0" Column="0"/>
+            <LayoutButtons Face="Extractor" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build3" Row="0" Column="1"/>
+            <LayoutButtons Face="SpawningPool" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build4" Row="1" Column="0"/>
+            <LayoutButtons Face="EvolutionChamber" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build5" Row="1" Column="1"/>
+            <LayoutButtons Face="RoachWarren" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build14" Row="1" Column="2"/>
+            <LayoutButtons Face="BanelingNest" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build11" Row="1" Column="3"/>
+            <LayoutButtons Face="SpineCrawler" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build15" Row="2" Column="0"/>
+            <LayoutButtons Face="SporeCrawler" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build16" Row="2" Column="1"/>
+        </CardLayouts>
+        <CardLayouts index="2" CardId="ZBl2">
+            <LayoutButtons Face="HydraliskDen" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build6" Row="0" Column="0"/>
+            <LayoutButtons Face="InfestationPit" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build9" Row="0" Column="1"/>
+            <LayoutButtons Face="MutateintoLurkerDen" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build12" Row="0" Column="2"/>
+            <LayoutButtons Face="Spire" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build7" Row="1" Column="0"/>
+            <LayoutButtons Face="NydusNetwork" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build10" Row="1" Column="1"/>
+            <LayoutButtons Face="UltraliskCavern" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build8" Row="2" Column="0"/>
+            <LayoutButtons Face="HydraliskDen" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build6" Row="0" Column="0"/>
+            <LayoutButtons Face="InfestationPit" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build9" Row="0" Column="1"/>
+            <LayoutButtons Face="MutateintoLurkerDen" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build12" Row="0" Column="2"/>
+            <LayoutButtons Face="Spire" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build7" Row="1" Column="0"/>
+            <LayoutButtons Face="NydusNetwork" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeSCV,Build10" Row="1" Column="1"/>
+            <LayoutButtons Face="UltraliskCavern" Type="AbilCmd" AbilCmd="UnfairSC2DroneBuildLikeProbe,Build8" Row="2" Column="0"/>
+        </CardLayouts>
+    </CUnit>
     <CUnit id="EngineeringBay">
         <CardLayouts index="0">
             <LayoutButtons>
@@ -591,7 +626,44 @@
             <LayoutButtons Face="UnfairSC2MacroDefTerran" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefTerran,Execute" Row="1" Column="1"/>
         </CardLayouts>
     </CUnit>
-    <CUnit id="Probe"/>
+    <CUnit id="Probe">
+        <AbilArray Link="UnfairSC2ProbeBuildLikeDrone"/>
+        <AbilArray Link="UnfairSC2ProbeBuildLikeSCV"/>
+        <CardLayouts index="1" CardId="PBl1">
+            <LayoutButtons Face="Nexus" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build1" Row="0" Column="0"/>
+            <LayoutButtons Face="Assimilator" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build3" Row="0" Column="1"/>
+            <LayoutButtons Face="Pylon" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build2" Row="0" Column="2"/>
+            <LayoutButtons Face="Gateway" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build4" Row="1" Column="0"/>
+            <LayoutButtons Face="Forge" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build5" Row="1" Column="1"/>
+            <LayoutButtons Face="CyberneticsCore" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build15" Row="2" Column="0"/>
+            <LayoutButtons Face="PhotonCannon" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build8" Row="2" Column="1"/>
+            <LayoutButtons Face="ShieldBattery" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build16" Row="2" Column="2"/>
+            <LayoutButtons Face="Nexus" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build1" Row="0" Column="0"/>
+            <LayoutButtons Face="Assimilator" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build3" Row="0" Column="1"/>
+            <LayoutButtons Face="Pylon" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build2" Row="0" Column="2"/>
+            <LayoutButtons Face="Gateway" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build4" Row="1" Column="0"/>
+            <LayoutButtons Face="Forge" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build5" Row="1" Column="1"/>
+            <LayoutButtons Face="CyberneticsCore" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build15" Row="2" Column="0"/>
+            <LayoutButtons Face="PhotonCannon" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build8" Row="2" Column="1"/>
+            <LayoutButtons Face="ShieldBattery" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build16" Row="2" Column="2"/>
+        </CardLayouts>
+        <CardLayouts index="2" CardId="PBl2">
+            <LayoutButtons Face="TwilightCouncil" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build7" Row="0" Column="0"/>
+            <LayoutButtons Face="Stargate" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build10" Row="0" Column="1"/>
+            <LayoutButtons Face="RoboticsFacility" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build14" Row="0" Column="2"/>
+            <LayoutButtons Face="TemplarArchive" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build11" Row="1" Column="0"/>
+            <LayoutButtons Face="FleetBeacon" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build6" Row="1" Column="1"/>
+            <LayoutButtons Face="RoboticsBay" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build13" Row="1" Column="2"/>
+            <LayoutButtons Face="DarkShrine" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build12" Row="2" Column="0"/>
+            <LayoutButtons Face="TwilightCouncil" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build7" Row="0" Column="0"/>
+            <LayoutButtons Face="Stargate" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build10" Row="0" Column="1"/>
+            <LayoutButtons Face="RoboticsFacility" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build14" Row="0" Column="2"/>
+            <LayoutButtons Face="TemplarArchive" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeDrone,Build11" Row="1" Column="0"/>
+            <LayoutButtons Face="FleetBeacon" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build6" Row="1" Column="1"/>
+            <LayoutButtons Face="RoboticsBay" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build13" Row="1" Column="2"/>
+            <LayoutButtons Face="DarkShrine" Type="AbilCmd" AbilCmd="UnfairSC2ProbeBuildLikeSCV,Build12" Row="2" Column="0"/>
+        </CardLayouts>
+    </CUnit>
     <CUnit id="Queen">
         <AbilArray Link="Blink"/>
         <AbilArray Link="Charge"/>
@@ -634,6 +706,57 @@
     </CUnit>
     <CUnit id="SCV">
         <DeathRevealFilters value="-;Player,Ally,Neutral,Missile,Dead,Hidden"/>
+        <AbilArray Link="UnfairSC2BuildLikeDrone"/>
+        <AbilArray Link="UnfairSC2BuildLikeProbe"/>
+        <CardLayouts index="1" CardId="TBl1">
+            <LayoutButtons Face="CommandCenter" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build1" Row="0" Column="0"/>
+            <LayoutButtons Face="CommandCenter" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build1" Row="0" Column="0"/>
+            <LayoutButtons Face="Refinery" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build3" Row="0" Column="1"/>
+            <LayoutButtons Face="SupplyDepot" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build2" Row="0" Column="2"/>
+            <LayoutButtons Face="Barracks" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build4" Row="1" Column="0"/>
+            <LayoutButtons Face="EngineeringBay" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build5" Row="1" Column="1"/>
+            <LayoutButtons Face="Bunker" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build7" Row="2" Column="0"/>
+            <LayoutButtons Face="MissileTurret" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build6" Row="2" Column="1"/>
+            <LayoutButtons Face="SensorTower" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build9" Row="2" Column="2"/>
+            <LayoutButtons Face="Refinery" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build3" Row="0" Column="1"/>
+            <LayoutButtons Face="SupplyDepot" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build2" Row="0" Column="2"/>
+            <LayoutButtons Face="Barracks" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build4" Row="1" Column="0"/>
+            <LayoutButtons Face="EngineeringBay" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build5" Row="1" Column="1"/>
+            <LayoutButtons Face="Bunker" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build7" Row="2" Column="0"/>
+            <LayoutButtons Face="MissileTurret" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build6" Row="2" Column="1"/>
+            <LayoutButtons Face="SensorTower" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build9" Row="2" Column="2"/>
+        </CardLayouts>
+        <CardLayouts index="2" CardId="TBl2">
+            <LayoutButtons Face="GhostAcademy" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build10" Row="0" Column="0"/>
+            <LayoutButtons Face="Factory" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build11" Row="1" Column="0"/>
+            <LayoutButtons Face="Armory" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build14" Row="1" Column="1"/>
+            <LayoutButtons Face="Starport" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build12" Row="2" Column="0"/>
+            <LayoutButtons Face="FusionCore" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build16" Row="2" Column="1"/>
+            <LayoutButtons Face="GhostAcademy" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build10" Row="0" Column="0"/>
+            <LayoutButtons Face="Factory" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build11" Row="1" Column="0"/>
+            <LayoutButtons Face="Starport" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build12" Row="2" Column="0"/>
+            <LayoutButtons Face="Armory" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build14" Row="1" Column="1"/>
+            <LayoutButtons Face="FusionCore" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeProbe,Build16" Row="2" Column="1"/>
+        </CardLayouts>
+        <CardLayouts CardId="0004">
+            <LayoutButtons Face="CommandCenter" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build1" Row="0" Column="0"/>
+            <LayoutButtons Face="Refinery" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build3" Row="0" Column="1"/>
+            <LayoutButtons Face="SupplyDepot" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build2" Row="0" Column="2"/>
+            <LayoutButtons Face="Barracks" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build4" Row="1" Column="0"/>
+            <LayoutButtons Face="EngineeringBay" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build5" Row="1" Column="1"/>
+            <LayoutButtons Face="Bunker" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build7" Row="2" Column="0"/>
+            <LayoutButtons Face="MissileTurret" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build6" Row="2" Column="1"/>
+            <LayoutButtons Face="SensorTower" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build9" Row="2" Column="2"/>
+            <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
+        </CardLayouts>
+        <CardLayouts CardId="0005">
+            <LayoutButtons Face="GhostAcademy" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build10" Row="0" Column="0"/>
+            <LayoutButtons Face="Factory" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build11" Row="1" Column="0"/>
+            <LayoutButtons Face="Starport" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build12" Row="2" Column="0"/>
+            <LayoutButtons Face="Armory" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build14" Row="1" Column="1"/>
+            <LayoutButtons Face="FusionCore" Type="AbilCmd" AbilCmd="UnfairSC2BuildLikeDrone,Build16" Row="2" Column="1"/>
+            <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
+        </CardLayouts>
     </CUnit>
     <CUnit id="Sentry">
         <AbilArray Link="Blink"/>

@@ -40,35 +40,35 @@ void lib7FB8482D_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib7FB8482D_gt_SetupHandicap;
 }
 
-void lib7FB8482D_gf_EnableHandicap (int lp_imqdtndyoxorwyll) {
+void lib7FB8482D_gf_EnableHandicap (int lp_handicapIndex) {
     // Variable Declarations
-    playergroup lv_tvrgjprmokmwalhp;
+    playergroup lv_players;
 
     // Automatic Variable Declarations
     playergroup auto69584698_g;
     int auto69584698_var;
 
     // Variable Initialization
-    lv_tvrgjprmokmwalhp = PlayerGroupEmpty();
+    lv_players = PlayerGroupEmpty();
 
     // Implementation
-    if ((libD169EC7B_gv_hANDICAPS[lp_imqdtndyoxorwyll].lv_enabled == true)) {
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
         auto69584698_g = PlayerGroupActive();
         auto69584698_var = -1;
         while (true) {
             auto69584698_var = PlayerGroupNextPlayer(auto69584698_g, auto69584698_var);
             if (auto69584698_var < 0) { break; }
-            if ((libD169EC7B_gv_hANDICAPS[lp_imqdtndyoxorwyll].lv_playerOptions[0].lv_selectedVals[auto69584698_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
-                PlayerGroupAdd(lv_tvrgjprmokmwalhp, auto69584698_var);
+            if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[auto69584698_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                PlayerGroupAdd(lv_players, auto69584698_var);
                 lib7FB8482D_gf_EnableHandicapForPlayer(auto69584698_var);
             }
 
         }
-        if ((PlayerGroupCount(lv_tvrgjprmokmwalhp) > 0)) {
+        if ((PlayerGroupCount(lv_players) > 0)) {
             TriggerExecute(lib7FB8482D_gt_RemoveShieldsFromInitialUnits, true, false);
-            TextExpressionSetToken("Param/Expression/lib_7FB8482D_69EABB83", "Description", libD169EC7B_gv_hANDICAPS[lp_imqdtndyoxorwyll].lv_description);
-            TextExpressionSetToken("Param/Expression/lib_7FB8482D_69EABB83", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_tvrgjprmokmwalhp));
-            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_imqdtndyoxorwyll].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7FB8482D_69EABB83"), libD169EC7B_gv_hANDICAPS[lp_imqdtndyoxorwyll].lv_name, libD169EC7B_gv_hANDICAPS[lp_imqdtndyoxorwyll].lv_iconPath);
+            TextExpressionSetToken("Param/Expression/lib_7FB8482D_69EABB83", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
+            TextExpressionSetToken("Param/Expression/lib_7FB8482D_69EABB83", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
+            HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_7FB8482D_69EABB83"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
         }
         else {
             TriggerEnable(lib7FB8482D_gt_RemoveShieldsFromCreatedUnit, false);

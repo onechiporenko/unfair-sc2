@@ -146,7 +146,6 @@ void libD84472BA_gf_EnableHandicapForPlayer (int lp_player) {
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "EvolveGroovedSpines", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "DiggingClaws", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "AnabolicSynthesis", 1);
-    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "MicrobialShroud", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "LurkerRange", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "TerranShipWeaponsLevel1", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "TerranShipWeaponsLevel2", 1);

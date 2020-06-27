@@ -253,6 +253,11 @@ struct libDBC4E2D2_gs_ZombiesPlayerOptions {
     bool lv_enabled;
 };
 
+struct libDBC4E2D2_gs_WorkersBuildProcessPlayerOptions {
+    string lv_race;
+    bool lv_enabled;
+};
+
 struct libDBC4E2D2_gs_PlayerUI {
     text[21] lv_messages;
     int[21] lv_dialogMessages;
@@ -309,6 +314,7 @@ struct libDBC4E2D2_gs_PlayerOptions {
     libDBC4E2D2_gs_StunPlayerOptions lv_sTUN;
     libDBC4E2D2_gs_TemporalFieldsPlayerOptions lv_tEMPORALFIELDS;
     libDBC4E2D2_gs_WalkingDeadPlayerOptions lv_wALKINGDEAD;
+    libDBC4E2D2_gs_WorkersBuildProcessPlayerOptions lv_wORKERSBUILDPROCESS;
     libDBC4E2D2_gs_ZombiesPlayerOptions lv_zOMBIES;
     libDBC4E2D2_gs_PlayerUI lv_uI;
     libDBC4E2D2_gs_VampirismPlayerOptions lv_vAMPIRISM;

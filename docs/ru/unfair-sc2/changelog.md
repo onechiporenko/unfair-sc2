@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.4
+
+* [ALL UPGRADES](./handicaps/all-upgrades.md)
+    * [BUGFIX] Убрано улучшение "Микробная завеса".
+
+* [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
+    * [NEW] Гандикап добавлен.
+
 ## v3.3
 
 * [WALKING DEAD](./handicaps/walking-dead.md)

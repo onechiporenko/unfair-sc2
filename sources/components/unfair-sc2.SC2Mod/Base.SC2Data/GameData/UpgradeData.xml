@@ -29,6 +29,9 @@
         <EffectArray Operation="Multiply" Reference="Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="1.500000"/>
         <EffectArray Operation="Multiply" Reference="Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="1.500000"/>
     </CUpgrade>
+    <CUpgrade id="UnfairSC2TerranBuildLikeZerg">
+        <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
+    </CUpgrade>
     <CUpgrade id="UnfairSC2TerranVehicleAndShipArmorsLevel6" parent="TerranVehicleAndShipArmors">
         <Name value="Upgrade/Name/TerranVehicleAndShipArmorsLevel6"/>
         <Icon value="Assets\Textures\btn-upgrade-terran-vehicleplatinglevel3.dds"/>

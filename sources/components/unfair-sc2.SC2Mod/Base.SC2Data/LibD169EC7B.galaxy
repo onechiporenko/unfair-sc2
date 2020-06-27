@@ -66,6 +66,7 @@ include "Lib1D99399F_h"
 include "Lib313A0FF8_h"
 include "Lib7397C7F4_h"
 include "Lib5353B0F8_h"
+include "Lib64FE5A74_h"
 include "Lib77A838C7_h"
 include "Lib674063E3_h"
 
@@ -114,6 +115,7 @@ void libD169EC7B_InitLibraries () {
     lib1D99399F_InitVariables();
     lib7397C7F4_InitVariables();
     lib5353B0F8_InitVariables();
+    lib64FE5A74_InitVariables();
     lib77A838C7_InitVariables();
     lib674063E3_InitVariables();
 }
@@ -646,6 +648,8 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     lv_handicapindex += 1;
     lib5353B0F8_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
+    lib64FE5A74_gf_SetupOptions(lv_handicapindex);
+    lv_handicapindex += 1;
     lib77A838C7_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     lib674063E3_gf_SetupOptions(lv_handicapindex);
@@ -689,7 +693,7 @@ bool libD169EC7B_gt_HandicapsUIStart_Func (bool testConds, bool runActions) {
         PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, 1);
     }
 
-    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupActive(), libD169EC7B_gv_playerstoShowHandicapsMessages);
+    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupAll(), libD169EC7B_gv_playerstoShowHandicapsMessages);
     libNtve_gf_RemovePlayerGroupFromPlayerGroup(libD169EC7B_gv_playerstoShowHandicapsUI, libD169EC7B_gv_playerstoShowHandicapsMessages);
     Wait(0.125, c_timeGame);
     TextExpressionSetToken("Param/Expression/lib_D169EC7B_9DC58FD1", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(libD169EC7B_gv_playerstoShowHandicapsUI));
@@ -1126,6 +1130,7 @@ include "Lib1D99399F"
 include "Lib313A0FF8"
 include "Lib7397C7F4"
 include "Lib5353B0F8"
+include "Lib64FE5A74"
 include "Lib77A838C7"
 include "Lib674063E3"
 
