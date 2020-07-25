@@ -1,11 +1,9 @@
 # TEMPORAL FIELDS
 
-*Добавлен в 2.0*
+*Added in 2.0*
 
-По всей карте в случайных точках появляются Поля Замедления. Частоту и кол-во Полей можно задать в лобби. Так же в лобби можно задать размер зоны безопасности для каждого игрока (радиус круга, где центр - это координаты начальной локации игрока).
-
-"Владельцем" Темпорального Поля, является Игрок15, который агрессивен со всеми другими игроками. 
+Time Warps are created at the random points. Their frequency and amount can be set. It's possible to set safe-zone for each player where Time Warps won't be created. 
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

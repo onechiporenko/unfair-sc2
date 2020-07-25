@@ -1,11 +1,11 @@
 # Random Rally Points
 
-*Добавлен в 2.37*
+*Added in 2.37*
 
-Юниты в момент создания получают приказ двигаться в случайную точку на карте. Данный приказ "перебивает" другие приказы ("добывать", "двигаться к точке сбора" и т.д.). Работает и на рабочих, и на боевые единицы. Не работает на здания.
+All units (including workers) when are created have order to move to random point on the map.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 ## v2.39
 
-* [BUGFIX] Гандикап не срабатывает для первого игрока, когда он выключен.
+* [BUGFIX] Handicap won't be activated for 1st player when it's disabled.

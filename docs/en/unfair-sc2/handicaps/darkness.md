@@ -1,25 +1,25 @@
 # DARKNESS
 
-Уменьшает радиус обзора всех юнитов на 4 единицы и полностью скрывает миникарту. Эти два эффекта могут применяться как вместе, так и каждый сам по себе.
+Reduce units vision range to 4 and hide minimap for player. This effects can be used separately and together.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.41**
 
-* [FEATURE] Добавлен визуальный эффект для единиц под воздействием Darkness.
+* [FEATURE] Visual effect is added to units with Darkness effect.
 
 **v2.32**
 
-* [BUGFIX] Урезанный обзор юнитов теперь применяется согласно выбранных опций игры, а не для всех игроков.
+* [BUGFIX] Reduced vision range is applied only for selected players and not for all.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.3**
 
-* [FEATURE]	Обновлено описание для всплывающей подсказки эффекта Darkness.
+* [FEATURE]	Description for Darkness effect is updated.
 
 **v2.0**
 
-* [REFACTORING] Уменьшено кол-во событий для добавления ограничения обзора юнитам.
+* [REFACTORING] Number of event is reduced.

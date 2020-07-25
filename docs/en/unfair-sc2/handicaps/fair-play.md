@@ -1,15 +1,15 @@
 # FAIR PLAY
 
-*Добавлен в 2.29*
+*Added in 2.29*
 
-Фотонные пушки не наносят урона, если в радиусе 15 от них нет своего Нексуса.
+Photon Cannons can't attack if they are placed no in range 15 of own Nexus.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.34**
 
-* [REFACTORING] Теперь аура Fair Cannon вообще не дает атаковать, а не просто обнуляет урон.
+* [REFACTORING] Now aura "Fair Cannon" disallow attack and not reduce damage to 0.
 
 **v2.30**
 
-* [BUGFIX] Теперь аура "Fair Cannons (Aura)" дается всем Нексусам после завершения их постройки.
+* [BUGFIX] Now all Nexuses have aura "Fair Cannons"

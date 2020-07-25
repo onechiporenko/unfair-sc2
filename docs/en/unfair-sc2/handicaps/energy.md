@@ -1,13 +1,13 @@
 # ENERGY
 
-*Добавлен в 2.0*
+*Added in 2.0*
 
-Заменяет собой устаревшие и убранные в v2.0 [MAX-ENERGY](./max-energy.md) и [NO-ENERGY](./no-energy.md).
+This handicap replaced deprecated v2.0 [MAX-ENERGY](./max-energy.md) и [NO-ENERGY](./no-energy.md).
 
-Каждому игроку можно задать начальный и максимальный запас энергии юнитов. Начальный запас может быть - 0 энергии, половина энергии, полная энергия и стандартное кол-во энергии. Максимальный запас может быть - без энергии, двойной запас энергии и стандартное кол-во энергии.
+It's possible to set initial and max amount of energy for each player. Initial value can be 0, 50%, 100% and default. Max value can be - no energy, full energy and default.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

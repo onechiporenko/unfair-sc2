@@ -1,11 +1,11 @@
 # NO ARMY CONTROL
 
-*Добавлен в 2.21*
+*Added in 2.21*
 
-Убирает у выбранных игроков аналог кнопки "F2" и возможность использовать контрольные группы.
+Player can't bind any control groups and their "F2"-key is disabled (or any key bound to select whole army).
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.27**
 
-* [BUGFIX] Исправлена игровая подсказка.
+* [BUGFIX] Ingame hint is fixed.

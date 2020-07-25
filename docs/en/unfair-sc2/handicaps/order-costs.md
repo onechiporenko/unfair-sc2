@@ -1,27 +1,26 @@
 # ORDER COSTS
 
-Каждый приказ любому юниту забирает определенное количество ресурсов. По умолчанию это 4% минеральности стоимости юнита и 2% газовой. В лобби игры эти значения можно поменять. Под приказом понимаются команды Атаковать, Двигаться, Остановиться, Транспортировать и Морфиться. За команды иллюзиям и зданиям ресурсы не отнимаются. Если у игрока недостаточно ресурсов на отдачу приказа, то с него заберется "все что есть" и приказ будет выполнен.
+Orders "Attack", "Move", "Stop", "Transport", "Morph" to unit takes some amount of resources. By default it's 4% mineral and 2% vespene of its cost. Orders for illusions and structures don't take resources. Unit will execute given order even if user doesn't have resources.
 
-Опция Charity в лобби позволяет указать, что ресурсы, забранные у игрока за приказы, надо отдать случайно выбранному другому игроку (при чем, у него тоже может быть активен Order Costs).
+Option "Charity" allows to set that taken from one player resources should be given to the random enemy player.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
-Игроку в левом верхнем углу выводится кол-во ресурсов, потраченных на приказы. рители видят общую таблицу с потерями на приказах всех игроков.
+Information about lost on orders resources is shown at the top left corner. Spectators have a table with such data for all players. 
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.9**
 
-* [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей
+* [BUGFIX] Table will all player now is shown for all spectators.
 
 **v2.0**
 
-* [FEATURE] Добавлена опция "Charity". Ресурсы, забранные у игрока за приказы, будут отданы другому игроку (выбирается случайным образом, если игроков больше 2). Может дать ресурсы другому игроку, у которого тоже включен Order Costs.
-* [FEATURE] Выводит игроку общее кол-во ресурсов, потерянных на отдаче приказов.
-* [FEATURE] Зрителям выводится таблица с потерями ресурсов всеми игроками на отдаче приказов.
-* [REFACTORING] Обработка и хранение опций лобби.
+* [FEATURE] Option "Charity" is added.
+* [FEATURE] Amount of spent on orders resources is shown for players and spectators.
+* [REFACTORING] Lobby options refactoring.
 
 **v1.35**
 

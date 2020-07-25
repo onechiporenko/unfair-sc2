@@ -1,15 +1,15 @@
 # NO LIMITS
 
-*Добавлен в 1.32*
+*Added in 1.32*
 
-Вместо максимального лимита 200, ставит лимит 10000.
+Set max supply limit to 10000 (default - 200).
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v3.1**
 
-* [BUGFIX] Гандикап теперь корректно включается (баг с 3.0).
+* [BUGFIX] Handicap now enabling correctly (bug from 3.0).
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

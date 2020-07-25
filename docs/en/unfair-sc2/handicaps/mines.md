@@ -1,25 +1,24 @@
 # MINES
 
-*Добавлен в 1.35*
+*Added in 1.35*
 
-Создает по всей карте в случайных точках закопанные мины. Мины не появляются в радиусе 50 (можно поменять в лобби) от стартовых точек игроков. На 6:00 (старого игрового времени) мины получают улучшение "Когти для бурения". В лобби можно указать, чтоб определенное кол-во мин появлялось после 6:00 в случайных точках.
+Widow Mines are spawn at the random points of the map. Mines are not spawn in range of 50 (it can be changed) from player's start points. Mines will get upgrade "Drilling Claws" at 6:00 (HotS game timer). Also it's possible to set that extra Mines should spawn after 6:00 at random points.
 
-Мины **игнорируют** особенности рельефа карты и могут быть расположены даже в недоступных пешим единицам зонах.
+Mines **ignore** map terrain features and can be placed even in areas inaccessible to ground units.
 
-Каждому игроку в левом верхнем углу выводится сообщение с кол-вом потерянных на минах ресурсов. Зрители видят общую таблицу с потерями на минах всех игроков.
+Every player has a text-block at the top left corner with amount of resources lost because of mines. Spectators have table with data about lost resources for all players.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа.
+* [FEATURE] Ingame hint is added.
 
 **v2.9**
 
-* [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей
+* [BUGFIX] Table will all player now is shown for all spectators.
 
 **v2.0**
 
-* [FEATURE] Для каждого игрока можно задать свой радиус без мин (50 по умолчанию).
-* [FEATURE] Добавлено две новых опции, с помощью которых можно указать частоту и кол-во новых мин, создаваемых на карте после 6:00.
-* [FEATURE] Выводит игроку общее кол-во ресурсов, потерянных на минах.
-* [FEATURE] Выводит зрителям таблицу с потерями на минах всех игроков.
-* [REFACTORING] Обработка и хранение опций лобби.
+* [FEATURE] Now it's possible to set safe-zone radius for each player (50 by default).
+* [FEATURE] Now it's possible to set spawn of extra Mines after 6:00.
+* [FEATURE] Show information about lost resources for players and spectators.
+* [REFACTORING] Lobby options refactoring.

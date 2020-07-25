@@ -1,15 +1,19 @@
 # LIMITED WORKERS
 
-*Добавлен в 2.0*
+*Added in 2.0*
 
-Можно установить максимальное кол-во рабочих, которые игрок может иметь одновременно. МУЛЛы не считаются. Если рабочих будет больше чем разрешено, то лишние будут убиты.
+You can set the maximum number of workers that a player can have at the same time. MULES do not count. If there are more workers than allowed, then the extra will be killed.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
+
+**v3.5**
+
+* [BUGFIX/REFACTORING] Workers count now is calculated using data-editor and not triggers.
 
 **v3.2**
 
-* [BUGFIX] Рабочие больше не уничтожаются у игроков, для которых этот гандикап выключен (баг с 3.0).
+* [BUGFIX] Workers are no longer destroyed by players for whom this handicap is turned off (bug from 3.0).
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

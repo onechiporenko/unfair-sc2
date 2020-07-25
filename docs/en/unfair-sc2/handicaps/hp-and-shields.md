@@ -1,7 +1,7 @@
 # HP AND SHIELDS
 
-*Добавлен в 3.2*
+*Added in 3.2*
 
-Меняет здоровье и щиты всех юнитов и зданий на заданную величину. Может быть как усиливающим, так и ослабляющим эффектом. Варианты: x0.5, x.0.75, x1.25, x1.5 и x2.0.
+Change HP and shields for units and structures to x0.5, x0.75, x.1.25, x1.5 or x2.0.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.

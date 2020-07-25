@@ -1,51 +1,51 @@
 # DOUBLE
 
-При создании юнита второй дается в "подарок". Созданный юнит получает такой-же приказ, как и оригинальный. Не касается зданий. Так же не касается саранчидов/брудлингов и других создаваемых юнитов, которые не занимают лимита.
+Every time unit is created its owner get second one for free. New unit has the same order as the original one. Doesn't work for structures. Doesn't work for units that not use and not provide supply.
 
-Дает 200 лимита с начала матча.
+Player has 200 supply limit by default.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
-Каждому игроку в левом верхнем углу выводится кол-во ресурсов, которые занимают полученные бесплатно юниты. Зрители видят общую таблицу таких ресурсов для всех игроков. 
+Every player see amount of "saved" resources at the top left corner. Spectators have a table with such data for all players. 
 
 **v3.00**
 
-* [BUGFIX] Копия юнита, который "варпается", создается только по завершению варпа.
+* [BUGFIX] Clone for warping uit is created only after warp is completed.
 
 **v2.38**
 
-* [BUGFIX] Притягивание Стрекозы не создает копию притянутого юнита.
-* [BUGFIX] Больше не создаются дубли гиблингов и архонтов.
-* [BUGFIX] Сообщение о стоимости полученных из-за гандикапа юнитов снова корректно выводится в левом верхнем углу.
+* [BUGFIX] Viper's Abduct doesn't create copy of the pulled unit.
+* [BUGFIX] No more copies for Banelings and Archons.
+* [BUGFIX] Message about amount of resources for copies units now is shown again.
 
 **v2.37**
 
-* [BUGFIX] Больше не создается дубль Сферы Очищения.
+* [BUGFIX] No more copies of Purification Nova.
 
 **v2.33**
 
-* [BUGFIX] Тактический Скачок Крейсера больше не создает второй Крейсер
+* [BUGFIX] Tactical Jump doesn't create copy of Battlecruiser
 
 **v2.28**
 
-* [BUGFIX] Не создает копию тени адепта
+* [BUGFIX] Adept's Shade doesn't create second Adept
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.9**
 
-* [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей
+* [BUGFIX] Table will all player now is shown for all spectators.
 
 **v2.0**
 
-* [BUGFIX] Исправлена ошибка из-за которой не создавался второй Надзиратель.
-* [FEATURE] Созданный юнит получает такой же приказ, как и оригинальный.
-* [FEATURE] Игрок видит кол-во ресурсов, которые бы он потратил на юнитов, полученных "за просто так".
-* [FEATURE] Зрителям выводится таблица "не потраченных" ресурсов.
-* [REFACTORING] Обработка и хранение опций лобби.
+* [BUGFIX] Copy of Overlords now are created too.
+* [FEATURE] Unit's copy now has same order as original one.
+* [FEATURE] Every player see amount of "saved" resources at the top left corner.
+* [FEATURE] Tablew with resources for all players is shown for spectators.
+* [REFACTORING] Lobby options refactoring.
 
 **v1.37**
 
-* [BUGFIX] Часовые больше не создают реально юнита вместе с иллюзией.
+* [BUGFIX] Sentries won't create a real unit together with illusion.

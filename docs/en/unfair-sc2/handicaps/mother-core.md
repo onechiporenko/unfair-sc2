@@ -1,22 +1,22 @@
 # MOTHER CORE
 
-После 150 секунд от начала матча дает игроку Mother Core. Если он будет потерян, то даст новый через 10 секунд. У Mother Core отключена способность морфа в Mothership.
+Mothership Core is given for players after 150 seconds. New one is given for free after 10 seconds if previous was lost. Mothership Core can't be upgraded to Mothership. 
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.38**
 
-* [FEATURE] Добавлен визуальный эффект при создании Ядра Материнского Корабля.
+* [FEATURE] Visual effect is added for Mothership Core spawn.
 
 **v2.35**
 
-* [BUGFIX][REGRESSION] Первый Mother Core появляется через 150 секунд от начала игры, а не 12.
+* [BUGFIX][REGRESSION] First Mothership Core is spawn after 150 seconds and not 12.
 
 **v2.26**
 
-* [FEATURE]	Пинг на миникарте, когда появляется новое Ядро Материнского Корабля.
-* [FEATURE]	Теперь после уничтожения Ядра Материнского Корабля выводится таймер с отсчетом до момента, когда игроку будет данновый МамаКор.
+* [FEATURE]	Now ping on minimap is shown when Mothership Core is spawn.
+* [FEATURE]	Timer with countdown is shown for player when his Mothership Core is lost.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

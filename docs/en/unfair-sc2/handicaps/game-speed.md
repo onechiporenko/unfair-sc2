@@ -1,5 +1,5 @@
 # GAME SPEED
 
-*Добавлен в 3.0*
+*Added in 3.0*
 
-Увеличивает скорость игры в 2, 3 или 4 раза для всех игроков.
+Increase game speed x2, x3 or x4 for all players.

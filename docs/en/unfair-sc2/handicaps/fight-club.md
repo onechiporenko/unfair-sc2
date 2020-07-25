@@ -1,16 +1,14 @@
 # FIGHT CLUB
 
-*Добавлен в 2.29*
+*Added in 2.29*
 
-Юниты время от времени дерутся друг с другом, отменяя все текущие приказы.
+Random units start to fight with each other every 10..60 seconds canceling their current orders. It's possible to set what kind of units will fight (only workers, all, all but not workers) and how many units will fight (10%, 25%, 50%, 75% or 100%);
 
-В лобби можно указать, как часто юниты должны начинать драться (раз в 10..60 секунд), какие юниты могут драться между собой (только рабочие, все кроме рабочих или же вообще все) и какой процент юнитов должен драться (10%, 25%, 50%, 75% или 100%).
-
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.41**
 
-* [FEATURE] Добавлена новая опция для игрока, указывающая, что драться должны любые юниты кроме рабочих
-* [FEATURE] Добавлен визуальный эффект для юнитов, вступающих в бой
-* [FEATURE] Больше не учитываются саранчиды, симбионты, перехватчики и личинки
-* [BUGFIX] Кол-во юнитов, вступающих в бой, теперь соответствует проценту, выбранному в опциях лобби (было x2 от значения опции)
+* [FEATURE] New option is added. Now it's possible to set fighting units "All but not workers"
+* [FEATURE] Visual effect is added for fighting units
+* [FEATURE] Units that doesn't use or provide supply now are excluded
+* [BUGFIX] Amount of fighting units now is equal to selected option (it was x2).

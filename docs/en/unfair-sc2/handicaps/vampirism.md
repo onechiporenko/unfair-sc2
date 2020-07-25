@@ -1,21 +1,21 @@
 # VAMPIRISM
 
-При каждой атаке юнит может восстановить себе здоровье. Кол-во здоровья зависит от внесенного урона. Возможны варианты - 10%, 25%, 50%, 75%, 100% или 200% от нанесенного урона. Этот процент задается в лобби игры. Вампиризм не работает на здания.
+Some part if damage is returned to attacker as HP or shields. It can be 10%, 25%, 50%, 75%, 100% or even 200%. Vampirism doesn't work on structures.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.41**
 
-* [REFACTORING] Анимация восстановления теперь создается через эффект.
+* [REFACTORING] Animation now is created using effect and not trigger
 
 **v2.38**
 
-* [FEATURE] Теперь востанавливает и щиты.
+* [FEATURE] Vampirism now restore shields.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.0**
 
-* [REFACTORING] Обработка и хранение опций лобби.
+* [REFACTORING] Lobby options refactoring.

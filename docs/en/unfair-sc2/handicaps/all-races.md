@@ -1,22 +1,22 @@
 # ALL RACES
 
-*Добавлен в 2.22*
+*Added in 2.22*
 
-Вместо 12 рабочих выбранной расы дает игроку 5 КСМ, 5 дронов и 5 зондов. Опционально можно указать, чтоб в начале игры игроку были даны главные здания других рас.
+Every selected player has 5 SCV, 5 Zonds and 5 Drones instead of default 12 workers. Optionally it's possible to set that player will have CC, Nexus and Hatchery when the game begin.
 
-Ряд требований для игроков изменен:
+Some tech tree requirements are removed:
 
-* Врата и Оружейная протоссов не требуют наличия Нексуса.
-* Омут Рождения и Эволюционная Камера зергов не требуют наличия Инкубатора.
-* Казармы терранов не требуют наличия Хранилища.
-* Оружейный Комплекс терранов не требует наличия Казарм.
+* Gateway and Forge don't need Nexus.
+* Spawn Pool and Evolution Chamber don't need Hatchery.
+* Barracks don't need Supply Depot.
+* Engineering Bay doesn't need Barracks.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.36**
 
-* [FEATURE] Добавлена опции игрока, указывающая, надо ли создать для него в начале игры главные здания других рас
+* [FEATURE] Option to give main structures for all races is added
 
 **v2.27**
 
-* [BUGFIX] Исправлена ошибка из-за которой в начале игры уничтожались все рабочие
+* [BUGFIX] Now workers are not killed when the game begin

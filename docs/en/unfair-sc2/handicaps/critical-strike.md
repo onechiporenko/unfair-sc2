@@ -1,10 +1,10 @@
 # CRITICAL STRIKE
 
-*Добавлен в 1.32*
+*Added in 1.32*
 
-Дает юнитам шанс нанести критический урон. Варианты:
+Every unit has a change to do a critical hit:
 
-| Вероятность | Множитель урона |
+| Chance | Damage multiplier |
 |-------------|-----------------|
 | 20% | х2 |
 | 30% | х2 |
@@ -16,21 +16,21 @@
 | 30% | х4 |
 | 40% | х4 |
 
-Показатели критического удара и шанс задаются для игроков индивидуально.
+Set to each player individually.
 
 **v2.37**
 
-* [FEATURE] Добавлен визуальный эффект для цели критического удара.
+* [FEATURE] Visual effect is added for critical strikes.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.3**
 
-* [FEATURE]	Каждому игроку отдельно можно задать размер и вероятность критического урона.
-* [REFACTORING]	Вместо пяти алгоритмов теперь используется один.
+* [FEATURE]	Now it's possible to set chance and damage multiplayer for each player separately.
+* [REFACTORING]	Now only 1 behavior is used and not 5.
 
 **v2.0**
 
-* [REFACTORING] Уменьшено кол-во события для добавления алгоритма Critical Strike.
+* [REFACTORING] Number of events is reduced.

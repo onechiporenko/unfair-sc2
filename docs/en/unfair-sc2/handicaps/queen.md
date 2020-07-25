@@ -1,7 +1,7 @@
 # QUEEN
 
-*Добавлен в 2.29*
+*Added in 2.29*
 
-Юниты зергов на крипе и вне крипа ведут себя как королевы. Это касается и наземных и воздушных юнитов, но не касается рабочих. Скорость юнитов **такая же**, как у королев.
+All zerg units (but not workers) have save move speed behavior as queens (fast on creep, slow not on creep). 
 
-Дается каждому игроку индивидуально.
+Set to each player individually.

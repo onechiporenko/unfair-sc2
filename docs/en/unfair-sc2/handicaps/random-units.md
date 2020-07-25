@@ -1,22 +1,20 @@
 # Random Units
 
-*Добавлен в 2.40*
+*Added in 2.40*
 
-Вместо заказанного в производство юнита игрок получает другого случайного юнита (из своей расы или любой - это задается в лобби).
+Player will get random unit instead of built one. New unit may be same race or any race. Chance to get random unit is set for each player.
 
-В опциях лобби можно указать шанс того, что заказанный юнит будет заменен на случайный. 
+Some restrictions:
 
-Исключения:
+* Any workers won't be changed
+* T1-units that don't need vespene won't be changed (Marines, Zerglings, Zealots)
+* Overlords won't be changed
+* Player can get worker instead of produced unit but only for own race
+* Mothership won't be changed
+* Any unit can't be changed to Mothership 
 
-* Рабочие всех рас не заменяются
-* Безгазовые Т1 юниты не заменяются (зилоты, зерглинги, морпехи)
-* Надзиратели не заменяются
-* Вместо заказанного юнита можно получить рабочего, но только своей расы (даже если указано, что "рандом" идет по всем расам)
-* Материнский корабль не заменяется
-* Материнский корабль нельзя получить при заказе другого юнита
-
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v3.0**
 
-* [BUGFIX] Мины создаются корректно.
+* [BUGFIX] Widow mines now are created correctly.

@@ -1,20 +1,20 @@
 # CONTAMINATION
 
-Каждые 45 секунд на случайно выбранное здание "навешивается" оверсировский Contaminate. Целью не может быть Пилон, Фотонная пушка, Батарея щитов, Ассимилятор, Хранилище, Ракетная турень, Радарная вышка, Бункер, Перерабатывающий завод, Опухоль, Экстрактор, Ползучий плеточник, Ползучий споровик, Стазисные ловушки, туррели Воронов.
+Every 45 seconds random structure is "contaminated". Pylon, Photon Cannon, Shields Battery, Assimilator, Supply Depot, Missile Turret, Sensor Tower, Bunker, Refinery, Creep Tumor, Extractor, Spine Crawler, Spore Crawler, Stasis Ward, Auto-Turret can't be "contaminated".
 
-Каждые 240 секунд количество зданий, на которые будет добавлен эффект Contaminate увеличивается на 1. В лобби можно указать, сколько зданий может быть одновременно инфицированно на одного игрока.
+Every 240 seconds number of possible contaminated structures is increased by 1. It's possible to set maximum number of structures that can be contaminated in the same moment for each player.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.38**
 
-* [FEATURE] Добавлена опция лобби, указывающая на максимальное количество "инфицированных" зданий для каждого игрока.
-* [BUGFIX] Contaminate теперь применяется сразу ко всем выбранным зданиям, а не по очереди.
+* [FEATURE] Option to set maximum contaminated structured in the same time is added.
+* [BUGFIX] "Contaminate" is used now for all selected structures and not 1 by 1.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v1.35**
 
-* [BUGFIX] Не работает на Стазисные ловушки и туррели Воронов.
+* [BUGFIX] Stasis Ward and Auto-Turret now can't be "contaminated".

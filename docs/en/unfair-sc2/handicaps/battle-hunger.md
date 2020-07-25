@@ -1,9 +1,9 @@
 # BATTLE HUNGER
 
-После убийства вражеского юнита дается эффект стимпака юниту, сделавшему фраг. Без штрафа по здоровью. Данный эффект не дается при уничтожении зданий или убийстве саранчидов/брудлингов.
+Unit that kill another unit will be grunted with Stimpack effect (increased attack speed but without losing HP). Buff is not given for killing units that not use or not provide supply.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

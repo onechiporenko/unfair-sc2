@@ -1,33 +1,35 @@
 # ZOMBIES
 
-Каждые ~43 секунды (значение можно задать через опцию лобби **Zombies Waves Delay**) возле случайного здания игрока появляются зомби. Их кол-во увеличивается с каждой волной. В первой волне 1 зомби. Больше 20 зомби за одну волну быть не может. После 6, 12 и 18 (по умолчанию) волны зомби получают +1 к атаке и защите. Перед появлением волны зомби появляются маркер на мини-карте и шкала обратного отсчета. В каждой волне зомби есть один детектор.
+Every ~43 seconds (can be changed) zombies are spawn near random player's structure. Their number is increased per every wave (max to 20 zombies). First wave is only with single zombie. After 6th, 12th and 18th (by default) wave zombies upgrades are increased to +1 lvl attack and armor. Marker on minimap is shown before zombies spawn. Countdown is also shown for players.
+ 
+Every zombies wave has a single unit-detector.
 
-В лобби можно указать, чтоб улучшения зомби были на волнах 6/12/18, 7/14/21, 8/16/24, 9/18/27 или 10/20/30. 
+It's possible to set that zombies should get upgrades after waves 6/12/18, 7/14/21, 8/16/24, 9/18/27 or 10/20/30.
 
-Опция лобби **Zombies Start Delay** позволяет задавать смещение для первой волны зомби. По-умолчанию - это 0 секунд. Первая волна зомби будет на ~45c (значение опции "Zombies Waves Delay" по умолчанию). Если задать значение данной опции 60, то первая волна зомби будет на ~105c (60 + 45 из "Zombies Waves Delay").
+Option **Zombies Start Delay** set delay for first wave with zombies. By default it's 0 seconds. So, first wave going to be at ~45s (it's default value for "Zombies Waves Delay"). So, if "Zombies Start Delay" is set to 60, first wave will be at ~105s.
 
-Зданием-целью не может быть Пилон, Фотонная пушка, Батарея щитов, Ассимилятор, Хранилище, Ракетная турень, Радарная вышка, Бункер, Перерабатывающий завод, Опухоль, Экстрактор, Ползучий плеточник, Ползучий споровик, Стазисная Ловушка, туррель Воронов.
+Zombies can't spawn on Pylon, Photon Cannon, Shields Battery, Vespene Geysers, Rocket Turret, Sensor Tower, Bunker, Creep Tumor, Spine Crawler, Spore Crawler, Stasis Ward, Auto-Turret. 
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.0**
 
-* [FEATURE] Добавлена опция, указывающая на каких волнах у зомби появляются улучшения (варианты - 7/14/21, 8/16/24, 9/18/27, 10/20/30).
+* [FEATURE] Option to select "upgade" waves is added.
 
 **v1.35**
 
-* [BUGFIX] Зомби не появляются на Стазисных ловушках и туррелях Воронов.
+* [BUGFIX] Zombies won't spawn on Stasis Wards and Auto-Turrets.
 
 **v1.33**
 
-* [BUGFIX] Опция лобби "Zombies Start Delay" теперь скрыта пока не выбрана опция "Use Zombies".
+* [BUGFIX] Option "Zombies Start Delay" is hidden until "Use Zombies" is not selected.
 
 **v1.32**
 
-* [FEATURE] Добавлена опция лобби "Zombies Start Delay".
-* [FEATURE] Добавлена опция лобби "Zombies Waves Delay".
-* [FEATURE] Вместо голосового оповещения "3..2..1" выводится шкала обратного отсчета (по аналогии с миссией кооперативного режима Cradle of Death).
+* [FEATURE] Option "Zombies Start Delay" is added.
+* [FEATURE] Option "Zombies Waves Delay" is added.
+* [FEATURE] Voice-countdown "3..2..1" is replaced with visual countdown bar (similar to one shown in the co-op mission Cradle of Death).

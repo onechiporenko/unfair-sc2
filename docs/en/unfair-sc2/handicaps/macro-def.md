@@ -1,48 +1,45 @@
 # MACRO DEF
 
-Каждому Командному Центру, Нексусу и Инкубатору дает способность Macro Def. Она становится доступна после 210 секунд игры. При ее активации вокруг выбранного здания создается ряд защитных сооружений. 
+Every CC, Nexus and Hatchery has a new ability "Macro Def". It's available after 210 seconds. Its activation creates set of defending structures. 
 
-Для зерга:
+For zerg:
 
-* 4 ползучих плеточника
-* 4 ползучих споровика
+* 4 Spine Crawlers
+* 4 Spore Crawler
 
-Для протосса:
+For protoss:
 
-* 4 пилона
-* 4 стазистных ловушки
-* 4 фотонных пушки
+* 4 Pylons
+* 4 Stasis Wards
+* 4 Photon Cannons
 
-Для террана:
+For Terran:
 
-* 4 ракетных турели
-* 1 радарная вышка
-* 4 мины
+* 4 Missile Turrets
+* 1 Sensor Tower
+* 4 Widow Mines
 
-~Способность Macro Def работает **НЕ** как smart cast. Другими словами, при активации она сработает у всех зданий, которые выденные в данный момент.~
+Created buildings are placed on the map ignoring other buildings and terrain features.
 
-Создаваемые здания размещаются на карте игнорируя другие постройки и элементы рельефа.
-
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.41**
 
-* [BUGFIX] Исправлено описание способности во всплывающей подсказке.
-* [FEATURE] Добавлена горячая клавиша "D".
-* [FEATURE] Теперь Marco Def работает как "smart cast".
+* [BUGFIX] Ingame hint is fixed
+* [FEATURE] Hotkey "D" is added.
+* [FEATURE] "Macro Def" now works as "smart cast".
 
 **v2.36**
 
-* [REGRESSION] Macro Def сохраняется при "мутации" главных зданий терранов и зергов.
+* [REGRESSION] "Macro Def" state is saved on zerg structures morph and terran CC's upgrades.
 
 **v2.34**
 
-* [FEATURE] Macro Def теперь не "однозарядная". Ее время востановления - 20+ минут. Оно индивидуально для каждого главного здания.
-* [FEATURE] Macro Def сохраняется при преобразовании Командного Центра в Станцию Наблюдения или Планетарную Крепость.
-* [FEATURE] Macro Def сохраняется при мутации Инкубатора в Логово и Логова в Улей.
-* [FEATURE] Ползучие споровики, Ползучие плеточники и Мины можно перекапывать сразу после их появления.
-* [FEATURE] Радарная вышка теперь появляется рядом с главным зданием, а не "внутри" него.
+* [FEATURE] "Macro Def" now is not a "single-shot" ability. Its cooldown is 20+ minutes. Cooldown is own for each structure.
+* [FEATURE] "Macro Def" state is saved on zerg structures morph and terran CC's upgrades.
+* [FEATURE] Given Spine Crawlers, Spore Crawlers and Widow Mines can be "unborrowed" right after they are placed.
+* [FEATURE] Sensor Tower now is placed near the CC and not inside it.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

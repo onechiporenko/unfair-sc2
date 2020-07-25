@@ -1,31 +1,31 @@
 # ALL UPGRADES
 
-Изначально дает игроку все возможные улучшения, доступные в многопользовательском режиме СК2.
+All possible multiplayer upgrades are given to selected players when the game begin.
 
-Не работает на улучшения из гандикапа [EXTRA UPGRADES](./extra-upgrades.md)!
+It doesn't work for upgrades from [EXTRA UPGRADES](./extra-upgrades.md)!
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v3.4**
 
-* [BUGFIX] Убрано улучшение "Микробная завеса".
+* [BUGFIX] Upgrade "Evolve Microbial Shroud" is removed.
 
 **v2.36**
 
-* [BUGFIX] Добавлены улучшения "Сейсмические шипы", "Микробная завеса" и "Поточные турбины"
+* [BUGFIX] Upgrades "Seismic Spines", "Evolve Microbial Shroud" and "Rapid Reignition System" are added.
 
 **v2.32**
 
-* [BUGFIX] Добавлены улучшения "Ускоритель магнитного поля" и "Усиленные волны"
+* [BUGFIX] Upgrades "Mag-Field Accelerator" and "Enhanced Shockwaves" are added.
 
 **v2.27**
 
-* [BUGFIX] У терранов убрано улучшение из кампании. Теперь вместимость Командных Центров 10, а не 15.
+* [BUGFIX] Upgrade from campaign is removed. Now CCs have 10 slots and not 15.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.14**
 
-* [FEATURE]	Улучшение "Anabolic Synthesis" ("Анаболитический Синтез") теперь тоже дается сразу.
+* [FEATURE]	Upgrade "Anabolic Synthesis" is added.

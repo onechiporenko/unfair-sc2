@@ -1,17 +1,17 @@
 # GOLD RUSH
 
-В радиусе 50 от стартовой локации заменяет все обычные минеральные друзы на золотые, а вместо обычных источников веспена создает богатые источники.
+All Mineral Fields and Vespene Geysers are replaced with Rich Mineral Fields and Rich Vespene Geysers in range of 50 from player's start point.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.38**
-    * [FEATURE] Добавлен визуальный эффект для замены простых минеральных друз и веспеновых гейзеров на богатые.
+    * [FEATURE] Visual effect is added for replaced Mineral Fields and Vespene Geysers.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v1.31**
 
-* [FEATURE] Теперь вместо обычных веспеновых гейзеров создает богатые.
-* [BUGFIX] Теперь корректно обрабатывает все типы минеральных кристаллов.
+* [FEATURE] Vespene Geysers now are replaced with Rich Vespene Geysers.
+* [BUGFIX] Now all types of mineral fields are replaced correctly.

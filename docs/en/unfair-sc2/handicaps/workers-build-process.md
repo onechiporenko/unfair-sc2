@@ -1,17 +1,17 @@
 # WORKERS BUILD PROCESS
 
-*Добавлен в 3.4*
+*Added in 3.4*
 
-Рабочие, зонды и КСМ при постройке зданий ведут себя как представители выбранной расы. То есть, игрок может играть за протоссов, но его зонды будут строить здания как КСМ терранов или рабочие зергов и т.д.
+Drones, SCVs and Probes build structures like workers for selected race.
 
-| Выбранная раса | Поведение                 |
+| Selected Race | Behavior                 |
 |----------------|---------------------------|
-| Протоссы       | Рабочий только начинает постройку и **не** участвует в ней. По завершению **не** пропадает. |
-| Зерги          | Рабочий участвует в постройке и пропадает по ее завершению. |
-| Терраны        | Рабочий участвует в постройке и **не** пропадает по ее завершению. |
+| Protoss       | Worker start construction and don't continue it. It won't disappear after construction is completed. |
+| Zerg          | Worker participates in the construction and it's removed after construction is completed. |
+| Terran        | Worker participates in the construction and it's not removed after construction is completed. |
 
-*Если выбрана раса зергов, то стоимость зданий уменьшена на 50 минералов.* 
+*Minerals price for structures is reduced for 50 minerals if Zerg race is selected* 
 
-В некоторых случаях анимация постройки может вести себя не корректно, однако сами здания строятся как надо.
+Sometimes build animation may be broken.
 
-Поведение рабочих выставляется каждому игроку индивидуально. 
+Set to each player individually.

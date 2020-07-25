@@ -224,6 +224,17 @@ Requirement/EditorPrefix/UnfairSC2LearnZergMeleeWeapon6=Unfair SC2 -
 Requirement/EditorPrefix/UnfairSC2LearnZergMissileWeapon4=Unfair SC2 - 
 Requirement/EditorPrefix/UnfairSC2LearnZergMissileWeapon5=Unfair SC2 - 
 Requirement/EditorPrefix/UnfairSC2LearnZergMissileWeapon6=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NoLimitsForWorkers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan12Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan16Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan22Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan30Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan38Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan44Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan60Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan66Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThan72Workers=Unfair SC2 - 
+Requirement/EditorPrefix/UnfairSC2NotMoreThanNWorkers=Unfair SC2 - 
 Requirement/EditorPrefix/UnfairSC2TerranBuildLikeTerran=Unfair SC2 - 
 Requirement/EditorPrefix/UnfairSC2TerranBuildLikeZerg=Unfair SC2 - 
 Requirement/Name/LearnProtossGroundWeapon6=Learn Protoss Ground Weapon6
@@ -271,8 +282,28 @@ Requirement/Name/UnfairSC2LearnZergMeleeWeapon6=Learn Zerg Melee Weapon6
 Requirement/Name/UnfairSC2LearnZergMissileWeapon4=Learn Zerg Missile Weapon4
 Requirement/Name/UnfairSC2LearnZergMissileWeapon5=Learn Zerg Missile Weapon5
 Requirement/Name/UnfairSC2LearnZergMissileWeapon6=Learn Zerg Missile Weapon6
+Requirement/Name/UnfairSC2NoLimitsForWorkers=No Limit For Workers
+Requirement/Name/UnfairSC2NotMoreThan12Workers=Not More Than 12 Workers
+Requirement/Name/UnfairSC2NotMoreThan16Workers=Not More Than 16 Workers
+Requirement/Name/UnfairSC2NotMoreThan22Workers=Not More Than 22 Workers
+Requirement/Name/UnfairSC2NotMoreThan30Workers=Not More Than 30 Workers
+Requirement/Name/UnfairSC2NotMoreThan38Workers=Not More Than 38 Workers
+Requirement/Name/UnfairSC2NotMoreThan44Workers=Not More Than 44 Workers
+Requirement/Name/UnfairSC2NotMoreThan60Workers=Not More Than 60 Workers
+Requirement/Name/UnfairSC2NotMoreThan66Workers=Not More Than 66 Workers
+Requirement/Name/UnfairSC2NotMoreThan72Workers=Not More Than 72 Workers
 Requirement/Name/UnfairSC2TerranBuildLikeTerran=Terran Build Like Terran
 Requirement/Name/UnfairSC2TerranBuildLikeZerg=Terran Build Like Zerg
+RequirementNode/Name/10=10
+RequirementNode/Name/12=12
+RequirementNode/Name/16=16
+RequirementNode/Name/22=22
+RequirementNode/Name/30=30
+RequirementNode/Name/38=38
+RequirementNode/Name/44=44
+RequirementNode/Name/60=60
+RequirementNode/Name/66=66
+RequirementNode/Name/72=72
 RequirementNode/Name/AllowAbilUpgradeToGreaterSpire0TechTreeCheat=AllowAbil(UpgradeToGreaterSpire,0)[TechTreeCheat]
 RequirementNode/Name/And=() && ()
 RequirementNode/Name/AndEq1067782088CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly1=CountUpgrade(UnfairSC2TerranShipWeaponsLevel4,CompleteOnly) == {Terran Ship Weapon, Level 4}1 && ()
@@ -328,6 +359,11 @@ RequirementNode/Name/AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel5QueuedOrBe
 RequirementNode/Name/AndEqCountUpgradeUnfairSC2ProtossAirWeaponsLevel6QueuedOrBetter0AllowUnitPhoenix=CountUpgrade(UnfairSC2ProtossAirWeaponsLevel6,QueuedOrBetter) == 0 && AllowUnit(Phoenix)
 RequirementNode/Name/AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0=CountUpgrade(UnfairSC2TerranBuildLikeZerg,CompleteOnly) == 0 && ()
 RequirementNode/Name/AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1=CountUpgrade(UnfairSC2TerranBuildLikeZerg,CompleteOnly) == 1 && ()
+RequirementNode/Name/CountUnitDroneBurrowedQueuedOrBetter=CountUnit(DroneBurrowed,QueuedOrBetter)
+RequirementNode/Name/CountUnitDroneQueuedOrBetter=CountUnit(Drone,QueuedOrBetter)
+RequirementNode/Name/CountUnitMULEQueuedOrBetter=CountUnit(MULE,QueuedOrBetter)
+RequirementNode/Name/CountUnitProbeQueuedOrBetter=CountUnit(Probe,QueuedOrBetter)
+RequirementNode/Name/CountUnitSCVQueuedOrBetter=CountUnit(SCV,QueuedOrBetter)
 RequirementNode/Name/CountUpgradeProtossAirArmorsLevel3CompleteOnly=CountUpgrade(ProtossAirArmorsLevel3,CompleteOnly)
 RequirementNode/Name/CountUpgradeProtossAirWeaponsLevel3CompleteOnly=CountUpgrade(ProtossAirWeaponsLevel3,CompleteOnly)
 RequirementNode/Name/CountUpgradeProtossGroundArmorsLevel3CompleteOnly=CountUpgrade(ProtossGroundArmorsLevel3,CompleteOnly)
@@ -338,6 +374,16 @@ RequirementNode/Name/CountUpgradeTerranInfantryWeaponsLevel3CompleteOnly=CountUp
 RequirementNode/Name/CountUpgradeTerranShipWeaponsLevel3CompleteOnly=CountUpgrade(TerranShipWeaponsLevel3,CompleteOnly)
 RequirementNode/Name/CountUpgradeTerranVehicleAndShipArmorsLevel3CompleteOnly=CountUpgrade(TerranVehicleAndShipArmorsLevel3,CompleteOnly)
 RequirementNode/Name/CountUpgradeTerranVehicleWeaponsLevel3CompleteOnly=CountUpgrade(TerranVehicleWeaponsLevel3,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only12WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only16WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only22WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only30WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only30WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only38WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only38WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only44WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only44WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only60WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only60WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only66WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only66WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly=CountUpgrade(UnfairSC2Only72WorkersAreAllowed,CompleteOnly)
+RequirementNode/Name/CountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly1313200185=CountUpgrade(UnfairSC2Only72WorkersAreAllowed,CompleteOnly){https://pikabu.ru/story/kak_zamutit_s_devushkoy_2870598}
 RequirementNode/Name/CountUpgradeUnfairSC2ProtossAirArmorsLevel4CompleteOnly=CountUpgrade(UnfairSC2ProtossAirArmorsLevel4,CompleteOnly)
 RequirementNode/Name/CountUpgradeUnfairSC2ProtossAirArmorsLevel4QueuedOrBetter=CountUpgrade(UnfairSC2ProtossAirArmorsLevel4,QueuedOrBetter)
 RequirementNode/Name/CountUpgradeUnfairSC2ProtossAirArmorsLevel5CompleteOnly=CountUpgrade(UnfairSC2ProtossAirArmorsLevel5,CompleteOnly)
@@ -464,6 +510,16 @@ RequirementNode/Name/Eq482091657CountUpgradeProtossAirArmorsLevel3CompleteOnly1=
 RequirementNode/Name/Eq55459016CountUpgradeZergMissileWeaponsLevel3CompleteOnly1=CountUpgrade(ZergMissileWeaponsLevel3,CompleteOnly) == {Zerg Missile Weapon, Level 3}1
 RequirementNode/Name/Eq556563840CountUpgradeUnfairSC2ProtossAirArmorsLevel5CompleteOnly1=CountUpgrade(UnfairSC2ProtossAirArmorsLevel5,CompleteOnly) == {Protoss Air Armor, Level 5}1
 RequirementNode/Name/Eq965970934CountUpgradeProtossGroundArmorsLevel3CompleteOnly1=CountUpgrade(ProtossGroundArmorsLevel3,CompleteOnly) == {Protoss Ground Armor, Level 3}1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only12WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only16WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only22WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only30WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only30WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only38WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only38WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only44WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only44WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only60WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only60WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only66WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only66WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly1=CountUpgrade(UnfairSC2Only72WorkersAreAllowed,CompleteOnly) == 1
+RequirementNode/Name/EqCountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly13132001851=CountUpgrade(UnfairSC2Only72WorkersAreAllowed,CompleteOnly){https://pikabu.ru/story/kak_zamutit_s_devushkoy_2870598} == 1
 RequirementNode/Name/EqCountUpgradeUnfairSC2ProtossAirArmorsLevel4QueuedOrBetter0=CountUpgrade(UnfairSC2ProtossAirArmorsLevel4,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeUnfairSC2ProtossAirArmorsLevel5QueuedOrBetter0=CountUpgrade(UnfairSC2ProtossAirArmorsLevel5,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeUnfairSC2ProtossAirArmorsLevel6QueuedOrBetter0=CountUpgrade(UnfairSC2ProtossAirArmorsLevel6,QueuedOrBetter) == 0
@@ -511,10 +567,31 @@ RequirementNode/Name/EqCountUpgradeZergFlyerArmorsLevel4QueuedOrBetter0=CountUpg
 RequirementNode/Name/EqCountUpgradeZergFlyerWeaponsLevel4QueuedOrBetter0=CountUpgrade(ZergFlyerWeaponsLevel4,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeZergGroundArmorsLevel4QueuedOrBetter0=CountUpgrade(ZergGroundArmorsLevel4,QueuedOrBetter) == 0
 RequirementNode/Name/EqCountUpgradeZergMissileWeaponsLevel4QueuedOrBetter0=CountUpgrade(ZergMissileWeaponsLevel4,QueuedOrBetter) == 0
+RequirementNode/Name/EqSumCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only301578654498=(CountUpgrade(UnfairSC2Only12WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only16WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only22WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only30WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only38WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only44WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only60WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only66WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only72WorkersAreAllowed,CompleteOnly)) == 0
+RequirementNode/Name/LT1507831394SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter66=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 66 workers are allowed at the same time}66
+RequirementNode/Name/LT1588280816SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter12=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 12 workers are allowed at the same time}12
+RequirementNode/Name/LT1712327876SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter60=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 60 workers are allowed at the same time}60
+RequirementNode/Name/LT1870573992SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter30=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 30 workers are allowed at the same time}30
+RequirementNode/Name/LT2180297976SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter38=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 38 workers are allowed at the same time}38
+RequirementNode/Name/LT2533367015SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter22=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 22 workers are allowed at the same time}22
+RequirementNode/Name/LT3531402363SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter44=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 44 workers are allowed at the same time}44
+RequirementNode/Name/LT4034378133SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter72=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 72 workers are allowed at the same time}72
+RequirementNode/Name/LT4134550034SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter16=(CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)) < {Only 16 workers are allowed at the same time}16
+RequirementNode/Name/SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter=CountUnit(SCV,QueuedOrBetter) + CountUnit(Probe,QueuedOrBetter) + CountUnit(Drone,QueuedOrBetter) + CountUnit(DroneBurrowed,QueuedOrBetter) + CountUnit(MULE,QueuedOrBetter)
+RequirementNode/Name/SumCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only30Wo249341638=CountUpgrade(UnfairSC2Only12WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only16WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only22WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only30WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only38WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only44WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only60WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only66WorkersAreAllowed,CompleteOnly) + CountUpgrade(UnfairSC2Only72WorkersAreAllowed,CompleteOnly)
 Unit/EditorPrefix/UnfairSC2AcidSprayMissile=Оружие -
 Unit/EditorPrefix/UnfairSC2SuperCaster=Unfair SC2 - 
 Upgrade/EditorPrefix/TerranBoostX2=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2ConstructionTime=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only12WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only16WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only22WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only30WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only38WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only44WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only60WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only66WorkersAreAllowed=Unfair SC2 - 
+Upgrade/EditorPrefix/UnfairSC2Only72WorkersAreAllowed=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2ProtossAirArmorsLevel4=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2ProtossAirArmorsLevel5=Unfair SC2 - 
 Upgrade/EditorPrefix/UnfairSC2ProtossAirArmorsLevel6=Unfair SC2 - 

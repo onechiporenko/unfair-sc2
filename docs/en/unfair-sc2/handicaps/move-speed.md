@@ -1,17 +1,17 @@
 # MOVE SPEED
 
-Меняет скорость всех юнитов кроме рабочих на заданную величину. Может быть как усиливающим, так и ослабляющим эффектом. Скорость можно изменить на x0.5, x.0.75, x1.25, x1.5 и x2.0.
+Change move speed for all units but not workers. Move speed can be set to x0.5, x.0.75, x1.25, x1.5 or x2.0.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.3**
 
-* [FEATURE]	Обновлено описание для всплывающей подсказки.
+* [FEATURE]	Ingame hint is updated.
 
 **v2.0**
 
-* [REFACTORING] Вместо пяти эффектов теперь один. 
+* [REFACTORING] Only single effect is used instead of five.

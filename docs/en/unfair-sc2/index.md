@@ -71,5 +71,6 @@ Unfair SC2 is a modification for StarCraft2, which consists of a number of handi
 * [VAMPIRISM](./handicaps/vampirism.md)
 * [WALKING DEAD](./handicaps/walking-dead.md)
 * [WALL](./handicaps/wall.md)
+* [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
 * [ZOMBIES](./handicaps/zombies.md)
 * [ZOOM](./handicaps/zoom.md)

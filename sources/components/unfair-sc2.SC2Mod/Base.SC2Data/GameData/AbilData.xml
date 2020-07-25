@@ -47,6 +47,47 @@
             <Button DefaultButtonFace="UnfairSC2TerranVehicleAndShipPlatingLevel6" State="Restricted" Requirements="UnfairSC2LearnTerranVehicleAndShipArmor6"/>
         </InfoArray>
     </CAbilResearch>
+    <CAbilTrain id="CommandCenterTrain">
+        <InfoArray index="Train1">
+            <Button Requirements="UnfairSC2NoLimitsForWorkers"/>
+        </InfoArray>
+        <InfoArray index="Train2" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan12Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train3" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan16Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train4" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan22Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train5" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan30Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train6" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan38Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train7" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan44Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train8" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan60Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train9" Time="17">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan66Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+        <InfoArray index="Train10" Time="7">
+            <Button DefaultButtonFace="SCV" State="Restricted" Requirements="UnfairSC2NotMoreThan72Workers"/>
+            <Unit value="SCV"/>
+        </InfoArray>
+    </CAbilTrain>
     <CAbilResearch id="CyberneticsCoreResearch">
         <InfoArray index="Research12" Time="260" Upgrade="UnfairSC2ProtossAirWeaponsLevel4">
             <Resource index="Minerals" value="325"/>
@@ -158,6 +199,88 @@
             <Button DefaultButtonFace="UnfairSC2ProtossShieldsLevel6" Requirements="UnfairSC2LearnProtossShield6"/>
         </InfoArray>
     </CAbilResearch>
+    <CAbilTrain id="LarvaTrain">
+        <InfoArray index="Train1">
+            <Button State="Restricted" Requirements="UnfairSC2NoLimitsForWorkers"/>
+        </InfoArray>
+        <InfoArray index="Train22" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan72Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train23" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan66Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train24" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan60Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train25" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan44Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train26" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan38Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train27" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan30Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train28" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan22Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train29" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan16Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+        <InfoArray index="Train30" Time="17">
+            <Button DefaultButtonFace="Drone" State="Restricted" Requirements="UnfairSC2NotMoreThan12Workers"/>
+            <Unit value="Drone"/>
+        </InfoArray>
+    </CAbilTrain>
+    <CAbilTrain id="NexusTrain">
+        <InfoArray index="Train1">
+            <Button State="Restricted" Requirements="UnfairSC2NoLimitsForWorkers"/>
+        </InfoArray>
+        <InfoArray index="Train2" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan12Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train3" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan16Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train4" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan22Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train5" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan30Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train6" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan38Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train7" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan44Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train8" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan60Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train9" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan66Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+        <InfoArray index="Train10" Time="17">
+            <Button DefaultButtonFace="Probe" State="Restricted" Requirements="UnfairSC2NotMoreThan72Workers"/>
+            <Unit value="Probe"/>
+        </InfoArray>
+    </CAbilTrain>
     <CAbilBuild id="UnfairSC2DroneBuildLikeSCV" parent="ZergBuild">
         <Name value="Abil/Name/UnfairSC2DroneBuildLikeSCV"/>
         <FlagArray index="Interruptible" value="1"/>

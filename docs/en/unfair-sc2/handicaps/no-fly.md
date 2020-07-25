@@ -1,13 +1,13 @@
 # NO FLY
 
-*Добавлен в 2.0*
+*Added in 2.0*
 
-Воздушные юниты ведут себя как наземные - используют наземные проходы и не дают обзор на уступы.
+Air units have path-finding like ground units and don't see high ground.
 
-**ВАЖНО!** Чтоб их атаковать все равно надо иметь атаку по воздуху!
+**IMPORTANT** To attack suck units you need to be able to attack air units!
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

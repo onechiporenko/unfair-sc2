@@ -1,7 +1,7 @@
 # EXTRA UPGRADES
 
-*Добавлен в 3.0*
+*Added in 3.0*
 
-У игроков есть возможность разработать улучшения на атаку/защиту/щиты 4-го 5-го и 6-го уровней.
+Players can research extra upgrades for attack, armor and shields 4th, 5th and 6th level.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.

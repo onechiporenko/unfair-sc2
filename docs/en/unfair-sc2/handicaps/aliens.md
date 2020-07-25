@@ -1,29 +1,29 @@
 # ALIENS
 
-После смерти юнита из него появляются несколько брудлингов. Кол-во брудлингов задается индувидуально для каждого игрока. Брудлинги не появляются после уничтожения зданий или убийстве саранчидов/брудлингов. Так же брудлинги не появляются, если игрок сам убивает своего юнита.
+Some number of Broodlings is spawn after unit is killed. Broodlings count is set for each player. Broodlings won't spawn after structures are destroyed or any unit that not produces or uses supply is killed. Also broodlings are not spawn if player kills own unit.
 
-Кол-во создаваемых брудлингов может быть статическим или же зависеть от лимита, занимаемого убитым юнитом.
+You can set amount of Broodlings equal to supply used by killed unit.
 
-Созданные брудлинги по умолчанию получают приказ атаковать ту точку, где находился юнит-убийца.
+Created Broodlings have order to attack point where unit-killer is.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.36**
 
-* [BUGFIX] Брудлинги не создаются от других брудлингов, саранчидов и прочих юнитов, которые не занимают или не дают лимита.
+* [BUGFIX] Broodlings are not spawn after killing unit that doesn't use or provide supply.
 
 **v2.35**
 
-* [BUGFIX] Кол-во создаваемых брудлингов для опций "1" - "10" соответствует выбранному значению для игрока потерявшего юнита, а не убившего его.
+* [BUGFIX] Number of Broodlings for options "1" - "10" now is equal to value for player who lost the unit and not who killed it.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.0**
 
-* [BUGFIX] Исправлена ошибка генерации брудлингов. Кол-во создаваемых брудлингов бралось не у нужного игрока.
-* [BUGFIX] Теперь брудлинги создаются и от Надзирателей и Владык.
-* [FEATURE] Можно указать, чтоб кол-во создаваемых брудлингов зависело от занимаемого лимита убитого юнита (но не меньше 1).
-* [FEATURE] Созданные брудлинги по умолчанию атакуют ту точку, откуда был нанесен смертельный урон.
-* [REFACTORING] Обработка и хранение опций лобби.
+* [BUGFIX] Number of created Broodlings now is taken from correct player.
+* [BUGFIX] Now killed Overseers and Overlords also spawn Broodlings.
+* [FEATURE] Now it's possible to set amount of created Broodlings equal to unit's supply limit (but not less than 1).
+* [FEATURE] Created Broodlings attack a point where unit-killer is.
+* [REFACTORING] Lobby options refactoring.

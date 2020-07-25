@@ -1,13 +1,13 @@
 # GRAPPLE
 
-Дает бейлингам способность "Grapple", с помощью которой они могут притягиваться к юнитам врага. У этой способности есть автокаст. Игроки с включенным Grapple получают закопку зергов со старта игры.
+Banelings have ability "Grapple" with autocast. Players with enabled handicap "Grapple" have Borrow from game start.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.31**
 
-* [BUGFIX] Кнопка способности Grapple снова видима у бейлингов.
+* [BUGFIX] Grapple-button is visible again.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

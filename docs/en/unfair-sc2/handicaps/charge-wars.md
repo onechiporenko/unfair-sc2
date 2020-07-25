@@ -1,7 +1,7 @@
 # CHARGE WARS
 
-*Добавлен в 2.29*
+*Added in 2.29*
 
-Почти у всех юнитов есть Рывок Зилотов.
+Almost all units have Zealot's Charge after 5:00.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.

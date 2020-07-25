@@ -143,7 +143,16 @@
     <CUnit id="CommandCenter">
         <AbilArray Link="UnfairSC2MacroDefTerran"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train10" Row="0" Column="0"/>
             <LayoutButtons Face="UnfairSC2MacroDefTerran" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefTerran,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train9" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train8" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train7" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train6" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train5" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train4" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train3" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train2" Row="0" Column="0"/>
         </CardLayouts>
     </CUnit>
     <CUnit id="Corruptor">
@@ -309,6 +318,19 @@
             <LayoutButtons Face="UnfairSC2zergflyerarmor4" Type="AbilCmd" AbilCmd="SpireResearch,Research8" Row="0" Column="1"/>
             <LayoutButtons Face="UnfairSC2zergflyerarmor5" Type="AbilCmd" AbilCmd="SpireResearch,Research10" Row="0" Column="1"/>
             <LayoutButtons Face="UnfairSC2zergflyerarmor6" Type="AbilCmd" AbilCmd="SpireResearch,Research12" Row="0" Column="1"/>
+        </CardLayouts>
+    </CUnit>
+    <CUnit id="Larva">
+        <CardLayouts index="0">
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train29" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train28" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train27" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train26" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train25" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train24" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train30" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train22" Row="0" Column="0"/>
+            <LayoutButtons Face="Drone" Type="AbilCmd" AbilCmd="LarvaTrain,Train23" Row="0" Column="0"/>
         </CardLayouts>
     </CUnit>
     <CUnit id="Spire">
@@ -544,9 +566,9 @@
         <AbilArray Link="NexusMassRecall"/>
         <CardLayouts index="0">
             <LayoutButtons>
-                <Face value="UnfSC2MacroDefProtoss"/>
+                <Face value="Probe"/>
                 <Type value="AbilCmd"/>
-                <AbilCmd value="UnfairSC2MacroDefProtoss,Execute"/>
+                <AbilCmd value="NexusTrain,Train1"/>
                 <Behavior value=""/>
                 <Requirements value=""/>
                 <SubmenuAbilState value=""/>
@@ -554,9 +576,19 @@
                 <SubmenuFullSubCmdValidation value="0"/>
                 <SubmenuIsSticky value="0"/>
                 <ShowInGlossary value="1"/>
-                <Row value="1"/>
-                <Column value="1"/>
+                <Row value="0"/>
+                <Column value="0"/>
             </LayoutButtons>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train10" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train9" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train8" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train7" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train6" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train5" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train4" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train3" Row="0" Column="0"/>
+            <LayoutButtons Face="Probe" Type="AbilCmd" AbilCmd="NexusTrain,Train2" Row="0" Column="0"/>
+            <LayoutButtons Face="UnfSC2MacroDefProtoss" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefProtoss,Execute" Row="1" Column="1"/>
         </CardLayouts>
     </CUnit>
     <CUnit id="Observer">
@@ -578,7 +610,17 @@
     <CUnit id="OrbitalCommand">
         <AbilArray Link="UnfairSC2MacroDefTerran"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train2" Row="0" Column="0"/>
             <LayoutButtons Face="UnfairSC2MacroDefTerran" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefTerran,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train3" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train4" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train5" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train6" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train7" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train8" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train9" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train10" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train1" Row="0" Column="0"/>
         </CardLayouts>
     </CUnit>
     <CUnit id="Overlord">
@@ -623,7 +665,17 @@
     <CUnit id="PlanetaryFortress">
         <AbilArray Link="UnfairSC2MacroDefTerran"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train2" Row="0" Column="0"/>
             <LayoutButtons Face="UnfairSC2MacroDefTerran" Type="AbilCmd" AbilCmd="UnfairSC2MacroDefTerran,Execute" Row="1" Column="1"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train3" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train4" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train5" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train6" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train7" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train8" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train9" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train10" Row="0" Column="0"/>
+            <LayoutButtons Face="SCV" Type="AbilCmd" AbilCmd="CommandCenterTrain,Train1" Row="0" Column="0"/>
         </CardLayouts>
     </CUnit>
     <CUnit id="Probe">

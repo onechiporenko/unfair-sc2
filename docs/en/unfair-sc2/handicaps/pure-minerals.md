@@ -1,17 +1,17 @@
 # PURE MINERALS
 
-В радиусе 50 от стартовой позиции игрока заменяет все обычные минеральные друзы 1500 на такие же, но по 900.
+Reduce amount of minerals on Mineral Fields to 900 in range of 50 from start location for selected players.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.38**
 
-* [FEATURE] Добавлен визуальный эффект для "бедных" минеральных друз.
+* [FEATURE] Visual effect is added.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v1.31**
 
-* [BUGFIX] Теперь корректно обрабатывает все типы минеральных кристаллов.
+* [BUGFIX] Now all types of mineral fields are replaced correctly.

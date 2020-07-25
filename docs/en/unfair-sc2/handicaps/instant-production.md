@@ -1,15 +1,15 @@
 # INSTANT PRODUCTION
 
-*Добавлен в 2.23*
+*Added in 2.23*
 
-Изучение улучшений и постройка зданий происходят за несколько секунд.
+Building structures and researching upgrades take a few seconds.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.29**
 
-* [BUGFIX] Мутация строений зергов, постройка пристроек для зданий терранов и превращение Командного Центра в Орбитальную Станцию или Планетарную Крепость теперь тоже происходят за пару секунд.
+* [BUGFIX] Now morphing of zerg structures, terran CC's upgrades and addon building take a few seconds.
 
 **v2.27**
 
-* [BUGFIX] Игровая подсказка выводится только один раз.
+* [BUGFIX] Now ingame hint is shown only once.

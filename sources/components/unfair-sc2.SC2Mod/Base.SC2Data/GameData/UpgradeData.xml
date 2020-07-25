@@ -29,6 +29,33 @@
         <EffectArray Operation="Multiply" Reference="Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Actor].DurationArray[Duration]" Value="1.500000"/>
         <EffectArray Operation="Multiply" Reference="Abil,UpgradeToOrbital,InfoArray[0].SectionArray[Stats].DurationArray[Delay]" Value="1.500000"/>
     </CUpgrade>
+    <CUpgrade id="UnfairSC2Only12WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only16WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only22WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only30WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only38WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only44WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only60WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only66WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
+    <CUpgrade id="UnfairSC2Only72WorkersAreAllowed">
+        <EditorCategories value="UpgradeType:Talents"/>
+    </CUpgrade>
     <CUpgrade id="UnfairSC2TerranBuildLikeZerg">
         <EditorCategories value="Race:Terran,UpgradeType:Talents"/>
     </CUpgrade>

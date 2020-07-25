@@ -1,13 +1,13 @@
 # BLINK WARS
 
-После 5:00 всем юнитам (**кроме рабочих**) дает Сталкерский скачок.
+All units (**but not workers**) will have Stalker's Blink after 5:00.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.29**
 
-* [BUGFIX] У Владык теперь есть Скачок
+* [BUGFIX] Overseers now also have Blink.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

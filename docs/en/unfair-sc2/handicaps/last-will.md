@@ -1,8 +1,8 @@
 # LAST WILL
 
-При смерти юнита его убийце наносится урон, равный 50%, 100% или 200% (задается в лобби игры) от максимального кол-ва здоровья жертвы. Считается только здоровье. Щиты игнорируются. То есть, убив архона урон будет 5/10/20 единиц. 
+When a unit dies, its killer is dealt damage equal to 50%, 100%, or 200% (set in the handicap menu) of the victim’s maximum health. Only health is considered. Shields are ignored. So, killing an Archon will cause 5/10/20 damage.
 
-В дополнение к этому можно включить шанс на срабатывание атакующей способности в точку, где находится юнит-убийца. Шанс может быть 5%, 10%, 15%, 20%, 25%, 50%, 75% или 100%. Способность выбирается случайным образом из следующего списка:
+In addition to this, you can include a chance for the attacking ability to trigger at the point where the killer unit is located. The chance can be 5%, 10%, 15%, 20%, 25%, 50%, 75% or 100%. The ability is randomly selected from the following list:
 
 * Psi Storm 
 * Infested Terran Lay Egg
@@ -19,18 +19,18 @@
 * Fungal
 * Seeker Missle
 
-Last Will не срабатывает, если урон игрок наносит сам себе, если жертвой является здание или призванные юниты (саранчиды и прочие).
+Last Will does not work if the player does damage to himself, if the victim is a building or any unit that doesn't use or provide supply.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v3.00**
 
-* [FEATURE] Добавленые опции 50%, 75% и 100% для шанса появления способности.
+* [FEATURE] Added options 50%, 75% and 100% for the chance of the appearance of the ability.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.0**
 
-* [REFACTORING] Обработка и хранение опций лобби.
+* [REFACTORING] Lobby options refactoring.

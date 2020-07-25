@@ -1,22 +1,22 @@
 # NO RUSH
 
-Создает в начальной локации игроков защитную ауру, которая блокирует практически весь наносимый врагами урон, а так же запрещает врагам строить какие-либо здания. При этом, сами враги остаются уязвимыми в данной области. Время действия данной ауры задается в лобби игры и может быть от 1 до 10 минут.
+Create a safe-zone for each player in range of 50 from start points. Enemies can't attack or build any structures in that range. However enemies can be attacked. Safe zone's duration may be 1 - 10 minutes.
 
-Дается всем игрокам.
+It's set for all players.
 
 **v3.00**
 
-* [FEATURE] Добавлены варианты 7 и 10 минут для ненападения.
+* [FEATURE]  Options 7 and 10 minutes duration are added
 
 **v2.34**
 
-* [REFACTORING] Запрет на постройку теперь сделан через эффект, а не триггер.
-* [REFACTORING] Теперь аура No Attack вообще не дает атаковать, а не просто обнуляет урон.
+* [REFACTORING] Now effect is used to block enemies buildings.
+* [REFACTORING] "No attack" aura now blocks attacks and not set damage 0.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа.
+* [FEATURE] Ingame hint is added.
 
 **v1.31**
 
-* [FEATURE] В зоне "безопасности" других игроков запрещено строить здания.
+* [FEATURE] No enemy buildings are allowed in the safe-zone.

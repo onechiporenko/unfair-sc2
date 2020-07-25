@@ -1,11 +1,13 @@
 # BLOCKED RAMPS
 
-*Добавлен в 2.36*
+*Added in 2.36*
 
-Практически все рампы на карте заблокированы неуязвимыми и непроходимыми завалами. Данный гандикап делает из "обычной" карты "островную".
+Almost all ramps on the map are blocked with invulnerable and impassable rocks.
 
-*В некоторых точках на карте (не рампах) так же появляются такие завалы.*
+With this handicap enabled map becomes "island".
+
+*Sometimes rocks appears on random points on the map (not on the ramps)*
 
 **v2.38**
 
-* [BUGFIX] Добавлено описание опции лобби.
+* [BUGFIX] Description for lobby options is added.

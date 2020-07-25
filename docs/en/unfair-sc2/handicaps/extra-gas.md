@@ -1,13 +1,13 @@
 # EXTRA GAS
 
-Каждые 3 секунды каждое здание для добычи газа дает 4 единицы веспена. Не важно, добывает ли в нем газ хоть один рабочий.
+Every 3 seconds every structure for collecting vespene produce 4 vespene. No workers required.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v3.0**
 
-* [BUGFIX] Визуальный эффект на занятых веспеновых гейзерах не видим через туман войны.
+* [BUGFIX] Visual effect for vespene geysers is not visible throw the fog of war.
 
 **v2.27**
 
-* [BUGFIX] Теперь корректно работает и с богатыми гейзерами
+* [BUGFIX] Now works with rich geysers.

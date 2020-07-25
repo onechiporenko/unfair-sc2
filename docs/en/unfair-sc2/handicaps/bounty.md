@@ -1,17 +1,15 @@
 # BOUNTY
 
-*Добавлен в 2.0*
+*Added in 2.0*
 
-За уничтожение юнитов вы получаете дополнительные ресурсы. Размер Bounty, задаваемый игроку, это кол-во ресурсов, которые получат другие игроки за его юнитов. Зрителям выводится таблица полученных ресурсов.
+Bounty is given for killing enemy units. Amount of bounty set to player is a number of resources given to other players who kill his units. Table with received bounty is shown for spectators.
 
-**ВАЖНО!** Опция игрока "Bounty for Player's units, %" указывает сколько ресурсов будут получать **другие игроки** за его юнитов, а не сколько ресурсов будет получать этот игрок.
-
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.9**
 
-* [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей 
+* [BUGFIX] Table will all player now is shown for all spectators. 

@@ -1,24 +1,24 @@
 # WALL
 
-Создает на карте стену, которая атакует любого юнита, который подойдет к ней достаточно близко (5 единиц). Стена может быть горизонтальной, вертикальной, диагональной (оба направления) или крестовой ("+" или "х"). Это задается в лобби игры и зависит от карты. Время существования стены также задается в лобби и может быть от 1 до 10 минут.
+Create a wall that attacks every unit near it. Wall can be horizontal, vertical, diagonal (both directions) and cross ("+" or "x"). Wall direction and life time is customizable. Life time can be 1..10 minutes.
 
 **v3.00**
 
-* [FEATURE] Добавлены варианты 7 и 10 минут для стены
+* [FEATURE] Options 7m and 10m are added for wall life time
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.0**
 
-* [BUGFIX] Исправлено оружие Планетарных Крепостей в стене. Теперь они стреляют с максимально доступного расстояния.
+* [BUGFIX] Wall now attacks from max allowed range.
 
 **v1.33**
 
-* [BUGFIX] Диагональные стенки теперь создаются соответственно значению опции лобби "Wall Direction".
+* [BUGFIX] Fixed wall direction when some diagonal option is selected.
 
 **v1.31**
 
-* [FEATURE] Стена видима для всех игроков.
-* [FEATURE] Стена может быть крестовой ("+" или "х").
+* [FEATURE] Wall is visible for all players.
+* [FEATURE] Wall can be cross ("+" or "x").

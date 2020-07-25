@@ -1,7 +1,7 @@
 # FAIR MACRO
 
-*Добавлен в 2.34*
+*Added in 2.34*
 
-Способности "Темпоральное ускорение" (Нексус), "Запрос: МУЛ" (Станция наблюдения), "Запрос: дополнительные припасы" (Станция наблюдения) и "Породить личинок" (Королева) недоступны для игрока.
+Abilities "Chrono Boost" (Nexus), "Calldown: MULE" (Orbital Command), "Calldown: Extra Supplies" (Orbital Command) and "Spawn Larva" (Queen) are disabled.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.

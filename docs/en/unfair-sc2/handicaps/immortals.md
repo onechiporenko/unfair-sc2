@@ -1,7 +1,7 @@
 # IMMORTALS
 
-*Добавлено в 2.37*
+*Added in 2.37*
 
-Уменьшает входящий урон до 1/3/5/7/9/11/13/15 единиц за атаку. Работает на здания.
+Reduce taken damage to 1/3/5/7/9/11/13/15 per hits. Works on structures.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.

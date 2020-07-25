@@ -1,36 +1,36 @@
 # WALKING DEAD
 
-*Добавлен в 2.26*
+*Added in 2.26*
 
-После уничтожения юнита игрока на его месте создается такой же юнит-зомби, который враждебен ко всем игрокам. Зомби не создаются с рабочих и юнитов, которые не производят или забирают лимит (симбионты и т.д)
+Unit-zombie is spawn after some unit is killed. Zombies are not friendly for any player. Killed workers and units that don't provide or use supply don't create zombies.
 
-Для зомби в лобби игры можно указать следующие показатели (процентарно от показателей оригинальной боевой единицы):
+It's possible to set such options for zombies:
 
-* Броня (50%, 75%, 100%, 150%, 200%)
-* Шиты (50%, 75%, 100%, 150%, 200%)
-* Здоровье (50%, 75%, 100%, 150%, 200%)
-* Скорость атаки (50%, 75%, 100%, 150%, 200%)
-* Скорость передвижения (50%, 75%, 100%, 150%, 200%)
+* Armor (50%, 75%, 100%, 150%, 200%)
+* Shields (50%, 75%, 100%, 150%, 200%)
+* HP (50%, 75%, 100%, 150%, 200%)
+* Attack speed (50%, 75%, 100%, 150%, 200%)
+* Move speed (50%, 75%, 100%, 150%, 200%)
 
-Так же можно указать время жизни зомби - 1мин, 2мин, 3мин, 5мин, 10мин или без ограничений. Во всех вариантах кроме последнего время соответствует старому игровому. 
+Also it's possible to set zombies life time for 1m, 2m, 3m, 5m, 10m or unlimited. Here time is for "old" game time.
 
-Каждому игроку выставляется индивидуально, будут ли его боевые единицы порождать зомби. Характеристики зомби задаются для всех игроков сразу.
+Zombies options are set for all players. However spawn of zombies is set for each player separately.
 
 **v3.3**
 
-* [BUGFIX] Веспеновые гейзеры больше не создаются после уничтожения зданий для добычи веспена ("зомби"-варианты этих зданий теперь тоже не создаются).
-* [BUGFIX] Зомби создаются для игрока 15, а не 5.
+* [BUGFIX] New vespene geysers are not created after destroying structures to collect vespene.
+* [BUGFIX] Zombies are created for player 15 and not 5.
 
 **v2.38**
 
-* [BUGFIX] Зомби не создаются после Притягивания Стрекоз.
-* [FEATURE] Добавлен визуальный эффект при создании зомби.
+* [BUGFIX] Zombies are not created after Viper's abduct.
+* [FEATURE] Visual effect for zombies is added.
 
 **v2.37**
 
-* [BUGFIX] Зомби не создаются от теней адептов и сфер очищения.
+* [BUGFIX] Don't create zombies from purification nova
 
 **v2.28**
 
-* [BUGFIX] Не создавать зомби от тени адепта
-* [FEATURE] Добавлена опция лобби, указывающая надо ли создавать зомби из уничтоженных зданий
+* [BUGFIX] Don't create zombies from phase shift
+* [FEATURE] It's possible to set spawn of zombie-structures

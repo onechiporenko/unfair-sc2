@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.5
+
+* [LIMITED WORKERS](./handicaps/limited-workers.md)
+    * [BUGFIX/REFACTORING] Кол-во рабочих теперь считается через редактор данных, а не триггеры.
+
 ## v3.4
 
 * [ALL UPGRADES](./handicaps/all-upgrades.md)

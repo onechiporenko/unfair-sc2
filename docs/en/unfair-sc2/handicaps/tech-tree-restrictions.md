@@ -1,36 +1,36 @@
 # TECH TREE RESTRICTIONS
 
-*Добавлен в 2.34*
+*Added in 2.34*
 
-Каждому игроку можно указать, что ряд улучшений или группы единиц для него недоступны.
+It's possible to set that some units and upgrades are not available to the players.
 
-Варианты "разрешенных" улучшений:
+Options for allowed upgrades:
 
-* Все (играет как обычно)
-* Только Т1
-* Только Т2
-* Только Т1 + Т2
-* Вообще никаких
+* All
+* Only T1
+* Only T2
+* Only T1 + T2
+* Nothing
 
-Данное ограничение **НЕ** касается уникальных улучшений (как, например, "Рывок" Зилотов), а касается только "общих" улучшений на атаку, защиту и щиты (как наземных, так и воздушных единиц).
+This restrictions **DON'T** work unique upgrades (like Charge) and work only for attack/armor/shields upgrades.
 
-Варианты "разрешенных" единиц:
+Options for allowed units:
 
-* Все (играет как обычно)
-* Только Т1
-* Только Т2
-* Только Т3
-* Только Т1 + Т2
-* Только Т1 + Т3
-* Только Т2 + Т3
-* Вообще никаких
+* All
+* Only T1
+* Only T2
+* Only T3
+* Only Т1 + Т2
+* Only Т1 + Т3
+* Only Т2 + Т3
+* No units
 
-| Tier | Протоссы | Терраны | Зерги |
+| Tier | Protoss | Terran | Zerg |
 |--------|----------|--------|--------|
-| T1 | Зилот, Сталкер, Адепт, Часовой | Морпех, Мародер, Головорез | Зерглинг, Гиблинг, Таракан, Разоритель, Королева |
-| T2 | Наблюдатель, Бессмертный, Призма Искревления, "Феникс", Излучатель Пустоты, Оракул | Призрак, "Геллион", "Геллитрон", "Циклон", Осадный Танк, Мина "Вдова", "Банши", "Ворон", "Викинг", Медэвак, "Освободитель" | Гидралиск, Скрытень, Муталиск, Владыка, Губитель, Роевик, Заразитель |
-| T3 | Колосс, Дестабилизатор, Авианосец, "Ураган", Материнский Корабль, Темный Тамплиер, Высший Тамплиер, Архонт | Крейсер, "Тор" | Стрекоза, Хозяин Стаи, Ультралиск |
+| T1 | Zealot, Stalker, Adept, Sentry | Marine, Marauder, Reaper | Zergling, Baneling, Roach, Ravager, Queen |
+| T2 | Observer, Immortal, Warp Prism, Phoenix, Void Ray, Oracle | Ghost, Hellion, Hellbat, Cyclone, Siege Tank, Widow Mine, Banshee, Raven, Viking, Medivac, Liberator | Hydralisk, Lurker, Mutalisk, Overseer, Corruptor, Swarm Host, Infestor |
+| T3 | Colossus, Disruptor, Carrier, Tempest, Mothership, Dark Templar, High Templar, Archon | Battlecruiser, Thor | Viper, Brood Lord, Ultralisk |
 
-*Если игроку запрещено Т2, но разрешено Т3, то Губитель будет доступен.*
+*Corruptor is allowed for player with allowed T3 in any cases*
 
-Дается каждому игроку индивидуально.
+Set to each player individually.

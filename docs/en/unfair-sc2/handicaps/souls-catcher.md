@@ -1,48 +1,48 @@
 # SOULS CATCHER
 
-*Добавлен в 2.0*
+*Added in 2.0*
 
-Убитый юнит соперника возвращается убившему его игроку с половиной здоровья,  щитов (как кол-ва, так и уменьшения урона), брони и скорости атаки. Не работает на здания, рабочих и прочих саранчидов/брудлингов.
+Killed unit is returned to the player who killed it. New unit has half of the HP, armor, shields and attack speed. Doesn't work for workers, structures and any units that don't use or provide supply.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v3.00**
 
-* [BUGFIX] "Души" не создаются от иллюзий.
+* [BUGFIX] Don't create new units from killed illusions.
 
 **v2.38**
 
-* [FEATURE] Добавлен визуальный эффект при создании "души" юнита.
+* [FEATURE] Visual effect is added.
 
 **v2.37**
 
-* [BUGFIX] В чате игры больше не выводится отладочное сообщение.
+* [BUGFIX] Debug-message is not shown in the chat.
 
 **v2.33**
 
-* [BUGFIX] Отбрасывание взрывчаткой KD8 (головорез) не создает "душу"
+* [BUGFIX] Repear's KD8 doesn't create a new unit
 
 **v2.28**
 
-* [BUGFIX] Тень адепта при исчезновении не создает "душу"
-* [BUGFIX] "Души" не появляются, если игрок добил своего юнита
+* [BUGFIX] Adept's phase shift doesn't create a new unit
+* [BUGFIX] Friendly fire doesn't create a new unit
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.19**
 
-* [BUGFIX] "Catched Soul" теперь называется "Caught Soul". 
+* [BUGFIX] "Catched Soul" now is called "Caught Soul". 
 
 **v2.11**
 
-* [BUGFIX]	Тактический Скачок Крейсера больше не создает еще один Крейсер
+* [BUGFIX] Tactical Jump won't create a new Battlecruiser.
 
 **v2.4**
 
-* [FEATURE]	Полученные юниты теперь размером 85% от оригинального юнита.
+* [FEATURE]	New units now are 85% of their original size.
 
 **v2.3**
 
-* [FEATURE]	Добавлено нормальное описание для всплывающей подсказки Catched Soul.
+* [FEATURE]	New description is added to the ingame hint.

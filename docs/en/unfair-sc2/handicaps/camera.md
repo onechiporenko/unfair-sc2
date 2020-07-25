@@ -1,15 +1,15 @@
 # CAMERA
 
-*Добавлен в 1.32*
+*Added in 1.32*
 
-Меняет положение камеры игрока на 0/90/180/270 градусов каждые 20 секунд начиная с 10-й секунды матча. Камера крутится **НЕ** так жестко, как в мутаторе Vertigo.
+Camera angle is changed every 20 seconds to 0/90/180/270 after 10s of game. It's a "light" version of Vertigo mutator.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v1.34**
 
-* [BUGFIX] Убрано "затухание" экрана перед поворотом камеры. Ранее экран "затухал" у всех игроков (даже у тех, для кого гандикап Camera не включен).
+* [BUGFIX] Screen turning off before camera rotation is removed.

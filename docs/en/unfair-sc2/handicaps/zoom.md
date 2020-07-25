@@ -1,11 +1,11 @@
 # ZOOM
 
-*Добавлен в 2.0*
+*Added in 2.0*
 
-Дает игроку возможность поднять камеру и видеть больше. Высота камеры устанавливается изначально. В правом нижнем углу у игрока появляются две кнопки "ZOOM" и "ZOOM x2" (на случай, если игрок поменяет высоту камеры прокруткой).
+Selected players can move camera higher and see more. There two buttons at the bottom right corner "ZOOM" and "ZOOM x2" for each player.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

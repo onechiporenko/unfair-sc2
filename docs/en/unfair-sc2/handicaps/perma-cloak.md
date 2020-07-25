@@ -1,9 +1,9 @@
 # PERMA CLOAK
 
-Данный эффект дает постоянную маскировку юнитам и зданиям игрока. Можно указать, чтоб только юниты были под маскировкой, а здания были видимыми.
+All units and structures are invisible.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

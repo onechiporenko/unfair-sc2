@@ -3,19 +3,10 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: LIMITED WORKERS
 //--------------------------------------------------------------------------------------------------
-// Variable Declarations
-timer lib2C4EDCE2_gv_checkWorkersCountTimer;
-
 // Function Declarations
 void lib2C4EDCE2_gf_SetupOptions (int lp_handicapindex);
 void lib2C4EDCE2_gf_EnableHandicap (int lp_handicapIndex);
-void lib2C4EDCE2_gf_DisableWorkersForPlayer (int lp_player);
-void lib2C4EDCE2_gf_EnableWorkersForPlayer (int lp_player);
 
 // Trigger Declarations
 trigger lib2C4EDCE2_gt_SetupHandicap;
-trigger lib2C4EDCE2_gt_CheckWorkersCount;
-
-// Library Initialization
-void lib2C4EDCE2_InitVariables ();
 

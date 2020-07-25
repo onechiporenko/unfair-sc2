@@ -14,19 +14,6 @@ void lib2C4EDCE2_InitLibraries () {
     libDBC4E2D2_InitVariables();
 }
 
-// Variable Initialization
-bool lib2C4EDCE2_InitVariables_completed = false;
-
-void lib2C4EDCE2_InitVariables () {
-    if (lib2C4EDCE2_InitVariables_completed) {
-        return;
-    }
-
-    lib2C4EDCE2_InitVariables_completed = true;
-
-    lib2C4EDCE2_gv_checkWorkersCountTimer = TimerCreate();
-}
-
 // Functions
 void lib2C4EDCE2_gf_SetupOptions (int lp_handicapindex) {
     // Variable Declarations
@@ -60,6 +47,8 @@ void lib2C4EDCE2_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "60";
     lv_optionvalueindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "66";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "72";
     lv_optionvalueindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
     lv_optionindex += 1;
@@ -96,30 +85,39 @@ void lib2C4EDCE2_gf_EnableHandicap (int lp_handicapIndex) {
                 PlayerGroupAdd(lv_players, autoE9EC3EAB_var);
                 autoECCF8AEE_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[0].lv_selectedVals[autoE9EC3EAB_var];
                 if (autoECCF8AEE_val == "12") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only12WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 12;
                 }
                 else if (autoECCF8AEE_val == "16") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only16WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 16;
                 }
                 else if (autoECCF8AEE_val == "22") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only22WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 22;
                 }
                 else if (autoECCF8AEE_val == "30") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only30WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 30;
                 }
                 else if (autoECCF8AEE_val == "38") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only38WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 38;
                 }
                 else if (autoECCF8AEE_val == "44") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only44WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 44;
                 }
                 else if (autoECCF8AEE_val == "60") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only60WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 60;
                 }
                 else if (autoECCF8AEE_val == "66") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only66WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 66;
                 }
                 else if (autoECCF8AEE_val == "72") {
+                    TechTreeUpgradeAddLevel(autoE9EC3EAB_var, "UnfairSC2Only72WorkersAreAllowed", 1);
                     libDBC4E2D2_gv_pLAYERS[autoE9EC3EAB_var].lv_lIMITEDWORKERS.lv_workerslimit = 72;
                 }
                 else {
@@ -140,31 +138,10 @@ void lib2C4EDCE2_gf_EnableHandicap (int lp_handicapIndex) {
             }
             TextExpressionSetToken("Param/Expression/lib_2C4EDCE2_15942C24", "Players", lv_playersSettings);
             HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_2C4EDCE2_15942C24"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
-            TimerStart(lib2C4EDCE2_gv_checkWorkersCountTimer, 0.5, true, c_timeReal);
         }
-        else {
-            TriggerEnable(lib2C4EDCE2_gt_CheckWorkersCount, false);
-        }
-    }
-    else {
-        TriggerEnable(lib2C4EDCE2_gt_CheckWorkersCount, false);
-    }
-}
 
-void lib2C4EDCE2_gf_DisableWorkersForPlayer (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    TechTreeUnitAllow(lp_player, "SCV", false);
-    TechTreeUnitAllow(lp_player, "Drone", false);
-    TechTreeUnitAllow(lp_player, "Probe", false);
-}
+    }
 
-void lib2C4EDCE2_gf_EnableWorkersForPlayer (int lp_player) {
-    // Automatic Variable Declarations
-    // Implementation
-    TechTreeUnitAllow(lp_player, "SCV", true);
-    TechTreeUnitAllow(lp_player, "Drone", true);
-    TechTreeUnitAllow(lp_player, "Probe", true);
 }
 
 // Triggers
@@ -187,56 +164,8 @@ void lib2C4EDCE2_gt_SetupHandicap_Init () {
     lib2C4EDCE2_gt_SetupHandicap = TriggerCreate("lib2C4EDCE2_gt_SetupHandicap_Func");
 }
 
-//--------------------------------------------------------------------------------------------------
-// Trigger: Check Workers Count
-//--------------------------------------------------------------------------------------------------
-bool lib2C4EDCE2_gt_CheckWorkersCount_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_workersCount;
-
-    // Automatic Variable Declarations
-    playergroup auto1D56D17E_g;
-    int auto1D56D17E_var;
-    int auto9280B865_ae;
-    int auto9280B865_var;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    auto1D56D17E_g = PlayerGroupAll();
-    auto1D56D17E_var = -1;
-    while (true) {
-        auto1D56D17E_var = PlayerGroupNextPlayer(auto1D56D17E_g, auto1D56D17E_var);
-        if (auto1D56D17E_var < 0) { break; }
-        lv_workersCount = libDBC4E2D2_gf_GetBuiltWorkersCount(auto1D56D17E_var);
-        if ((lv_workersCount >= libDBC4E2D2_gv_pLAYERS[auto1D56D17E_var].lv_lIMITEDWORKERS.lv_workerslimit)) {
-            auto9280B865_ae = (lv_workersCount - 1);
-            auto9280B865_var = libDBC4E2D2_gv_pLAYERS[auto1D56D17E_var].lv_lIMITEDWORKERS.lv_workerslimit;
-            for ( ; auto9280B865_var <= auto9280B865_ae; auto9280B865_var += 1 ) {
-                UnitKill(libDBC4E2D2_gf_GetRandomBuiltWorker(auto1D56D17E_var));
-            }
-            lib2C4EDCE2_gf_DisableWorkersForPlayer(auto1D56D17E_var);
-        }
-        else {
-            lib2C4EDCE2_gf_EnableWorkersForPlayer(auto1D56D17E_var);
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void lib2C4EDCE2_gt_CheckWorkersCount_Init () {
-    lib2C4EDCE2_gt_CheckWorkersCount = TriggerCreate("lib2C4EDCE2_gt_CheckWorkersCount_Func");
-    TriggerAddEventTimer(lib2C4EDCE2_gt_CheckWorkersCount, lib2C4EDCE2_gv_checkWorkersCountTimer);
-}
-
 void lib2C4EDCE2_InitTriggers () {
     lib2C4EDCE2_gt_SetupHandicap_Init();
-    lib2C4EDCE2_gt_CheckWorkersCount_Init();
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -252,7 +181,6 @@ void lib2C4EDCE2_InitLib () {
     lib2C4EDCE2_InitLib_completed = true;
 
     lib2C4EDCE2_InitLibraries();
-    lib2C4EDCE2_InitVariables();
     lib2C4EDCE2_InitTriggers();
 }
 

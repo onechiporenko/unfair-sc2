@@ -1,353 +1,358 @@
 # Changelog
 
+## v3.5
+
+* [LIMITED WORKERS](./handicaps/limited-workers.md)
+    * [BUGFIX/REFACTORING] Workers count now is calculated using data-editor and not triggers.
+
 ## v3.4
 
 * [ALL UPGRADES](./handicaps/all-upgrades.md)
-    * [BUGFIX] Убрано улучшение "Микробная завеса".
+    * [BUGFIX] Upgrade "Evolve Microbial Shroud" is removed.
 
 * [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 ## v3.3
 
 * [WALKING DEAD](./handicaps/walking-dead.md)
-    * [BUGFIX] Веспеновые гейзеры больше не создаются после уничтожения зданий для добычи веспена ("зомби"-варианты этих зданий теперь тоже не создаются).
-    * [BUGFIX] Зомби создаются для игрока 15, а не 5. 
+    * [BUGFIX] New vespene geysers are not created after destroying structures to collect vespene.
+    * [BUGFIX] Zombies are created for player 15 and not 5. 
 
 ## v3.2
 
 * [ATTACK SPEED](./handicaps/attack-speed.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 * [HP AND SHIELDS](./handicaps/hp-and-shields.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 * [LIMITED WORKERS](./handicaps/limited-workers.md)
-    * [BUGFIX] Рабочие больше не уничтожаются у игроков, для которых этот гандикап выключен (баг с 3.0).
+    * [BUGFIX] Workers are no longer destroyed by players for whom this handicap is turned off (bug from 3.0).
 
 ## v3.1
 
 * [NO LIMITS](./handicaps/no-limits.md)
-    * [BUGFIX] Гандикап теперь корректно включается (баг с 3.0).
+    * [BUGFIX] Handicap now enabling correctly (bug from 3.0).
 
 ## v3.0
 
-* [FEATURE] Настройки гандикапов перенесены из опций лобби в саму игру. В лобби выбирается один игрок, для которого в начале игры будет выведено окно с доступными гандикапами.
+* [FEATURE] Handicap options are moved from lobby to ingame menu. Single player can be set in the lobby to work with handicaps setup after game starts.
 
-* [BUGFIX] Нексусам возвращена способность "Массовая телепортация".
+* [BUGFIX] Recall is back for Nexuses.
 
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Копия юнита, который "варпается", создается только по завершению варпа.
+    * [BUGFIX] Clone for warping uit is created only after warp is completed.
 
 * [EXTRA GAS](./handicaps/extra-gas.md)
-    * [BUGFIX] Визуальный эффект на занятых веспеновых гейзерах не видим через туман войны.
+    * [BUGFIX] Visual effect for vespene geysers is not visible throw the fog of war.
 
 * [EXTRA UPGRADES](./handicaps/extra-upgrades.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 * [GAME SPEED](./handicaps/game-speed.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 * [LAST WILL](./handicaps/last-will.md)
-    * [FEATURE] Добавленые опции 50%, 75% и 100% для шанса появления способности.
+    * [FEATURE] Added options 50%, 75% and 100% for the chance of the appearance of the ability.
 
 * [NO RUSH](./handicaps/no-rush.md)
-    * [FEATURE] Добавлены варианты 7 и 10 минут для ненападения.
+    * [FEATURE]  Options 7 and 10 minutes duration are added
 
 * [RANDOM UNITS](./handicaps/random-units.md)
-    * [BUGFIX] Мины создаются корректно.
+    * [BUGFIX] Widow mines now are created correctly.
 
 * [REDUCE MINING](./handicaps/reduce-mining.md)
-    * [BUGFIX] Визуальный эффект на юните с собранными ресурсами не появляется в случае его смерти.
+    * [BUGFIX] Visual effect is not shown on unit with resources if it die.
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [BUGFIX] "Души" не создаются от иллюзий.
+    * [BUGFIX] Don't create new units from killed illusions.
 
 * [TALANDAR](./handicaps/talandar.md)
-    * [BUGFIX] Взлет и приземление Космопорта и Завода не требуют ресурсов.
+    * [BUGFIX] Lift Off doesn't require any resources.
 
 * [WALL](./handicaps/wall.md)
-    * [FEATURE] Добавлены варианты 7 и 10 минут для стены.
+    * [FEATURE] Options 7m and 10m are added for wall life time.
 
 ## v2.41
 
 * [BUGFIX] [#74 Невозможно создать игру формата больше 1х1](https://github.com/onechiporenko/unfair-sc2/issues/74)
 
 * [APM KING](./handicaps/apm-king.md)
-    * [REMOVED] Гандикап удален.
+    * [NEW] Handicap is removed.
 
 * [DARKNESS](./handicaps/darkness.md)
-    * [FEATURE] Добавлен визуальный эффект для единиц под воздействием Darkness.
+    * [FEATURE] Visual effect is added to units with Darkness effect.
     
 * [FIGHT CLUB](./handicaps/fight-club.md)
-    * [FEATURE] Добавлена новая опция для игрока, указывающая, что драться должны любые юниты кроме рабочих
-    * [FEATURE] Добавлен визуальный эффект для юнитов, вступающих в бой
-    * [FEATURE] Больше не учитываются саранчиды, симбионты, перехватчики и личинки
-    * [BUGFIX] Кол-во юнитов, вступающих в бой, теперь соответствует проценту, выбранному в опциях лобби (было x2 от значения опции)
+    * [FEATURE] New option is added. Now it's possible to set fighting units "All but not workers"
+    * [FEATURE] Visual effect is added for fighting units
+    * [FEATURE] Units that doesn't use or provide supply now are excluded
+    * [BUGFIX] Amount of fighting units now is equal to selected option (it was x2).
     
 * [MACRO DEF](./handicaps/macro-def.md)
-    * [BUGFIX] Исправлено описание способности во всплывающей подсказке.
-    * [FEATURE] Добавлена горячая клавиша "D".
-    * [FEATURE] Теперь Marco Def работает как "smart cast".
+    * [BUGFIX] Ingame hint is fixed
+    * [FEATURE] Hotkey "D" is added.
+    * [FEATURE] "Macro Def" now works as "smart cast".
     
 * [NUKED](./handicaps/nuked.md)
-    * [FEATURE] Суммарное время одного ядерного удара увеличено на 3.5 секунды.
+    * [FEATURE] Nuke overall time is increased on 3.5 seconds.
     
 * [RIOT WORKERS](./handicaps/riot-workers.md)
-    * [FEATURE] Изменен визуальный эффект для бунтующих рабочих
+    * [FEATURE] Visual effect is changed for riot workers.
     
 * [VAMPIRISM](./handicaps/vampirism.md)
-    * [REFACTORING] Анимация восстановления теперь создается через эффект.
+    * [REFACTORING] Animation now is created using effect and not trigger
 
 ## v2.40
 
 * [RANDOM UNITS](./handicaps/random-units.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 ## v2.39
 
 * [RANDOM RALLY POINTS](./handicaps/random-rally-points.md)
-    * [BUGFIX] Гандикап не срабатывает для первого игрока, когда он выключен.
+    * [BUGFIX] Handicap won't be activated for 1st player when it's disabled.
 
 ## v2.38
 
-* [FEATURE] Опции лобби отсортированы в алфавитном порядке имен гандикапов.
+* [FEATURE] Lobby options are sorted alphabetically.
 
 * [BLOCKED RAMPS](./handicaps/blocked-ramps.md)
-    * [BUGFIX] Добавлено описание опции лобби.
+    * [BUGFIX] Description for lobby options is added.
 
 * [CONTAMINATION](./handicaps/contamination.md)
-    * [FEATURE] Добавлена опция лобби, указывающая на максимальное количество "инфицированных" зданий для каждого игрока.
-    * [BUGFIX] Contaminate теперь применяется сразу ко всем выбранным зданиям, а не по очереди.
+    * [FEATURE] Option to set maximum contaminated structured in the same time is added.
+    * [BUGFIX] "Contaminate" is used now for all selected structures and not 1 by 1.
 
 * [DECIMATIO](./handicaps/decimatio.md)
-    * [FEATURE] Добавлен визуальный эффект для юнитов, подлежащих децимации.
-    * [FEATURE] Перехватчики, саранчиды и симбионты больше не учитываются при децимации.
+    * [FEATURE] Added visual effect for units to be decimated.
+    * [FEATURE] Decimatio doesn't work for structures, larvas, interceptors, units that not use and not provide supply, Overlords and Overseers.
 
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Притягивание Стрекозы не создает копию притянутого юнита.
-    * [BUGFIX] Больше не создаются дубли гиблингов и архонтов.
-    * [BUGFIX] Сообщение о стоимости полученных из-за гандикапа юнитов снова корректно выводится в левом верхнем углу.
+    * [BUGFIX] Viper's Abduct doesn't create copy of the pulled unit.
+    * [BUGFIX] No more copies for Banelings and Archons.
+    * [BUGFIX] Message about amount of resources for copies units now is shown again.
 
 * [GOLD RUSH](./handicaps/gold-rush.md)
-    * [FEATURE] Добавлен визуальный эффект для замены простых минеральных друз и веспеновых гейзеров на богатые.
+    * [FEATURE] Visual effect is added for replaced Mineral Fields and Vespene Geysers.
 
 * [MOTHER CORE](./handicaps/mother-core.md)
-    * [FEATURE] Добавлен визуальный эффект при создании Ядра Материнского Корабля.
+    * [FEATURE] Visual effect is added for Mothership Core spawn.
 
 * [PURE MINERALS](./handicaps/pure-minerals.md)
-    * [FEATURE] Добавлен визуальный эффект для "бедных" минеральных друз.
+    * [FEATURE] Visual effect is added.
 
 * [REDUCE MINING](./handicaps/reduce-mining.md)
-    * [FEATURE] Добавлен визуальный эффект, когда рабочий доставляет ресурсы.
+    * [FEATURE] Visual effect is added.
 
 * [RIOT WORKERS](./handicaps/riot-workers.md)
-    * [FEATURE] Добавлен визуальный эффект для "бунтующих" рабочих.
+    * [FEATURE] Visual effect is added for riot workers.
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [FEATURE] Добавлен визуальный эффект при создании "души" юнита.
+    * [FEATURE] Visual effect is added.
 
 * [VAMPIRISM](./handicaps/vampirism.md)
-    * [FEATURE] Теперь востанавливает и щиты.
+    * [FEATURE] Vampirism now restore shields.
 
 * [WALKING DEAD](./handicaps/walking-dead.md)
-    * [BUGFIX] Зомби не создаются после Притягивания Стрекоз.
-    * [FEATURE] Добавлен визуальный эффект при создании зомби.
+    * [BUGFIX] Zombies are not created after Viper's abduct.
+    * [FEATURE] Visual effect for zombies is added.
 
 ## v2.37
 
 * [CRITICAL STRIKE](./handicaps/critical-strike.md)
-    * [FEATURE] Добавлен визуальный эффект для цели критического удара.
+    * [FEATURE] Visual effect is added for critical strikes.
 
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Больше не создается дубль Сферы Очищения.
+    * [BUGFIX] No more copies of Purification Nova.
 
 * [IMMORTALS](./handicaps/immortals.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 * [NO SUPPLY](./handicaps/no-supply.md)
-    * [BUGFIX]  Владыки теперь снова не дают лимита.
+    * [BUGFIX]  Overseers don't produce supply.
 
 * [RANDOM RALLY POINTS](./handicaps/random-rally-points.md)
-    * [NEW] Гандикап добавлен.
+    * [NEW] Handicap is added.
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [BUGFIX] В чате игры больше не выводится отладочное сообщение.
+    * [BUGFIX] Debug-message is not shown in the chat.
 
 * [WALKING DEAD](./handicaps/walking-dead.md)
-    * [BUGFIX] Зомби не создаются от теней адептов и сфер очищения.
+    * [BUGFIX] Don't create zombies from purification nova
 
 ## v2.36
 
 * [ALIENS](./handicaps/aliens.md)
-    * [BUGFIX] Брудлинги не создаются от других брудлингов, саранчидов и прочих юнитов, которые не занимают или не дают лимита.
+    * [BUGFIX] Broodlings are not spawn after killing unit that doesn't use or provide supply.
 
 * [ALL RACES](./handicaps/all-races.md)
-    * [FEATURE] Добавлена опции игрока, указывающая, надо ли создать для него в начале игры главные здания других рас
+    * [FEATURE] Option to give main structures for all races is added
 
 * [ALL UPGRADES](./handicaps/all-upgrades.md)
-    * [BUGFIX] Добавлены улучшения "Сейсмические шипы", "Микробная завеса" и "Поточные турбины"
+    * [BUGFIX] Upgrades "Seismic Spines", "Evolve Microbial Shroud" and "Rapid Reignition System" are added.
 
 * [BLOCKED RAMPS](./handicaps/blocked-ramps.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [MACRO DEF](./handicaps/macro-def.md)
-    * [REGRESSION] Macro Def сохраняется при "мутации" главных зданий терранов и зергов.
+    * [REGRESSION] "Macro Def" state is saved on zerg structures morph and terran CC's upgrades.
 
 ## v2.35
 
 * [ALIENS](./handicaps/aliens.md)
-    * [BUGFIX] Кол-во создаваемых брудлингов для опций "1" - "10" соответствует выбранному значению для игрока потерявшего юнита, а не убившего его.
+    * [BUGFIX] Number of Broodlings for options "1" - "10" now is equal to value for player who lost the unit and not who killed it.
     
 * [MOTHER CORE](./handicaps/mother-core.md)
-    * [REGRESSION] Первый Mother Core появляется через 150 секунд от начала игры, а не 12.
+    * [REGRESSION] First Mothership Core is spawn after 150 seconds and not 12.
     
 ## v2.34
 
 * [FAIR MACRO](./handicaps/fair-macro.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [FAIR PLAY](./handicaps/fair-play.md)
-    * [REFACTORING] Теперь аура Fair Cannon вообще не дает атаковать, а не просто обнуляет урон.
+    * [REFACTORING] Now aura "Fair Cannon" disallow attack and not reduce damage to 0.
 
 * [MACRO DEF](./handicaps/macro-def.md)
-    * [FEATURE] Macro Def теперь не "однозарядная". Ее время востановления - 20+ минут. Оно индивидуально для каждого главного здания.
-    * [FEATURE] Macro Def сохраняется при преобразовании Командного Центра в Станцию Наблюдения или Планетарную Крепость.
+    * [FEATURE] "Macro Def" now is not a "single-shot" ability. Its cooldown is 20+ minutes. Cooldown is own for each structure.
+    * [FEATURE] "Macro Def" state is saved on zerg structures morph and terran CC's upgrades.
     * [FEATURE] Macro Def сохраняется при мутации Инкубатора в Логово и Логова в Улей.
-    * [FEATURE] Ползучие споровики, Ползучие плеточники и Мины можно перекапывать сразу после их появления.
-    * [FEATURE] Радарная вышка теперь появляется рядом с главным зданием, а не "внутри" него.
+    * [FEATURE] Given Spine Crawlers, Spore Crawlers and Widow Mines can be "unborrowed" right after they are placed.
+    * [FEATURE] Sensor Tower now is placed near the CC and not inside it.
 
 * [NO RUSH](./handicaps/no-rush.md)
-    * [REFACTORING] Запрет на постройку теперь сделан через эффект, а не триггер.
-    * [REFACTORING] Теперь аура No Attack вообще не дает атаковать, а не просто обнуляет урон.
+    * [REFACTORING] Now effect is used to block enemies buildings.
+    * [REFACTORING] "No attack" aura now blocks attacks and not set damage 0.
 
 * [TECH TREE RESTRICTIONS](./handicaps/tech-tree-restrictions.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v2.33
 
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Тактический Скачок Крейсера больше не создает второй Крейсер
+    * [BUGFIX] Tactical Jump doesn't create copy of Battlecruiser
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [BUGFIX] Отбрасывание взрывчаткой KD8 (головорез) не создает "душу"
+    * [BUGFIX] Repear's KD8 doesn't create a new unit
 
 ## v2.32
 
 * [ALL UPGRADES](./handicaps/all-upgrades.md)
-    * [BUGFIX] Добавлены улучшения "Ускоритель магнитного поля" и "Усиленные волны"
+    * [BUGFIX] Upgrades "Mag-Field Accelerator" and "Enhanced Shockwaves" are added.
 
 * [DARKNESS](./handicaps/darkness.md)
-    * [BUGFIX] Урезанный обзор юнитов теперь применяется согласно выбранных опций игры, а не для всех игроков.
+    * [BUGFIX] Reduced vision range is applied only for selected players and not for all.
 
 ## v2.31
 
 * [GRAPPLE](./handicaps/grapple.md)
-    * [BUGFIX] Кнопка способности Grapple снова видима у бейлингов.
+    * [BUGFIX] Grapple-button is visible again.
 
 ## v2.30
 
 * [APM KING](./handicaps/apm-king.md)
-    * [FEATURE] Добавлена опция Max APM, которая указывает на максимально допустимый APM игрока. Если APM игрока окажется выше, то его выбранным юнитам также будет нанесен урон.
+    * [FEATURE] Max APM option is added.
 
 * [FAIR PLAY](./handicaps/fair-play.md)    
-    * [BUGFIX] Теперь аура "Fair Cannons (Aura)" дается всем Нексусам после завершения их постройки.
+    * [BUGFIX] Now all Nexuses have aura "Fair Cannons"
 
 ## v2.29
 
 * [AIR GROUND WEAPON](./handicaps/air-ground-weapon.md)
-    * [BUGFIX] Колоссы теперь наносят урон по воздушным юнитам (ранее была только анимация атаки, но без урона)
+    * [BUGFIX] Colossuses now hits air units too (previously there was only an animation of attack without any damage)
 
 * [APM KING](./handicaps/apm-king.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [BLINK WARS](./handicaps/blink-wars.md)
-    * [BUGFIX] У Владык теперь есть Скачок
+    * [BUGFIX] Overseers now also have Blink.
 
 * [CHARGE WARS](./handicaps/charge-wars.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [FAIR PLAY](./handicaps/fair-play.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [FIGHT CLUB](./handicaps/fight-club.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [INSTANT PRODUCTION](./handicaps/instant-production.md)
-    * [BUGFIX] Мутация строений зергов, постройка пристроек для зданий терранов и превращение Командного Центра в Орбитальную Станцию или Планетарную Крепость теперь тоже происходят за пару секунд.
+    * [BUGFIX] Now morphing of zerg structures, terran CC's upgrades and addon building take a few seconds.
 
 * [QUEEN](./handicaps/queen.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [RIOT WORKERS](./handicaps/riot-workers.md)
-    * [BUGFIX] Riot Workers 100% теперь выводит бунтовать 100% рабочих, а не 25%
-    * [FEATURE] Теперь бунтующие КСМ останавливают строительство (здание можно продолжить строить любым рабочим как обычно)
+    * [BUGFIX] Fixed amount of riot workers when option 100% is selected
+    * [FEATURE] Riot SCV now stop construction.
 
 ## v2.28
 
 * [AIR GROUND WEAPON](./handicaps/air-ground-weapon.md)
-    * [FEATURE] Все, кроме Дестабилизаторов, наносят урон по земле и воздуху
+    * [FEATURE] All except Disruptors can attack air and ground units
     
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Не создает копию тени адепта
+    * [BUGFIX] Adept's Shade doesn't create second Adept
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [BUGFIX] Тень адепта при исчезновении не создает "душу"
-    * [BUGFIX] "Души" не появляются, если игрок добил своего юнита
+    * [BUGFIX] Adept's phase shift doesn't create a new unit
+    * [BUGFIX] Friendly fire doesn't create a new unit
 
 * [WALKING DEAD](./handicaps/walking-dead.md)
-    * [BUGFIX] Не создавать зомби от тени адепта
-    * [FEATURE] Добавлена опция лобби, указывающая надо ли создавать зомби из уничтоженных зданий
+    * [BUGFIX] Don't create zombies from phase shift
+    * [FEATURE] It's possible to set spawn of zombie-structures
 
 ## v2.27
 
 * [ALL RACES](./handicaps/all-races.md)
-    * [BUGFIX] Исправлена ошибка из-за которой в начале игры уничтожались все рабочие
+    * [BUGFIX] Now workers are not killed when the game begin
 
 * [ALL UPGRADES](./handicaps/all-upgrades.md)
-    * [BUGFIX] У терранов убрано улучшение из кампании. Теперь вместимость Командных Центров 10, а не 15.
+    * [BUGFIX] Upgrade from campaign is removed. Now CCs have 10 slots and not 15.
 
 * [EXTRA GAS](./handicaps/extra-gas.md)
-    * [BUGFIX] Теперь корректно работает и с богатыми гейзерами
+    * [BUGFIX] Now works with rich geysers.
 
 * [FREE WORKERS](./handicaps/free-workers.md)
-    * [BUGFIX] Исправлена игровая подсказка.
+    * [BUGFIX] Ingame hint is fixed.
 
 * [INSTANT PRODUCTION](./handicaps/instant-production.md)
-    * [BUGFIX] Игровая подсказка выводится только один раз.
+    * [BUGFIX] Now ingame hint is shown only once.
 
 * [NO ARMY CONTROL](./handicaps/no-army-control.md)
-    * [BUGFIX] Исправлена игровая подсказка.
+    * [BUGFIX] Ingame hint is fixed.
 
 * [TALANDAR](./handicaps/talandar.md)
-    * [BUGFIX] В лобби игры теперь отображается краткое описание данного гандикапа.
+    * [BUGFIX] Short description is added.
 
 ## v2.26
 
 * [MOTHER CORE](./handicaps/mother-core.md)
-    * [FEATURE]	Пинг на миникарте, когда появляется новое Ядро Материнского Корабля.
-    * [FEATURE]	Теперь после уничтожения Ядра Материнского Корабля выводится таймер с отсчетом до момента, когда игроку будет данновый МамаКор.
+    * [FEATURE]	Now ping on minimap is shown when Mothership Core is spawn.
+    * [FEATURE]	Timer with countdown is shown for player when his Mothership Core is lost.
 
 * [WALKING DEAD](./handicaps/walking-dead.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v2.23
 
 * [INSTANT PRODUCTION](./handicaps/instant-production.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
     
 * [TALANDAR](./handicaps/talandar.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v2.22
 
 * [ALL RACES](./handicaps/all-races.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v2.21
 
 * [NO ARMY CONTROL](./handicaps/no-army-control.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v2.20
 
@@ -356,260 +361,258 @@
 ## v2.19
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [BUGFIX] "Catched Soul" теперь называется "Caught Soul". 
+    * [BUGFIX] "Catched Soul" now is called "Caught Soul". 
 
 ## v2.18
 
 * [AIR GROUND WEAPON](./handicaps/air-ground-weapon.md)
-    * [BUGFIX] Высшие Тамплиеры теперь тоже атакуют по воздуху.
+    * [BUGFIX] High Templars now also can attack air units.
 
 ## v2.17
 
 * [AIR GROUND WEAPON](./handicaps/air-ground-weapon.md)
-    * [BUGFIX] Выключено по умолчанию.
+    * [BUGFIX] Handicap is turned of by default.
 
 ## v2.16
 
 * [AIR GROUND WEAPON](./handicaps/air-ground-weapon.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v2.14
 
 * [ALL UPGRADES](./handicaps/all-upgrades.md)
-    * [FEATURE] Улучшение "Anabolic Synthesis" ("Анаболитический Синтез") теперь тоже дается сразу.
+    * [FEATURE] Upgrade "Anabolic Synthesis" is added.
 
 ## v2.11
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-     * [BUGFIX] Тактический Скачок Крейсера больше не создает еще один Крейсер
+     * [BUGFIX] Tactical Jump won't create a new Battlecruiser
 
 ## v2.9
 
 * [BOUNTY](./handicaps/bounty.md)
-    * [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей 
+    * [BUGFIX] Table will all player now is shown for all spectators. 
 
 * [DECIMATIO](./handicaps/decimatio.md)
-    * [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей
+    * [BUGFIX] Table will all player now is shown for all spectators.
 
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей
+    * [BUGFIX] Table will all player now is shown for all spectators.
 
 * [MINES](./handicaps/mines.md)
-    * [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей
+    * [BUGFIX] Table will all player now is shown for all spectators.
 
 * [ORDER COSTS](./handicaps/order-costs.md)
-    * [BUGFIX] Общая таблица теперь снова корректно отображается для зрителей
+    * [BUGFIX] Table will all player now is shown for all spectators.
 
 ## v2.6
 
 * [DECIMATIO](./handicaps/decimatio.md)
-    * [BUGFIX]	Первая децимация снова на 3:30
+    * [BUGFIX] First Decimatio now again at 3:30
 
 ## v2.4
 
 * [CRITICAL MISS](./handicaps/critical-miss.md)
-    * [FEATURE]	Критический промах теперь наносит урон атакующему (иногда не срабатывает). Урон "по себе" - это показатель атаки первого оружия без учета бонусов или штрафов. Например, для Безсмертного - это 20, а для Урагана - 30.
+    * [FEATURE]	Critical miss also hit attacker (sometimes not)
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [FEATURE]	Полученные юниты теперь размером 85% от оригинального юнита.
+    * [FEATURE]	New units now are 85% of their original size.
 
 ## v2.3
 
 * [BERSERKER'S BLOOD](./handicaps/berserkers-blood.md)
-    * [REFACTORING]	Вместо триггеров для добавления алгоритмов теперь используются валидаторы.
-    * [FEATURE]	Обновлено описание для всплывающей подсказки Berserker's Blood.
+    * [REFACTORING]	Validators are used instead of triggers to add behavior to units.
+    * [FEATURE]	Description is updated.
 
 * [CHAT](./handicaps/chat.md)
-    * [BUGFIX]	Больше не выводится сообщение об отмене морфа архонов.
+    * [BUGFIX] No more messages about cancel Archons morphing.
     
 * [CRITICAL STRIKE](./handicaps/critical-strike.md)
-    * [FEATURE]	Каждому игроку отдельно можно задать размер и вероятность критического урона.
-    * [REFACTORING]	Вместо пяти алгоритмов теперь используется один.
+    * [FEATURE]	Now it's possible to set chance and damage multiplayer for each player separately.
+    * [REFACTORING]	Now only 1 behavior is used and not 5.
 
 * [DARKNESS](./handicaps/darkness.md)
-    * [FEATURE]	Обновлено описание для всплывающей подсказки эффекта Darkness.
+    * [FEATURE]	Description for Darkness effect is updated.
 
 * [MOVE SPEED](./handicaps/move-speed.md)
-    * [FEATURE]	Обновлено описание для всплывающей подсказки.
+    * [FEATURE]	Ingame hint is updated.
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [FEATURE]	Добавлено нормальное описание для всплывающей подсказки Catched Soul.
+    * [FEATURE]	New description is added to the ingame hint.
 
 ## v2.2
 
 * [CHAT](./handicaps/chat.md)
-    * [BUGFIX] Варп юнитов больше не выводится как сообщение о постройке.
-    * [BUGFIX] Сообщения об улучшениях теперь не выводятся, если Chat не включен.
+    * [BUGFIX] No more messages about warping units.
+    * [BUGFIX] Messages are not posted if handicap Chat is disabled.
 
 ## v2.1
 
 * [RIOT WORKERS](./handicaps/riot-workers.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v2.0
 
 * [ALIENS](./handicaps/aliens.md)
-    * [BUGFIX] Исправлена ошибка генерации брудлингов. Кол-во создаваемых брудлингов бралось не у нужного игрока.
-    * [BUGFIX] Теперь брудлинги создаются и от Надзирателей и Владык.
-    * [FEATURE] Можно указать, чтоб кол-во создаваемых брудлингов зависело от занимаемого лимита убитого юнита (но не меньше 1).
-    * [FEATURE] Созданные брудлинги по умолчанию атакуют ту точку, откуда был нанесен смертельный урон.
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [BUGFIX] Number of created Broodlings now is taken from correct player.
+    * [BUGFIX] Now killed Overseers and Overlords also spawn Broodlings.
+    * [FEATURE] Now it's possible to set amount of created Broodlings equal to unit's supply limit (but not less than 1).
+    * [FEATURE] Created Broodlings attack a point where unit-killer is.
+    * [REFACTORING] Lobby options refactoring.
 
 * [BOUNTY](./handicaps/bounty.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [CHAT](./handicaps/chat.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [CRITICAL STRIKE](./handicaps/critical-strike.md)
-    * [REFACTORING] Уменьшено кол-во события для добавления алгоритма Critical Strike.
+    * [REFACTORING] Number of events is reduced.
     
 * [DARKNESS](./handicaps/darkness.md)
-    * [REFACTORING] Уменьшено кол-во событий для добавления ограничения обзора юнитам.
+    * [REFACTORING] Number of event is reduced.
 
 * [DECIMATIO](./handicaps/decimatio.md)
-    * [FEATURE] Добавлены опции 35, 40, 45, 50, 55 и 60 для времени задержки между децимациями.
-    * [BUGFIX] Исправлена ошибка из-за которой Децимация срабатывала два раза.
-    * [FEATURE] Выводит игроку общее кол-во потерянных на децимации ресурсов.
-    * [FEATURE] Зрителям выводится таблица потерянных ресурсов.
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [FEATURE] Delay between Decimatio waves now can be set to 35, 40, 45, 50, 55 or 60 seconds.
+    * [BUGFIX] Decimatio now triggers only once every wave point and not twice.
+    * [FEATURE] Every player have a small block of text at the top left corner with amount of lost resources.
+    * [FEATURE] Table will all player now is shown for all spectators.
+    * [REFACTORING] Lobby options refactoring.
 
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Исправлена ошибка из-за которой не создавался второй Надзиратель.
-    * [FEATURE] Созданный юнит получает такой же приказ, как и оригинальный.
-    * [FEATURE] Игрок видит кол-во ресурсов, которые бы он потратил на юнитов, полученных "за просто так".
-    * [FEATURE] Зрителям выводится таблица "не потраченных" ресурсов.
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [BUGFIX] Copy of Overlords now are created too.
+    * [FEATURE] Unit's copy now has same order as original one.
+    * [FEATURE] Every player see amount of "saved" resources at the top left corner.
+    * [FEATURE] Tablew with resources for all players is shown for spectators.
+    * [REFACTORING] Lobby options refactoring.
 
 * [ENERGY](./handicaps/energy.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [FREE WORKERS](./handicaps/free-workers.md)
-    * [FEATURE] Кол-во рабочих теперь выводится в левом верхнем углу.
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [FEATURE] Number of workers is shown at the top left corner.
+    * [REFACTORING] Lobby options refactoring.
 
 * [LAST WILL](./handicaps/last-will.md)
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [REFACTORING] Lobby options refactoring.
 
 * [LIMITED WORKERS](./handicaps/limited-workers.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [MINES](./handicaps/mines.md)
-    * [FEATURE] Для каждого игрока можно задать свой радиус без мин (50 по умолчанию).
-    * [FEATURE] Добавлено две новых опции, с помощью которых можно указать частоту и кол-во новых мин, создаваемых на карте после 6:00.
-    * [FEATURE] Выводит игроку общее кол-во ресурсов, потерянных на минах.
-    * [FEATURE] Выводит зрителям таблицу с потерями на минах всех игроков.
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [FEATURE] Now it's possible to set safe-zone radius for each player (50 by default).
+    * [FEATURE] Now it's possible to set spawn of extra Mines after 6:00.
+    * [FEATURE] Show information about lost resources for players and spectators.
+    * [REFACTORING] Lobby options refactoring.
 
 * [MOVE SPEED](./handicaps/move-speed.md)
-    * [REFACTORING] Вместо пяти эффектов теперь один. 
+    * [REFACTORING] Only single effect is used instead of five.
 
 * [NO FLY](./handicaps/no-fly.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [NO SUPPLY](./handicaps/no-supply.md)
-    * [REFACTORING] Теперь работает через Data-editor, а не через триггеры.
+    * [REFACTORING] Refactored to work with data-editor and not triggers.
 
 * [NUKED](./handicaps/nuked.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [ORDER COSTS](./handicaps/order-costs.md)
-    * [FEATURE] Добавлена опция "Charity". Ресурсы, забранные у игрока за приказы, будут отданы другому игроку (выбирается случайным образом, если игроков больше 2). Может дать ресурсы другому игроку, у которого тоже включен Order Costs.
-    * [FEATURE] Выводит игроку общее кол-во ресурсов, потерянных на отдаче приказов.
-    * [FEATURE] Зрителям выводится таблица с потерями ресурсов всеми игроками на отдаче приказов.
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [FEATURE] Option "Charity" is added.
+    * [FEATURE] Amount of spent on orders resources is shown for players and spectators.
+    * [REFACTORING] Lobby options refactoring.
 
 * [SOULS CATCHER](./handicaps/souls-catcher.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [TEMPORAL FIELDS](./handicaps/temporal-fields.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [VAMPIRISM](./handicaps/vampirism.md)
-    * [REFACTORING] Обработка и хранение опций лобби.
+    * [REFACTORING] Lobby options refactoring.
 
 * [WALL](./handicaps/wall.md)
-    * [BUGFIX] Исправлено оружие Планетарных Крепостей в стене. Теперь они стреляют с максимально доступного расстояния.
+    * [BUGFIX] Wall now attacks from max allowed range.
 
 * [ZOMBIES](./handicaps/zombies.md)
-    * [FEATURE] Добавлена опция, указывающая на каких волнах у зомби появляются улучшения (варианты - 7/14/21, 8/16/24, 9/18/27, 10/20/30).
+    * [FEATURE] Option to select "upgade" waves is added.
 
 * [ZOOM](./handicaps/zoom.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 ## v1.37
 
 * [DOUBLE](./handicaps/double.md)
-    * [BUGFIX] Часовые больше не создают реально юнита вместе с иллюзией.
+    * [BUGFIX] Sentries won't create a real unit together with illusion.
 
 ## v1.35
 
 * [CONTAMINATION](./handicaps/contamination.md)
-    * [BUGFIX] Не работает на Стазисные ловушки и туррели Воронов.
+    * [BUGFIX] Stasis Ward and Auto-Turret now can't be "contaminated".
     
 * [DECIMATIO](./handicaps/decimatio.md)
-    * [FEATURE] Не считает личинки, обычных Надзирателей и Владык. Но все равно считает транспортных надзирателей.
+    * [FEATURE] Ignores larvas, Overlords and Overseers. However counts Transport Overlords.
 
 * [FREE WORKERS](./handicaps/free-workers.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [MINES](./handicaps/mines.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [ORDER COSTS](./handicaps/order-costs.md)
     * [BUGFIX] Исправлен подсчет потерянных на приказах ресурсов.
 
 * [ZOMBIES](./handicaps/zombies.md)
-    * [BUGFIX] Зомби не появляются на Стазисных ловушках и туррелях Воронов.
+    * [BUGFIX] Zombies won't spawn on Stasis Wards and Auto-Turrets.
 
 ## v1.34
 
 * [CAMERA](./handicaps/camera.md)
-    * [BUGFIX] Убрано "затухание" экрана перед поворотом камеры. Ранее экран "затухал" у всех игроков (даже у тех, для кого гандикап Camera не включен).
+    * [BUGFIX] Screen turning off before camera rotation is removed.
 
 ## v1.33
 
 * [WALL](./handicaps/wall.md)
-    * [BUGFIX] Диагональные стенки теперь создаются соответственно значению опции лобби "Wall Direction".
+    * [BUGFIX] Fixed wall direction when some diagonal option is selected.
     
 * [ZOMBIES](./handicaps/zombies.md)
-    * [BUGFIX] Опция лобби "Zombies Start Delay" теперь скрыта пока не выбрана опция "Use Zombies".
+    * [BUGFIX] Option "Zombies Start Delay" is hidden until "Use Zombies" is not selected.
 
 ## v1.32
 
 * [CAMERA](./handicaps/camera.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [CRITICAL STRIKE](./handicaps/critical-strike.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [DECIMATIO](./handicaps/decimatio.md)
-    * [FEATURE] Для умирающих юнитов добавлен визуальный эффект.
-    * [FEATURE] Для каждой волны Децимации выводится таймер с обратным отсчетом.
+    * [FEATURE] Visual effect is added to killed units.
+    * [FEATURE] Countdown timer is show for each Decimatio wave.
 
 * [NO LIMITS](./handicaps/no-limits.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
     
 * [ZOMBIES](./handicaps/zombies.md)
-    * [FEATURE] Добавлена опция лобби "Zombies Start Delay".
-    * [FEATURE] Добавлена опция лобби "Zombies Waves Delay".
-    * [FEATURE] Вместо голосового оповещения "3..2..1" выводится шкала обратного отсчета (по аналогии с миссией кооперативного режима Cradle of Death).
+    * [FEATURE] Option "Zombies Start Delay" is added.
+    * [FEATURE] Option "Zombies Waves Delay" is added.
+    * [FEATURE] Voice-countdown "3..2..1" is replaced with visual countdown bar (similar to one shown in the co-op mission Cradle of Death).
 
 ## v1.31
 
 * [DECIMATIO](./handicaps/decimatio.md)
-    * [NEW] Гандикап добавлен
+    * [NEW] Handicap is added
 
 * [GOLD RUSH](./handicaps/gold-rush.md)
-    * [FEATURE] Теперь вместо обычных веспеновых гейзеров создает богатые.
-    * [BUGFIX] Теперь корректно обрабатывает все типы минеральных кристаллов.
+    * [FEATURE] Vespene Geysers now are replaced with Rich Vespene Geysers.
+    * [BUGFIX] Now all types of mineral fields are replaced correctly.
 
 * [NO RUSH](./handicaps/no-rush.md)
-    * [FEATURE] В зоне "безопасности" других игроков запрещено строить здания.
+    * [FEATURE] No enemy buildings are allowed in the safe-zone.
 
 * [PURE MINERALS](./handicaps/pure-minerals.md)
-    * [BUGFIX] Теперь корректно обрабатывает все типы минеральных кристаллов.
+    * [BUGFIX] Now all types of mineral fields are replaced correctly.
 
 * [WALL](./handicaps/wall.md)
-    * [FEATURE] Стена видима для всех игроков.
-    * [FEATURE] Стена может быть крестовой ("+" или "х").
+    * [FEATURE] Wall is visible for all players.
+    * [FEATURE] Wall can be cross ("+" or "x").

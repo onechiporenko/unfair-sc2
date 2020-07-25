@@ -1,15 +1,14 @@
 # STUN
 
-Дает шанс на оглушение цели на ~1 секунду при атаке. Величина шанса задается в лобби и может быть 5%, 10%, 15%, 20% или 25%.
+There is a chance to stun unit for ~1 second attacking him. Chance can be 5%, 10%, 15%, 20% or 25%.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v1.31**
 
-* [FEATURE] Шанс задается в лобби. Варианты - 5%, 10%, 15%, 20% или 25%.
-* [BUGFIX] Исправлена ошибка, из-за которой оглушение не срабатывало вообще.
-* [FEATURE] Над оглушенным юнитом теперь создается соответствующий эффект.
+* [FEATURE] Chance now can be customized. Possible values are 5%, 10%, 15%, 20% and 25%..
+* [FEATURE] Visual effect is added to the stunned unit.

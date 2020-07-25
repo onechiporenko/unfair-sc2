@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
+    <CRequirementConst id="22">
+        <Value value="22"/>
+    </CRequirementConst>
+    <CRequirementConst id="30">
+        <Value value="30"/>
+    </CRequirementConst>
+    <CRequirementConst id="38">
+        <Value value="38"/>
+    </CRequirementConst>
+    <CRequirementConst id="44">
+        <Value value="44"/>
+    </CRequirementConst>
+    <CRequirementConst id="60">
+        <Value value="60"/>
+    </CRequirementConst>
+    <CRequirementConst id="66">
+        <Value value="66"/>
+    </CRequirementConst>
+    <CRequirementConst id="72">
+        <Value value="72"/>
+    </CRequirementConst>
     <CRequirementAnd id="And"/>
     <CRequirementAnd id="AndEq1067782088CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly1">
         <OperandArray value="Eq1067782088CountUpgradeUnfairSC2TerranShipWeaponsLevel4CompleteOnly1"/>
@@ -200,9 +221,28 @@
         <OperandArray value="EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0"/>
     </CRequirementAnd>
     <CRequirementAnd id="AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray value="EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1"/>
     </CRequirementAnd>
+    <CRequirementCountUnit id="CountUnitDroneBurrowedQueuedOrBetter">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="DroneBurrowed" State="QueuedOrBetter"/>
+    </CRequirementCountUnit>
+    <CRequirementCountUnit id="CountUnitDroneQueuedOrBetter">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="Drone" State="QueuedOrBetter"/>
+    </CRequirementCountUnit>
+    <CRequirementCountUnit id="CountUnitMULEQueuedOrBetter">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="MULE" State="QueuedOrBetter"/>
+    </CRequirementCountUnit>
+    <CRequirementCountUnit id="CountUnitProbeQueuedOrBetter">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="Probe" State="QueuedOrBetter"/>
+    </CRequirementCountUnit>
+    <CRequirementCountUnit id="CountUnitSCVQueuedOrBetter">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="SCV" State="QueuedOrBetter"/>
+    </CRequirementCountUnit>
     <CRequirementCountUpgrade id="CountUpgradeProtossAirArmorsLevel3CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="ProtossAirArmorsLevel3" State="CompleteOnly"/>
@@ -242,6 +282,42 @@
     <CRequirementCountUpgrade id="CountUpgradeTerranVehicleWeaponsLevel3CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
         <Count Link="TerranVehicleWeaponsLevel3" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only12WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only16WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only22WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only30WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only30WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only38WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only38WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only44WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only44WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only60WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only60WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only66WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only66WorkersAreAllowed" State="CompleteOnly"/>
+    </CRequirementCountUpgrade>
+    <CRequirementCountUpgrade id="CountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly">
+        <Flags index="TechTreeCheat" value="0"/>
+        <Count Link="UnfairSC2Only72WorkersAreAllowed" State="CompleteOnly"/>
     </CRequirementCountUpgrade>
     <CRequirementCountUpgrade id="CountUpgradeUnfairSC2ProtossAirArmorsLevel4CompleteOnly">
         <Flags index="TechTreeCheat" value="0"/>
@@ -747,6 +823,43 @@
         <OperandArray index="0" value="CountUpgradeProtossGroundArmorsLevel3CompleteOnly"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnly1">
+        <Tooltip value="RequirementNode/Tooltip/##id##"/>
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only30WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only30WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only38WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only38WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only44WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only44WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only60WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only60WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only66WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only66WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
+    <CRequirementEq id="EqCountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly1">
+        <OperandArray index="0" value="CountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly"/>
+        <OperandArray index="1" value="1"/>
+    </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2ProtossAirArmorsLevel4QueuedOrBetter0">
         <OperandArray index="0" value="CountUpgradeUnfairSC2ProtossAirArmorsLevel4QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
@@ -812,7 +925,6 @@
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
     <CRequirementEq id="EqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly1">
-        <Tooltip value="RequirementNode/Tooltip/##id##"/>
         <OperandArray index="0" value="CountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly"/>
         <OperandArray index="1" value="1"/>
     </CRequirementEq>
@@ -936,4 +1048,62 @@
         <OperandArray index="0" value="CountUpgradeZergMissileWeaponsLevel4QueuedOrBetter"/>
         <OperandArray index="1" value="0"/>
     </CRequirementEq>
+    <CRequirementEq id="EqSumCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only301578654498">
+        <OperandArray index="0" value="SumCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only30Wo249341638"/>
+        <OperandArray index="1" value="0"/>
+    </CRequirementEq>
+    <CRequirementLT id="LT1507831394SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter66">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="66"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT1588280816SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter12">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="12"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT1712327876SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter60">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="60"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT1870573992SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter30">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="30"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT2180297976SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter38">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="38"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT2533367015SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter22">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="22"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT3531402363SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter44">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="44"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT4034378133SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter72">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="72"/>
+    </CRequirementLT>
+    <CRequirementLT id="LT4134550034SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter16">
+        <OperandArray index="0" value="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter"/>
+        <OperandArray index="1" value="16"/>
+    </CRequirementLT>
+    <CRequirementSum id="SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter">
+        <OperandArray value="CountUnitSCVQueuedOrBetter"/>
+        <OperandArray value="CountUnitProbeQueuedOrBetter"/>
+        <OperandArray value="CountUnitDroneQueuedOrBetter"/>
+        <OperandArray value="CountUnitDroneBurrowedQueuedOrBetter"/>
+        <OperandArray value="CountUnitMULEQueuedOrBetter"/>
+    </CRequirementSum>
+    <CRequirementSum id="SumCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only30Wo249341638">
+        <OperandArray value="CountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only30WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only38WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only44WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only60WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only66WorkersAreAllowedCompleteOnly"/>
+        <OperandArray value="CountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly"/>
+    </CRequirementSum>
 </Catalog>

@@ -1,17 +1,17 @@
 # NO SUPPLY
 
-Пилоны, Оверлорды и Хранилища не дают припасов. Их можно получить только построив новые Нексусы, Командные центры или Инкубаторы. Зергам надо беречь своего первого оверлорда, так как он дает 8 единиц припасов (другие давать не будут). У Орбитальных Станций убрана возможность строить экстра-хранилища.
+Pylon, Overlord and Supply Depot don't produce supply. Supply can be obtained only from Nexus, CC and Hatchery. Overlord given to zerg players by default give 8 supply and should be saved. Ability "Calldown: Extra Supplies" is disabled for terrans.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.37**
 
-* [BUGFIX]  Владыки теперь снова не дают лимита.
+* [BUGFIX]  Overseers don't produce supply.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.0**
 
-* [REFACTORING] Теперь работает через Data-editor, а не через триггеры.
+* [REFACTORING] Refactored to work with data-editor and not triggers.

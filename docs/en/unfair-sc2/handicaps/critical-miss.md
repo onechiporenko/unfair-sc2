@@ -1,15 +1,15 @@
 # CRITICAL MISS
 
-*Добавлено в 2.3*
+*Added in 2.3*
 
-У юнитов есть шанс промахнуться. Критический промах теперь наносит урон атакующему (иногда не срабатывает). Урон "по себе" - это показатель атаки первого оружия без учета бонусов или штрафов. Например, для Беcсмертного - это 20, а для Урагана - 30. 
+Every unit has a change to miss its hit. Critical miss also hit attacker (sometimes not). Damage done itself is a damage value of first weapon without bonuses and debuffs. So, for Immortal it's 20 and for Tempest - 30.
 
-Шанс задается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.4**
 
-* [FEATURE]	Критический промах теперь наносит урон атакующему (иногда не срабатывает). Урон "по себе" - это показатель атаки первого оружия без учета бонусов или штрафов. Например, для Безсмертного - это 20, а для Урагана - 30.
+* [FEATURE]	Critical miss also hit attacker (sometimes not)

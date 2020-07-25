@@ -222,6 +222,47 @@
         <NodeArray index="Use" Link="AndEq33074718CountUpgradeZergMissileWeaponsLevel4CompleteOnly1CountUnitHiveCompleteOnlyTechTreeCheat"/>
         <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2ZergMissileWeaponsLevel5QueuedOrBetter0"/>
     </CRequirement>
+    <CRequirement id="UnfairSC2NoLimitsForWorkers">
+        <EditorCategories value="TechType:Upgrade"/>
+        <NodeArray index="Use" Link="EqSumCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only301578654498"/>
+        <NodeArray index="Show" Link="EqSumCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnlyCountUpgradeUnfairSC2Only301578654498"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan12Workers">
+        <NodeArray index="Use" Link="LT1588280816SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter12"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only12WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan16Workers">
+        <NodeArray index="Use" Link="LT4134550034SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter16"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only16WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan22Workers">
+        <NodeArray index="Use" Link="LT2533367015SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter22"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only22WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan30Workers">
+        <NodeArray index="Use" Link="LT1870573992SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter30"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only30WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan38Workers">
+        <NodeArray index="Use" Link="LT2180297976SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter38"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only38WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan44Workers">
+        <NodeArray index="Use" Link="LT3531402363SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter44"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only44WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan60Workers">
+        <NodeArray index="Use" Link="LT1712327876SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter60"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only60WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan66Workers">
+        <NodeArray index="Use" Link="LT1507831394SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter66"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only66WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
+    <CRequirement id="UnfairSC2NotMoreThan72Workers">
+        <NodeArray index="Use" Link="LT4034378133SumCountUnitSCVQueuedOrBetterCountUnitProbeQueuedOrBetterCountUnitDroneQueuedOrBetterCountUnitDroneBurrowedQueuedOrBetterCountUnitMULEQueuedOrBetter72"/>
+        <NodeArray index="Show" Link="EqCountUpgradeUnfairSC2Only72WorkersAreAllowedCompleteOnly1"/>
+    </CRequirement>
     <CRequirement id="UnfairSC2TerranBuildLikeTerran">
         <EditorCategories value="Race:Terran,TechType:Upgrade"/>
         <NodeArray index="Use" Link="AndEqCountUpgradeUnfairSC2TerranBuildLikeZergCompleteOnly0"/>

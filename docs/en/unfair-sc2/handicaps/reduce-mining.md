@@ -1,15 +1,13 @@
 # REDUCE MINING
 
-С каждой "ходки" за минералами и газом рабочий приносит не 5 и 4 единиц соответственно, а 4 и 3. Работает и на "богатые" минералы и газ.
+Every worker will receive 4 minerals and 3 vespene gas. However worker will take 5 minerals and 4 vespene from Mineral Field and Vespene Geyser.
 
-**ВАЖНО!** С минеральной друзы и веспенового гейзера рабочий все равно берет 5 и 4 единицы ресурсов (7 и 8 с "богатых"). Можно сказать, что с каждой базы игрок недополучит 20% минералов и 25% газа.
-
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.38**
 
-* [FEATURE] Добавлен визуальный эффект, когда рабочий доставляет ресурсы.
+* [FEATURE] Visual effect is added.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

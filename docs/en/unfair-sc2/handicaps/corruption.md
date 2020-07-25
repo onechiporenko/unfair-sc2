@@ -1,11 +1,11 @@
 # CORRUPTION
 
-Каждое строение теряет 1 единицу здоровья каждую секунду. Под данным эффектом здоровье здания не будет падать ниже 34% от максимального запаса. У строений протоссов убраны щиты, но дано в 2 раза больше здоровья. Терранские рабочие не могут чинить. Королевы зергов не могут лечить. 
+Every structure is losing 1 HP every second. Structure's HP can't be less than 34%. Shields are removed from protoss structures however their HP is x2. SCV can't repair anything. Queens can't heal.
 
-Здания по время постройки не попадают под данный эффект. Опухоли и стазисные ловушки так же не попадут под влияние Corruption.
+Structures under construction are not affected by Corruption. Creep Tumors and Stasis Ward are nto affected too.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

@@ -1,25 +1,25 @@
 # AIR GROUND WEAPON
 
-*Добавлен в 2.16*
+*Added in 2.16*
 
-Большинство юнитов могут атаковать по земле и по воздуху (не могут - рабочие, Дестабилизаторы и стат. оборона). Дальность атаки не изменяется. Например, Зилоту надо подойти впритык к Надзирателю, чтоб его атаковать. Гиблинки "по Х" НЕ будут атаковать воздушных юнитов.
+Almost all units can attack air and ground units. Only workers, Disruptors and stat. deff can't. Attack range is not changed. So, Zealot needs to be in melee range with overseer to kick him. Banelings won't hit air units by "X". 
 
 **v2.29**
 
-* [BUGFIX] Колоссы теперь наносят урон по воздушным юнитам (ранее была только анимация атаки, но без урона)
+* [BUGFIX] Colossuses now hits air units too (previously there was only an animation of attack without any damage)
 
 **v2.28**
 
-* [FEATURE]	Все, кроме Дестабилизаторов, наносят урон по земле и воздуху
+* [FEATURE] All except Disruptors can attack air and ground units
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.18**
 
-* [BUGFIX]	Высшие Тамплиеры теперь тоже атакуют по воздуху.
+* [BUGFIX] High Templars now also can attack air units.
 
 **v2.17**
 
-* [BUGFIX]	Выключено по умолчанию.
+* [BUGFIX] Handicap is turned of by default.

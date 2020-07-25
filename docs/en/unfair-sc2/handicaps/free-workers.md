@@ -1,22 +1,22 @@
 # FREE WORKERS
 
-*Добавлен в 1.35*
+*Added in 1.35*
 
-Рабочие не занимают лимита и стоят 0 минералов (можно выбрать эти опции вместе или отдельно). Время их построения не изменилось.
+Workers use 0 supply and their cost is 0 minerals (it's possible to set options or any of them). Their built time is not changed.
 
-Каждому игроку в левом верхнем углу выводится кол-во его рабочих, если выбранна одна из опций, где рабочие не занимают лимита.
+Number of workers is shown at the top left corner if option "0 supply" is selected.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.27**
 
-* [BUGFIX] Исправлена игровая подсказка.
+* [BUGFIX] Ingame hint is fixed.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.0**
 
-* [FEATURE] Кол-во рабочих теперь выводится в левом верхнем углу.
-* [REFACTORING] Обработка и хранение опций лобби.
+* [FEATURE] Number of workers is shown at the top left corner.
+* [REFACTORING] Lobby options refactoring.

@@ -1,15 +1,15 @@
 # TALANDAR
 
-*Добавлен в 2.23*
+*Added in 2.23*
 
-Постройка зданий не требует газа и для них отключены требования дерева технологий (например, Маяк Флотилии можно поставить до Звездных Врат).
+Tech tree restriction are removed and structures don't require vespene.
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v3.0**
 
-* [BUGFIX] Взлет и приземление Космопорта и Завода не требуют ресурсов. 
+* [BUGFIX] Lift Off doesn't require any resources. 
 
 **v2.27**
 
-* [BUGFIX] В лобби игры теперь отображается краткое описание данного гандикапа.
+* [BUGFIX] Short description is added.

@@ -1,8 +1,8 @@
 # BERSERKER'S BLOOD
 
-Чем меньше у юнита здоровья, тем больше его скорость атаки. Так же увеличивается размер модельки юнита. Данный эффект применяется и на здания. Бонус скорости атаки в зависимости от кол-ва здоровья:
+Units will have greater attack speed losing their HP. This buff works on structures too. Buff value depending on HP is in the table below:
 
-| ХП         | Бонус |
+| HP         | Buff |
 |------------|-------|
 | 1..10%     | x2.8  |
 | 10..20%    | x2.6  |
@@ -15,13 +15,13 @@
 | 80..90%    | x1.2  |
 | 90..100%   | x1.0  |
 
-Дается каждому игроку индивидуально.
+Set to each player individually.
 
 **v2.20**
 
-* [FEATURE] Добавлена игровая подсказка с описанием выбранных настроек для гандикапа. Выводится, если гандикап включен хотя бы для одного игрока.
+* [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.
 
 **v2.3**
 
-* [REFACTORING]	Вместо триггеров для добавления алгоритмов теперь используются валидаторы.
-* [FEATURE]	Обновлено описание для всплывающей подсказки Berserker's Blood.
+* [REFACTORING]	Validators are used instead of triggers to add behavior to units.
+* [FEATURE]	Description is updated.
