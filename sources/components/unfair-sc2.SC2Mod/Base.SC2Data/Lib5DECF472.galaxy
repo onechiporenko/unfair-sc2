@@ -42,6 +42,7 @@ void lib5DECF472_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_5DECF472_BF56F9BA");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_5DECF472_9FCC8A3C");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\microtransactions_coop.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_5DECF472_DEE0F298");
     lv_optionvalueindex = 0;

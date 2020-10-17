@@ -42,6 +42,7 @@ void lib96FBA2DD_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_96FBA2DD_6D02DEEC");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_96FBA2DD_A0375D9C");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-unit-collection-scv-remastered.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_96FBA2DD_FA83805E");
     lv_optionvalueindex = 0;
@@ -355,7 +356,7 @@ bool lib96FBA2DD_gt_RiotWorkersModStart_Func (bool testConds, bool runActions) {
                 lib96FBA2DD_gv_riotWorkersPercent = 1.0;
             }
             TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1AD37A80", "RiotDelay", IntToText(lib96FBA2DD_gv_riotFreequency));
-            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1AD37A80", "RiotWorkersPercent", FixedToText((lib96FBA2DD_gv_riotWorkersPercent * 100.0), c_fixedPrecisionAny));
+            TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1AD37A80", "RiotWorkersPercent", FixedToText((lib96FBA2DD_gv_riotWorkersPercent * 100.0), 0));
             TextExpressionSetToken("Param/Expression/lib_96FBA2DD_1AD37A80", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
             HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(StringExternal("Param/Value/lib_96FBA2DD_1369775C"), libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_96FBA2DD_1AD37A80"), StringExternal("Param/Value/lib_96FBA2DD_6A512429"), "Assets\\Textures\\btn-unit-collection-scv-remastered.dds");
             TimerStart(lib96FBA2DD_gv_riotTimer, lib96FBA2DD_gv_riotFreequency, true, c_timeReal);

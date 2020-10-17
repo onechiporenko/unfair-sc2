@@ -27,6 +27,7 @@ void lib6B9047BC_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_6B9047BC_FEBAB9A9");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_6B9047BC_7270B333");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-tips-richminerals.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_6B9047BC_38D3DBA5");
     lv_optionvalueindex = 0;

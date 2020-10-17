@@ -45,6 +45,7 @@ void lib00CAD167_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_00CAD167_FD73724A");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_00CAD167_C1F0CA0D");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-unit-terran-widowmine.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_00CAD167_BE65D401");
     lv_optionvalueindex = 0;

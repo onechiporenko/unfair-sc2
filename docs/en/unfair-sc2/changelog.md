@@ -1,5 +1,40 @@
 # Changelog
 
+## v3.6
+
+В мод добавлено несколько новых режимов игры:
+
+Several new game-mods are added:
+
+* [ALL PICK] - Mod can be used in games with any number of players. Players ban and pick one handicap in random order. More players - more handicaps. Handicap options can be set different for players.
+
+* [ALL RANDOM] - Mod can be used in games with any number of players. Handicaps and their options are selected randomly (and can be different for players). Number of enabled handicaps can be set in the lobby. 
+
+* [MIRROR ALL PICK] - Same as **ALL PICK**, however handicap options are the same for all players.
+
+* [MIRROR ALL RANDOM] - Same as **ALL RANDOM**, however handicap options are the same for all players.
+
+* [MIRROR TOURNAMENT 2/2] - Mod can used only for games with two team (1x1, 2x2, 3x3, 4x4). Each team has a captain (this role is set in lobby). "First pick" is also set in lobby. This mod has only one "ban-pick" phase. Firstly every captain bans one handicap. Then every captain picks one handicap. Handicap options are the same for all players. 
+
+* [MIRROR TOURNAMENT 2/2/2/2] - Same as **MIRROR TOURNAMENT 2/2**, however there are two "ban-pick" phases.
+
+* [MIRROR TOURNAMENT 2/2/2/2/2/2] - Same as **MIRROR TOURNAMENT 2/2**, however there are three "ban-pick" phases. 
+
+Pick and ban time can be set in lobby. It can be 15, 30, 45 or 60 seconds. This affects any mod with "phases".
+
+* [DEFAULT] - Mod can be used in games with any number of players. This mod represents "Unfair SC2" as it was before 3.6. Only one player can select handicaps and their options. Handicap settings can be not same for players.
+
+> All handicaps are available playing "DEFAULT" mod. Other mods have cut list of available handicaps.
+
+* [ALL RACES](./handicaps/all-races.md)
+    * [FEATURE] Zergs' Hatchery now is always placed at the player's start point if it's set to create main structures for all races.
+
+* [ATTACK SPEED](./handicaps/attack-speed.md)
+    * [BUGFIX] Now handicap is applied correctly for initial units.
+
+* [BLOCKED RAMPS](./handicaps/blocked-ramps.md)
+    * [FEATURE] Now blocks on ramps can be destroyable.
+
 ## v3.5
 
 * [LIMITED WORKERS](./handicaps/limited-workers.md)

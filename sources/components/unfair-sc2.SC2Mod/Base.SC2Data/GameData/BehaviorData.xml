@@ -36,11 +36,10 @@
         <InitialEffect value="UnfairSC2AcidSprayDamage2"/>
         <PeriodicEffect value="UnfairSC2AcidSprayDamage"/>
         <InfoIcon value="Assets\Textures\btn-ability-zerg-dehaka-ravasaur-dissolvingacid.dds"/>
-        <Modification>
+        <Modification ShieldArmorBonus="-1">
             <AdditiveMoveSpeedFactor value="-0.1"/>
             <AdditiveAttackSpeedFactor value="-0.1"/>
             <LifeArmorBonus value="-1"/>
-            <ShieldArmorBonus value="-1"/>
         </Modification>
         <ReplaceLocation History="Damage"/>
     </CBehaviorBuff>
@@ -49,7 +48,9 @@
         <InfoIcon value="Assets\Textures\btn-upgrade-mengsk-engineeringbay-dominionarmorlevel3.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Duration value="15"/>
-        <Modification LifeArmorBonus="5" ShieldArmorBonus="5"/>
+        <Modification ShieldArmorBonus="5">
+            <LifeArmorBonus value="5"/>
+        </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="UnfairSC2FallingRocksStun">
         <Alignment value="Negative"/>
@@ -136,20 +137,14 @@
         <Alignment value="Negative"/>
         <InfoIcon value="Assets\Textures\nova coop_lvl 01_black ops.dds"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <DamageResponse>
+        <DamageResponse Handled="UnfairSc2CritMissDummy" Location="Attacker" ModifyFraction="0">
             <Chance value="1"/>
-            <Handled value="UnfairSc2CritMissDummy"/>
-            <Location value="Attacker"/>
-            <ModifyFraction value="0"/>
         </DamageResponse>
     </CBehaviorBuff>
     <CBehaviorBuff id="UnfairSC2DamageReductionShield">
         <EditorCategories value="AbilityorEffectType:Units"/>
-        <DamageResponse>
+        <DamageResponse ClampMaximum="10" Handled="UnfairSC2DamageReductionShieldReaction" Minimum="10">
             <Chance value="1"/>
-            <ClampMaximum value="10"/>
-            <Handled value="UnfairSC2DamageReductionShieldReaction"/>
-            <Minimum value="10"/>
         </DamageResponse>
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-zeratul-immortal-enternitybarrier.dds"/>

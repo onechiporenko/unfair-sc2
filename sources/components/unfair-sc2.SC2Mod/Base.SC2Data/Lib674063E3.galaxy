@@ -41,6 +41,7 @@ void lib674063E3_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_674063E3_82B1E19C");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_674063E3_904ACE66");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-terran-nova-snipeenergyrefund.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_674063E3_DA131DC1");
     lv_optionvalueindex = 0;

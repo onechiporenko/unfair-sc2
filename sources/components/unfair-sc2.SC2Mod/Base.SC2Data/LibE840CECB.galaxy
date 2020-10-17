@@ -44,6 +44,7 @@ void libE840CECB_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_E840CECB_7E513381");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_E840CECB_6391E69A");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-upgrade-protoss-alarak-supplicantsacrifice.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_E840CECB_5BE9490A");
     lv_optionvalueindex = 0;

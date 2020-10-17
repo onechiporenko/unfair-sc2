@@ -1,8 +1,12 @@
 include "TriggerLibs/natives"
 
 //--------------------------------------------------------------------------------------------------
-// Library: HANDICAPS UI
+// Library: MODS & UI
 //--------------------------------------------------------------------------------------------------
+// Preset Declarations
+const int libD169EC7B_ge_PHASETYPE_PICK = 0;
+const int libD169EC7B_ge_PHASETYPE_BAN = 1;
+
 // Constants
 const string libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL = "Doesn't affect player";
 const string libD169EC7B_gv_hANDICAPOPTIONENABLEDVAL = "Enabled";
@@ -30,6 +34,8 @@ struct libD169EC7B_gs_HANDICAPGAMEOPTION {
     text lv_selectedValue;
     string lv_selectedVal;
     int lv_listBox;
+    int lv_mirrorListBox;
+    string lv_mirrorSelectedVal;
 };
 
 struct libD169EC7B_gs_HANDICAPPLAYEROPTION {
@@ -39,6 +45,8 @@ struct libD169EC7B_gs_HANDICAPPLAYEROPTION {
     string[18] lv_selectedVals;
     int[18] lv_listBoxes;
     string lv_defaultValue;
+    int lv_mirrorListBox;
+    string lv_mirrorSelectedVal;
 };
 
 struct libD169EC7B_gs_HANDICAP {
@@ -53,36 +61,105 @@ struct libD169EC7B_gs_HANDICAP {
     int lv_detailsButton;
     int lv_toggleButton;
     int lv_backButton;
+    int lv_pickButton;
+    int lv_banButton;
     trigger lv_setupTrigger;
+    bool lv_forTournaments;
+    bool lv_banned;
+    bool lv_picked;
+};
+
+struct libD169EC7B_gs_QUEUEITEM {
+    int lv_phaseType;
+    int lv_player;
+    int lv_handicapIndex;
 };
 
 // Variable Declarations
+int libD169EC7B_gv_numberofRandomHandicapsToEnable;
 int libD169EC7B_gv_activeHandicapIndex;
 playergroup libD169EC7B_gv_playerstoShowHandicapsUI;
 playergroup libD169EC7B_gv_playerstoShowHandicapsMessages;
 libD169EC7B_gs_HANDICAP[201] libD169EC7B_gv_hANDICAPS;
+int libD169EC7B_gv_numberofHandicaps;
+int libD169EC7B_gv_phasesBoard;
+timer libD169EC7B_gv_phaseTimer;
+int libD169EC7B_gv_tIMEFORPHASE;
+int libD169EC7B_gv_pHASEINDEX;
+libD169EC7B_gs_QUEUEITEM[101] libD169EC7B_gv_queue;
+int libD169EC7B_gv_queueLength;
 int libD169EC7B_gv_handicapsDialog;
 int libD169EC7B_gv_customHandicapDialog;
 int libD169EC7B_gv_startGameButton;
-int libD169EC7B_gv_numberofHandicaps;
 
 // Function Declarations
 void libD169EC7B_gf_SetupOptions (int lp_handicapindex);
 void libD169EC7B_gf_EnableHandicap (int lp_handicapIndex);
 void libD169EC7B_gf_EnableHandicapForPlayer (int lp_player);
+void libD169EC7B_gf_ResetNotPickedOrBannedHandicaps ();
+void libD169EC7B_gf_QueueTick (int lp_phaseIndex);
+void libD169EC7B_gf_SetupQueue22 (int lp_captain1, int lp_captain2);
+void libD169EC7B_gf_SetupQueue2222 (int lp_captain1, int lp_captain2);
+void libD169EC7B_gf_SetupQueue222222 (int lp_captain1, int lp_captain2);
+void libD169EC7B_gf_SetupQueueMirrorAllPick ();
+void libD169EC7B_gf_SetupQueueAllPick ();
 int libD169EC7B_gf_CreateHandicapsDialog ();
 int libD169EC7B_gf_CreateCustomHandicapDialog (int lp_handicapindex);
+int libD169EC7B_gf_CreateDetailsHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_i, int lp_j);
+int libD169EC7B_gf_CreateBanHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_x, int lp_y);
+int libD169EC7B_gf_CreatePickHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_x, int lp_y);
+int libD169EC7B_gf_CreateToggleHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_x, int lp_y);
+int libD169EC7B_gf_CreateDefaultGameOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_gameOptionIndex, int lp_x, int lp_y, int lp_width, int lp_height);
+int libD169EC7B_gf_CreateMirrorGameOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_gameOptionIndex, int lp_x, int lp_y, int lp_width, int lp_height);
+int libD169EC7B_gf_CreateDefaultPlayerOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_playerOptionIndex, int lp_player, int lp_x, int lp_y, int lp_width, int lp_height);
+int libD169EC7B_gf_CreateMirrorPlayerOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_playerOptionIndex, int lp_x, int lp_y, int lp_width, int lp_height);
+void libD169EC7B_gf_PickHandicap (int lp_handicapIndex, int lp_player);
+void libD169EC7B_gf_BanHandicap (int lp_handicapIndex, int lp_player);
+void libD169EC7B_gf_ToggleUIElementsVisibility (bool lp_state);
+void libD169EC7B_gf_SetRandomValuesforHandicapsOptions (int lp_handicapIndex);
+void libD169EC7B_gf_StartGameWithSelectedHandicaps ();
+void libD169EC7B_gf_PrepareGameForHandicapsSelection ();
+void libD169EC7B_gf_DumpHandicapOptions (int lp_handicapIndex);
+int libD169EC7B_gf_GetNumberofRandomHandicapsToEnable ();
+int libD169EC7B_gf_GetPhaseTime ();
+int libD169EC7B_gf_GetRandomAvailableTournamentHandicapIndex ();
+bool libD169EC7B_gf_HandicapButtonIsShown (int lp_handicapIndex);
+bool libD169EC7B_gf_IsMirrorTournamentGame ();
+bool libD169EC7B_gf_IsMirrorGame ();
+bool libD169EC7B_gf_IsTournamentGame ();
+bool libD169EC7B_gf_StartButtonIsShown ();
+bool libD169EC7B_gf_BanHandicapButtonIsShown (int lp_handicapIndex);
+bool libD169EC7B_gf_PickHandicapButtonIsShown (int lp_handicapIndex);
+bool libD169EC7B_gf_ToggleHandicapButtonIsShown (int lp_handicapIndex);
+bool libD169EC7B_gf_DefaultGameOptionDropdownIsShown (int lp_handicapIndex);
+bool libD169EC7B_gf_MirrorGameOptionDropdownIsShown (int lp_handicapIndex);
+bool libD169EC7B_gf_DefaultPlayerOptionDropdownIsShown (int lp_handicapIndex);
+bool libD169EC7B_gf_MirrorPlayerOptionDropdownIsShown (int lp_handicapIndex);
 
 // Trigger Declarations
 trigger libD169EC7B_gt_SetupHandicap;
-trigger libD169EC7B_gt_SetupHandicaps;
-trigger libD169EC7B_gt_HandicapsUIStart;
+trigger libD169EC7B_gt_PhaseTimerExpiresForQueue;
+trigger libD169EC7B_gt_PhaseTimerTickForQueue;
+trigger libD169EC7B_gt_MODMirrorTournament22Start;
+trigger libD169EC7B_gt_MODMirrorTournament2222Start;
+trigger libD169EC7B_gt_MODMirrorTournament222222Start;
+trigger libD169EC7B_gt_MODMirrorAllPickStart;
+trigger libD169EC7B_gt_MODAllPickStart;
+trigger libD169EC7B_gt_MODAllRandomStart;
+trigger libD169EC7B_gt_MODMirrorAllRandomStart;
+trigger libD169EC7B_gt_MODDefaultStart;
 trigger libD169EC7B_gt_HandicapDetailsButtonClick;
 trigger libD169EC7B_gt_ToggleHandicapButtonClick;
 trigger libD169EC7B_gt_HandicapBackButtonClick;
+trigger libD169EC7B_gt_BanHandicapButtonClick;
+trigger libD169EC7B_gt_PickHandicapButtonClick;
 trigger libD169EC7B_gt_StartGameButtonClick;
-trigger libD169EC7B_gt_PlayerOptionValueChanged;
-trigger libD169EC7B_gt_GameOptionValueChanged;
+trigger libD169EC7B_gt_DefaultPlayerOptionValueChanged;
+trigger libD169EC7B_gt_MirrorPlayerOptionValueChanged;
+trigger libD169EC7B_gt_DefaultGameOptionValueChanged;
+trigger libD169EC7B_gt_MirrorGameOptionValueChanged;
+trigger libD169EC7B_gt_SetupHandicaps;
+trigger libD169EC7B_gt_GAMESTART;
 
 // Library Initialization
 void libD169EC7B_InitVariables ();

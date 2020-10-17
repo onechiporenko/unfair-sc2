@@ -13,6 +13,10 @@ Some tech tree requirements are removed:
 
 Set to each player individually.
 
+**v3.6**
+
+* [FEATURE] Zergs' Hatchery now is always placed at the player's start point if it's set to create main structures for all races.
+
 **v2.36**
 
 * [FEATURE] Option to give main structures for all races is added

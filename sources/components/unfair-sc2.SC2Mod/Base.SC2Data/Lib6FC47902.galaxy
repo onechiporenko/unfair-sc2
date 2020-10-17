@@ -27,6 +27,7 @@ void lib6FC47902_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_6FC47902_FFA4F9C8");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_6FC47902_15C31B5E");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-terran-setrallypoint.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_6FC47902_0EBC4399");
     lv_optionvalueindex = 0;

@@ -343,6 +343,7 @@ int libDBC4E2D2_gv_observer;
 playergroup libDBC4E2D2_gv_observerGroup;
 
 // Function Declarations
+int libDBC4E2D2_gf_GetNumberOfNotEmptyTeams ();
 unitgroup libDBC4E2D2_gf_FilterOutAmmoUnits (unitgroup lp_unitsGroupToFilter, int lp_unitsOwner);
 text libDBC4E2D2_gf_GetPlayerNamesColored (playergroup lp_players);
 int libDBC4E2D2_gf_GetWorkersCount (int lp_player);

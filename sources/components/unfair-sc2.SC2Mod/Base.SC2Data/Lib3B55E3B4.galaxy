@@ -12,6 +12,18 @@ void lib3B55E3B4_InitLibraries () {
     libD169EC7B_InitVariables();
 }
 
+// Variable Initialization
+bool lib3B55E3B4_InitVariables_completed = false;
+
+void lib3B55E3B4_InitVariables () {
+    if (lib3B55E3B4_InitVariables_completed) {
+        return;
+    }
+
+    lib3B55E3B4_InitVariables_completed = true;
+
+}
+
 // Functions
 void lib3B55E3B4_gf_SetupOptions (int lp_handicapindex) {
     // Variable Declarations
@@ -25,7 +37,19 @@ void lib3B55E3B4_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_3B55E3B4_AD2BB9DD");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_3B55E3B4_C5AFCF88");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-doodad-korhallandinglocation.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofPlayerOptions = 0;
+    lv_optionindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_3B55E3B4_14A4FE58");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib3B55E3B4_gv_yes;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = lib3B55E3B4_gv_yes;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = lib3B55E3B4_gv_no;
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_setupTrigger = lib3B55E3B4_gt_SetupHandicap;
 }
 
@@ -80,7 +104,10 @@ void lib3B55E3B4_gf_EnableHandicap (int lp_handicapIndex) {
                     else {
                         libNtve_gf_CreateUnitsWithDefaultFacing(1, "BraxisAlphaDestructible2x2", c_unitCreateIgnorePlacement, 0, lv_point);
                     }
-                    libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+                    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[0].lv_selectedVal == lib3B55E3B4_gv_yes)) {
+                        libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
+                    }
+
                 }
 
             }
@@ -127,6 +154,7 @@ void lib3B55E3B4_InitLib () {
     lib3B55E3B4_InitLib_completed = true;
 
     lib3B55E3B4_InitLibraries();
+    lib3B55E3B4_InitVariables();
     lib3B55E3B4_InitTriggers();
 }
 

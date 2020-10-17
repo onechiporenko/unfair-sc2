@@ -56,6 +56,27 @@ void libDBC4E2D2_InitVariables () {
 
 // Presets
 // Functions
+int libDBC4E2D2_gf_GetNumberOfNotEmptyTeams () {
+    // Variable Declarations
+    int lv_count;
+
+    // Automatic Variable Declarations
+    const int auto537567E6_ae = 12;
+    int auto537567E6_var;
+
+    // Variable Initialization
+
+    // Implementation
+    auto537567E6_var = 1;
+    for ( ; auto537567E6_var <= auto537567E6_ae; auto537567E6_var += 1 ) {
+        if ((PlayerGroupCount(GameAttributePlayersForTeam(auto537567E6_var)) != 0)) {
+            lv_count += 1;
+        }
+
+    }
+    return lv_count;
+}
+
 unitgroup libDBC4E2D2_gf_FilterOutAmmoUnits (unitgroup lp_unitsGroupToFilter, int lp_unitsOwner) {
     // Variable Declarations
     unitgroup lv_resultUnitsGroup;

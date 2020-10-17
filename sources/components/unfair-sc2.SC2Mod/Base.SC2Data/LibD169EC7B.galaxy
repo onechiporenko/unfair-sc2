@@ -73,7 +73,7 @@ include "Lib674063E3_h"
 include "LibD169EC7B_h"
 
 //--------------------------------------------------------------------------------------------------
-// Library: HANDICAPS UI
+// Library: MODS & UI
 //--------------------------------------------------------------------------------------------------
 // External Library Initialization
 void libD169EC7B_InitLibraries () {
@@ -84,6 +84,7 @@ void libD169EC7B_InitLibraries () {
     lib1A704C64_InitVariables();
     libCB22438A_InitVariables();
     lib88BAA5D0_InitVariables();
+    lib3B55E3B4_InitVariables();
     libD7A170DA_InitVariables();
     libFCC56787_InitVariables();
     lib56A96906_InitVariables();
@@ -133,6 +134,7 @@ void libD169EC7B_InitVariables () {
 
     libD169EC7B_InitVariables_completed = true;
 
+    libD169EC7B_gv_numberofRandomHandicapsToEnable = libD169EC7B_gf_GetNumberofRandomHandicapsToEnable();
     libD169EC7B_gv_playerstoShowHandicapsUI = PlayerGroupEmpty();
     libD169EC7B_gv_playerstoShowHandicapsMessages = PlayerGroupEmpty();
     for (init_i = 0; init_i <= 200; init_i += 1) {
@@ -145,6 +147,8 @@ void libD169EC7B_InitVariables () {
             }
             libD169EC7B_gv_hANDICAPS[init_i].lv_gameOptions[init_i1].lv_selectedVal = "";
             libD169EC7B_gv_hANDICAPS[init_i].lv_gameOptions[init_i1].lv_listBox = c_invalidDialogControlId;
+            libD169EC7B_gv_hANDICAPS[init_i].lv_gameOptions[init_i1].lv_mirrorListBox = c_invalidDialogControlId;
+            libD169EC7B_gv_hANDICAPS[init_i].lv_gameOptions[init_i1].lv_mirrorSelectedVal = "";
         }
         for (init_i1 = 0; init_i1 <= 50; init_i1 += 1) {
             for (init_i2 = 0; init_i2 <= 25; init_i2 += 1) {
@@ -157,16 +161,27 @@ void libD169EC7B_InitVariables () {
                 libD169EC7B_gv_hANDICAPS[init_i].lv_playerOptions[init_i1].lv_listBoxes[init_i2] = c_invalidDialogControlId;
             }
             libD169EC7B_gv_hANDICAPS[init_i].lv_playerOptions[init_i1].lv_defaultValue = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
+            libD169EC7B_gv_hANDICAPS[init_i].lv_playerOptions[init_i1].lv_mirrorListBox = c_invalidDialogControlId;
+            libD169EC7B_gv_hANDICAPS[init_i].lv_playerOptions[init_i1].lv_mirrorSelectedVal = libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL;
         }
         libD169EC7B_gv_hANDICAPS[init_i].lv_detailsButton = c_invalidDialogControlId;
         libD169EC7B_gv_hANDICAPS[init_i].lv_toggleButton = c_invalidDialogControlId;
         libD169EC7B_gv_hANDICAPS[init_i].lv_backButton = c_invalidDialogControlId;
+        libD169EC7B_gv_hANDICAPS[init_i].lv_pickButton = c_invalidDialogControlId;
+        libD169EC7B_gv_hANDICAPS[init_i].lv_banButton = c_invalidDialogControlId;
+    }
+    libD169EC7B_gv_phasesBoard = c_boardNone;
+    libD169EC7B_gv_phaseTimer = TimerCreate();
+    libD169EC7B_gv_tIMEFORPHASE = libD169EC7B_gf_GetPhaseTime();
+    for (init_i = 0; init_i <= 100; init_i += 1) {
+        libD169EC7B_gv_queue[init_i].lv_handicapIndex = -1;
     }
     libD169EC7B_gv_handicapsDialog = c_invalidDialogId;
     libD169EC7B_gv_customHandicapDialog = c_invalidDialogId;
     libD169EC7B_gv_startGameButton = c_invalidDialogControlId;
 }
 
+// Presets
 // Functions
 void libD169EC7B_gf_SetupOptions (int lp_handicapindex) {
     // Variable Declarations
@@ -276,6 +291,292 @@ void libD169EC7B_gf_EnableHandicapForPlayer (int lp_player) {
     // Automatic Variable Declarations
 }
 
+void libD169EC7B_gf_ResetNotPickedOrBannedHandicaps () {
+    // Variable Declarations
+    int lv_index;
+
+    // Automatic Variable Declarations
+    int auto14A4CE89_ae;
+    int auto14A4CE89_var;
+    int auto86FE724E_ae;
+    const int auto86FE724E_ai = 1;
+    int autoC17C372A_ae;
+    const int autoC17C372A_ai = 1;
+
+    // Variable Initialization
+
+    // Implementation
+    auto14A4CE89_ae = (libD169EC7B_gv_numberofHandicaps - 1);
+    auto14A4CE89_var = 0;
+    for ( ; auto14A4CE89_var <= auto14A4CE89_ae; auto14A4CE89_var += 1 ) {
+        if ((libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_banned == false) && (libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_picked == false)) {
+            libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_enabled = false;
+            auto86FE724E_ae = libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_numberofPlayerOptions;
+            lv_index = 0;
+            for ( ; ( (auto86FE724E_ai >= 0 && lv_index <= auto86FE724E_ae) || (auto86FE724E_ai < 0 && lv_index >= auto86FE724E_ae) ) ; lv_index += auto86FE724E_ai ) {
+                libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_playerOptions[lv_index].lv_mirrorSelectedVal = libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_playerOptions[lv_index].lv_values[0].lv_val;
+            }
+            autoC17C372A_ae = libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_numberofGameOptions;
+            lv_index = 0;
+            for ( ; ( (autoC17C372A_ai >= 0 && lv_index <= autoC17C372A_ae) || (autoC17C372A_ai < 0 && lv_index >= autoC17C372A_ae) ) ; lv_index += autoC17C372A_ai ) {
+                libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_gameOptions[lv_index].lv_mirrorSelectedVal = libD169EC7B_gv_hANDICAPS[auto14A4CE89_var].lv_gameOptions[lv_index].lv_values[0].lv_val;
+            }
+        }
+
+    }
+}
+
+void libD169EC7B_gf_QueueTick (int lp_phaseIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_phaseIndex < libD169EC7B_gv_queueLength)) {
+        TimerStart(libD169EC7B_gv_phaseTimer, libD169EC7B_gv_tIMEFORPHASE, false, c_timeReal);
+        DialogDestroyAll();
+        PlayerGroupClear(libD169EC7B_gv_playerstoShowHandicapsUI);
+        PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, libD169EC7B_gv_queue[lp_phaseIndex].lv_player);
+        libD169EC7B_gv_handicapsDialog = libD169EC7B_gf_CreateHandicapsDialog();
+        DialogSetVisible(libD169EC7B_gv_handicapsDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
+    }
+    else {
+        TriggerExecute(libD169EC7B_gt_PhaseTimerTickForQueue, true, false);
+        TriggerEnable(libD169EC7B_gt_PhaseTimerTickForQueue, false);
+        TriggerEnable(libD169EC7B_gt_PhaseTimerExpiresForQueue, false);
+        libD169EC7B_gf_StartGameWithSelectedHandicaps();
+        BoardDestroy(libD169EC7B_gv_phasesBoard);
+    }
+}
+
+void libD169EC7B_gf_SetupQueue22 (int lp_captain1, int lp_captain2) {
+    // Variable Declarations
+    int lv_firstPicker;
+    int lv_secondPicker;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_firstPicker = -1;
+    lv_secondPicker = -1;
+
+    // Implementation
+    if ((GameAttributePlayerValue("3", lp_captain1) == "0001")) {
+        lv_firstPicker = lp_captain1;
+    }
+
+    if ((GameAttributePlayerValue("3", lp_captain2) == "0001")) {
+        lv_firstPicker = lp_captain2;
+    }
+
+    if ((lv_firstPicker == -1)) {
+        if ((libNtve_gf_RandomPercent() > 50.0)) {
+            lv_firstPicker = lp_captain1;
+        }
+        else {
+            lv_firstPicker = lp_captain2;
+        }
+    }
+
+    if ((lv_firstPicker == lp_captain1)) {
+        lv_secondPicker = lp_captain2;
+    }
+    else {
+        lv_secondPicker = lp_captain1;
+    }
+    libD169EC7B_gv_queue[0].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[0].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[1].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[1].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[2].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[2].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[3].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[3].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queueLength = 4;
+}
+
+void libD169EC7B_gf_SetupQueue2222 (int lp_captain1, int lp_captain2) {
+    // Variable Declarations
+    int lv_firstPicker;
+    int lv_secondPicker;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_firstPicker = -1;
+    lv_secondPicker = -1;
+
+    // Implementation
+    if ((GameAttributePlayerValue("3", lp_captain1) == "0001")) {
+        lv_firstPicker = lp_captain1;
+    }
+
+    if ((GameAttributePlayerValue("3", lp_captain2) == "0001")) {
+        lv_firstPicker = lp_captain2;
+    }
+
+    if ((lv_firstPicker == -1)) {
+        if ((libNtve_gf_RandomPercent() > 50.0)) {
+            lv_firstPicker = lp_captain1;
+        }
+        else {
+            lv_firstPicker = lp_captain2;
+        }
+    }
+
+    if ((lv_firstPicker == lp_captain1)) {
+        lv_secondPicker = lp_captain2;
+    }
+    else {
+        lv_secondPicker = lp_captain1;
+    }
+    libD169EC7B_gv_queue[0].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[0].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[1].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[1].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[2].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[2].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[3].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[3].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[4].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[4].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[5].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[5].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[6].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[6].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[7].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[7].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queueLength = 8;
+}
+
+void libD169EC7B_gf_SetupQueue222222 (int lp_captain1, int lp_captain2) {
+    // Variable Declarations
+    int lv_firstPicker;
+    int lv_secondPicker;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_firstPicker = -1;
+    lv_secondPicker = -1;
+
+    // Implementation
+    if ((GameAttributePlayerValue("3", lp_captain1) == "0001")) {
+        lv_firstPicker = lp_captain1;
+    }
+
+    if ((GameAttributePlayerValue("3", lp_captain2) == "0001")) {
+        lv_firstPicker = lp_captain2;
+    }
+
+    if ((lv_firstPicker == -1)) {
+        if ((libNtve_gf_RandomPercent() > 50.0)) {
+            lv_firstPicker = lp_captain1;
+        }
+        else {
+            lv_firstPicker = lp_captain2;
+        }
+    }
+
+    if ((lv_firstPicker == lp_captain1)) {
+        lv_secondPicker = lp_captain2;
+    }
+    else {
+        lv_secondPicker = lp_captain1;
+    }
+    libD169EC7B_gv_queue[0].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[0].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[1].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[1].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[2].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[2].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[3].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[3].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[4].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[4].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[5].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[5].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[6].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[6].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[7].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[7].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[8].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[8].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[9].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[9].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+    libD169EC7B_gv_queue[10].lv_player = lv_firstPicker;
+    libD169EC7B_gv_queue[10].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queue[11].lv_player = lv_secondPicker;
+    libD169EC7B_gv_queue[11].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+    libD169EC7B_gv_queueLength = 12;
+}
+
+void libD169EC7B_gf_SetupQueueMirrorAllPick () {
+    // Variable Declarations
+    int lv_firstPicker;
+    int lv_secondPicker;
+    playergroup lv_activePlayers;
+    int lv_index;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_firstPicker = -1;
+    lv_secondPicker = -1;
+    lv_activePlayers = PlayerGroupEmpty();
+
+    // Implementation
+    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupActive(), lv_activePlayers);
+    while ((PlayerGroupCount(lv_activePlayers) > 0)) {
+        libD169EC7B_gv_queue[lv_index].lv_player = PlayerGroupPlayer(lv_activePlayers, RandomInt(1, PlayerGroupCount(lv_activePlayers)));
+        if ((GameAttributeGameValue("6") == "0001")) {
+            libD169EC7B_gv_queue[lv_index].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+            libD169EC7B_gv_queue[(PlayerGroupCount(PlayerGroupActive()) + lv_index)].lv_player = libD169EC7B_gv_queue[lv_index].lv_player;
+            libD169EC7B_gv_queue[(PlayerGroupCount(PlayerGroupActive()) + lv_index)].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+        }
+        else {
+            libD169EC7B_gv_queue[lv_index].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+        }
+        PlayerGroupRemove(lv_activePlayers, libD169EC7B_gv_queue[lv_index].lv_player);
+        lv_index += 1;
+    }
+    if ((GameAttributeGameValue("6") == "0001")) {
+        libD169EC7B_gv_queueLength = (lv_index * 2);
+    }
+    else {
+        libD169EC7B_gv_queueLength = lv_index;
+    }
+}
+
+void libD169EC7B_gf_SetupQueueAllPick () {
+    // Variable Declarations
+    int lv_firstPicker;
+    int lv_secondPicker;
+    playergroup lv_activePlayers;
+    int lv_index;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_firstPicker = -1;
+    lv_secondPicker = -1;
+    lv_activePlayers = PlayerGroupEmpty();
+
+    // Implementation
+    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupActive(), lv_activePlayers);
+    while ((PlayerGroupCount(lv_activePlayers) > 0)) {
+        libD169EC7B_gv_queue[lv_index].lv_player = PlayerGroupPlayer(lv_activePlayers, RandomInt(1, PlayerGroupCount(lv_activePlayers)));
+        if ((GameAttributeGameValue("6") == "0001")) {
+            libD169EC7B_gv_queue[lv_index].lv_phaseType = libD169EC7B_ge_PHASETYPE_BAN;
+            libD169EC7B_gv_queue[(PlayerGroupCount(PlayerGroupActive()) + lv_index)].lv_player = libD169EC7B_gv_queue[lv_index].lv_player;
+            libD169EC7B_gv_queue[(PlayerGroupCount(PlayerGroupActive()) + lv_index)].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+        }
+        else {
+            libD169EC7B_gv_queue[lv_index].lv_phaseType = libD169EC7B_ge_PHASETYPE_PICK;
+        }
+        PlayerGroupRemove(lv_activePlayers, libD169EC7B_gv_queue[lv_index].lv_player);
+        lv_index += 1;
+    }
+    if ((GameAttributeGameValue("6") == "0001")) {
+        libD169EC7B_gv_queueLength = (lv_index * 2);
+    }
+    else {
+        libD169EC7B_gv_queueLength = lv_index;
+    }
+}
+
 int libD169EC7B_gf_CreateHandicapsDialog () {
     // Variable Declarations
     int lv_handicapsDialogLocal;
@@ -288,6 +589,7 @@ int libD169EC7B_gf_CreateHandicapsDialog () {
     int lv_buttonXOffset;
     int lv_buttonYOffset;
     text lv_enabledHandicaps;
+    int lv_handicapButton;
 
     // Automatic Variable Declarations
     int auto8FFDF2CF_ae;
@@ -298,39 +600,42 @@ int libD169EC7B_gf_CreateHandicapsDialog () {
     lv_handicapButtonWidth = 330;
     lv_handicapButtonHeight = 45;
     lv_buttonsInTheRow = 4;
+    lv_handicapButton = c_invalidDialogControlId;
 
     // Implementation
     DialogCreate(700, 500, c_anchorCenter, 0, 0, true);
     lv_handicapsDialogLocal = DialogLastCreated();
     DialogSetFullscreen(lv_handicapsDialogLocal, true);
-    libNtve_gf_CreateDialogItemButton(lv_handicapsDialogLocal, 200, 50, c_anchorBottomRight, 50, 50, StringToText(""), StringExternal("Param/Value/lib_D169EC7B_81B8534A"), "");
-    libD169EC7B_gv_startGameButton = DialogControlLastCreated();
+    if ((libD169EC7B_gf_IsTournamentGame() == true)) {
+        lv_buttonsInTheRow = 3;
+        DialogSetFullscreen(lv_handicapsDialogLocal, false);
+        DialogSetPosition(lv_handicapsDialogLocal, c_anchorTopLeft, 0, 0);
+        DialogSetSize(lv_handicapsDialogLocal, 1200, 1200);
+    }
+
+    if ((libD169EC7B_gf_StartButtonIsShown() == true)) {
+        libNtve_gf_CreateDialogItemButton(lv_handicapsDialogLocal, 200, 50, c_anchorBottomRight, 50, 50, StringToText(""), StringExternal("Param/Value/lib_D169EC7B_81B8534A"), "");
+        libD169EC7B_gv_startGameButton = DialogControlLastCreated();
+    }
+
     auto8FFDF2CF_ae = (libD169EC7B_gv_numberofHandicaps - 1);
     lv_handicapindex = 0;
     for ( ; ( (auto8FFDF2CF_ai >= 0 && lv_handicapindex <= auto8FFDF2CF_ae) || (auto8FFDF2CF_ai < 0 && lv_handicapindex >= auto8FFDF2CF_ae) ) ; lv_handicapindex += auto8FFDF2CF_ai ) {
-        lv_buttonXOffset = ((lv_i * lv_handicapButtonWidth) + 25);
-        lv_buttonYOffset = ((lv_j * lv_handicapButtonHeight) + 25);
-        DialogControlCreateFromTemplate(lv_handicapsDialogLocal, c_triggerControlTypeButton, "HelpPanel/HelpWelcomePanelButtonTemplate");
-        libNtve_gf_SetDialogItemText(DialogControlLastCreated(), libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_name, PlayerGroupAll());
-        libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_description, PlayerGroupAll());
-        DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, lv_buttonXOffset, lv_buttonYOffset);
-        if ((libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_enabled == true)) {
-            libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(22*100/255,128*100/255,0), PlayerGroupAll());
-        }
+        if ((libD169EC7B_gf_HandicapButtonIsShown(lv_handicapindex) == true)) {
+            lv_handicapButton = libD169EC7B_gf_CreateDetailsHandicapButton(lv_handicapsDialogLocal, lv_handicapindex, lv_i, lv_j);
+            if ((lv_i == (lv_buttonsInTheRow - 1))) {
+                lv_i = 0;
+                lv_j += 1;
+            }
+            else {
+                lv_i += 1;
+            }
+            if ((libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_enabled == true)) {
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_F57BAD7A", "A", lv_enabledHandicaps);
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_F57BAD7A", "New", libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_name);
+                lv_enabledHandicaps = TextExpressionAssemble("Param/Expression/lib_D169EC7B_F57BAD7A");
+            }
 
-        libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_detailsButton = DialogControlLastCreated();
-        libNtve_gf_SetDialogItemStyle(libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_detailsButton, "StandardMediumButton", PlayerGroupAll());
-        if ((lv_i == (lv_buttonsInTheRow - 1))) {
-            lv_i = 0;
-            lv_j += 1;
-        }
-        else {
-            lv_i += 1;
-        }
-        if ((libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_enabled == true)) {
-            TextExpressionSetToken("Param/Expression/lib_D169EC7B_F57BAD7A", "A", lv_enabledHandicaps);
-            TextExpressionSetToken("Param/Expression/lib_D169EC7B_F57BAD7A", "New", libD169EC7B_gv_hANDICAPS[lv_handicapindex].lv_name);
-            lv_enabledHandicaps = TextExpressionAssemble("Param/Expression/lib_D169EC7B_F57BAD7A");
         }
 
     }
@@ -357,21 +662,17 @@ int libD169EC7B_gf_CreateCustomHandicapDialog (int lp_handicapindex) {
     // Automatic Variable Declarations
     int autoA046B07A_ae;
     const int autoA046B07A_ai = 1;
-    int auto17AE29DF_ae;
-    const int auto17AE29DF_ai = 1;
     playergroup auto849A9E9D_g;
     int auto849A9E9D_var;
     int autoBBA631BE_ae;
     const int autoBBA631BE_ai = 1;
-    playergroup auto5D0C4713_g;
-    int auto5D0C4713_var;
-    int autoAAF0627B_ae;
-    const int autoAAF0627B_ai = 1;
+    playergroup auto923C422B_g;
+    int auto923C422B_var;
 
     // Variable Initialization
     lv_customHandicapUILocal = c_invalidDialogId;
-    lv_gameOptionRowHeight = 80;
-    lv_playerOptionRowHeight = 80;
+    lv_gameOptionRowHeight = 50;
+    lv_playerOptionRowHeight = 50;
     lv_listBoxWidth = 220;
     lv_xOffset = 50;
 
@@ -379,39 +680,55 @@ int libD169EC7B_gf_CreateCustomHandicapDialog (int lp_handicapindex) {
     DialogCreate(500, 400, c_anchorCenter, 0, 0, false);
     lv_customHandicapUILocal = DialogLastCreated();
     DialogSetFullscreen(lv_customHandicapUILocal, true);
+    if ((libD169EC7B_gf_IsTournamentGame() == true)) {
+        DialogSetFullscreen(lv_customHandicapUILocal, false);
+        DialogSetPosition(lv_customHandicapUILocal, c_anchorTopLeft, 0, 0);
+        DialogSetSize(lv_customHandicapUILocal, 1200, 1200);
+    }
+
     libNtve_gf_CreateDialogItemButton(lv_customHandicapUILocal, 200, 50, c_anchorBottomLeft, 50, 50, StringToText(""), StringExternal("Param/Value/lib_D169EC7B_B8CE3FE2"), "");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_backButton = DialogControlLastCreated();
     libNtve_gf_CreateDialogItemLabel(lv_customHandicapUILocal, 1000, 50, c_anchorTopLeft, 140, 65, libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name, ColorWithAlpha(0,0,0,0), false, 2.0);
     libNtve_gf_SetDialogItemStyle(DialogControlLastCreated(), "Campaign_FloatingTitle", PlayerGroupAll());
     libNtve_gf_CreateDialogItemImage(lv_customHandicapUILocal, 80, 80, c_anchorTopLeft, 50, 50, StringToText(""), libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath, c_triggerImageTypeNormal, true, Color(100,100,100), c_triggerBlendModeNormal);
     libNtve_gf_CreateDialogItemLabel(lv_customHandicapUILocal, 1000, 80, c_anchorTopLeft, 50, 150, libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description, ColorWithAlpha(0,0,0,0), false, 2.0);
-    if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_enabled == true)) {
-        lv_toggleButtonText = StringExternal("Param/Value/lib_D169EC7B_2B9686F4");
+    if ((libD169EC7B_gf_ToggleHandicapButtonIsShown(lp_handicapindex) == true)) {
+        libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_toggleButton = libD169EC7B_gf_CreateToggleHandicapButton(lv_customHandicapUILocal, lp_handicapindex, 0, 50);
     }
-    else {
-        lv_toggleButtonText = StringExternal("Param/Value/lib_D169EC7B_D2BE9C5F");
+
+    if ((libD169EC7B_gf_BanHandicapButtonIsShown(lp_handicapindex) == true)) {
+        libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_banButton = libD169EC7B_gf_CreateBanHandicapButton(lv_customHandicapUILocal, lp_handicapindex, 0, 50);
     }
-    libNtve_gf_CreateDialogItemButton(lv_customHandicapUILocal, 200, 50, c_anchorTop, 0, 50, StringToText(""), lv_toggleButtonText, "");
-    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_toggleButton = DialogControlLastCreated();
+
+    if ((libD169EC7B_gf_PickHandicapButtonIsShown(lp_handicapindex) == true)) {
+        libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_pickButton = libD169EC7B_gf_CreatePickHandicapButton(lv_customHandicapUILocal, lp_handicapindex, 250, 50);
+        if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_enabled == false)) {
+            DialogControlSetEnabled(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_pickButton, PlayerGroupAll(), false);
+        }
+
+    }
+
     if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_enabled == true)) {
         lv_gameOptionsYOffset = 200;
         autoA046B07A_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions - 1);
         lv_i = 0;
         for ( ; ( (autoA046B07A_ai >= 0 && lv_i <= autoA046B07A_ae) || (autoA046B07A_ai < 0 && lv_i >= autoA046B07A_ae) ) ; lv_i += autoA046B07A_ai ) {
-            libNtve_gf_CreateDialogItemLabel(lv_customHandicapUILocal, 500, 50, c_anchorTopLeft, lv_xOffset, lv_gameOptionsYOffset, libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_name, ColorWithAlpha(0,0,0,0), false, 2.0);
-            DialogControlCreate(lv_customHandicapUILocal, c_triggerControlTypeListBox);
-            libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_listBox = DialogControlLastCreated();
-            DialogControlSetPosition(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_listBox, PlayerGroupAll(), c_anchorTopLeft, lv_xOffset, (lv_gameOptionsYOffset + 30));
-            DialogControlSetSize(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_listBox, PlayerGroupAll(), lv_listBoxWidth, lv_gameOptionRowHeight);
-            auto17AE29DF_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_numberofValues - 1);
-            lv_j = 0;
-            for ( ; ( (auto17AE29DF_ai >= 0 && lv_j <= auto17AE29DF_ae) || (auto17AE29DF_ai < 0 && lv_j >= auto17AE29DF_ae) ) ; lv_j += auto17AE29DF_ai ) {
-                DialogControlAddItem(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_listBox, PlayerGroupAll(), StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_values[lv_j].lv_val));
-                if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_selectedVal == libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_values[lv_j].lv_val)) {
-                    DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_listBox, PlayerGroupAll(), (lv_j + 1));
+            if ((libD169EC7B_gf_DefaultGameOptionDropdownIsShown(lp_handicapindex) == true)) {
+                libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_listBox = libD169EC7B_gf_CreateDefaultGameOptionDropdown(lv_customHandicapUILocal, lp_handicapindex, lv_i, lv_xOffset, lv_gameOptionsYOffset, lv_listBoxWidth, lv_gameOptionRowHeight);
+                if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_picked == true)) {
+                    DialogControlSetEnabled(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_listBox, PlayerGroupAll(), false);
                 }
 
             }
+
+            if ((libD169EC7B_gf_MirrorGameOptionDropdownIsShown(lp_handicapindex) == true)) {
+                libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_mirrorListBox = libD169EC7B_gf_CreateMirrorGameOptionDropdown(lv_customHandicapUILocal, lp_handicapindex, lv_i, lv_xOffset, lv_gameOptionsYOffset, lv_listBoxWidth, lv_gameOptionRowHeight);
+                if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_picked == true)) {
+                    DialogControlSetEnabled(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_i].lv_mirrorListBox, PlayerGroupAll(), false);
+                }
+
+            }
+
             if ((lv_xOffset == 50)) {
                 lv_xOffset = 330;
             }
@@ -449,26 +766,29 @@ int libD169EC7B_gf_CreateCustomHandicapDialog (int lp_handicapindex) {
                 libNtve_gf_CreateDialogItemLabel(lv_customHandicapUILocal, 1000, 50, c_anchorTopLeft, 50, lv_playerOptionsYOffset, libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_name, ColorWithAlpha(0,0,0,0), false, 2.0);
                 lv_playerOptionsYOffset += 30;
                 lv_k = 0;
-                auto5D0C4713_g = PlayerGroupActive();
-                auto5D0C4713_var = -1;
-                while (true) {
-                    auto5D0C4713_var = PlayerGroupNextPlayer(auto5D0C4713_g, auto5D0C4713_var);
-                    if (auto5D0C4713_var < 0) { break; }
-                    DialogControlCreate(lv_customHandicapUILocal, c_triggerControlTypeListBox);
-                    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_listBoxes[auto5D0C4713_var] = DialogControlLastCreated();
-                    DialogControlSetPosition(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_listBoxes[auto5D0C4713_var], PlayerGroupAll(), c_anchorTopLeft, ((lv_listBoxWidth * lv_k) + 50), lv_playerOptionsYOffset);
-                    DialogControlSetSize(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_listBoxes[auto5D0C4713_var], PlayerGroupAll(), lv_listBoxWidth, lv_playerOptionRowHeight);
-                    autoAAF0627B_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_numberofValues - 1);
-                    lv_j = 0;
-                    for ( ; ( (autoAAF0627B_ai >= 0 && lv_j <= autoAAF0627B_ae) || (autoAAF0627B_ai < 0 && lv_j >= autoAAF0627B_ae) ) ; lv_j += autoAAF0627B_ai ) {
-                        DialogControlAddItem(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_listBoxes[auto5D0C4713_var], PlayerGroupAll(), StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_values[lv_j].lv_val));
-                        if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_selectedVals[auto5D0C4713_var] == libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_values[lv_j].lv_val)) {
-                            DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_listBoxes[auto5D0C4713_var], PlayerGroupAll(), (lv_j + 1));
+                if ((libD169EC7B_gf_DefaultPlayerOptionDropdownIsShown(lp_handicapindex) == true)) {
+                    auto923C422B_g = PlayerGroupActive();
+                    auto923C422B_var = -1;
+                    while (true) {
+                        auto923C422B_var = PlayerGroupNextPlayer(auto923C422B_g, auto923C422B_var);
+                        if (auto923C422B_var < 0) { break; }
+                        libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_listBoxes[auto923C422B_var] = libD169EC7B_gf_CreateDefaultPlayerOptionDropdown(lv_customHandicapUILocal, lp_handicapindex, lv_i, auto923C422B_var, ((lv_listBoxWidth * lv_k) + 50), lv_playerOptionsYOffset, lv_listBoxWidth, lv_playerOptionRowHeight);
+                        lv_k += 1;
+                        if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_picked == true)) {
+                            DialogControlSetEnabled(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_listBoxes[auto923C422B_var], PlayerGroupAll(), false);
                         }
 
                     }
-                    lv_k += 1;
                 }
+
+                if ((libD169EC7B_gf_MirrorPlayerOptionDropdownIsShown(lp_handicapindex) == true)) {
+                    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_mirrorListBox = libD169EC7B_gf_CreateMirrorPlayerOptionDropdown(lv_customHandicapUILocal, lp_handicapindex, lv_i, 50, lv_playerOptionsYOffset, lv_listBoxWidth, lv_playerOptionRowHeight);
+                    if ((libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_picked == true)) {
+                        DialogControlSetEnabled(libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_i].lv_mirrorListBox, PlayerGroupAll(), false);
+                    }
+
+                }
+
                 lv_playerOptionsYOffset += lv_playerOptionRowHeight;
                 lv_playerOptionsYOffset += 20;
             }
@@ -477,6 +797,738 @@ int libD169EC7B_gf_CreateCustomHandicapDialog (int lp_handicapindex) {
     }
 
     return lv_customHandicapUILocal;
+}
+
+int libD169EC7B_gf_CreateDetailsHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_i, int lp_j) {
+    // Variable Declarations
+    int lv_handicapButtonWidth;
+    int lv_handicapButtonHeight;
+    int lv_buttonXOffset;
+    int lv_buttonYOffset;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_handicapButtonWidth = 330;
+    lv_handicapButtonHeight = 45;
+
+    // Implementation
+    lv_buttonXOffset = ((lp_i * lv_handicapButtonWidth) + 25);
+    lv_buttonYOffset = ((lp_j * lv_handicapButtonHeight) + 25);
+    DialogControlCreateFromTemplate(lp_dialog, c_triggerControlTypeButton, "HelpPanel/HelpWelcomePanelButtonTemplate");
+    libNtve_gf_SetDialogItemText(DialogControlLastCreated(), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, PlayerGroupAll());
+    libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description, PlayerGroupAll());
+    DialogControlSetPosition(DialogControlLastCreated(), PlayerGroupAll(), c_anchorTopLeft, lv_buttonXOffset, lv_buttonYOffset);
+    if (((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true) || (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_picked == true))) {
+        libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(22*100/255,128*100/255,0), PlayerGroupAll());
+    }
+
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_banned == true)) {
+        libNtve_gf_SetDialogItemColor(DialogControlLastCreated(), Color(149*100/255,150*100/255,151*100/255), PlayerGroupAll());
+        DialogControlSetEnabled(DialogControlLastCreated(), PlayerGroupAll(), false);
+    }
+
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_detailsButton = DialogControlLastCreated();
+    libNtve_gf_SetDialogItemStyle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_detailsButton, "StandardMediumButton", PlayerGroupAll());
+    return DialogControlLastCreated();
+}
+
+int libD169EC7B_gf_CreateBanHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_x, int lp_y) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateDialogItemButton(lp_dialog, 200, 50, c_anchorTop, lp_x, lp_y, StringExternal("Param/Value/lib_D169EC7B_07F6548D"), StringExternal("Param/Value/lib_D169EC7B_2FC358E3"), "");
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_banButton = DialogControlLastCreated();
+    return DialogControlLastCreated();
+}
+
+int libD169EC7B_gf_CreatePickHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_x, int lp_y) {
+    // Automatic Variable Declarations
+    // Implementation
+    libNtve_gf_CreateDialogItemButton(lp_dialog, 200, 50, c_anchorTop, lp_x, lp_y, StringExternal("Param/Value/lib_D169EC7B_CA336C26"), StringExternal("Param/Value/lib_D169EC7B_16983AD9"), "");
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_pickButton = DialogControlLastCreated();
+    return DialogControlLastCreated();
+}
+
+int libD169EC7B_gf_CreateToggleHandicapButton (int lp_dialog, int lp_handicapIndex, int lp_x, int lp_y) {
+    // Variable Declarations
+    text lv_toggleButtonText;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled == true)) {
+        lv_toggleButtonText = StringExternal("Param/Value/lib_D169EC7B_BEAB50C2");
+    }
+    else {
+        lv_toggleButtonText = StringExternal("Param/Value/lib_D169EC7B_A5CB8DA1");
+    }
+    libNtve_gf_CreateDialogItemButton(lp_dialog, 200, 50, c_anchorTop, lp_x, lp_y, StringToText(""), lv_toggleButtonText, "");
+    return DialogControlLastCreated();
+}
+
+int libD169EC7B_gf_CreateDefaultGameOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_gameOptionIndex, int lp_x, int lp_y, int lp_width, int lp_height) {
+    // Variable Declarations
+    int lv_j;
+
+    // Automatic Variable Declarations
+    int auto54879589_ae;
+    const int auto54879589_ai = 1;
+
+    // Variable Initialization
+
+    // Implementation
+    libNtve_gf_CreateDialogItemLabel(lp_dialog, 500, 50, c_anchorTopLeft, lp_x, lp_y, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_name, ColorWithAlpha(0,0,0,0), false, 2.0);
+    DialogControlCreate(lp_dialog, c_triggerControlTypePulldown);
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_listBox = DialogControlLastCreated();
+    DialogControlSetPosition(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_listBox, PlayerGroupAll(), c_anchorTopLeft, lp_x, (lp_y + 30));
+    DialogControlSetSize(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_listBox, PlayerGroupAll(), lp_width, lp_height);
+    auto54879589_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_numberofValues - 1);
+    lv_j = 0;
+    for ( ; ( (auto54879589_ai >= 0 && lv_j <= auto54879589_ae) || (auto54879589_ai < 0 && lv_j >= auto54879589_ae) ) ; lv_j += auto54879589_ai ) {
+        DialogControlAddItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_listBox, PlayerGroupAll(), StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_values[lv_j].lv_val));
+        if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_selectedVal == libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_values[lv_j].lv_val)) {
+            DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_listBox, PlayerGroupAll(), (lv_j + 1));
+        }
+
+    }
+    return DialogControlLastCreated();
+}
+
+int libD169EC7B_gf_CreateMirrorGameOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_gameOptionIndex, int lp_x, int lp_y, int lp_width, int lp_height) {
+    // Variable Declarations
+    int lv_j;
+    bool lv_someValueIsSelected;
+
+    // Automatic Variable Declarations
+    int autoE31DDF50_ae;
+    const int autoE31DDF50_ai = 1;
+
+    // Variable Initialization
+
+    // Implementation
+    libNtve_gf_CreateDialogItemLabel(lp_dialog, 500, 50, c_anchorTopLeft, lp_x, lp_y, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_name, ColorWithAlpha(0,0,0,0), false, 2.0);
+    DialogControlCreate(lp_dialog, c_triggerControlTypePulldown);
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_mirrorListBox = DialogControlLastCreated();
+    DialogControlSetPosition(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_mirrorListBox, PlayerGroupAll(), c_anchorTopLeft, lp_x, (lp_y + 30));
+    DialogControlSetSize(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_mirrorListBox, PlayerGroupAll(), lp_width, lp_height);
+    autoE31DDF50_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_numberofValues - 1);
+    lv_j = 0;
+    for ( ; ( (autoE31DDF50_ai >= 0 && lv_j <= autoE31DDF50_ae) || (autoE31DDF50_ai < 0 && lv_j >= autoE31DDF50_ae) ) ; lv_j += autoE31DDF50_ai ) {
+        DialogControlAddItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_mirrorListBox, PlayerGroupAll(), StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_values[lv_j].lv_val));
+        if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_mirrorSelectedVal == libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_values[lv_j].lv_val)) {
+            DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_mirrorListBox, PlayerGroupAll(), (lv_j + 1));
+        }
+
+    }
+    if ((lv_someValueIsSelected == false)) {
+        DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[lp_gameOptionIndex].lv_mirrorListBox, PlayerGroupAll(), 1);
+    }
+
+    return DialogControlLastCreated();
+}
+
+int libD169EC7B_gf_CreateDefaultPlayerOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_playerOptionIndex, int lp_player, int lp_x, int lp_y, int lp_width, int lp_height) {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    int autoE50B5BA1_ae;
+    const int autoE50B5BA1_ai = 1;
+
+    // Variable Initialization
+
+    // Implementation
+    DialogControlCreate(lp_dialog, c_triggerControlTypePulldown);
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_listBoxes[lp_player] = DialogControlLastCreated();
+    DialogControlSetPosition(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_listBoxes[lp_player], PlayerGroupAll(), c_anchorTopLeft, lp_x, lp_y);
+    DialogControlSetSize(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_listBoxes[lp_player], PlayerGroupAll(), lp_width, lp_height);
+    autoE50B5BA1_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_numberofValues - 1);
+    lv_i = 0;
+    for ( ; ( (autoE50B5BA1_ai >= 0 && lv_i <= autoE50B5BA1_ae) || (autoE50B5BA1_ai < 0 && lv_i >= autoE50B5BA1_ae) ) ; lv_i += autoE50B5BA1_ai ) {
+        DialogControlAddItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_listBoxes[lp_player], PlayerGroupAll(), StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_values[lv_i].lv_val));
+        if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_selectedVals[lp_player] == libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_values[lv_i].lv_val)) {
+            DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_listBoxes[lp_player], PlayerGroupAll(), (lv_i + 1));
+        }
+
+    }
+    return libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_listBoxes[lp_player];
+}
+
+int libD169EC7B_gf_CreateMirrorPlayerOptionDropdown (int lp_dialog, int lp_handicapIndex, int lp_playerOptionIndex, int lp_x, int lp_y, int lp_width, int lp_height) {
+    // Variable Declarations
+    int lv_i;
+    bool lv_someValueIsSelected;
+
+    // Automatic Variable Declarations
+    int autoB24E838D_ae;
+    const int autoB24E838D_ai = 1;
+
+    // Variable Initialization
+
+    // Implementation
+    DialogControlCreate(lp_dialog, c_triggerControlTypePulldown);
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorListBox = DialogControlLastCreated();
+    DialogControlSetPosition(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorListBox, PlayerGroupAll(), c_anchorTopLeft, lp_x, lp_y);
+    DialogControlSetSize(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorListBox, PlayerGroupAll(), lp_width, lp_height);
+    autoB24E838D_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_numberofValues - 1);
+    lv_i = 0;
+    for ( ; ( (autoB24E838D_ai >= 0 && lv_i <= autoB24E838D_ae) || (autoB24E838D_ai < 0 && lv_i >= autoB24E838D_ae) ) ; lv_i += autoB24E838D_ai ) {
+        DialogControlAddItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorListBox, PlayerGroupAll(), StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_values[lv_i].lv_val));
+        if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorSelectedVal == libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_values[lv_i].lv_val)) {
+            DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorListBox, PlayerGroupAll(), (lv_i + 1));
+            lv_someValueIsSelected = true;
+        }
+
+    }
+    if ((lv_someValueIsSelected == false)) {
+        DialogControlSelectItem(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorListBox, PlayerGroupAll(), 1);
+    }
+
+    return libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[lp_playerOptionIndex].lv_mirrorListBox;
+}
+
+void libD169EC7B_gf_PickHandicap (int lp_handicapIndex, int lp_player) {
+    // Variable Declarations
+    text lv_by;
+    text lv_messageAboutPickedHandicap;
+    text lv_playerValues;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_CD6A462B", "HandicapName", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name);
+    lv_messageAboutPickedHandicap = TextExpressionAssemble("Param/Expression/lib_D169EC7B_CD6A462B");
+    lv_playerValues = StringToText("");
+
+    // Implementation
+    if ((lp_player == -1)) {
+        lv_by = TextExpressionAssemble("Param/Expression/lib_D169EC7B_80DAF372");
+    }
+    else {
+        TextExpressionSetToken("Param/Expression/lib_D169EC7B_4D58E9A0", "Player", libDBC4E2D2_gf_GetPlayerNamesColored(PlayerGroupSingle(lp_player)));
+        lv_by = TextExpressionAssemble("Param/Expression/lib_D169EC7B_4D58E9A0");
+    }
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_22087058", "Self", lv_messageAboutPickedHandicap);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_22087058", "By", lv_by);
+    lv_messageAboutPickedHandicap = TextExpressionAssemble("Param/Expression/lib_D169EC7B_22087058");
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled = true;
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_picked = true;
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, lv_messageAboutPickedHandicap);
+    libD169EC7B_gf_DumpHandicapOptions(lp_handicapIndex);
+}
+
+void libD169EC7B_gf_BanHandicap (int lp_handicapIndex, int lp_player) {
+    // Variable Declarations
+    text lv_by;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Implementation
+    libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_banned = true;
+    if ((lp_player == -1)) {
+        lv_by = TextExpressionAssemble("Param/Expression/lib_D169EC7B_C5699DE5");
+    }
+    else {
+        TextExpressionSetToken("Param/Expression/lib_D169EC7B_CC761B9E", "Player", libDBC4E2D2_gf_GetPlayerNamesColored(PlayerGroupSingle(lp_player)));
+        lv_by = TextExpressionAssemble("Param/Expression/lib_D169EC7B_CC761B9E");
+    }
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_50099AF2", "HandicapName", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_50099AF2", "By", lv_by);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_D169EC7B_50099AF2"));
+}
+
+void libD169EC7B_gf_ToggleUIElementsVisibility (bool lp_state) {
+    // Automatic Variable Declarations
+    // Implementation
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeConsolePanel, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeIdleWorkerButton, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMinimapPanel, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMissionTimePanel, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeControlGroupPanel, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeArmyButton, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeMenuBar, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeCommandPanel, lp_state);
+    UISetFrameVisible(PlayerGroupAll(), c_syncFrameTypeInfoPanel, lp_state);
+}
+
+void libD169EC7B_gf_SetRandomValuesforHandicapsOptions (int lp_handicapIndex) {
+    // Variable Declarations
+    int lv_index;
+    bool lv_handicapIsEnableAtLeastForOnePlayer;
+
+    // Automatic Variable Declarations
+    int auto447F3B97_ae;
+    int auto447F3B97_var;
+    int auto1F02B6F8_ae;
+    int auto1F02B6F8_var;
+    playergroup auto834F0CEA_g;
+    int auto834F0CEA_var;
+    playergroup auto6B70854D_g;
+    int auto6B70854D_var;
+    playergroup auto0CBC8FED_g;
+    int auto0CBC8FED_var;
+    playergroup auto2BB9B8DD_g;
+    int auto2BB9B8DD_var;
+
+    // Variable Initialization
+
+    // Implementation
+    auto447F3B97_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_numberofGameOptions - 1);
+    auto447F3B97_var = 0;
+    for ( ; auto447F3B97_var <= auto447F3B97_ae; auto447F3B97_var += 1 ) {
+        lv_index = RandomInt(0, (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto447F3B97_var].lv_numberofValues - 1));
+        if ((libD169EC7B_gf_IsMirrorGame() == true)) {
+            libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto447F3B97_var].lv_mirrorSelectedVal = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto447F3B97_var].lv_values[lv_index].lv_val;
+        }
+
+        libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto447F3B97_var].lv_selectedVal = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto447F3B97_var].lv_values[lv_index].lv_val;
+    }
+    auto1F02B6F8_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_numberofPlayerOptions - 1);
+    auto1F02B6F8_var = 0;
+    for ( ; auto1F02B6F8_var <= auto1F02B6F8_ae; auto1F02B6F8_var += 1 ) {
+        if ((libD169EC7B_gf_IsMirrorGame() == true)) {
+            lv_index = RandomInt(0, (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_numberofValues - 1));
+            libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_mirrorSelectedVal = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_values[lv_index].lv_val;
+            auto2BB9B8DD_g = PlayerGroupActive();
+            auto2BB9B8DD_var = -1;
+            while (true) {
+                auto2BB9B8DD_var = PlayerGroupNextPlayer(auto2BB9B8DD_g, auto2BB9B8DD_var);
+                if (auto2BB9B8DD_var < 0) { break; }
+                libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_selectedVals[auto2BB9B8DD_var] = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_mirrorSelectedVal;
+            }
+        }
+        else {
+            auto834F0CEA_g = PlayerGroupActive();
+            auto834F0CEA_var = -1;
+            while (true) {
+                auto834F0CEA_var = PlayerGroupNextPlayer(auto834F0CEA_g, auto834F0CEA_var);
+                if (auto834F0CEA_var < 0) { break; }
+                lv_index = RandomInt(0, (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_numberofValues - 1));
+                libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_selectedVals[auto834F0CEA_var] = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_values[lv_index].lv_val;
+            }
+            if ((auto1F02B6F8_var == 0)) {
+                auto6B70854D_g = PlayerGroupActive();
+                auto6B70854D_var = -1;
+                while (true) {
+                    auto6B70854D_var = PlayerGroupNextPlayer(auto6B70854D_g, auto6B70854D_var);
+                    if (auto6B70854D_var < 0) { break; }
+                    if ((libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_selectedVals[auto6B70854D_var] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
+                        lv_handicapIsEnableAtLeastForOnePlayer = true;
+                    }
+
+                }
+                if ((lv_handicapIsEnableAtLeastForOnePlayer == false)) {
+                    auto0CBC8FED_g = PlayerGroupActive();
+                    auto0CBC8FED_var = -1;
+                    while (true) {
+                        auto0CBC8FED_var = PlayerGroupNextPlayer(auto0CBC8FED_g, auto0CBC8FED_var);
+                        if (auto0CBC8FED_var < 0) { break; }
+                        lv_index = RandomInt(1, (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_numberofValues - 1));
+                        libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_selectedVals[auto0CBC8FED_var] = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto1F02B6F8_var].lv_values[lv_index].lv_val;
+                    }
+                }
+
+            }
+
+        }
+    }
+}
+
+void libD169EC7B_gf_StartGameWithSelectedHandicaps () {
+    // Variable Declarations
+    int lv_i;
+    int lv_countdownSeconds;
+
+    // Automatic Variable Declarations
+    const int auto16988DD5_ae = 1;
+    const int auto16988DD5_ai = -1;
+    playergroup auto9533CC06_g;
+    int auto9533CC06_var;
+    unitgroup auto74CD5CE6_g;
+    int auto74CD5CE6_u;
+    unit auto74CD5CE6_var;
+    int autoA37FF997_ae;
+    const int autoA37FF997_ai = 1;
+    playergroup auto589A89E3_g;
+    int auto589A89E3_var;
+    int autoA8F8B668_ae;
+    int autoA8F8B668_var;
+
+    // Variable Initialization
+
+    // Implementation
+    DialogDestroyAll();
+    SoundPlayForPlayer(SoundLink("AlarakA_Countdown", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+    lv_countdownSeconds = 5;
+    for ( ; ( (auto16988DD5_ai >= 0 && lv_countdownSeconds <= auto16988DD5_ae) || (auto16988DD5_ai < 0 && lv_countdownSeconds >= auto16988DD5_ae) ) ; lv_countdownSeconds += auto16988DD5_ai ) {
+        TextExpressionSetToken("Param/Expression/lib_D169EC7B_A15A106D", "Seconds", IntToText(lv_countdownSeconds));
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, TextExpressionAssemble("Param/Expression/lib_D169EC7B_A15A106D"));
+        Wait(1.0, c_timeReal);
+        UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
+    }
+    GameSetMissionTimePaused(false);
+    AITimePause(false);
+    UnitPauseAll(false);
+    libD169EC7B_gf_ToggleUIElementsVisibility(true);
+    auto9533CC06_g = PlayerGroupAll();
+    auto9533CC06_var = -1;
+    while (true) {
+        auto9533CC06_var = PlayerGroupNextPlayer(auto9533CC06_g, auto9533CC06_var);
+        if (auto9533CC06_var < 0) { break; }
+        MeleeSetOption(auto9533CC06_var, c_meleeOptionDefeat, true);
+        MeleeSetOption(auto9533CC06_var, c_meleeOptionVictory, true);
+        MeleeSetOption(auto9533CC06_var, c_meleeOptionStalemate, true);
+        auto74CD5CE6_g = UnitGroup(null, auto9533CC06_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto74CD5CE6_u = UnitGroupCount(auto74CD5CE6_g, c_unitCountAll);
+        for (;; auto74CD5CE6_u -= 1) {
+            auto74CD5CE6_var = UnitGroupUnitFromEnd(auto74CD5CE6_g, auto74CD5CE6_u);
+            if (auto74CD5CE6_var == null) { break; }
+            libNtve_gf_MakeUnitUncommandable(auto74CD5CE6_var, false);
+        }
+    }
+    autoA37FF997_ae = (libD169EC7B_gv_numberofHandicaps - 1);
+    lv_i = 0;
+    for ( ; ( (autoA37FF997_ai >= 0 && lv_i <= autoA37FF997_ae) || (autoA37FF997_ai < 0 && lv_i >= autoA37FF997_ae) ) ; lv_i += autoA37FF997_ai ) {
+        libD169EC7B_gv_activeHandicapIndex = lv_i;
+        TriggerExecute(libD169EC7B_gv_hANDICAPS[lv_i].lv_setupTrigger, true, true);
+        if ((libD169EC7B_gv_hANDICAPS[lv_i].lv_enabled == true)) {
+        }
+
+    }
+    auto589A89E3_g = PlayerGroupActive();
+    auto589A89E3_var = -1;
+    while (true) {
+        auto589A89E3_var = PlayerGroupNextPlayer(auto589A89E3_g, auto589A89E3_var);
+        if (auto589A89E3_var < 0) { break; }
+        DialogCreate(400, (libDBC4E2D2_gv_pLAYERS[auto589A89E3_var].lv_uI.lv_numberofmessages * 25), c_anchorTopLeft, 0, 0, true);
+        libDBC4E2D2_gv_pLAYERS[auto589A89E3_var].lv_uI.lv_messagesmodaldialog = DialogLastCreated();
+        DialogSetImageVisible(libDBC4E2D2_gv_pLAYERS[auto589A89E3_var].lv_uI.lv_messagesmodaldialog, false);
+        DialogSetVisible(libDBC4E2D2_gv_pLAYERS[auto589A89E3_var].lv_uI.lv_messagesmodaldialog, PlayerGroupSingle(auto589A89E3_var), true);
+        autoA8F8B668_ae = libDBC4E2D2_gv_pLAYERS[auto589A89E3_var].lv_uI.lv_numberofmessages;
+        autoA8F8B668_var = 1;
+        for ( ; autoA8F8B668_var <= autoA8F8B668_ae; autoA8F8B668_var += 1 ) {
+            libNtve_gf_CreateDialogItemLabel(libDBC4E2D2_gv_pLAYERS[auto589A89E3_var].lv_uI.lv_messagesmodaldialog, 400, 40, c_anchorTopLeft, 0, (25 * (autoA8F8B668_var - 1)), StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
+            libDBC4E2D2_gv_pLAYERS[auto589A89E3_var].lv_uI.lv_dialogMessages[autoA8F8B668_var] = DialogControlLastCreated();
+        }
+    }
+    TimerStart(libDBC4E2D2_gv_timer1s, 1.0, true, c_timeReal);
+    BoardShowAll(true, libDBC4E2D2_gv_observerGroup);
+}
+
+void libD169EC7B_gf_PrepareGameForHandicapsSelection () {
+    // Automatic Variable Declarations
+    playergroup auto0657ED17_g;
+    int auto0657ED17_var;
+    unitgroup autoBA8E0CCE_g;
+    int autoBA8E0CCE_u;
+    unit autoBA8E0CCE_var;
+
+    // Implementation
+    GameSetMissionTimePaused(true);
+    AITimePause(true);
+    UnitPauseAll(true);
+    libD169EC7B_gf_ToggleUIElementsVisibility(false);
+    TriggerExecute(libD169EC7B_gt_SetupHandicaps, true, true);
+    libD169EC7B_gv_handicapsDialog = libD169EC7B_gf_CreateHandicapsDialog();
+    DialogSetVisible(libD169EC7B_gv_handicapsDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
+    auto0657ED17_g = PlayerGroupAll();
+    auto0657ED17_var = -1;
+    while (true) {
+        auto0657ED17_var = PlayerGroupNextPlayer(auto0657ED17_g, auto0657ED17_var);
+        if (auto0657ED17_var < 0) { break; }
+        MeleeSetOption(auto0657ED17_var, c_meleeOptionDefeat, false);
+        MeleeSetOption(auto0657ED17_var, c_meleeOptionVictory, false);
+        MeleeSetOption(auto0657ED17_var, c_meleeOptionStalemate, false);
+        autoBA8E0CCE_g = UnitGroup(null, auto0657ED17_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoBA8E0CCE_u = UnitGroupCount(autoBA8E0CCE_g, c_unitCountAll);
+        for (;; autoBA8E0CCE_u -= 1) {
+            autoBA8E0CCE_var = UnitGroupUnitFromEnd(autoBA8E0CCE_g, autoBA8E0CCE_u);
+            if (autoBA8E0CCE_var == null) { break; }
+            libNtve_gf_MakeUnitUncommandable(autoBA8E0CCE_var, true);
+        }
+    }
+}
+
+void libD169EC7B_gf_DumpHandicapOptions (int lp_handicapIndex) {
+    // Variable Declarations
+    text lv_messageAboutPickedHandicap;
+    text lv_playerValues;
+
+    // Automatic Variable Declarations
+    int auto044A246E_ae;
+    int auto044A246E_var;
+    int auto6457C912_ae;
+    int auto6457C912_var;
+    playergroup autoCC5FF1E7_g;
+    int autoCC5FF1E7_var;
+
+    // Variable Initialization
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_71559EF6", "HandicapName", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_71559EF6", "Enabled", libNtve_gf_ConvertBooleanToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_enabled));
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_71559EF6", "Picked", libNtve_gf_ConvertBooleanToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_picked));
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_71559EF6", "Banned", libNtve_gf_ConvertBooleanToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_banned));
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_71559EF6", "FT", libNtve_gf_ConvertBooleanToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_forTournaments));
+    lv_messageAboutPickedHandicap = TextExpressionAssemble("Param/Expression/lib_D169EC7B_71559EF6");
+    lv_playerValues = StringToText("");
+
+    // Implementation
+    auto044A246E_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_numberofGameOptions - 1);
+    auto044A246E_var = 0;
+    for ( ; auto044A246E_var <= auto044A246E_ae; auto044A246E_var += 1 ) {
+        if ((libD169EC7B_gf_IsMirrorGame() == true)) {
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_5E6A8C04", "Options", lv_messageAboutPickedHandicap);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_5E6A8C04", "OptionName", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto044A246E_var].lv_name);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_5E6A8C04", "OptionValue", StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto044A246E_var].lv_mirrorSelectedVal));
+            lv_messageAboutPickedHandicap = TextExpressionAssemble("Param/Expression/lib_D169EC7B_5E6A8C04");
+        }
+        else {
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_ADEC29E0", "Options", lv_messageAboutPickedHandicap);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_ADEC29E0", "OptionName", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto044A246E_var].lv_name);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_ADEC29E0", "OptionValue", StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[auto044A246E_var].lv_selectedVal));
+            lv_messageAboutPickedHandicap = TextExpressionAssemble("Param/Expression/lib_D169EC7B_ADEC29E0");
+        }
+    }
+    auto6457C912_ae = (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_numberofPlayerOptions - 1);
+    auto6457C912_var = 0;
+    for ( ; auto6457C912_var <= auto6457C912_ae; auto6457C912_var += 1 ) {
+        if ((libD169EC7B_gf_IsMirrorGame() == true)) {
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_387FF89F", "Options", lv_messageAboutPickedHandicap);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_387FF89F", "OptionName", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto6457C912_var].lv_name);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_387FF89F", "OptionValue", StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto6457C912_var].lv_mirrorSelectedVal));
+            lv_messageAboutPickedHandicap = TextExpressionAssemble("Param/Expression/lib_D169EC7B_387FF89F");
+        }
+        else {
+            lv_playerValues = StringToText("");
+            autoCC5FF1E7_g = PlayerGroupActive();
+            autoCC5FF1E7_var = -1;
+            while (true) {
+                autoCC5FF1E7_var = PlayerGroupNextPlayer(autoCC5FF1E7_g, autoCC5FF1E7_var);
+                if (autoCC5FF1E7_var < 0) { break; }
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_00B37485", "PlayerValues", lv_playerValues);
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_00B37485", "Val", StringToText(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto6457C912_var].lv_selectedVals[autoCC5FF1E7_var]));
+                lv_playerValues = TextExpressionAssemble("Param/Expression/lib_D169EC7B_00B37485");
+            }
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_4A186B5E", "Options", lv_messageAboutPickedHandicap);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_4A186B5E", "OptionName", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_playerOptions[auto6457C912_var].lv_name);
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_4A186B5E", "OptionValue", lv_playerValues);
+            lv_messageAboutPickedHandicap = TextExpressionAssemble("Param/Expression/lib_D169EC7B_4A186B5E");
+        }
+    }
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, lv_messageAboutPickedHandicap);
+}
+
+int libD169EC7B_gf_GetNumberofRandomHandicapsToEnable () {
+    // Automatic Variable Declarations
+    string autoE812E66E_val;
+
+    // Implementation
+    autoE812E66E_val = GameAttributeGameValue("4");
+    if (autoE812E66E_val == "0001") {
+        return 1;
+    }
+    else if (autoE812E66E_val == "0002") {
+        return 2;
+    }
+    else if (autoE812E66E_val == "0003") {
+        return 3;
+    }
+    else if (autoE812E66E_val == "0004") {
+        return 4;
+    }
+    else if (autoE812E66E_val == "0005") {
+        return 5;
+    }
+    else if (autoE812E66E_val == "0006") {
+        return 6;
+    }
+    else if (autoE812E66E_val == "0007") {
+        return 7;
+    }
+    else if (autoE812E66E_val == "0008") {
+        return 8;
+    }
+    else if (autoE812E66E_val == "0009") {
+        return 9;
+    }
+    else if (autoE812E66E_val == "0010") {
+        return 10;
+    }
+    else {
+        return 2;
+    }
+}
+
+int libD169EC7B_gf_GetPhaseTime () {
+    // Automatic Variable Declarations
+    string autoEC0BACE2_val;
+
+    // Implementation
+    autoEC0BACE2_val = GameAttributeGameValue("5");
+    if (autoEC0BACE2_val == "0001") {
+        return 15;
+    }
+    else if (autoEC0BACE2_val == "0002") {
+        return 30;
+    }
+    else if (autoEC0BACE2_val == "0003") {
+        return 45;
+    }
+    else if (autoEC0BACE2_val == "0004") {
+        return 60;
+    }
+    else {
+        return 45;
+    }
+}
+
+int libD169EC7B_gf_GetRandomAvailableTournamentHandicapIndex () {
+    // Variable Declarations
+    int[201] lv_tournamentHandicaps;
+    int lv_numberofTournamentHandicaps;
+    int lv_randomHandicapIndex;
+
+    // Automatic Variable Declarations
+    int autoFC96695F_ae;
+    int autoFC96695F_var;
+
+    // Variable Initialization
+
+    // Implementation
+    autoFC96695F_ae = libD169EC7B_gv_numberofHandicaps;
+    autoFC96695F_var = 0;
+    for ( ; autoFC96695F_var <= autoFC96695F_ae; autoFC96695F_var += 1 ) {
+        if ((libD169EC7B_gv_hANDICAPS[autoFC96695F_var].lv_forTournaments == true) && (libD169EC7B_gv_hANDICAPS[autoFC96695F_var].lv_banned == false) && (libD169EC7B_gv_hANDICAPS[autoFC96695F_var].lv_picked == false) && (libD169EC7B_gv_hANDICAPS[autoFC96695F_var].lv_enabled == false)) {
+            lv_tournamentHandicaps[lv_numberofTournamentHandicaps] = autoFC96695F_var;
+            lv_numberofTournamentHandicaps += 1;
+        }
+
+    }
+    lv_randomHandicapIndex = lv_tournamentHandicaps[RandomInt(0, (lv_numberofTournamentHandicaps - 1))];
+    return lv_randomHandicapIndex;
+}
+
+bool libD169EC7B_gf_HandicapButtonIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((GameAttributeGameValue("2") == "0001")) {
+        return true;
+    }
+
+    if ((libD169EC7B_gf_IsTournamentGame() == true) && (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_forTournaments == true)) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_IsMirrorTournamentGame () {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((GameAttributeGameValue("2") == "0002") || (GameAttributeGameValue("2") == "0003") || (GameAttributeGameValue("2") == "0006") || (GameAttributeGameValue("2") == "0007"))) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_IsMirrorGame () {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((GameAttributeGameValue("2") == "0004") || (libD169EC7B_gf_IsMirrorTournamentGame() == true))) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_IsTournamentGame () {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((libD169EC7B_gf_IsMirrorTournamentGame() == true) || (GameAttributeGameValue("2") == "0008"))) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_StartButtonIsShown () {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((GameAttributeGameValue("2") == "0001")) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_BanHandicapButtonIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libD169EC7B_gf_IsTournamentGame() == true) && (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_forTournaments == true) && (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_banned == false) && (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_picked == false) && (libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_phaseType == libD169EC7B_ge_PHASETYPE_BAN)) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_PickHandicapButtonIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libD169EC7B_gf_IsTournamentGame() == true) && (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_forTournaments == true) && (libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_phaseType == libD169EC7B_ge_PHASETYPE_PICK) && (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_picked == false)) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_ToggleHandicapButtonIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((GameAttributeGameValue("2") == "0001") || ((libD169EC7B_gf_IsTournamentGame() == true) && (libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_phaseType == libD169EC7B_ge_PHASETYPE_PICK) && (libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_picked == false)))) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_DefaultGameOptionDropdownIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((GameAttributeGameValue("2") == "0001") || (GameAttributeGameValue("2") == "0008"))) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_MirrorGameOptionDropdownIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libD169EC7B_gf_IsMirrorTournamentGame() == true)) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_DefaultPlayerOptionDropdownIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if (((GameAttributeGameValue("2") == "0001") || (GameAttributeGameValue("2") == "0008"))) {
+        return true;
+    }
+
+    return false;
+}
+
+bool libD169EC7B_gf_MirrorPlayerOptionDropdownIsShown (int lp_handicapIndex) {
+    // Automatic Variable Declarations
+    // Implementation
+    if ((libD169EC7B_gf_IsMirrorTournamentGame() == true)) {
+        return true;
+    }
+
+    return false;
 }
 
 // Triggers
@@ -500,13 +1552,955 @@ void libD169EC7B_gt_SetupHandicap_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Phase Timer Expires For Queue
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_PhaseTimerExpiresForQueue_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_randomHandicapIndex;
+    int lv_index;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libD169EC7B_gf_IsTournamentGame() == true)) {
+        lv_randomHandicapIndex = libD169EC7B_gf_GetRandomAvailableTournamentHandicapIndex();
+        libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_handicapIndex = lv_randomHandicapIndex;
+        if ((libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_phaseType == libD169EC7B_ge_PHASETYPE_PICK)) {
+            libD169EC7B_gf_SetRandomValuesforHandicapsOptions(lv_randomHandicapIndex);
+            libD169EC7B_gf_PickHandicap(lv_randomHandicapIndex, -1);
+        }
+        else {
+            libD169EC7B_gf_BanHandicap(lv_randomHandicapIndex, -1);
+        }
+        libD169EC7B_gf_ResetNotPickedOrBannedHandicaps();
+        libD169EC7B_gv_pHASEINDEX += 1;
+        libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_PhaseTimerExpiresForQueue_Init () {
+    libD169EC7B_gt_PhaseTimerExpiresForQueue = TriggerCreate("libD169EC7B_gt_PhaseTimerExpiresForQueue_Func");
+    TriggerAddEventTimer(libD169EC7B_gt_PhaseTimerExpiresForQueue, libD169EC7B_gv_phaseTimer);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Phase Timer Tick For Queue
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_PhaseTimerTickForQueue_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    string lv_phase;
+    int lv_rowIndex;
+
+    // Automatic Variable Declarations
+    int autoE00A15AE_ae;
+    int autoE00A15AE_var;
+
+    // Variable Initialization
+    lv_phase = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((libD169EC7B_gf_IsTournamentGame() == false)) {
+        TriggerEnable(TriggerGetCurrent(), false);
+    }
+    else {
+        if ((TimerGetRemaining(libD169EC7B_gv_phaseTimer) < 10.0) && (libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_handicapIndex == -1)) {
+            SoundPlayForPlayer(SoundLink("UI_BnetCountdownBeep", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
+        }
+
+        if ((libD169EC7B_gv_phasesBoard == c_boardNone)) {
+            BoardCreate(3, libD169EC7B_gv_queueLength, StringExternal("Param/Value/lib_D169EC7B_808BBF71"), Color(100.00, 100.00, 100.00));
+            libD169EC7B_gv_phasesBoard = BoardLastCreated();
+        }
+
+        autoE00A15AE_ae = libD169EC7B_gv_queueLength;
+        autoE00A15AE_var = 0;
+        for ( ; autoE00A15AE_var <= autoE00A15AE_ae; autoE00A15AE_var += 1 ) {
+            lv_rowIndex = (autoE00A15AE_var + 1);
+            if ((libD169EC7B_gv_queue[autoE00A15AE_var].lv_phaseType == libD169EC7B_ge_PHASETYPE_BAN)) {
+                lv_phase = "Ban";
+            }
+            else {
+                lv_phase = "Pick";
+            }
+            BoardItemSetFontSize(libD169EC7B_gv_phasesBoard, 1, lv_rowIndex, 16);
+            if ((libD169EC7B_gv_pHASEINDEX == autoE00A15AE_var)) {
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_E8011983", "A", FixedToText(TimerGetRemaining(libD169EC7B_gv_phaseTimer), 0));
+                BoardItemSetText(libD169EC7B_gv_phasesBoard, 1, lv_rowIndex, TextExpressionAssemble("Param/Expression/lib_D169EC7B_E8011983"));
+            }
+            else {
+                if ((libD169EC7B_gv_queue[autoE00A15AE_var].lv_handicapIndex == -1)) {
+                    BoardItemSetText(libD169EC7B_gv_phasesBoard, 1, lv_rowIndex, StringExternal("Param/Value/lib_D169EC7B_04C43C2D"));
+                }
+                else {
+                    BoardItemSetText(libD169EC7B_gv_phasesBoard, 1, lv_rowIndex, libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_queue[autoE00A15AE_var].lv_handicapIndex].lv_name);
+                }
+            }
+            BoardItemSetText(libD169EC7B_gv_phasesBoard, 2, lv_rowIndex, StringToText(lv_phase));
+            BoardItemSetFontSize(libD169EC7B_gv_phasesBoard, 2, lv_rowIndex, 16);
+            BoardItemSetText(libD169EC7B_gv_phasesBoard, 3, lv_rowIndex, libDBC4E2D2_gf_GetPlayerNamesColored(PlayerGroupSingle(libD169EC7B_gv_queue[autoE00A15AE_var].lv_player)));
+            BoardItemSetFontSize(libD169EC7B_gv_phasesBoard, 3, lv_rowIndex, 16);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_PhaseTimerTickForQueue_Init () {
+    libD169EC7B_gt_PhaseTimerTickForQueue = TriggerCreate("libD169EC7B_gt_PhaseTimerTickForQueue_Func");
+    TriggerAddEventTimePeriodic(libD169EC7B_gt_PhaseTimerTickForQueue, 1.0, c_timeReal);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD Mirror Tournament 2/2 Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODMirrorTournament22Start_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    bool lv_handicapsManagerForTeamExists;
+    int lv_captain1;
+    int lv_captain2;
+
+    // Automatic Variable Declarations
+    playergroup autoB755D889_g;
+    int autoB755D889_var;
+    const int auto5FB4B804_ae = 2;
+    int auto5FB4B804_var;
+    playergroup autoACBE9CA3_g;
+    int autoACBE9CA3_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    if ((libDBC4E2D2_gf_GetNumberOfNotEmptyTeams() != 2)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_B62841C1"));
+        autoB755D889_g = PlayerGroupActive();
+        autoB755D889_var = -1;
+        while (true) {
+            autoB755D889_var = PlayerGroupNextPlayer(autoB755D889_g, autoB755D889_var);
+            if (autoB755D889_var < 0) { break; }
+            GameOver(autoB755D889_var, c_gameOverDefeat, true, true);
+        }
+    }
+
+    auto5FB4B804_var = 1;
+    for ( ; auto5FB4B804_var <= auto5FB4B804_ae; auto5FB4B804_var += 1 ) {
+        lv_handicapsManagerForTeamExists = false;
+        autoACBE9CA3_g = GameAttributePlayersForTeam(auto5FB4B804_var);
+        autoACBE9CA3_var = -1;
+        while (true) {
+            autoACBE9CA3_var = PlayerGroupNextPlayer(autoACBE9CA3_g, autoACBE9CA3_var);
+            if (autoACBE9CA3_var < 0) { break; }
+            if ((GameAttributePlayerValue("1", autoACBE9CA3_var) == "0001")) {
+                PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, autoACBE9CA3_var);
+                lv_handicapsManagerForTeamExists = true;
+                break;
+            }
+
+        }
+        if ((lv_handicapsManagerForTeamExists == false)) {
+            PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, PlayerGroupPlayer(GameAttributePlayersForTeam(auto5FB4B804_var), 1));
+        }
+
+    }
+    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupAll(), libD169EC7B_gv_playerstoShowHandicapsMessages);
+    libNtve_gf_RemovePlayerGroupFromPlayerGroup(libD169EC7B_gv_playerstoShowHandicapsUI, libD169EC7B_gv_playerstoShowHandicapsMessages);
+    lv_captain1 = PlayerGroupPlayer(libD169EC7B_gv_playerstoShowHandicapsUI, 1);
+    lv_captain2 = PlayerGroupPlayer(libD169EC7B_gv_playerstoShowHandicapsUI, 2);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_8AC788D7", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(libD169EC7B_gv_playerstoShowHandicapsUI));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_8AC788D7"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    libD169EC7B_gf_SetupQueue22(lv_captain1, lv_captain2);
+    libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODMirrorTournament22Start_Init () {
+    libD169EC7B_gt_MODMirrorTournament22Start = TriggerCreate("libD169EC7B_gt_MODMirrorTournament22Start_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD Mirror Tournament 2/2/2/2 Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODMirrorTournament2222Start_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    bool lv_handicapsManagerForTeamExists;
+    int lv_captain1;
+    int lv_captain2;
+
+    // Automatic Variable Declarations
+    playergroup auto816F39A8_g;
+    int auto816F39A8_var;
+    const int auto9757BE22_ae = 2;
+    int auto9757BE22_var;
+    playergroup auto1CAD516F_g;
+    int auto1CAD516F_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    if ((libDBC4E2D2_gf_GetNumberOfNotEmptyTeams() != 2)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_7BF0EDA6"));
+        auto816F39A8_g = PlayerGroupActive();
+        auto816F39A8_var = -1;
+        while (true) {
+            auto816F39A8_var = PlayerGroupNextPlayer(auto816F39A8_g, auto816F39A8_var);
+            if (auto816F39A8_var < 0) { break; }
+            GameOver(auto816F39A8_var, c_gameOverDefeat, true, true);
+        }
+    }
+
+    auto9757BE22_var = 1;
+    for ( ; auto9757BE22_var <= auto9757BE22_ae; auto9757BE22_var += 1 ) {
+        lv_handicapsManagerForTeamExists = false;
+        auto1CAD516F_g = GameAttributePlayersForTeam(auto9757BE22_var);
+        auto1CAD516F_var = -1;
+        while (true) {
+            auto1CAD516F_var = PlayerGroupNextPlayer(auto1CAD516F_g, auto1CAD516F_var);
+            if (auto1CAD516F_var < 0) { break; }
+            if ((GameAttributePlayerValue("1", auto1CAD516F_var) == "0001")) {
+                PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, auto1CAD516F_var);
+                lv_handicapsManagerForTeamExists = true;
+                break;
+            }
+
+        }
+        if ((lv_handicapsManagerForTeamExists == false)) {
+            PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, PlayerGroupPlayer(GameAttributePlayersForTeam(auto9757BE22_var), 1));
+        }
+
+    }
+    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupAll(), libD169EC7B_gv_playerstoShowHandicapsMessages);
+    libNtve_gf_RemovePlayerGroupFromPlayerGroup(libD169EC7B_gv_playerstoShowHandicapsUI, libD169EC7B_gv_playerstoShowHandicapsMessages);
+    lv_captain1 = PlayerGroupPlayer(libD169EC7B_gv_playerstoShowHandicapsUI, 1);
+    lv_captain2 = PlayerGroupPlayer(libD169EC7B_gv_playerstoShowHandicapsUI, 2);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_9AA0E24A", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(libD169EC7B_gv_playerstoShowHandicapsUI));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_9AA0E24A"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    libD169EC7B_gf_SetupQueue2222(lv_captain1, lv_captain2);
+    libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODMirrorTournament2222Start_Init () {
+    libD169EC7B_gt_MODMirrorTournament2222Start = TriggerCreate("libD169EC7B_gt_MODMirrorTournament2222Start_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD Mirror Tournament 2/2/2/2/2/2 Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODMirrorTournament222222Start_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    bool lv_handicapsManagerForTeamExists;
+    int lv_captain1;
+    int lv_captain2;
+
+    // Automatic Variable Declarations
+    playergroup autoB61420FA_g;
+    int autoB61420FA_var;
+    const int auto1F428E8B_ae = 2;
+    int auto1F428E8B_var;
+    playergroup auto57E110C1_g;
+    int auto57E110C1_var;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    if ((libDBC4E2D2_gf_GetNumberOfNotEmptyTeams() != 2)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_1B7319E1"));
+        autoB61420FA_g = PlayerGroupActive();
+        autoB61420FA_var = -1;
+        while (true) {
+            autoB61420FA_var = PlayerGroupNextPlayer(autoB61420FA_g, autoB61420FA_var);
+            if (autoB61420FA_var < 0) { break; }
+            GameOver(autoB61420FA_var, c_gameOverDefeat, true, true);
+        }
+    }
+
+    auto1F428E8B_var = 1;
+    for ( ; auto1F428E8B_var <= auto1F428E8B_ae; auto1F428E8B_var += 1 ) {
+        lv_handicapsManagerForTeamExists = false;
+        auto57E110C1_g = GameAttributePlayersForTeam(auto1F428E8B_var);
+        auto57E110C1_var = -1;
+        while (true) {
+            auto57E110C1_var = PlayerGroupNextPlayer(auto57E110C1_g, auto57E110C1_var);
+            if (auto57E110C1_var < 0) { break; }
+            if ((GameAttributePlayerValue("1", auto57E110C1_var) == "0001")) {
+                PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, auto57E110C1_var);
+                lv_handicapsManagerForTeamExists = true;
+                break;
+            }
+
+        }
+        if ((lv_handicapsManagerForTeamExists == false)) {
+            PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, PlayerGroupPlayer(GameAttributePlayersForTeam(auto1F428E8B_var), 1));
+        }
+
+    }
+    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupAll(), libD169EC7B_gv_playerstoShowHandicapsMessages);
+    libNtve_gf_RemovePlayerGroupFromPlayerGroup(libD169EC7B_gv_playerstoShowHandicapsUI, libD169EC7B_gv_playerstoShowHandicapsMessages);
+    lv_captain1 = PlayerGroupPlayer(libD169EC7B_gv_playerstoShowHandicapsUI, 1);
+    lv_captain2 = PlayerGroupPlayer(libD169EC7B_gv_playerstoShowHandicapsUI, 2);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_4A8A036D", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(libD169EC7B_gv_playerstoShowHandicapsUI));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_4A8A036D"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    libD169EC7B_gf_SetupQueue222222(lv_captain1, lv_captain2);
+    libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODMirrorTournament222222Start_Init () {
+    libD169EC7B_gt_MODMirrorTournament222222Start = TriggerCreate("libD169EC7B_gt_MODMirrorTournament222222Start_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD Mirror All Pick Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODMirrorAllPickStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    bool lv_handicapsManagerForTeamExists;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_D169EC7B_1F181CAB"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    libD169EC7B_gf_SetupQueueMirrorAllPick();
+    libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODMirrorAllPickStart_Init () {
+    libD169EC7B_gt_MODMirrorAllPickStart = TriggerCreate("libD169EC7B_gt_MODMirrorAllPickStart_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD All Pick Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODAllPickStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    bool lv_handicapsManagerForTeamExists;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringExternal("Param/Value/lib_D169EC7B_3B975A35"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    libD169EC7B_gf_SetupQueueAllPick();
+    libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODAllPickStart_Init () {
+    libD169EC7B_gt_MODAllPickStart = TriggerCreate("libD169EC7B_gt_MODAllPickStart_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD All Random Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODAllRandomStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_handicapIndex;
+
+    // Automatic Variable Declarations
+    int auto988EA0BD_ae;
+    int auto988EA0BD_var;
+
+    // Variable Initialization
+    lv_handicapIndex = -1;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_41BE9D2C", "NumberOfHandicaps", IntToText(libD169EC7B_gv_numberofRandomHandicapsToEnable));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_41BE9D2C"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    auto988EA0BD_ae = libD169EC7B_gv_numberofRandomHandicapsToEnable;
+    auto988EA0BD_var = 1;
+    for ( ; auto988EA0BD_var <= auto988EA0BD_ae; auto988EA0BD_var += 1 ) {
+        lv_handicapIndex = libD169EC7B_gf_GetRandomAvailableTournamentHandicapIndex();
+        libD169EC7B_gf_SetRandomValuesforHandicapsOptions(lv_handicapIndex);
+        libD169EC7B_gf_PickHandicap(lv_handicapIndex, -1);
+    }
+    libD169EC7B_gf_StartGameWithSelectedHandicaps();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODAllRandomStart_Init () {
+    libD169EC7B_gt_MODAllRandomStart = TriggerCreate("libD169EC7B_gt_MODAllRandomStart_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD Mirror All Random Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODMirrorAllRandomStart_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_handicapIndex;
+
+    // Automatic Variable Declarations
+    int autoA75721F2_ae;
+    int autoA75721F2_var;
+
+    // Variable Initialization
+    lv_handicapIndex = -1;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_33469F91", "NumberOfHandicaps", IntToText(libD169EC7B_gv_numberofRandomHandicapsToEnable));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_33469F91"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    autoA75721F2_ae = libD169EC7B_gv_numberofRandomHandicapsToEnable;
+    autoA75721F2_var = 1;
+    for ( ; autoA75721F2_var <= autoA75721F2_ae; autoA75721F2_var += 1 ) {
+        lv_handicapIndex = libD169EC7B_gf_GetRandomAvailableTournamentHandicapIndex();
+        libD169EC7B_gf_SetRandomValuesforHandicapsOptions(lv_handicapIndex);
+        libD169EC7B_gf_PickHandicap(lv_handicapIndex, -1);
+    }
+    libD169EC7B_gf_StartGameWithSelectedHandicaps();
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODMirrorAllRandomStart_Init () {
+    libD169EC7B_gt_MODMirrorAllRandomStart = TriggerCreate("libD169EC7B_gt_MODMirrorAllRandomStart_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: MOD Default Start
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MODDefaultStart_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    playergroup autoB462D582_g;
+    int autoB462D582_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.125, c_timeGame);
+    autoB462D582_g = PlayerGroupActive();
+    autoB462D582_var = -1;
+    while (true) {
+        autoB462D582_var = PlayerGroupNextPlayer(autoB462D582_g, autoB462D582_var);
+        if (autoB462D582_var < 0) { break; }
+        if ((GameAttributePlayerValue("1", autoB462D582_var) == "0001")) {
+            PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, autoB462D582_var);
+            break;
+        }
+
+    }
+    if ((PlayerGroupCount(libD169EC7B_gv_playerstoShowHandicapsUI) == 0)) {
+        PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, 1);
+    }
+
+    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupAll(), libD169EC7B_gv_playerstoShowHandicapsMessages);
+    libNtve_gf_RemovePlayerGroupFromPlayerGroup(libD169EC7B_gv_playerstoShowHandicapsUI, libD169EC7B_gv_playerstoShowHandicapsMessages);
+    TextExpressionSetToken("Param/Expression/lib_D169EC7B_84AECCF2", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(libD169EC7B_gv_playerstoShowHandicapsUI));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_84AECCF2"));
+    libD169EC7B_gf_PrepareGameForHandicapsSelection();
+    libD169EC7B_gv_handicapsDialog = libD169EC7B_gf_CreateHandicapsDialog();
+    DialogSetVisible(libD169EC7B_gv_handicapsDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MODDefaultStart_Init () {
+    libD169EC7B_gt_MODDefaultStart = TriggerCreate("libD169EC7B_gt_MODDefaultStart_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Handicap Details Button Click
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_HandicapDetailsButtonClick_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_customHandicapDialog;
+
+    // Automatic Variable Declarations
+    int autoDF82A74B_ae;
+    const int autoDF82A74B_ai = 1;
+
+    // Variable Initialization
+    lv_customHandicapDialog = c_invalidDialogId;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoDF82A74B_ae = (libD169EC7B_gv_numberofHandicaps - 1);
+    lv_i = 0;
+    for ( ; ( (autoDF82A74B_ai >= 0 && lv_i <= autoDF82A74B_ae) || (autoDF82A74B_ai < 0 && lv_i >= autoDF82A74B_ae) ) ; lv_i += autoDF82A74B_ai ) {
+        if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[lv_i].lv_detailsButton)) {
+            DialogDestroyAll();
+            libD169EC7B_gv_activeHandicapIndex = lv_i;
+            lv_customHandicapDialog = libD169EC7B_gf_CreateCustomHandicapDialog(lv_i);
+            DialogSetVisible(lv_customHandicapDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_HandicapDetailsButtonClick_Init () {
+    libD169EC7B_gt_HandicapDetailsButtonClick = TriggerCreate("libD169EC7B_gt_HandicapDetailsButtonClick_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_HandicapDetailsButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Toggle Handicap Button Click
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_ToggleHandicapButtonClick_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+
+    // Automatic Variable Declarations
+    int autoF6EF5FB7_ae;
+    const int autoF6EF5FB7_ai = 1;
+    const int auto800A2080_ae = 16;
+    const int auto800A2080_ai = 1;
+
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_toggleButton)) {
+        if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_enabled == true)) {
+            libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_enabled = false;
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_D20A5DA8", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
+            UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_D20A5DA8"));
+            autoF6EF5FB7_ae = (libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofPlayerOptions - 1);
+            lv_i = 0;
+            for ( ; ( (autoF6EF5FB7_ai >= 0 && lv_i <= autoF6EF5FB7_ae) || (autoF6EF5FB7_ai < 0 && lv_i >= autoF6EF5FB7_ae) ) ; lv_i += autoF6EF5FB7_ai ) {
+                lv_j = 0;
+                for ( ; ( (auto800A2080_ai >= 0 && lv_j <= auto800A2080_ae) || (auto800A2080_ai < 0 && lv_j >= auto800A2080_ae) ) ; lv_j += auto800A2080_ai ) {
+                    libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_selectedVals[lv_j] = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_defaultValue;
+                }
+            }
+        }
+        else {
+            libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_enabled = true;
+            TextExpressionSetToken("Param/Expression/lib_D169EC7B_3DA8BA61", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
+            UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_3DA8BA61"));
+        }
+        DialogDestroyAll();
+        libD169EC7B_gv_customHandicapDialog = libD169EC7B_gf_CreateCustomHandicapDialog(libD169EC7B_gv_activeHandicapIndex);
+        DialogSetVisible(libD169EC7B_gv_customHandicapDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_ToggleHandicapButtonClick_Init () {
+    libD169EC7B_gt_ToggleHandicapButtonClick = TriggerCreate("libD169EC7B_gt_ToggleHandicapButtonClick_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_ToggleHandicapButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Handicap Back Button Click
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_HandicapBackButtonClick_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_backButton)) {
+        UIClearMessages(libD169EC7B_gv_playerstoShowHandicapsUI, c_messageAreaAll);
+        DialogDestroyAll();
+        libD169EC7B_gv_handicapsDialog = libD169EC7B_gf_CreateHandicapsDialog();
+        DialogSetVisible(libD169EC7B_gv_handicapsDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_HandicapBackButtonClick_Init () {
+    libD169EC7B_gt_HandicapBackButtonClick = TriggerCreate("libD169EC7B_gt_HandicapBackButtonClick_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_HandicapBackButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Ban Handicap Button Click
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_BanHandicapButtonClick_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_banButton)) {
+        libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_handicapIndex = libD169EC7B_gv_activeHandicapIndex;
+        libD169EC7B_gf_BanHandicap(libD169EC7B_gv_activeHandicapIndex, EventPlayer());
+        libD169EC7B_gf_ResetNotPickedOrBannedHandicaps();
+        TriggerExecute(libD169EC7B_gt_PhaseTimerTickForQueue, true, false);
+        libD169EC7B_gv_pHASEINDEX += 1;
+        libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_BanHandicapButtonClick_Init () {
+    libD169EC7B_gt_BanHandicapButtonClick = TriggerCreate("libD169EC7B_gt_BanHandicapButtonClick_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_BanHandicapButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Pick Handicap Button Click
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_PickHandicapButtonClick_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    int autoBD0B960B_ae;
+    int autoBD0B960B_var;
+    int autoFF8C40AD_ae;
+    int autoFF8C40AD_var;
+    playergroup auto6AEF37C4_g;
+    int auto6AEF37C4_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_pickButton)) {
+        libD169EC7B_gv_queue[libD169EC7B_gv_pHASEINDEX].lv_handicapIndex = libD169EC7B_gv_activeHandicapIndex;
+        if ((libD169EC7B_gf_IsMirrorGame() == true)) {
+            autoBD0B960B_ae = (libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofGameOptions - 1);
+            autoBD0B960B_var = 0;
+            for ( ; autoBD0B960B_var <= autoBD0B960B_ae; autoBD0B960B_var += 1 ) {
+                libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[autoBD0B960B_var].lv_selectedVal = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[autoBD0B960B_var].lv_mirrorSelectedVal;
+            }
+            autoFF8C40AD_ae = (libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofPlayerOptions - 1);
+            autoFF8C40AD_var = 0;
+            for ( ; autoFF8C40AD_var <= autoFF8C40AD_ae; autoFF8C40AD_var += 1 ) {
+                auto6AEF37C4_g = PlayerGroupActive();
+                auto6AEF37C4_var = -1;
+                while (true) {
+                    auto6AEF37C4_var = PlayerGroupNextPlayer(auto6AEF37C4_g, auto6AEF37C4_var);
+                    if (auto6AEF37C4_var < 0) { break; }
+                    libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[autoFF8C40AD_var].lv_selectedVals[auto6AEF37C4_var] = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[autoFF8C40AD_var].lv_mirrorSelectedVal;
+                }
+            }
+        }
+
+        libD169EC7B_gf_PickHandicap(libD169EC7B_gv_activeHandicapIndex, EventPlayer());
+        libD169EC7B_gf_ResetNotPickedOrBannedHandicaps();
+        TriggerExecute(libD169EC7B_gt_PhaseTimerTickForQueue, true, false);
+        libD169EC7B_gv_pHASEINDEX += 1;
+        libD169EC7B_gf_QueueTick(libD169EC7B_gv_pHASEINDEX);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_PickHandicapButtonClick_Init () {
+    libD169EC7B_gt_PickHandicapButtonClick = TriggerCreate("libD169EC7B_gt_PickHandicapButtonClick_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_PickHandicapButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Start Game Button Click
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_StartGameButtonClick_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_countdownSeconds;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((EventDialogControl() == libD169EC7B_gv_startGameButton)) {
+        libD169EC7B_gf_StartGameWithSelectedHandicaps();
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_StartGameButtonClick_Init () {
+    libD169EC7B_gt_StartGameButtonClick = TriggerCreate("libD169EC7B_gt_StartGameButtonClick_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_StartGameButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Default Player Option Value Changed
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_DefaultPlayerOptionValueChanged_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+    string lv_value;
+
+    // Automatic Variable Declarations
+    int autoAA250330_ae;
+    const int autoAA250330_ai = 1;
+    playergroup autoABB4F041_g;
+    int autoABB4F041_var;
+
+    // Variable Initialization
+    lv_value = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoAA250330_ae = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofPlayerOptions;
+    lv_i = 0;
+    for ( ; ( (autoAA250330_ai >= 0 && lv_i <= autoAA250330_ae) || (autoAA250330_ai < 0 && lv_i >= autoAA250330_ae) ) ; lv_i += autoAA250330_ai ) {
+        autoABB4F041_g = PlayerGroupActive();
+        autoABB4F041_var = -1;
+        while (true) {
+            autoABB4F041_var = PlayerGroupNextPlayer(autoABB4F041_g, autoABB4F041_var);
+            if (autoABB4F041_var < 0) { break; }
+            if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_listBoxes[autoABB4F041_var] == EventDialogControl())) {
+                lv_value = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_values[(DialogControlGetSelectedItem(EventDialogControl(), EventPlayer()) - 1)].lv_val;
+                if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_selectedVals[autoABB4F041_var] != lv_value)) {
+                    libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_selectedVals[autoABB4F041_var] = lv_value;
+                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
+                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Option", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_name);
+                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Player", libDBC4E2D2_gf_GetPlayerNamesColored(PlayerGroupSingle(autoABB4F041_var)));
+                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Value", StringToText(lv_value));
+                    UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_DD50153D"));
+                }
+
+            }
+
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_DefaultPlayerOptionValueChanged_Init () {
+    libD169EC7B_gt_DefaultPlayerOptionValueChanged = TriggerCreate("libD169EC7B_gt_DefaultPlayerOptionValueChanged_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_DefaultPlayerOptionValueChanged, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mirror Player Option Value Changed
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MirrorPlayerOptionValueChanged_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    string lv_value;
+
+    // Automatic Variable Declarations
+    int autoDBF47B2C_ae;
+    const int autoDBF47B2C_ai = 1;
+
+    // Variable Initialization
+    lv_value = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoDBF47B2C_ae = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofPlayerOptions;
+    lv_i = 0;
+    for ( ; ( (autoDBF47B2C_ai >= 0 && lv_i <= autoDBF47B2C_ae) || (autoDBF47B2C_ai < 0 && lv_i >= autoDBF47B2C_ae) ) ; lv_i += autoDBF47B2C_ai ) {
+        if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_mirrorListBox == EventDialogControl())) {
+            lv_value = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_values[(DialogControlGetSelectedItem(EventDialogControl(), EventPlayer()) - 1)].lv_val;
+            if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_mirrorSelectedVal != lv_value)) {
+                libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_mirrorSelectedVal = lv_value;
+            }
+
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MirrorPlayerOptionValueChanged_Init () {
+    libD169EC7B_gt_MirrorPlayerOptionValueChanged = TriggerCreate("libD169EC7B_gt_MirrorPlayerOptionValueChanged_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_MirrorPlayerOptionValueChanged, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Default Game Option Value Changed
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_DefaultGameOptionValueChanged_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    int lv_j;
+    string lv_value;
+
+    // Automatic Variable Declarations
+    int autoC6652104_ae;
+    const int autoC6652104_ai = 1;
+
+    // Variable Initialization
+    lv_value = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoC6652104_ae = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofGameOptions;
+    lv_i = 0;
+    for ( ; ( (autoC6652104_ai >= 0 && lv_i <= autoC6652104_ae) || (autoC6652104_ai < 0 && lv_i >= autoC6652104_ae) ) ; lv_i += autoC6652104_ai ) {
+        if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_listBox == EventDialogControl())) {
+            lv_value = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_values[(DialogControlGetSelectedItem(EventDialogControl(), EventPlayer()) - 1)].lv_val;
+            if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_selectedVal != lv_value)) {
+                libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_selectedVal = lv_value;
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_0FFEA8BE", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_0FFEA8BE", "Option", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_name);
+                TextExpressionSetToken("Param/Expression/lib_D169EC7B_0FFEA8BE", "Value", StringToText(lv_value));
+                UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_0FFEA8BE"));
+            }
+
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_DefaultGameOptionValueChanged_Init () {
+    libD169EC7B_gt_DefaultGameOptionValueChanged = TriggerCreate("libD169EC7B_gt_DefaultGameOptionValueChanged_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_DefaultGameOptionValueChanged, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Mirror Game Option Value Changed
+//--------------------------------------------------------------------------------------------------
+bool libD169EC7B_gt_MirrorGameOptionValueChanged_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    string lv_value;
+
+    // Automatic Variable Declarations
+    int autoB2941604_ae;
+    const int autoB2941604_ai = 1;
+
+    // Variable Initialization
+    lv_value = "";
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    autoB2941604_ae = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofGameOptions;
+    lv_i = 0;
+    for ( ; ( (autoB2941604_ai >= 0 && lv_i <= autoB2941604_ae) || (autoB2941604_ai < 0 && lv_i >= autoB2941604_ae) ) ; lv_i += autoB2941604_ai ) {
+        if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_mirrorListBox == EventDialogControl())) {
+            lv_value = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_values[(DialogControlGetSelectedItem(EventDialogControl(), EventPlayer()) - 1)].lv_val;
+            if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_mirrorSelectedVal != lv_value)) {
+                libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_mirrorSelectedVal = lv_value;
+            }
+
+        }
+
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libD169EC7B_gt_MirrorGameOptionValueChanged_Init () {
+    libD169EC7B_gt_MirrorGameOptionValueChanged = TriggerCreate("libD169EC7B_gt_MirrorGameOptionValueChanged_Func");
+    TriggerAddEventDialogControl(libD169EC7B_gt_MirrorGameOptionValueChanged, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Setup Handicaps
 //--------------------------------------------------------------------------------------------------
 bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     // Variable Declarations
     int lv_handicapindex;
+    int lv_i;
 
     // Automatic Variable Declarations
+    int autoD000A308_ae;
+    int autoD000A308_var;
+    int auto3D637E2D_ae;
+    const int auto3D637E2D_ai = 1;
+    int auto7D75561C_ae;
+    const int auto7D75561C_ai = 1;
+    int autoDE369514_ae;
+    const int autoDE369514_ai = 1;
+
     // Variable Initialization
 
     // Actions
@@ -654,6 +2648,29 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     lib674063E3_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     libD169EC7B_gv_numberofHandicaps = lv_handicapindex;
+    if ((libD169EC7B_gf_IsMirrorGame() == true)) {
+        autoD000A308_ae = (libD169EC7B_gv_numberofHandicaps - 1);
+        autoD000A308_var = 0;
+        for ( ; autoD000A308_var <= autoD000A308_ae; autoD000A308_var += 1 ) {
+            auto3D637E2D_ae = libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_playerOptions[0].lv_numberofValues;
+            lv_i = 1;
+            for ( ; ( (auto3D637E2D_ai >= 0 && lv_i <= auto3D637E2D_ae) || (auto3D637E2D_ai < 0 && lv_i >= auto3D637E2D_ae) ) ; lv_i += auto3D637E2D_ai ) {
+                libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_playerOptions[0].lv_values[(lv_i - 1)].lv_val = libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_playerOptions[0].lv_values[lv_i].lv_val;
+            }
+            libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_playerOptions[0].lv_numberofValues -= 1;
+            auto7D75561C_ae = libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_numberofPlayerOptions;
+            lv_i = 0;
+            for ( ; ( (auto7D75561C_ai >= 0 && lv_i <= auto7D75561C_ae) || (auto7D75561C_ai < 0 && lv_i >= auto7D75561C_ae) ) ; lv_i += auto7D75561C_ai ) {
+                libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_playerOptions[lv_i].lv_mirrorSelectedVal = libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_playerOptions[lv_i].lv_values[0].lv_val;
+            }
+            autoDE369514_ae = libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_numberofGameOptions;
+            lv_i = 0;
+            for ( ; ( (autoDE369514_ai >= 0 && lv_i <= autoDE369514_ae) || (autoDE369514_ai < 0 && lv_i >= autoDE369514_ae) ) ; lv_i += autoDE369514_ai ) {
+                libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_gameOptions[lv_i].lv_mirrorSelectedVal = libD169EC7B_gv_hANDICAPS[autoD000A308_var].lv_gameOptions[lv_i].lv_values[0].lv_val;
+            }
+        }
+    }
+
     return true;
 }
 
@@ -663,386 +2680,78 @@ void libD169EC7B_gt_SetupHandicaps_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Handicaps UI Start
+// Trigger: GAME START
 //--------------------------------------------------------------------------------------------------
-bool libD169EC7B_gt_HandicapsUIStart_Func (bool testConds, bool runActions) {
+bool libD169EC7B_gt_GAMESTART_Func (bool testConds, bool runActions) {
     // Automatic Variable Declarations
-    playergroup auto47C74C33_g;
-    int auto47C74C33_var;
-    playergroup auto0988F241_g;
-    int auto0988F241_var;
+    string auto24A10ECE_val;
 
     // Actions
     if (!runActions) {
         return true;
     }
 
-    auto47C74C33_g = PlayerGroupActive();
-    auto47C74C33_var = -1;
-    while (true) {
-        auto47C74C33_var = PlayerGroupNextPlayer(auto47C74C33_g, auto47C74C33_var);
-        if (auto47C74C33_var < 0) { break; }
-        if ((GameAttributePlayerValue("1", auto47C74C33_var) == "0001")) {
-            PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, auto47C74C33_var);
-            break;
-        }
-
+    auto24A10ECE_val = GameAttributeGameValue("2");
+    if (auto24A10ECE_val == "0001") {
+        TriggerExecute(libD169EC7B_gt_MODDefaultStart, true, true);
     }
-    if ((PlayerGroupCount(libD169EC7B_gv_playerstoShowHandicapsUI) == 0)) {
-        PlayerGroupAdd(libD169EC7B_gv_playerstoShowHandicapsUI, 1);
+    else if (auto24A10ECE_val == "0002") {
+        TriggerExecute(libD169EC7B_gt_MODMirrorTournament22Start, true, true);
     }
-
-    libNtve_gf_AddPlayerGroupToPlayerGroup(PlayerGroupAll(), libD169EC7B_gv_playerstoShowHandicapsMessages);
-    libNtve_gf_RemovePlayerGroupFromPlayerGroup(libD169EC7B_gv_playerstoShowHandicapsUI, libD169EC7B_gv_playerstoShowHandicapsMessages);
-    Wait(0.125, c_timeGame);
-    TextExpressionSetToken("Param/Expression/lib_D169EC7B_9DC58FD1", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(libD169EC7B_gv_playerstoShowHandicapsUI));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaSubtitle, TextExpressionAssemble("Param/Expression/lib_D169EC7B_9DC58FD1"));
-    GameSetMissionTimePaused(true);
-    AITimePause(true);
-    UnitPauseAll(true);
-    libNtve_gf_HideGameUI(false, PlayerGroupAll());
-    TriggerExecute(libD169EC7B_gt_SetupHandicaps, true, true);
-    libD169EC7B_gv_handicapsDialog = libD169EC7B_gf_CreateHandicapsDialog();
-    DialogSetVisible(libD169EC7B_gv_handicapsDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
-    auto0988F241_g = PlayerGroupAll();
-    auto0988F241_var = -1;
-    while (true) {
-        auto0988F241_var = PlayerGroupNextPlayer(auto0988F241_g, auto0988F241_var);
-        if (auto0988F241_var < 0) { break; }
-        MeleeSetOption(auto0988F241_var, c_meleeOptionDefeat, false);
-        MeleeSetOption(auto0988F241_var, c_meleeOptionVictory, false);
-        MeleeSetOption(auto0988F241_var, c_meleeOptionStalemate, false);
+    else if (auto24A10ECE_val == "0003") {
+        TriggerExecute(libD169EC7B_gt_MODMirrorTournament2222Start, true, true);
+    }
+    else if (auto24A10ECE_val == "0006") {
+        TriggerExecute(libD169EC7B_gt_MODMirrorTournament222222Start, true, true);
+    }
+    else if (auto24A10ECE_val == "0004") {
+        TriggerExecute(libD169EC7B_gt_MODMirrorAllRandomStart, true, true);
+    }
+    else if (auto24A10ECE_val == "0005") {
+        TriggerExecute(libD169EC7B_gt_MODAllRandomStart, true, true);
+    }
+    else if (auto24A10ECE_val == "0007") {
+        TriggerExecute(libD169EC7B_gt_MODMirrorAllPickStart, true, true);
+    }
+    else if (auto24A10ECE_val == "0008") {
+        TriggerExecute(libD169EC7B_gt_MODAllPickStart, true, true);
+    }
+    else {
+        TriggerExecute(libD169EC7B_gt_MODDefaultStart, true, true);
     }
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libD169EC7B_gt_HandicapsUIStart_Init () {
-    libD169EC7B_gt_HandicapsUIStart = TriggerCreate("libD169EC7B_gt_HandicapsUIStart_Func");
-    TriggerAddEventMapInit(libD169EC7B_gt_HandicapsUIStart);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Handicap Details Button Click
-//--------------------------------------------------------------------------------------------------
-bool libD169EC7B_gt_HandicapDetailsButtonClick_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_i;
-    int lv_customHandicapDialog;
-
-    // Automatic Variable Declarations
-    int autoDF82A74B_ae;
-    const int autoDF82A74B_ai = 1;
-
-    // Variable Initialization
-    lv_customHandicapDialog = c_invalidDialogId;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoDF82A74B_ae = (libD169EC7B_gv_numberofHandicaps - 1);
-    lv_i = 0;
-    for ( ; ( (autoDF82A74B_ai >= 0 && lv_i <= autoDF82A74B_ae) || (autoDF82A74B_ai < 0 && lv_i >= autoDF82A74B_ae) ) ; lv_i += autoDF82A74B_ai ) {
-        if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[lv_i].lv_detailsButton)) {
-            DialogDestroyAll();
-            libD169EC7B_gv_activeHandicapIndex = lv_i;
-            lv_customHandicapDialog = libD169EC7B_gf_CreateCustomHandicapDialog(lv_i);
-            DialogSetVisible(lv_customHandicapDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
-        }
-
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libD169EC7B_gt_HandicapDetailsButtonClick_Init () {
-    libD169EC7B_gt_HandicapDetailsButtonClick = TriggerCreate("libD169EC7B_gt_HandicapDetailsButtonClick_Func");
-    TriggerAddEventDialogControl(libD169EC7B_gt_HandicapDetailsButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Toggle Handicap Button Click
-//--------------------------------------------------------------------------------------------------
-bool libD169EC7B_gt_ToggleHandicapButtonClick_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_i;
-    int lv_j;
-
-    // Automatic Variable Declarations
-    int autoF6EF5FB7_ae;
-    const int autoF6EF5FB7_ai = 1;
-    const int auto800A2080_ae = 16;
-    const int auto800A2080_ai = 1;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_toggleButton)) {
-        if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_enabled == true)) {
-            libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_enabled = false;
-            TextExpressionSetToken("Param/Expression/lib_D169EC7B_D20A5DA8", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
-            UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_D20A5DA8"));
-            autoF6EF5FB7_ae = (libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofPlayerOptions - 1);
-            lv_i = 0;
-            for ( ; ( (autoF6EF5FB7_ai >= 0 && lv_i <= autoF6EF5FB7_ae) || (autoF6EF5FB7_ai < 0 && lv_i >= autoF6EF5FB7_ae) ) ; lv_i += autoF6EF5FB7_ai ) {
-                lv_j = 0;
-                for ( ; ( (auto800A2080_ai >= 0 && lv_j <= auto800A2080_ae) || (auto800A2080_ai < 0 && lv_j >= auto800A2080_ae) ) ; lv_j += auto800A2080_ai ) {
-                    libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_selectedVals[lv_j] = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_defaultValue;
-                }
-            }
-        }
-        else {
-            libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_enabled = true;
-            TextExpressionSetToken("Param/Expression/lib_D169EC7B_3DA8BA61", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
-            UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_3DA8BA61"));
-        }
-        DialogDestroyAll();
-        libD169EC7B_gv_customHandicapDialog = libD169EC7B_gf_CreateCustomHandicapDialog(libD169EC7B_gv_activeHandicapIndex);
-        DialogSetVisible(libD169EC7B_gv_customHandicapDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libD169EC7B_gt_ToggleHandicapButtonClick_Init () {
-    libD169EC7B_gt_ToggleHandicapButtonClick = TriggerCreate("libD169EC7B_gt_ToggleHandicapButtonClick_Func");
-    TriggerAddEventDialogControl(libD169EC7B_gt_ToggleHandicapButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Handicap Back Button Click
-//--------------------------------------------------------------------------------------------------
-bool libD169EC7B_gt_HandicapBackButtonClick_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_i;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((EventDialogControl() == libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_backButton)) {
-        UIClearMessages(libD169EC7B_gv_playerstoShowHandicapsUI, c_messageAreaAll);
-        DialogDestroyAll();
-        libD169EC7B_gv_handicapsDialog = libD169EC7B_gf_CreateHandicapsDialog();
-        DialogSetVisible(libD169EC7B_gv_handicapsDialog, libD169EC7B_gv_playerstoShowHandicapsUI, true);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libD169EC7B_gt_HandicapBackButtonClick_Init () {
-    libD169EC7B_gt_HandicapBackButtonClick = TriggerCreate("libD169EC7B_gt_HandicapBackButtonClick_Func");
-    TriggerAddEventDialogControl(libD169EC7B_gt_HandicapBackButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Start Game Button Click
-//--------------------------------------------------------------------------------------------------
-bool libD169EC7B_gt_StartGameButtonClick_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_i;
-    int lv_countdownSeconds;
-
-    // Automatic Variable Declarations
-    const int autoDBCA2FFB_ae = 1;
-    const int autoDBCA2FFB_ai = -1;
-    playergroup auto0DD3B36A_g;
-    int auto0DD3B36A_var;
-    int auto94215A69_ae;
-    const int auto94215A69_ai = 1;
-    playergroup autoFDC8BE69_g;
-    int autoFDC8BE69_var;
-    int auto14B73463_ae;
-    int auto14B73463_var;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if ((EventDialogControl() == libD169EC7B_gv_startGameButton)) {
-        DialogDestroyAll();
-        SoundPlayForPlayer(SoundLink("AlarakA_Countdown", -1), c_maxPlayers, PlayerGroupAll(), 100.0, 0.0);
-        lv_countdownSeconds = 5;
-        for ( ; ( (autoDBCA2FFB_ai >= 0 && lv_countdownSeconds <= autoDBCA2FFB_ae) || (autoDBCA2FFB_ai < 0 && lv_countdownSeconds >= autoDBCA2FFB_ae) ) ; lv_countdownSeconds += autoDBCA2FFB_ai ) {
-            TextExpressionSetToken("Param/Expression/lib_D169EC7B_9706314B", "Seconds", IntToText(lv_countdownSeconds));
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDirective, TextExpressionAssemble("Param/Expression/lib_D169EC7B_9706314B"));
-            Wait(1.0, c_timeReal);
-            UIClearMessages(PlayerGroupAll(), c_messageAreaAll);
-        }
-        GameSetMissionTimePaused(false);
-        AITimePause(false);
-        UnitPauseAll(false);
-        libNtve_gf_HideGameUI(true, PlayerGroupAll());
-        auto0DD3B36A_g = PlayerGroupAll();
-        auto0DD3B36A_var = -1;
-        while (true) {
-            auto0DD3B36A_var = PlayerGroupNextPlayer(auto0DD3B36A_g, auto0DD3B36A_var);
-            if (auto0DD3B36A_var < 0) { break; }
-            MeleeSetOption(auto0DD3B36A_var, c_meleeOptionDefeat, true);
-            MeleeSetOption(auto0DD3B36A_var, c_meleeOptionVictory, true);
-            MeleeSetOption(auto0DD3B36A_var, c_meleeOptionStalemate, true);
-        }
-        auto94215A69_ae = (libD169EC7B_gv_numberofHandicaps - 1);
-        lv_i = 0;
-        for ( ; ( (auto94215A69_ai >= 0 && lv_i <= auto94215A69_ae) || (auto94215A69_ai < 0 && lv_i >= auto94215A69_ae) ) ; lv_i += auto94215A69_ai ) {
-            libD169EC7B_gv_activeHandicapIndex = lv_i;
-            TriggerExecute(libD169EC7B_gv_hANDICAPS[lv_i].lv_setupTrigger, true, true);
-        }
-        autoFDC8BE69_g = PlayerGroupActive();
-        autoFDC8BE69_var = -1;
-        while (true) {
-            autoFDC8BE69_var = PlayerGroupNextPlayer(autoFDC8BE69_g, autoFDC8BE69_var);
-            if (autoFDC8BE69_var < 0) { break; }
-            DialogCreate(400, (libDBC4E2D2_gv_pLAYERS[autoFDC8BE69_var].lv_uI.lv_numberofmessages * 25), c_anchorTopLeft, 0, 0, true);
-            libDBC4E2D2_gv_pLAYERS[autoFDC8BE69_var].lv_uI.lv_messagesmodaldialog = DialogLastCreated();
-            DialogSetImageVisible(libDBC4E2D2_gv_pLAYERS[autoFDC8BE69_var].lv_uI.lv_messagesmodaldialog, false);
-            DialogSetVisible(libDBC4E2D2_gv_pLAYERS[autoFDC8BE69_var].lv_uI.lv_messagesmodaldialog, PlayerGroupSingle(autoFDC8BE69_var), true);
-            auto14B73463_ae = libDBC4E2D2_gv_pLAYERS[autoFDC8BE69_var].lv_uI.lv_numberofmessages;
-            auto14B73463_var = 1;
-            for ( ; auto14B73463_var <= auto14B73463_ae; auto14B73463_var += 1 ) {
-                libNtve_gf_CreateDialogItemLabel(libDBC4E2D2_gv_pLAYERS[autoFDC8BE69_var].lv_uI.lv_messagesmodaldialog, 400, 40, c_anchorTopLeft, 0, (25 * (auto14B73463_var - 1)), StringToText(""), ColorWithAlpha(0,0,0,0), false, 2.0);
-                libDBC4E2D2_gv_pLAYERS[autoFDC8BE69_var].lv_uI.lv_dialogMessages[auto14B73463_var] = DialogControlLastCreated();
-            }
-        }
-        TimerStart(libDBC4E2D2_gv_timer1s, 1.0, true, c_timeReal);
-        BoardShowAll(true, libDBC4E2D2_gv_observerGroup);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libD169EC7B_gt_StartGameButtonClick_Init () {
-    libD169EC7B_gt_StartGameButtonClick = TriggerCreate("libD169EC7B_gt_StartGameButtonClick_Func");
-    TriggerAddEventDialogControl(libD169EC7B_gt_StartGameButtonClick, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeClick);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Player Option Value Changed
-//--------------------------------------------------------------------------------------------------
-bool libD169EC7B_gt_PlayerOptionValueChanged_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_i;
-    int lv_j;
-    string lv_value;
-
-    // Automatic Variable Declarations
-    int autoAA250330_ae;
-    const int autoAA250330_ai = 1;
-    playergroup autoABB4F041_g;
-    int autoABB4F041_var;
-
-    // Variable Initialization
-    lv_value = "";
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoAA250330_ae = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofPlayerOptions;
-    lv_i = 0;
-    for ( ; ( (autoAA250330_ai >= 0 && lv_i <= autoAA250330_ae) || (autoAA250330_ai < 0 && lv_i >= autoAA250330_ae) ) ; lv_i += autoAA250330_ai ) {
-        autoABB4F041_g = PlayerGroupActive();
-        autoABB4F041_var = -1;
-        while (true) {
-            autoABB4F041_var = PlayerGroupNextPlayer(autoABB4F041_g, autoABB4F041_var);
-            if (autoABB4F041_var < 0) { break; }
-            if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_listBoxes[autoABB4F041_var] == EventDialogControl())) {
-                lv_value = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_values[(DialogControlGetSelectedItem(EventDialogControl(), EventPlayer()) - 1)].lv_val;
-                if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_selectedVals[autoABB4F041_var] != lv_value)) {
-                    libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_selectedVals[autoABB4F041_var] = lv_value;
-                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
-                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Option", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[lv_i].lv_name);
-                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Player", libDBC4E2D2_gf_GetPlayerNamesColored(PlayerGroupSingle(autoABB4F041_var)));
-                    TextExpressionSetToken("Param/Expression/lib_D169EC7B_DD50153D", "Value", StringToText(lv_value));
-                    UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_DD50153D"));
-                }
-
-            }
-
-        }
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libD169EC7B_gt_PlayerOptionValueChanged_Init () {
-    libD169EC7B_gt_PlayerOptionValueChanged = TriggerCreate("libD169EC7B_gt_PlayerOptionValueChanged_Func");
-    TriggerAddEventDialogControl(libD169EC7B_gt_PlayerOptionValueChanged, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Game Option Value Changed
-//--------------------------------------------------------------------------------------------------
-bool libD169EC7B_gt_GameOptionValueChanged_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_i;
-    int lv_j;
-    string lv_value;
-
-    // Automatic Variable Declarations
-    int autoC6652104_ae;
-    const int autoC6652104_ai = 1;
-
-    // Variable Initialization
-    lv_value = "";
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    autoC6652104_ae = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_numberofGameOptions;
-    lv_i = 0;
-    for ( ; ( (autoC6652104_ai >= 0 && lv_i <= autoC6652104_ae) || (autoC6652104_ai < 0 && lv_i >= autoC6652104_ae) ) ; lv_i += autoC6652104_ai ) {
-        if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_listBox == EventDialogControl())) {
-            lv_value = libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_values[(DialogControlGetSelectedItem(EventDialogControl(), EventPlayer()) - 1)].lv_val;
-            if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_selectedVal != lv_value)) {
-                libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_selectedVal = lv_value;
-                TextExpressionSetToken("Param/Expression/lib_D169EC7B_0FFEA8BE", "Handicap", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_name);
-                TextExpressionSetToken("Param/Expression/lib_D169EC7B_0FFEA8BE", "Option", libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_gameOptions[lv_i].lv_name);
-                TextExpressionSetToken("Param/Expression/lib_D169EC7B_0FFEA8BE", "Value", StringToText(lv_value));
-                UIDisplayMessage(libD169EC7B_gv_playerstoShowHandicapsMessages, c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_D169EC7B_0FFEA8BE"));
-            }
-
-        }
-
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libD169EC7B_gt_GameOptionValueChanged_Init () {
-    libD169EC7B_gt_GameOptionValueChanged = TriggerCreate("libD169EC7B_gt_GameOptionValueChanged_Func");
-    TriggerAddEventDialogControl(libD169EC7B_gt_GameOptionValueChanged, c_playerAny, c_invalidDialogControlId, c_triggerControlEventTypeSelectionChanged);
+void libD169EC7B_gt_GAMESTART_Init () {
+    libD169EC7B_gt_GAMESTART = TriggerCreate("libD169EC7B_gt_GAMESTART_Func");
+    TriggerAddEventMapInit(libD169EC7B_gt_GAMESTART);
 }
 
 void libD169EC7B_InitTriggers () {
     libD169EC7B_gt_SetupHandicap_Init();
-    libD169EC7B_gt_SetupHandicaps_Init();
-    libD169EC7B_gt_HandicapsUIStart_Init();
+    libD169EC7B_gt_PhaseTimerExpiresForQueue_Init();
+    libD169EC7B_gt_PhaseTimerTickForQueue_Init();
+    libD169EC7B_gt_MODMirrorTournament22Start_Init();
+    libD169EC7B_gt_MODMirrorTournament2222Start_Init();
+    libD169EC7B_gt_MODMirrorTournament222222Start_Init();
+    libD169EC7B_gt_MODMirrorAllPickStart_Init();
+    libD169EC7B_gt_MODAllPickStart_Init();
+    libD169EC7B_gt_MODAllRandomStart_Init();
+    libD169EC7B_gt_MODMirrorAllRandomStart_Init();
+    libD169EC7B_gt_MODDefaultStart_Init();
     libD169EC7B_gt_HandicapDetailsButtonClick_Init();
     libD169EC7B_gt_ToggleHandicapButtonClick_Init();
     libD169EC7B_gt_HandicapBackButtonClick_Init();
+    libD169EC7B_gt_BanHandicapButtonClick_Init();
+    libD169EC7B_gt_PickHandicapButtonClick_Init();
     libD169EC7B_gt_StartGameButtonClick_Init();
-    libD169EC7B_gt_PlayerOptionValueChanged_Init();
-    libD169EC7B_gt_GameOptionValueChanged_Init();
+    libD169EC7B_gt_DefaultPlayerOptionValueChanged_Init();
+    libD169EC7B_gt_MirrorPlayerOptionValueChanged_Init();
+    libD169EC7B_gt_DefaultGameOptionValueChanged_Init();
+    libD169EC7B_gt_MirrorGameOptionValueChanged_Init();
+    libD169EC7B_gt_SetupHandicaps_Init();
+    libD169EC7B_gt_GAMESTART_Init();
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -39,6 +39,7 @@ void libC0051C89_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_C0051C89_8F30FFBC");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_C0051C89_5E68B8A2");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-protoss-amoncloud.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_C0051C89_DE6F3BBF");
     lv_optionvalueindex = 0;
@@ -97,15 +98,25 @@ void libC0051C89_gf_EnableHandicap (int lp_handicapIndex) {
 void libC0051C89_gf_EnableHandicapForPlayer (int lp_player) {
     // Variable Declarations
     unitgroup lv_workers;
+    unitgroup lv_mainStructures;
 
     // Automatic Variable Declarations
     unitgroup auto0EDA4537_g;
     int auto0EDA4537_u;
     unit auto0EDA4537_var;
-    string auto5A143434_val;
+    unitgroup auto33B2A92D_g;
+    int auto33B2A92D_u;
+    unit auto33B2A92D_var;
+    unitgroup autoCB6842F1_g;
+    int autoCB6842F1_u;
+    unit autoCB6842F1_var;
+    unitgroup auto76DC9F48_g;
+    int auto76DC9F48_u;
+    unit auto76DC9F48_var;
 
     // Variable Initialization
     lv_workers = UnitGroupEmpty();
+    lv_mainStructures = UnitGroupEmpty();
 
     // Implementation
     lv_workers = UnitGroup(null, lp_player, RegionEntireMap(), UnitFilter((1 << c_targetFilterWorker), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
@@ -129,21 +140,33 @@ void libC0051C89_gf_EnableHandicapForPlayer (int lp_player) {
     CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(3) + "].Button.Requirements", lp_player, "");
     CatalogFieldValueSet(c_gameCatalogAbil, "TerranBuild", "InfoArray[" + IntToString(4) + "].Button.Requirements", lp_player, "");
     if ((libD169EC7B_gv_hANDICAPS[libD169EC7B_gv_activeHandicapIndex].lv_playerOptions[1].lv_selectedVals[lp_player] != libD169EC7B_gv_hANDICAPOPTIONDISABLEDVAL)) {
-        auto5A143434_val = PlayerRace(lp_player);
-        if (auto5A143434_val == "Zerg") {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, lp_player, PlayerStartLocation(lp_player));
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, lp_player, PlayerStartLocation(lp_player));
+        lv_mainStructures = UnitGroup("Nexus", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto33B2A92D_g = lv_mainStructures;
+        auto33B2A92D_u = UnitGroupCount(auto33B2A92D_g, c_unitCountAll);
+        for (;; auto33B2A92D_u -= 1) {
+            auto33B2A92D_var = UnitGroupUnitFromEnd(auto33B2A92D_g, auto33B2A92D_u);
+            if (auto33B2A92D_var == null) { break; }
+            UnitRemove(auto33B2A92D_var);
         }
-        else if (auto5A143434_val == "Prot") {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, lp_player, PlayerStartLocation(lp_player));
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, lp_player, PlayerStartLocation(lp_player));
+        lv_mainStructures = UnitGroup("Hatchery", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        autoCB6842F1_g = lv_mainStructures;
+        autoCB6842F1_u = UnitGroupCount(autoCB6842F1_g, c_unitCountAll);
+        for (;; autoCB6842F1_u -= 1) {
+            autoCB6842F1_var = UnitGroupUnitFromEnd(autoCB6842F1_g, autoCB6842F1_u);
+            if (autoCB6842F1_var == null) { break; }
+            UnitRemove(autoCB6842F1_var);
         }
-        else if (auto5A143434_val == "Terr") {
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, lp_player, PlayerStartLocation(lp_player));
-            libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, lp_player, PlayerStartLocation(lp_player));
+        lv_mainStructures = UnitGroup("CommandCenter", lp_player, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto76DC9F48_g = lv_mainStructures;
+        auto76DC9F48_u = UnitGroupCount(auto76DC9F48_g, c_unitCountAll);
+        for (;; auto76DC9F48_u -= 1) {
+            auto76DC9F48_var = UnitGroupUnitFromEnd(auto76DC9F48_g, auto76DC9F48_u);
+            if (auto76DC9F48_var == null) { break; }
+            UnitRemove(auto76DC9F48_var);
         }
-        else {
-        }
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Hatchery", 0, lp_player, PlayerStartLocation(lp_player));
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Nexus", 0, lp_player, PlayerStartLocation(lp_player));
+        libNtve_gf_CreateUnitsWithDefaultFacing(1, "CommandCenter", 0, lp_player, PlayerStartLocation(lp_player));
     }
 
 }

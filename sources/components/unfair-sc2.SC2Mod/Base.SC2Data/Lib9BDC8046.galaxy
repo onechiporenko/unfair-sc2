@@ -27,6 +27,7 @@ void lib9BDC8046_gf_SetupOptions (int lp_handicapindex) {
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_name = StringExternal("Param/Value/lib_9BDC8046_B4C9801E");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_description = StringExternal("Param/Value/lib_9BDC8046_2D99FEFD");
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_iconPath = "Assets\\Textures\\btn-ability-hornerhan-wraith-attackspeed.dds";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_forTournaments = true;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_9BDC8046_C9E359F9");
     lv_optionvalueindex = 0;
@@ -197,7 +198,7 @@ bool lib9BDC8046_gt_AddAttackSpeedBehaviorForInitialUnits_Func (bool testConds, 
     while (true) {
         auto0D93FF3A_var = PlayerGroupNextPlayer(auto0D93FF3A_g, auto0D93FF3A_var);
         if (auto0D93FF3A_var < 0) { break; }
-        if ((libDBC4E2D2_gv_pLAYERS[auto0D93FF3A_var].lv_mOVESPEED.lv_enabled == true)) {
+        if ((libDBC4E2D2_gv_pLAYERS[auto0D93FF3A_var].lv_aTTACKSPEED.lv_enabled == true)) {
             auto5D628E3A_g = UnitGroup(null, auto0D93FF3A_var, RegionEntireMap(), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
             auto5D628E3A_u = UnitGroupCount(auto5D628E3A_g, c_unitCountAll);
             for (;; auto5D628E3A_u -= 1) {

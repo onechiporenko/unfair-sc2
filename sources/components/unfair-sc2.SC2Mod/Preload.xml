@@ -79,6 +79,7 @@
 <Model id="UnfairSC2PureMineralsSpawn"/>
 <Model id="UnfairSC2RandomUnitRandomBox"/>
 <Sound id="AlarakA_Countdown"/>
+<Sound id="UI_BnetCountdownBeep"/>
 <Sound id="UI_PlayerCameraSelect"/>
 <Sound id="UI_TerranKlaxonAlert"/>
 <Sound id="TUIWarningPing"/>

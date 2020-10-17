@@ -3,10 +3,17 @@ include "TriggerLibs/natives"
 //--------------------------------------------------------------------------------------------------
 // Library: BLOCKED RAMPS
 //--------------------------------------------------------------------------------------------------
+// Constants
+const string lib3B55E3B4_gv_yes = "Yes";
+const string lib3B55E3B4_gv_no = "No";
+
 // Function Declarations
 void lib3B55E3B4_gf_SetupOptions (int lp_handicapindex);
 void lib3B55E3B4_gf_EnableHandicap (int lp_handicapIndex);
 
 // Trigger Declarations
 trigger lib3B55E3B4_gt_SetupHandicap;
+
+// Library Initialization
+void lib3B55E3B4_InitVariables ();
 
