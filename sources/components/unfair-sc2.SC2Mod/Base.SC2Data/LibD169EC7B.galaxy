@@ -66,7 +66,6 @@ include "Lib1D99399F_h"
 include "Lib313A0FF8_h"
 include "Lib7397C7F4_h"
 include "Lib5353B0F8_h"
-include "Lib64FE5A74_h"
 include "Lib77A838C7_h"
 include "Lib674063E3_h"
 
@@ -115,7 +114,6 @@ void libD169EC7B_InitLibraries () {
     lib1D99399F_InitVariables();
     lib7397C7F4_InitVariables();
     lib5353B0F8_InitVariables();
-    lib64FE5A74_InitVariables();
     lib77A838C7_InitVariables();
     lib674063E3_InitVariables();
 }
@@ -2641,8 +2639,6 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     lv_handicapindex += 1;
     lib5353B0F8_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
-    lib64FE5A74_gf_SetupOptions(lv_handicapindex);
-    lv_handicapindex += 1;
     lib77A838C7_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     lib674063E3_gf_SetupOptions(lv_handicapindex);
@@ -2838,7 +2834,6 @@ include "Lib1D99399F"
 include "Lib313A0FF8"
 include "Lib7397C7F4"
 include "Lib5353B0F8"
-include "Lib64FE5A74"
 include "Lib77A838C7"
 include "Lib674063E3"
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.7
+
+* [BUGFIX] [#76 "Workers Build Process" affects workers even when it's disabled](https://github.com/onechiporenko/unfair-sc2/issues/76)
+
+* [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
+    * [REMOVED] Handicap is removed.
+
 ## v3.6
 
 В мод добавлено несколько новых режимов игры:
@@ -114,7 +121,7 @@ Pick and ban time can be set in lobby. It can be 15, 30, 45 or 60 seconds. This 
 * [BUGFIX] [#74 Невозможно создать игру формата больше 1х1](https://github.com/onechiporenko/unfair-sc2/issues/74)
 
 * [APM KING](./handicaps/apm-king.md)
-    * [NEW] Handicap is removed.
+    * [REMOVED] Handicap is removed.
 
 * [DARKNESS](./handicaps/darkness.md)
     * [FEATURE] Visual effect is added to units with Darkness effect.

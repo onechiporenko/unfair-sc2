@@ -1,14 +1,8 @@
 ﻿Abil/EditorPrefix/ProtossBuild2=Зонд -
 Abil/EditorPrefix/PsiStorm2=Высший тамплиер -
 Abil/EditorPrefix/UnfairSC2AcidSpray=Unfair SC2 - 
-Abil/EditorPrefix/UnfairSC2BuildLikeDrone=Unfair SC2 - 
-Abil/EditorPrefix/UnfairSC2BuildLikeProbe=Unfair SC2 - 
-Abil/EditorPrefix/UnfairSC2DroneBuildLikeProbe=Unfair SC2 - 
-Abil/EditorPrefix/UnfairSC2DroneBuildLikeSCV=Unfair SC2 - 
 Abil/EditorPrefix/UnfairSC2ExtraArmor=Unfair SC2 - 
 Abil/EditorPrefix/UnfairSC2FallingRocks=Unfair SC2 - 
-Abil/EditorPrefix/UnfairSC2ProbeBuildLikeDrone=Unfair SC2 - 
-Abil/EditorPrefix/UnfairSC2ProbeBuildLikeSCV=Unfair SC2 - 
 Abil/EditorSuffix/PsiStorm2=
 Actor/EditorPrefix/UnfairSC2AcidSprayAttack=Unfair SC2 - 
 Actor/EditorPrefix/UnfairSC2AcidSprayAttackMissile=Unfair SC2 - 

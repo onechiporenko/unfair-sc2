@@ -281,19 +281,6 @@
             <Unit value="Probe"/>
         </InfoArray>
     </CAbilTrain>
-    <CAbilBuild id="UnfairSC2DroneBuildLikeSCV" parent="ZergBuild">
-        <Name value="Abil/Name/UnfairSC2DroneBuildLikeSCV"/>
-        <FlagArray index="Interruptible" value="1"/>
-        <FlagArray index="PeonHide" value="0"/>
-        <FlagArray index="PeonDisableCollision" value="1"/>
-        <FlagArray index="PeonKillFinish" value="0"/>
-        <FlagArray index="RangeIncludesBuilding" value="1"/>
-    </CAbilBuild>
-    <CAbilBuild id="UnfairSC2ProbeBuildLikeSCV" parent="ProtossBuild">
-        <Name value="Abil/Name/UnfairSC2ProbeBuildLikeSCV"/>
-        <FlagArray index="Interruptible" value="1"/>
-        <FlagArray index="PeonMaintained" value="1"/>
-    </CAbilBuild>
     <CAbilResearch id="SpireResearch">
         <InfoArray index="Research7" Time="230" Upgrade="ZergFlyerWeaponsLevel4">
             <Resource index="Minerals" value="325"/>
@@ -326,14 +313,6 @@
             <Button DefaultButtonFace="UnfairSC2zergflyerarmor6" Requirements="LearnZergFlyerArmor6"/>
         </InfoArray>
     </CAbilResearch>
-    <CAbilBuild id="UnfairSC2BuildLikeDrone" parent="TerranBuild">
-        <Name value="Abil/Name/UnfairSC2BuildLikeDrone"/>
-        <FlagArray index="Interruptible" value="0"/>
-        <FlagArray index="PeonHide" value="1"/>
-        <FlagArray index="PeonDisableCollision" value="0"/>
-        <FlagArray index="PeonKillFinish" value="1"/>
-        <FlagArray index="RangeIncludesBuilding" value="0"/>
-    </CAbilBuild>
     <CAbilEffectTarget id="UnfairSC2AcidSpray">
         <Alignment value="Negative"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -367,11 +346,6 @@
         <CursorEffect value="PsiStormSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="PsiStorm" Requirements="UsePsiStorm"/>
     </CAbilEffectTarget>
-    <CAbilBuild id="UnfairSC2BuildLikeProbe" parent="TerranBuild">
-        <Name value="Abil/Name/UnfairSC2BuildLikeProbe"/>
-        <FlagArray index="Interruptible" value="0"/>
-        <FlagArray index="PeonMaintained" value="0"/>
-    </CAbilBuild>
     <CAbilEffectInstant id="UnfairSC2ExtraArmor">
         <Alignment value="Positive"/>
         <OrderArray index="0" Model="Assets\UI\Cursors\WayPointConfirm_Void\WayPointConfirm_Void.m3"/>
@@ -421,22 +395,6 @@
         </Cost>
         <Flags index="BestUnit" value="1"/>
     </CAbilEffectInstant>
-    <CAbilBuild id="UnfairSC2ProbeBuildLikeDrone" parent="ProtossBuild">
-        <Name value="Abil/Name/UnfairSC2ProbeBuildLikeDrone"/>
-        <FlagArray index="PeonHide" value="1"/>
-        <FlagArray index="PeonDisableCollision" value="0"/>
-        <FlagArray index="PeonKillFinish" value="1"/>
-        <FlagArray index="PeonMaintained" value="1"/>
-        <FlagArray index="RangeIncludesBuilding" value="0"/>
-    </CAbilBuild>
-    <CAbilBuild id="UnfairSC2DroneBuildLikeProbe" parent="ZergBuild">
-        <Name value="Abil/Name/UnfairSC2DroneBuildLikeProbe"/>
-        <FlagArray index="PeonHide" value="0"/>
-        <FlagArray index="PeonDisableCollision" value="1"/>
-        <FlagArray index="PeonKillFinish" value="0"/>
-        <FlagArray index="PeonMaintained" value="0"/>
-        <FlagArray index="RangeIncludesBuilding" value="1"/>
-    </CAbilBuild>
     <CAbilResearch id="evolutionchamberresearch">
         <InfoArray index="Research11" Time="230" Upgrade="ZergGroundArmorsLevel4">
             <Resource index="Minerals" value="375"/>

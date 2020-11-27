@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.7
+
+* [BUGFIX] [#76 "Workers Build Process" affects workers even when it's disabled](https://github.com/onechiporenko/unfair-sc2/issues/76)
+
+* [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
+    * [REMOVED] Гандикап удален.
+
 ## v3.6
 
 В мод добавлено несколько новых режимов игры:

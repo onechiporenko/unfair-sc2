@@ -11,7 +11,7 @@ Unfair SC2 - это модификация для StarCraft2, которая с�
 * [ALIENS](./handicaps/aliens.md)
 * [ALL RACES](./handicaps/all-races.md)
 * [ALL UPGRADES](./handicaps/all-upgrades.md)
-* [APM KING](./handicaps/apm-king.md)
+* ~[APM KING](./handicaps/apm-king.md)~
 * [BATTLE HUNGER](./handicaps/battle-hunger.md)
 * [BERSERKER'S BLOOD](./handicaps/berserkers-blood.md)
 * [BLINK WARS](./handicaps/blink-wars.md)
@@ -72,6 +72,6 @@ Unfair SC2 - это модификация для StarCraft2, которая с�
 * [VAMPIRISM](./handicaps/vampirism.md)
 * [WALKING DEAD](./handicaps/walking-dead.md)
 * [WALL](./handicaps/wall.md)
-* [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
+* ~[WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)~
 * [ZOMBIES](./handicaps/zombies.md)
 * [ZOOM](./handicaps/zoom.md)

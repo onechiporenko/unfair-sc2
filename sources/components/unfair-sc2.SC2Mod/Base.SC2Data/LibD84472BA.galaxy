@@ -117,6 +117,7 @@ void libD84472BA_gf_EnableHandicapForPlayer (int lp_player) {
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "GraviticDrive", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "DarkTemplarBlinkUpgrade", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "VoidRaySpeedUpgrade", 1);
+    libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "TempestGroundAttackUpgrade", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "ZergMeleeWeaponsLevel1", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "ZergMeleeWeaponsLevel2", 1);
     libNtve_gf_SetUpgradeLevelForPlayer(lp_player, "ZergMeleeWeaponsLevel3", 1);
