@@ -4,6 +4,7 @@ include "Lib9BDC8046_h"
 include "LibD944395A_h"
 include "LibD84472BA_h"
 include "LibC0051C89_h"
+include "LibB61FBB12_h"
 include "Lib1A704C64_h"
 include "LibCB22438A_h"
 include "Lib88BAA5D0_h"
@@ -2513,9 +2514,11 @@ bool libD169EC7B_gt_SetupHandicaps_Func (bool testConds, bool runActions) {
     lv_handicapindex += 1;
     libD84472BA_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
-    lib9BDC8046_gf_SetupOptions(lv_handicapindex);
-    lv_handicapindex += 1;
     libC0051C89_gf_SetupOptions(lv_handicapindex);
+    lv_handicapindex += 1;
+    libB61FBB12_gf_SetupOptions(lv_handicapindex);
+    lv_handicapindex += 1;
+    lib9BDC8046_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
     lib1A704C64_gf_SetupOptions(lv_handicapindex);
     lv_handicapindex += 1;
@@ -2772,6 +2775,7 @@ include "Lib9BDC8046"
 include "LibD944395A"
 include "LibD84472BA"
 include "LibC0051C89"
+include "LibB61FBB12"
 include "Lib1A704C64"
 include "LibCB22438A"
 include "Lib88BAA5D0"

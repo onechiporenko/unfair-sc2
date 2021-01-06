@@ -1,5 +1,10 @@
 # Changelog
 
+## v3.8
+
+* [ALMOST FREE NUKES](./handicaps/almost-free-nukes.md)
+    * [NEW] Handicap is added.
+
 ## v3.7
 
 * [BUGFIX] [#76 "Workers Build Process" affects workers even when it's disabled](https://github.com/onechiporenko/unfair-sc2/issues/76)

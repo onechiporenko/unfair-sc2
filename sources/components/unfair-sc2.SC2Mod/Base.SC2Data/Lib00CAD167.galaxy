@@ -411,7 +411,9 @@ bool lib00CAD167_gt_UgradeMines_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    libNtve_gf_SetUpgradeLevelForPlayer(15, "DrillClaws", 1);
+    libNtve_gf_CreateUnitsWithDefaultFacing(1, "Armory", c_unitCreateIgnorePlacement, 15, Point(0.0, 0.0));
+    UnitBehaviorAdd(UnitLastCreated(), "PermanentlyCloaked", UnitLastCreated(), 1);
+    libNtve_gf_MakeUnitInvulnerable(UnitLastCreated(), true);
     TextExpressionSetToken("Param/Expression/lib_00CAD167_49C3A57D", "A", StringExternal(CatalogFieldValueGet(c_gameCatalogUpgrade, "DrillClaws", "Name", c_playerAny)));
     TextExpressionSetToken("Param/Expression/lib_00CAD167_49C3A57D", "B", StringExternal(CatalogFieldValueGet(c_gameCatalogUnit, "HHWidowMineACGluescreenDummy", "Name", c_playerAny)));
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, TextExpressionAssemble("Param/Expression/lib_00CAD167_49C3A57D"));

@@ -9,6 +9,7 @@ Unfair SC2 - это модификация для StarCraft2, которая с�
 
 * [AIR/GROUND WEAPON](./handicaps/air-ground-weapon.md)
 * [ALIENS](./handicaps/aliens.md)
+* [ALMOST FREE NUKES](./handicaps/almost-free-nukes.md)
 * [ALL RACES](./handicaps/all-races.md)
 * [ALL UPGRADES](./handicaps/all-upgrades.md)
 * ~[APM KING](./handicaps/apm-king.md)~

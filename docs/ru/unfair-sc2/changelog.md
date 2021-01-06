@@ -6,6 +6,9 @@
 
 * [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
     * [REMOVED] Гандикап удален.
+    
+* [ALMOST FREE NUKES](./handicaps/almost-free-nukes.md)
+    * [NEW] Гандикап добавлен.
 
 ## v3.6
 
