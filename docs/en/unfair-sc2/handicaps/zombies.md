@@ -12,6 +12,13 @@ Zombies can't spawn on Pylon, Photon Cannon, Shields Battery, Vespene Geysers, R
 
 Set to each player individually.
 
+**v3.9**
+
+* [BUGFIX] Zombies are created for all affected players at the same time
+* [FEATURE] "Critter wander" behavior is added for zombies
+* [BUGFIX] Third grade for zombies is given on selected wave and not on 20th
+* [FEATURE] Option for zombies max count is added. It applies for all players and can be 5..30
+
 **v2.20**
 
 * [FEATURE] In-game hint with handicap's description is added. It's shown only if handicap is turned on at least for one player.

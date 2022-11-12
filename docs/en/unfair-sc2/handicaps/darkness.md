@@ -4,6 +4,10 @@ Reduce units vision range to 4 and hide minimap for player. This effects can be 
 
 Set to each player individually.
 
+**v3.9**
+
+* [BUGFIX] Reduce sight animation is not shown for enemies and is not applied for missiles.
+
 **v2.41**
 
 * [FEATURE] Visual effect is added to units with Darkness effect.
