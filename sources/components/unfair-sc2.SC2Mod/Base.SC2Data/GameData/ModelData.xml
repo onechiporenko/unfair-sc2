@@ -51,9 +51,11 @@
     </CModel>
     <CModel id="UnfairSC2DaknessInit">
         <Model value="Assets\Effects\Protoss\DarkArchon_Confusion\DarkArchon_Confusion.m3"/>
+        <Flags index="CloakedUndetectedIsHidden" value="1"/>
     </CModel>
     <CModel id="UnfairSC2DarknessPersistent">
         <Model value="Assets\Effects\Protoss\DarkArchon_MindControl_State\DarkArchon_MindControl_State.m3"/>
+        <Flags index="CloakedUndetectedIsHidden" value="1"/>
     </CModel>
     <CModel id="UnfairSC2DecimatioDeath">
         <Model value="Assets\Effects\Neutral\Fear_Coop\Fear_Coop.m3"/>

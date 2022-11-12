@@ -138,9 +138,13 @@
     <CActorModel id="UnfairSC2DarknessInit" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.UnfairSC2Darkness.Start; At Source" Send="Create"/>
         <Model value="UnfairSC2DaknessInit"/>
+        <Filter index="Enemy" value="1"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
     <CActorModel id="UnfairSC2DarknessPersistent" parent="ModelAnimationStyleContinuous">
         <On Terms="Effect.UnfairSC2Darkness.Start; At Source" Send="Create"/>
+        <Filter index="Enemy" value="1"/>
+        <ModelFlags index="CloakedUndetectedIsHidden" value="1"/>
     </CActorModel>
     <CActorModel id="UnfairSC2RandomUnitBirth" parent="ModelAnimationStyleOneShot">
         <On Terms="Effect.UnfairSC2RandomUnitBirth.Start; At Effect" Send="Create"/>

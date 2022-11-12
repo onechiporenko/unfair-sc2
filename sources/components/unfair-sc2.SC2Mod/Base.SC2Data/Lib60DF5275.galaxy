@@ -172,7 +172,7 @@ bool lib60DF5275_gt_SetDarknessBehaviorForCreatedUnit_Func (bool testConds, bool
         return true;
     }
 
-    if ((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_dARKNESS.lv_reduceVisionRange == true)) {
+    if ((libDBC4E2D2_gv_pLAYERS[UnitGetOwner(EventUnitCreatedUnit())].lv_dARKNESS.lv_reduceVisionRange == true) && ((UnitTypeTestAttribute(UnitGetType(EventUnitCreatedUnit()), c_unitAttributeStructure) == true) || (UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesUsed) > 0.0) || (UnitTypeGetProperty(UnitGetType(EventUnitCreatedUnit()), c_unitPropSuppliesMade) > 0.0))) {
         lib60DF5275_gf_AddDarknessBehavior(EventUnitCreatedUnit());
     }
 

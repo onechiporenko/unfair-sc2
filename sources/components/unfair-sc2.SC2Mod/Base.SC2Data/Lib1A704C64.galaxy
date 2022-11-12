@@ -123,6 +123,7 @@ void lib1A704C64_gt_SetupHandicap_Init () {
 bool lib1A704C64_gt_UnitIsKilled_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_unit;
+    actor lv_model;
 
     // Automatic Variable Declarations
     // Variable Initialization
@@ -148,6 +149,10 @@ bool lib1A704C64_gt_UnitIsKilled_Func (bool testConds, bool runActions) {
         if (!((UnitGetType(EventUnitDamageSourceUnit()) != "Broodling"))) {
             return false;
         }
+
+        if (!((EventPlayer() != EventUnitDamageSourcePlayer()))) {
+            return false;
+        }
     }
 
     // Actions
@@ -156,11 +161,12 @@ bool lib1A704C64_gt_UnitIsKilled_Func (bool testConds, bool runActions) {
     }
 
     lv_unit = EventUnitDamageSourceUnit();
-    libNtve_gf_AttachModelToUnit(EventUnitDamageSourceUnit(), "ZergBuildingBlood", "Ref_Overhead");
+    libNtve_gf_AttachModelToUnitInheritVisibility(EventUnitDamageSourceUnit(), "ZergBuildingBlood", "Ref_Overhead");
+    lv_model = libNtve_gf_ActorLastCreated();
     UnitBehaviorAdd(EventUnitDamageSourceUnit(), "Stimpack", EventUnitDamageSourceUnit(), 1);
     Wait(2.0, c_timeGame);
     if ((UnitIsAlive(lv_unit) == true)) {
-        libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
+        libNtve_gf_KillModel(lv_model);
     }
 
     return true;

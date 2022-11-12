@@ -25,6 +25,7 @@ void lib77A838C7_InitVariables () {
     lib77A838C7_InitVariables_completed = true;
 
     lib77A838C7_gv_zombiesTimer = TimerCreate();
+    lib77A838C7_gv_zombiesMaxNumber = 20;
     lib77A838C7_gv_timerFromGameStarts = TimerCreate();
 }
 
@@ -89,6 +90,23 @@ void lib77A838C7_gf_SetupOptions (int lp_handicapindex) {
     lv_optionvalueindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
     lv_optionindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_77A838C7_AE7C6CA7");
+    lv_optionvalueindex = 0;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "5";
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_selectedVal = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "10";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "15";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "20";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "25";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_values[lv_optionvalueindex].lv_val = "30";
+    lv_optionvalueindex += 1;
+    libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_gameOptions[lv_optionindex].lv_numberofValues = lv_optionvalueindex;
+    lv_optionindex += 1;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_numberofGameOptions = lv_optionindex;
     lv_optionindex = 0;
     libD169EC7B_gv_hANDICAPS[lp_handicapindex].lv_playerOptions[lv_optionindex].lv_name = StringExternal("Param/Value/lib_77A838C7_4F78AD49");
@@ -111,6 +129,7 @@ void lib77A838C7_gf_EnableHandicap (int lp_handicapIndex) {
     string auto042EFB9D_val;
     string auto49065E78_val;
     string auto39FF1D5F_val;
+    string autoE7919951_val;
     playergroup autoB92C4027_g;
     int autoB92C4027_var;
 
@@ -189,6 +208,28 @@ void lib77A838C7_gf_EnableHandicap (int lp_handicapIndex) {
             lib77A838C7_gv_zombiesGradesWaves[1] = 14;
             lib77A838C7_gv_zombiesGradesWaves[2] = 21;
         }
+        autoE7919951_val = libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_gameOptions[3].lv_selectedVal;
+        if (autoE7919951_val == "5") {
+            lib77A838C7_gv_zombiesMaxNumber = 5;
+        }
+        else if (autoE7919951_val == "10") {
+            lib77A838C7_gv_zombiesMaxNumber = 10;
+        }
+        else if (autoE7919951_val == "15") {
+            lib77A838C7_gv_zombiesMaxNumber = 15;
+        }
+        else if (autoE7919951_val == "20") {
+            lib77A838C7_gv_zombiesMaxNumber = 20;
+        }
+        else if (autoE7919951_val == "25") {
+            lib77A838C7_gv_zombiesMaxNumber = 25;
+        }
+        else if (autoE7919951_val == "30") {
+            lib77A838C7_gv_zombiesMaxNumber = 30;
+        }
+        else {
+            lib77A838C7_gv_zombiesMaxNumber = 20;
+        }
         autoB92C4027_g = PlayerGroupActive();
         autoB92C4027_var = -1;
         while (true) {
@@ -203,6 +244,7 @@ void lib77A838C7_gf_EnableHandicap (int lp_handicapIndex) {
         if ((PlayerGroupCount(lv_players) > 0)) {
             TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "ZombiesWavesDelay", IntToText(lib77A838C7_gv_zombiesWavesDelay));
             TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "ZombiesStartDelay", IntToText(lib77A838C7_gv_zombiesStartDelay));
+            TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "ZombiesMaxNumber", IntToText(lib77A838C7_gv_zombiesMaxNumber));
             TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "GradesDelayWaves", IntToText(lib77A838C7_gv_zombiesGradesWaves[0]));
             TextExpressionSetToken("Param/Expression/lib_77A838C7_3E63CB4B", "Players", libDBC4E2D2_gf_GetPlayerNamesColored(lv_players));
             HelpPanelAddTip(PlayerGroupActive(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_77A838C7_3E63CB4B"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
@@ -217,6 +259,59 @@ void lib77A838C7_gf_EnableHandicap (int lp_handicapIndex) {
     else {
         TriggerEnable(lib77A838C7_gt_CreateZombies, false);
     }
+}
+
+trigger auto_lib77A838C7_gf_CreateZombiesforPlayer_Trigger = null;
+int auto_lib77A838C7_gf_CreateZombiesforPlayer_lp_player;
+
+void lib77A838C7_gf_CreateZombiesforPlayer (int lp_player) {
+    auto_lib77A838C7_gf_CreateZombiesforPlayer_lp_player = lp_player;
+
+    if (auto_lib77A838C7_gf_CreateZombiesforPlayer_Trigger == null) {
+        auto_lib77A838C7_gf_CreateZombiesforPlayer_Trigger = TriggerCreate("auto_lib77A838C7_gf_CreateZombiesforPlayer_TriggerFunc");
+    }
+
+    TriggerExecute(auto_lib77A838C7_gf_CreateZombiesforPlayer_Trigger, false, false);
+}
+
+bool auto_lib77A838C7_gf_CreateZombiesforPlayer_TriggerFunc (bool testConds, bool runActions) {
+    int lp_player = auto_lib77A838C7_gf_CreateZombiesforPlayer_lp_player;
+
+    // Variable Declarations
+    actor lv_model;
+    unit lv_structure;
+    point lv_point;
+
+    // Automatic Variable Declarations
+    unitgroup auto1DAC56A5_g;
+    int auto1DAC56A5_u;
+    unit auto1DAC56A5_var;
+
+    // Variable Initialization
+
+    // Implementation
+    lv_structure = libDBC4E2D2_gf_GetRandomStructure(lp_player);
+    if ((lv_structure != null)) {
+        lv_point = UnitGetPosition(lv_structure);
+        libDBC4E2D2_gf_ShowCountDownProgressBar(550, 59, 3.0, PlayerGroupSingle(lp_player));
+        PingCreate(PlayerGroupSingle(lp_player), "PingWarning", lv_point, ColorWithAlpha(100.00, 0.00, 0.00, 0.78), 3.0);
+        libNtve_gf_AttachModelToUnit(lv_structure, "BlindingCloud", "Ref_Overhead");
+        lv_model = libNtve_gf_ActorLastCreated();
+        Wait(3.0, c_timeReal);
+        libNtve_gf_KillModel(lv_model);
+        libNtve_gf_CreateUnitsWithDefaultFacing(lib77A838C7_gv_zombiesCount, "InfestorTerranBurrowed", 0, 15, lv_point);
+        UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowInfestorTerranUp", 0)), c_orderQueueReplace);
+        UnitBehaviorAdd(UnitGroupRandomUnit(UnitLastCreatedGroup(), c_unitCountAlive), "Detector10", UnitGroupRandomUnit(UnitLastCreatedGroup(), c_unitCountAlive), 1);
+        auto1DAC56A5_g = UnitLastCreatedGroup();
+        auto1DAC56A5_u = UnitGroupCount(auto1DAC56A5_g, c_unitCountAll);
+        for (;; auto1DAC56A5_u -= 1) {
+            auto1DAC56A5_var = UnitGroupUnitFromEnd(auto1DAC56A5_g, auto1DAC56A5_u);
+            if (auto1DAC56A5_var == null) { break; }
+            UnitBehaviorAdd(auto1DAC56A5_var, "CritterWander", auto1DAC56A5_var, 1);
+        }
+    }
+
+    return true;
 }
 
 int lib77A838C7_gf_ParseZombiesStartDelay () {
@@ -301,15 +396,9 @@ void lib77A838C7_gt_SetupHandicap_Init () {
 // Trigger: Create Zombies
 //--------------------------------------------------------------------------------------------------
 bool lib77A838C7_gt_CreateZombies_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_structure;
-    point lv_point;
-
     // Automatic Variable Declarations
     playergroup auto54D0554A_g;
     int auto54D0554A_var;
-
-    // Variable Initialization
 
     // Actions
     if (!runActions) {
@@ -322,19 +411,7 @@ bool lib77A838C7_gt_CreateZombies_Func (bool testConds, bool runActions) {
         auto54D0554A_var = PlayerGroupNextPlayer(auto54D0554A_g, auto54D0554A_var);
         if (auto54D0554A_var < 0) { break; }
         if ((libDBC4E2D2_gv_pLAYERS[auto54D0554A_var].lv_zOMBIES.lv_enabled == true)) {
-            lv_structure = libDBC4E2D2_gf_GetRandomStructure(auto54D0554A_var);
-            if ((lv_structure != null)) {
-                lv_point = UnitGetPosition(lv_structure);
-                libDBC4E2D2_gf_ShowCountDownProgressBar(550, 59, 3.0, PlayerGroupSingle(auto54D0554A_var));
-                PingCreate(PlayerGroupSingle(auto54D0554A_var), "PingWarning", lv_point, ColorWithAlpha(100.00, 0.00, 0.00, 0.78), 3.0);
-                libNtve_gf_AttachModelToUnit(lv_structure, "BlindingCloud", "Ref_Overhead");
-                Wait(3.0, c_timeReal);
-                libNtve_gf_KillModel(libNtve_gf_ActorLastCreated());
-                libNtve_gf_CreateUnitsWithDefaultFacing(lib77A838C7_gv_zombiesCount, "InfestorTerranBurrowed", 0, 15, lv_point);
-                UnitGroupIssueOrder(UnitLastCreatedGroup(), Order(AbilityCommand("BurrowInfestorTerranUp", 0)), c_orderQueueReplace);
-                UnitBehaviorAdd(UnitGroupRandomUnit(UnitLastCreatedGroup(), c_unitCountAlive), "Detector10", UnitGroupRandomUnit(UnitLastCreatedGroup(), c_unitCountAlive), 1);
-            }
-
+            lib77A838C7_gf_CreateZombiesforPlayer(auto54D0554A_var);
         }
 
     }
@@ -359,12 +436,12 @@ bool lib77A838C7_gt_GameTimerTick_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    if ((lib77A838C7_gv_zombiesCount <= 19)) {
+    if ((lib77A838C7_gv_zombiesCount < lib77A838C7_gv_zombiesMaxNumber)) {
         lib77A838C7_gv_zombiesCount += 1;
     }
 
     lib77A838C7_gv_zombiesWavesCount += 1;
-    autoD045E730_val = lib77A838C7_gv_zombiesCount;
+    autoD045E730_val = lib77A838C7_gv_zombiesWavesCount;
     if (autoD045E730_val == lib77A838C7_gv_zombiesGradesWaves[0]) {
         TechTreeUpgradeAddLevel(15, "ZergMissileWeaponsLevel1", 1);
         TechTreeUpgradeAddLevel(15, "ZergGroundArmorsLevel1", 1);

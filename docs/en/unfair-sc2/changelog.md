@@ -1,9 +1,25 @@
 # Changelog
 
+## v3.9
+
+* [BATTLE HUNGER](./handicaps/battle-hunger.md)
+  * [BUGFIX] Buff not triggerred after ally killing.
+
+* [DARKNESS](./handicaps/darkness.md)
+  * [BUGFIX] Reduce sight animation is not shown for enemies and is not applied for missiles.
+
+* [GAME SPEED](./handicaps/game-speed.md)
+  * [BUGFIX] Extra units are not created on handicap activation
+
+* [ZOMBIES](./handicaps/zombies.md)
+  * [BUGFIX] Zombies are created for all affected players at the same time
+  * [FEATURE] "Critter wander" behavior is added for zombies
+  * [BUGFIX] Third grade for zombies is given on selected wave and not on 20th
+  * [FEATURE] Option for zombies max count is added. It applies for all players and can be 5..30
+
 ## v3.8
 
-* [ALMOST FREE NUKES](./handicaps/almost-free-nukes.md)
-    * [NEW] Handicap is added.
+Not planned release.
 
 ## v3.7
 
@@ -12,9 +28,10 @@
 * [WORKERS BUILD PROCESS](./handicaps/workers-build-process.md)
     * [REMOVED] Handicap is removed.
 
-## v3.6
+* [ALMOST FREE NUKES](./handicaps/almost-free-nukes.md)
+    * [NEW] Handicap is added.
 
-В мод добавлено несколько новых режимов игры:
+## v3.6
 
 Several new game-mods are added:
 

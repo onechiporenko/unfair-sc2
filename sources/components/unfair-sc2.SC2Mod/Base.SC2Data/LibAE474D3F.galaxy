@@ -74,9 +74,6 @@ void libAE474D3F_gf_EnableHandicap (int lp_handicapIndex) {
         TextExpressionSetToken("Param/Expression/lib_AE474D3F_5AEA0953", "Description", libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_description);
         TextExpressionSetToken("Param/Expression/lib_AE474D3F_5AEA0953", "Settings", lv_settings);
         HelpPanelAddTip(PlayerGroupAll(), libNtve_gf_FormatTipTitle(libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libNtve_ge_TipType_NormalTip), TextExpressionAssemble("Param/Expression/lib_AE474D3F_5AEA0953"), libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_name, libD169EC7B_gv_hANDICAPS[lp_handicapIndex].lv_iconPath);
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Phoenix", 0, 1, PlayerStartLocation(1));
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "VikingFighter", 0, 1, PlayerStartLocation(1));
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "Mutalisk", 0, 1, PlayerStartLocation(1));
     }
 
 }
