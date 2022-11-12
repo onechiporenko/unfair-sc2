@@ -4,7 +4,7 @@ Unfair SC2 is a modification for StarCraft2, which consists of a number of handi
 
 * [CHANGELOG](./changelog.md)
 
-# Гандикапы
+# Handicaps
 
 * [AIR/GROUND WEAPON](./handicaps/air-ground-weapon.md)
 * [ALIENS](./handicaps/aliens.md)
